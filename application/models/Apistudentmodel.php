@@ -28,7 +28,7 @@ class Apistudentmodel extends CI_Model {
 
 	public function getYear()
 	{
-		$sqlYear = "SELECT * FROM edu_academic_year WHERE CURDATE() >= from_month AND CURDATE() <= to_month AND status = 'Active'";
+		$sqlYear = "SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month AND status = 'Active'";
 		$year_result = $this->db->query($sqlYear);
 		$ress_year = $year_result->result();
 		
@@ -50,7 +50,7 @@ class Apistudentmodel extends CI_Model {
 	public function getTerm()
 	{
 	    $year_id = $this->getYear();
-		$sqlTerm = "SELECT * FROM edu_terms WHERE CURDATE() >= from_date AND CURDATE() <= to_date AND year_id = '$year_id' AND status = 'Active'";
+		$sqlTerm = "SELECT * FROM edu_terms WHERE NOW() >= from_date AND NOW() <= to_date AND year_id = '$year_id' AND status = 'Active'";
 		$term_result = $this->db->query($sqlTerm);
 		$ress_term = $term_result->result();
 		
@@ -85,67 +85,15 @@ class Apistudentmodel extends CI_Model {
 
 //#################### Student Profile End ####################//
 
-/*
-//#################### Time table for Students and Parents ####################//
-	public function dispTimetabledays($class_id)
-	{
-			$year_id = $this->getYear();
-			$term_id = $this->getTerm();
-			
-			$day_query = "SELECT A.day, B.list_day FROM `edu_timetable` A, `edu_days` B WHERE A.day = B.d_id AND A.class_id = '$class_id' AND A.year_id = '$year_id' AND A.term_id = '$term_id' GROUP BY DAY ORDER BY A.day";
-			$day_res = $this->db->query($day_query);
-			$day_result= $day_res->result();
-			
-			 if($day_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Timetable days Not Found");
-			}else{
-				$response = array("status" => "success", "msg" => "View Timetable Days", "timeTabledays"=>$day_result);
-			} 
-			return $response;		
-	}
-//#################### Time table End ####################//
-
 
 //#################### Time table for Students and Parents ####################//
 	public function dispTimetable($class_id)
 	{
 			$year_id = $this->getYear();
 			$term_id = $this->getTerm();
-			$timetable_query = "SELECT
-									tt.table_id,
-									tt.class_id,
-									c.class_name,
-									ss.sec_name,
-									tt.subject_id,
-									tt.teacher_id,
-									COALESCE(s.subject_name, '') AS subject_name,
-									tt.day,
-									tt.period,
-									te.name,
-									tt.from_time,
-									tt.to_time,
-									tt.is_break
-								FROM
-									edu_timetable AS tt
-								LEFT JOIN edu_teachers AS te
-								ON
-									tt.teacher_id = te.teacher_id
-								LEFT JOIN edu_subject AS s
-								ON
-									tt.subject_id = s.subject_id
-								INNER JOIN edu_classmaster AS cm
-								ON
-									tt.class_id = cm.class_sec_id
-								INNER JOIN edu_class AS c
-								ON
-									cm.class = c.class_id
-								INNER JOIN edu_sections AS ss
-								ON
-									cm.section = ss.sec_id
-								WHERE
-									tt.class_id = '$class_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id'
-								ORDER BY
-									tt.table_id";
+			
+			$timetable_query = "SELECT tt.table_id,tt.class_id,tt.subject_id,COALESCE(s.subject_name, '') as subject_name,tt.teacher_id,te.name,tt.day,tt.period,ss.sec_name,c.class_name
+			FROM edu_timetable AS tt LEFT JOIN edu_teachers AS te ON tt.teacher_id = te.teacher_id LEFT JOIN edu_subject AS s ON tt.subject_id=s.subject_id INNER JOIN edu_classmaster AS cm ON tt.class_id=cm.class_sec_id INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS ss ON cm.section=ss.sec_id WHERE tt.class_id = '$class_id' AND tt.year_id='$year_id' AND tt.term_id='$term_id' ORDER BY tt.table_id";
 			$timetable_res = $this->db->query($timetable_query);
 			$timetable_result= $timetable_res->result();
 			
@@ -158,7 +106,7 @@ class Apistudentmodel extends CI_Model {
 			return $response;		
 	}
 //#################### Time table End ####################//
-*/
+
 
 //#################### Exams for Students and Parents ####################//
 	public function dispExams($class_id)
@@ -205,7 +153,7 @@ class Apistudentmodel extends CI_Model {
 	{
 			 $year_id = $this->getYear();
 		
-			$exam_query = "SELECT A.exam_id,A.exam_name,C.subject_name,B.exam_date, B.times FROM `edu_examination` A, `edu_exam_details` B, `edu_subject` C WHERE A.`exam_id` = B. exam_id AND B.subject_id = C.subject_id AND B.classmaster_id ='$class_id' AND B.exam_id='$exam_id'";
+			$exam_query = "SELECT A.exam_id,A.exam_name,C.subject_name,B.exam_date, B.times FROM `edu_examination` A, `edu_exam_details` B, `edu_subject` C WHERE A.`exam_id` = B. exam_id AND B.subject_id = C.subject_id AND B.classmaster_id ='$class_id' AND B.exam_id='$exam_id' AND A.status = 'Active' AND B.status ='Active'";
 			$exam_res = $this->db->query($exam_query);
 			$exam_result= $exam_res->result();
 			$exam_result_count = $exam_res->num_rows();
@@ -401,10 +349,7 @@ class Apistudentmodel extends CI_Model {
 
 			return $response;		
 	}
-//#################### Fees End ####################//
-
-
-
+//#################### Communication End ####################//
 
 }
 

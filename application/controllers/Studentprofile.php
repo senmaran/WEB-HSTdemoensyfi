@@ -31,7 +31,7 @@ class Studentprofile extends CI_Controller {
 	 // Class section
 
 
-	 	public function home(){}
+
 
 		public function profile_update()
 		{
@@ -39,11 +39,8 @@ class Studentprofile extends CI_Controller {
 			 $datas=$this->session->userdata();
 			 $user_id=$this->session->userdata('user_id');
 			 $user_type=$this->session->userdata('user_type');
-			 //echo $user_id;exit;
 			 $datas['res'] = $this->studentprofilemodel->getuser($user_id);
 			 $datas['class'] = $this->classmodel->getclass();
-			 
-			   //print_r($datas['res']);exit;
 				if($user_type==3){
 				$this->load->view('adminstudent/student_header');
 				$this->load->view('adminstudent/profile_update',$datas);
@@ -54,45 +51,51 @@ class Studentprofile extends CI_Controller {
 				}
 		}
 
-		public function update_stu_details()
+		public function post_img()
 		{
-			 $datas=$this->session->userdata();
-			 $user_id=$this->session->userdata('user_id');
-			 $user_type=$this->session->userdata('user_type');
-			 if($user_type==3)
-			 {
-			 $admission_id=$this->input->post('admission_id');
-			 $admission_year=$this->input->post('admission_year');
-			 $admission_no=$this->input->post('admission_no');
-			 //echo $last_sch;exit;			 
-			 $user_pic_old=$this->input->post('user_pic_old');
-			 $student_pic = $_FILES["user_pic"]["name"];
-			 $temp = pathinfo($student_pic, PATHINFO_EXTENSION);
-		    $userFileName = round(microtime(true)) . '.' . $temp;
-			 //$userFileName =time();
-			$uploaddir = 'assets/students/profile/';
-			$profilepic = $uploaddir.$userFileName;
-			move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
-			if(empty($student_pic)){
-			  $userFileName=$user_pic_old;
-			}
-				$datas=$this->studentprofilemodel->update_details($admission_year,$admission_no,$userFileName,$admission_id);
-			//print_r($datas['status']);exit;
-				if($datas['status']=="success"){
-					$this->session->set_flashdata('msg', 'Updated Successfully');
-					redirect('studentprofile/profile_update');
-				}else if($datas['status']=="Email Already Exist"){
-					$this->session->set_flashdata('msg', 'Email Already Exist');
-					redirect('studentprofile/profile_update');
-				}else{
-					$this->session->set_flashdata('msg', 'Failed to Add');
-					redirect('studentprofile/profile_update');
-				}
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			if($user_type==3)
+			{
+				 $data=$_POST["image"];
+				 $image_array_1 = explode(";", $data);
+				 $image_array_2 = explode(",", $image_array_1[1]);
+				 $data = base64_decode($image_array_2[1]);
+				 $imageName = time() . '.png';
+				 file_put_contents('assets/students/profile/'.$imageName, $data);
+				 $datas=$this->studentprofilemodel->update_parents($user_id,$imageName);
+				 if($datas['status']=="success"){
+					 echo "success";
+				 }else{
+					 echo "failed";
+				 }
+
+			 }else{
+					 redirect('/');
+
 			 }
-			 else{
-					redirect('/');
-			 }
+
 		}
+
+		public function remove_img(){
+			$datas=$this->session->userdata();
+		 $user_id=$this->session->userdata('user_id');
+		 $user_type=$this->session->userdata('user_type');
+		 if($user_type==3)
+		 {
+			 $datas=$this->studentprofilemodel->remove_img($user_id);
+			 if($datas['status']=="success"){
+				 echo "success";
+			 }else{
+				 echo "failed";
+			 }
+		 }else{
+			 redirect('/');
+		 }
+		}
+
+
 
 		public function pwd_reset()
 		{

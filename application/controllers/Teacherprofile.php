@@ -18,6 +18,51 @@ class Teacherprofile extends CI_Controller {
 
  }
 
+			 public function post_img()
+			 {
+				 $datas=$this->session->userdata();
+				 $user_id=$this->session->userdata('user_id');
+				 $user_type=$this->session->userdata('user_type');
+				 if($user_type==2)
+				 {
+						$data=$_POST["image"];
+						$image_array_1 = explode(";", $data);
+						$image_array_2 = explode(",", $image_array_1[1]);
+						$data = base64_decode($image_array_2[1]);
+						$imageName = time() . '.png';
+						file_put_contents('assets/teachers/profile/'.$imageName, $data);
+						$datas=$this->teacherprofilemodel->update_parents($user_id,$imageName);
+						if($datas['status']=="success"){
+							echo "success";
+						}else{
+							echo "failed";
+						}
+
+					}else{
+							redirect('/');
+
+					}
+
+			 }
+
+			 public function remove_img(){
+				 $datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+				if($user_type==2)
+				{
+					$datas=$this->teacherprofilemodel->remove_img($user_id);
+					if($datas['status']=="success"){
+						echo "success";
+					}else{
+						echo "failed";
+					}
+				}else{
+					redirect('/');
+				}
+			 }
+
+
 
 	public function profilepic()
 	{

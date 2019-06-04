@@ -57,22 +57,38 @@ Class Teacherprofilemodel extends CI_Model
        }
 
 
-  function teacherprofileupdate($user_id,$userFileName)
-    {
-	   $query="UPDATE edu_teachers SET update_at=NOW() WHERE teacher_id='$user_id'";
+       function update_parents($user_id,$imageName)
+       {
+            $query6="UPDATE edu_users SET user_pic='$imageName',updated_date=NOW() WHERE user_id='$user_id' ";
+             $res=$this->db->query($query6);
+               if($res){
+               $data= array("status" => "success");
+               return $data;
+             }else{
+               $data= array("status" => "Failed to Update");
+               return $data;
+             }
 
-     $query1="UPDATE edu_users SET user_pic='$userFileName',updated_date=NOW() WHERE teacher_id='$user_id' ";
-	   $res1=$this->db->query($query1);
-     $res=$this->db->query($query);
-     if($res)
-		 {
-        $data= array("status" => "success");
-        return $data;
-      }else{
-        $data= array("status" => "Failed to Update");
-        return $data;
-       }
- }
+        }
+
+
+      function remove_img($user_id){
+        $select="SELECT * from edu_users where user_id='$user_id'";
+        $get_all=$this->db->query($select);
+        $result=$get_all->result();
+        foreach($result as $rows){}
+        $filename='./assets/teachers/profile/'.$rows->user_pic;
+        unlink($filename);
+        $get_all_gallery_img="UPDATE edu_users SET user_pic='',updated_date=NOW() WHERE user_id='$user_id' ";
+        $get_all=$this->db->query($get_all_gallery_img);
+        if ($get_all) {
+          $data= array("status" => "success");
+          return $data;
+        } else {
+          $data= array("status" => "Failed to Update");
+          return $data;
+        }
+      }
 
  //get all groups deatis
 

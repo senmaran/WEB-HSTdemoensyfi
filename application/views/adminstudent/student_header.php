@@ -120,7 +120,7 @@
                      <ul class="dropdown-menu dropdown-with-icons">
                         <li>
                            <a href="<?php echo base_url(); ?>studentprofile/profile_update">
-                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
+                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile Picture
                            </a>
                         </li>
                         <li>

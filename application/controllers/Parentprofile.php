@@ -14,7 +14,51 @@ class Parentprofile extends CI_Controller {
 
 
  }
-	public function home(){}
+
+			 public function post_img()
+			 {
+				 $datas=$this->session->userdata();
+				 $user_id=$this->session->userdata('user_id');
+				 $user_type=$this->session->userdata('user_type');
+				 if($user_type==4)
+				 {
+					  $data=$_POST["image"];
+					  $image_array_1 = explode(";", $data);
+						$image_array_2 = explode(",", $image_array_1[1]);
+						$data = base64_decode($image_array_2[1]);
+						$imageName = time() . '.png';
+						file_put_contents('assets/parents/profile/'.$imageName, $data);
+						$datas=$this->parentprofilemodel->update_parents($user_id,$imageName);
+						if($datas['status']=="success"){
+							echo "success";
+						}else{
+							echo "failed";
+						}
+
+					}else{
+							redirect('/');
+
+					}
+
+			 }
+
+			 public function remove_img(){
+				 $datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+				if($user_type==4)
+				{
+					$datas=$this->parentprofilemodel->remove_img($user_id);
+					if($datas['status']=="success"){
+						echo "success";
+					}else{
+						echo "failed";
+					}
+				}else{
+					redirect('/');
+				}
+			 }
+
 
 	public function profile_edit()
 	{
@@ -33,6 +77,8 @@ class Parentprofile extends CI_Controller {
 			 redirect('/');
 		}
 }
+
+
 
   public function update_parents()
 	{

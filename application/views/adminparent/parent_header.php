@@ -110,7 +110,7 @@ font-weight: 500;
                         <li>
                            <a href="<?php echo base_url(); ?>parentprofile/profile_edit">
                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                           Profile
+                           Profile Picture
                            </a>
                         </li>
                         <li>

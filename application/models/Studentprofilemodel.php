@@ -18,26 +18,38 @@ Class Studentprofilemodel extends CI_Model
 	   }
 
 
-      function update_details($admission_year,$admission_no,$userFileName,$admission_id)
-	   {
-		   //$query="UPDATE edu_admission SET admisn_year='$admission_year',admisn_no='$admission_no',emsi_num='$emsi_num',admisn_date='$admission_date',name='$name',sex='$sex',dob='$dob',age='$age',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',mother_tongue='$mother_tongue',language='$lang',mobile='$mobile',sec_mobile='$sec_mobile',email='$email',sec_email='$sec_email',last_sch_name='$last_sch',last_studied='$last_studied',qualified_promotion='$qual',transfer_certificate='$tran_cert',record_sheet='$recod_sheet' WHERE admission_id='$admission_id'";
-		   //$res=$this->db->query($query);
+     function update_parents($user_id,$imageName)
+    {
+         $query6="UPDATE edu_users SET user_pic='$imageName',updated_date=NOW() WHERE user_id='$user_id' ";
+          $res=$this->db->query($query6);
+             if($res){
+             $data= array("status" => "success");
+             return $data;
+           }else{
+             $data= array("status" => "Failed to Update");
+             return $data;
+           }
 
-			$query6="UPDATE edu_users SET user_pic='$userFileName',updated_date=NOW() WHERE student_id='$admission_id' ";
-			$res=$this->db->query($query6);
+      }
 
-		   //$query7="UPDATE edu_enrollment SET name='$name' WHERE admisn_no='$admission_no' ";
-			//$res=$this->db->query($query7);
 
-			 if($res){
-			 $data= array("status" => "success");
-			 return $data;
-		   }else{
-			 $data= array("status" => "Failed to Update");
-			 return $data;
-		   }
-
-       }
+    function remove_img($user_id){
+      $select="SELECT * from edu_users where user_id='$user_id'";
+      $get_all=$this->db->query($select);
+      $result=$get_all->result();
+      foreach($result as $rows){}
+      $filename='./assets/students/profile/'.$rows->user_pic;
+      unlink($filename);
+      $get_all_gallery_img="UPDATE edu_users SET user_pic='',updated_date=NOW() WHERE user_id='$user_id' ";
+      $get_all=$this->db->query($get_all_gallery_img);
+      if ($get_all) {
+        $data= array("status" => "success");
+        return $data;
+      } else {
+        $data= array("status" => "Failed to Update");
+        return $data;
+      }
+    }
 
 	    function change_pwd($user_id)
          {
