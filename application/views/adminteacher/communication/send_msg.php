@@ -5,7 +5,7 @@
                <div class="col-md-12">
                   <div class="card">
                      <div class="content">
-                       <h4 class="title">List of Substitution <a href="<?php echo base_url(); ?>teacherprofile/message_history" class="btn btn pull-right">Message History</a></h4>    
+                       <h4 class="title">List of Groups <a href="<?php echo base_url(); ?>teacherprofile/message_history" class="btn btn pull-right">Message History</a></h4>    
                        <hr>
                         <div class="fresh-datatables">
                   <table id="bootstrap-table" class="table">

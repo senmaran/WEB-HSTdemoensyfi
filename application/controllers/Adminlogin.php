@@ -99,9 +99,7 @@ class Adminlogin extends CI_Controller {
 							$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
 							$session_data=$this->session->set_userdata($datas);
 							$datas['user_details']=$this->dashboard->dash_parents($user_id);
-
 							$datas['stud_details']=$this->dashboard->get_students($user_id);
-					
 							$datas['parents_circular']=$this->dashboard->get_parents_circular($user_id);
 							$datas['res']=$this->dashboard->stud_details($user_id);
 							$this->load->view('adminparent/parent_header',$datas);

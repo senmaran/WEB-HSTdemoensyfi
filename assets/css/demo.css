@@ -501,8 +501,12 @@
 
 
 .event_box{
-  border:2px solid grey;
+  border:2px solid #D1D3D4;
+  margin-bottom: 10px;
 
+}
+.btn-wd{
+    margin-bottom: 10px;
 }
 .event_date{
   background-color: #D2232A;
@@ -553,4 +557,7 @@ float: left;
 }
 .address_style{
   width: 200px;
+}
+.sidebar-wrapper{
+  background-color: #212f35;
 }

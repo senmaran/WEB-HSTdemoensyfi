@@ -38,16 +38,13 @@ font-weight: bold;}
 
   <div class="card">
     <div class="row">
-       <?php  foreach ($user_details as $rows) { $relationship=$rows->relationship;  } ?>
+       <?php    foreach ($user_details as $rows) { $relationship=$rows->relationship;  } ?>
             <div class="col-md-4 text-center">
                 <div class="profile_detail ">
-                  <?php
-                  $pic= $rows->user_pic; if(empty($pic)){
-
-                    ?>
+                      <?php if(empty($rows->user_pic)){ ?>
                     <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle  " style="width:125px;"/>
                    <?php  }else{  ?>
-                  <img src="<?php echo base_url(); ?>assets/students/profile/<?php echo $rows->user_pic; ?>" class="img-circle" style="width:125px;">
+                  <img src="<?php echo base_url(); ?>assets/parents/profile/<?php echo $rows->user_pic; ?>" class="img-circle" style="width:125px;">
                 <?php } ?>
 
 

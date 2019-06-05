@@ -504,15 +504,9 @@ return  $result12->result();
 // Admin Parents
 
   function dash_parents($user_id){
-    $query="SELECT eu.user_id,eu.user_pic,eu.parent_id,ep.name,ep.* FROM edu_users AS eu INNER JOIN edu_parents AS ep ON eu.parent_id=ep.id WHERE eu.user_id='$user_id'";
-    $res=$this->db->query($query);
-    $rows=$res->result();
-	//return $rows;
-	foreach($rows as $rows1){} $aid=$rows1->admission_id;
-	//echo $aid;exit;
-	 $query1="SELECT * FROM edu_parents WHERE admission_id IN($aid)";
-    $res1=$this->db->query($query1);
-    return $res1->result();
+    $query="SELECT eu.user_id,eu.user_pic,eu.parent_id,ep.name,ep.home_address,ep.email,ep.relationship,ep.mobile,ep.admission_id FROM edu_users AS eu INNER JOIN edu_parents AS ep ON eu.parent_id=ep.id WHERE eu.user_id='$user_id'";
+   $res=$this->db->query($query);
+    return $res->result();
   }
   function get_students($user_id)
   {

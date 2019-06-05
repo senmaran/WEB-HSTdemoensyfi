@@ -143,7 +143,7 @@
       </nav>
       <div class="sidebar sidemenu" data-color="purple" >
 
-         <div class="sidebar-wrapper" style="background-color:#323546;">
+         <div class="sidebar-wrapper">
             <div class="user" style="margin-top:10px;padding-bottom:22px;">
                <div class="imgclass photo" style="margin-left:20px;">
                   <?php

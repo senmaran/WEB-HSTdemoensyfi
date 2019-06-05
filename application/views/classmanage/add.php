@@ -45,8 +45,8 @@
 
 
                                     <div class="form-group">
-                                        <label class="col-md-3"></label>
-                                        <div class="col-md-9">
+                                        <!-- <label class="col-md-3"></label> -->
+                                        <div class="text-center">
                                             <button type="submit" class="btn btn-fill btn-info">Save</button>
                                         </div>
                                     </div>

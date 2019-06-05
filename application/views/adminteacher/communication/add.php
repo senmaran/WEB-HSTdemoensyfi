@@ -114,9 +114,9 @@
 									 echo date_format($date,"d-m-Y");?></td>
                       <td><?php echo $rows->leave_description; ?></td>
                       <td><?php if($status=='Pending'){ ?>
-                        <button class="btn btn-warning btn-fill btn-wd">Pending</button>
+                        <button class="btn btn-warning btn-fill btn-wd" style="background-color:#E8BE1F;">Pending</button>
                         <?php }elseif($status=='Rejected'){?>
-                        <button class="btn btn-danger btn-fill btn-wd">Reject</button>
+                        <button class="btn btn-danger btn-fill btn-wd" >Reject</button>
                         <?php }else{ ?>
                         <button class="btn btn-success btn-fill btn-wd">Approval</button>
                         <?php }?></td>
@@ -154,7 +154,7 @@
   }
 
    $(document).ready(function () {
-    
+
     $('#myformsection').validate({ // initialize the plugin
        rules: {
          leave_type:{required:true },

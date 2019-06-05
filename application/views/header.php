@@ -145,7 +145,7 @@
                      <ul class="dropdown-menu dropdown-with-icons">
                         <li>
                            <a href="<?php echo base_url(); ?>adminlogin/profilepic">
-                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
+                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile picture
                            </a>
                         </li>
                         <li>
@@ -167,7 +167,7 @@
          </div>
       </nav>
       <div class="sidebar sidemenu">
-         <div class="sidebar-wrapper" style="background-color:#323546;">
+         <div class="sidebar-wrapper">
             <div class="user" style="margin-top:10px;">
                <div class="imgclass photo" style="margin-left:20px;">
                   <?php

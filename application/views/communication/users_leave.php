@@ -12,7 +12,7 @@
 
                <div class="card">
                   <div class="header">
-                     <legend>Users Leave Details
+                     <legend>Staff Leave Details
 					  <a href="<?php echo base_url(); ?>userleavemaster/home" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Create Leave Master</a>
 					  </legend>
                   </div>
@@ -49,9 +49,9 @@
 													 <td><?php $date=date_create($rows->to_leave_date);
                                      echo date_format($date,"d-m-Y");?> </td>
                                  <td><?php if($status=='Pending'){ ?>
-                								 <button class="btn btn-warning btn-fill btn-wd">Pending </button>
+                								 <button class="btn btn-warning btn-fill btn-wd" style="background-color:#E8BE1F;">Pending </button>
                 								 <?php }else if($status=='Rejected'){?>
-                								 <button class="btn btn-danger btn-fill btn-wd"> Reject</button>
+                								 <button class="btn btn-danger btn-fill btn-wd" > Reject</button>
                 								 <?php }else{ ?>
                 								   <button class="btn btn-success btn-fill btn-wd">Approved</button>
                 								 <?php }?>

@@ -38,7 +38,7 @@
 
                     	<div class="form-group">
                           	<label class="col-sm-2 control-label">&nbsp;</label><br>
-                        <button type="submit" class="btn btn-info btn-fill">Save Class</button>
+                        <button type="submit" class="btn btn-info btn-fill">Save </button>
                       </div>
                     </div>
 									</div>

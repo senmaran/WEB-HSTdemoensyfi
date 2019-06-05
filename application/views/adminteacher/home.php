@@ -48,7 +48,7 @@ font-weight: bold;}
                <div class="col-md-4 text-center">
                    <div class="profile_detail ">
                      <?php $pic= $rows->user_pic; if(empty($pic)){?>
-                       <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle  imgstyle1" />
+                       <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle  "  style="width:125px;"/>
                       <?php  }else{  ?>
                      <img src="<?php echo base_url(); ?>assets/teachers/profile/<?php echo $rows->user_pic; ?>" class="img-circle" style="width:125px;">
                    <?php } ?>
@@ -79,7 +79,7 @@ font-weight: bold;}
 
 
 
-    
+
       <div class="col-md-12">
          <div class="col-md-6">
             <div class="card ">

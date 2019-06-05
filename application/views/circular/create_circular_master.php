@@ -90,8 +90,8 @@
                                             <table id="bootstrap-table" class="table">
                                                 <thead>
                                                     <th>S.no</th>
-                                                    <th>Circular Title</th>
-                                                    <th style="width:500px;">Circular Description</th>
+                                                    <th>Title</th>
+                                                    <th style="width:400px;">Circular Description</th>
                                                     <th>Circular Doc</th>
                                                     <th>Status</th>
                                                     <th>Actions</th>
