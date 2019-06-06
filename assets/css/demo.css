@@ -479,9 +479,7 @@
   background-color: #c41c1c;
 }
 .border-box{
-
  margin: auto;
-
  width: 350px;
  height: 350px;
  background-color: #642160;
@@ -490,6 +488,7 @@
 }
 .ensyfi_logo_big{
   width: 250px;
+      margin-top: 50px;
 }
 .big_logo{
   margin: 50px;
