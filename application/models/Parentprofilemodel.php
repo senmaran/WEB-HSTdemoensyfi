@@ -11,7 +11,8 @@ Class Parentprofilemodel extends CI_Model
 
   function getuser($user_id)
    {
-	   $query="SELECT ed.*,ed.user_pic as profile_pic,ep.* FROM edu_users AS ed,edu_parents AS ep WHERE ed.parent_id=ep.id AND ed.user_id='$user_id'";
+	   //$query="SELECT ed.*,ed.user_pic as profile_pic,ep.* FROM edu_users AS ed,edu_parents AS ep WHERE ed.parent_id=ep.id AND ed.user_id='$user_id'";
+     $query="SELECT ed.user_id,ed.user_pic,ed.name FROM edu_users AS ed,edu_parents AS ep WHERE ed.parent_id=ep.id AND ed.user_id='$user_id'";
        $resultset=$this->db->query($query);
        return $resultset->result();
    }
@@ -56,7 +57,7 @@ Class Parentprofilemodel extends CI_Model
       }
     }
 
-    
+
   function updateprofilepwd($user_id,$oldpassword,$newpassword)
   {
          $checkpassword="SELECT user_id FROM edu_users WHERE user_password='$oldpassword' AND user_id='$user_id'";
