@@ -26,28 +26,23 @@ Class Teachereventmodel extends CI_Model
     }
 
       function get_teacher_event($user_id){
+          $year_id = $this->getYear();
           $get_teacher ="SELECT et.teacher_id FROM edu_users AS ed LEFT JOIN edu_teachers AS et ON ed.teacher_id=et.teacher_id WHERE user_id='$user_id'";
           $result1=$this->db->query($get_teacher);
           $teacher_id=$result1->result();
           foreach ($teacher_id as $rows) { }
           $teacher_id=$rows->teacher_id;
-          $query="SELECT ev.event_id,ev.event_name,ev.event_date,evc.co_name_id FROM edu_events AS ev  LEFT JOIN edu_event_coordinator AS evc ON ev.event_id= evc.event_id
-          WHERE  evc.co_name_id='$teacher_id' AND evc.status='Active' GROUP BY event_id ";
+           $query="SELECT ev.event_id,ev.event_name,ev.event_date,evc.co_name_id FROM edu_events AS ev  LEFT JOIN edu_event_coordinator AS evc ON ev.event_id= evc.event_id  WHERE  evc.co_name_id='$teacher_id' AND ev.year_id='$year_id' AND evc.status='Active' GROUP BY event_id ";
           $resultset=$this->db->query($query);
-          if($resultset->num_rows()==0){
-            $data= array("status" => "failure");
-            return $data;
-          }else{
-            $res=$resultset->result();
-            $data= array("status" => "success","event_li"=>$res);
-            return $data;
-          }
+          $res=$resultset->result();
+          return $res;
        }
 
        function get_teacher_allevent(){
            $year_id = $this->getYear();
           // $query="SELECT ev.event_id,ev.event_name,ev.event_date FROM edu_events AS ev WHERE ev.status='Active' ORDER  BY event_date DESC";
-          $query="SELECT ee.*,eec.co_name_id,eu.user_master_id,eu.user_id FROM edu_events as ee left join edu_event_coordinator as eec on eec.event_id=ee.event_id left join edu_users as eu on eu.user_master_id=eec.co_name_id and eu.user_type=2 where year_id='$year_id' and ee.status='Active' GROUP BY eec.co_name_id";
+           //$query="SELECT ee.*,eec.co_name_id,eu.user_master_id,eu.user_id FROM edu_events as ee left join edu_event_coordinator as eec on eec.event_id=ee.event_id left join edu_users as eu on eu.user_master_id=eec.co_name_id and eu.user_type=2 where year_id='$year_id' and ee.status='Active' GROUP BY eec.co_name_id";
+           $query="SELECT ee.event_id,ee.event_name,ee.event_date,ee.event_details FROM edu_events as ee  where ee.year_id='$year_id' and ee.status='Active' GROUP by ee.event_id";
            $resultset=$this->db->query($query);
            $res=$resultset->result();
            return $res;
