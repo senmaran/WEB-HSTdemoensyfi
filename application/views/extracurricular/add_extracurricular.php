@@ -18,7 +18,7 @@
                                           </div>
                                           <label class="col-sm-2 control-label">Status</label>
                                           <div class="col-sm-4">
-                      										   <select name="status"  class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                      										   <select name="status"  class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                         											  <option value="Active">Active</option>
                         											  <option value="Deactive">DeActive</option>
                       											</select>
