@@ -13,8 +13,7 @@
 						<div class="content">
 							<form method="post" action="
 								<?php echo base_url(); ?>years/update_year" class="form-horizontal" enctype="multipart/form-data" name="myformsection" id="myformsection">
-								<input type="hidden" name="year_id" class="form-control" value="
-									<?php echo $row->year_id; ?>">
+								<input type="hidden" name="year_id" class="form-control" value="<?php echo $row->year_id; ?>">
 									<fieldset>
 										<div class="form-group">
 											<label class="col-sm-1 control-label">FROM Year</label>
@@ -39,16 +38,15 @@
                               <option value="Active">Active</option>
                               <option value="Deactive">DeActive</option>
                             </select>
-                            <script language="JavaScript">document.myformsection.status.value="
-                              <?php echo $row->status; ?>";
-                            </script>
-
+                            <!-- <script language="JavaScript">document.myformsection.status.value="<?php echo $row->status; ?>"
+                            </script> -->
+														<script>$('#status').val('<?php echo $row->status; ?>');</script>
 
 
 												</div>
 											</fieldset>
 											<div class="form-group">
-                      
+
                         <div class="text-center">
                           <button type="submit" id="save" class="btn btn-info btn-fill center">Update </button>
                         </div>

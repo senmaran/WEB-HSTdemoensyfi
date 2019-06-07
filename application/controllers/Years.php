@@ -15,30 +15,14 @@ class Years extends CI_Controller {
 
  }
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+
 	 // Class section
 
 		 public function home()
 		 {
 	 		 	$datas=$this->session->userdata();
 	 		    $user_id=$this->session->userdata('user_id');
-
 	 		    $datas['result'] = $this->yearsmodel->getall_years();
-
 			    $user_type=$this->session->userdata('user_type');
 			 if($user_type==1)
 			 {
@@ -77,7 +61,7 @@ class Years extends CI_Controller {
 			 $user_type=$this->session->userdata('user_type');
 			 if($user_type==1)
 			  {
-				
+
 			    $from_month=$this->input->post('from_month');
 			    $end_month=$this->input->post('end_month');
 				$status=$this->input->post('status');
@@ -89,10 +73,6 @@ class Years extends CI_Controller {
 				$formatted_date1=date_format($dateTime1,'Y-m-d' );
 
 				$datas=$this->yearsmodel->add_years($formatted_date,$formatted_date1,$status);
-
-				// print_r($datas['status']);exit;
-			    //print_r($data['exam_name']);exit;
-
 				if($datas['status']=="success"){
 					$this->session->set_flashdata('msg','Added Successfully');
 					redirect('years/home');
@@ -162,11 +142,9 @@ class Years extends CI_Controller {
 	     }
 			 public function edit_years($year_id)
 			 {
-				     $datas=$this->session->userdata();
+				   $datas=$this->session->userdata();
 					 $user_id=$this->session->userdata('user_id');
-
 					 $datas['res']=$this->yearsmodel->edit_year($year_id);
-					 //echo "<pre>";print_r(	$datas['res']);exit;
 					 $user_type=$this->session->userdata('user_type');
 					if($user_type==1)
 					{
@@ -177,7 +155,6 @@ class Years extends CI_Controller {
 					 else{
 							redirect('/');
 					 }
-				// $id=$this->input->post($year_id);
 			 }
 
 
@@ -209,21 +186,17 @@ class Years extends CI_Controller {
 				         $datas=$this->session->userdata();
 						 $user_id=$this->session->userdata('user_id');
 						 $user_type=$this->session->userdata('user_type');
-
-				          if($user_type==1)
-				            {
+				     if($user_type==1){
 								$year_id=$this->input->post('year_id');
-                                $status=$this->input->post('status');
+                $status=$this->input->post('status');
 								$from_month=$this->input->post('from_month');
 								$dateTime = new DateTime($from_month);
-				                $formatted_date=date_format($dateTime,'Y-m-d' );
-
+				        $formatted_date=date_format($dateTime,'Y-m-d' );
 								$end_month=$this->input->post('end_month');
 								$dateTime = new DateTime($end_month);
-				                $formatted_date1=date_format($dateTime,'Y-m-d' );
-
+				         $formatted_date1=date_format($dateTime,'Y-m-d' );
 								$datas=$this->yearsmodel->update_years($year_id,$formatted_date,$formatted_date1,$status);
-                              if($datas['status']=="success"){
+              if($datas['status']=="success"){
 								$this->session->set_flashdata('msg','Updated Successfully');
 								redirect('years/home');
 							}else if($datas['status']=="The From Year Must be Grater Than To Year")

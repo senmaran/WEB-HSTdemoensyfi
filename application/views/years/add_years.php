@@ -59,6 +59,7 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="content">
+									<h4 class="title">List  of Years</h4><br>
 									<div class="fresh-datatables">
 										<table id="bootstrap-table" class="table">
 											<thead>
@@ -90,6 +91,7 @@
 													</td>
 													<td>
 														<?php
+
 										  if($sta=='Active'){?>
 														<button class="btn btn-success btn-fill btn-wd">Active</button>
 														<?php  }else{?>
