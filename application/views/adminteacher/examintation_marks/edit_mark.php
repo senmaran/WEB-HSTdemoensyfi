@@ -16,7 +16,7 @@
                   </div>
                   <div class="content table-responsive table-full-width">
                      <form method="post" action="<?php echo base_url(); ?>examinationresult/update_marks_details" class="form-horizontal" enctype="multipart/form-data" id="markform" name="markform">
-                        <?php if(!empty($mark)){ echo "<p style=color:red;text-align:center;>The Reportcard Approve to Admin So Can't Update Marks</p>";}else{ } ?>
+                        <?php if(!empty($mark)){ echo "<p style=color:red;text-align:center;>You cannot make further changes as the admin has already approved.</p>";}else{ } ?>
                         <table class="table table-hover table-striped">
 
                            <thead>
