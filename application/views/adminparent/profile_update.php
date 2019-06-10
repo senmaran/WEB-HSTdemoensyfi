@@ -19,7 +19,7 @@
                  </div>
                </div>
 
-               <div id="uploadimageModal" class="modal" role="dialog">
+    <div id="uploadimageModal" class="modal" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
       		<div class="modal-header">
@@ -71,7 +71,7 @@
                         </a>
                         <h4 class="title" style="line-height:20px;"><?php echo $rows->name; ?></h4>
                         <br>
-                        <p><a onclick="remove_img()" style="cursor: pointer;">Remove Picture</a>
+                        <p><a onclick="remove_img()" style="cursor: pointer;">Remove Picture</a></p>
 
                      </div>
                   </div>
