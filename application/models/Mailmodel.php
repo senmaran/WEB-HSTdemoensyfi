@@ -96,7 +96,7 @@ Class Mailmodel extends CI_Model
 	 $headers = "MIME-Version: 1.0" . "\r\n";
 	 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 	 // Additional headers
-	 $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+	 $headers .= 'From: Ensyfi<info@ensyfi.com>' . "\r\n";
 	 $sent= mail($to,$subject,$htmlContent,$headers);
 
   }
@@ -442,7 +442,7 @@ Class Mailmodel extends CI_Model
 				 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 				 // Additional headers
 
-				 $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+				 $headers .= 'From: Ensyfi<info@ensyfi.com>' . "\r\n";
                  //$send= mail($to,$subject,$htmlContent,$headers);
 				  if(mail($to,$subject,$htmlContent,$headers))
 				 {
@@ -482,7 +482,7 @@ Class Mailmodel extends CI_Model
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
     // Additional headers
-    $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+    $headers .= 'From: Ensyfi<info@ensyfi.com>' . "\r\n";
     $send= mail($to,$subject,$htmlContent,$headers);
 
    }

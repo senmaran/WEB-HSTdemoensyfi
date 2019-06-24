@@ -7,17 +7,17 @@
                   <div class="header">
                      <h4 class="title">Exam Name</h4>
                   </div>
-                  <div class="content">  
+                  <div class="content">
                      <div class="row">
                         <?php
                            if(empty($exam_name)){   ?>
                         <div class="col-md-2">
                            <p style="padding:10px;color:red;text-align:center;">No Marks Added</p>
                         </div>
-                        <?php  }  else{ 
+                        <?php  }  else{
                                   foreach($exam_name as $rows){
  					    ?>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                            <a rel="tooltip" href="<?php echo base_url(); ?>examination/marks_status/<?php echo $rows->exam_id; ?>" class="btn btn-wd"><?php echo $rows->exam_name; ?></a>
                         </div>
 						<input type="hidden" name="msta_id" value="<?php echo $rows->exam_status_id; ?>"/>
@@ -57,8 +57,5 @@
             }
     });
    });
-   
+
 </script>
-
-
-
