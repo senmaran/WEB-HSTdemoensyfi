@@ -13,22 +13,7 @@ class Admission extends CI_Controller {
 		  $this->load->library('session');
  }
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-	 // Class section
+
 
 
 	 	public function home(){
@@ -50,7 +35,7 @@ class Admission extends CI_Controller {
 	 		 }
 	 	}
 
-		
+
 
 		public function create()
 		{
@@ -58,9 +43,9 @@ class Admission extends CI_Controller {
 			 $user_id=$this->session->userdata('user_id');
 			 $user_type=$this->session->userdata('user_type');
 		 	if($user_type==1){
-				
+
 			 $admission_year=$this->input->post('admission_year');
-			 //echo $admission_year;exit; 
+			 //echo $admission_year;exit;
 			 $admission_no=$this->input->post('admission_no');
 			 $emsi_num=$this->input->post('emsi_num');
 			 $admission_date=$this->input->post('admission_date');
@@ -84,12 +69,12 @@ class Admission extends CI_Controller {
 			 $community_class=$this->input->post('community_class');
 		     $community=$this->input->post('community');
 			 $mother_tongue=$this->input->post('mother_tongue');
-			 
+
 			 $language=$this->input->post('lang');
 			 $blood_group=$this->input->post('blood_group');
 			 $status=$this->input->post('status');
 			 //echo $status;exit;
-			 
+
 			 $mobile=$this->input->post('mobile');
 			 $sec_mobile=$this->input->post('sec_mobile');
 		  // $student_pic=$this->input->post('student_pic');
@@ -99,18 +84,18 @@ class Admission extends CI_Controller {
 				$uploaddir = 'assets/students/';
 				$profilepic = $uploaddir.$userFileName;
 				move_uploaded_file($_FILES['student_pic']['tmp_name'], $profilepic);
-				
+
 				$last_sch=$this->input->post('sch_name');
 				$last_studied=$this->input->post('class_name');
 				$qual=$this->input->post('qual');
 				$tran_cert=$this->input->post('trn_cert');
 				$recod_sheet=$this->input->post('rec_sheet');
 				$emsi_num=$this->input->post('emsi_num');
-				
+
 				$datas=$this->admissionmodel->ad_create($admission_year,$admission_no,$emsi_num,$formatted_date,$name,$sex,$dob_date,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$language,$mobile,$sec_mobile,$email,$sec_email,$userFileName,$last_sch,$last_studied,$qual,$tran_cert,$recod_sheet,$blood_group,$status);
 			     //print_r($datas['status']); print_r($datas['last_id']);exit;
                //print_r$data['admisn_no'] ; exit;
-       
+
 				if($datas['status']=="success"){
 					$id=$datas['last_id'];
 					//$this->session->set_flashdata('msg', 'Added Successfully');
@@ -139,14 +124,14 @@ class Admission extends CI_Controller {
 			 $user_id=$this->session->userdata('user_id');
 			 $user_type=$this->session->userdata('user_type');
 			 $gender=$this->input->post('gender');
-			 
+
 			 $datas['result'] = $this->admissionmodel->get_all_admission();
 			 //echo "<pre>";print_r($datas['result']);exit;
 			 //$datas['sorting'] = $this->admissionmodel->get_sorting_admission_details();
 			 if(!empty($gender)){
 			 $datas['gender'] = $this->admissionmodel->get_sorting_gender_details($gender);
 			 }
-			
+
 		     if($user_type==1){
 			 $this->load->view('header');
 			 $this->load->view('admission/view',$datas);
@@ -157,28 +142,8 @@ class Admission extends CI_Controller {
 			 }
 		}
         //-----------Sorting----------------
-		
-		/*  public function get_sorting_details()
-		{
-		 $datas=$this->session->userdata();
-		 $user_id=$this->session->userdata('user_id');
-		 $user_type=$this->session->userdata('user_type');
-		 $gender=$this->input->post('gender');
-		 $datas['result'] = $this->admissionmodel->get_all_admission();
-		 //$datas['sorting'] = $this->admissionmodel->get_sorting_admission_details();
-		 $datas['gender'] = $this->admissionmodel->get_sorting_gender_details($gender);
-		 //echo "<pre>";print_r($datas['gender']);exit;
-	 	 if($user_type==1){
-		 $this->load->view('header');
-		 $this->load->view('admission/view',$datas);
-		 $this->load->view('footer');
-		 }
-		 else{
-				redirect('/');
-		 }
-			
-		}  */
-		//-------------------------
+
+
 		public function get_ad_id($admission_id){
 		 $datas=$this->session->userdata();
 		 $user_id=$this->session->userdata('user_id');
@@ -190,7 +155,7 @@ class Admission extends CI_Controller {
 		 $datas['lang'] = $this->admissionmodel->getall_language_proposed();
 		 $datas['blood'] = $this->admissionmodel->getall_blood_group();
 		//echo "<pre>";print_r($datas['res']);exit;
-		
+
 		if($user_type==1){
 		 $this->load->view('header');
 		 $this->load->view('admission/edit',$datas);
@@ -246,20 +211,20 @@ class Admission extends CI_Controller {
 			 $lang=$this->input->post('lang');
 			  $blood_group=$this->input->post('blood_group');
 			 $mobile=$this->input->post('mobile');
-			 
+
 			 $sec_mobile=$this->input->post('sec_mobile');
 			 $sec_email=$this->input->post('sec_email');
-			 
+
 			 $status=$this->input->post('status');
 			 $last_sch=$this->input->post('sch_name');
 			 $last_studied=$this->input->post('class_name');
 			 $qual=$this->input->post('qual');
-			 //echo $last_sch;exit;			 
+			 //echo $last_sch;exit;
 				$tran_cert=$this->input->post('trn_cert');
 				$recod_sheet=$this->input->post('rec_sheet');
 				$emsi_num=$this->input->post('emsi_num');
 				//echo $tran_cert;echo $recod_sheet;exit;
-			    
+
 			 $user_pic_old=$this->input->post('user_pic_old');
 			 $student_pic = $_FILES["student_pic"]["name"];
 			 $userFileName =$admission_no.'-'.$student_pic;
@@ -295,47 +260,54 @@ class Admission extends CI_Controller {
 
 		}
 
-           public function checker()
-                {
-					$email = $this->input->post('email');
-					$numrows = $this->admissionmodel->getData($email);
-					if ($numrows>0)
-				     {
-						echo "Email Id already Exist";
-					 }
-					else
-					 {
-						echo "Email Id Available";
-					 }
-                }
+					public function check_email_id()
+					{
+						$email = $this->input->post('email');
+						$data['res'] = $this->admissionmodel->check_email_id($email);
+					}
 
-				 public function checker1()
-                {
+				 public function check_admission_number(){
 					$admission_no=$this->input->post('admission_no');
-					$numrows1 = $this->admissionmodel->getData1($admission_no);
-					if ($numrows1 > 0)
-				     {
-						echo "Admission Number already Exist";
-					 }
-					else
-					 {
-						echo "Admission Number Available";
-					 }
-                }
-				
-				public function cellchecker()
+					$data['res']= $this->admissionmodel->check_admission_number($admission_no);
+        }
+
+				public function check_mobile_number()
 				{
-					$cell = $this->input->post('cell');
-					$numrows2 = $this->admissionmodel->checkcellnum($cell);
-					if($numrows2 > 0) 
-				     {
-						echo "Mobile Number Not Found";
-					 } 
-					else 
-					 {
-						echo "Mobile Number Available";
-					 }
+					$cell = $this->input->post('mobile');
+					$data['res']= $this->admissionmodel->check_mobile_number($cell);
 				}
+				public function check_emsi_num(){
+					$emsi_num = $this->input->post('emsi_num');
+					$data['res']= $this->admissionmodel->check_emsi_num($emsi_num);
+				}
+
+				public function check_email_id_exist()
+				{
+					$id=$this->uri->segment(3);
+					$email = $this->input->post('email');
+					$data['res'] = $this->admissionmodel->check_email_id_exist($email,$id);
+				}
+
+			 public function check_admission_number_exist(){
+				 $id=$this->uri->segment(3);
+				$admission_no=$this->input->post('admission_no');
+				$data['res']= $this->admissionmodel->check_admission_number_exist($admission_no,$id);
+			}
+
+			public function check_mobile_number_exist()
+			{
+				$id=$this->uri->segment(3);
+				$cell = $this->input->post('mobile');
+				$data['res']= $this->admissionmodel->check_mobile_number_exist($cell,$id);
+
+			}
+			public function check_emsi_num_exist()
+			{
+				$id=$this->uri->segment(3);
+				$emsi_num = $this->input->post('emsi_num');
+				$data['res']= $this->admissionmodel->check_emsi_num_exist($emsi_num,$id);
+
+			}
 
 
 

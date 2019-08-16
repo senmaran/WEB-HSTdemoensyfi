@@ -250,13 +250,13 @@
                <li id="enroll">
                   <a data-toggle="collapse" href="#enrollmentmenu">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/register.png"/>
-                     <p>Registration	</p>
+                     <p>Allocation	</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="enrollmentmenu">
                      <ul class="nav">
-                        <li id="enroll1"><a href="<?php echo base_url(); ?>enrollment/home">Student Registration</a></li>
-                        <li id="enroll2"><a href="<?php echo base_url(); ?>enrollment/view">List of Registration</a></li>
+                        <li id="enroll1"><a href="<?php echo base_url(); ?>enrollment/home">Student Allocation</a></li>
+                        <li id="enroll2"><a href="<?php echo base_url(); ?>enrollment/view">List of Students</a></li>
                      </ul>
                   </div>
                </li>

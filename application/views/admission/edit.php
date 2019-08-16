@@ -25,9 +25,7 @@
                         </div>
                         <label class="col-sm-2 control-label">Admission No</label>
                         <div class="col-sm-4">
-                           <input type="text" class="form-control" name="admission_no" id="admission_no" value="<?php echo $rows->admisn_no; ?>" onkeyup="checkadmitnofun(this.value)">
-                           <p id="no" style="color:red;"> </p>
-                           <p id="no1" style="color:green;"> </p>
+                           <input type="text" class="form-control" name="admission_no" id="admission_no" value="<?php echo $rows->admisn_no; ?>" >
                            <input type="hidden" class="form-control" name="admission_id" id="admission_no" value="<?php echo $rows->admission_id; ?>" readonly>
                         </div>
                      </div>
@@ -76,7 +74,12 @@
                      <div class="form-group">
                         <label class="col-sm-2 control-label">Nationality</label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Nationality" name="nationality" class="form-control" value="<?php echo $rows->nationality; ?>">
+                           <!-- <input type="text" placeholder="Nationality" name="nationality" class="form-control" value="<?php echo $rows->nationality; ?>"> -->
+                           <select name="nationality" class="selectpicker form-control">
+                              <option value="Indian">Indian</option>
+                              <option value="Others">Others</option>
+                           </select>
+                           <script>$('#mother_tongue').val('<?php echo $rows->nationality; ?>');</script>
                         </div>
                         <label class="col-sm-2 control-label">Religion</label>
                         <div class="col-sm-4">
@@ -100,7 +103,17 @@
                      <div class="form-group">
                         <label class="col-sm-2 control-label">Mother Tongue</label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Mother Tongue" name="mother_tongue" class="form-control" value="<?php echo $rows->mother_tongue; ?>">
+                           <!-- <input type="text" placeholder="Mother Tongue" name="mother_tongue" class="form-control" value="<?php echo $rows->mother_tongue; ?>"> -->
+                           <select name="mother_tongue" id="mother_tongue" class="selectpicker form-control">
+                              <option value="Tamil">Tamil</option>
+                              <option value="English">English</option>
+                              <option value="French">French</option>
+                              <option value="French">Hindi</option>
+                              <option value="Malayalam">Malayalam</option>
+                              <option value="Telegu">Telegu</option>
+                              <option value="Kanaada">Kanaada</option>
+                           </select>
+                           <script>$('#mother_tongue').val('<?php echo $rows->mother_tongue; ?>');</script>
                         </div>
                         <label class="col-sm-2 control-label">Mobile</label>
                         <div class="col-sm-4">
@@ -262,11 +275,27 @@
    $('#admission2').addClass('active');
     $('#admissionform').validate({ // initialize the plugin
         rules: {
-            admission_no:{required:true, number: true },
+            admission_no:{required:true, number: true,maxlength:9,
+              remote: {
+                        url: "<?php echo base_url(); ?>admission/check_admission_number_exist/<?php echo $rows->admission_id;  ?>",
+                        type: "post"
+                     }
+                    },
             admission_year:{required:true },
             admission_date:{required:true },
             name:{required:true },
-            //email:{required:true,email:true},
+            email:{required:true,email:true,
+              remote: {
+                       url: "<?php echo base_url(); ?>admission/check_email_id_exist/<?php echo $rows->admission_id;  ?>",
+                       type: "post"
+                    }
+                  },
+            emsi_num:{required:true,
+              remote: {
+                       url: "<?php echo base_url(); ?>admission/check_emsi_num_exist/<?php echo $rows->admission_id;  ?>",
+                       type: "post"
+                    }
+                   },
             sex:{required:true },
             dob:{required:true },
             age:{required:true,number:true,maxlength:2 },
@@ -275,15 +304,29 @@
             community_class:{required:true },
             community:{required:true },
            blood_group:{required:true },
-            //mobile:{required:true }
+            mobile:{required:false,maxlength:10,minlength:10,remote:{
+              url: "<?php echo base_url(); ?>admission/check_mobile_number_exist/<?php echo $rows->admission_id;  ?>",
+              type: "post"
+            }
+          }
 
         },
         messages: {
-              admission_no: "Enter Admission No",
+          admission_no:{
+            required:"Enter the Admission Number max length 9 Digits",
+            remote:"Admission Number Already Exist"
+          },
               admission_year: "Enter Admission Year",
               admission_date: "Select Admission Date",
               name: "Enter Name",
-               //email: "Enter Email Address",
+              email:{
+                required:"Enter Email Address",
+                remote:"Email Already Exist"
+              },
+              emsi_num:{
+                required:"Enter EMSI Number",
+                remote:" EMSI Number Already Exist"
+              },
               sex: "Select Gender",
               dob: "Select Date of Birth",
               age: "Enter AGE",
@@ -292,39 +335,13 @@
               community:"Enter the Community",
               community_class:"Enter the Community Class",
                blood_group:"Select Blood Group",
-              //mobile:"Enter the mobile Number",
+               mobile:{
+                 required:"Enter mobile number",
+                 remote:"Mobile number Already Exist"
+               }
               //student_pic:"Enter the Student Picture"
             }
     });
    });
-
-</script>
-<script type="text/javascript">
-   function checkadmitnofun(val)
-      {
-         $.ajax({
-        type:'post',
-        url:'<?php echo base_url(); ?>/admission/checker1',
-        data:'admission_no='+val,
-        success:function(test1)
-        { //alert(test1);
-          if(test1=="Admission No already Exit")
-          {
-          /* alert(test); */
-                $("#no").html(test1);
-            $("#no1").html(test1).hide();
-                $("#save").hide();
-          }
-          else{
-            /* alert(test); */
-            $("#no1").html(test1);
-
-                $("#save").show();
-          }
-
-
-        }
-      });
-   }
 
 </script>

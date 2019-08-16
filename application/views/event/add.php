@@ -198,7 +198,7 @@
 										 <select id="status" class="selectpicker form-control" data-title="Select Status"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 
                                                   <option value="Active">Active</option>
-                                                    <option value="Deactive">DE-Active</option>
+                                                    <option value="Deactive">Deactive</option>
 
                                               </select>
 											 <input type="hidden" id="event_id"  class="form-control" value="<?php ?>"/>
@@ -270,7 +270,8 @@ function submitContactForm(){
 				{
 
 					$('#msg').html(msg);
-					$('#coordinatorform')[0].reset();
+          window.setTimeout(function(){location.reload()},2000)
+					//$('#coordinatorform')[0].reset();
                 }else{
 					 $("#msg").html(msg);
 

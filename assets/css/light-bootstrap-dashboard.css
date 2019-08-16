@@ -4788,6 +4788,7 @@ h1 .subtitle {
 .btn-primary {
   border-color: #447DF7;
   color: #447DF7;
+  cursor: default;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary:active:focus, .btn-primary:active:hover, .btn-primary.active:focus, .btn-primary.active:hover, .open > .btn-primary.dropdown-toggle {
   background-color: transparent;
@@ -4818,6 +4819,7 @@ h1 .subtitle {
 .btn-success {
   border-color: #478e2e;
   color: #87CB16;
+      cursor: default;
 }
 .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success:active:focus, .btn-success:active:hover, .btn-success.active:focus, .btn-success.active:hover, .open > .btn-success.dropdown-toggle {
   background-color: transparent;
@@ -4848,6 +4850,7 @@ h1 .subtitle {
 .btn-info {
   border-color: #9266d9;
   color: #23CCEF;
+    cursor: default;
 }
 .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .btn-info:active:focus, .btn-info:active:hover, .btn-info.active:focus, .btn-info.active:hover, .open > .btn-info.dropdown-toggle {
   background-color: transparent;
@@ -4908,6 +4911,7 @@ h1 .subtitle {
 .btn-danger {
   border-color: #c41c1c;
   color: #FB404B;
+  cursor: default;
 }
 .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .btn-danger:active:focus, .btn-danger:active:hover, .btn-danger.active:focus, .btn-danger.active:hover, .open > .btn-danger.dropdown-toggle {
   background-color: transparent;
@@ -5727,7 +5731,8 @@ star {
 }
 
 .alert-success {
-  background-color: #a1e82c;
+  /* background-color: #a1e82c; */
+  background-color: #642160;
 }
 
 .alert-warning {

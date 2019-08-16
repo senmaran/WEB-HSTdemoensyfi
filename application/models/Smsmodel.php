@@ -60,7 +60,8 @@ Class Smsmodel extends CI_Model
    public function sendSMS($Phoneno,$Message)
    {
          //Your authentication key
-         $authKey = "191431AStibz285a4f14b4";
+         // $authKey = "191431AStibz285a4f14b4";
+         $authKey = "1234444";
 
          //Multiple mobiles numbers separated by comma
          $mobileNumber = "$Phoneno";
@@ -366,7 +367,7 @@ Class Smsmodel extends CI_Model
             $textmessage='Wishing you a Birthday filled with joy and a year filled with happiness and good health Happy Birthday '.$name.'';
             $notes =utf8_encode($textmessage);
             $this->sendSMS($phone,$notes);
-           
+
            }
 
          }
@@ -426,7 +427,7 @@ Class Smsmodel extends CI_Model
 		   $year_id=$this->getYear();
 
 		    $pcell="SELECT p.mobile FROM edu_parents AS p,edu_enrollment AS e WHERE e.class_id='$clssid' AND e.admit_year='$year_id' AND FIND_IN_SET( e.admission_id,p.admission_id) GROUP BY p.name";
-		  
+
 		  $pcell1=$this->db->query($pcell);
 		  $pcel2=$pcell1->result();
 		  foreach($pcel2 as $res)
@@ -455,7 +456,7 @@ Class Smsmodel extends CI_Model
 
 			if($ht=='HW'){ $type="Home Work" ; }else{ $type="Class Test" ; }
 
-		
+
 		//	 $message="Subject : " .$subname. ", Details : " .$hwdetails .",";
 		     $message=$subname.'-'.$hwdetails.'.';
 			$home_work_details[]=$message;
@@ -474,7 +475,7 @@ Class Smsmodel extends CI_Model
                 }else{
                    $data= array("status" => "failed");
                 }
-       
+
 	}
 
 

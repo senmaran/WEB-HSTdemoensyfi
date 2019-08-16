@@ -13,7 +13,7 @@
                     </div>
                     <?php endif; ?>
                         <div class="content">
-                            <form method="post" action="<?php echo base_url(); ?>parents/update_parents" class="form-horizontal" enctype="multipart/form-data" id="parentform" name="parentform">
+                            <!-- <form method="post" action="<?php echo base_url(); ?>parents/update_parents" class="form-horizontal" enctype="multipart/form-data" id="parentform" name="parentform"> -->
                                 <div class="content">
 
                                     <ul role="tablist" class="nav nav-tabs" style="border-bottom: none;padding-left:05px;">
@@ -26,8 +26,8 @@
                                         <li>
                                             <a href="#guardian" class="btn btn-info btn-fill" style="border-bottom-color:#976dea;" data-toggle="tab">Guardian</a>
                                         </li>
-                                        <?php  $s=count($editres);
- 									if($s==3){ }else{ //foreach($editres as $prow){} $aid=$prow->admission_id;
+                                        <?php   $s=count($editres);
+ 									if($s==3){ }else{
 									?>
                                             <li style="margin-left:560px;">
                                                 <a href="<?php echo base_url(); ?>parents/create_new_parents_details/<?php echo $sid;?>/<?php echo 0;?>" class="btn btn-info btn-fill">Add More Details </a>
@@ -37,36 +37,11 @@
                                 </div>
                                 <p id="erid" style="color:red;"></p>
                                 <div class="tab-content">
-                                    <fieldset>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Student Name</label>
-                                            <div class="col-sm-4">
-                                                <?php
-						 foreach($editres as $prow){ }?>
-                                                    <select multiple name="stu_name[]" class="selectpicker form-control">
-                                                        <?php
-									  $tea_name=$prow->	admission_id;
-									  $sQuery = "SELECT * FROM edu_admission";
-									  $objRs=$this->db->query($sQuery);
-									  $row=$objRs->result();
-									  foreach ($row as $rows1)
-									  {
-											 $stu_id= $rows1->admission_id;
-											 $sname=$rows1->name;
-											 $arryPlatform = explode(",",$tea_name);
-											 $sPlatform_id  = trim($stu_id);
-											 $sPlatform_name  = trim($sname);
-											 if (in_array($sPlatform_id, $arryPlatform ))
-											  {
-												   echo "<option value=\"$stu_id\" selected/>$sname </option>";
-											  }
-										}
-								?>
-                                                    </select>
-                                            </div>
-                                        </div>
-                                    </fieldset>
+
+
                                     <div id="father" class="tab-pane active">
+                                      <form method="post" action="<?php echo base_url(); ?>parents/update_father_details" class="form-horizontal"
+                                        enctype="multipart/form-data" id="father_form" name="parentform">
                                         <?php 	 foreach($editres as $prow){
                               						   $relation1=$prow->relationship;
                               						    if($relation1=="Father"){
@@ -80,9 +55,15 @@
                                             <input type="hidden" name="oldstu" class="form-control" value="<?php  echo $sid; ?>">
                                             <input type="hidden" name="morestu" class="form-control" value="<?php echo $prow->admission_id; ?>">
                                             <input type="hidden" name="newstu" class="form-control" value="<?php echo $prow->admission_id; ?>">
-                                            <input type="text" name="fid" id="fid" class="form-control" value="<?php  echo $fid; ?>">
+                                            <input type="hidden" name="fid" id="fid" class="form-control" value="<?php  echo $fid; ?>">
                                             <fieldset>
                                                 <div class="form-group">
+                                                  <div class="col-md-12">
+                                                    <a onclick="remove_parents(<?php  echo $fid; ?>,<?php  echo $sid; ?>)" class="btn pull-right">Remove Parents</a>
+                                                  </div>
+                                                </div>
+                                            </fieldset>
+                                            <fieldset>                                                <div class="form-group">
                                                     <label class="col-sm-2 control-label">Father Name <span class="mandatory_field">*</span></label>
                                                     <div class="col-sm-4">
                                                         <input type="text" name="fname" id="fname" placeholder="Enter Name" class="form-control" value="<?php echo $prow->name; ?>">
@@ -138,9 +119,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Home Address</label>
                                                     <div class="col-sm-4">
-                                                        <textarea name="fhaddress" id="fhaddress" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80">
-                                                            <?php echo $prow->home_address; ?>
-                                                        </textarea>
+              <textarea name="fhaddress" id="fhaddress"  placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"><?php echo $prow->home_address; ?></textarea>
                                                     </div>
                                                     <label class="col-sm-2 control-label">Home Phone</label>
                                                     <div class="col-sm-4">
@@ -152,9 +131,8 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Office Address</label>
                                                     <div class="col-sm-4">
-                                                        <textarea name="foffice_address" id="foffice_address" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80">
-                                                            <?php echo $prow->office_address; ?>
-                                                        </textarea>
+                                                        <textarea name="foffice_address" id="foffice_address"
+                                                       placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"><?php echo $prow->office_address; ?></textarea>
                                                     </div>
                                                     <label class="col-sm-2 control-label">Office Phone</label>
                                                     <div class="col-sm-4">
@@ -182,11 +160,10 @@
                                                     <div class="col-sm-4">
                                                         <select name="fstatus" id="fstatus" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                             <option value="Active">Active</option>
-                                                            <option value="Deactive">DeActive</option>
+                                                            <option value="Deactive">Deactive</option>
                                                         </select>
-                                                        <script language="JavaScript">
-                                                            document.parentform.fstatus.value = "<?php echo $prow->status; ?>";
-                                                        </script>
+
+                                                          <script>$('#fstatus').val('<?php echo $prow->status; ?>');</script>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -198,15 +175,46 @@
                                                     </div>
                                                 </div>
                                             </fieldset>
+                                            <script>
+                                            $('#father_form').validate({
+                                                rules: {
+                                                    fid:{required:false},
+                                                    fname:{required:true},
+                                                    fpmobile:{required:true,maxlength:10,minlength:10,number:true,
+                                                      remote: {
+                                                             url: "<?php echo base_url(); ?>parents/check_fpmobile_number_exist/<?php echo $fid; ?>",
+                                                             type: "post"
+                                                          }
+                                                        },
+
+                                                    fpemail:{required:true,email:true,
+                                                    remote: {
+                                                             url: "<?php echo base_url(); ?>parents/check_fpemail_id_exist/<?php echo $fid; ?>",
+                                                             type: "post"
+                                                          }
+                                                        }
+                                                },
+                                                messages: {
+                                                  fname:{required:"Enter the father name"},
+                                                  fpmobile:{required:"Enter the mobile number",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
+                                                  fpemail:{required:"Enter Email Address",remote:"Email Already Exist"},
+                                                    }
+                                            });
+                                            </script>
                                           <?php } } ?>
+                                            </form>
                                     </div>
+
                                     <!-- Mother-->
 
+
                                     <div id="mothers" class="tab-pane">
+                                      <form method="post" action="<?php echo base_url(); ?>parents/update_mother_details" class="form-horizontal"
+                                        enctype="multipart/form-data" id="mother_form" name="mother_form">
                                         <?php foreach($editres as $prow){
                                          $relation=$prow->relationship;
-
 				                                 if($relation=="Mother"){
+
                                            if(empty($prow->id)){
                                              $mid="0";
                                            }else{
@@ -217,7 +225,14 @@
                                             <input type="hidden" name="oldstu" class="form-control" value="<?php  echo $sid; ?>">
                                             <input type="hidden" name="newstu" class="form-control" value="<?php echo $prow->admission_id; ?>">
                                             <input type="hidden" name="morestu" class="form-control" value="<?php echo $prow->admission_id; ?>">
-                                            <input type="text" name="mid" id="mid" class="form-control" value="<?php echo $mid; ?>">
+                                            <input type="hidden" name="mid" id="mid" class="form-control" value="<?php echo $mid; ?>">
+                                            <fieldset>
+                                                <div class="form-group">
+                                                  <div class="col-md-12">
+                                                    <a onclick="remove_parents(<?php  echo $mid; ?>,<?php  echo $sid; ?>)" class="btn pull-right">Remove Parents</a>
+                                                  </div>
+                                                </div>
+                                            </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Mother Name <span class="mandatory_field">*</span></label>
@@ -230,9 +245,7 @@
                                                             <option value="Yes">Yes</option>
                                                             <option value="No">No</option>
                                                         </select>
-                                                        <script language="JavaScript">
-                                                            document.parentform.mlogin.value = "<?php echo $prow->primary_flag; ?>";
-                                                        </script>
+                                                        <script>$('#mlogin').val('<?php echo $prow->primary_flag; ?>');</script>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -276,9 +289,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Home Address</label>
                                                     <div class="col-sm-4">
-                                                        <textarea name="mhaddress" id="mhaddress" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80">
-                                                            <?php echo $prow->home_address; ?>
-                                                        </textarea>
+                                                <textarea name="mhaddress" id="mhaddress"  placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"><?php echo $prow->home_address; ?></textarea>
                                                     </div>
                                                     <label class="col-sm-2 control-label">Home Phone</label>
                                                     <div class="col-sm-4">
@@ -290,16 +301,13 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Office Address</label>
                                                     <div class="col-sm-4">
-                                                        <textarea name="moffice_address" id="moffice_address" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80">
-                                                            <?php echo $prow->office_address; ?>
-                                                        </textarea>
+                                                        <textarea name="moffice_address" id="moffice_address"  placeholder="MaxCharacters 150"
+                                                        class="form-control" rows="4" cols="80"><?php echo $prow->office_address; ?></textarea>
                                                     </div>
-
                                                     <label class="col-sm-2 control-label">Office Phone</label>
                                                     <div class="col-sm-4">
                                                         <input type="text" placeholder="Office Phone" value="<?php echo $prow->office_phone; ?>" name="moffice_phone" id="moffice_phone" class="form-control">
                                                     </div>
-
                                                 </div>
                                             </fieldset>
                                             <fieldset>
@@ -326,9 +334,8 @@
                                                             <option value="Active">Active</option>
                                                             <option value="Deactive">DeActive</option>
                                                         </select>
-                                                        <script language="JavaScript">
-                                                            document.parentform.mstatus.value = "<?php echo $prow->status; ?>";
-                                                        </script>
+
+                                                        <script>$('#mstatus').val('<?php echo $prow->status; ?>');</script>
                                                     </div>
 
                                                  </div>
@@ -341,15 +348,47 @@
                                                     </div>
                                                 </div>
                                             </fieldset>
-                                            <?php }  } ?>
+                                            <script>
+                                            $('#mother_form').validate({
+                                                rules: {
+                                                    mid:{required:false},
+                                                    mname:{required:true},
+                                                    mpmobile:{required:true,maxlength:10,minlength:10,number:true,
+                                                      remote: {
+                                                             url: "<?php echo base_url(); ?>parents/check_mpmobile_number_exist/<?php echo $mid; ?>",
+                                                             type: "post"
+                                                          }
+                                                        },
+
+                                                    mpemail:{required:true,email:true,
+                                                    remote: {
+                                                             url: "<?php echo base_url(); ?>parents/check_fpemail_id_exist/",
+                                                             type: "post"
+                                                          }
+                                                        }
+                                                },
+                                                messages: {
+                                                  mname:{required:"Enter the father name"},
+                                                  mpmobile:{required:"Enter the mobile number",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
+                                                  mpemail:{required:"Enter Email Address",remote:"Email Already Exist"},
+                                                    }
+                                            });
+                                            </script>
+                                          <?php }else{
+
+                                          }  } ?>
+                                          </form>
                                     </div>
+
                                     <!-- Guardian -->
                                     <div id="guardian" class="tab-pane">
+                                      <form method="post" action="<?php echo base_url(); ?>parents/update_guardian_details" class="form-horizontal"
+                                        enctype="multipart/form-data" id="guardian_form" name="guardian_form">
                                         <?php 	foreach($editres as $prow){
                                   					     $relation=$prow->relationship;
                                   						 if($relation=="Guardian"){
                                                  if(empty($prow->id)){
-                                                   $gid="";
+                                                   $gid="0";
                                                  }else{
                                                    $gid=$prow->id;
                                                  }
@@ -358,7 +397,14 @@
                                             <input type="hidden" name="oldstu" class="form-control" value="<?php  echo $sid; ?>">
                                             <input type="hidden" name="newstu" class="form-control" value="<?php echo $prow->admission_id; ?>">
                                             <input type="hidden" name="morestu" class="form-control" value="<?php echo $prow->admission_id; ?>">
-                                            <input type="text" name="gid" class="form-control" value="<?php echo $gid; ?>">
+                                            <input type="hidden" name="gid" class="form-control" value="<?php echo $gid; ?>">
+                                            <fieldset>
+                                                <div class="form-group">
+                                                  <div class="col-md-12">
+                                                    <a onclick="remove_parents(<?php  echo $gid; ?>,<?php  echo $sid; ?>)" class="btn pull-right">Remove Parents</a>
+                                                  </div>
+                                                </div>
+                                            </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Guardian Name <span class="mandatory_field">*</span></label>
@@ -372,9 +418,8 @@
                                                             <option value="No">No</option>
 
                                                         </select>
-                                                        <script language="JavaScript">
-                                                            document.parentform.glogin.value = "<?php echo $prow->primary_flag; ?>";
-                                                        </script>
+
+                                                          <script>$('#glogin').val('<?php echo $prow->primary_flag; ?>');</script>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -419,9 +464,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Home Address</label>
                                                     <div class="col-sm-4">
-                                                        <textarea name="ghaddress" id="ghaddress" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80">
-                                                            <?php echo $prow->home_address; ?>
-                                                        </textarea>
+                          <textarea name="ghaddress" id="ghaddress"  placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"><?php echo $prow->home_address; ?></textarea>
                                                     </div>
                                                     <label class="col-sm-2 control-label">Home Phone</label>
                                                     <div class="col-sm-4">
@@ -433,7 +476,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Office Address</label>
                                                     <div class="col-sm-4">
-                                                        <textarea name="goffice_address" id="goffice_address" MaxLength="150"
+                                                        <textarea name="goffice_address" id="goffice_address"
                                                         placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"><?php echo $prow->office_address; ?></textarea>
                                                     </div>
                                                     <label class="col-sm-2 control-label">Office Phone</label>
@@ -465,9 +508,8 @@
                                                             <option value="Active">Active</option>
                                                             <option value="Deactive">DeActive</option>
                                                         </select>
-                                                        <script language="JavaScript">
-                                                            document.parentform.gstatus.value = "<?php echo $prow->status; ?>";
-                                                        </script>
+
+                                                        <script>$('#gstatus').val('<?php echo $prow->status; ?>');</script>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -479,12 +521,38 @@
                                                     </div>
                                                 </div>
                                             </fieldset>
-                                            <?php }
-						}?>
+                                            <script>
+                                            $('#guardian_form').validate({
+                                                rules: {
+                                                    gid:{required:false},
+                                                    gname:{required:true},
+                                                    gpmobile:{required:true,maxlength:10,minlength:10,number:true,
+                                                      remote: {
+                                                             url: "<?php echo base_url(); ?>parents/check_gpmobile_number_exist/<?php echo $gid; ?>",
+                                                             type: "post"
+                                                          }
+                                                        },
+
+                                                    gpemail:{required:true,email:true,
+                                                    remote: {
+                                                             url: "<?php echo base_url(); ?>parents/check_gpemail_id_exist/<?php echo $gid; ?>",
+                                                             type: "post"
+                                                          }
+                                                        }
+                                                },
+                                                messages: {
+                                                  gname:{required:"Enter the father name"},
+                                                  gpmobile:{required:"Enter the mobile number",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
+                                                  gpemail:{required:"Enter Email Address",remote:"Email Already Exist"},
+                                                    }
+                                            });
+                                            </script>
+                                            <?php }	}?>
+              </form>
                                     </div>
 
                                 </div>
-                            </form>
+
                         </div>
 
             </div>
@@ -507,269 +575,51 @@
         output2.src = URL.createObjectURL(event.target.files[0]);
     };
 
-    function validates() {
-        var fname = document.getElementById("fname").value;
-        var mname = document.getElementById("mname").value;
-        var gname = document.getElementById("gname").value;
 
-        var foccupation = document.getElementById("foccupation").value;
-        var moccupation = document.getElementById("moccupation").value;
-        var goccupation = document.getElementById("goccupation").value;
+function remove_parents(sel,stu_id){
 
-        var fincome = document.getElementById("fincome").value;
-        var mincome = document.getElementById("mincome").value;
-        var gincome = document.getElementById("gincome").value;
-
-        var fhaddress = document.getElementById("fhaddress").value;
-        var mhaddress = document.getElementById("mhaddress").value;
-        var ghaddress = document.getElementById("ghaddress").value;
-
-        var fstatus = document.getElementById("fstatus").value;
-        var mstatus = document.getElementById("mstatus").value;
-        var gstatus = document.getElementById("gstatus").value;
-
-        var fpemail = document.getElementById("fpemail").value;
-        var mpemail = document.getElementById("mpemail").value;
-        var gpemail = document.getElementById("gpemail").value;
-
-        var fpmobile = document.getElementById("fpmobile").value;
-        var mpmobile = document.getElementById("mpmobile").value;
-        var gpmobile = document.getElementById("gpmobile").value;
-
-        var frelationship = document.getElementById("frelationship").value;
-        var mrelationship = document.getElementById("mrelationship").value;
-        var grelationship = document.getElementById("grelationship").value;
-
-        var flogin = document.getElementById("flogin").value;
-        var mlogin = document.getElementById("mlogin").value;
-        var glogin = document.getElementById("glogin").value;
-
-        // if (fname == "" && mname == "" && gname == "") {
-        //     $("#erid").html("Please Enter anyone Name");
-        //     return false;
-        // }
-        // if (foccupation == "" && moccupation == "" && goccupation == "") {
-        //     $("#erid").html("Please Enter Occupation");
-        //     return false;
-        // }
-        // if (fpemail == "" && mpemail == "" && gpemail == "") {
-        //     $("#erid").html("Please Enter Email Id");
-        //     return false;
-        // }
-        // if (fpmobile == "" && mpmobile == "" && gpmobile == "") {
-        //     $("#erid").html("Please select priority for login");
-        //     return false;
-        // }
-        // if (frelationship == "" && mrelationship == "" && grelationship == "") {
-        //     $("#erid").html("Please select Relationship Of Students");
-        //     return false;
-        // }
-        //
-        // if (fincome == "" && mincome == "" && gincome == "") {
-        //     $("#erid").html("Please Enter Income");
-        //     return false;
-        // }
-        // if (fhaddress == "" && mhaddress == "" && ghaddress == "") {
-        //     $("#erid").html("Please select Home Address");
-        //     return false;
-        // }
-        // if (fstatus == "" && mstatus == "" && gstatus == "") {
-        //     $("#erid").html("Please select Status");
-        //     return false;
-        // }
-        //
-        // if (flogin == "" && mlogin == "" && glogin == "") {
-        //     $("#erid").html("Please select priority for login");
-        //     return false;
-        // }
-
-    }
-</script>
-<script type="text/javascript">
-    function checkemailfun(val) { //alert("hi");
-        $.ajax({
-            type: 'post',
-            url: '<?php echo base_url(); ?>/parents/checker',
-            data: 'email=' + val,
-            success: function(test) {
-                if (test == "Email Id already Exit") {
-                    $("#msg").html(test);
-                    $("#save1").hide();
-                } else {
-                    $("#msg").html(test);
-                    $("#save1").show();
-                }
-
-            }
-        });
-    }
-
-    function mcheckemailfun(val) { //alert("hi");
-        $.ajax({
-            type: 'post',
-            url: '<?php echo base_url(); ?>/parents/checker',
-            data: 'email=' + val,
-            success: function(test) {
-                if (test == "Email Id already Exit") {
-                    $("#mmsg").html(test);
-                    $("#save1").hide();
-                } else {
-                    $("#mmsg").html(test);
-                    $("#save1").show();
-                }
-
-            }
-        });
-    }
-
-    function gcheckemailfun(val) { //alert("hi");
-        $.ajax({
-            type: 'post',
-            url: '<?php echo base_url(); ?>/parents/checker',
-            data: 'email=' + val,
-            success: function(test) {
-                if (test == "Email Id already Exit") {
-                    $("#gmsg").html(test);
-                    $("#save1").hide();
-                } else {
-                    $("#gmsg").html(test);
-                    $("#save1").show();
-                }
-            }
-        });
-    } //gcheckmobilefun
-
-    function fcheckmobilefun(val) {
-        //alert('hi');
-        $.ajax({
-            type: 'post',
-            url: '<?php echo base_url(); ?>/parents/cellchecker1',
-            data: 'cell=' + val,
-            success: function(test) {
-                //alert(test)
-                if (test == "Mobile Number Available") {
-                    $("#fmsg1").html('<span style="color:green;">Mobile Number Available</span>');
-                    $("#save1").show();
-                } else {
-                    $("#fmsg1").html('<span style="color:red;">Mobile number already exit</span>');
-                    $("#save1").hide();
-                }
-            }
-        });
-    }
-
-    function mcheckmobilefun(val) { //alert('hi');
-        $.ajax({
-            type: 'post',
-            url: '<?php echo base_url(); ?>/parents/cellchecker1',
-            data: 'cell=' + val,
-            success: function(test) {
-                //alert(test)
-                if (test == "Mobile Number Available") {
-                    $("#mmsg1").html('<span style="color:green;">Mobile Number Available</span>');
-                    $("#save1").show();
-                } else {
-                    $("#mmsg1").html('<span style="color:red;">Mobile number already exit</span>');
-                    $("#save1").hide();
-                }
-            }
-        });
-    }
-
-    function gcheckmobilefun(val) { //alert('hi');
-        $.ajax({
-            type: 'post',
-            url: '<?php echo base_url(); ?>/parents/cellchecker1',
-            data: 'cell=' + val,
-            success: function(test) {
-                //alert(test)
-                if (test == "Mobile Number Available") {
-                    $("#gmsg1").html('<span style="color:green;">Mobile Number Available</span>');
-                    $("#save1").show();
-                } else {
-                    $("#gmsg1").html('<span style="color:red;">Mobile number already exit</span>');
-                    $("#save1").hide();
-                }
-            }
-        });
-    }
-
-    function checkcellfun(val) {
-        $.ajax({
-            type: 'post',
-            url: '<?php echo base_url(); ?>/parents/cellchecker',
-            data: 'cell=' + val,
-            success: function(test) {
-                if (test == "Mobile Number Available") {
-                    $("#msg1").html('<span style="color:green;">Mobile Number Available</span>');
-                    $("#save").show();
-                } else {
-                    $("#msg1").html('<span style="color:red;">Mobile Number Not Available</span>');
-                    $("#save").hide();
-                }
-            }
-        });
-    }
-
-    $('#parentform').validate({
-
-        rules: {
-            fid:{required:false},
-            fname:{required:true},
-            mname:{required:true},
-            gname:{required:true},
-            fpmobile:{required:true,maxlength:10,minlength:10,number:true,
-              remote: {
-                     url: "<?php echo base_url(); ?>parents/check_fpmobile_number_exist/<?php echo $fid; ?>",
-                     type: "post"
-                  }
+        swal({
+            title: "Are you sure?",
+            text: "You Want Confirm this form",
+            type: "success",
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, I am sure!',
+            cancelButtonText: "No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+            },
+        function(isConfirm) {
+            if (isConfirm) {
+              $.ajax({
+                url: "<?php echo base_url(); ?>parents/remove_parents_from_students",
+                type:'POST',
+                data: {
+                'id': sel,'stu_id':stu_id
                 },
-            mpmobile:{required:true,maxlength:10,minlength:10,
-              remote: {
-                     url: "<?php echo base_url(); ?>parents/check_mpmobile_number_exist/<?php echo $mid; ?>",
-                     type: "post"
+                success: function(response) {
+                  if(response=="success"){
+                    swal({
+                    title: "Wow!",
+                    text: "Removed Successfully!",
+                    type: "success"
+                    }, function() {
+                    location.reload();
+                    });
+                  }else{
+                    alert(response);
+                    //sweetAlert("Oops...", "Something went wrong!", "error");
                   }
-                },
-            gpmobile:{required:true,maxlength:10,minlength:10,
-              remote: {
-                     url: "<?php echo base_url(); ?>parents/check_gpmobile_number_exist/<?php echo $gid; ?>",
-                     type: "post"
-                  }
-                },
-            fpemail:{required:true,email:true,
-            remote: {
-                     url: "<?php echo base_url(); ?>parents/check_fpemail_id_exist/",
-                     type: "post"
-                  }
-                },
-                mpemail:{required:true,email:true,
-                remote: {
-                         url: "<?php echo base_url(); ?>parents/check_mpemail_id_exist/",
-                         type: "post"
-                      }
-                    },
-                    gpemail:{required:true,email:true,
-                    remote: {
-                             url: "<?php echo base_url(); ?>parents/check_gpemail_id_exist/",
-                             type: "post"
-                          }
-                        }
-
-        },
-        messages: {
-          fname:{required:"Enter the father name"},
-          mname:{required:"Enter the mother name"},
-          gname:{required:"Enter the Guardian name"},
-          fpmobile:{required:"Enter the mobile number",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
-          mpmobile:{required:"Enter the mobile number",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
-          gpmobile:{required:"Enter the mobile number",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
-          fpemail:{required:"Enter Email Address",remote:"Email Already Exist"},
-          mpemail:{required:"Enter Email Address",remote:"Email Already Exist"},
-          gpemail:{required:"Enter Email Address",remote:"Email Already Exist"}
+                }
+              });
+            }else{
+            swal("Cancelled", "Process Cancel :)", "error");
             }
-    });
+        });
 
-
-
+}
+$('#admissionmenu').addClass('collapse in');
+$('#admission').addClass('active');
+$('#admission2').addClass('active');
 
 </script>

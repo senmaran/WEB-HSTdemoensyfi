@@ -25,7 +25,7 @@
                         <div class="fresh-datatables">
                            <h4 class="title" style="padding-bottom:10px;">List of Admission</h4>
 
-                        
+
                            <table id="example" class="table table-striped table-no-bordered table-hover" cellspacing="0" >
                               <thead>
                                  <th>S.No</th>
@@ -92,7 +92,10 @@
                                           else
                                           {
                                           ?>
-                                       <a href="<?php echo base_url(); ?>parents/edit_parents/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Already Added Parent Details" class="btn btn-simple btn-info btn-icon table-action view" >
+                                       <!-- <a href="<?php echo base_url(); ?>parents/edit_parents/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Already Added Parent Details" class="btn btn-simple btn-info btn-icon table-action view" >
+                                       <i class="fa fa-id-card-o" aria-hidden="true"></i></a> -->
+
+                                       <a href="<?php echo base_url(); ?>parents/view_parents_details/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Already Added Parent Details" class="btn btn-simple btn-info btn-icon table-action view" >
                                        <i class="fa fa-id-card-o" aria-hidden="true"></i></a>
                                        <?php
                                           }

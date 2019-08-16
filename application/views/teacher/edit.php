@@ -206,7 +206,12 @@
                      <div class="form-group">
                         <label class="col-sm-2 control-label">Curreent Pic</label>
                         <div class="col-sm-4">
+                          <?php if(empty($rows->profile_pic)){?>
+                          <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle" style="width:110px;">
+                        <?php }else{ ?>
                            <img src="<?php echo base_url(); ?>assets/teachers/<?php echo $rows->profile_pic; ?>" class="img-responsive" style="width:150px;">
+                          <?php } ?>
+
                         </div>
                      </div>
                   </fieldset>

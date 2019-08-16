@@ -332,83 +332,91 @@ Class Parentsmodel extends CI_Model
 
 
 	   function add_new_parents($admission_id,$oldadmission_id,$name,$occupation,$income,$haddress,$pemail,$semail,$pmobile,$smobile,$home_phone,$office_address,$office_phone,$relationship,$status,$priority,$userFileName,$user_id)
-	   {  //echo $oldadmission_id;exit;
-		    $digits = 6;
-		   $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+	   {
+          $select="SELECT relationship FROM edu_parents  WHERE FIND_IN_SET('$admission_id',admission_id) AND relationship='$relationship'";
+         $res_selec=$this->db->query($select);
+         if($res_selec->num_rows()==0){
+           $digits = 6;
+           $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 
-		   $pgid="SELECT admission_id,parnt_guardn_id FROM edu_admission WHERE admission_id IN('$oldadmission_id')";
-		   $resultset=$this->db->query($pgid);
-		   $row=$resultset->result();
-		   foreach($row as $rows){}
-		   $apgid=$rows->parnt_guardn_id;
-
-		   //echo $apgid;
-		   $sql="INSERT INTO edu_parents(admission_id,name,occupation,income,home_address,email,sec_email,mobile, sec_mobile,home_phone,office_address,office_phone,relationship,user_pic,	status,primary_flag,created_by,created_at)
-       VALUES ('$oldadmission_id','$name','$occupation','$income','$haddress','$pemail','$semail','$pmobile','$smobile','$home_phone','$office_address','$office_phone','$relationship','$userFileName','$status','$priority','$user_id',NOW())";
-		   $newresult=$this->db->query($sql);
-		   $newinsert_id=$this->db->insert_id();
-		   $newuser_name=$newinsert_id+600000;
-
-		   if($priority=="Yes")
-			{
-		        if(!empty($pemail)){
-				 $to = $pemail;
-				 $subject = '"Welcome Message"';
-				 $htmlContent = '
-				   <html>
-				   <head>  <title></title>
-				   </head>
-				   <body style="background-color:beige;">
-					 <table cellspacing="0" style=" width: 300px; height: 200px;">
-						   <tr>
-							   <th>Email:</th><td>'.$pemail.'</td>
-						   </tr>
-						   <tr>
-							   <th>Username :</th><td>'.$newuser_name.'</td>
-						   </tr>
-						   <tr>
-							   <th>Password:</th><td>'.$OTP.'</td>
-						   </tr>
-						   <tr>
-							   <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
-						   </tr>
-					   </table>
-				   </body>
-				   </html>';
-			   $headers = "MIME-Version: 1.0" . "\r\n";
-			   $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-			   $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
-			   mail($to,$subject,$htmlContent,$headers);
-				}
-			   if(!empty($pmobile))
-				 { // echo $fpmobile;
-					$userdetails="Name : " .$name. ", Username : " .$newuser_name.", Password : ".$OTP.", ";
-          $notes =utf8_encode($userdetails."To known more about your child click here  http://bit.ly/2wLwdRQ");
-           $phone=$pmobile;
-           $this->smsmodel->sendSMS($phone,$notes);
-				 }
+           $pgid="SELECT admission_id,parnt_guardn_id FROM edu_admission WHERE admission_id IN('$oldadmission_id')";
+           $resultset=$this->db->query($pgid);
+           $row=$resultset->result();
+           foreach($row as $rows){}
+           $apgid=$rows->parnt_guardn_id;
 
 
-				  $nuser="INSERT INTO edu_users(name,user_name,user_password,user_type,user_master_id,parent_id,created_date,updated_date,status) VALUES('$name','$newuser_name',md5($OTP),'4','$newinsert_id','$newinsert_id',NOW(),NOW(),'$status')";
-			      $nuresultset=$this->db->query($nuser);
-				}
+           $sql="INSERT INTO edu_parents(admission_id,name,occupation,income,home_address,email,sec_email,mobile, sec_mobile,home_phone,office_address,office_phone,relationship,user_pic,	status,primary_flag,created_by,created_at)
+           VALUES ('$oldadmission_id','$name','$occupation','$income','$haddress','$pemail','$semail','$pmobile','$smobile','$home_phone','$office_address','$office_phone','$relationship','$userFileName','$status','$priority','$user_id',NOW())";
+           $newresult=$this->db->query($sql);
+           $newinsert_id=$this->db->insert_id();
+           $newuser_name=$newinsert_id+600000;
 
-			  $fmgid=array($apgid,$newinsert_id);
-			  $insertid=implode(',',$fmgid);
+           // if($priority=="Yes"){
+                if(!empty($pemail)){
+             $to = $pemail;
+             $subject = '"Welcome Message"';
+             $htmlContent = '
+               <html>
+               <head>  <title></title>
+               </head>
+               <body style="background-color:beige;">
+               <table cellspacing="0" style=" width: 300px; height: 200px;">
+                   <tr>
+                     <th>Email:</th><td>'.$pemail.'</td>
+                   </tr>
+                   <tr>
+                     <th>Username :</th><td>'.$newuser_name.'</td>
+                   </tr>
+                   <tr>
+                     <th>Password:</th><td>'.$OTP.'</td>
+                   </tr>
+                   <tr>
+                     <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
+                   </tr>
+                 </table>
+               </body>
+               </html>';
+             $headers = "MIME-Version: 1.0" . "\r\n";
+             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+             $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+             mail($to,$subject,$htmlContent,$headers);
+            }
+             if(!empty($pmobile))
+             {
+              $userdetails="Name : " .$name. ", Username : " .$newuser_name.", Password : ".$OTP.", ";
+              $notes =utf8_encode($userdetails."To known more about your child click here  http://bit.ly/2wLwdRQ");
+               $phone=$pmobile;
+               $this->smsmodel->sendSMS($phone,$notes);
+             }
 
-		  $parnt_guardnid="UPDATE edu_admission SET parnt_guardn_id='$insertid',parents_status='1' WHERE admission_id IN ($oldadmission_id)";
-		  $gsresultset=$this->db->query($parnt_guardnid);
 
-		   $parnt_guardnid1="UPDATE edu_parents SET admission_id='$oldadmission_id' WHERE id IN ($apgid)";
-		  $gsresultset1=$this->db->query($parnt_guardnid1);
+              $nuser="INSERT INTO edu_users(name,user_name,user_password,user_type,user_master_id,parent_id,created_date,updated_date,status) VALUES('$name','$newuser_name',md5($OTP),'4','$newinsert_id','$newinsert_id',NOW(),NOW(),'$status')";
+                $nuresultset=$this->db->query($nuser);
+            // }
 
-		  if($gsresultset){
-				 $data= array("status" => "success");
-				 return $data;
-			  }else{
-				 $data= array("status" => "FTA");
-				 return $data;
-			   }
+            $fmgid=array($apgid,$newinsert_id);
+            $insertid=implode(',',$fmgid);
+
+          $parnt_guardnid="UPDATE edu_admission SET parnt_guardn_id='$insertid',parents_status='1' WHERE admission_id IN ($oldadmission_id)";
+          $gsresultset=$this->db->query($parnt_guardnid);
+
+           $parnt_guardnid1="UPDATE edu_parents SET admission_id='$oldadmission_id' WHERE id IN ($apgid)";
+          $gsresultset1=$this->db->query($parnt_guardnid1);
+
+          if($gsresultset){
+             $data= array("status" => "success");
+             return $data;
+            }else{
+             $data= array("status" => "FTA");
+             return $data;
+             }
+         }else{
+           $data= array("status" => "already");
+           return $data;
+         }
+
+
 	   }
 
 	   function update_parents_details($stu_name,$admission_id,$morestu,$newstu,$oldstu,$flogin,$fid,$fname,$foccupation,$fincome,$fhaddress,$fpemail,$fsemail,$fpmobile,$fsmobile,$fhome_phone,$foffice_address,$foffice_phone,$frelationship,$fstatus,$userFileName,$mlogin,$mid,$mname,$moccupation,$mincome,$mhaddress,$mpemail,$msemail,$mpmobile,$msmobile,$mhome_phone,$moffice_address,$moffice_phone,$mrelationship,$mstatus,$userFileName1,$glogin,$gid,$gname,$goccupation,$gincome,$ghaddress,$gpemail,$gsemail,$gpmobile,$gsmobile,$ghome_phone,$goffice_address,$goffice_phone,$grelationship,$gstatus,$userFileName2,$user_id)
@@ -844,9 +852,27 @@ Class Parentsmodel extends CI_Model
 
        //GET ALL Admission Form WHERE status='A'
 
+
+    function update_exiting_parents_assign($admission_id,$id,$parnt_guardn_id){
+
+       $update="UPDATE edu_parents SET admission_id='$parnt_guardn_id' WHERE id='$id'";
+      $res=$this->db->query($update);
+       $update_admin="UPDATE edu_admission SET parnt_guardn_id='$parnt_guardn_id',parents_status='1' WHERE admission_id='$admission_id'";
+
+      $res_admission=$this->db->query($update_admin);
+      if($res_admission){
+        $data= array("status"=>"success");
+      }else{
+        $data= array("status"=>"failed");
+      }
+        return $data;
+
+
+    }
+
 	   function get_all_details($admission_id)
 	   {
-		 $query3="SELECT admission_id FROM edu_parents WHERE FIND_IN_SET($admission_id,admission_id)";
+		     $query3="SELECT admission_id FROM edu_parents WHERE FIND_IN_SET($admission_id,admission_id)";
          $res=$this->db->query($query3);
          return $res->result();
 	   }
@@ -859,14 +885,14 @@ Class Parentsmodel extends CI_Model
 
        function edit_parents($admission_id)
 	   {
-         $query4="SELECT * FROM edu_parents WHERE FIND_IN_SET('$admission_id',admission_id)";
+          $query4="SELECT * FROM edu_parents WHERE FIND_IN_SET('$admission_id',admission_id)";
          $res=$this->db->query($query4);
          return $res->result();
        }
 
 	   function get_stu_name($admission_id)
 	   {
-		 $query4="SELECT admission_id,name FROM edu_admission WHERE admission_id='$admission_id'";
+		     $query4="SELECT admission_id,name FROM edu_admission WHERE admission_id='$admission_id'";
          $res=$this->db->query($query4);
          return $res->result();
 	   }
@@ -874,31 +900,108 @@ Class Parentsmodel extends CI_Model
 
 	   function search_parent($cell)
 	   {
-		 $query="SELECT admission_id,mobile FROM edu_parents WHERE mobile='$cell'";
-         $res1=$this->db->query($query);
-		 $result=$res1->result();
-		 foreach($result as $aid){} $sid=$aid->admission_id;
-		  $query1="SELECT p.*,a.name AS stuname FROM edu_parents AS p,edu_admission AS a WHERE p.admission_id='$sid' AND p.admission_id=a.admission_id";
-
-         $res2=$this->db->query($query1);
-		 $result1=$res2->result();
-		 return $result1;
+		 $query="SELECT * FROM edu_parents WHERE mobile='$cell'";
+     $res1=$this->db->query($query);
+     $result=$res1->result();
+     return $result;
 	   }
 
 
-		 function getData($email)
-		   {
-				$query = "select * from  edu_parents WHERE email='".$email."'";
-				$resultset = $this->db->query($query);
-				return count($resultset->result());
-           }
+     function check_relationship($relationship,$id){
+       $select="SELECT relationship FROM edu_parents  WHERE FIND_IN_SET('$id',admission_id)";
+       $result=$this->db->query($select);
+       if($result->num_rows()>0){
+         echo "false";
+         }else{
+          echo "true";
+       }
 
-		   function checkcellnum($cell)
-		   {
-				$query = "select * from edu_parents WHERE mobile='".$cell."'";
-				$resultset = $this->db->query($query);
-				return count($resultset->result());
-		   }
+
+     }
+
+     function get_relation_ship($admission_id){
+       $select="SELECT relationship FROM edu_parents  WHERE FIND_IN_SET('$admission_id',admission_id)";
+       $result=$this->db->query($select);
+       return $result->result();
+     }
+
+     function check_fpemail_id($email)
+      {
+       $select="SELECT * FROM edu_parents Where email='$email'";
+        $result=$this->db->query($select);
+         if($result->num_rows()>0){
+           echo "false";
+           }else{
+            echo "true";
+         }
+      }
+      function check_fpmobile_number($mobile)
+       {
+        $select="SELECT * FROM edu_parents Where mobile='$mobile'";
+         $result=$this->db->query($select);
+          if($result->num_rows()>0){
+            echo "false";
+            }else{
+             echo "true";
+          }
+       }
+       function check_mpmobile_number($mobile)
+        {
+         $select="SELECT * FROM edu_parents Where mobile='$mobile'";
+          $result=$this->db->query($select);
+           if($result->num_rows()>0){
+             echo "false";
+             }else{
+              echo "true";
+           }
+        }
+        function check_gpmobile_number($mobile)
+         {
+          $select="SELECT * FROM edu_parents Where mobile='$mobile'";
+           $result=$this->db->query($select);
+            if($result->num_rows()>0){
+              echo "false";
+              }else{
+               echo "true";
+            }
+         }
+
+
+         function check_email_id_exist($email,$id){
+           $select="SELECT * FROM edu_parents Where email='$email' and id!='$id'";
+            $result=$this->db->query($select);
+             if($result->num_rows()>0){
+               echo "false";
+               }else{
+                echo "true";
+             }
+         }
+
+
+         function check_mobile_number_exist($mobile,$id){
+           $select="SELECT * FROM edu_parents Where mobile='$mobile' and id!='$id'";
+            $result=$this->db->query($select);
+             if($result->num_rows()>0){
+               echo "false";
+               }else{
+                echo "true";
+             }
+         }
+
+
+         function update_parents_info($id,$name,$occupation,$income,$haddress,$pemail,$semail,$pmobile,$smobile,$home_phone,$office_address,$office_phone,$relationship,$status,$login,$userFileName,$admission_id,$user_id){
+           $update="UPDATE edu_parents SET name='$name',occupation='$occupation',income='$income',home_address='$haddress',email='$pemail',sec_email='$semail',mobile='$pmobile',sec_mobile='$smobile',home_phone='$home_phone',office_address='$office_address',
+          office_phone='$office_phone',relationship='$relationship',user_pic='$userFileName',status='$status',primary_flag='$login',updated_by='$user_id',updated_at=NOW() WHERE id='$id'";
+          $result=$this->db->query($update);
+          if($result){
+            $data= array("status"=>"success");
+          }else{
+            $data= array("status"=>"failed");
+          }
+            return $data;
+         }
+
+
 
 		   function get_relation($relation,$stuid)
 	       {
@@ -906,6 +1009,42 @@ Class Parentsmodel extends CI_Model
 			   $resultset=$this->db->query($pgid);
 			   return count($resultset->result());
 	      }
+
+        function remove_parents_from_students($id,$user_id,$stu_id){
+         $select_ad="SELECT * FROM edu_parents  WHERE FIND_IN_SET('$stu_id',admission_id)";
+
+          $resultset_ad=$this->db->query($select_ad);
+          if($resultset_ad->num_rows()==0){
+            $string='';
+          }else{
+            foreach($resultset_ad->result() as $rows_result_ad){}
+              $admission_id=$rows_result_ad->admission_id;
+              $string = str_replace($stu_id, ' ', $admission_id);
+          }
+
+          $update_admin="UPDATE edu_admission SET parnt_guardn_id='$string',updated_at=NOW(),updated_by='$user_id' WHERE admission_id='$stu_id'";
+          $resultset_admission=$this->db->query($update_admin);
+
+          $update="UPDATE edu_parents SET admission_id='$string',updated_at=NOW(),updated_by='$user_id' WHERE id='$id'";
+          $resultset=$this->db->query($update);
+          $select="SELECT count(*) as count FROM edu_parents  WHERE FIND_IN_SET('$stu_id',admission_id)";
+          $resultset=$this->db->query($select);
+          foreach($resultset->result() as $rows_result){}
+          $res_count=$rows_result->count;
+
+          if($res_count==0){
+            $update_status="UPDATE edu_admission SET parents_status='0' WHERE admission_id='$stu_id'";
+            $result_status=$this->db->query($update_status);
+          }
+          $update_user="UPDATE edu_users SET status='Deactive',updated_date=NOW() WHERE user_type='4' AND user_master_id='$id'";
+          $result_user=$this->db->query($update_user);
+          if($result_user){
+              echo "success";
+          }else{
+              echo "failed";
+          }
+
+        }
 
 
 
