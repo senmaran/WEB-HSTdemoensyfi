@@ -1,5 +1,6 @@
 <?php
           $server_url = $_SERVER['HTTP_HOST'];
+		  
           $query="SELECT user_pic,school_id,name FROM edu_users WHERE user_type=1";
 		  $objRs=$this->db->query($query);
 		  $row=$objRs->result();
@@ -7,7 +8,7 @@
 		  {
 			   $pic=$rows1->user_pic;
 			   $sid=$rows1->school_id;
-			   $sname=$rows1->name;
+				$sname=$rows1->name;
 		  }
 ?>
     <!doctype html>

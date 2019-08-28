@@ -30,20 +30,17 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-			$user_id=$this->session->userdata('user_id');
-			if($user_id){
+		$user_id=$this->session->userdata('user_id');
+		
+		if($user_id){
 				redirect('adminlogin/dashboard');
-			}else{
-					 $this->load->view('login');
+		}else{
+				 $this->load->view('login');
 			}
-
-
-
 	}
 
-
-
-	public function forgotpassword(){
+	public function forgotpassword()
+	{
 		 $this->load->view('forgotpassword');
 	}
 
