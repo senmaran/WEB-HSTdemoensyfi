@@ -204,7 +204,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Curreent Pic</label>
+                        <label class="col-sm-2 control-label">Current Pic</label>
                         <div class="col-sm-4">
                           <?php if(empty($rows->profile_pic)){?>
                           <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle" style="width:110px;">
