@@ -1507,6 +1507,29 @@ class Apimainmodel extends CI_Model {
 	}
 //#################### View Group Messages End ####################//
 
+
+//#################### Group Messages History ####################//
+	public function groupMessagehistory($group_id)
+	{
+		$query = "SELECT egh.group_title_id,egm.group_title,egh.notes,egh.notification_type,egh.created_by,eu.name,egh.created_at FROM edu_grouping_history AS egh
+		LEFT JOIN edu_grouping_master AS egm  ON egh.group_title_id=egm.id LEFT JOIN edu_users as eu ON eu.user_id=egh.created_by WHERE egh.group_title_id='$group_id' order by egh.id desc;";
+		$resultset = $this->db->query($query);
+		$res = $resultset->result();
+		
+		$res_history_cnt = $resultset->num_rows();
+
+		if($res_history_cnt>0)
+		{
+		   $response = array("status" => "success", "msg" => "History Found", "msg_history"=>$res);
+		} else {
+		  $response = array("status" => "error", "msg" => "No Records Found");
+		}
+		return $response;
+
+  }
+//#################### Group Messages History End ####################//
+
+
 //#################### Leave Details ####################//
 	public function dispLeaves ($user_type,$class_id,$sec_id,$class_sec_id)
 	{
@@ -1669,27 +1692,127 @@ class Apimainmodel extends CI_Model {
 
 
 
+	//#################### Notification status ####################//
 
-  function groupmessagehistory($group_id){
-    $query="SELECT egh.group_title_id,egm.group_title,egh.notes,egh.notification_type,egh.created_by,eu.name,egh.created_at FROM edu_grouping_history AS egh
-    LEFT JOIN edu_grouping_master AS egm  ON egh.group_title_id=egm.id LEFT JOIN edu_users as eu ON eu.user_id=egh.created_by WHERE egh.group_title_id='$group_id' order by egh.id desc;";
-    $resultset=$this->db->query($query);
-    $res=$resultset->result();
-    $res_history_cnt = $resultset->num_rows();
+	public function Notificationstatus($user_id)
+	{
+		$sQuery = "SELECT mail_prefs,sms_prefs,push_prefs FROM edu_users WHERE user_id = '$user_id'";
+		$sQuery_res = $this->db->query($sQuery);
+		$sQuery_result= $sQuery_res->result();
+		$sQuery_count = $sQuery_res->num_rows();
 
-    if($res_history_cnt>0)
-    {
-       $response = array("status" => "success", "msg" => "History Found", "msg_history"=>$res);
-    } else {
-      $response = array("status" => "error", "msg" => "No Records Found");
-    }
-    return $response;
+		if($sQuery_count>0)
+		{
+			 $response = array("status" => "success", "msg" => "Notification Status", "notificationStatus"=>$sQuery_result);
+		} else {
+			$response = array("status" => "error", "msg" => "No Records Found");
+		}
+		return $response;
+	}
 
-  }
+	//#################### Notification status End ####################//
+	
+	//#################### Update Notification status ####################//
+
+	public function updateNotificationstatus($type,$user_id,$status)
+	{
+		if ($type == 'MAIL'){
+			$update_sql = "UPDATE edu_users SET mail_prefs = '$status' WHERE user_id='$user_id'";
+		} else if ($type == 'SMS'){
+			$update_sql = "UPDATE edu_users SET sms_prefs = '$status' WHERE user_id='$user_id'";
+		} else {
+			$update_sql = "UPDATE edu_users SET push_prefs = '$status' WHERE user_id='$user_id'";
+		}
+		$update_result = $this->db->query($update_sql);
+
+		$response = array("status" => "success", "msg" => "Notification Status Updated");
+		return $response;
+	}
+
+	//#################### Update Notification status End ####################//
+
+	//#################### Class and Sections ####################//
+
+	public function listClasssection($user_id)
+	{
+		$sQuery = "SELECT
+					B.class_sec_id,
+					CONCAT(C.class_name,' ',D.sec_name) AS class_name
+				FROM
+					edu_classmaster B,
+					edu_class C,
+					edu_sections D
+				WHERE
+				   B.class = C.class_id AND B.section = D.sec_id";
+		$sQuery_res = $this->db->query($sQuery);
+		$sQuery_result= $sQuery_res->result();
+		$sQuery_count = $sQuery_res->num_rows();
+
+		if($sQuery_count>0)
+		{
+			 $response = array("status" => "success", "msg" => "Notification Status", "classList"=>$sQuery_result);
+		} else {
+			$response = array("status" => "error", "msg" => "No Records Found");
+		}
+		return $response;
+	}
+
+	//#################### Class and Sections End ####################//
+
+	//#################### View class day attendence ####################//
+
+	public function viewClassdayattendence($date,$class_ids)
+	{
+		 $year_id = $this->getYear();
+		$term_id = $this->getTerm();
+		
+				$att_query = "SELECT
+								A.class_id,
+								CONCAT(C.class_name,' ',D.sec_name) AS class_name,
+								A.class_total,
+								A.no_of_present,
+								A.no_of_absent								
+							FROM
+								edu_attendence A,
+								edu_classmaster B,
+								edu_class C,
+								edu_sections D
+							WHERE
+								DATE(A.created_at) = '$date' AND A.class_id IN($class_ids) AND A.ac_year = '$year_id' AND
+							A.status = 'Active' AND A.class_id =B.class_sec_id AND B.class = C.class_id AND B.section = D.sec_id";
+    		    $att_res = $this->db->query($att_query);
+				$att_result= $att_res->result();
+				
+    			 if($att_res->num_rows()>0) {
+					 
+					 $total_class = 0;
+					 $total_present = 0;
+					 $total_absent = 0;
+					 
+					 foreach($att_result as $rows){
+						
+						$class_total = $rows->class_total;
+						$total_class = ($total_class + $class_total);
+						
+						$no_of_present = $rows->no_of_present;
+						$total_present = ($total_present + $no_of_present);
+						
+						$no_of_absent = $rows->no_of_absent;
+						$total_absent = ($total_absent + $no_of_absent);
+					}
+					
+					 $response = array("status" => "success", "msg" => "Attendence Result","class_total"=>$total_class, "total_present"=>$total_present, "total_absent"=>$total_absent,"attendence_list"=>$att_result);
+    			}else{
+					$response = array("status" => "error", "msg" => "No Records Found");
+				}
+		
+		return $response;
+	}
+
+	//#################### View class day attendence end ####################//
+	
+
+  
 }
-
-
-
-
 
 ?>

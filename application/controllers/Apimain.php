@@ -693,7 +693,7 @@ class Apimain extends CI_Controller {
 			}
 				//echo "1";exit;
 		 	$group_id = $this->input->post("group_id");
-			$data['result']=$this->apimainmodel->groupmessagehistory($group_id);
+			$data['result']=$this->apimainmodel->groupMessagehistory($group_id);
 			$response = $data['result'];
 			echo json_encode($response);
 		}
@@ -840,5 +840,150 @@ class Apimain extends CI_Controller {
 	}
 
 //-----------------------------------------------//
+
+
+//-----------------------------------------------//
+
+	public function notification_status()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Notification status";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+		
+		$user_id = '';
+		
+		$user_id = $this->input->post("user_id");
+		
+		$data['result']=$this->apimainmodel->Notificationstatus($user_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+//-----------------------------------------------//
+
+	public function update_notification_status()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Notification status";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$notification_type = '';
+		$user_id = '';
+		$status = '';
+		
+		$type = $this->input->post("type");
+		$user_id = $this->input->post("user_id");
+		$status = $this->input->post("status");
+		
+
+		$data['result']=$this->apimainmodel->updateNotificationstatus($type,$user_id,$status);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+//-----------------------------------------------//
+
+	public function list_class_section()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Notification status";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+		
+		$user_id = '';
+		$user_id = $this->input->post("user_id");
+		
+		
+
+		$data['result']=$this->apimainmodel->listClasssection($user_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+//-----------------------------------------------//
+
+	public function view_class_day_attendence()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Notification status";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$notification_type = '';
+		$user_id = '';
+		$status = '';
+		
+		$date = $this->input->post("date");
+		$class_ids = $this->input->post("class_ids");
+		
+
+		$data['result']=$this->apimainmodel->viewClassdayattendence($date,$class_ids);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+
 
 }

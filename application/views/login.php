@@ -182,36 +182,26 @@
     <!-- <script src="<?php echo base_url(); ?>assets/js/demo.js"></script> -->
 
     <script type="text/javascript">
-        $().ready(function() {
-            lbd.checkFullPageBackgroundImage();
+    
 
-            setTimeout(function() {
-                // after 1000 ms we add the class animated to the login/register card
-                $('.card').removeClass('card-hidden');
-            }, 700)
-        });
+     $(document).ready(function() {
+		$('#myform').validate({ // initialize the plugin
+			rules: {
+				email: {
+					required: true
+				},
+				password: {
+					required: true
+				},
 
-        $(document).ready(function() {
+			},
+			messages: {
+				email: "Please Enter Username ",
+				password: "Please Enter Password"
 
-            $('#myform').validate({ // initialize the plugin
-                rules: {
-
-                    email: {
-                        required: true
-                    },
-                    password: {
-                        required: true
-                    },
-
-                },
-                messages: {
-
-                    email: "Please Enter Username ",
-                    password: "Please Enter Password"
-
-                }
-            });
-        });
+			}
+		});
+     });
     </script>
 
     </html>
