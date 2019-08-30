@@ -553,8 +553,8 @@ INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON
 
     }
 
-function get_students_circular($user_id)
-  {
+	function get_students_circular($user_id)
+	{
 	   $get_year="SELECT * FROM edu_academic_year WHERE CURDATE()>=from_month AND CURDATE()<=to_month";
 		  $result1=$this->db->query($get_year);
 		  $all_year= $result1->result();
@@ -568,11 +568,11 @@ function get_students_circular($user_id)
 		 $row=$resultset->result();
 		 return $row;
 		  }
-  }
+	}
 
 
-  function get_parents_circular($user_id)
-  {
+	function get_parents_circular($user_id)
+	{
 	      $get_year="SELECT * FROM edu_academic_year WHERE CURDATE()>=from_month AND CURDATE()<=to_month";
 		  $result1=$this->db->query($get_year);
 		  $all_year= $result1->result();
@@ -585,7 +585,22 @@ function get_students_circular($user_id)
 		 $row=$resultset->result();
 		 return $row;
 		  }
-  }
+	}
+  
+	function check_notification($user_id)
+	{
+		 $squery = "SELECT mail_prefs,sms_prefs,push_prefs FROM edu_users WHERE user_id = '$user_id'";
+		 $resultset = $this->db->query($squery);
+		 $result = $resultset->result();
+		 return $result;
+	}
+  
+   function update_notification($Sms,$Mail,$Push,$user_id){
+         $query="UPDATE edu_users SET mail_prefs = '$Mail',sms_prefs = '$Sms', push_prefs = '$Push' WHERE user_id='$user_id'";
+          $ex=$this->db->query($query);
+         $data= array("status" => "success");
+         return $data;
+   }
 
 }
 ?>

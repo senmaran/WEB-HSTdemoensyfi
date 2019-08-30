@@ -108,15 +108,13 @@ font-weight: 500;
                      </a>
                      <ul class="dropdown-menu dropdown-with-icons">
                         <li>
-                           <a href="<?php echo base_url(); ?>parentprofile/profile_edit">
-                           <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                           Profile Picture
-                           </a>
+                           <a href="<?php echo base_url(); ?>parentprofile/profile_edit"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile Update </a>
                         </li>
                         <li>
-                           <a href="<?php echo base_url(); ?>parentprofile/pwd_edit">
-                          <i class="fa fa-cog" aria-hidden="true"></i> Setting
-                           </a>
+                           <a href="<?php echo base_url(); ?>parentprofile/pwd_edit"><i class="fa fa-cog" aria-hidden="true"></i> Change Password</a>
+                        </li>
+						 <li>
+                           <a href="<?php echo base_url(); ?>parentprofile/notification_status"><i class="fa fa-cog" aria-hidden="true"></i> Notification Preference</a>
                         </li>
                         <li class="divider"></li>
                         <li>

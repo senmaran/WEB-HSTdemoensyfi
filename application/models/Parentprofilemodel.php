@@ -74,6 +74,20 @@ Class Parentprofilemodel extends CI_Model
          }
        }
 
+function check_notification($user_id)
+	{
+		 $squery = "SELECT mail_prefs,sms_prefs,push_prefs FROM edu_users WHERE user_id = '$user_id'";
+		 $resultset = $this->db->query($squery);
+		 $result = $resultset->result();
+		 return $result;
+	}
+  
+   function update_notification($Sms,$Mail,$Push,$user_id){
+         $query="UPDATE edu_users SET mail_prefs = '$Mail',sms_prefs = '$Sms', push_prefs = '$Push' WHERE user_id='$user_id'";
+          $ex=$this->db->query($query);
+         $data= array("status" => "success");
+         return $data;
+   }
 
 
 

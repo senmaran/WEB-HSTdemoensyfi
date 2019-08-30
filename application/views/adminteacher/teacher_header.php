@@ -126,12 +126,17 @@
                      <ul class="dropdown-menu dropdown-with-icons">
                         <li>
                            <a href="<?php echo base_url(); ?>teacherprofile/profilepic">
-                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile Picture
+                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile Update
                            </a>
                         </li>
                         <li>
                            <a href="<?php echo base_url(); ?>teacherprofile/profile">
-                        <i class="fa fa-cog" aria-hidden="true"></i>  Setting
+                        <i class="fa fa-cog" aria-hidden="true"></i>  Change Password
+                           </a>
+                        </li>
+						<li>
+                           <a href="<?php echo base_url(); ?>teacherprofile/notification_status">
+                        <i class="fa fa-cog" aria-hidden="true"></i>  Notification Preference
                            </a>
                         </li>
                         <li class="divider"></li>

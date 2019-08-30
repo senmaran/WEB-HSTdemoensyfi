@@ -40,12 +40,25 @@ Class Examinationresultmodel extends CI_Model
 		  foreach($all_year as $cyear){}
 		  $current_year=$cyear->year_id;
 
-         $sql= "SELECT ex.*,ed.exam_detail_id,ed.exam_id FROM edu_examination AS ex,edu_exam_details AS ed WHERE ex.status='Active' AND ex.exam_year='$current_year' AND ex.exam_id=ed.exam_id  GROUP By ed.exam_id";
+        //$sql= "SELECT ex.*,ed.exam_detail_id,ed.exam_id FROM edu_examination AS ex,edu_exam_details AS ed WHERE ex.status='Active' AND ex.exam_year='$current_year' AND ex.exam_id=ed.exam_id  GROUP By ed.exam_id";
+		
+		$sql= "SELECT
+					ex.*,
+					ed.exam_detail_id,
+					ed.exam_id,
+					MIN(ed.exam_date) AS startdate, 
+					MAX(ed.exam_date) AS enddate 
+				FROM
+					edu_examination AS ex,
+					edu_exam_details AS ed
+				WHERE
+					ex.status = 'Active' AND ex.exam_year = '1' AND ex.exam_id = ed.exam_id
+				GROUP BY
+					ed.exam_id";
         $resultset1 = $this->db->query($sql);
         $res        = $resultset1->result();
         return $res;
-        // print_r($sec_n);exit
-        //print_r($data);exit;
+
     }
     //------------------------New--------------------------------
 	 function view_all_class_details($exam_id,$user_id,$user_type)

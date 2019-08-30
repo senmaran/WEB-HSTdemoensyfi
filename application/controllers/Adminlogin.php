@@ -321,9 +321,51 @@ class Adminlogin extends CI_Controller {
 		redirect('/');
 	}
 
+	public function notification_status(){
+			 $datas=$this->session->userdata();
+			 $user_id=$this->session->userdata('user_id');
+			 $datas['result'] = $this->login->getuser($user_id);		 
+			 $user_type=$this->session->userdata('user_type');
+			 if($user_type==1){
+				$datas['notification_status']=$this->dashboard->check_notification($user_id);
+				$this->load->view('header',$datas);
+				$this->load->view('update_notification',$datas);
+				$this->load->view('footer');
+			}
+			else{
+					 redirect('/');
+			}
+	}
+	
+	
+	public function update_notification()
+	{
+		$datas=$this->session->userdata();
+		$user_name=$this->session->userdata('user_name');
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		
+	 	if($user_type==1){
 
+			$Sms = $this->input->post('Sms');
+			$Mail = $this->input->post('Mail');
+			$Push = $this->input->post('Push');
+			
+			$res=$this->dashboard->update_notification($Sms,$Mail,$Push,$user_id);
 
-
-
+			if($res['status']=="success"){
+				 $this->session->set_flashdata('msg', 'Update Successfully');
+					redirect('adminlogin/notification_status');
+			 }else{
+				 $this->session->set_flashdata('msg', 'Failed to update');
+						redirect('adminlogin/notification_status');
+			 }
+		}
+		else{
+			redirect('/');
+		}
+	}
+	
+	
 
 }

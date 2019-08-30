@@ -23,10 +23,13 @@
 					   foreach($result as $row)
 					   {
 						  $ex_name=$row->exam_name;
-						  $exam_id=$row->exam_id;
+						  $exam_id = $row->exam_id;
+						  $startdate = $row->startdate;
+						  $enddate = $row->enddate;
 					   ?>
                         <div class="col-md-2">
-                           <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/exam_duty?var=<?php echo $exam_id; ?>"  class="btn btn-wd"><?php echo $ex_name; ?></a>
+                           <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/exam_duty?var=<?php echo $exam_id; ?>"  class="btn btn-wd"><?php echo $ex_name; ?><p style='font-size:11px;padding-top:5px;'><?php echo date('d/m/Y', strtotime($startdate)); ?> - <?php echo date('d/m/Y', strtotime($enddate)); ?></p></a>
+						   
                         </div>
 						<?php } }?>
 

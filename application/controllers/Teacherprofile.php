@@ -303,6 +303,53 @@ class Teacherprofile extends CI_Controller {
 	 }
   }
 
+
+	public function notification_status(){
+			 $datas=$this->session->userdata();
+			 $user_id=$this->session->userdata('user_id');
+			 $user_type=$this->session->userdata('user_type');
+			 
+			 if($user_type==2){
+				$datas['notification_status']=$this->teacherprofilemodel->check_notification($user_id);
+				$this->load->view('adminteacher/teacher_header',$datas);
+		        $this->load->view('adminteacher/update_notification',$datas);
+		        $this->load->view('adminteacher/teacher_footer');
+			}
+			else{
+					 redirect('/');
+			}
+	}
+	
+	
+	public function update_notification()
+	{
+		$datas=$this->session->userdata();
+		$user_name=$this->session->userdata('user_name');
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		
+	 	if($user_type==2){
+
+			$Sms = $this->input->post('Sms');
+			$Mail = $this->input->post('Mail');
+			$Push = $this->input->post('Push');
+			
+			$res=$this->teacherprofilemodel->update_notification($Sms,$Mail,$Push,$user_id);
+
+			if($res['status']=="success"){
+				 $this->session->set_flashdata('msg', 'Update Successfully');
+					redirect('teacherprofile/notification_status');
+			 }else{
+				 $this->session->set_flashdata('msg', 'Failed to update');
+						redirect('teacherprofile/notification_status');
+			 }
+		}
+		else{
+			redirect('/');
+		}
+	}
+	
+	
 	public function logout(){
 		$datas=$this->session->userdata();
 		$this->session->unset_userdata($datas);
