@@ -7,7 +7,9 @@
     border-radius: 12px;
 }
 </style>
-
+<?php  foreach ($result as $rows) { 
+		$search_year = $rows->admit_year;
+ }  ?>
 <div class="main-panel">
    <div class="content">
       <?php if($this->session->flashdata('msg')): ?>
@@ -17,17 +19,57 @@
       </div>
       <?php endif; ?>
       <div class="content">
+	  
+	  
          <div class="container-fluid">
             <div class="row">
                <div class="col-md-12">
                   <div class="card">
                      <div class="content">
                         <h4 class="title" style="padding-bottom: 20px;">List of Student Registration</h4>
-                        <div class="fresh-datatables">
-				
-                           <div class="toolbar">
-	                            <!-- Here you can write extra buttons/actions for the toolbar-->
+						
+						<form method="post" action="<?php echo base_url(); ?>enrollment/view" class="form-horizontal" enctype="multipart/form-data" id="search_year" name="search_year">
+
+                        <fieldset>
+                           <div class="form-group">
+                            
+                              <div class="col-sm-4">
+                                 <select name="ace_year" id="ace_year"  required class="selectpicker" >
+								  <option value="">Select Year</option>
+                                    <?php foreach($ace_years as $rows)
+                                       {
+                                       $fyear=$rows->from_month;
+                                       $month= strtotime($fyear);
+
+                                       $eyear=$rows->to_month;
+                                       $month1= strtotime($eyear);
+                                    ?>
+                                    <option value="<?php  echo $rows->year_id; ?>"><?php  echo  date('Y',$month); ?> (To) <?php  echo  date('Y',$month1); ?></option>
+                                    <?php } ?>
+                                 </select> <script language="JavaScript">document.search_year.ace_year.value="<?php echo $search_year; ?>";</script>
+                              </div>
+                              
+                              <div class="col-sm-4">
+                                  <button type="submit" id="search" class="btn btn-info btn-fill center">Search </button>
+                              </div>
+                           </div>
+                        </fieldset>
+
+                     </form>
+					 
+                       
+						   
+						   
+
+                           <div class="toolbar" style="text-align:right; padding-bottom:30px; float:right;">
+						   
+						   
+						   
+						   
+								
+								 
 	                       </div>
+						  
 						   
                            <table id="example" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                               <thead>
@@ -41,20 +83,22 @@
                                  <th>Action</th>
                               </thead>
                               <tbody>
-                                 <?php
-                                    $i=1;
+                          <?php
+							$i=1;
                           foreach ($result as $rows) {
                           $stu=$rows->status;
+						  
                           ?>
                        <tr>
                           <td><?php echo $i; ?></td>
-                          <?php  foreach ($year as $row)
+                          <?php  
+						  /* foreach ($year as $row)
                              {
                                  $fyear=$row->from_month;
                                  $month= strtotime($fyear);
                                  $eyear=$row->to_month;
                                  $month1= strtotime($eyear);
-                             }
+                             } */
                              ?>
                          
                           <td><?php echo $rows->name; ?></td>
