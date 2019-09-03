@@ -286,6 +286,55 @@ Class Adminattendancemodel extends CI_Model
       }
 
 
-
+ //Get date for class view attendance
+       function get_class_date($class_ids,$select_date)
+	   {
+			$acd_year=$this->get_cur_year();
+			$year_id= $acd_year['cur_year'];
+			
+			 $att_query = "SELECT
+								A.class_id,
+								A.at_id,
+								CONCAT(C.class_name,' ',D.sec_name) AS class_name,
+								A.class_total,
+								A.no_of_present,
+								A.no_of_absent								
+							FROM
+								edu_attendence A,
+								edu_classmaster B,
+								edu_class C,
+								edu_sections D
+							WHERE
+								DATE(A.created_at) = '$select_date' AND A.class_id IN($class_ids) AND A.ac_year = '$year_id' AND
+							A.status = 'Active' AND A.class_id =B.class_sec_id AND B.class = C.class_id AND B.section = D.sec_id";
+							
+    		    $att_res = $this->db->query($att_query);
+				$files['data'] = $att_res->result();
+				
+    			 if($att_res->num_rows()>0) {
+					 
+					 $total_class = 0;
+					 $total_present = 0;
+					 $total_absent = 0;
+					 
+					 foreach($files['data'] as $rows){
+						
+						$class_total = $rows->class_total;
+						$total_class = ($total_class + $class_total);
+						
+						$no_of_present = $rows->no_of_present;
+						$total_present = ($total_present + $no_of_present);
+						
+						$no_of_absent = $rows->no_of_absent;
+						$total_absent = ($total_absent + $no_of_absent);
+					}
+					 $files['total_class'] = $total_class;
+					 $files['total_present'] = $total_present ;
+					 $files['total_absent'] = $total_absent ;
+					//exit;
+					return $files;
+				} 
+				
+	   }
 }
 ?>

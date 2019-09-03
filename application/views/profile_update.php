@@ -12,7 +12,7 @@
                  </div>
 
            <?php endif; ?>
-                           <h4 class="title">Edit Profile</h4>
+                           <h4 class="title">Your Profile</h4>
                        </div>
                        <?php
                       // print_r($result);
@@ -25,7 +25,7 @@
                                <div class="row">
                                    <div class="col-md-5">
                                        <div class="form-group">
-                                           <label>User Name</label>
+                                           <label>Username</label>
                           <input type="text" class="form-control" readonly placeholder="" name="name" value="<?php echo $rows->user_name; ?>">
                           <input type="hidden" class="form-control" readonly placeholder="" name="user_id" value="<?php echo $rows->user_id; ?>">
                           <input type="hidden" class="form-control" readonly placeholder="" name="user_pic_old" value="<?php echo $rows->user_pic; ?>">
@@ -44,7 +44,7 @@
                                <div class="row">
                                    <div class="col-md-6">
                                        <div class="form-group">
-                                         <label>Profile Pic</label>
+                                         <label>Profile Picture</label>
                                          <input type="file" class="form-control" placeholder="" value="" name="profile" onchange="loadFile(event)" accept="image/*" >
                                        </div>
                                    </div>
@@ -57,7 +57,7 @@
 
 
 
-                               <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                               <button type="submit" class="btn btn-info btn-fill pull-right">SAVE</button>
                                <div class="clearfix"></div>
                            </form>
                        </div>
@@ -96,28 +96,12 @@ var loadFile = function(event) {
  output.src = URL.createObjectURL(event.target.files[0]);
 };
 
-
-
-  var elmt = document.getElementById('sname');
-
-  elmt.addEventListener('keydown', function (event) {
-      if (elmt.value.length === 0 && event.which === 32) {
-          event.preventDefault();
-      }
-  });
-
 $('#profileedit').validate({ // initialize the plugin
     rules: {
         sname:{required:true,noSpace: true },
-
-
     },
     messages: {
-
-
-          sname: "Please Enter  Name"
-
-
-        }
+        sname: "Name cannot be empty!"
+    }
 });
 </script>

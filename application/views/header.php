@@ -117,7 +117,7 @@
                      Quick Links</a>
                      <ul class="dropdown-menu">
                         <li><a href="<?php echo base_url(); ?>specialclass/home">Special Class</a></li>
-                        <li><a href="<?php echo base_url(); ?>event/home">Add Reminder</a></li>
+                        <li><a href="<?php echo base_url(); ?>event/home">Create Reminder</a></li>
                         <li><a href="<?php echo base_url(); ?>circular/create_circular_master">Circular Master</a></li>
                      </ul>
                   </li>
@@ -145,7 +145,7 @@
                      <ul class="dropdown-menu dropdown-with-icons">
                         <li>
                            <a href="<?php echo base_url(); ?>adminlogin/profilepic">
-                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile Update
+                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
                            </a>
                         </li>
                         <li>
@@ -155,14 +155,14 @@
                         </li>
 						<li>
                            <a href="<?php echo base_url(); ?>adminlogin/notification_status">
-                        <i class="fa fa-cog" aria-hidden="true"></i> Notification Preference
+                        <i class="fa fa-cog" aria-hidden="true"></i> Notifications
                            </a>
                         </li>
                         <li class="divider"></li>
                         <li>
                            <a href="<?php echo base_url(); ?>adminlogin/logout" class="text-danger">
                         <i class="fa fa-sign-out" aria-hidden="true"></i>
-                           Log out
+                           Log Out
                            </a>
                         </li>
                      </ul>
@@ -304,6 +304,7 @@
                      <ul class="nav">
                         <li id="attend1"><a href="<?php echo base_url(); ?>adminattendance/home">Day Wise View</a></li>
                         <li id="attend2"><a href="<?php echo base_url(); ?>adminattendance/monthclass">Month view </a></li>
+						<li id="attend3"><a href="<?php echo base_url(); ?>adminattendance/class_date">Date view </a></li>
                      </ul>
                   </div>
                </li>

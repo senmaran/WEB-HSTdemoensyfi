@@ -137,8 +137,13 @@ class Promotion extends CI_Controller {
 					$user_id=$this->session->userdata('user_id');
 					$user_type=$this->session->userdata('user_type');
 					if($user_type==1){
-					 $datas['res_list']= $this->promotionmodel->view_list_for_year($year_id);
-					  $datas['res_year']= $this->promotionmodel->get_year_name($year_id);
+						
+					$class_id = $this->input->post('classes');
+					
+					$datas['res_list']= $this->promotionmodel->view_list_for_year($year_id,$class_id);
+					$datas['res_year']= $this->promotionmodel->get_year_name($year_id);
+					$datas['res_classes']= $this->promotionmodel->view_classes($year_id);
+					
 					 $this->load->view('header');
 					 $this->load->view('promotion/view_list_for_year',$datas);
 					 $this->load->view('footer');

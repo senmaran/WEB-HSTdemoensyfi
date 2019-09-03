@@ -47,7 +47,10 @@ class Adminattendance extends CI_Controller {
 	 				redirect('/');
 	 		 }
 	 	}
-
+		
+		
+		
+		
 		public function monthclass(){
 				$datas=$this->session->userdata();
 				$user_id=$this->session->userdata('user_id');
@@ -298,5 +301,48 @@ class Adminattendance extends CI_Controller {
 		}
 
 
+		public function class_date(){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+			 if($user_type==1){
+						$datas['res']=$this->adminattendancemodel->get_all_class();
+						$this->load->view('header');
+						$this->load->view('attendance/class_date',$datas);
+						$this->load->view('footer');
+			 }
+			 else{
+					redirect('/');
+			 }
+		}
+		
+		
+		public function get_class_date(){
+					$datas=$this->session->userdata();
+					$user_id=$this->session->userdata('user_id');
+					$user_type=$this->session->userdata('user_type');
+				 if($user_type==1){
+					 
+						 $select_classes = $this->input->post('select_classes[]');
+						 $class_ids_value = "";
+						 foreach ($select_classes as $classes)  {
+							 $class_ids = $classes;
+							 $class_ids_value .= $class_ids.',';
+						} 
+						
+						 $class_ids = rtrim($class_ids_value, ',');
+						 $select_date = $this->input->post('select_date');
+
+						$datas['files']=$this->adminattendancemodel->get_class_date($class_ids,$select_date);
+						//print_r ($datas['files']);
+
+						$this->load->view('header');
+						$this->load->view('attendance/class_date_view',$datas);
+						$this->load->view('footer');
+				 }
+				 else{
+						redirect('/');
+				 }
+			}
 
 }

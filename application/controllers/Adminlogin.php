@@ -39,12 +39,12 @@ class Adminlogin extends CI_Controller {
 
 			if($result['status']=='Deactive'){
 				$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
-				$this->session->set_flashdata('msg', ' Account Deactivated');
+				$this->session->set_flashdata('msg', 'Your account has been deactivated!');
 				 redirect('/');
 			}
 			if($result['status']=='notRegistered'){
 				$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
-				$this->session->set_flashdata('msg', 'Invalid Login');
+				$this->session->set_flashdata('msg', 'Invalid credentials!');
 				 redirect('/');
 			}
 			$user_type=$this->session->userdata('user_type');
@@ -56,10 +56,11 @@ class Adminlogin extends CI_Controller {
 								$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
 								//$this->session->userdata($user_name);
 								$session_data=$this->session->set_userdata($datas);
+								
 								$datas['res']=$this->dashboard->get_user_count_student();
 								$datas['parents']=$this->dashboard->get_user_count_parents();
 								$datas['teacher']=$this->dashboard->dash_teacher_users();
-	                            $datas['pending_leave']=$this->dashboard->pending_leave();
+								$datas['pending_leave']=$this->dashboard->pending_leave();
 								//print_r($datas['pending_leave']);
 								$datas['das_events']=$this->dashboard->dash_events();
 								$datas['das_users']=$this->dashboard->dash_users();
@@ -68,44 +69,51 @@ class Adminlogin extends CI_Controller {
 								$datas['dash_reminder']=$this->dashboard->dash_reminder($user_id);
 								$datas['class']=$this->dashboard->get_all_class_sec();
 							   //print_r($datas['class']);exit;
+								
 								$this->load->view('header',$datas);
 								$this->load->view('home',$datas);
 								$this->load->view('footer');
-							break;
+								break;
 							case '2':
-							$user_name=$result['user_name'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
-							$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
-							$session_data=$this->session->set_userdata($datas);
-							$datas['das_events']=$this->dashboard->dash_events();
-							$datas['user_details']=$this->dashboard->dash_teacher($user_id);
-							$this->load->view('adminteacher/teacher_header',$datas);
-							$this->load->view('adminteacher/home',$datas);
-							$this->load->view('adminteacher/teacher_footer');
-							break;
+								$user_name=$result['user_name'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
+								$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
+								$session_data=$this->session->set_userdata($datas);
+								
+								$datas['das_events']=$this->dashboard->dash_events();
+								$datas['user_details']=$this->dashboard->dash_teacher($user_id);
+								
+								$this->load->view('adminteacher/teacher_header',$datas);
+								$this->load->view('adminteacher/home',$datas);
+								$this->load->view('adminteacher/teacher_footer');
+								break;
 							case '3':
-							$user_name=$result['user_name'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
-							$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
-							$session_data=$this->session->set_userdata($datas);
-							$datas['user_details']=$this->dashboard->dash_students($user_id);
-							$datas['stud_details']=$this->dashboard->get_students($user_id);
-							$datas['stud_circular']=$this->dashboard->get_students_circular($user_id);
-              $datas['stud_cls_id']=$this->dashboard->get_students_cls_id($user_id);
-							$this->load->view('adminstudent/student_header',$datas);
-							$this->load->view('adminstudent/home',$datas);
-							$this->load->view('adminstudent/student_footer');
-							break;
+								$user_name=$result['user_name'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
+								$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
+								$session_data=$this->session->set_userdata($datas);
+								
+								$datas['user_details']=$this->dashboard->dash_students($user_id);
+								$datas['stud_details']=$this->dashboard->get_students($user_id);
+								$datas['stud_circular']=$this->dashboard->get_students_circular($user_id);
+								$datas['stud_cls_id']=$this->dashboard->get_students_cls_id($user_id);
+								
+								$this->load->view('adminstudent/student_header',$datas);
+								$this->load->view('adminstudent/home',$datas);
+								$this->load->view('adminstudent/student_footer');
+								break;
 							case '4':
-							$user_name=$result['user_name'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
-							$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
-							$session_data=$this->session->set_userdata($datas);
-							$datas['user_details']=$this->dashboard->dash_parents($user_id);
-							$datas['stud_details']=$this->dashboard->get_students($user_id);
-							$datas['parents_circular']=$this->dashboard->get_parents_circular($user_id);
-							$datas['res']=$this->dashboard->stud_details($user_id);
-							$this->load->view('adminparent/parent_header',$datas);
-							$this->load->view('adminparent/home');
-							$this->load->view('adminparent/parent_footer');
-							break;
+								$user_name=$result['user_name'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
+								$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
+								$session_data=$this->session->set_userdata($datas);
+								
+								$datas['user_details']=$this->dashboard->dash_parents($user_id);
+								$datas['stud_details']=$this->dashboard->get_students($user_id);
+								$datas['parents_circular']=$this->dashboard->get_parents_circular($user_id);
+								$datas['res']=$this->dashboard->stud_details($user_id);
+								
+								$this->load->view('adminparent/parent_header',$datas);
+								$this->load->view('adminparent/home');
+								$this->load->view('adminparent/parent_footer');
+								break;
 						}
 	 			}
 				elseif($msg=="Password Wrong"){
@@ -119,29 +127,6 @@ class Adminlogin extends CI_Controller {
 					 redirect('/');
 				}
 
-
-	    // if($user_type==1){
-		// 		$user_name=$result['user_name'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
-		// 		$datas['user_data'] = array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
-		// 		 //$this->session->userdata($user_name);
-		// 		$this->load->view('header',$datas);
-		// 		$this->load->view('home');
-		// 		$this->load->view('footer');
-		//
-		// 	}
-		//
-		// elseif($msg=="Password Wrong"){
-		// 	$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
-		// 	$this->session->set_flashdata('msg', 'Password Wrong');
-		// 	redirect('/');
-		//
-		// }
-		//
-		// else{
-		// 	$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
-		// 	$this->session->set_flashdata('msg', ' Email invalid');
-		// 	 redirect('/');
-		// }
 
 }
 
@@ -286,10 +271,10 @@ class Adminlogin extends CI_Controller {
 				}
 				$res=$this->login->profileupdate($userFileName,$user_id,$name);
 				if($res['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Update Successfully');
+				 $this->session->set_flashdata('msg', 'Changes made are saved');
 				 redirect('adminlogin/profilepic');
 			 }else{
-				 $this->session->set_flashdata('msg', 'Failed to update');
+				 $this->session->set_flashdata('msg', 'Something went wrong! Please try again later.');
 				  redirect('adminlogin/profilepic');
 			 }
 

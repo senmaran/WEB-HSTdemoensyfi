@@ -99,13 +99,18 @@ Class Dashboard extends CI_Model
 
     function forgotpassword($username)
 	{
-      $query="SELECT user_type,teacher_id,parent_id,student_id FROM edu_users WHERE user_name='$username'";
+		$query="SELECT name,user_name,user_type,teacher_id,parent_id,student_id FROM edu_users WHERE user_name='$username'";
+      //$query="SELECT user_type,teacher_id,parent_id,student_id FROM edu_users WHERE user_name='$username'";
       $result=$this->db->query($query);
-       if($result->num_rows()==0){
+       
+	   if($result->num_rows()==0){
          echo "Username Not found";
        }else{
           foreach($result->result() as $row){}
            $type_name= $row->user_type;
+		   $name= $row->name;
+		   $user_name= $row->user_name;
+		   
         switch ($type_name) {
 
           case '2':
@@ -120,40 +125,39 @@ Class Dashboard extends CI_Model
                foreach($result->result() as $row){}
                $to_mail= $row->email;
                $to = $to_mail;
-               $subject = '"Password Reset"';
-               $htmlContent = '
-                 <html>
-                 <head>  <title></title>
+               $subject = 'ENSYFi Password Reset';
+               $htmlContent = "<html>
+                 <head><title></title>
                  </head>
                  <body>
-                 <center><p>Hi Your Account Password is Reset.Please Use Below Password to login</p></center>
-                   <table cellspacing="0">
+				 <p>
+				 Dear $name,<br><br>
+						We have reset your ENSYFi account password. Your new password is '$OTP'<br>
+						You can also reset the password yourself in your profile settings.<br><br>
 
-                         <tr>
-                             <th>Password:</th><td>'.$OTP.'</td>
-                         </tr>
-                         <tr>
-                             <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
-                         </tr>
-                     </table>
+						<a href='base_url()'>Click here</a> to go to ENSYFi's login page.<br><br>
+
+						Cordially,<br>
+						Team ENSYFi<br><br>
+
+						Footnote: This is an auto-generated email and intended for notification purposes only.
+						Do not reply to this email.</p>
                  </body>
-                 </html>';
-
+                 </html>";
              // Set content-type header for sending HTML email
              $headers = "MIME-Version: 1.0" . "\r\n";
              $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
              // Additional headers
              $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
              $sent= mail($to,$subject,$htmlContent,$headers);
+			 
              if($sent){
                  echo "Password  Reset and send to your Mail Please check it";
              }else{
                echo "Somthing Went Wrong";
              }
-
-
-              exit;
             break;
+			
           case '3':
               $type_id= $row->student_id;
               $digits = 6;
@@ -169,25 +173,25 @@ Class Dashboard extends CI_Model
 
 			  if(!empty($to_mail)){
               $to = $to_mail;
-              $subject = '"Password Reset"';
-              $htmlContent = '
-                <html>
-                <head>  <title></title>
-                </head>
-                <body>
-                <center><p>Hi Your Account Password is Reset.Please Use Below Password to login</p></center>
-                  <table cellspacing="0">
+              $subject = 'ENSYFi Password Reset';
+              $htmlContent = "<html>
+                 <head><title></title>
+                 </head>
+                 <body>
+				 <p>
+				 Dear $name,<br><br>
+						We have reset your ENSYFi account password. Your new password is '$OTP'<br>
+						You can also reset the password yourself in your profile settings.<br><br>
 
+						<a href='base_url()'>Click here</a> to go to ENSYFi's login page.<br><br>
 
-                        <tr>
-                            <th>Password:</th><td>'.$OTP.'</td>
-                        </tr>
-                        <tr>
-                            <th></th><td><a href="'.base_url() .'">Click here to Login</a></td>
-                        </tr>
-                    </table>
-                </body>
-                </html>';
+						Cordially,<br>
+						Team ENSYFi<br><br>
+
+						Footnote: This is an auto-generated email and intended for notification purposes only.
+						Do not reply to this email.</p>
+                 </body>
+                 </html>";
 
             // Set content-type header for sending HTML email
             $headers = "MIME-Version: 1.0" . "\r\n";
@@ -196,32 +200,16 @@ Class Dashboard extends CI_Model
             $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
             $sent= mail($to,$subject,$htmlContent,$headers);
 		  }
-			if(!empty($cell))
-		   {
-			$userdetails="Password : ".$OTP.", ";
-			 //echo $userdetails;
-			$textmsg =urlencode($userdetails);
-			$smsGatewayUrl = 'http://173.45.76.227/send.aspx?';
-			$api_element = 'username=kvmhss&pass=kvmhss123&route=trans1&senderid=KVMHSS';
-			$api_params = $api_element.'&numbers='.$cell.'&message='.$textmsg;
-			$smsgatewaydata = $smsGatewayUrl.$api_params;
-			$url = $smsgatewaydata;
-			 //echo $url;
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_POST, false);
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$output = curl_exec($ch);
-			curl_close($ch);
-		  }
 
-            if($sent  || !empty($cell)){
+            if($sent){
                 echo "Password  Reset and send to your Mail Please check it";
             }else{
               echo "Somthing Went Wrong";
             }
 
             break;
+			
+			
           case '4':
             $type_id= $row->parent_id;
             $digits = 6;
@@ -234,30 +222,28 @@ Class Dashboard extends CI_Model
             foreach($result->result() as $row){}
             $to_mail= $row->email;
 			$cell= $row->mobile;
-			//$name= $row->name;
-
-			//echo $to_mail; echo $cell; exit;
 
 			if(!empty($to_mail)){
             $to = $to_mail;
-            $subject = '"Password Reset"';
-            $htmlContent = '
-              <html>
-              <head>  <title></title>
-              </head>
-              <body>
-              <center><p>Hi Your Account Password is Reset.Please Use Below Password to login</p></center>
-                <table cellspacing="0">
+            $subject = 'ENSYFi Password Reset';
+            $htmlContent = "<html>
+                 <head><title></title>
+                 </head>
+                 <body>
+				 <p>
+				 Dear $name,<br><br>
+						We have reset your ENSYFi account password. Your new password is '$OTP'<br>
+						You can also reset the password yourself in your profile settings.<br><br>
 
-                      <tr>
-                          <th>Password:</th><td>'.$OTP.'</td>
-                      </tr>
-                      <tr>
-                          <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
-                      </tr>
-                  </table>
-              </body>
-              </html>';
+						<a href='base_url()'>Click here</a> to go to ENSYFi's login page.<br><br>
+
+						Cordially,<br>
+						Team ENSYFi<br><br>
+
+						Footnote: This is an auto-generated email and intended for notification purposes only.
+						Do not reply to this email.</p>
+                 </body>
+                 </html>";
 
           // Set content-type header for sending HTML email
           $headers = "MIME-Version: 1.0" . "\r\n";
@@ -267,39 +253,18 @@ Class Dashboard extends CI_Model
           $sent= mail($to,$subject,$htmlContent,$headers);
 			}
 
-		if(!empty($cell))
-		  {
-			$userdetails="Password : ".$OTP.", ";
-			 //echo $userdetails;
-			$textmsg =urlencode($userdetails);
-			$smsGatewayUrl = 'http://173.45.76.227/send.aspx?';
-			$api_element = 'username=kvmhss&pass=kvmhss123&route=trans1&senderid=KVMHSS';
-			$api_params = $api_element.'&numbers='.$cell.'&message='.$textmsg;
-			$smsgatewaydata = $smsGatewayUrl.$api_params;
-			$url = $smsgatewaydata;
-			 //echo $url;
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_POST, false);
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$output = curl_exec($ch);
-			curl_close($ch);
-		 }
-          if($sent || !empty($cell)){
+          if($sent){
               echo "Password  Reset and send to your Mail Please check it";
           }else{
             echo "Somthing Went Wrong";
           }
-
             break;
-          default:
+         
+		 default:
             echo "No result found";
             break;
         }
-
-
-
-       }
+      }
 
     }
 

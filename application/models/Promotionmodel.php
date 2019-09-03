@@ -161,13 +161,65 @@ Class Promotionmodel extends CI_Model
 
     }
 
-
-    function view_list_for_year($year_id){
-    $query="SELECT e.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name,a.admission_id,a.admisn_no,a.sex,a.name
-    FROM edu_enrollment AS e,edu_classmaster AS cm, edu_sections AS s,edu_class AS c,edu_admission AS a WHERE e.class_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=s.sec_id AND e.admission_id=a.admission_id
-    AND e.name=a.name AND e.admisn_no=a.admisn_no AND e.admit_year='$year_id' ORDER BY enroll_id DESC";
-    $resultset=$this->db->query($query);
-    return  $res=$resultset->result();
+    function view_classes($year_id){
+		$query="SELECT
+					cm.class_sec_id,
+					c.class_name,
+					s.sec_name
+				FROM
+					edu_enrollment AS e,
+					edu_classmaster AS cm,
+					edu_sections AS s,
+					edu_class AS c,
+					edu_admission AS a
+				WHERE
+					e.class_id = cm.class_sec_id AND cm.class = c.class_id AND cm.section = s.sec_id AND e.admission_id = a.admission_id AND e.name = a.name AND e.admisn_no = a.admisn_no AND e.admit_year = '$year_id'
+				GROUP BY
+					class_sec_id
+				ORDER BY
+					enroll_id
+				DESC";
+		$resultset=$this->db->query($query);
+		return  $res=$resultset->result();
+    }
+	
+    function view_list_for_year($year_id,$class_id){
+		
+		if ($class_id == "") {
+			
+		$query="SELECT e.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name,a.admission_id,a.admisn_no,a.sex,a.name
+		FROM edu_enrollment AS e,edu_classmaster AS cm, edu_sections AS s,edu_class AS c,edu_admission AS a WHERE e.class_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=s.sec_id AND e.admission_id=a.admission_id
+		AND e.name=a.name AND e.admisn_no=a.admisn_no AND e.admit_year='$year_id' ORDER BY enroll_id DESC";
+		
+		} else {
+			
+		$query="SELECT
+				e.*,
+				cm.class_sec_id,
+				cm.class,
+				cm.section,
+				c.class_id,
+				c.class_name,
+				s.sec_id,
+				s.sec_name,
+				a.admission_id,
+				a.admisn_no,
+				a.sex,
+				a.name
+			FROM
+				edu_enrollment AS e,
+				edu_classmaster AS cm,
+				edu_sections AS s,
+				edu_class AS c,
+				edu_admission AS a
+			WHERE
+				e.class_id = cm.class_sec_id AND cm.class = c.class_id AND cm.section = s.sec_id AND e.admission_id = a.admission_id AND e.name = a.name AND e.admisn_no = a.admisn_no AND e.admit_year = '$year_id' AND cm.class_sec_id = '$class_id'
+			ORDER BY
+				enroll_id
+			DESC";
+		}
+		$resultset=$this->db->query($query);
+		return  $res=$resultset->result();
     }
 
 

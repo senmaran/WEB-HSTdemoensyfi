@@ -91,21 +91,21 @@
 
                                                                 <div class="form-group">
                                                                     <label>Username</label>
-                                                                    <input type="text" placeholder="Enter Username" name="email" class="form-control">
+                                                                    <input type="text" placeholder="Enter username" name="email" class="form-control">
                                                                 </div>
                                                                 <br>
                                                                 <div class="form-group">
                                                                     <label>Password</label>
-                                                                    <input type="password" placeholder="Password" name="password" class="form-control">
+                                                                    <input type="password" placeholder="Enter password" name="password" class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label style="float:right;"><a href="<?php echo base_url(); ?>home/forgotpassword">Forgot Password</a></label>
+                                                                    <label style="float:right;"><a href="<?php echo base_url(); ?>home/forgotpassword">Forgot password?</a></label>
                                                                 </div>
 
                                                             </div>
 
                                                             <div class="footer text-center" style="padding: 15px 15px;">
-                                                                <button type="submit" class="btn btn-fill btn-warning btn-wd">Login</button>
+                                                                <button type="submit" class="btn btn-fill btn-warning btn-wd">LOGIN</button>
                                                             </div>
 
                                             </div>
@@ -196,8 +196,8 @@
 
 			},
 			messages: {
-				email: "Please Enter Username ",
-				password: "Please Enter Password"
+				email: "Please enter username ",
+				password: "Please enter password"
 
 			}
 		});

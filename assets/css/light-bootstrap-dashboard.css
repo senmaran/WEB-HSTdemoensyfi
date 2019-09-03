@@ -2131,7 +2131,7 @@ hr.fc-divider {
   text-align: right;
   border-bottom-width: 1px;
   font-size: 14px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #9A9A9A;
   font-weight: 400;
   padding-bottom: 3px;
@@ -4163,7 +4163,7 @@ h5, .h5 {
 h6, .h6 {
   font-size: 14px;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 p {
@@ -4276,7 +4276,7 @@ h1 .subtitle {
   line-height: 30px;
   font-size: 12px;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: capitalize;
   white-space: nowrap;
   position: relative;
 }
@@ -4314,7 +4314,7 @@ h1 .subtitle {
 }
 .sidebar .logo .logo-text,
 .bootstrap-navbar .logo .logo-text {
-  text-transform: uppercase;
+  text-transform: capitalize;
   padding: 7px 0px;
   display: block;
   font-size: 18px;
@@ -5770,7 +5770,7 @@ star {
 .table > thead > tr > th {
   border-bottom-width: 1px;
   font-size: 12px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #9A9A9A;
   font-weight: 400;
   padding-bottom: 5px;
@@ -5796,7 +5796,7 @@ star {
 
 .table-bigboy > thead > tr > th {
   font-size: 14px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #9A9A9A;
   font-weight: 400;
 }
@@ -5927,7 +5927,7 @@ star {
   color: #888888;
   font-weight: 500;
   font-size: 12px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   display: inline-block;
   vertical-align: middle;
 }
@@ -7570,7 +7570,7 @@ star {
 .card .form-group > label {
   font-size: 12px;
   margin-bottom: 5px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .card .title {
   margin: 0;
@@ -7609,7 +7609,7 @@ star {
 .card .author {
   font-size: 12px;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .card .author i {
   font-size: 14px;
@@ -7713,7 +7713,7 @@ star {
   border: none;
   background-color: #9A9A9A;
   color: #FFFFFF;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .card-wizard .nav-pills > li > a:hover, .card-wizard .nav-pills > li > a:focus {
   background-color: #9A9A9A;
@@ -8013,7 +8013,7 @@ star {
   text-align: center;
   border-bottom: 1px solid #E3E3E3;
   font-size: 12px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #9A9A9A;
   font-weight: 400;
   padding-bottom: 5px;
@@ -8681,7 +8681,7 @@ star {
     line-height: 30px;
     font-size: 12px;
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
   .bootstrap-navbar .nav > li:hover > a {
     background: rgba(255, 255, 255, 0.13);
@@ -8697,7 +8697,7 @@ star {
     font-weight: 600;
     line-height: 30px;
     margin: 0;
-    text-transform: uppercase;
+    text-transform: capitalize;
     display: inline-block;
   }
   .bootstrap-navbar .nav i {
@@ -9438,7 +9438,7 @@ star {
 }
 .nav-text > li > a {
   font-size: 14px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   padding: 3px 0;
   text-align: left;
   font-weight: 500;

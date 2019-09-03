@@ -85,16 +85,19 @@ body{
             						 <?php } ?>
 
                                 <div class="content">
-			                                    <div class="form-group">
+								<h4>Forgot Password?</h4>
+								<p>No problems. Please enter your username and 
+we'll reset the password for you.</p>
+										<div class="form-group">
                                         <label>Username</label>
-                                        <input type="text" placeholder="Enter Username" name="username" class="form-control">
+                                        <input type="text" placeholder="Enter username" name="username" class="form-control">
                                     </div>
 
                                   </div>
 
                                 <div class="footer text-center">
-                                    <button type="submit" class="btn btn-fill btn-warning btn-wd">Reset</button><br>
-								                            <a class  href="<?php echo base_url(); ?>">Back To Login</a>
+                                    <button type="submit" class="btn btn-fill btn-warning btn-wd">SUBMIT</button><br>
+								                            <a class  href="<?php echo base_url(); ?>">Back to Login</a>
                                 </div>
 
 
@@ -186,15 +189,12 @@ body{
             }, 700)
         });
 
-
-
-
-				$('#forgotform').validate({ // initialize the plugin
+		$('#forgotform').validate({ // initialize the plugin
 				    rules: {
 				        username:{required:true },
 				    },
 				    messages: {
-				          username: "Enter Username"
+				          username: "Enter username"
 				        },
 				      submitHandler: function(form) {
 				       $.ajax({
@@ -203,7 +203,7 @@ body{
 				           data: $('#forgotform').serialize(),
 				           success: function(response) {
 										 //alert(response);
-										 if(response=="Password  Reset and send to your Mail Please check it"){
+										 if(response=="Please check your email. We've sent you the reset password"){
 											 swal({
 												   title: "Success",
 												    text: response,
@@ -214,11 +214,11 @@ body{
 												 });
 
 
-										 }else if(response=="Username Not found"){
-											 sweetAlert("Oops...", response, "error");
+										 }else if(response=="Username not found in records!"){
+											 sweetAlert("Oops!", response, "error");
 										 }
 										 else{
-											  sweetAlert("Oops...", "Something went wrong!", "error");
+											  sweetAlert("Oops!", "Something went wrong! Please try again later.", "error");
 										 }
 
 				           }
