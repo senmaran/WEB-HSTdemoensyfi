@@ -969,9 +969,8 @@ class Apimain extends CI_Controller {
 			return;
 		}
 
-		$notification_type = '';
-		$user_id = '';
-		$status = '';
+		$date = '';
+		$class_ids = '';
 		
 		$date = $this->input->post("date");
 		$class_ids = $this->input->post("class_ids");

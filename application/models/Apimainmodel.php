@@ -1763,10 +1763,81 @@ class Apimainmodel extends CI_Model {
 
 	public function viewClassdayattendence($date,$class_ids)
 	{
-		 $year_id = $this->getYear();
+		$year_id = $this->getYear();
 		$term_id = $this->getTerm();
 		
-				$att_query = "SELECT
+		$class_query = "SELECT
+							A.class_sec_id,
+							CONCAT(B.class_name, ' ', C.sec_name) AS class_name
+						FROM
+							edu_classmaster A,
+							edu_class B,
+							edu_sections C
+						WHERE
+							A.class_sec_id IN($class_ids) AND A.class = B.class_id AND A.section = C.sec_id";
+				$class_res = $this->db->query($class_query);
+				$class_result= $class_res->result();
+				
+    			 if($class_res->num_rows()>0) {		
+
+				$total_class = 0;
+				$total_present = 0;
+				$total_absent = 0; 
+				
+					 foreach($class_result as $rows){
+						$class_id = $rows->class_sec_id;
+
+						$att_query = "SELECT
+										class_total,
+										no_of_present,
+										no_of_absent
+									FROM
+										edu_attendence
+									WHERE
+										DATE(created_at) = '$date' AND class_id = '$class_id' AND ac_year = '$year_id' AND
+									STATUS
+										= 'Active'";
+						$att_res = $this->db->query($att_query);
+						$att_result= $att_res->result();
+				
+					if($att_res->num_rows()>0) {
+					 
+					 
+					 
+							 foreach($att_result as $row){
+								$classData[]  = array(
+										"class_id" => $rows->class_sec_id,
+										"class_name" => $rows->class_name,
+										"class_total" => $row->class_total,
+										"no_of_present" => $row->no_of_present,
+										"no_of_absent" => $row->no_of_absent,
+										"status" =>'Yes'
+								);
+								
+						
+								$class_total = $row->class_total;
+								$total_class = ($total_class + $class_total);
+								
+								$no_of_present = $row->no_of_present;
+								$total_present = ($total_present + $no_of_present);
+								
+								$no_of_absent = $row->no_of_absent;
+								$total_absent = ($total_absent + $no_of_absent);
+						}
+					 
+					 } else {
+						 $classData[]  = array(
+								"class_id" => $rows->class_sec_id,
+								"class_name" => $rows->class_name,
+								"class_total" => "",
+								"no_of_present" => "",
+								"no_of_absent" => "",
+								"status" =>'No'
+						);
+					 }
+					 
+				 }
+			/* $att_query = "SELECT
 								A.class_id,
 								CONCAT(C.class_name,' ',D.sec_name) AS class_name,
 								A.class_total,
@@ -1799,9 +1870,9 @@ class Apimainmodel extends CI_Model {
 						
 						$no_of_absent = $rows->no_of_absent;
 						$total_absent = ($total_absent + $no_of_absent);
-					}
+					} */
 					
-					 $response = array("status" => "success", "msg" => "Attendence Result","class_total"=>$total_class, "total_present"=>$total_present, "total_absent"=>$total_absent,"attendence_list"=>$att_result);
+					 $response = array("status" => "success", "msg" => "Attendence Result","class_total"=>$total_class, "total_present"=>$total_present, "total_absent"=>$total_absent,"attendence_list"=>$classData);
     			}else{
 					$response = array("status" => "error", "msg" => "No Records Found");
 				}
