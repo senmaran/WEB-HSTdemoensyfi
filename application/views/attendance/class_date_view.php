@@ -17,10 +17,10 @@
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th data-field="id" class="text-center"  data-sortable="true">S.No</th>
-                              <th data-field="date" class="text-center" data-sortable="true">Class name</th>
-                              <th data-field="month" class="text-center" data-sortable="true">Class total</th>
-                              <th data-field="year" class="text-center" data-sortable="true">No of present</th>
-                              <th data-field="pp" class="text-center" data-sortable="true">No of absent </th>
+                              <th data-field="class" class="text-center" data-sortable="true">Class name</th>
+                              <th data-field="total" class="text-center" data-sortable="true">Class total</th>
+                              <th data-field="preesent" class="text-center" data-sortable="true">No of present</th>
+                              <th data-field="absent" class="text-center" data-sortable="true">No of absent </th>
 							  <th data-field="status" class="text-center" data-sortable="true">Status</th>
                            </thead>
                            <tbody>
@@ -33,7 +33,6 @@
 									 $class_id = $rows->class_id;
                               ?>
                               <tr>
-								
                                  <td class="text-center"><?php echo $i;  ?></td>
                                  <td class="text-center" ><?php echo $rows->class_name; ?></td>
 								 <?php if ($class_id=="") { ?><td colspan="4" class="text-right" style="color:#cc0000;">Attendance not taken</td> <?php } else { ?>
@@ -42,9 +41,6 @@
 								<td class="text-center"><?php echo $rows->no_of_absent; ?></td>
 								<td class="text-center"></td>
 								 <?php } ?>
-								<!--<td>
-								<a href="<?php //echo base_url(); ?>adminattendance/view_all/<?php //echo $rows->at_id; ?>/<?php //echo $rows->class_id; ?>" rel="tooltip" title="View Attendance " class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
-								</td>-->
                               </tr>
                               <?php $i++;  }  
 							  }
