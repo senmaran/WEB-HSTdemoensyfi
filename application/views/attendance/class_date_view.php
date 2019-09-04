@@ -40,7 +40,7 @@
                                  <td class="text-center"><?php echo $rows->class_total; ?></td>
                                  <td class="text-center"><?php echo $rows->no_of_present; ?></td>
 								<td class="text-center"><?php echo $rows->no_of_absent; ?></td>
-								<td class="text-center"><?php echo $rows->no_of_absent; ?></td>
+								<td class="text-center"></td>
 								 <?php } ?>
 								<!--<td>
 								<a href="<?php //echo base_url(); ?>adminattendance/view_all/<?php //echo $rows->at_id; ?>/<?php //echo $rows->class_id; ?>" rel="tooltip" title="View Attendance " class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
