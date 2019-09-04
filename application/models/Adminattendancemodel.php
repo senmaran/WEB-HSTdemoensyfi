@@ -292,7 +292,31 @@ Class Adminattendancemodel extends CI_Model
 			$acd_year=$this->get_cur_year();
 			$year_id= $acd_year['cur_year'];
 			
+			
+			
 			 $att_query = "SELECT
+							ec.class_sec_id,
+							CONCAT(ecl.class_name, ' ', ecs.sec_name) AS class_name,
+							ea.class_id,
+							ea.class_total,
+							ea.no_of_present,
+							ea.no_of_absent
+						FROM
+							edu_classmaster AS ec
+						LEFT JOIN edu_class AS ecl
+						ON
+							ecl.class_id = ec.class
+						LEFT JOIN edu_sections AS ecs
+						ON
+							ecs.sec_id = ec.section
+						LEFT OUTER JOIN edu_attendence AS ea
+						ON
+							ea.class_id = ec.class_sec_id AND ec.class_sec_id IN($class_ids) AND DATE_FORMAT(ea.created_at, '%Y-%m-%d') = '$select_date' AND ea.ac_year = '$year_id' AND ea.status='Active'
+						WHERE
+							ec.class_sec_id IN($class_ids)";
+			
+
+			 /* $att_query = "SELECT
 								A.class_id,
 								A.at_id,
 								CONCAT(C.class_name,' ',D.sec_name) AS class_name,
@@ -306,7 +330,7 @@ Class Adminattendancemodel extends CI_Model
 								edu_sections D
 							WHERE
 								DATE(A.created_at) = '$select_date' AND A.class_id IN($class_ids) AND A.ac_year = '$year_id' AND
-							A.status = 'Active' AND A.class_id =B.class_sec_id AND B.class = C.class_id AND B.section = D.sec_id";
+							A.status = 'Active' AND A.class_id =B.class_sec_id AND B.class = C.class_id AND B.section = D.sec_id"; */
 							
     		    $att_res = $this->db->query($att_query);
 				$files['data'] = $att_res->result();

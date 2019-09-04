@@ -21,7 +21,7 @@
                               <th data-field="month" class="text-center" data-sortable="true">Class total</th>
                               <th data-field="year" class="text-center" data-sortable="true">No of present</th>
                               <th data-field="pp" class="text-center" data-sortable="true">No of absent </th>
-							  <!--<th data-field="Section" class="text-center" data-sortable="true">View Absent</th>-->
+							  <th data-field="status" class="text-center" data-sortable="true">Status</th>
                            </thead>
                            <tbody>
 						   <p>Total Students : <?php echo $files['total_class']; ?> | Total Present : <?php echo $files['total_present']; ?> | Total Absent : <?php echo $files['total_absent']; ?></p>
@@ -30,13 +30,18 @@
 							  if (count($files)>0) {
                               $i=1;
                                  foreach ($files['data'] as $rows) {
+									 $class_id = $rows->class_id;
                               ?>
                               <tr>
+								
                                  <td class="text-center"><?php echo $i;  ?></td>
-                                 <td class="text-center  txt" ><?php echo $rows->class_name; ?></td>
+                                 <td class="text-center" ><?php echo $rows->class_name; ?></td>
+								 <?php if ($class_id=="") { ?><td colspan="4" class="text-right" style="color:#cc0000;">Attendance not taken</td> <?php } else { ?>
                                  <td class="text-center"><?php echo $rows->class_total; ?></td>
                                  <td class="text-center"><?php echo $rows->no_of_present; ?></td>
 								<td class="text-center"><?php echo $rows->no_of_absent; ?></td>
+								<td class="text-center"><?php echo $rows->no_of_absent; ?></td>
+								 <?php } ?>
 								<!--<td>
 								<a href="<?php //echo base_url(); ?>adminattendance/view_all/<?php //echo $rows->at_id; ?>/<?php //echo $rows->class_id; ?>" rel="tooltip" title="View Attendance " class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
 								</td>-->
