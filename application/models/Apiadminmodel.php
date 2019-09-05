@@ -223,7 +223,7 @@ class Apiadminmodel extends CI_Model {
   //#################### GET ALL SECTIONS ####################//
 
     function get_all_sections($class_id){
-     $sql="SELECT es.sec_name,es.sec_id FROM edu_classmaster AS ecm LEFT JOIN edu_sections AS es ON ecm.section=es.sec_id WHERE ecm.class='$class_id' AND WHERE ecm.status = 'Active'";
+     $sql="SELECT es.sec_name,es.sec_id FROM edu_classmaster AS ecm LEFT JOIN edu_sections AS es ON ecm.section=es.sec_id WHERE ecm.class='$class_id' AND ecm.status = 'Active'";
       $res=$this->db->query($sql);
       if($res->num_rows()==0){
           $data=array("status"=>"error","msg"=>"nodata");
