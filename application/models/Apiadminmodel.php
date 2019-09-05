@@ -207,7 +207,7 @@ class Apiadminmodel extends CI_Model {
 //#################### GET ALL ClASS ####################//
 
   function get_classes($user_id){
-    $sql="SELECT ec.class_name,ec.class_id FROM edu_classmaster AS ecm LEFT JOIN edu_class AS ec ON ec.class_id=ecm.class GROUP BY ec.class_name";
+    $sql="SELECT ec.class_name,ec.class_id FROM edu_classmaster AS ecm LEFT JOIN edu_class AS ec ON ec.class_id=ecm.class WHERE ecm.status = 'Active' GROUP BY ec.class_name";
     $res=$this->db->query($sql);
     if($res->num_rows()==0){
         $data=array("status"=>"error","msg"=>"nodata");
@@ -223,7 +223,7 @@ class Apiadminmodel extends CI_Model {
   //#################### GET ALL SECTIONS ####################//
 
     function get_all_sections($class_id){
-     $sql="SELECT es.sec_name,es.sec_id FROM edu_classmaster AS ecm LEFT JOIN edu_sections AS es ON ecm.section=es.sec_id WHERE ecm.class='$class_id'";
+     $sql="SELECT es.sec_name,es.sec_id FROM edu_classmaster AS ecm LEFT JOIN edu_sections AS es ON ecm.section=es.sec_id WHERE ecm.class='$class_id' AND WHERE ecm.status = 'Active'";
       $res=$this->db->query($sql);
       if($res->num_rows()==0){
           $data=array("status"=>"error","msg"=>"nodata");

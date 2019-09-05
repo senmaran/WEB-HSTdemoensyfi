@@ -1743,7 +1743,7 @@ class Apimainmodel extends CI_Model {
 					edu_class C,
 					edu_sections D
 				WHERE
-				   B.class = C.class_id AND B.section = D.sec_id";
+				   B.status = 'Active' AND B.class = C.class_id AND B.section = D.sec_id";
 		$sQuery_res = $this->db->query($sQuery);
 		$sQuery_result= $sQuery_res->result();
 		$sQuery_count = $sQuery_res->num_rows();
