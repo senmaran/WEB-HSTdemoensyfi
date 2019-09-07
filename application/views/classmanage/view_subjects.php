@@ -154,7 +154,7 @@ $(document).on("click", ".open-AddBookDialog", function () {
 
 $('#subject_handling_form').validate({ // initialize the plugin
   rules: {
-      subject_id:{required:true },
+      "subject_id[]":{required:true },
       exam_flag:{required:true },
       status:{required:true},
 
