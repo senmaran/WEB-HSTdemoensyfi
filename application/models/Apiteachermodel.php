@@ -1343,15 +1343,15 @@ class Apiteachermodel extends CI_Model {
 			  $abs_date=$rows->abs_date;
 			  $abs_status=$rows->abs_atatus;
 			  
-			  Subject: Student not present!
+			  /* Subject: Student not present!
 				Body:
 				$textmessage='Dear Parent,<br>
 				Your child '.$st_name.' has been marked absent today. Please check ENSYFi mobile app for further details.<br>
 				http://bit.ly/2wLwdRQ<br><br>
 				Regards,
 				Management,<br><br>
-				Footnote: This is an auto-generated email and intended solely for notification purpose. Do not reply to this mail.';
-			 // $textmessage='Your child '.$st_name.' was marked '.$abs_status.' today '.$abs_date.'. To Known more details login into http://bit.ly/2wLwdRQ';
+				Footnote: This is an auto-generated email and intended solely for notification purpose. Do not reply to this mail.'; */
+			  $textmessage='Your child '.$st_name.' was marked '.$abs_status.' today '.$abs_date.'. To Known more details login into http://bit.ly/2wLwdRQ';
 			  $subject=" Student not present!";
 
 			  $this->sendMail($parents_email,$subject,$textmessage);
