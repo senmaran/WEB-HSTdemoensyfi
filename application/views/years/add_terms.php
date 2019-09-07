@@ -156,7 +156,7 @@
                                     <td>
                                        <!-- <a href="<?php // echo base_url(); ?>examination/add_exam_subject/<?php //echo $rows->exam_id; ?>" rel="tooltip" title="Added Exam Details" class="btn btn-simple btn-info btn-icon table-action view" >
                                           <i class="fa fa-id-card-o" aria-hidden="true"></i></a> -->
-                                       <a href="<?php echo base_url();  ?>years/edit_terms/<?php echo $rows->term_id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit"><i class="fa fa-edit"></i></a>
+                                       <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>years/edit_terms/<?php echo $rows->term_id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
                                     </td>
                                  </tr>
                                  <?php $i++;  }  ?>
@@ -180,7 +180,8 @@
    $('#mastersmenu').addClass('collapse in');
    $('#master').addClass('active');
    $('#masters2').addClass('active');
-    $('#myformsection').validate({ // initialize the plugin
+   
+   $('#myformsection').validate({ // initialize the plugin
         rules: {
             year_id:{required:true },
 			terms:{required:true },

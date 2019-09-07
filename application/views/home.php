@@ -107,7 +107,7 @@
 				
    <div class="card">
 						<div class="header" style="padding:10px 10px 10px 10px">
-                            <h4 class="title">SEARCH</h4>
+                            <h4 class="title">Search</h4>
                         </div>
 						
       <div class="container-fluid">

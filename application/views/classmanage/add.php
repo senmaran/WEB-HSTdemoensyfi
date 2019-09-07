@@ -3,11 +3,17 @@
        <div class="container-fluid">
          <div class="col-md-12">
 
+
+					
+					   
                         <div class="card">
-                            <div class="header">Class Management</div>
+						<div class="header">
+                           <h4 class="title">Create Subject</h4>
+						   <h5>Allocating Section for Class</h5>
+                       </div>
+
                             <div class="content">
                               <br>
-
                                 <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>classmanage/assign" enctype="multipart/form-data" id="myformclassmange">
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">Class</label>
@@ -38,7 +44,7 @@
                                           <div class="col-sm-6">
 										   <select name="status"  class="selectpicker form-control">
 												  <option value="Active">Active</option>
-												  <option value="Deactive">De-Active</option>
+												  <option value="Deactive">Inactive</option>
 											</select>
                                           </div>
 										</div>
@@ -47,7 +53,7 @@
                                     <div class="form-group">
                                         <!-- <label class="col-md-3"></label> -->
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-fill btn-info">Save</button>
+                                            <button type="submit" class="btn btn-fill btn-info">ALLOCATE</button>
                                         </div>
                                     </div>
                                 </form>
@@ -56,7 +62,13 @@
 
                     </div>
 
-
+					<?php
+						   if($this->session->flashdata('msg')): ?>
+							 <div class="alert alert-success">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+								×</button> <?php echo $this->session->flashdata('msg'); ?>
+							</div>
+					<?php endif; ?>
 
 
 
@@ -65,6 +77,9 @@
            <div class="row">
                <div class="col-md-12">
                    <div class="card">
+				   <div class="header">
+                           <h4 class="title">Classes</h4>
+                       </div>
                        <div class="content">
                            <div class="fresh-datatables">
                       <table id="bootstrap-table" class="table">
@@ -87,14 +102,14 @@
                     									if($sta=='Active'){?>
                     									<button class="btn btn-success btn-fill btn-wd">Active</button>
                     									<?php  }else{?>
-                    									<button class="btn btn-danger btn-fill btn-wd">De Active</button>
+                    									<button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                     									<?php } ?>
                     								</td>
                                 <td>
                                   <a rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon table-action edit" href="<?php echo base_url(); ?>classmanage/editcs/<?php  echo $rowsclass->class_sec_id; ?>">
                                      <i class="fa fa-edit"></i></a>
 
-                                     <a rel="tooltip" href="<?php echo base_url(); ?>classmanage/view_subjects/<?php echo $rowsclass->class_sec_id; ?>"  title="View Subjects" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit">
+                                     <a rel="tooltip" href="<?php echo base_url(); ?>classmanage/view_subjects/<?php echo $rowsclass->class_sec_id; ?>"  title="Add/View Subjects" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit">
                                      <i class="fa fa-th">  </i></a>
 
                                 </td>
@@ -130,69 +145,10 @@
 </div>
 
 <script type="text/javascript">
-$('#subject_handling_form').validate({ // initialize the plugin
-  rules: {
-      subject_id:{required:true },
-      exam_flag:{required:true },
-      status:{required:true},
 
-  },
-  messages: {
-        subject_id: "Select Subject",
-        exam_flag:"Select Class",
-        status:"Select Status"
-
-      },
-    submitHandler: function(form) {
-      //alert("hi");
-      swal({
-                    title: "Are you sure?",
-                    text: "You Want confirm  this form",
-                    type: "success",
-                    showCancelButton: true,
-                    confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Yes, I am sure!',
-                    cancelButtonText: "No, cancel it!",
-                    closeOnConfirm: false,
-                    closeOnCancel: false
-                },
-                function(isConfirm) {
-                    if (isConfirm) {
-     $.ajax({
-         url: "<?php echo base_url(); ?>classmanage/subject_to_class",
-          type:'POST',
-         data: $('#subject_handling_form').serialize(),
-         success: function(response) {
-           //alert(response);
-             if(response=="success"){
-              //  swal("Success!", "Thanks for Your Note!", "success");
-                $('#subject_handling_form')[0].reset();
-                swal({
-         title: "Wow!",
-         text: "Message!",
-         type: "success"
-     }, function() {
-        location.reload();
-     });
-             }else{
-               sweetAlert("Oops...",response, "error");
-             }
-         }
-     });
-   }else{
-       swal("Cancelled", "Process Cancel :)", "error");
-   }
- });
-}
-});
 
  $('#bootstrap-table').DataTable();
 
-
-       $(document).on("click", ".open-AddBookDialog", function () {
-            var eventId = $(this).data('id');
-            $(".modal-body #class_master_id").val( eventId );
-       });
 
 $(document).ready(function () {
   $('#mastersmenu').addClass('collapse in');
@@ -203,12 +159,11 @@ $(document).ready(function () {
      rules: {
 
           class_name:{required:true },
-
          section_name:{required:true },
      },
      messages: {
-           class_name: "Select Class Name",
-           section_name:"Select Section Name"
+           class_name: "Please choose an option!",
+           section_name:"Please choose an option!"
 
 
          }

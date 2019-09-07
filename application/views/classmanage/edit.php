@@ -11,7 +11,10 @@
                  ?>
 
                 <div class="card">
-                    <div class="header">Class Management</div>
+                   <div class="header">
+                           <h4 class="title">Create Subject</h4>
+						   <h5>Edit Section Allocation</h5>
+                       </div>
                     <div class="content">
                       <br>
 
@@ -73,7 +76,7 @@
                                 <div class="col-md-6">
                                  <select name="status" class="selectpicker form-control">
 									  <option value="Active">Active</option>
-									  <option value="Deactive">DeActive</option>
+									  <option value="Deactive">Inactive</option>
 								</select>
                                 <script language="JavaScript">document.edit_cs.status.value="<?php echo $rows->	status; ?>";</script>
                                 </div>
@@ -83,7 +86,7 @@
                             <div class="form-group">
                                 <!-- <label class="col-md-4"></label> -->
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-fill btn-info">Update</button>
+                                    <button type="submit" class="btn btn-fill btn-info">SAVE</button>
                                 </div>
                             </div>
                         </form>
@@ -106,12 +109,11 @@ $('#myformclassmange').validate({ // initialize the plugin
     rules: {
 
          class_name:{required:true },
-
         section_name:{required:true },
     },
     messages: {
-          class_name: "Select Class Name",
-          section_name:"Select Section Name"
+          class_name: "Please choose an option!",
+          section_name:"Please choose an option!"
 
 
         }

@@ -41,13 +41,13 @@ class Groups extends CI_Controller
 			
 			$datas=$this->groupsmodel->create_group_list($groups_name,$status,$user_id);
 			if($datas['status']=="success"){
-				$this->session->set_flashdata('msg','Added Successfully');
+				$this->session->set_flashdata('msg','New house named '.$groups_name.' created');
 				redirect('groups/home');
 			}if($datas['status']=="Name Already Exist"){
-				$this->session->set_flashdata('msg','Name Already Exist');
+				$this->session->set_flashdata('msg','Group name already exist!');
 				redirect('groups/home');
 			}else{
-				$this->session->set_flashdata('msg','Faild To Add');
+				$this->session->set_flashdata('msg','Oops! Something went wrong. Please try again few minutes later.');
 				redirect('groups/home');
 			}
 		
@@ -84,10 +84,10 @@ class Groups extends CI_Controller
 		$datas=$this->groupsmodel->update_groups_list($groups_name,$status,$user_id,$id);
 		if($datas['status']=="success")
 		{
-			$this->session->set_flashdata('msg','Updated Successfully');
+			$this->session->set_flashdata('msg','Changes made are saved');
 			redirect('groups/home');
 		}else{
-			$this->session->set_flashdata('msg','Faild To Update');
+			$this->session->set_flashdata('msg','Oops! Something went wrong. Please try again few minutes later.');
 			redirect('groups/home');
 		}
 	} 

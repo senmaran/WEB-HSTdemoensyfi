@@ -219,8 +219,8 @@
                         <li id="masters3"><a href="<?php echo base_url(); ?>classadd/addclass">Class & Sections</a></li>
                         <li id="masters4" ><a href="<?php echo base_url(); ?>subjectadd/addsubject">Subjects</a></li>
                         <li id="masters5"><a href="<?php echo base_url(); ?>classmanage/home">Class Management </a></li>
-                        <li id="curricular1"><a href="<?php echo base_url(); ?>extracurricular/home">Extra-Co curricular  </a></li>
-                        <li id="curricular2"><a href="<?php echo base_url(); ?>groups/home">House Groups</a></li>
+                        <li id="curricular1"><a href="<?php echo base_url(); ?>extracurricular/home">Co-curricular Activities</a></li>
+                        <li id="curricular2"><a href="<?php echo base_url(); ?>groups/home">Houses</a></li>
                      </ul>
                   </div>
                </li>
@@ -228,12 +228,12 @@
                   <a data-toggle="collapse" href="#admissionmenu">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/admission.png"/>
                      <!-- <i class="pe-7s-add-user"></i> -->
-                     <p>Student's Admission	</p>
+                     <p>Admission	</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="admissionmenu">
                      <ul class="nav">
-                        <li id="admission1"><a href="<?php echo base_url(); ?>admission/home">Student Detail</a></li>
+                        <li id="admission1"><a href="<?php echo base_url(); ?>admission/home">Student Profile</a></li>
                         <li id="admission2"><a href="<?php echo base_url(); ?>admission/view">Student Search</a></li>
                         <li id="admission3"><a href="<?php echo base_url(); ?>parents/view">Parents Search</a></li>
                      </ul>

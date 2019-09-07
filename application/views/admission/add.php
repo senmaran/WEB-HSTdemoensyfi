@@ -3,7 +3,7 @@
       <div class="col-md-12">
          <div class="card">
             <div class="header">
-               <legend>Admission</legend>
+               <legend>Create Student Profile</legend>
             </div>
             <?php if($this->session->flashdata('msg')): ?>
             <div class="alert alert-success">
@@ -17,11 +17,11 @@
                      <div class="form-group">
                         <label class="col-sm-2 control-label">Admission Year</label>
                         <div class="col-sm-4">
-                           <input type="text" name="admission_year"  class="form-control datepicker1" placeholder="Select Admission Year"/>
+                           <input type="text" name="admission_year"  class="form-control datepicker1" placeholder="Admission Year"/>
                         </div>
-                        <label class="col-sm-2 control-label">Admission No</label>
+                        <label class="col-sm-2 control-label">Admission Number</label>
                         <div class="col-sm-4">
-                           <input type="text" class="form-control"  name="admission_no" id="admission_no">
+                           <input type="text" class="form-control"  name="admission_no" id="admission_no" placeholder="Admission Number">
 
                         </div>
                      </div>
@@ -34,20 +34,20 @@
                         </div>
                         <label class="col-sm-2 control-label">EMSI Number</label>
                         <div class="col-sm-4">
-                           <input type="text" name="emsi_num" class="form-control" placeholder="Enter EMSI Number "/>
+                           <input type="text" name="emsi_num" class="form-control" placeholder="EMSI Number "/>
                         </div>
                      </div>
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Email</label>
+                        <label class="col-sm-2 control-label">Email ID</label>
                         <div class="col-sm-4">
-                           <input type="text" name="email"  class="form-control"  id="email" placeholder="Email Address" />
+                           <input type="text" name="email"  class="form-control"  id="email" placeholder="Email ID" />
 
                         </div>
                         <label class="col-sm-2 control-label">Mobile</label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Mobile Number" name="mobile" class="form-control">
+                           <input type="text" placeholder="Mobile" name="mobile" class="form-control">
 
                         </div>
                         <!-- <label class="col-sm-2 control-label">Secondary-Email</label>
@@ -60,11 +60,11 @@
                      <div class="form-group">
                         <label class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-4">
-                           <input type="text" name="name" class="form-control" value="">
+                           <input type="text" name="name" class="form-control" value="" placeholder="Name" >
                         </div>
                         <label class="col-sm-2 control-label">Gender</label>
                         <div class="col-sm-4">
-                           <select name="sex" class="selectpicker form-control" data-title="Select Gender" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                           <select name="sex" class="selectpicker form-control" data-title="Gender" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="Male">Male</option>
                               <option value="Female">Female</option>
                            </select>
@@ -101,13 +101,14 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Community Class</label>
-                        <div class="col-sm-4">
-                           <input type="text" placeholder="Community Class" name="community_class" class="form-control">
-                        </div>
+                       
                         <label class="col-sm-2 control-label">Community</label>
                         <div class="col-sm-4">
                            <input type="text" placeholder="Community" name="community" class="form-control">
+                        </div>
+						 <label class="col-sm-2 control-label">Community Category</label>
+                        <div class="col-sm-4">
+                           <input type="text" placeholder="Community Category" name="community_class" class="form-control">
                         </div>
                      </div>
                   </fieldset>
@@ -126,9 +127,9 @@
                               <option value="Kanaada">Kanaada</option>
                            </select>
                         </div>
-                        <label class="col-sm-2 control-label">Language Proposed</label>
+                        <label class="col-sm-2 control-label">Second Language</label>
                         <div class="col-sm-4">
-                           <select name="lang" class="selectpicker" data-title="Language Proposed" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                           <select name="lang" class="selectpicker" data-title="Second Language" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                             <?php foreach($lang as $res){ ?>
                               <option value="<?php echo $res->subject_id;?>"><?php echo $res->subject_name;?></option>
                               <?php } ?>
@@ -146,13 +147,13 @@
                   </fieldset> -->
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Student Picture</label>
+                        <label class="col-sm-2 control-label">Profile Picture</label>
                         <div class="col-sm-4">
                            <input type="file" name="student_pic" class="form-control" onchange="loadFile(event)" accept="image/*" >
                         </div>
                         <label class="col-sm-2 control-label">Blood Group</label>
                         <div class="col-sm-4">
-                           <select name="blood_group" class="selectpicker" data-title="Select Blood Group" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                           <select name="blood_group" class="selectpicker" data-title="Blood Group" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                             <?php foreach($blood as $rows){ ?>
                               <option value="<?php echo $rows->id;?>"><?php echo $rows->blood_group_name;?></option>
                               <?php } ?>
@@ -163,14 +164,14 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">School Studied</label>
+                        <label class="col-sm-2 control-label">Previous School</label>
                           <div class="col-sm-4">
                            <input type="text" name="sch_name" placeholder="Previous School" class="form-control">
                           </div>
 
-                          <label class="col-sm-2 control-label">School Studied</label>
+                          <label class="col-sm-2 control-label">Qualified Grade</label>
                             <div class="col-sm-4">
-                              <select name="class_name" class="selectpicker" data-title="Pass Out From" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                              <select name="class_name" class="selectpicker" data-title="Qualified Grade" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                  <?php foreach ($class as $clas) {  ?>
                                  <option value="<?php  echo $clas->class_id; ?>"><?php  echo $clas->class_name; ?></option>
                                  <?php } ?>
@@ -185,11 +186,11 @@
 
                       <fieldset>
                            <div class="form-group">
-                               <label class="col-sm-2 control-label">Qualified for promotion</label>
+                               <label class="col-sm-2 control-label">Mode Of Entry</label>
                                <div class="col-md-4">
-                                <select name="qual" class="selectpicker" data-title="Qualified for promotion" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                                   <option value="1">Yes</option>
-                                   <option value="0">No</option>
+                                <select name="qual" class="selectpicker" data-title="Mode Of Entry" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                   <option value="1">Transfer</option>
+                                   <option value="0">Promotion</option>
                                 </select>
                              </div>
                              <label class="col-sm-2 control-label">Certificates</label>
@@ -212,7 +213,7 @@
                         <div class="col-sm-4">
                            <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="Active">Active</option>
-                              <option value="Deactive">DeActive</option>
+                              <option value="Deactive">Inactive</option>
                            </select>
                         </div>
                      </div>
@@ -221,7 +222,7 @@
                      <div class="form-group">
 
                         <div class="text-center">
-                           <button type="submit" id="save" class="btn btn-info btn-fill center">Save </button>
+                           <button type="submit" id="save" class="btn btn-info btn-fill center">NEXT </button>
                         </div>
                         <!-- <div class="col-sm-4">
                            <img  id="output" class="img-circle" style="width:100px;">
@@ -286,34 +287,34 @@
         },
         messages: {
               admission_no:{
-                required:"Enter the Admission Number max length 9 Digits",
-                remote:"Admission Number Already Exist"
+                required:"This field cannot be empty!",
+                remote:"Admission number already exist!"
               },
              //  minlength:"Enter the Number 6 to 9 Digits",
-              admission_year: "Enter Admission Year",
-              admission_date: "Select Admission Date",
-              name: "Enter Name",
+              admission_year: "This field cannot be empty!",
+              admission_date: "This field cannot be empty!",
+              name: "This field cannot be empty!",
                email:{
-                 required:"Enter Email Address",
-                 remote:"Email Already Exist"
+                 required:"This field cannot be empty!",
+                 remote:"Email ID already exist!"
                },
               //sec_email:"Enter Email Address",
 
-              sex: "Select Gender",
-              dob: "Select Date of Birth",
+              sex: "Please choose an option!",
+              dob: "Please choose an option!",
               emsi_num:{
-                required:"Enter EMSI Number",
-                remote:" EMSI Number Already Exist"
+                required:"This field cannot be empty!",
+                remote:" EMSI number already exist!"
               },
-              age: "Enter AGE",
-              nationality: "Nationality",
-              religion: "Enter the Religion",
-              community:"Enter the Community",
-              community_class:"Enter the Community Class",
-              blood_group:"Select Blood Group",
+              age: "This field cannot be empty!",
+              nationality: "This field cannot be empty!",
+              religion: "This field cannot be empty!",
+              community:"This field cannot be empty!",
+              community_class:"This field cannot be empty!",
+              blood_group:"Please choose an option!",
               mobile:{
-                required:"Enter mobile number",
-                remote:"Mobile number Already Exist"
+                required:"This field cannot be empty!",
+                remote:"Mobile number already exist!"
               }
              // student_pic:"Enter the Student Picture"
             }

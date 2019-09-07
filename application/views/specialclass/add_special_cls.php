@@ -128,7 +128,7 @@
                     									  <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                     									  <?php } ?></td>
                                     <td>
-                                       <a href="<?php echo base_url();  ?>specialclass/edit_specls/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit">
+                                       <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>specialclass/edit_specls/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit">
 									   <i class="fa fa-edit"></i></a>
                                     </td>
                                  </tr>

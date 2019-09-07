@@ -9,7 +9,7 @@
 							<p class="pull-right btn btn-wd" style="margin-top:-30px;">
 								<a href="
 
-									<?php echo base_url(); ?>sectionadd/addsection">Add / View Section
+									<?php echo base_url(); ?>sectionadd/addsection">Add / View Sections
 
 								</a>
 							</p>
@@ -94,7 +94,7 @@
 														<?php } ?>
 													</td>
 													<td>
-														<a href="<?php echo base_url();  ?>classadd/updateclass/<?php echo $rows->class_id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit">
+														<a rel="tooltip" title="Edit"  href="<?php echo base_url();  ?>classadd/updateclass/<?php echo $rows->class_id; ?>" class="btn btn-simple btn-warning btn-icon edit">
 															<i class="fa fa-edit"></i>
 														</a>
 														<!-- <a href="

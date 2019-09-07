@@ -5,7 +5,7 @@
                <div class="col-md-12">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Update Subject</h4>
+                           <h4 class="title">Edit Subject</h4>
                            <?php if($this->session->flashdata('msg')): ?>
                              <div class="alert alert-success">
                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -23,7 +23,7 @@
                                <div class="row">
                                    <div class="col-md-4">
                                        <div class="form-group">
-                                           <label>Name</label>
+                                           <label>Subject</label>
                                            <input type="text" class="form-control"  placeholder="" name="subjectname" id="subjectname" value="<?php  echo $rows->subject_name; ?>">
                                            <input type="hidden" class="form-control"  placeholder="" name="subject_id" value="<?php  echo $rows->subject_id; ?>">
 
@@ -34,7 +34,7 @@
                                                  <label>Status</label>
                                                 <select name="status" class="selectpicker form-control">
                         												  <option value="Active">Active</option>
-                        												  <option value="Deactive">DeActive</option>
+                        												  <option value="Deactive">Inactive</option>
                         												</select>
                         											<script language="JavaScript">document.myformsub.status.value="<?php echo $rows->status; ?>";</script>
                                              </div>
@@ -43,14 +43,14 @@
                                      <div class="form-group">
                                        <br>
                                         <label class="col-sm-2 control-label"></label>
-                                       <label><input type="checkbox" name="is_preferred_lang" value="1" style="margin-right:10px;" <?php if ($rows->is_preferred_lang == 1) echo 'checked'; ?> >Set as Preferred Language</label>
+                                       <label><input type="checkbox" name="is_preferred_lang" value="1" style="margin-right:10px;" <?php if ($rows->is_preferred_lang == 1) echo 'checked'; ?> >Set as second language</label>
                                        </div>
                                      </div>
                                  </div>
 
                                  <div class="row">
                                    <div class="text-center">
-                                         <button type="submit" class="btn btn-info btn-fill">Update</button>
+                                         <button type="submit" class="btn btn-info btn-fill">SAVE</button>
                                     </div>
                               </div>
 
@@ -81,18 +81,10 @@ $(document).ready(function () {
 
   $('#myformsub').validate({ // initialize the plugin
       rules: {
-
-
           subjectname:{required:true },
-
-
       },
       messages: {
-
-
             subjectname: "Please Enter Subject Name"
-
-
           }
   });
  });

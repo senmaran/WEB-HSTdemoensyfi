@@ -5,7 +5,7 @@
                <div class="col-md-8">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Update Section</h4>
+                           <h4 class="title">Edit Section</h4>
                            <?php if($this->session->flashdata('msg')): ?>
                              <div class="alert alert-success">
                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -23,7 +23,7 @@
                                <div class="row">
                                    <div class="col-md-5">
                                        <div class="form-group">
-                                           <label>Name</label>
+                                           <label>Section</label>
                                            <input type="text" class="form-control"  placeholder="" name="sectionname" id="sectionname" value="<?php  echo $rows->sec_name; ?>">
                                             <input type="hidden" class="form-control"  placeholder="" name="sec_id" value="<?php  echo $rows->sec_id; ?>">
 
@@ -35,14 +35,14 @@
                                            <label>Status</label>
                                           <select name="status" class="selectpicker form-control">
 												  <option value="Active">Active</option>
-												  <option value="Deactive">DeActive</option>
+												  <option value="Deactive">Inactive</option>
 												</select>
 											<script language="JavaScript">document.myformsection.status.value="<?php echo $rows->status; ?>";</script>
                                        </div>
                                    </div>
 								   
                                </div>
-                           <button type="submit" class="btn btn-info btn-fill pull-left">Update</button>
+                           <button type="submit" class="btn btn-info btn-fill pull-left">SAVE</button>
                                <div class="clearfix"></div>
                            </form>
                        </div>
@@ -66,18 +66,10 @@ $(document).ready(function () {
 
   $('#myformsection').validate({ // initialize the plugin
       rules: {
-
-
           sectionname:{required:true },
-
-
       },
       messages: {
-
-
-            sectionname: "Please Enter Section Name"
-
-
+            sectionname: "This field cannot be empty!"
           }
   });
  });

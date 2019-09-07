@@ -5,7 +5,7 @@
                <div class="col-md-12">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Add Subject</h4>
+                           <h4 class="title">Create Subject</h4>
 
                        </div>
 
@@ -14,7 +14,7 @@
                                <div class="row">
                                    <div class="col-md-4">
                                        <div class="form-group">
-                                           <label>Subject Name</label>
+                                           <label>Subject</label>
                                            <input type="text" class="form-control"  placeholder="" name="subjectname" id="subjectname" value="">
 
                                        </div>
@@ -24,7 +24,7 @@
   <label class="col-sm-2 control-label">Status</label>
                   										   <select name="status"  class="selectpicker form-control">
                   												  <option value="Active">Active</option>
-                  												  <option value="Deactive">DeActive</option>
+                  												  <option value="Deactive">Inactive</option>
                   											</select>
                                       </div>
                                     </div>
@@ -32,14 +32,14 @@
 
                                       <div class="form-group"><br>
                                           <label class="col-sm-2 control-label"></label>
-                                        <label><input type="checkbox" name="is_preferred_lang" value="1" style="margin-right:10px;">Set as Preferred Language</label>
+                                        <label><input type="checkbox" name="is_preferred_lang" value="1" style="margin-right:10px;">Set as second language</label>
                                         </div>
                                     </div>
                                   </div>
                                   <div class="row">
                                     <div class="text-center">
 
-                                         <button type="submit" class="btn btn-info btn-fill">Save</button>
+                                         <button type="submit" class="btn btn-info btn-fill">CREATE</button>
                                      </div>
                                </div>
 
@@ -65,14 +65,14 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="content">
-                                <h4 class="title">List of Subjects </h4> <br>
+                                <h4 class="title">Subjects</h4> <br>
                                 <div class="fresh-datatables">
                           <table id="bootstrap-table" class="table">
                               <thead>
-                                <th>S.no</th>
+                                <th>S.No</th>
                                 <th>Subjects</th>
-                                  <th>Preferred Language</th>
-								                 <th>Status</th>
+                                  <th>Second Language?</th>
+								  <th>Status</th>
                                 <th>Actions</th>
                               </thead>
                               <tbody>
@@ -89,11 +89,11 @@
 										if($sta=='Active'){?>
 										<button class="btn btn-success btn-fill btn-wd">Active</button>
 										<?php  }else{?>
-										<button class="btn btn-danger btn-fill btn-wd">De Active</button>
+										<button class="btn btn-danger btn-fill btn-wd">Inactive</button>
 										<?php } ?>
 									</td>
                                     <td>
-                                      <a href="<?php echo base_url();  ?>subjectadd/updatesubject/<?php echo $rows->subject_id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                      <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>subjectadd/updatesubject/<?php echo $rows->subject_id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
                                         </td>
                                   </tr>
                                   <?php $i++;  }  ?>
@@ -126,22 +126,12 @@ $(document).ready(function () {
   $('#masters4').addClass('active');
 
 
-
-
  $('#myformsub').validate({ // initialize the plugin
      rules: {
-
-
          subjectname:{required:true },
-
-
      },
      messages: {
-
-
-           subjectname: "Please Enter Subject Name"
-
-
+           subjectname: "This field cannot be empty!"
          }
  });
 });

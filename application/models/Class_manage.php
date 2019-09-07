@@ -36,6 +36,7 @@ Class Class_manage extends CI_Model
            $result=$this->db->query($check);
            if($result->num_rows()==0){
                $query="INSERT INTO  edu_subject_to_class (class_master_id,subject_id,exam_flag,status,created_at,created_by,updated_at) VALUES('$class_master_id','$subject_id_cls','$exam_flag','$status',NOW(),'$user_id',NOW())";
+			  //exit;
               $res=$this->db->query($query);
            }
            else{

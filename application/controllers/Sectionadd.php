@@ -52,10 +52,10 @@ class Sectionadd extends CI_Controller {
 				$status=$this->input->post('status');
 				$res = $this->sectionmodel->addsection($sectionname,$status);
 				if($res['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Added Successfully');
+				 $this->session->set_flashdata('msg', 'New section created');
 				 redirect('sectionadd/addsection');
 			 }else{
-				 $this->session->set_flashdata('msg', 'Section Name Already exist');
+				 $this->session->set_flashdata('msg', 'Section already exist');
 				 redirect('sectionadd/addsection');
 			 }
 		}
@@ -73,10 +73,10 @@ class Sectionadd extends CI_Controller {
 			  $sec_id=$this->input->post('sec_id');
 			 	$res = $this->sectionmodel->save_section($sec_name,$sec_id,$status);
 				if($res['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Update Successfully');
+				 $this->session->set_flashdata('msg', 'Changes made are saved');
 				 redirect('sectionadd/addsection');
 			 }else{
-				 $this->session->set_flashdata('msg', 'Failed to update');
+				 $this->session->set_flashdata('msg', 'Oops! Something went wrong. Please try again few minutes later.');
 				 redirect('sectionadd/addsection');
 			 }
 		}

@@ -6,13 +6,13 @@
                <div class="col-md-12">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Add Extra curricular Activities </h4>
+                           <h4 class="title">Create Co-curricular Activity</h4>
                        </div>
                        <div class="content">
                            <form method="post" action="<?php echo base_url(); ?>extracurricular/create_extracurricular" class="form-horizontal" enctype="multipart/form-data" id="activitiesformsection" name="activitiesformsection">
                                  <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">Activities Name	</label>
+                                          <label class="col-sm-2 control-label">Activity</label>
                                           <div class="col-sm-4">
 										                         <input type="text" name="ext_name" class="form-control"  value="">
                                           </div>
@@ -20,7 +20,7 @@
                                           <div class="col-sm-4">
                       										   <select name="status"  class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                         											  <option value="Active">Active</option>
-                        											  <option value="Deactive">DeActive</option>
+                        											  <option value="Deactive">Inactive</option>
                       											</select>
                                           </div>
                                       </div>
@@ -29,7 +29,7 @@
                                         <div class="form-group">
 										                      	<!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                                             <div class="text-center">
-											                         <input type="submit" id="save" class="btn btn-info btn-fill center"  value="Save">
+											                         <input type="submit" id="save" class="btn btn-info btn-fill center"  value="CREATE">
                                             </div>
                                             </div>
                                    </fieldset>
@@ -53,7 +53,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="content">
-                                <h4 class="title">List of Extra Circular </h4> <br>
+                                <h4 class="title">Co-curricular Activities</h4> <br>
                                 <div class="fresh-datatables">
                           <table id="bootstrap-table" class="table">
                               <thead>
@@ -78,7 +78,7 @@
 										  <button class="btn btn-danger btn-fill btn-wd">De Active</button>
 										  <?php } ?></td>
                                     <td class="text-right">
-                                      <a href="<?php echo base_url(); ?>extracurricular/edit_activities/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                      <a rel="tooltip" title="Edit" href="<?php echo base_url(); ?>extracurricular/edit_activities/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
                                     </td>
                                   </tr>
 							                  <?php $i++;   } ?>
@@ -107,8 +107,8 @@ $('#curricular1').addClass('active');
   		     status:{required:true }
        },
        messages: {
-             ext_name:"Please Enter Activities Name",
-  		       status:"select Status"
+             ext_name:"This field cannot be empty!",
+  		       status:"Please choose an option!"
           }
    });
 });

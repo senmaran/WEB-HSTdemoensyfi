@@ -6,14 +6,14 @@
                <div class="col-md-12">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Edit House Groups </h4>
+                           <h4 class="title">Edit House</h4>
                        </div>
                        <?php foreach ($edit as  $res) { } ?>
                        <div class="content">
                            <form method="post" action="<?php echo base_url(); ?>groups/update_groups" class="form-horizontal" enctype="multipart/form-data" id="feesformsection" name="feesformsection">
                                  <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">House Groups</label>
+                                          <label class="col-sm-2 control-label">House Name</label>
                                           <div class="col-sm-4">
 										                         <input type="text" name="groups_name" class="form-control"  value="<?php echo $res->group_name; ?>">
 
@@ -24,7 +24,7 @@
                                           <div class="col-sm-4">
                       										   <select name="status" class="selectpicker form-control">
                         											  <option value="Active">Active</option>
-                        											  <option value="Deactive">De-Active</option>
+                        											  <option value="Deactive">Inactive</option>
                       											</select>
                                             <script language="JavaScript">
                         											document.feesformsection.status.value="<?php echo $res->status; ?>";
@@ -36,7 +36,7 @@
                                         <div class="form-group">
 										                      	<!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                                             <div class="text-center">
-											                         <input type="submit" id="save" class="btn btn-info btn-fill center"  value="Update">
+											                         <input type="submit" id="save" class="btn btn-info btn-fill center"  value="SAVE">
                                             </div>
                                             </div>
                                    </fieldset>
@@ -63,8 +63,8 @@ $('#curricular2').addClass('active');
   		     status:{required:true }
        },
        messages: {
-             groups_name:"Please Enter Group Name",
-  		       status:"select Status"
+             groups_name:"This field cannot be empty!",
+  		       status:"Please choose an option!"
           }
    });
 });

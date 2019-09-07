@@ -99,7 +99,7 @@
 														<?php } ?>
 													</td>
 													<td>
-														<a href="<?php echo base_url(); ?>years/edit_years/<?php echo $rows->year_id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit">
+														<a rel="tooltip" title="Edit" href="<?php echo base_url(); ?>years/edit_years/<?php echo $rows->year_id; ?>" class="btn btn-simple btn-warning btn-icon edit">
 															<i class="fa fa-edit"></i>
 														</a>
 													</td>

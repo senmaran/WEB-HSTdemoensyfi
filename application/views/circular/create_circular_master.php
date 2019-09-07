@@ -126,7 +126,7 @@
                                                                         <?php } ?>
                                                             </td>
                                                             <td>
-                                                                <a href="<?php echo base_url();  ?>circular/edit_circular_master/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit">
+                                                                <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>circular/edit_circular_master/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit">
                                                                     <i class="fa fa-edit"></i></a>
                                                             </td>
                                                         </tr>

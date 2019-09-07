@@ -79,15 +79,15 @@ class Classmanage extends CI_Controller {
 				$status=$this->input->post('status');
 				$data=$this->class_manage->assign($sec_id,$class_id,$subject,$status);
 				if($data['status']=="success"){
-						$this->session->set_flashdata('msg', 'Successfully Added');
+						$this->session->set_flashdata('msg', 'Section allocated to class');
 						redirect('classmanage/home');
 				}
 				elseif($data['status']=="Already Exist"){
-					$this->session->set_flashdata('msg', 'Already Added ');
+					$this->session->set_flashdata('msg', 'Already Section allocated to class');
 						redirect('classmanage/home');
 				}
 				else{
-					$this->session->set_flashdata('msg', 'Something Went wrong');
+					$this->session->set_flashdata('msg', 'Oops! Something went wrong. Please try again few minutes later.');
 						redirect('classmanage/home');
 				}
 
@@ -158,11 +158,11 @@ class Classmanage extends CI_Controller {
 				$status=$this->input->post('status');
 				$datas=$this->class_manage->save_subject($id,$exam_flag,$status);
 				if($datas['status']=="success"){
-						$this->session->set_flashdata('msg', 'Successfully Updated');
+						$this->session->set_flashdata('msg', 'Changes made are saved');
 						redirect('classmanage/home');
 				}
 				elseif($datas['status']=="failure"){
-					$this->session->set_flashdata('msg', 'Something Went Wrong ');
+					$this->session->set_flashdata('msg', 'Oops! Something went wrong. Please try again few minutes later.');
 						redirect('classmanage/home');
 				}
 			}else{
@@ -185,15 +185,15 @@ class Classmanage extends CI_Controller {
 				$datas=$this->class_manage->save_cs($class_sec_id,$class,$section,$subject,$status);
 			//	print_r($datas);exit;
 				if($datas['status']=="success"){
-						$this->session->set_flashdata('msg', 'Successfully Updated');
+						$this->session->set_flashdata('msg', 'Changes made are saved');
 						redirect('classmanage/home');
 				}
 				elseif($datas['status']=="updated"){
-					$this->session->set_flashdata('msg', 'Saved');
+					$this->session->set_flashdata('msg', 'Changes made are saved');
 						redirect('classmanage/home');
 				}
 				else{
-					$this->session->set_flashdata('msg', 'Saved');
+					$this->session->set_flashdata('msg', 'Changes made are saved');
 						redirect('classmanage/home');
 				}
 			}

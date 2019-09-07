@@ -57,10 +57,10 @@ class Subjectadd extends CI_Controller {
 				$status=$this->input->post('status');
 				$res = $this->subjectmodel->addsubject($subjectname,$is_preferred_lang,$status);
 				if($res['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Added Successfully');
+				 $this->session->set_flashdata('msg', 'Subject named '.$subjectname.' created');
 				 redirect('subjectadd/addsubject');
 			 }else{
-				 $this->session->set_flashdata('msg', 'Subject Name Already Exist');
+				 $this->session->set_flashdata('msg', 'Subject name already exist!');
 				 redirect('subjectadd/addsubject');
 			 }
 		 }else{
@@ -83,7 +83,7 @@ class Subjectadd extends CI_Controller {
 			  $status=$this->input->post('status');
 			  $data = $this->subjectmodel->save_subject($subject_name,$is_preferred_lang,$subject_id,$status);
 				if($data['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Update Successfully');
+				 $this->session->set_flashdata('msg', 'Changes made are saved');
 				 redirect('subjectadd/addsubject');
 			 }else{
 				 $this->session->set_flashdata('msg', 'Failed to update');

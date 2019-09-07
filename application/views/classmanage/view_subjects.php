@@ -26,21 +26,14 @@ td{
                             <div class="content">
 
                               <div class="header">
-
-                        <legend>View Subject For Class
-                          <a rel="" href="#myModal" data-id="<?php echo $class_master_id; ?>" title="Add Subjects" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#myModal"   >
-                          Add Subjects</a>
-
-                            <button class="btn btn-info btn-fill center" onclick="generatefromtable()">Generate PDF</button>
-
-                          <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></legend>
-
+								<legend>View Subject For Class
+								<a rel="" href="#myModal" data-id="<?php echo $class_master_id; ?>" title="Add Subjects" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#myModal">ADD SUBJECT</a>
+								<button class="btn btn-info btn-fill center" onclick="generatefromtable()">GENERATE PDF</button>
+								<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></legend>
                               </div>
 
 
-
                                 <div class="fresh-datatables">
-
 
                           <table id="bootstrap-table" class="table">
                               <thead>
@@ -48,7 +41,6 @@ td{
                                   <th data-field="id">S.No</th>
                                   <th data-field="year"  data-sortable="true"> Class</th>
                                   <th data-field="no"  data-sortable="true">Subject </th>
-
                                   <th data-field="status"  data-sortable="true">Status</th>
                                   <th data-field="Section" data-sortable="true">Action</th>
 
@@ -70,7 +62,7 @@ td{
                                         <?php if($rows->status=='Active'){ ?>
                                           <button class="btn btn-success btn-fill btn-wd">Active</button>
                                       <?php  }else{ ?>
-                                        <button class="btn btn-danger btn-fill btn-wd">De-Active</button>
+                                        <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                                       <?php } ?></td>
                                     <td>
                                       <a href="<?php echo base_url(); ?>classmanage/edit_subjects_class/<?php echo $rows->id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
@@ -91,7 +83,7 @@ td{
                                       <form action="" method="post" class="form-horizontal" id="subject_handling_form">
                                          <fieldset>
                                             <div class="form-group">
-                                               <label class="col-sm-4 control-label">Select Subject</label>
+                                               <label class="col-sm-4 control-label">Subject</label>
                                                <div class="col-sm-6">
                                                   <select  name="subject_id[]" id="subject_id"  multiple  data-title="Select Subject" class="selectpicker" data-style=" btn-block" data-menu-style="dropdown-blue">
                                                      <?php foreach ($resubject as $rows) {  ?>
@@ -102,34 +94,34 @@ td{
                                                </div>
                                             </div>
                                             <div class="form-group">
-                                               <label class="col-sm-4 control-label">Select Type</label>
+                                               <label class="col-sm-4 control-label">Module</label>
                                                <div class="col-sm-6">
                                                   <select   name="exam_flag" id="exam_flag" class="form-control">
-                                                    <option value="0">Add to Exam</option>
-                                                    <option value="1">Extra Subjects</option>
+                                                    <option value="0">Core</option>
+                                                    <option value="1">Elective</option>
                                                   </select>
                                                </div>
                                             </div>
                                             <div class="form-group">
-                                               <label class="col-sm-4 control-label">Select Status</label>
+                                               <label class="col-sm-4 control-label">Status</label>
                                                <div class="col-sm-6">
                                                   <select   name="status" id="status" class="form-control">
                                                      <option value="Active">Active</option>
-                                                     <option value="Deactive">Deactive</option>
+                                                     <option value="Deactive">Inactive</option>
                                                   </select>
                                                </div>
                                             </div>
                                             <div class="form-group">
                                                <label class="col-sm-4 control-label">&nbsp;</label>
                                                <div class="col-sm-6">
-                                                  <button type="submit" id="save" class="btn btn-info btn-fill center">Save </button>
+                                                  <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
                                                </div>
                                             </div>
                                          </fieldset>
                                       </form>
                                    </div>
                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
                                    </div>
                                 </div>
                              </div>
@@ -177,12 +169,12 @@ $('#subject_handling_form').validate({ // initialize the plugin
       //alert("hi");
       swal({
                     title: "Are you sure?",
-                    text: "You Want confirm  this form",
+                    text: "You Want confirm this form",
                     type: "success",
                     showCancelButton: true,
                     confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Yes, I am sure!',
-                    cancelButtonText: "No, cancel it!",
+                    confirmButtonText: 'Yes!',
+                    cancelButtonText: "No!",
                     closeOnConfirm: false,
                     closeOnCancel: false
                 },
@@ -199,7 +191,7 @@ $('#subject_handling_form').validate({ // initialize the plugin
                 $('#subject_handling_form')[0].reset();
                 swal({
          title: "Wow!",
-         text: "Message!",
+         text: "Subject added to class!",
          type: "success"
      }, function() {
         location.reload();
