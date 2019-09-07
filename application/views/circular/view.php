@@ -56,11 +56,11 @@
                                   <table id="bootstrap-table1" class="table">
                               <thead>
                                 <th class="text-left">S.No</th>
-                                 <th class="text-left" data-sortable="true">Users</th>
+                                 <th class="text-left" data-sortable="true">Target</th>
                                  <th class="text-left" data-sortable="true">Title</th>
-                                 <th class="text-left" data-sortable="true">Circular Type</th>
+                                 <th class="text-left" data-sortable="true">Sent Via</th>
 								 <th class="text-left" data-sortable="true">Status</th>
-                                 <th class="text-left" data-sortable="true">Circular Date</th>
+                                 <th class="text-left" data-sortable="true">Date</th>
                               </thead>
 
                               <tbody>
@@ -101,11 +101,11 @@
                             <table id="bootstrap-table2" class="table">
                               <thead>
                                  <th class="text-left">S.No</th>
-                                 <th class="text-left" data-sortable="true">Users</th>
+                                 <th class="text-left" data-sortable="true">Target</th>
                                  <th class="text-left" data-sortable="true">Title</th>
-                                 <th class="text-left" data-sortable="true">Circular Type</th>
+                                 <th class="text-left" data-sortable="true">Sent Via</th>
 								 <th class="text-left" data-sortable="true">Status</th>
-                                 <th class="text-left" data-sortable="true">Circular Date</th>
+                                 <th class="text-left" data-sortable="true">Date</th>
                               </thead>
 
                               <tbody>
@@ -138,11 +138,11 @@
                            <table id="bootstrap-table3" class="table">
                               <thead>
                                 <th class="text-left">S.No</th>
-                                 <th class="text-left" data-sortable="true">Users</th>
+                                <th class="text-left" data-sortable="true">Target</th>
                                  <th class="text-left" data-sortable="true">Title</th>
-                                 <th class="text-left" data-sortable="true">Circular Type</th>
+                                 <th class="text-left" data-sortable="true">Sent Via</th>
 								 <th class="text-left" data-sortable="true">Status</th>
-                                 <th class="text-left" data-sortable="true">Circular Date</th>
+                                 <th class="text-left" data-sortable="true">Date</th>
                               </thead>
 
                               <tbody>

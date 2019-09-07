@@ -10,7 +10,7 @@ Class Yearsmodel extends CI_Model
 
     function getYear()
     {
-        $sqlYear     = "SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month AND status = 'Active'";
+       $sqlYear     = "SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month AND status = 'Active'";
         $year_result = $this->db->query($sqlYear);
         $ress_year   = $year_result->result();
 
@@ -42,13 +42,13 @@ Class Yearsmodel extends CI_Model
                 return $data;
             } else {
                 $data = array(
-                    "status" => "Already Exist The Year And Dates Are Same"
+                    "status" => "already"
                 );
                 return $data;
             }
         } else {
             $data = array(
-                "status" => "The From Year Must be Grater Than To Year"
+                "status" => "grater"
             );
             return $data;
         }
@@ -72,13 +72,13 @@ Class Yearsmodel extends CI_Model
                 return $data;
             } else {
                 $data = array(
-                    "status" => "Already Exist the terms at the same year"
+                    "status" => "already"
                 );
                 return $data;
             }
         } else {
             $data = array(
-                "status" => "Must be graterthan the from-date to to-date"
+                "status" => "greater"
             );
             return $data;
         }
@@ -115,7 +115,7 @@ Class Yearsmodel extends CI_Model
         return $data;
         } else {
             $data = array(
-                "status" => "The From Year Must be Grater Than To Year"
+                "status" => "grater"
             );
             return $data;
         }
@@ -136,7 +136,7 @@ Class Yearsmodel extends CI_Model
             return $data;
         } else {
             $data = array(
-                "status" => "Failed to Update"
+                "status" => "Failed"
             );
             return $data;
         }
@@ -163,7 +163,7 @@ Class Yearsmodel extends CI_Model
     function getall_terms()
     {
         $year_id = $this->getYear();
-        $query   = "SELECT * FROM edu_terms WHERE year_id='$year_id'";
+         $query   = "SELECT * FROM edu_terms WHERE year_id='$year_id'";
         $result  = $this->db->query($query);
         return $result->result();
     }

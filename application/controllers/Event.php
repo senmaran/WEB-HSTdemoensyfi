@@ -273,6 +273,7 @@ class Event extends CI_Controller {
 					$to_user=$user_id;
 					$datas=$this->eventmodel->save_to_do_list($to_do_date,$to_do_list,$to_do_notes,$to_user,$user_type,$status);
 					if($datas['status']=="success"){
+						$this->session->set_flashdata('msg','Reminder created ');
 						echo "success";
 					}else{
 						echo "failed";

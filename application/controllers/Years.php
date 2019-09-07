@@ -41,7 +41,6 @@ class Years extends CI_Controller {
 	 		    $user_id=$this->session->userdata('user_id');
 	 		    $datas['result'] = $this->yearsmodel->getall_years();
 				$datas['terms'] = $this->yearsmodel->getall_terms();
-
 			    $user_type=$this->session->userdata('user_type');
 			 if($user_type==1)
 			 {
@@ -67,24 +66,24 @@ class Years extends CI_Controller {
 				$status=$this->input->post('status');
 
                 $dateTime = new DateTime($from_month);
-				$formatted_date=date_format($dateTime,'Y-m-d' );
+				$formatted_date = date_format($dateTime,'Y-m-d' );
 
 				$dateTime1 = new DateTime($end_month);
-				$formatted_date1=date_format($dateTime1,'Y-m-d' );
+				$formatted_date1 = date_format($dateTime1,'Y-m-d' );
 
 				$datas=$this->yearsmodel->add_years($formatted_date,$formatted_date1,$status);
 				if($datas['status']=="success"){
-					$this->session->set_flashdata('msg','Added Successfully');
+					$this->session->set_flashdata('msg','New academic year created');
 					redirect('years/home');
-				}else if($datas['status']=="Already Exist The Year And Dates Are Same")
+				}else if($datas['status']=="already")
 				{
-					$this->session->set_flashdata('msg','Already Exist The Year And Dates Are Same');
+					$this->session->set_flashdata('msg','Academic year and date already exists!');
 					redirect('years/home');
-				}else if($datas['status']=="The From Year Must be Grater Than To Year"){
-					$this->session->set_flashdata('msg','The From Year Must be Grater Than To Year');
+				}else if($datas['status']=="grater"){
+					$this->session->set_flashdata('msg',"Oops! 'To' year must always be greater than the 'From' year.");
 					redirect('years/home');
 				}else{
-					$this->session->set_flashdata('msg','Failed to Add');
+					$this->session->set_flashdata('msg','Oops! Something went wrong. Please try again few minutes later.');
 					redirect('years/home');
 				}
 			 }
@@ -116,22 +115,20 @@ class Years extends CI_Controller {
 				$formatted_date1=date_format($dateTime1,'Y-m-d' );
 
 				 $datas=$this->yearsmodel->add_terms($year_id,$terms,$formatted_date,$formatted_date1,$status);
-
-				//print_r($datas['status']);exit;
-			    //print_r($data['exam_name']);exit;
+			//print_r($datas);
 
 				if($datas['status']=="success"){
-					$this->session->set_flashdata('msg','Added Successfully');
+					$this->session->set_flashdata('msg','New academic term created');
 					redirect('years/terms');
-				}else if($datas['status']=="Already Exist the terms at the same year")
+				}else if($datas['status']=="already")
 				{
-					$this->session->set_flashdata('msg','Already Exist the terms at the same year');
+					$this->session->set_flashdata('msg','Academic term and date already exists!');
 					redirect('years/terms');
-				}else if($datas['status']=="Must be graterthan the from-date to to-date"){
-					$this->session->set_flashdata('msg','Must be graterthan the from-date to to-date');
+				}else if($datas['status']=="greater"){
+					$this->session->set_flashdata('msg',"Oops! 'To' date must always be greater than the 'From' date.");
 					redirect('years/terms');
 				}else{
-					$this->session->set_flashdata('msg','Failed to Add');
+					$this->session->set_flashdata('msg','Oops! Something went wrong. Please try again few minutes later.');
 					redirect('years/terms');
 				}
 			 }
@@ -196,15 +193,15 @@ class Years extends CI_Controller {
 								$dateTime = new DateTime($end_month);
 				         $formatted_date1=date_format($dateTime,'Y-m-d' );
 								$datas=$this->yearsmodel->update_years($year_id,$formatted_date,$formatted_date1,$status);
-              if($datas['status']=="success"){
-								$this->session->set_flashdata('msg','Updated Successfully');
+						if($datas['status']=="success"){
+								$this->session->set_flashdata('msg','Changes made are saved');
 								redirect('years/home');
-							}else if($datas['status']=="The From Year Must be Grater Than To Year")
+							}else if($datas['status']=="grater")
 							{
-								$this->session->set_flashdata('msg','The From Year Must be Grater Than To Year');
+								$this->session->set_flashdata('msg',"Oops! 'To' year must always be greater than the 'From' year.");
 								redirect('years/home');
 							}else{
-								$this->session->set_flashdata('msg','Failed To Updated');
+								$this->session->set_flashdata('msg','Oops! Something went wrong. Please try again few minutes later.');
 								redirect('years/home');
 							}
 
@@ -239,11 +236,11 @@ class Years extends CI_Controller {
 
 								 if($datas['status']=="success")
 				                     {
-										$this->session->set_flashdata('msg','Updated Successfully');
+										$this->session->set_flashdata('msg','Changes made are saved');
 										redirect('years/terms');
 				                     }
 					             else{
-									 $this->session->set_flashdata('msg','Failed To Updated');
+									 $this->session->set_flashdata('msg','Oops! Something went wrong. Please try again few minutes later.');
 									redirect('years/terms');
 
 							}

@@ -28,7 +28,7 @@ Class Classmodel extends CI_Model
            $data= array("status" => "success");
             return $data;
            }else{
-             $data= array("status" => "Already exist");
+             $data= array("status" => "Already");
               return $data;
 
          }
@@ -54,7 +54,7 @@ Class Classmodel extends CI_Model
           $data= array("status" => "success");
           return $data;
         }else{
-          $data= array("status" => "Already exist");
+          $data= array("status" => "Already");
            return $data;
         }
        }

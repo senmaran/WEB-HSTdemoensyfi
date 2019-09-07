@@ -7,14 +7,14 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Add Terms</h4>
+                     <h4 class="title">Create Academic Term</h4>
                   </div>
                   <div class="content">
                      <form method="post" action="<?php echo base_url(); ?>years/add_terms" class="form-horizontal" enctype="multipart/form-data" id="myformsection">
 
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label"> YEAR</label>
+                              <label class="col-sm-2 control-label">Year</label>
                               <div class="col-sm-4">
                                  <select name="year_id"  required class="selectpicker" data-title="Select From & To Year " data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                     <?php foreach($result as $rows)
@@ -30,7 +30,7 @@
                                     <?php } ?>
                                  </select>
                               </div>
-                              <label class="col-sm-2 control-label">TERMS</label>
+                              <label class="col-sm-2 control-label">Term</label>
                               <div class="col-sm-4">
                                  <input type="text" name="terms" required class="form-control" value="">
                               </div>
@@ -38,11 +38,11 @@
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">FROM DATE</label>
+                              <label class="col-sm-2 control-label">From</label>
                               <div class="col-sm-4">
                                  <input type="text" name="from_month" required class="form-control datepicker" value="">
                               </div>
-                              <label class="col-sm-2 control-label">To DATE</label>
+                              <label class="col-sm-2 control-label">To</label>
                               <div class="col-sm-4">
                                  <input type="text" name="end_month" required class="form-control datepicker"  />
                               </div>
@@ -53,7 +53,7 @@
                            <div class="col-sm-4">
                               <select name="status"  class="selectpicker form-control">
                                  <option value="Active">Active</option>
-                                 <option value="Deactive">De-Active</option>
+                                 <option value="Deactive">Inactive</option>
                               </select>
                            </div>
 
@@ -63,7 +63,7 @@
 
                             <div class="form-group">
                               <div class="text-center">
-                                 <button type="submit" id="save" class="btn btn-info btn-fill center">Save </button>
+                                 <button type="submit" id="save" class="btn btn-info btn-fill center">CREATE </button>
                               </div>
                             </div>
                         </fieldset>
@@ -73,32 +73,37 @@
             </div>
          </div>
       </div>
-      <?php if($this->session->flashdata('msg')): ?>
+      
+	  <?php if($this->session->flashdata('msg')): ?>
       <div class="alert alert-success">
          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
          ×</button> <?php echo $this->session->flashdata('msg'); ?>
       </div>
       <?php endif; ?>
+	  
       <div class="content">
          <div class="container-fluid">
             <div class="row">
                <div class="col-md-12">
                   <div class="card">
+				 
                      <div class="content">
+					  <h4 class="title"> Academic Terms</h4><br>
                         <div class="fresh-datatables">
                            <table id="bootstrap-table" class="table">
                               <thead>
-                                 <th>S.no</th>
+                                 <th>S.No</th>
                                  <th>Year</th>
-                                 <th>FROM DATE</th>
-                                 <th>To DATE</th>
-                                 <th>TERMS</th>
+                                 <th>From</th>
+                                 <th>To</th>
+                                 <th>Term</th>
                                  <th>Status</th>
                                  <th>Actions</th>
                               </thead>
                               <tbody>
                                  <?php
                                     $i=1;
+									//print_r ($datas[]);
                                     foreach ($terms as $rows) {
                                     $sta=$rows->status;
                                     $yrdata=$rows->from_date;
@@ -145,13 +150,13 @@
                                           if($sta=='Active'){?>
                                        <button class="btn btn-success btn-fill btn-wd">Active</button>
                                        <?php  }else{?>
-                                       <button class="btn btn-danger btn-fill btn-wd">De Active</button>
+                                       <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                                        <?php } ?>
                                     </td>
                                     <td>
                                        <!-- <a href="<?php // echo base_url(); ?>examination/add_exam_subject/<?php //echo $rows->exam_id; ?>" rel="tooltip" title="Added Exam Details" class="btn btn-simple btn-info btn-icon table-action view" >
                                           <i class="fa fa-id-card-o" aria-hidden="true"></i></a> -->
-                                       <a href="<?php echo base_url();  ?>years/edit_terms/<?php echo $rows->term_id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                       <a href="<?php echo base_url();  ?>years/edit_terms/<?php echo $rows->term_id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit"><i class="fa fa-edit"></i></a>
                                     </td>
                                  </tr>
                                  <?php $i++;  }  ?>
@@ -177,13 +182,17 @@
    $('#masters2').addClass('active');
     $('#myformsection').validate({ // initialize the plugin
         rules: {
-            yexam:{required:true },
-
+            year_id:{required:true },
+			terms:{required:true },
+			from_month:{required:true },
+			end_month:{required:true },
 
         },
         messages: {
-              yexam: "Please Enter Section Name"
-
+			year_id: "Please choose an option!",
+			terms: "This field cannot be empty!",
+			from_month: "This field cannot be empty!",
+			end_month: "This field cannot be empty!",
 
             }
     });

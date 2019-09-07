@@ -223,10 +223,10 @@ class Adminlogin extends CI_Controller {
 				$res=$this->login->updateprofile($user_id,$oldpassword,$newpassword);
 
 				if($res['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Update Successfully');
+				 $this->session->set_flashdata('msg', 'Password has been reset');
 					redirect('adminlogin/profile');
 			 }else{
-				 $this->session->set_flashdata('msg', 'Failed to update');
+				 $this->session->set_flashdata('msg', 'Current password is invalid! Please check.');
 						redirect('adminlogin/profile');
 			 }
 

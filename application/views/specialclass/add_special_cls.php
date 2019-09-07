@@ -5,7 +5,7 @@
             <div class="col-md-10">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Add Special Class</h4>
+                     <h4 class="title">Create Special Class</h4>
                   </div>
                   <div class="content">
                      <form method="post" action="<?php echo base_url(); ?>specialclass/add_special_cls" class="form-horizontal" enctype="multipart/form-data" id="specialclasssection" name="specialclasssection">
@@ -37,7 +37,7 @@
 							   </select>
 								<div id="msg1"></div>
                               </div>
-                              <label class="col-sm-2 control-label">Subject Title</label>
+                              <label class="col-sm-2 control-label">Topic</label>
                               <div class="col-sm-4">
                                  <input type="text" name="sub_topic" required class="form-control"  />
                               </div>
@@ -65,7 +65,7 @@
                               <div class="col-sm-4">
                                 <select name="status"  class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 								  <option value="Active">Active</option>
-								  <option value="Deactive">DeActive</option>
+								  <option value="Deactive">Inactive</option>
 							  </select>
                               </div>
                            </div>
@@ -73,7 +73,7 @@
                         <div class="form-group">
                            <label class="col-sm-2 control-label">&nbsp;</label>
                            <div class="col-sm-4">
-                              <button type="submit" id="save" class="btn btn-info btn-fill center">Save </button>
+                              <button type="submit" id="save" class="btn btn-info btn-fill center">CREATE </button>
                            </div>
                         </div>
                         </fieldset>
@@ -98,7 +98,7 @@
                         <div class="fresh-datatables">
                            <table id="bootstrap-table" class="table">
                               <thead>
-                                 <th>S.no</th>
+                                 <th>S.No</th>
                                  <th>Class</th>
                                  <th>Teacher</th>
                                  <th>Subject</th>
@@ -125,10 +125,10 @@
                     									  if($stu=='Active'){?>
                     									   <button class="btn btn-success btn-fill btn-wd">Active</button>
                     									 <?php  }else{?>
-                    									  <button class="btn btn-danger btn-fill btn-wd">De-Active</button>
+                    									  <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                     									  <?php } ?></td>
                                     <td>
-                                       <a href="<?php echo base_url();  ?>specialclass/edit_specls/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit">
+                                       <a href="<?php echo base_url();  ?>specialclass/edit_specls/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit">
 									   <i class="fa fa-edit"></i></a>
                                     </td>
                                  </tr>
@@ -165,13 +165,13 @@
 			
         },
         messages: {
-              class_name: "Select Class",
-			   teacher: "Select Teacher",
-			   sub_topic: "Enter Subject Topic",
-			   spe_date: "Select Date",
-			   stime: "Select Start Time",
-			   etime: "Select End Time",
-			   status: "Select Status",
+              class_name: "Please choose an option!",
+			   teacher: "Please choose an option!",
+			   sub_topic: "This field cannot be empty!",
+			   spe_date: "Please choose an option!",
+			   stime: "Please choose an option!",
+			   etime: "Please choose an option!",
+			   status: "Please choose an option!",
 			   
 			  
             }

@@ -11,8 +11,13 @@
             <div class="container-fluid">
 							<div class="content">
 								<div class="header">
-										<legend>Event Calendar </legend>
-
+										<legend>Calendar </legend>
+                           <?php if($this->session->flashdata('msg')): ?>
+                             <div class="alert alert-success">
+                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                           ×</button> <?php echo $this->session->flashdata('msg'); ?>
+                   </div>
+					<?php endif; ?>
 								</div>
 								<div class="container-fluid">
 									<div class="row">
@@ -29,31 +34,31 @@
 											<div class="col-md-4">
 
 										<div class="card">
-                            <div class="header">Add to Reminder</div>
+                            <div class="header">Create Reminder</div>
                             <div class="content">
                                 <form method="post" action="#" id="to_do_form">
                                     <div class="form-group">
-                                        <label>Pick Date</label>
-                                        <input type="text" name="to_do_date"  class="form-control datepicker" placeholder="PicK Date">
+                                        <label>Date</label>
+                                        <input type="text" name="to_do_date"  class="form-control datepicker" placeholder="Date">
                                     </div>
                                     <div class="form-group">
-                                        <label>To Do List</label>
-                                        <input type="text" name="to_do_list" placeholder="To Do List" class="form-control">
+                                        <label>Title</label>
+                                        <input type="text" name="to_do_list" placeholder="Title" class="form-control">
                                     </div>
 								<div class="form-group">
-                                        <label>Notes</label>
-                                        <textarea MaxLength="350" placeholder="MaxCharacters 350" id="comments" name="to_do_notes" name="comments" class="form-control"></textarea>
+                                        <label>Description</label>
+                                        <textarea MaxLength="350" placeholder="Description - MaxCharacters 350" id="comments" name="to_do_notes" name="comments" class="form-control"></textarea>
                                     </div>
 
 									 <div class="form-group">
                                         <label>Status</label>
                                        <select name="status"  class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 											  <option value="Active">Active</option>
-											  <option value="Deactive">DeActive</option>
+											  <option value="Deactive">Inactive</option>
 										</select>
                                     </div>
 
-                                    <button type="submit" class="btn btn-fill btn-info">Save</button>
+                                    <button type="submit" class="btn btn-fill btn-info">CREATE</button>
                                 </form>
                             </div>
                         </div>
@@ -126,21 +131,24 @@ eventMouseout: function(calEvent, jsEvent) {
 
 	});
 
-		$('#to_do_form').validate({ // initialize the plugin
+
+
+
+	$('#to_do_form').validate({ // initialize the plugin
 	    rules: {
-	        to_do_date:{required:true },
-	        to_do_list:{required:true },
-					to_do_notes:{required:true },
+			to_do_date:{required:true },
+			to_do_list:{required:true },
+			to_do_notes:{required:true },
 	    },
 	    messages: {
-	          to_do_date: "Select date",
-	          to_do_list:"Enter To Do List",
-						to_do_notes:"Enter Some Notes"
+			to_do_date: "This field cannot be empty!",
+			to_do_list:"This field cannot be empty!",
+			to_do_notes:"This field cannot be empty!"
 
 	        },
 	      submitHandler: function(form) {
 	        //alert("hi");
-	        swal({
+	        /* swal({
 	                      title: "Are you sure?",
 	                      text: "You Want Confirm this form",
 	                      type: "success",
@@ -152,7 +160,7 @@ eventMouseout: function(calEvent, jsEvent) {
 	                      closeOnCancel: false
 	                  },
 	                  function(isConfirm) {
-	                      if (isConfirm) {
+	                      if (isConfirm) { */
 	       $.ajax({
 	           url: "<?php echo base_url(); ?>event/todolist",
 	            type:'POST',
@@ -161,22 +169,26 @@ eventMouseout: function(calEvent, jsEvent) {
 	               if(response=="success"){
 	                //  swal("Success!", "Thanks for Your Note!", "success");
 	                  $('#to_do_form')[0].reset();
-	                  swal({
+					  window.location = "<?php echo base_url(); ?>event/home";
+					  
+					  
+	/*                   swal({
 	           title: "Wow!",
 	           text: "Message!",
 	           type: "success"
-	       }, function() {
-	           window.location = "<?php echo base_url(); ?>event/home";
-	       });
-	               }else{
+	       }, *//*  function() {
+						window.location = "<?php echo base_url(); ?>event/home";
+				}); */
+	              /*  }else{
 	                 sweetAlert("Oops...", "Something went wrong!", "error");
-	               }
+	               } */
 	           }
-	       });
+	       /* });
 	     }else{
 	         swal("Cancelled", "Process Cancel :)", "error");
+			 */
 	     }
-	   });
+	   }); 
 	}
 	});
 

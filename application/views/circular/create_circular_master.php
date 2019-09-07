@@ -3,10 +3,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
-                        <div class="header">
-                            <h4 class="title">Create Circular Master</h4>
+				<div class="card">
+                        <div class="header" style="padding:10px 10px 10px 10px">
+                            <h4 class="title">Circular Master</h4>
                         </div>
+				</div>
+                    <div class="card">
+                        <div class="header" >
+                            <h4 class="title">Create Circular</h4>
+                        </div>
+						
                         <div class="content">
                             <form method="post" action="<?php echo base_url(); ?>circular/add_circular_master" class="form-horizontal" enctype="multipart/form-data" id="circularmaster" name="circularmaster">
                                 <fieldset>
@@ -19,7 +25,7 @@
                                             <input type="hidden" name="year_name" class="form-control" value="<?php echo date('Y', strtotime($rows->from_month));  echo " - "; echo date('Y', strtotime( $rows->to_month));  ?>" readonly="">
                                             <?php   }?>
 
-                                                <label class="col-sm-2 control-label">Circular Title</label>
+                                                <label class="col-sm-2 control-label">Title</label>
                                                 <div class="col-sm-4">
                                                     <input type="text" name="ctitle" required class="form-control" />
                                                 </div>
@@ -27,7 +33,7 @@
                                                 <div class="col-sm-4">
                                                     <select name="status" class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                         <option value="Active">Active</option>
-                                                        <option value="Deactive">DeActive</option>
+                                                        <option value="Deactive">Inactive</option>
                                                     </select>
                                                 </div>
                                     </div>
@@ -45,7 +51,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label"> Description</label>
                                         <div class="col-sm-4">
-                                            <textarea name="cdescription" MaxLength="500" placeholder="MaxLength 500" id="cdescription" class="form-control" rows="4" cols="80"></textarea>
+                                            <textarea name="cdescription" MaxLength="500" placeholder="Maximum 500 characters" id="cdescription" class="form-control" rows="4" cols="80"></textarea>
 
                                         </div>
 
@@ -61,7 +67,7 @@
                                     <div class="form-group">
                                       <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                                       <div class="text-center">
-                                          <button type="submit" id="save" class="btn btn-info btn-fill center">Create  </button>
+                                          <button type="submit" id="save" class="btn btn-info btn-fill center">CREATE</button>
                                       </div>
                                     </div>
                                 </fieldset>
@@ -85,14 +91,14 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="content">
-                                        <h4 class="title">List of Circular Master</h4><br>
+                                        <h4 class="title">Circulars</h4><br>
                                         <div class="fresh-datatables">
                                             <table id="bootstrap-table" class="table">
                                                 <thead>
-                                                    <th>S.no</th>
+                                                    <th>S.No</th>
                                                     <th>Title</th>
-                                                    <th style="width:400px;">Circular Description</th>
-                                                    <th>Circular Doc</th>
+                                                    <th style="width:400px;">Description</th>
+                                                    <th>Document</th>
                                                     <th>Status</th>
                                                     <th>Actions</th>
                                                 </thead>
@@ -116,11 +122,11 @@
 									  if($stu=='Active'){?>
                                                                     <button class="btn btn-success btn-fill btn-wd">Active</button>
                                                                     <?php  }else{?>
-                                                                        <button class="btn btn-danger btn-fill btn-wd">De-Active</button>
+                                                                        <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                                                                         <?php } ?>
                                                             </td>
                                                             <td>
-                                                                <a href="<?php echo base_url();  ?>circular/edit_circular_master/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit">
+                                                                <a href="<?php echo base_url();  ?>circular/edit_circular_master/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit">
                                                                     <i class="fa fa-edit"></i></a>
                                                             </td>
                                                         </tr>
@@ -166,13 +172,13 @@
 
             },
             messages: {
-                ctype: "Select Circular Type",
+                ctype: "This field cannot be empty!",
                 ctitle:{
-                      required: "Please enter title.",
+                      required: "This field cannot be empty!",
                       remote: "Title already exist!"
                 },
-                cdescription: "Enter Description",
-                status: "Select Status",
+                cdescription: "This field cannot be empty!",
+                status: "Please choose an option!",
             }
         });
 

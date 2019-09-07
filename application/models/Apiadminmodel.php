@@ -210,7 +210,7 @@ class Apiadminmodel extends CI_Model {
     $sql="SELECT ec.class_name,ec.class_id FROM edu_classmaster AS ecm LEFT JOIN edu_class AS ec ON ec.class_id=ecm.class WHERE ecm.status = 'Active' GROUP BY ec.class_name";
     $res=$this->db->query($sql);
     if($res->num_rows()==0){
-        $data=array("status"=>"error","msg"=>"nodata");
+        $data=array("status"=>"error","msg"=>"No class has been added yet!");
         return $data;
     }else{
       $result=$res->result();
@@ -226,7 +226,7 @@ class Apiadminmodel extends CI_Model {
      $sql="SELECT es.sec_name,es.sec_id FROM edu_classmaster AS ecm LEFT JOIN edu_sections AS es ON ecm.section=es.sec_id WHERE ecm.class='$class_id' AND ecm.status = 'Active'";
       $res=$this->db->query($sql);
       if($res->num_rows()==0){
-          $data=array("status"=>"error","msg"=>"nodata");
+          $data=array("status"=>"error","msg"=>"No section has been added to this class yet!");
           return $data;
       }else{
         $result=$res->result();
@@ -249,7 +249,7 @@ class Apiadminmodel extends CI_Model {
             $res_stu=$this->db->query($stu_list);
               $result_stud=$res_stu->result();
             if($res->num_rows()==0){
-                $data=array("status"=>"error","msg"=>"nodata");
+                $data=array("status"=>"error","msg"=>"No student has been added yet!");
                 return $data;
             }else{
               $result=$res->result();
@@ -370,7 +370,7 @@ class Apiadminmodel extends CI_Model {
           $get_all_hw="SELECT eh.hw_type,eh.hw_id,eh.subject_id,eh.title,es.subject_name,eh.test_date FROM edu_homework AS eh LEFT JOIN edu_subject AS es ON es.subject_id=eh.subject_id WHERE eh.class_id='$classid' AND eh.year_id='$year_id' AND eh.status='Active' AND hw_type='HW' ORDER BY eh.test_date DESC";
           $result_hw=$this->db->query($get_all_hw);
           if($result_hw->num_rows()==0){
-              $data=array("status"=>"error","msg"=>"nodata");
+              $data=array("status"=>"error","msg"=>"Homework/test hasn't been assigned yet!");
               return $data;
           }else{
             $result_home=$result_hw->result();
@@ -409,7 +409,7 @@ class Apiadminmodel extends CI_Model {
             $get_all_hw="SELECT eh.hw_type,eh.hw_id,eh.subject_id,eh.title,es.subject_name,eh.test_date FROM edu_homework AS eh LEFT JOIN edu_subject AS es ON es.subject_id=eh.subject_id WHERE eh.class_id='$classid' AND eh.year_id='$year_id' AND eh.status='Active' AND hw_type='HT' ORDER BY eh.test_date DESC";
             $result_hw=$this->db->query($get_all_hw);
             if($result_hw->num_rows()==0){
-                $data=array("status"=>"error","msg"=>"nodata");
+                $data=array("status"=>"error","msg"=>"Homework/test hasn't been assigned yet!");
                 return $data;
             }else{
               $result_home=$result_hw->result();
@@ -443,7 +443,7 @@ class Apiadminmodel extends CI_Model {
               $sql="SELECT exam_id,exam_name FROM edu_examination WHERE exam_year='$year_id' AND STATUS='Active'";
               $result=$this->db->query($sql);
               if($result->num_rows()==0){
-                  $data=array("status"=>"error","msg"=>"nodata");
+                  $data=array("status"=>"error","msg"=>"No exam has been created yet!");
                   return $data;
               }else{
                 $exam_result=$result->result();
@@ -483,7 +483,7 @@ class Apiadminmodel extends CI_Model {
               AS et LEFT JOIN edu_classmaster AS cm ON et.class_teacher=cm.class_sec_id LEFT JOIN edu_class AS c ON cm.class=c.class_id LEFT JOIN edu_sections AS s ON  cm.section=s.sec_id LEFT JOIN edu_subject AS esu ON et.subject=esu.subject_id WHERE et.status='Active' order by et.teacher_id asc";
               $res=$this->db->query($sql);
               if($res->num_rows()==0){
-                  $data=array("status"=>"error","msg"=>"nodata");
+                  $data=array("status"=>"error","msg"=>"No teacher profile created yet!");
                   return $data;
               }else{
                 $result=$res->result();
@@ -544,7 +544,7 @@ class Apiadminmodel extends CI_Model {
 						$class_sub_res = $this->db->query($class_sub_query);
 
 					    if($class_sub_res->num_rows()==0){
-							 $class_sub_result = array("status" => "Class_section", "msg" => "Class and Section not found");
+							 $class_sub_result = array("status" => "Class_section", "msg" => "No class has been assigned to this teacher yet!");
 
 						}else{
 							$class_sub_result = $class_sub_res->result();
@@ -554,7 +554,7 @@ class Apiadminmodel extends CI_Model {
 						$day_res = $this->db->query($sqldays);
 
 						if($day_res->num_rows()==0){
-							 $day_result = array("status" => "error", "msg" => "TimeTable days not found");
+							 $day_result = array("status" => "error", "msg" => "No timetable has been scheduled for this teacher yet!");
 
 						}else{
 							 $day_result = array("status" => "success", "msg" => "TimeTable Days","data"=> $day_res->result());
@@ -601,7 +601,7 @@ class Apiadminmodel extends CI_Model {
 						$timetable_res = $this->db->query($timetable_query);
 
 						 if($timetable_res->num_rows()==0){
-							 $timetable_result = array("status" => "timetable", "msg" => "TimeTable not found");
+							 $timetable_result = array("status" => "timetable", "msg" => "No timetable has been scheduled for this teacher yet!");
 
 						}else{
 							$timetable_result= $timetable_res->result();
@@ -616,7 +616,7 @@ class Apiadminmodel extends CI_Model {
 
 
 
-                    //#################### GET   LIST OF PARENTS   ####################//
+             //#################### GET   LIST OF PARENTS   ####################//
               function get_list_of_parents($class_id,$section_id){
                 $sql="SELECT class_sec_id FROM edu_classmaster WHERE class='$class_id' AND section='$section_id'";
                 $res=$this->db->query($sql);
@@ -629,7 +629,7 @@ class Apiadminmodel extends CI_Model {
 
                $res_stu=$this->db->query($stu_list);
                 if($res_stu->num_rows()==0){
-                    $data=array("status"=>"error","msg"=>"nodata");
+                    $data=array("status"=>"error","msg"=>"Add parent/guardian details");
                     return $data;
                 }else{
                   $result_stud=$res_stu->result();
@@ -771,7 +771,7 @@ class Apiadminmodel extends CI_Model {
 WHERE eths.class_master_id='$class_master_id' AND eths.status='Active' order by eths.teacher_id asc";
                 $result_query=$this->db->query($query);
                 if($result_query->num_rows()==0){
-                    $data=array("status"=>"error","msg"=>"nodata");
+                    $data=array("status"=>"error","msg"=>"No teacher has been allocated to this class!");
                     return $data;
                 }else{
                   $result=$result_query->result();
@@ -812,7 +812,7 @@ WHERE eths.class_master_id='$class_master_id' AND eths.status='Active' order by 
 			GROUP by ex.exam_name";
                 $result_query=$this->db->query($query);
                 if($result_query->num_rows()==0){
-                    $data=array("status"=>"error","msg"=>"nodata");
+                    $data=array("status"=>"error","msg"=>"No exam has been assigned to this class!");
                     return $data;
                 }else{
                   $result=$result_query->result();
@@ -833,7 +833,7 @@ WHERE eths.class_master_id='$class_master_id' AND eths.status='Active' order by 
               $query="SELECT tt.table_id,tt.class_id,tt.subject_id,COALESCE(s.subject_name,' ') AS subject_name,tt.teacher_id,COALESCE(t.name,' ') AS teacher_name,tt.day_id,COALESCE(ed.list_day,' ') AS w_days,tt.period FROM edu_timetable AS tt LEFT JOIN edu_subject AS s ON tt.subject_id=s.subject_id LEFT JOIN edu_teachers AS t ON tt.teacher_id=t.teacher_id LEFT JOIN edu_days AS ed  ON tt.day_id=ed.d_id WHERE tt.class_id='$classid' AND tt.year_id='$year_id' AND tt.term_id='$term_id' ORDER BY tt.table_id ASC";
               $result_query=$this->db->query($query);
               if($result_query->num_rows()==0){
-                  $data=array("status"=>"error","msg"=>"nodata");
+                  $data=array("status"=>"error","msg"=>"No timetable has been scheduled for this class yet!");
                   return $data;
               }else{
                 $result=$result_query->result();
@@ -859,7 +859,7 @@ DATE_FORMAT(eac.from_month,'%Y')AS from_year,DATE_FORMAT(eac.to_month,'%Y')AS to
 LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='$classid' AND efm.year_id='$year_id' AND efm.status='Active'";
               $result_query=$this->db->query($query);
               if($result_query->num_rows()==0){
-                  $data=array("status"=>"error","msg"=>"nodata");
+                  $data=array("status"=>"error","msg"=>"No terms found!");
                   return $data;
               }else{
                 $result=$result_query->result();
@@ -897,7 +897,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
             FROM edu_term_fees_status AS etfs LEFT JOIN edu_enrollment AS eer ON eer.enroll_id=etfs.student_id LEFT JOIN edu_quota AS eq ON eer.quota_id=eq.id  WHERE etfs.fees_id='$fees_id' AND etfs.class_master_id='$classid'";
             $result_query=$this->db->query($query);
             if($result_query->num_rows()==0){
-                $data=array("status"=>"error","msg"=>"nodata");
+                $data=array("status"=>"error","msg"=>"Student details not found!");
                 return $data;
             }else{
               $result=$result_query->result();
@@ -917,7 +917,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
             $query="SELECT eed.exam_id,ee.exam_name,ee.exam_year,eac.from_month as Fromdate,eac.to_month as Todate,eed.classmaster_id,CASE WHEN ems.status='Publish' THEN 0 ELSE 0 END AS MarkStatus FROM edu_exam_details AS eed LEFT JOIN edu_examination AS ee ON ee.exam_id=eed.exam_id LEFT JOIN edu_exam_marks_status AS ems ON ems.exam_id=eed.exam_id LEFT JOIN edu_academic_year AS eac ON ee.exam_year=eac.year_id WHERE eed.classmaster_id='$classid' GROUP BY ee.exam_id";
                 $result_query=$this->db->query($query);
                 if($result_query->num_rows()==0){
-                    $data=array("status"=>"error","msg"=>"nodata");
+                    $data=array("status"=>"error","msg"=>"No exam has been assigned to this class!");
                     return $data;
                 }else{
                   $result=$result_query->result();
@@ -954,7 +954,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
        $query="SELECT en.enroll_id,en.name,en.admisn_no,en.class_id,m.subject_id,m.classmaster_id,m.internal_mark,m.internal_grade,m.external_mark,m.external_grade,m.total_marks,m.total_grade FROM edu_enrollment AS en,edu_exam_marks AS m WHERE en.class_id='$class_mas_id' AND en.enroll_id=m.stu_id AND m.exam_id='$exam_id'";
             $result_query=$this->db->query($query);
             if($result_query->num_rows()==0){
-                $data=array("status"=>"error","msg"=>"nodata");
+                $data=array("status"=>"error","msg"=>"Marks not added yet!");
                 return $data;
             }else{
               $result=$result_query->result();
@@ -971,7 +971,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
             LEFT JOIN edu_users AS eu ON eu.user_id=eod.user_id LEFT JOIN edu_teachers AS et ON et.teacher_id=eu.user_master_id WHERE eod.user_type='2' AND eod.year_id='$year_id' ORDER BY eod.id DESC";
             $result_query=$this->db->query($query);
             if($result_query->num_rows()==0){
-                $data=array("status"=>"error","msg"=>"nodata");
+                $data=array("status"=>"error","msg"=>"No applications for OD submitted yet!");
                 return $data;
             }else{
               $result=$result_query->result();
@@ -987,7 +987,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
             $query="SELECT du.id,du.od_for,du.notes,du.from_date,du.to_date,du.status,u.user_id,u.name,u.user_master_id,c.class_name,s.sec_name FROM edu_on_duty AS du,edu_enrollment AS en,edu_classmaster AS cm,edu_class AS c,edu_sections AS s,edu_users AS u WHERE du.user_type=3 AND du.user_id=u.user_id AND u.user_master_id=en.admission_id AND u.name=en.name AND cm.class_sec_id=en.class_id AND cm.class=c.class_id AND cm.section=s.sec_id AND du.year_id='$year_id' ORDER BY du.id DESC";
             $result_query=$this->db->query($query);
             if($result_query->num_rows()==0){
-                $data=array("status"=>"error","msg"=>"nodata");
+                $data=array("status"=>"error","msg"=>"No applications for OD submitted yet!");
                 return $data;
             }else{
               $result=$result_query->result();
@@ -1004,7 +1004,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
            	$update_sql = "UPDATE edu_on_duty SET status = '$status' WHERE id='$od_id'";
 			$update_result = $this->db->query($update_sql);
 
-			$response = array("status" => "sucess", "msg" => "Onduty Updated");
+			$response = array("status" => "sucess", "msg" => "Changes saved");
 			return $response;
           }
 
@@ -1015,7 +1015,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
             $query="SELECT eul.leave_id,eu.user_id,et.name,eulm.leave_title,eulm.leave_type,DATE_FORMAT(eul.from_leave_date,'%d-%m-%Y') AS from_leave_date,DATE_FORMAT(eul.to_leave_date,'%d-%m-%Y')AS to_leave_date,eul.leave_description,eul.status,eul.frm_time,eul.to_time FROM edu_user_leave  AS eul LEFT JOIN edu_users AS eu ON eu.user_id=eul.user_id LEFT JOIN edu_teachers AS et ON et.teacher_id=eu.user_master_id LEFT JOIN edu_user_leave_master AS eulm ON eulm.id=eul.leave_master_id WHERE eul.user_type='2' AND eul.year_id='$year_id' ORDER BY eul.leave_id DESC";
             $result_query=$this->db->query($query);
             if($result_query->num_rows()==0){
-                $data=array("status"=>"error","msg"=>"nodata");
+                $data=array("status"=>"error","msg"=>"No leave has been applied yet!");
                 return $data;
             }else{
               $result=$result_query->result();
@@ -1032,7 +1032,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
            	$update_sql = "UPDATE edu_user_leave SET status = '$status' WHERE leave_id='$leave_id'";
 			$update_result = $this->db->query($update_sql);
 
-			$response = array("status" => "sucess", "msg" => "Leave Updated");
+			$response = array("status" => "sucess", "msg" => "Changes saved");
 			return $response;
           }
 
@@ -1042,7 +1042,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
           $query="SELECT ecm.id,ecm.circular_title,ecm.circular_description,ec.circular_type,ecm.status,ecm.created_at as circular_date FROM edu_circular_master AS ecm,edu_circular as ec GROUP by id ORDER BY ecm.id DESC";
             $result_query=$this->db->query($query);
             if($result_query->num_rows()==0){
-                $data=array("status"=>"error","msg"=>"nodata");
+                $data=array("status"=>"error","msg"=>"No circular has been issued!");
                 return $data;
             }else{
               $result=$result_query->result();
@@ -1126,7 +1126,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 		{
 			 $response = array("status" => "success", "msg" => "Class and Sections", "listClasssection"=>$cs_result);
 		} else {
-			$response = array("status" => "error", "msg" => "No Records Found");
+			$response = array("status" => "error", "msg" => "No class and section has been added yet!");
 		}
 		return $response;
 	}
@@ -1143,7 +1143,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 			$review_update_res = $this->db->query($review_update_query);
 
 			if($review_update_res) {
-			    $response = array("status" => "success", "msg" => "Review Updated");
+			    $response = array("status" => "success", "msg" => "Changes saved");
 			} else {
 			    $response = array("status" => "error");
 			}
@@ -1166,7 +1166,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 
 			if($group_count>0)
 			{
-				 $response = array("status" => "error", "msg" => "Group Already Exist");
+				 $response = array("status" => "error", "msg" => "Group name already exists!");
 			} else {
 				$sql="INSERT INTO edu_grouping_master(group_title,group_lead_id,year_id,status,created_by,created_at) VALUES ('$group_title','$group_lead','$year_id','$status','$user_id',NOW())";
              $resultset=$this->db->query($sql);
@@ -1193,7 +1193,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 			{
 				$response = array("status" => "success", "msg" => "Group List", "groupList"=>$group_result);
 			} else {
-				$response = array("status" => "error", "msg" => "No Records Found");
+				$response = array("status" => "error", "msg" => "No group created yet!");
 			}
 			return $response;
 
@@ -1234,11 +1234,11 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 
 			if($group_count>0)
 			{
-				 $response = array("status" => "error", "msg" => "Group Already Exist");
+				 $response = array("status" => "error", "msg" => "Group name already exists!");
 			} else {
 				$sql="UPDATE  edu_grouping_master SET group_title='$group_title',group_lead_id='$group_lead',status='$status',updated_by='$user_id',updated_at=NOW() where id='$group_id'";
              $resultset=$this->db->query($sql);
-			 $response = array("status" => "success", "msg" => "Group Master Updated");
+			 $response = array("status" => "success", "msg" => "Changes saved");
 			}
 			return $response;
 
@@ -1260,7 +1260,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 			{
 				 $response = array("status" => "success", "msg" => "Teacher Details", "teacherList"=>$teacher_result);
 			} else {
-				$response = array("status" => "error", "msg" => "No Records Found");
+				$response = array("status" => "error", "msg" => "No teacher profile created yet!");
 			}
 			return $response;
 
@@ -1282,7 +1282,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 			{
 				 $response = array("status" => "success", "msg" => "Teacher Details", "staffList"=>$staff_result);
 			} else {
-				$response = array("status" => "error", "msg" => "No Records Found");
+				$response = array("status" => "error", "msg" => "No staff profile created yet!");
 			}
 			return $response;
 
@@ -1302,9 +1302,9 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 
 			if($stud_count>0)
 			{
-				 $response = array("status" => "success", "msg" => "Teacher Details", "studentList"=>$stud_result);
+				 $response = array("status" => "success", "msg" => "Student Details", "studentList"=>$stud_result);
 			} else {
-				$response = array("status" => "error", "msg" => "No Records Found");
+				$response = array("status" => "error", "msg" => "No student has been added yet!");
 			}
 			return $response;
 
@@ -1344,7 +1344,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 			{
 				$response = array("status" => "sucess", "msg" => "Records Found", "gnMemberlist"=>$staff_result);
 			} else {
-				$response = array("status" => "error", "msg" => "No Records Found");
+				$response = array("status" => "error", "msg" => "Add members to group");
 			}
 			return $response;
 
@@ -1382,7 +1382,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 			{
 				$response = array("status" => "sucess", "msg" => "Records Found", "gnMemberlist"=>$stud_result);
 			} else {
-				$response = array("status" => "error", "msg" => "No Records Found");
+				$response = array("status" => "error", "msg" => "Add students to group");
 			}
 			return $response;
 
@@ -1594,7 +1594,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 				$resultset=$this->db->query($sql);
 			}
 
-			$response = array("status" => "success", "msg" => "Group Members Added");
+			$response = array("status" => "success", "msg" => "Group members added");
 			return $response;
 	}
 	//#################### Group Members End  ####################//
@@ -1641,7 +1641,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 			{
 				 $response = array("status" => "success", "msg" => "Group Member Details", "memberList"=>$staff_result);
 			} else {
-				$response = array("status" => "error", "msg" => "No Records Found");
+				$response = array("status" => "error", "msg" => "Add members to group");
 			}
 			return $response;
 	}
@@ -1670,7 +1670,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
              $query="INSERT INTO  edu_circular_master (academic_year_id,circular_title,circular_description,status,created_at,created_by) VALUES('$year_id','$circular_title','$circular_description','$status',NOW(),'$user_id')";
             $res=$this->db->query($query);
             if($res){
-              	$response = array("status" => "sucess", "msg" => "Circular Master Added");
+              	$response = array("status" => "sucess", "msg" => "Circular created");
             }else{
               	$response = array("status" => "error", "msg" => "Sorry! Not Added");
             }
@@ -1694,7 +1694,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 			{
 				$response = array("status" => "success", "msg" => "Circular List", "circularList"=>$circular_result);
 			} else {
-				$response = array("status" => "error", "msg" => "No Records Found");
+				$response = array("status" => "error", "msg" => "No circular has been issued!");
 			}
 			return $response;
 
@@ -1732,7 +1732,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 			$sql="UPDATE  edu_circular_master SET circular_title ='$circular_title',circular_description ='$circular_description',status='$status',updated_by='$user_id',updated_at=NOW() where id='$circular_id'";
 
              $resultset=$this->db->query($sql);
-			 $response = array("status" => "success", "msg" => "Circular Master Updated");
+			 $response = array("status" => "success", "msg" => "Circular updated");
 
 			return $response;
 
@@ -1748,7 +1748,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 
 			$sql="UPDATE  edu_circular_master SET circular_doc = '$userFileName',updated_by='$user_id',updated_at=NOW() where id='$circular_id'";
             $resultset=$this->db->query($sql);
-			$response = array("status" => "success", "msg" => "Circular Document Updated");
+			$response = array("status" => "success", "msg" => "Circular document updated");
 
 			return $response;
 
@@ -1769,7 +1769,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 			{
 				$response = array("status" => "success", "msg" => "Role List", "roleList"=>$role_result);
 			} else {
-				$response = array("status" => "error", "msg" => "No Records Found");
+				$response = array("status" => "error", "msg" => "No role  has been created yet!");
 			}
 			return $response;
 
@@ -2444,7 +2444,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 			 }
 		}
 
-          $response = array("status" => "sucess", "msg" => "Circular Send Sucessfully");
+          $response = array("status" => "sucess", "msg" => "Circular send sucessfully");
 		  return $response;
 
      }
@@ -2466,7 +2466,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 			}
             $result_query=$this->db->query($query);
             if($result_query->num_rows()==0){
-                $data=array("status"=>"error","msg"=>"nodata");
+                $data=array("status"=>"error","msg"=>"No circular has been issued!");
                 return $data;
             }else{
               $result=$result_query->result();

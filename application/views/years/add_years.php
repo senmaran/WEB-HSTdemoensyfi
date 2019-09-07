@@ -7,18 +7,18 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="header">
-							<h4 class="title">Add Year </h4>
+							<h4 class="title">Create Academic Year</h4>
 						</div>
 						<div class="content">
 							<form method="post" action="
 								<?php echo base_url(); ?>years/create" class="form-horizontal" enctype="multipart/form-data" id="myformsection">
 								<fieldset>
 									<div class="form-group">
-										<label class="col-sm-1 control-label">FROM YEAR</label>
+										<label class="col-sm-1 control-label">From </label>
 										<div class="col-sm-3">
 											<input type="text" name="from_month" id="from_year" class="form-control datepicker" required value="">
 											</div>
-											<label class="col-sm-1 control-label">TO YEAR</label>
+											<label class="col-sm-1 control-label">To </label>
 											<div class="col-sm-3">
 												<input type="text" name="end_month" id="to_year" required class="form-control datepicker"  />
 											</div>
@@ -27,7 +27,7 @@
                       <div class="col-sm-3">
                         <select name="status"  class="selectpicker form-control">
                           <option value="Active">Active</option>
-                          <option value="Deactive">De-Active</option>
+                          <option value="Deactive">Inactive</option>
                         </select>
                       </div>
 
@@ -37,7 +37,7 @@
 									<fieldset>
 										<div class="form-group">
 											<div class="text-center">
-												<input type="submit" id="save" class="btn btn-info btn-fill center"  value="Save">
+												<input type="submit" id="save" class="btn btn-info btn-fill center" value="SAVE">
 												</div>
 											</div>
 										</fieldset>
@@ -59,13 +59,13 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="content">
-									<h4 class="title">List  of Years</h4><br>
+									<h4 class="title">Academic Years</h4><br>
 									<div class="fresh-datatables">
 										<table id="bootstrap-table" class="table">
 											<thead>
-												<th>S.no</th>
-												<th>FROM YEAR</th>
-												<th>To YEAR</th>
+												<th>S.No</th>
+												<th>From</th>
+												<th>To</th>
 												<th>Status</th>
 												<th>Actions</th>
 											</thead>
@@ -95,13 +95,11 @@
 										  if($sta=='Active'){?>
 														<button class="btn btn-success btn-fill btn-wd">Active</button>
 														<?php  }else{?>
-														<button class="btn btn-danger btn-fill btn-wd">De Active</button>
+														<button class="btn btn-danger btn-fill btn-wd">Inactive</button>
 														<?php } ?>
 													</td>
 													<td>
-														<a href="
-															<?php echo base_url(); ?>years/edit_years/
-															<?php echo $rows->year_id; ?>" class="btn btn-simple btn-warning btn-icon edit">
+														<a href="<?php echo base_url(); ?>years/edit_years/<?php echo $rows->year_id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit">
 															<i class="fa fa-edit"></i>
 														</a>
 													</td>
@@ -135,8 +133,8 @@
 		 end_month:{required:true }
      },
      messages: {
-           from_year:"Please Enter From Year",
-		   end_month:"Please Enter To Year"
+           from_year:"This field cannot be empty!",
+		   end_month:"This field cannot be empty!"
          }
  });
 

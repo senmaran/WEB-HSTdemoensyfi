@@ -99,9 +99,19 @@
 </style>
 <div class="main-panel">
 <div class="content">
+				<div class="card">
+                        <div class="header" style="padding:10px 10px 10px 10px">
+                            <h4 class="title">Admin Dashboard</h4>
+                        </div>
+				</div>
+				
    <div class="card">
+						<div class="header" style="padding:10px 10px 10px 10px">
+                            <h4 class="title">SEARCH</h4>
+                        </div>
+						
       <div class="container-fluid">
-         <p style="font-size:25px;padding-left:16px;padding-top: 15px;">Admin Dashboard</p>
+         <!--<p style="font-size:25px;padding-left:16px;padding-top: 15px;">Admin Dashboard</p>-->
          <div class="">
             <div class="row">
                <div class="col-md-12">
@@ -130,10 +140,10 @@
                            <div class="content">
                               <div class="form-group">
                                  <div class="col-md-10">
-                                    <input class="form-control searchbox" name="text" type="text"   id="search_txt" onkeypress="search_load()" autocomplete="off" aria-required="true" placeholder="Search Students,Teacher">
+                                    <input class="form-control searchbox" name="text" type="text"   id="search_txt" onkeypress="search_load()" autocomplete="off" aria-required="true" placeholder="Search Student/Teacher">
                                  </div>
                                  <div class="col-md-2">
-                                    <button type="button" class="btn btn-info btn-fill pull-right" onclick="search_load()">Search </button>
+                                    <button type="button" class="btn btn-info btn-fill pull-right" onclick="search_load()">SEARCH</button>
                                  </div>
                               </div>
                            </div>

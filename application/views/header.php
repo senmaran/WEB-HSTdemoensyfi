@@ -155,7 +155,7 @@
                         </li>
 						<li>
                            <a href="<?php echo base_url(); ?>adminlogin/notification_status">
-                        <i class="fa fa-cog" aria-hidden="true"></i> Notifications
+                        <i class="fa fa-cog" aria-hidden="true"></i> Notification Settings
                            </a>
                         </li>
                         <li class="divider"></li>

@@ -98,7 +98,7 @@ class Apistudentmodel extends CI_Model {
 			$timetable_result= $timetable_res->result();
 			
 			 if($timetable_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Timetable Not Found");
+				 $response = array("status" => "error", "msg" => "No timetable has been scheduled for this class yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Timetable", "timeTable"=>$timetable_result);
 			} 
@@ -138,7 +138,7 @@ class Apistudentmodel extends CI_Model {
 			$exam_count = $exam_res->num_rows();
 			
 			 if($exam_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Exams Not Found");
+				 $response = array("status" => "error", "msg" => "No exam has been assigned to this class!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Exams", "Exams"=>$exam_result);
 			} 
@@ -192,7 +192,7 @@ class Apistudentmodel extends CI_Model {
 			}
 			
 			 if($mark_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Marks Not Found");
+				 $response = array("status" => "error", "msg" => "Marks not added yet!");
 			}else{
 			    //$response = array("status" => "success", "msg" => "View Marks Details", "marksDetails"=>$mark_result);
 				$response = array("status" => "success", "msg" => "View Marks Details", "marksDetails"=>$mark_result, "totalMarks"=>$total_marks);
@@ -213,7 +213,7 @@ class Apistudentmodel extends CI_Model {
 			$hw_count = $hw_res->num_rows();
 			
 			 if($hw_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Homework Not Found");
+				 $response = array("status" => "error", "msg" => "Homework/test hasn't been assigned yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Homework Details", "count"=>$hw_count, "homeworkDetails"=>$hw_result);
 			} 
@@ -233,7 +233,7 @@ class Apistudentmodel extends CI_Model {
 			$hw_result= $hw_res->result();
 			
 			 if($hw_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Homework Test Marks Not Found");
+				 $response = array("status" => "error", "msg" => "Marks not added for this test yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Class Test", "ctestmarkDetails"=>$hw_result);
 			} 
@@ -254,7 +254,7 @@ class Apistudentmodel extends CI_Model {
 			$total_days_count = $total_days_res->num_rows();
 			
 			if($total_days_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "No Attendance days Found");
+				 $response = array("status" => "error", "msg" => "Attendance not yet taken!");
 			}else{
 			   // $total_days = $total_days_count/2;
 			    $total_days = $total_days_count;

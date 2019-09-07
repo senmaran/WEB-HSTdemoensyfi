@@ -64,13 +64,13 @@ class Specialclass extends CI_Controller
 		
 		$datas=$this->specialclassmodel->create_special_class($class_name,$teacher,$subject_name,$sub_topic,$spe_date,$stime,$etime,$status,$user_id);
 		if($datas['status']=="success"){
-			$this->session->set_flashdata('msg','Added Successfully');
+			$this->session->set_flashdata('msg','Special class created');
 			redirect('specialclass/home');
 		}else if($datas['status']=="Already Exist"){
-			$this->session->set_flashdata('msg','Already Exist');
+			$this->session->set_flashdata('msg','Special class for this subject already assigned on the chosen date!');
 			redirect('specialclass/home');
 		}else{
-			$this->session->set_flashdata('msg','Faild To Add');
+			$this->session->set_flashdata('msg','Oops! Something went wrong. Please try again few minutes later.');
 			redirect('specialclass/home');
 		}
 		
@@ -122,7 +122,7 @@ class Specialclass extends CI_Controller
 		
 		if($datas['status']=="success")
 		{
-			$this->session->set_flashdata('msg','Updated Successfully');
+			$this->session->set_flashdata('msg','Changes made are saved');
 			redirect('specialclass/home');
 		}else if($datas['status']=="Already Exist"){
 			$this->session->set_flashdata('msg','Already Exist');

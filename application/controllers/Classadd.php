@@ -53,10 +53,10 @@ class Classadd extends CI_Controller {
 				$res = $this->classmodel->addclass($classname,$status);
 				//print_r($res);exit;
 				if($res['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Added Successfully');
+				 $this->session->set_flashdata('msg', 'New class created');
 				 redirect('classadd/addclass');
 			 }else{
-				 $this->session->set_flashdata('msg', 'Class Name Already exist');
+				 $this->session->set_flashdata('msg', 'Class name already exist!');
 				 redirect('classadd/addclass');
 			 }
 		}
@@ -74,10 +74,10 @@ class Classadd extends CI_Controller {
 			  $status=$this->input->post('status');
 			 	$res = $this->classmodel->save_class($class_name,$class_id,$status);
 				if($res['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Update Successfully');
+				 $this->session->set_flashdata('msg', 'Changes made are saved');
 				 redirect('classadd/addclass');
 			 }else{
-				 $this->session->set_flashdata('msg', 'Failed to update');
+				 $this->session->set_flashdata('msg', 'Class name already exist!');
 				 redirect('classadd/addclass');
 			 }
 		}

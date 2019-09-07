@@ -5,7 +5,7 @@
                <div class="col-md-12">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Update Class</h4>
+                           <h4 class="title">Edit Class</h4>
                            <?php if($this->session->flashdata('msg')): ?>
                              <div class="alert alert-success">
                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -23,7 +23,7 @@
                                <div class="row">
                                    <div class="col-md-4">
                                        <div class="form-group">
-                                           <label>Class Name</label>
+                                           <label>Class </label>
                                            <input type="text" class="form-control"  placeholder="" id="classname" name="classname" value="<?php  echo $rows->class_name; ?>">
                                             <input type="hidden" class="form-control"  placeholder="" name="class_id" value="<?php  echo $rows->class_id; ?>">
 
@@ -34,7 +34,7 @@
                                            <label>Status</label>
                                           <select name="status" class="selectpicker form-control">
 												  <option value="Active">Active</option>
-												  <option value="Deactive">DeActive</option>
+												  <option value="Deactive">Inactive</option>
 												</select>
 											<script language="JavaScript">document.myformclass.status.value="<?php echo $rows->status; ?>";</script>
                                        </div>
@@ -43,7 +43,7 @@
 
                                    	<div class="form-group">
                                          	<label class="col-sm-2 control-label">&nbsp;</label><br>
-                                         <button type="submit" class="btn btn-info btn-fill pull-left">Update Class</button>
+                                         <button type="submit" class="btn btn-info btn-fill pull-left">SAVE</button>
                                      </div>
                                    </div>
                                </div>
@@ -73,18 +73,10 @@ $(document).ready(function () {
 
   $('#myformclass').validate({ // initialize the plugin
       rules: {
-
-
           classname:{required:true },
-
-
       },
       messages: {
-
-
-            classname: "Please Enter Class Name"
-
-
+            classname: "This field cannot be empty!"
           }
   });
  });

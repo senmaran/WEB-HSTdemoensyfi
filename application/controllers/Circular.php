@@ -57,7 +57,7 @@ class Circular extends CI_Controller
 
 			  $datas=$this->circularmodel->create_circular_masters($year_id,$ctile,$cdescription,$status,$user_id,$circular_doc);
 			  if($datas['status']=="success") {
-			  $this->session->set_flashdata('msg', 'Added Successfully');
+			  $this->session->set_flashdata('msg', 'New circular created');
 			  redirect('circular/create_circular_master');
 			  }else{
 			  $this->session->set_flashdata('msg', 'Failed to Add');
@@ -105,7 +105,7 @@ class Circular extends CI_Controller
         $datas=$this->circularmodel->update_circular_masters($cid,$year_id,$ctile,$cdescription,$status,$user_id,$circular_doc);
       if($datas['status']=="success")
       {
-      $this->session->set_flashdata('msg', 'Updated Successfully');
+      $this->session->set_flashdata('msg', 'Changes made are saved');
       redirect('circular/create_circular_master');
       }
       else{

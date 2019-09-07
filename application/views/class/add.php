@@ -5,7 +5,7 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="header">
-							<h4 class="title">Add Class</h4>
+							<h4 class="title">Create Class</h4>
 							<p class="pull-right btn btn-wd" style="margin-top:-30px;">
 								<a href="
 
@@ -15,9 +15,7 @@
 							</p>
 						</div>
 						<div class="content">
-							<form action="
-
-								<?php echo base_url(); ?>classadd/createclass" method="post" enctype="multipart/form-data" id="myformclass">
+							<form action="<?php echo base_url(); ?>classadd/createclass" method="post" enctype="multipart/form-data" id="myformclass">
 								<div class="row">
 									<div class="col-md-4">
 										<div class="form-group">
@@ -30,7 +28,7 @@
 												<label class="col-sm-2 control-label">Status</label>
 												<select name="status"  class="selectpicker form-control">
 													<option value="Active">Active</option>
-													<option value="Deactive">DeActive</option>
+													<option value="Deactive">Inactive</option>
 												</select>
 											</div>
 										</div>
@@ -38,7 +36,7 @@
 
                     	<div class="form-group">
                           	<label class="col-sm-2 control-label">&nbsp;</label><br>
-                        <button type="submit" class="btn btn-info btn-fill">Save </button>
+                        <button type="submit" class="btn btn-info btn-fill">CREATE </button>
                       </div>
                     </div>
 									</div>
@@ -58,18 +56,22 @@
 			</div>
 			<?php endif; ?>
 			<div class="content">
+			
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
+							<div class="header">
+							<h4 class="title">Classes</h4>
+						</div>
 								<div class="content">
 									<div class="fresh-datatables">
 										<table id="bootstrap-table" class="table">
 											<thead>
-												<th>ID</th>
+												<th>S.No</th>
 												<th>Class</th>
 												<th>Status</th>
-												<th>Action</th>
+												<th>Actions</th>
 											</thead>
 											<tbody>
 												<?php
@@ -88,15 +90,11 @@
 										if($sta=='Active'){?>
 														<button class="btn btn-success btn-fill btn-wd">Active</button>
 														<?php  }else{?>
-														<button class="btn btn-danger btn-fill btn-wd">De Active</button>
+														<button class="btn btn-danger btn-fill btn-wd">Inactive</button>
 														<?php } ?>
 													</td>
 													<td>
-														<a href="
-
-															<?php echo base_url();  ?>classadd/updateclass/
-
-															<?php echo $rows->class_id; ?>" class="btn btn-simple btn-warning btn-icon edit">
+														<a href="<?php echo base_url();  ?>classadd/updateclass/<?php echo $rows->class_id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit">
 															<i class="fa fa-edit"></i>
 														</a>
 														<!-- <a href="
@@ -136,19 +134,11 @@ $(document).ready(function () {
 
  $('#myformclass').validate({ // initialize the plugin
      rules: {
-
-
          classname:{required:true
            },
-
-
      },
      messages: {
-
-
-           classname: "Please Enter Class Name"
-
-
+           classname: "This field cannot be empty!"
          }
  });
 });

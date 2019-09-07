@@ -5,7 +5,7 @@
                <div class="col-md-10">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Update Special Class</h4>
+                           <h4 class="title">Edit Special Class</h4>
 
                        </div>
 <?php foreach($edit as $res)
@@ -48,7 +48,7 @@
 							   </select>
 								
                               </div>
-                              <label class="col-sm-2 control-label">Subject Title</label>
+                              <label class="col-sm-2 control-label">Topic</label>
                               <div class="col-sm-4">
                                  <input type="text" name="sub_topic" required class="form-control" value="<?php echo $res->subject_topic;?>"  />
 								 <input type="hidden" name="id" required class="form-control" value="<?php echo $res->id;?>"  />
@@ -77,7 +77,7 @@
                               <div class="col-sm-4">
                                 <select name="status"  class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 								  <option value="Active">Active</option>
-								  <option value="Deactive">DeActive</option>
+								  <option value="Deactive">Inactive</option>
 							  </select>
 							  <script language="JavaScript">
                         			document.specialclasssection.status.value="<?php echo $res->status; ?>";
@@ -88,7 +88,7 @@
                         <div class="form-group">
                            <label class="col-sm-2 control-label">&nbsp;</label>
                            <div class="col-sm-4">
-                              <button type="submit" id="save" class="btn btn-info btn-fill center">Update </button>
+                              <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE </button>
                            </div>
                         </div>
                         </fieldset>
@@ -105,9 +105,9 @@
 
 <script type="text/javascript">
       $().ready(function(){
-        $('#mastersmenu').addClass('collapse in');
+       /*  $('#mastersmenu').addClass('collapse in');
         $('#master').addClass('active');
-        $('#masters2').addClass('active');
+        $('#masters2').addClass('active') */;
 		
 		 $('#specialclasssection').validate({ // initialize the plugin
         rules: {
@@ -121,15 +121,14 @@
 			
         },
         messages: {
-              class_name: "Select Class",
-			   teacher: "Select Teacher",
-			   sub_topic: "Enter Subject Topic",
-			   spe_date: "Select Date",
-			   stime: "Select Start Time",
-			   etime: "Select End Time",
-			   status: "Select Status",
-			   
-			  
+			
+				class_name: "Please choose an option!",
+				teacher: "Please choose an option!",
+				sub_topic: "This field cannot be empty!",
+				spe_date: "Please choose an option!",
+				stime: "Please choose an option!",
+				etime: "Please choose an option!",
+				status: "Please choose an option!"
             }
     });
 	demo.initFormExtendedDatetimepickers();

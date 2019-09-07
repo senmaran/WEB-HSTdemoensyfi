@@ -18,7 +18,7 @@
 			<input type="hidden" name="cid"  value="<?php  echo $res->id; ?>">
 
 
-                              <label class="col-sm-2 control-label">Circular Title</label>
+                              <label class="col-sm-2 control-label">Title</label>
                               <div class="col-sm-4">
                                  <input type="text" name="ctitle"  value="<?php echo $res->circular_title;?>" required class="form-control"  />
                                  <input type="hidden" name="old_circular_doc"  value="<?php echo $res->circular_doc;?>" required class="form-control"  />
@@ -28,7 +28,7 @@
                               <div class="col-sm-4">
                                 <select name="status"  class="selectpicker form-control" >
 								  <option value="Active">Active</option>
-								  <option value="Deactive">DeActive</option>
+								  <option value="Deactive">Inactive</option>
 							  </select>
 							    <script language="JavaScript">
                         		document.circularmaster.status.value="<?php echo $res->status; ?>";
@@ -39,7 +39,7 @@
                         </fieldset>
                         <fieldset>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"> Circular Document</label>
+                                <label class="col-sm-2 control-label">Circular Document</label>
                                 <div class="col-sm-4">
                                   <input type="file" name="circular_doc"  class="form-control" />
                                 </div>
@@ -50,7 +50,7 @@
                            <div class="form-group">
                               <label class="col-sm-2 control-label"> Description</label>
                               <div class="col-sm-4">
-                                <textarea name="cdescription" MaxLength="500" placeholder="MaxLength 500" rows="4" cols="80" id="cdescription" class="form-control"><?php echo $res->circular_description;?> </textarea>
+                                <textarea name="cdescription" MaxLength="500" placeholder="Maximum 500 characters" rows="4" cols="80" id="cdescription" class="form-control"><?php echo $res->circular_description;?> </textarea>
                               </div>
 
                            </div>
@@ -59,7 +59,7 @@
                         <div class="form-group">
                            <label class="col-sm-2 control-label">&nbsp;</label>
                            <div class="col-sm-4">
-                              <button type="submit" id="save" class="btn btn-info btn-fill center">Update</button>
+                              <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
                            </div>
                         </div>
                         </fieldset>
@@ -89,10 +89,10 @@
 
         },
         messages: {
-               ctype: "Enter Type",
-			   ctitle: "Enter Title",
-			   cdescription:"Enter Description",
-			   status: "Select Status",
+               ctype: "This field cannot be empty!",
+			   ctitle: "This field cannot be empty!",
+			   cdescription:"This field cannot be empty!",
+			   status: "Please choose an option!",
             }
     });
 

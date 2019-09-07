@@ -248,7 +248,6 @@ class Apimainmodel extends CI_Model {
 
 
 				  if ($user_type==1)  {
-
 				 	 	$response = array("status" => "loggedIn", "msg" => "User loggedIn successfully", "userData" => $userData, "year_id" => $year_id);
 						return $response;
 				  }
@@ -776,7 +775,7 @@ class Apimainmodel extends CI_Model {
 				  }
 
 			} else {
-			 			$response = array("status" => "error", "msg" => "Invalid login");
+			 			$response = array("status" => "error", "msg" => "Invalid credentials");
 						return $response;
 			 }
 	}
@@ -824,8 +823,27 @@ class Apimainmodel extends CI_Model {
 						$update_sql = "UPDATE edu_users SET user_password = md5('$OTP'),updated_date=NOW(),password_status='0' WHERE user_id='$user_id'";
 						$update_result = $this->db->query($update_sql);
 
-						$subject = "Forgot Password";
-						$htmlContent = 'Dear '. $name . '<br><br>' .  'Password : '. $OTP.'<br><br>Regards<br>';
+						$subject = "ENSYFi Password Reset";
+						$htmlContent = "<html>
+										 <head><title></title>
+										 </head>
+										 <body>
+										 <p>
+										 Dear $name,<br><br>
+												We have reset your ENSYFi account password. Your new password is '$OTP'<br>
+												You can also reset the password yourself in your profile settings.<br><br>
+
+												<a href='base_url()'>Click here</a> to go to ENSYFi's login page.<br><br>
+
+												Cordially,<br>
+												Team ENSYFi<br><br>
+
+												Footnote: This is an auto-generated email and intended for notification purposes only.
+												Do not reply to this email.</p>
+										 </body>
+										 </html>";
+				 
+						//$htmlContent = 'Dear '. $name . '<br><br>' .  'Password : '. $OTP.'<br><br>Regards<br>';
 						$this->sendMail($email,$subject,$htmlContent);
 
 						$response = array("status" => "sucess", "msg" => "Password Updated", "Email" => $email);
@@ -845,8 +863,26 @@ class Apimainmodel extends CI_Model {
 						$update_sql = "UPDATE edu_users SET user_password = md5('$OTP'),updated_date=NOW(),password_status='0' WHERE user_id='$user_id'";
 						$update_result = $this->db->query($update_sql);
 
-						$subject = "Forgot Password";
-						$htmlContent = 'Dear '. $name . '<br><br>' . 'Password : '. $OTP.'<br><br>Regards<br>';
+						$subject = "ENSYFi Password Reset";
+						$htmlContent = "<html>
+										 <head><title></title>
+										 </head>
+										 <body>
+										 <p>
+										 Dear $name,<br><br>
+												We have reset your ENSYFi account password. Your new password is '$OTP'<br>
+												You can also reset the password yourself in your profile settings.<br><br>
+
+												<a href='base_url()'>Click here</a> to go to ENSYFi's login page.<br><br>
+
+												Cordially,<br>
+												Team ENSYFi<br><br>
+
+												Footnote: This is an auto-generated email and intended for notification purposes only.
+												Do not reply to this email.</p>
+										 </body>
+										 </html>";
+						//$htmlContent = 'Dear '. $name . '<br><br>' . 'Password : '. $OTP.'<br><br>Regards<br>';
 						$this->sendMail($email,$subject,$htmlContent);
 
 						$response = array("status" => "sucess", "msg" => "Password Updated", "Email" => $email);
@@ -863,12 +899,29 @@ class Apimainmodel extends CI_Model {
 								$email = $rows->email;
 							}
 
-
 						$update_sql = "UPDATE edu_users SET user_password = md5('$OTP'),updated_date=NOW(),password_status='0' WHERE user_id='$user_id'";
 						$update_result = $this->db->query($update_sql);
 
-						$subject = "Forgot Password";
-						$htmlContent = 'Dear '. $name . '<br><br>' .  'Password : '. $OTP.'<br><br>Regards<br>';
+						$subject = "ENSYFi Password Reset";
+						$htmlContent = "<html>
+										 <head><title></title>
+										 </head>
+										 <body>
+										 <p>
+										 Dear $name,<br><br>
+												We have reset your ENSYFi account password. Your new password is '$OTP'<br>
+												You can also reset the password yourself in your profile settings.<br><br>
+
+												<a href='base_url()'>Click here</a> to go to ENSYFi's login page.<br><br>
+
+												Cordially,<br>
+												Team ENSYFi<br><br>
+
+												Footnote: This is an auto-generated email and intended for notification purposes only.
+												Do not reply to this email.</p>
+										 </body>
+										 </html>";
+						//$htmlContent = 'Dear '. $name . '<br><br>' .  'Password : '. $OTP.'<br><br>Regards<br>';
 						$this->sendMail($email,$subject,$htmlContent);
 
 						$response = array("status" => "sucess", "msg" => "Password Updated", "Email" => $email);
@@ -900,7 +953,7 @@ class Apimainmodel extends CI_Model {
             $update_sql= "UPDATE edu_users SET user_pic='$userFileName', updated_date=NOW() WHERE user_id='$user_id' and user_type='$user_type'";
 			$update_result = $this->db->query($update_sql);
 
-			$response = array("status" => "success", "msg" => "Profile Picture Updated","user_picture"=>$userFileName);
+			$response = array("status" => "success", "msg" => "Profile picture updated","user_picture"=>$userFileName);
 			return $response;
 	}
 //#################### Profile Pic Update End ####################//
@@ -920,7 +973,7 @@ class Apimainmodel extends CI_Model {
 
                 $response = array("status" => "sucess", "msg" => "Password Updated");
 			} else {
-				$response = array("status" => "error", "msg" => "Entered Current Password is wrong.");
+				$response = array("status" => "error", "msg" => "Old password is invalid!");
 			}
 
 			return $response;
@@ -951,7 +1004,7 @@ class Apimainmodel extends CI_Model {
 			}
 */
 			 if($event_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Events Not Found");
+				 $response = array("status" => "error", "msg" => "Events not found!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Events", "count" => $event_count, "eventDetails"=>$event_result);
 			}
@@ -972,7 +1025,7 @@ class Apimainmodel extends CI_Model {
 			$subevent_result= $subevent_res->result();
 
 			 if($subevent_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Sub Events Not Found");
+				 $response = array("status" => "error", "msg" => "Events not found!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Sub Events", "subeventDetails"=>$subevent_result);
 			}
@@ -985,7 +1038,6 @@ class Apimainmodel extends CI_Model {
 //#################### Circular for All ####################//
 	public function dispCircular($user_id)
 	{
-
 			$year_id = $this->getYear();
 
 			 $circular_query = "SELECT
@@ -1003,7 +1055,7 @@ class Apimainmodel extends CI_Model {
 			$circular_result= $circular_res->result();
 
 			 if($circular_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Circular Not Found");
+				 $response = array("status" => "error", "msg" => "No circulars issued!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Circular", "circularDetails"=>$circular_result);
 			}
@@ -1103,7 +1155,7 @@ class Apimainmodel extends CI_Model {
 			$Onduty_result = $Onduty_res->result();
 
 			 if($Onduty_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Onduty Not Found");
+				 $response = array("status" => "error", "msg" => "No on duty application submitted yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Onduty", "ondutyDetails"=>$Onduty_result);
 			}
@@ -1127,7 +1179,7 @@ class Apimainmodel extends CI_Model {
 			$Group_result = $Group_res->result();
 
 			 if($Group_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Groups Not Found");
+				 $response = array("status" => "error", "msg" => "No groups found right now!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Groups", "groupDetails"=>$Group_result);
 			}
@@ -1471,7 +1523,7 @@ class Apimainmodel extends CI_Model {
 			$last_historyid = $this->db->insert_id();
 
 			if($grouphistory_res) {
-				$response = array("status" => "success", "msg" => "Group Message Added", "last_group_history_id"=>$last_historyid);
+				$response = array("status" => "success", "msg" => "Group message send", "last_group_history_id"=>$last_historyid);
 			} else {
 				$response = array("status" => "error");
 			}
@@ -1498,7 +1550,7 @@ class Apimainmodel extends CI_Model {
 			$Group_result = $Group_res->result();
 
 			 if($Group_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Group Message Not Found");
+				 $response = array("status" => "error", "msg" => "No messages found!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Group Messages", "groupmsgDetails"=>$Group_result);
 			}
@@ -1520,7 +1572,7 @@ class Apimainmodel extends CI_Model {
 
 		if($res_history_cnt>0)
 		{
-		   $response = array("status" => "success", "msg" => "History Found", "msg_history"=>$res);
+		   $response = array("status" => "success", "msg" => "No messages found!", "msg_history"=>$res);
 		} else {
 		  $response = array("status" => "error", "msg" => "No Records Found");
 		}
@@ -1577,7 +1629,7 @@ class Apimainmodel extends CI_Model {
 			$leave_result= $leave_res->result();
 
 			 if($leave_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Leaves Not Found");
+				 $response = array("status" => "error", "msg" => "No leaves found!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Leaves", "leaveDetails"=>$leave_result);
 			}
@@ -1633,7 +1685,7 @@ class Apimainmodel extends CI_Model {
 			$leave_result= $leave_res->result();
 
 			 if($leave_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Leaves Not Found");
+				 $response = array("status" => "error", "msg" => "No leaves found!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Leaves", "upcomingleavesDetails"=>$leave_result);
 			}
@@ -1659,7 +1711,7 @@ class Apimainmodel extends CI_Model {
 		{
 			 $response = array("status" => "success", "msg" => "Timetable Days", "timetableDays"=>$day_result);
 		} else {
-			$response = array("status" => "error", "msg" => "No Records Found");
+			$response = array("status" => "error", "msg" => "No records found");
 		}
 		return $response;
 	}
@@ -1683,7 +1735,7 @@ class Apimainmodel extends CI_Model {
 		{
 			 $response = array("status" => "success", "msg" => "Timetable Days", "timeTable"=>$timetable_result);
 		} else {
-			$response = array("status" => "error", "msg" => "No Records Found");
+			$response = array("status" => "error", "msg" => "No timetable is scheduled for this day!");
 		}
 		return $response;
 	}
@@ -1725,7 +1777,7 @@ class Apimainmodel extends CI_Model {
 		}
 		$update_result = $this->db->query($update_sql);
 
-		$response = array("status" => "success", "msg" => "Notification Status Updated");
+		$response = array("status" => "success", "msg" => "Changes saved");
 		return $response;
 	}
 
@@ -1750,9 +1802,9 @@ class Apimainmodel extends CI_Model {
 
 		if($sQuery_count>0)
 		{
-			 $response = array("status" => "success", "msg" => "Notification Status", "classList"=>$sQuery_result);
+			 $response = array("status" => "success", "msg" => "Calss List", "classList"=>$sQuery_result);
 		} else {
-			$response = array("status" => "error", "msg" => "No Records Found");
+			$response = array("status" => "error", "msg" => "No classes found!");
 		}
 		return $response;
 	}

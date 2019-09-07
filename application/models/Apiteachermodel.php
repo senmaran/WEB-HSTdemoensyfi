@@ -264,7 +264,7 @@ class Apiteachermodel extends CI_Model {
     		    $att_res = $this->db->query($att_query);
 
     			 if($att_res->num_rows()==0) {
-    				 $response = array("status" => "error", "msg" => "No Records Found");
+    				 $response = array("status" => "error", "msg" => "Attendance not yet taken for this class!");
     			}else{
     				$attend_query = "SELECT count(ah.student_id) as count, en.enroll_id, en.class_id, en.name, c.class_name, s.sec_name, ah.abs_date, ah.a_status, ah.attend_period, at.at_id
                         FROM edu_enrollment en
@@ -311,7 +311,7 @@ class Apiteachermodel extends CI_Model {
     		    $att_res = $this->db->query($att_query);
 
     			 if($att_res->num_rows()==0) {
-    				 $response = array("status" => "error", "msg" => "No Records Found");
+    				 $response = array("status" => "error", "msg" => "Attendance not yet taken for this class!");
     			}else{
 
 			        $attend_query = "SELECT COUNT(ah.student_id) as leaves,en.enroll_id, en.class_id, en.name, c.class_name, s.sec_name, ah.abs_date, ah.a_status, ah.attend_period, at.at_id FROM edu_enrollment en
@@ -396,7 +396,7 @@ class Apiteachermodel extends CI_Model {
 			$hw_count = $hw_res->num_rows();
 			
 			 if($hw_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Homework Not Found");
+				 $response = array("status" => "error", "msg" => "Homework/test hasn't been assigned yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Homework Details", "count"=>$hw_count, "homeworkDetails"=>$hw_result);
 			} 
@@ -420,7 +420,7 @@ class Apiteachermodel extends CI_Model {
 			$hw_count = $hw_res->num_rows();
 			
 			 if($hw_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Homework Not Found");
+				 $response = array("status" => "error", "msg" => "Homework/test hasn't been assigned yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Homework Details", "count"=>$hw_count, "homeworkDetails"=>$hw_result);
 			} 
@@ -441,7 +441,7 @@ class Apiteachermodel extends CI_Model {
 			$hw_result= $hw_res->result();
 			
 			 if($hw_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Homework Test Marks Not Found");
+				 $response = array("status" => "error", "msg" => "Marks not added for this test yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Class Test", "ctestmarkDetails"=>$hw_result);
 			} 
@@ -485,7 +485,7 @@ class Apiteachermodel extends CI_Model {
 			$exam_result= $exam_res->result();
 
         	if($exam_res->num_rows()==0){
-        				 $response = array("status" => "error", "msg" => "Exams Not Found");
+        				 $response = array("status" => "error", "msg" => "No exam has been assigned to this class!");
         		}else{
         				$response = array("status" => "success", "msg" => "View Exams", "examDetails"=>$exam_result);
         	} 
@@ -526,7 +526,7 @@ class Apiteachermodel extends CI_Model {
 						$exam_res = $this->db->query($exam_query);
 	
 						 if($exam_res->num_rows()==0){
-							 $exam_result = array("status" => "error", "msg" => "Exams not found");
+							 $exam_result = array("status" => "error", "msg" => "No exam has been assigned to this class!");
 						
 						}else{
 							$exam_result= $exam_res->result();
@@ -540,7 +540,7 @@ class Apiteachermodel extends CI_Model {
 							$examdetail_res = $this->db->query($examdetail_query);
 	
 						 if($examdetail_res->num_rows()==0){
-							 $examdetail_result = array("status" => "error", "msg" => "Exams not found");
+							 $examdetail_result = array("status" => "error", "msg" => "No exam has been assigned to this class!");
 						
 						}else{
 							$examdetail_result= $examdetail_res->result();
@@ -590,7 +590,7 @@ class Apiteachermodel extends CI_Model {
 			$mark_result= $mark_res->result();
 			
 			 if($mark_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Marks Not Found");
+				 $response = array("status" => "error", "msg" => "Marks not added for this exam yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Marks Details", "marksDetails"=>$mark_result);
 			} 
@@ -646,7 +646,7 @@ class Apiteachermodel extends CI_Model {
 
 			
 			 if($timetable_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Timetable Not Found");
+				 $response = array("status" => "error", "msg" => "No timetable has been scheduled for this teacher yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Timetable", "timetableDetails"=>$timetable_result);
 			} 
@@ -743,7 +743,7 @@ class Apiteachermodel extends CI_Model {
 			$leave_count = $leave_res->num_rows();
 			
 			 if($leave_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Leaves Not Found");
+				 $response = array("status" => "error", "msg" => "No leave has been applied yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Leaves", "leaveDetails"=>$leave_result);
 			} 
@@ -797,7 +797,7 @@ class Apiteachermodel extends CI_Model {
 			$review_count = $review_res->num_rows();
 			
 			 if($review_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Reviews Not Found");
+				 $response = array("status" => "error", "msg" => "No note has been added!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Reviews", "reviewDetails"=>$review_result);
 			} 
@@ -857,7 +857,7 @@ class Apiteachermodel extends CI_Model {
 		        {
 		            $marks_id = $rows->mark_id;
 		        }
-			$response = array("status" => "AlreadyAdded", "msg" => "Already Added", "mark_id"=>$marks_id);
+			$response = array("status" => "AlreadyAdded", "msg" => "Already added", "mark_id"=>$marks_id);
 		} else {
 			
 			
@@ -870,7 +870,7 @@ class Apiteachermodel extends CI_Model {
 			$HW_update_res = $this->db->query($HW_update_query);
 
 			if($HWmarks_res) {
-			    $response = array("status" => "success", "msg" => "Homework Marks Added", "last_id"=>$last_HWmarksid);
+			    $response = array("status" => "success", "msg" => "Homework marks added", "last_id"=>$last_HWmarksid);
 			} else {
 			    $response = array("status" => "error");
 			}
@@ -906,7 +906,7 @@ class Apiteachermodel extends CI_Model {
 		        {
 		            $exam_marks_id = $rows->exam_marks_id;
 		        }
-			$response = array("status" => "AlreadyAdded", "msg" => "Already Added", "exam_mark_id"=>$exam_marks_id);
+			$response = array("status" => "AlreadyAdded", "msg" => "Already added", "exam_mark_id"=>$exam_marks_id);
 		} else {
     		    
 			if ($is_internal_external=="0") 
@@ -1102,7 +1102,7 @@ class Apiteachermodel extends CI_Model {
 			$last_marksid = $this->db->insert_id();
 
 			if($marks_res) {
-			    $response = array("status" => "success", "msg" => "Marks Added", "last_id"=>$last_marksid);
+			    $response = array("status" => "success", "msg" => "Changes saved", "last_id"=>$last_marksid);
 			} else {
 			    $response = array("status" => "error");
 			}
@@ -1122,7 +1122,7 @@ class Apiteachermodel extends CI_Model {
 			$last_reminderid = $this->db->insert_id();
 
 			if($reminder_res) {
-			    $response = array("status" => "success", "msg" => "Reminder Added", "last_id"=>$last_reminderid);
+			    $response = array("status" => "success", "msg" => "Changes saved", "last_id"=>$last_reminderid);
 			} else {
 			    $response = array("status" => "error");
 			}
@@ -1157,7 +1157,7 @@ class Apiteachermodel extends CI_Model {
 			$exam_result = $exam_res->result();
 			
 		    if($exam_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Exam Duty Not Found");
+				 $response = array("status" => "error", "msg" => "No examy duty assigned yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Exam Duty", "examdutyDetails"=>$exam_result);
 			}
@@ -1322,7 +1322,9 @@ class Apiteachermodel extends CI_Model {
 			   $abs_date=$rows->abs_date;
 			   $abs_status=$rows->abs_atatus;
 
-			   $textmessage='Your child '.$st_name.' was marked '.$abs_status.' today '.$abs_date.'. To Known more details login into http://bit.ly/2wLwdRQ';
+
+				$textmessage='Hi,\n	Your child '.$st_name.' has been marked absent today.\n Please check ENSYFi mobile app for further details.\n http://bit.ly/2wLwdRQ';
+//			   $textmessage='Your child '.$st_name.' was marked '.$abs_status.' today '.$abs_date.'. To Known more details login into http://bit.ly/2wLwdRQ';
 			   $this->sendSMS($parents_num,$textmessage);
 			}
 		  }
@@ -1340,8 +1342,17 @@ class Apiteachermodel extends CI_Model {
 			  $at_ses=$rows->a_session;
 			  $abs_date=$rows->abs_date;
 			  $abs_status=$rows->abs_atatus;
-			  $textmessage='Your child '.$st_name.' was marked '.$abs_status.' today '.$abs_date.'. To Known more details login into http://bit.ly/2wLwdRQ';
-			  $subject="School Attendance";
+			  
+			  Subject: Student not present!
+				Body:
+				$textmessage='Dear Parent,<br>
+				Your child '.$st_name.' has been marked absent today. Please check ENSYFi mobile app for further details.<br>
+				http://bit.ly/2wLwdRQ<br><br>
+				Regards,
+				Management,<br><br>
+				Footnote: This is an auto-generated email and intended solely for notification purpose. Do not reply to this mail.';
+			 // $textmessage='Your child '.$st_name.' was marked '.$abs_status.' today '.$abs_date.'. To Known more details login into http://bit.ly/2wLwdRQ';
+			  $subject=" Student not present!";
 
 			  $this->sendMail($parents_email,$subject,$textmessage);
        		}
@@ -1366,7 +1377,8 @@ class Apiteachermodel extends CI_Model {
 			$mobile_type=$rows->mobile_type;
 			$subject="School Attendance";
 			
-			$notes='Your child '.$st_name.' was marked '.$abs_status.' today, '.$abs_date.'. To Known more details login into http://bit.ly/2wLwdRQ';
+			$notes='Hi,\n	Your child '.$st_name.' has been marked absent today.\n Please check ENSYFi mobile app for further details.\n http://bit.ly/2wLwdRQ';
+			//$notes='Your child '.$st_name.' was marked '.$abs_status.' today, '.$abs_date.'. To Known more details login into http://bit.ly/2wLwdRQ';
 			$this->sendNotification($gcm_key,$subject,$notes,$mobile_type);
 	      }
     }
@@ -1685,7 +1697,7 @@ class Apiteachermodel extends CI_Model {
 			$query="UPDATE edu_homework SET send_option_status='1',updated_by='$user_id',updated_at=NOW() WHERE hw_id='$hw_id'";
 			$res=$this->db->query($query);
 			
-			$response = array("status" => "success", "msg" => "HW Send to Parents");
+			$response = array("status" => "success", "msg" => "HW send to parents");
 			return $response;
      	}
 //#################### Homeworks Status Change End ####################//

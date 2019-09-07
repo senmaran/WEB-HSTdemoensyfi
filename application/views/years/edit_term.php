@@ -5,7 +5,7 @@
                <div class="col-md-12">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Update Terms</h4>
+                           <h4 class="title">Edit Academic Term</h4>
 
                        </div>
 <?php foreach($res as $row)
@@ -16,7 +16,7 @@
 						      			<input type="hidden" name="terms_id" required class="form-control" value="<?php echo $row->term_id?>">
 						           <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">FROM YEAR</label>
+                                          <label class="col-sm-2 control-label">Year</label>
                                           <div class="col-sm-4">
                                             <select name="year_id"  required class="selectpicker" data-title="Select From & To Year " data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 
@@ -52,7 +52,7 @@
                                   </select>
 											<?php foreach($res as $row){}	?>
                                           </div>
-                                          <label class="col-sm-2 control-label">TERMS</label>
+                                          <label class="col-sm-2 control-label">Term</label>
                                           <div class="col-sm-4">
                            <input type="text" name="terms" required class="form-control" value="<?php echo $row->term_name; ?>">
 
@@ -64,13 +64,13 @@
 
                                  <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">FROM DATE</label>
+                                          <label class="col-sm-2 control-label">From</label>
                                           <div class="col-sm-4">
                                               <input type="text" name="from_month" required class="form-control datepicker" value="<?php $date=date_create($row->from_date);
 echo date_format($date,"d-m-Y");  ?>">
 
                                           </div>
-                                          <label class="col-sm-2 control-label">To DATE</label>
+                                          <label class="col-sm-2 control-label">To</label>
                                           <div class="col-sm-4">
                                               <input type="text" value="<?php $date=date_create($row->to_date);
 echo date_format($date,"d-m-Y");  ?>" name="end_month" required class="form-control datepicker"  />
@@ -84,7 +84,7 @@ echo date_format($date,"d-m-Y");  ?>" name="end_month" required class="form-cont
 								<div class="col-sm-4">
 								   <select name="status" class="selectpicker form-control">
 									  <option value="Active">Active</option>
-									  <option value="Deactive">DeActive</option>
+									  <option value="Deactive">Inactive</option>
 									</select>
 								<script language="JavaScript">document.myformsection.status.value="<?php echo $row->status; ?>";</script>
                                  </div>
@@ -95,7 +95,7 @@ echo date_format($date,"d-m-Y");  ?>" name="end_month" required class="form-cont
                                             </div>
 																						    <div class="form-group">
 																									<div class="text-center">
-																												 <button type="submit" id="save" class="btn btn-info btn-fill center">Update</button>
+																												 <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
 																									</div>
 																								</div>
 
@@ -113,23 +113,48 @@ echo date_format($date,"d-m-Y");  ?>" name="end_month" required class="form-cont
 </div>
 
 <script type="text/javascript">
-      $().ready(function(){
-        $('#mastersmenu').addClass('collapse in');
-        $('#master').addClass('active');
-        $('#masters2').addClass('active');
-        $('.datepicker').datetimepicker({
-          format: 'DD-MM-YYYY',
-          icons: {
-              time: "fa fa-clock-o",
-              date: "fa fa-calendar",
-              up: "fa fa-chevron-up",
-              down: "fa fa-chevron-down",
-              previous: 'fa fa-chevron-left',
-              next: 'fa fa-chevron-right',
-              today: 'fa fa-screenshot',
-              clear: 'fa fa-trash',
-              close: 'fa fa-remove'
-          }
-       });
-      });
-  </script>
+   $(document).ready(function () {
+   $('#mastersmenu').addClass('collapse in');
+   $('#master').addClass('active');
+   $('#masters2').addClass('active');
+   
+   $('#myformsection').validate({ // initialize the plugin
+        rules: {
+            year_id:{required:true },
+			terms:{required:true },
+			from_month:{required:true },
+			end_month:{required:true },
+
+        },
+        messages: {
+			year_id: "Please choose an option!",
+			terms: "This field cannot be empty!",
+			from_month: "This field cannot be empty!",
+			end_month: "This field cannot be empty!",
+
+            }
+    });
+   });
+
+
+</script>
+<script type="text/javascript">
+   $().ready(function(){
+       $('#bootstrap-table').DataTable();
+
+     $('.datepicker').datetimepicker({
+       format: 'DD-MM-YYYY',
+       icons: {
+           time: "fa fa-clock-o",
+           date: "fa fa-calendar",
+           up: "fa fa-chevron-up",
+           down: "fa fa-chevron-down",
+           previous: 'fa fa-chevron-left',
+           next: 'fa fa-chevron-right',
+           today: 'fa fa-screenshot',
+           clear: 'fa fa-trash',
+           close: 'fa fa-remove'
+       }
+    });
+   });
+</script>
