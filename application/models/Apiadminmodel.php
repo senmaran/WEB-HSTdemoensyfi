@@ -984,7 +984,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
           // Students OD FORM view
           function get_students_od_view($user_id){
             $year_id=$this->getYear();
-            $query="SELECT du.id,du.od_for,du.notes,du.from_date,du.to_date,du.status,u.user_id,u.name,u.user_master_id,c.class_name,s.sec_name FROM edu_on_duty AS du,edu_enrollment AS en,edu_classmaster AS cm,edu_class AS c,edu_sections AS s,edu_users AS u WHERE du.user_type=3 AND du.user_id=u.user_id AND u.user_master_id=en.admission_id AND u.name=en.name AND cm.class_sec_id=en.class_id AND cm.class=c.class_id AND cm.section=s.sec_id AND du.year_id='$year_id' ORDER BY du.id DESC";
+            $query="SELECT du.id,du.od_for,du.notes,du.from_date,du.to_date,du.status,u.user_id,u.name,u.user_master_id,c.class_name,s.sec_name FROM edu_on_duty AS du,edu_enrollment AS en,edu_classmaster AS cm,edu_class AS c,edu_sections AS s,edu_users AS u WHERE du.user_type=3 AND du.user_id=u.user_id AND u.user_master_id=en.admission_id AND u.name=en.name AND cm.class_sec_id=en.class_id AND cm.class=c.class_id AND cm.section=s.sec_id AND du.year_id='$year_id' GROUP BY du.id ORDER BY du.id DESC ";
             $result_query=$this->db->query($query);
             if($result_query->num_rows()==0){
                 $data=array("status"=>"error","msg"=>"No applications for OD submitted yet!");
