@@ -7,7 +7,7 @@
     border-radius: 12px;
 }
 </style>
-<?php  foreach ($result as $rows) { 
+<?php  foreach ($result as $rows) {
 		$search_year = $rows->admit_year;
  }  ?>
 <div class="main-panel">
@@ -19,23 +19,21 @@
       </div>
       <?php endif; ?>
       <div class="content">
-	  
-	  
+
+
          <div class="container-fluid">
             <div class="row">
                <div class="col-md-12">
                   <div class="card">
                      <div class="content">
                         <h4 class="title" style="padding-bottom: 20px;">List of Student Registration</h4>
-						
-						<form method="post" action="<?php echo base_url(); ?>enrollment/view" class="form-horizontal" enctype="multipart/form-data" id="search_year" name="search_year">
 
+						<!-- <form method="post" action="<?php echo base_url(); ?>enrollment/view" class="form-horizontal" enctype="multipart/form-data" id="search_year" name="search_year">
                         <fieldset>
                            <div class="form-group">
-                            
                               <div class="col-sm-4">
                                  <select name="ace_year" id="ace_year"  required class="selectpicker" >
-								  <option value="">Select Year</option>
+								  							 <option value="">Select Year</option>
                                     <?php foreach($ace_years as $rows)
                                        {
                                        $fyear=$rows->from_month;
@@ -48,29 +46,28 @@
                                     <?php } ?>
                                  </select> <script language="JavaScript">document.search_year.ace_year.value="<?php echo $search_year; ?>";</script>
                               </div>
-                              
+
                               <div class="col-sm-4">
                                   <button type="submit" id="search" class="btn btn-info btn-fill center">Search </button>
                               </div>
                            </div>
                         </fieldset>
+                     </form> -->
 
-                     </form>
-					 
-                       
-						   
-						   
+
+
+
 
                            <div class="toolbar" style="text-align:right; padding-bottom:30px; float:right;">
-						   
-						   
-						   
-						   
-								
-								 
+
+
+
+
+
+
 	                       </div>
-						  
-						   
+
+
                            <table id="example" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                               <thead>
                                  <th>S.No</th>
@@ -87,11 +84,11 @@
 							$i=1;
                           foreach ($result as $rows) {
                           $stu=$rows->status;
-						  
+
                           ?>
                        <tr>
                           <td><?php echo $i; ?></td>
-                          <?php  
+                          <?php
 						  /* foreach ($year as $row)
                              {
                                  $fyear=$row->from_month;
@@ -100,14 +97,14 @@
                                  $month1= strtotime($eyear);
                              } */
                              ?>
-                         
+
                           <td><?php echo $rows->name; ?></td>
                           <td><?php echo $rows->admisn_no; ?></td>
                           <td><?php echo $rows->blood_group_name; ?></td>
                           <td><?php echo $rows->class_name; echo "--"; echo $rows->sec_name; ?></td>
                           <td><?php $date=date_create($rows->admit_date);
                              echo date_format($date,"d-m-Y"); ?></td>
-                          <td><?php 
+                          <td><?php
                              if($stu=='Active'){?>
                              <button class="btn btn-success btn-fill btn-wd">Active</button>
                              <?php  }else{?>
@@ -117,7 +114,7 @@
                           <td>
                              <a href="<?php echo base_url(); ?>admission/get_ad_id1/<?php echo $rows->admission_id; ?>" rel="tooltip" title="View Admission Details " class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">
                              <i class="fa fa-address-card-o" aria-hidden="true"></i>
-                             </a> 
+                             </a>
                              <a href="<?php echo base_url(); ?>enrollment/edit_enroll/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
                           </td>
                        </tr>
@@ -169,7 +166,6 @@ $(document).ready(function() {
 		    }
 		});
 	});
-           
-     
-</script>
 
+
+</script>
