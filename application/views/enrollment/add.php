@@ -33,9 +33,9 @@
                      <div class="form-group">
                         <label class="col-sm-4 control-label">Admission No</label>
                         <div class="col-sm-4">
-                           <select name="admisn_no" id="admission_no" onchange="checknamefun(this.value)" class="selectpicker form-control" data-title="Select Admission No" >
+                           <select name="admission_id" id="admission_no" onchange="checknamefun(this.value)" class="selectpicker form-control" data-title="Select Admission No" >
                               <?php foreach ($admisno as $row) {  ?>
-                              <option value="<?php echo $row->admisn_no; ?>"><?php echo $row->admisn_no; ?></option>
+                              <option value="<?php echo $row->admission_id; ?>"><?php echo $row->admisn_no; ?></option>
                               <?php      } ?>
                            </select>
                             </div>
@@ -139,7 +139,7 @@
    rules: {
    year_id:{required:true},
    year_name:{required:true},
-   admisn_no:{required:true},
+   admission_id:{required:true},
    admit_date:{required:true },
    name:{required:true },
    admit_date:{required:true },
@@ -154,7 +154,7 @@
    messages: {
    year_id:"Academic Year not enable",
    year_name:"Academic Year not enable",
-   admisn_no: "Select Admission No",
+   admission_id: "Select Admission No",
    admit_date: "Select Admission Date",
    name: "Enter Name",
    admit_date: "Select The Date",
@@ -197,7 +197,7 @@
 	   $.ajax({
 	   type:'post',
 	   url:'<?php echo base_url(); ?>/enrollment/checker',
-	   data:'admisno='+val,
+	   data:'admission_id='+val,
 
 	   success:function(test)
 	   {

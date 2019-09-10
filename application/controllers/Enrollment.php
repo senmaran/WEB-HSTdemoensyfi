@@ -46,12 +46,12 @@ class Enrollment extends CI_Controller {
 			$datas['getall_class']=$this->class_manage->getall_class();
 			$datas['admisno']=$this->admissionmodel->get_enrollment_admisno();
 			$datas['years']=$this->enrollmentmodel->get_current_years();
-			
+
 			$datas['quota']=$this->enrollmentmodel->get_all_quota_details();
 			$datas['groups']=$this->enrollmentmodel->get_all_groups_details();
 			$datas['activities']=$this->enrollmentmodel->get_all_activities_details();
 			//print_r($datas['quota']);exit;
-			
+
 			$user_type=$this->session->userdata('user_type');
 			if($user_type==1){
 	 		 $this->load->view('header');
@@ -75,7 +75,7 @@ class Enrollment extends CI_Controller {
 			$datas['getall_class']=$this->class_manage->getall_class();
             $datas['years']=$this->enrollmentmodel->get_current_years();
 		    $datas['res']=$this->enrollmentmodel->add_enrollment($admission_id);
-			
+
 			$datas['quota']=$this->enrollmentmodel->get_all_quota_details();
 			$datas['groups']=$this->enrollmentmodel->get_all_groups_details();
 			$datas['activities']=$this->enrollmentmodel->get_all_activities_details();
@@ -101,19 +101,19 @@ class Enrollment extends CI_Controller {
 			 $admit_date=$this->input->post('admit_date');
 	         $dateTime = new DateTime($admit_date);
 			 $formatted_date=date_format($dateTime,'Y-m-d' );
-			 
+
 			 $admisn_no=$this->input->post('admisn_no');
 			 $admisnid=$this->input->post('admission_id');
 			 //echo $admisn_no; echo'<br>'; echo $admisnid; exit;
 			 $name=$this->input->post('name');
 			 $class=$this->input->post('class_section');
-			 
-			 //echo $admisnid; 
+
+			 //echo $admisnid;
 			 $quota_id=$this->input->post('quota_id');
 			 $groups_id=$this->input->post('groups_id');
 			 $act_id=$this->input->post('activity_id');
 			 if(empty($act_id)){
-				$activity_id='0'; 
+				$activity_id='0';
 			 }else{
 			 $activity_id=implode(',',$act_id);
 			 }
@@ -149,16 +149,16 @@ class Enrollment extends CI_Controller {
 		 $user_type=$this->session->userdata('user_type');
 
 		$search_year = $this->input->post('ace_year');
-		
-		$datas['ace_years'] = $this->yearsmodel->getall_years();	
+
+		$datas['ace_years'] = $this->yearsmodel->getall_years();
 		$datas['result'] = $this->enrollmentmodel->get_all_enrollment($search_year);
 		$datas['years']=$this->enrollmentmodel->get_current_years();
-			
+
 		//$datas['sorting'] = $this->enrollmentmodel->get_all_enrollment_sorting_details();
 		//$datas['sortclass'] = $this->enrollmentmodel->get_all_enrollment_sorting_class();
 		//$datas['year'] = $this->yearsmodel->admisn_year();
 		//echo "<pre>";print_r($datas['result']);exit;
-		
+
  		 if($user_type==1){
 			 $this->load->view('header');
 			 $this->load->view('enrollment/view',$datas);
@@ -178,7 +178,7 @@ class Enrollment extends CI_Controller {
 			$datas['quota']=$this->enrollmentmodel->get_all_quota_details();
 			$datas['groups']=$this->enrollmentmodel->get_all_groups_details();
 			$datas['activities']=$this->enrollmentmodel->get_all_activities_details();
-			
+
 			//print_r($datas['res']);exit;
 			$user_type=$this->session->userdata('user_type');
 			if($user_type==1){
@@ -206,12 +206,12 @@ class Enrollment extends CI_Controller {
 			 $admisn_no=$this->input->post('admisn_no');
 			 $name=$this->input->post('name');
 			 $class=$this->input->post('class_name');
-			 
+
 			 $quota_id=$this->input->post('quota_id');
 			 $groups_id=$this->input->post('groups_id');
 			 $act_id=$this->input->post('activity_id');
 			 if(empty($act_id)){
-				$activity_id='0'; 
+				$activity_id='0';
 			 }else{
 			 $activity_id=implode(',',$act_id);
 			 }
@@ -245,12 +245,11 @@ class Enrollment extends CI_Controller {
 
 		 public function checker()
 		 {
-			 $admisno = $this->input->post('admisno');
-			 $resultset = $this->enrollmentmodel->getData($admisno);
-			//print_r($datas['status']);
-			 if($resultset!='')
+			 $admission_id = $this->input->post('admission_id');
+			 $resultset = $this->enrollmentmodel->getData($admission_id);
+			 if(!empty($resultset))
 			  {
-				echo $resultset;
+				 $resultset;
 			  }
 			else{
 				echo "Admission Number Not Found";
@@ -272,7 +271,7 @@ class Enrollment extends CI_Controller {
 						echo "Add Enrollment";
 					 }
 		  }
-		  //get all sorting Gender 
+		  //get all sorting Gender
 		  public function get_sorting_details()
 		  {
 			  $datas=$this->session->userdata();
@@ -280,7 +279,7 @@ class Enrollment extends CI_Controller {
 			  $user_type=$this->session->userdata('user_type');
 			  $gender=$this->input->post('gender');
 			  $cls_mst_id=$this->input->post('cls');
-			  
+
 			  //echo $gender; echo $cls_mst_id; exit;
 		      $datas['gender']=$this->enrollmentmodel->get_sorting_details($gender,$cls_mst_id);
 			  $datas['result'] = $this->enrollmentmodel->get_all_enrollment();
@@ -295,6 +294,6 @@ class Enrollment extends CI_Controller {
 				}else{
 						redirect('/');
 				}
-		  
+
 		  }
 }
