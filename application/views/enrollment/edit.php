@@ -85,39 +85,15 @@ echo date_format($date,"d-m-Y");  ?>" />
                                             <label class="col-sm-4 control-label">Class</label>
                                             <div class="col-sm-4">
 
-											 <select  name="class_name" class="selectpicker"  data-menu-style="dropdown-blue">
-
-	<?php
-		    $sPlatform=$rows->class_id;
-			$sQuery = "SELECT c.class_name,s.sec_name,cm.class_sec_id,cm.class FROM edu_class AS c,edu_sections AS s ,edu_classmaster AS cm WHERE cm.class = c.class_id AND cm.section = s.sec_id ORDER BY c.class_name";
-			$objRs=$this->db->query($sQuery);
-		  //print_r($objRs);
-		  $row=$objRs->result();
-		  foreach ($row as $rows1)
-		  {
-		  $s= $rows1->class_sec_id;
-		 // $sec=$rows1->class;
-		  $clas=$rows1->class_name;
-		  $sec_name=$rows1->sec_name;
-		  $arryPlatform = explode(",", $sPlatform);
-		 $sPlatform_id  = trim($s);
-		 $sPlatform_name  = trim($sec);
-		 if (in_array($sPlatform_id, $arryPlatform )) {
-  ?>
-          <?php
-                  echo "<option  value=\"$sPlatform_id\" selected  />$clas-$sec_name &nbsp;&nbsp; </option>";
-             ?>
-
-                                <?php }
-                                  else {
-                                echo "<option value=\"$sPlatform_id\" />$clas-$sec_name &nbsp;&nbsp;</option>";
-                                 }
-                                      }
-                                        ?>
+											 <select  name="class_name" id="class_name" class="selectpicker"  data-menu-style="dropdown-blue">
+                         <?php foreach ($getall_class as $rows_class) {  ?>
+                         <option value="<?php echo $rows_class->class_sec_id; ?>"><?php echo $rows_class->class_name; ?>&nbsp; - &nbsp;<?php echo $rows_class->sec_name; ?></option>
+                         <?php      } ?>
 
                                   </select>
+                                  <script>$("#class_name").val(<?php echo $rows->class_id; ?>);</script>
 
-                                                  <script language="JavaScript">document.enrollform.class.value="<?php echo $rows->class_id; ?>";</script>
+
                                             </div>
 
                                         </div>
