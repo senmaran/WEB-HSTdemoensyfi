@@ -95,13 +95,13 @@ Class Class_manage extends CI_Model
         }
 
        function getall_class(){
-         $query="SELECT c.class_name,s.sec_name,cm.class_sec_id,cm.status FROM edu_class AS c,edu_sections AS s ,edu_classmaster AS cm WHERE cm.class = c.class_id AND cm.section = s.sec_id AND cm.status='Active' ORDER BY c.class_name";
+         $query="SELECT c.class_name,s.sec_name,cm.class_sec_id,cm.status FROM edu_class AS c,edu_sections AS s ,edu_classmaster AS cm WHERE cm.class = c.class_id AND cm.section = s.sec_id ORDER BY c.class_name";
          $result=$this->db->query($query);
          return $result->result();
        }
 
        function getall_active_class(){
-         $query="SELECT c.class_name,s.sec_name,cm.class_sec_id,cm.status FROM edu_class AS c,edu_sections AS s ,edu_classmaster AS cm WHERE cm.class = c.class_id AND cm.section = s.sec_id ORDER BY c.class_name";
+         $query="SELECT c.class_name,s.sec_name,cm.class_sec_id,cm.status FROM edu_class AS c,edu_sections AS s ,edu_classmaster AS cm WHERE cm.class = c.class_id AND cm.section = s.sec_id  AND cm.status='Active' ORDER BY c.class_name";
          $result=$this->db->query($query);
          return $result->result();
        }
