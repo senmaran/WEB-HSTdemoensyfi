@@ -52,9 +52,9 @@
                                                 </fieldset>
                                                 <fieldset>
                                                     <div class="form-group">
-                                                      <label class="col-sm-2 control-label">Primary Email</label>
+                                                      <label class="col-sm-2 control-label">Email ID</label>
                                                       <div class="col-sm-4">
-                                                          <input type="text" name="pemail" id="pemail" class="form-control" placeholder="Email Address" value="<?php echo $rows->email;?>" readonly />
+                                                          <input type="text" name="pemail" id="pemail" class="form-control" placeholder="Email ID" value="<?php echo $rows->email;?>" readonly />
                                                       </div>
                                                       <label class="col-sm-2 control-label">Primary Mobile</label>
                                                       <div class="col-sm-4">
@@ -92,7 +92,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">&nbsp;</label>
                                                         <div class="col-sm-4">
-                                                            <button type="submit" id="save" class="btn btn-info btn-fill center">Assign Here</button>
+                                                            <button type="submit" id="save" class="btn btn-info btn-fill center">ASSIGN</button>
                                                         </div>
                                                     </div>
                                                 </fieldset>

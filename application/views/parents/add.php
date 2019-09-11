@@ -4,15 +4,16 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Parents Details</h4>
+                    <h4 class="title">Parent Details</h4>
+					<h5>For parents whose children are currently studying here, fetch the details from "Exisiting Profile".</h5>
                 </div>
                 <div class="content">
                     <ul role="tablist" class="nav nav-tabs">
                         <li role="presentation" class="active">
-                            <a href="#agency" data-toggle="tab">New</a>
+                            <a href="#agency" data-toggle="tab">New Profile</a>
                         </li>
                         <li>
-                            <a href="#company" data-toggle="tab">Existing</a>
+                            <a href="#company" data-toggle="tab">Existing Profile</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -47,13 +48,13 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Father Name <span class="mandatory_field">*</span></label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" name="fname" id="fname" placeholder="Enter Name" class="form-control" value="">
+                                                                <input type="text" name="fname" id="fname" placeholder="Father Name" class="form-control" value="">
                                                             </div>
-                                                            <label class="col-sm-2 control-label">Login <span class="mandatory_field">*</span></label>
+                                                            <label class="col-sm-2 control-label">Login Access  <span class="mandatory_field">*</span></label>
                                                             <div class="col-sm-4">
-                                                                <select name="flogin" id="flogin" class="selectpicker form-control" data-title="Select Login Priority">
-                                                                    <option value="Yes">Yes</option>
-                                                                    <option value="No">No</option>
+                                                                <select name="flogin" id="flogin" class="selectpicker form-control">
+                                                                    <option value="Yes">Enabled</option>
+                                                                    <option value="No">Disabled</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -61,13 +62,13 @@
 
                                                     <fieldset>
                                                         <div class="form-group">
-                                                          <label class="col-sm-2 control-label">Primary Email <span class="mandatory_field">*</span></label>
+                                                          <label class="col-sm-2 control-label">Email ID <span class="mandatory_field">*</span></label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" name="fpemail" id="fpemail" class="form-control" placeholder="Email Address"  />
+                                                              <input type="text" name="fpemail" id="fpemail" class="form-control" placeholder="Email ID"  />
                                                           </div>
-                                                          <label class="col-sm-2 control-label">Secondary Email</label>
+                                                          <label class="col-sm-2 control-label">Alternate Email ID</label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" name="fsemail" class="form-control " id="email" placeholder="Email Address" />
+                                                              <input type="text" name="fsemail" class="form-control " id="email" placeholder="Alternate Email ID" />
                                                           </div>
                                                         </div>
                                                     </fieldset>
@@ -75,13 +76,13 @@
 
                                                     <fieldset>
                                                         <div class="form-group">
-                                                          <label class="col-sm-2 control-label">Primary Mobile <span class="mandatory_field">*</span></label>
+                                                          <label class="col-sm-2 control-label">Mobile Number <span class="mandatory_field">*</span></label>
                                                           <div class="col-sm-4">
                                                               <input type="text" placeholder="Mobile Number" name="fpmobile" id="fpmobile" class="form-control" >
                                                           </div>
-                                                          <label class="col-sm-2 control-label">Secondary Mobile</label>
+                                                          <label class="col-sm-2 control-label">Alternate Mobile Number</label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" placeholder="Mobile Number" name="fsmobile" class="form-control">
+                                                              <input type="text" placeholder="Alternate Mobile Number" name="fsmobile" class="form-control">
                                                           </div>
 
                                                         </div>
@@ -101,9 +102,9 @@
                                                     </fieldset>
                                                     <fieldset>
                                                         <div class="form-group">
-                                                            <label class="col-sm-2 control-label">Home Address</label>
+                                                            <label class="col-sm-2 control-label">Residential Address</label>
                                                             <div class="col-sm-4">
-                                                                <textarea name="fhaddress" id="fhaddress" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"></textarea>
+                                                                <textarea name="fhaddress" id="fhaddress" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
                                                             </div>
                                                             <label class="col-sm-2 control-label">Home Phone</label>
                                                             <div class="col-sm-4">
@@ -117,7 +118,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Office Address</label>
                                                             <div class="col-sm-4">
-                                                                <textarea name="foffice_address" id="foffice_address" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"></textarea>
+                                                                <textarea name="foffice_address" id="foffice_address" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
                                                             </div>
 
                                                             <label class="col-sm-2 control-label">Office Phone</label>
@@ -130,7 +131,7 @@
                                                     </fieldset>
                                                     <fieldset>
                                                         <div class="form-group">
-                                                            <label class="col-sm-2 control-label">Father Pic</label>
+                                                            <label class="col-sm-2 control-label"> Profile Picture</label>
                                                             <div class="col-sm-4">
                                                                 <input type="file" name="father_pic" id="fpic" class="form-control" onchange="loadFile(event)" accept="image/*">
                                                             </div>
@@ -146,7 +147,7 @@
                                                             <div class="col-sm-4">
                                                                 <select name="fstatus" id="fstatus" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                                     <option value="Active">Active</option>
-                                                                    <option value="Deactive">Deactive</option>
+                                                                    <option value="Deactive">Inactive</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -161,13 +162,13 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Mother Name <span class="mandatory_field">*</span></label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" name="mname" id="mname" placeholder="Enter Name" class="form-control" value="">
+                                                                <input type="text" name="mname" id="mname" placeholder="Mother Name" class="form-control" value="">
                                                             </div>
-                                                            <label class="col-sm-2 control-label">Login <span class="mandatory_field">*</span></label>
+                                                            <label class="col-sm-2 control-label">Login Access <span class="mandatory_field">*</span></label>
                                                             <div class="col-sm-4">
-                                                                <select name="mlogin" id="mlogin" class="selectpicker form-control" data-title="Select Login Priority">
-                                                                    <option value="Yes">Yes</option>
-                                                                    <option value="No">No</option>
+                                                                <select name="mlogin" id="mlogin" class="selectpicker form-control">
+                                                                    <option value="Yes">Enabled </option>
+                                                                    <option value="No">Disabled</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -175,26 +176,26 @@
 
                                                     <fieldset>
                                                         <div class="form-group">
-                                                          <label class="col-sm-2 control-label">Primary Email <span class="mandatory_field">*</span></label>
+                                                          <label class="col-sm-2 control-label">Email ID <span class="mandatory_field">*</span></label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" name="mpemail" id="mpemail" class="form-control" placeholder="Email Address" />
+                                                              <input type="text" name="mpemail" id="mpemail" class="form-control" placeholder="Email ID" />
                                                           </div>
-                                                          <label class="col-sm-2 control-label">Secondary Email</label>
+                                                          <label class="col-sm-2 control-label">Alternate Email ID</label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" name="msemail" class="form-control " id="email" placeholder="Email Address" />
+                                                              <input type="text" name="msemail" class="form-control " id="email" placeholder="Alternate Email ID" />
                                                           </div>
                                                         </div>
                                                     </fieldset>
                                                     <fieldset>
                                                         <div class="form-group">
-                                                          <label class="col-sm-2 control-label">Primary Mobile <span class="mandatory_field">*</span></label>
+                                                          <label class="col-sm-2 control-label">Mobile Number <span class="mandatory_field">*</span></label>
                                                           <div class="col-sm-4">
                                                               <input type="text" placeholder="Mobile Number" name="mpmobile" id="mpmobile" class="form-control" >
                                                           </div>
 
-                                                          <label class="col-sm-2 control-label">Secondary Mobile</label>
+                                                          <label class="col-sm-2 control-label">Alternate Mobile Number</label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" placeholder="Mobile Number" name="msmobile" class="form-control">
+                                                              <input type="text" placeholder="Alternate Mobile Number" name="msmobile" class="form-control">
                                                           </div>
                                                         </div>
                                                     </fieldset>
@@ -213,9 +214,9 @@
                                                     </fieldset>
                                                     <fieldset>
                                                         <div class="form-group">
-                                                            <label class="col-sm-2 control-label">Home Address</label>
+                                                            <label class="col-sm-2 control-label">Residential Address</label>
                                                             <div class="col-sm-4">
-                                                                <textarea name="mhaddress" id="mhaddress" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"></textarea>
+                                                                <textarea name="mhaddress" id="mhaddress" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
                                                             </div>
                                                             <label class="col-sm-2 control-label">Home Phone</label>
                                                             <div class="col-sm-4">
@@ -230,7 +231,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Office Address</label>
                                                             <div class="col-sm-4">
-                                                                <textarea name="moffice_address" id="moffice_address" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"></textarea>
+                                                                <textarea name="moffice_address" id="moffice_address" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
                                                             </div>
 
                                                             <label class="col-sm-2 control-label">Office Phone</label>
@@ -243,7 +244,7 @@
                                                     </fieldset>
                                                     <fieldset>
                                                         <div class="form-group">
-                                                            <label class="col-sm-2 control-label">Mother Pic</label>
+                                                            <label class="col-sm-2 control-label">Profile Picture</label>
                                                             <div class="col-sm-4">
                                                                 <input type="file" name="mother_pic" id="mpic" class="form-control" onchange="loadFile1(event)" accept="image/*">
                                                             </div>
@@ -261,7 +262,7 @@
                                                             <div class="col-sm-4">
                                                                 <select name="mstatus" id="mstatus" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                                     <option value="Active">Active</option>
-                                                                    <option value="Deactive">DeActive</option>
+                                                                    <option value="Deactive">Inactive</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -275,13 +276,13 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Guardian Name <span class="mandatory_field">*</span></label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" name="gname" id="gname" placeholder="Enter Name" class="form-control" value="">
+                                                                <input type="text" name="gname" id="gname" placeholder="Guardian Name" class="form-control" value="">
                                                             </div>
-                                                            <label class="col-sm-2 control-label">Login <span class="mandatory_field">*</span></label>
+                                                            <label class="col-sm-2 control-label">Login Access <span class="mandatory_field">*</span></label>
                                                             <div class="col-sm-4">
-                                                                <select name="glogin" id="glogin" class="selectpicker form-control" data-title="Select Login Priority">
-                                                                    <option value="Yes">Yes</option>
-                                                                    <option value="No">No</option>
+                                                                <select name="glogin" id="glogin" class="selectpicker form-control">
+                                                                    <option value="Yes">Enabled</option>
+                                                                    <option value="No">Disabled</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -289,26 +290,26 @@
 
                                                     <fieldset>
                                                         <div class="form-group">
-                                                          <label class="col-sm-2 control-label">Primary Email <span class="mandatory_field">*</span></label>
+                                                          <label class="col-sm-2 control-label">Email ID <span class="mandatory_field">*</span></label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" name="gpemail" id="gpemail" class="form-control" placeholder="Email Address"  />
+                                                              <input type="text" name="gpemail" id="gpemail" class="form-control" placeholder="Email ID"  />
                                                           </div>
-                                                          <label class="col-sm-2 control-label">Secondary Email</label>
+                                                          <label class="col-sm-2 control-label">Alternate Email ID</label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" name="gsemail" class="form-control " id="email" placeholder="Email Address" />
+                                                              <input type="text" name="gsemail" class="form-control " id="email" placeholder="Alternate Email ID" />
                                                           </div>
 
                                                         </div>
                                                     </fieldset>
                                                     <fieldset>
                                                         <div class="form-group">
-                                                          <label class="col-sm-2 control-label">Primary Mobile <span class="mandatory_field">*</span></label>
+                                                          <label class="col-sm-2 control-label">Mobile Number <span class="mandatory_field">*</span></label>
                                                           <div class="col-sm-4">
                                                               <input type="text" placeholder="Mobile Number" name="gpmobile" id="gpmobile" class="form-control">
                                                           </div>
-                                                          <label class="col-sm-2 control-label">Secondary Mobile</label>
+                                                          <label class="col-sm-2 control-label">Alternate Mobile Number</label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" placeholder="Mobile Number" name="gsmobile" class="form-control">
+                                                              <input type="text" placeholder="Alternate Mobile Number" name="gsmobile" class="form-control">
                                                           </div>
 
 
@@ -330,9 +331,9 @@
                                                     </fieldset>
                                                     <fieldset>
                                                         <div class="form-group">
-                                                            <label class="col-sm-2 control-label">Home Address</label>
+                                                            <label class="col-sm-2 control-label">Residential Address</label>
                                                             <div class="col-sm-4">
-                                                                <textarea name="ghaddress" id="ghaddress" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"></textarea>
+                                                                <textarea name="ghaddress" id="ghaddress" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
                                                             </div>
                                                             <label class="col-sm-2 control-label">Home Phone</label>
                                                             <div class="col-sm-4">
@@ -345,7 +346,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Office Address</label>
                                                             <div class="col-sm-4">
-                                                                <textarea name="goffice_address" id="goffice_address" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"></textarea>
+                                                                <textarea name="goffice_address" id="goffice_address" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
                                                             </div>
 
                                                             <label class="col-sm-2 control-label">Office Phone</label>
@@ -359,7 +360,7 @@
                                                     <fieldset>
                                                         <div class="form-group">
 
-                                                            <label class="col-sm-2 control-label">Guardian Pic</label>
+                                                            <label class="col-sm-2 control-label">Profile Picture</label>
                                                             <div class="col-sm-4">
                                                                 <input type="file" name="guardian_pic" id="gpic" class="form-control" onchange="loadFile2(event)" accept="image/*">
                                                             </div>
@@ -377,7 +378,7 @@
                                                             <div class="col-sm-4">
                                                                 <select name="gstatus" id="gstatus" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                                     <option value="Active">Active</option>
-                                                                    <option value="Deactive">DeActive</option>
+                                                                    <option value="Deactive">Inactive</option>
                                                                 </select>
                                                             </div>
 
@@ -397,7 +398,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">&nbsp;</label>
                                                     <div class="col-sm-4">
-                                                        <button type="submit" id="save1" class="btn btn-info btn-fill center">Submit</button>
+                                                        <button type="submit" id="save1" class="btn btn-info btn-fill center">CREATE</button>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -413,15 +414,15 @@
                                             <form method="post" action="<?php echo base_url(); ?>parents/search" class="form-horizontal" enctype="multipart/form-data" id="parentform">
                                                 <fieldset>
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label">Mobile</label>
+                                                        <label class="col-sm-2 control-label">Mobile Number</label>
                                                         <div class="col-sm-4">
                                                             <input type="hidden" name="admission_no" class="form-control" placeholder="" value="<?php echo $result; ?>">
-                                                            <input type="text" required name="cell" placeholder="Enter Your Mobile Number" class="form-control" onblur="checkcellfun(this.value)" value="">
+                                                            <input type="text" required name="cell" placeholder="Parent's number" class="form-control" onblur="checkcellfun(this.value)" value="">
                                                             <p id="msg1"> </p>
                                                         </div>
                                                         <label class="col-sm-2 control-label">&nbsp;</label>
                                                         <div class="col-sm-4">
-                                                            <button type="submit" id="save" class="btn btn-info btn-fill center">Search </button>
+                                                            <button type="submit" id="save" class="btn btn-info btn-fill center">SEARCH </button>
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -589,15 +590,15 @@
 
         },
         messages: {
-          fname:{required:"Enter the father name"},
-          mname:{required:"Enter the mother name"},
-          gname:{required:"Enter the Guardian name"},
-          fpmobile:{required:"Enter the mobile number",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
-          mpmobile:{required:"Enter the mobile number",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
-          gpmobile:{required:"Enter the mobile number",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
-          fpemail:{required:"Enter Email Address",remote:"Email Already Exist"},
-          mpemail:{required:"Enter Email Address",remote:"Email Already Exist"},
-          gpemail:{required:"Enter Email Address",remote:"Email Already Exist"}
+          fname:{required:"This field cannot be empty!"},
+          mname:{required:"This field cannot be empty!"},
+          gname:{required:"This field cannot be empty!"},
+          fpmobile:{required:"This field cannot be empty!",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
+          mpmobile:{required:"This field cannot be empty!",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
+          gpmobile:{required:"This field cannot be empty!",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
+          fpemail:{required:"This field cannot be empty!",remote:"Email Already Exist"},
+          mpemail:{required:"This field cannot be empty!",remote:"Email Already Exist"},
+          gpemail:{required:"This field cannot be empty!",remote:"Email Already Exist"}
 
             }
     });

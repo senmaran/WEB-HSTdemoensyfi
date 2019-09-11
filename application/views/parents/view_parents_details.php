@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Edit Parents Details</h4>
+                    <h4 class="title">Parents Details</h4>
                 </div>
                 <?php if($this->session->flashdata('msg')): ?>
                     <div class="alert alert-success">
