@@ -741,7 +741,7 @@ Class Notificationmodel extends CI_Model
 											$notes,
 											null
 										);
-							
+							print_r($push);
 									//getting the push from push object
 									$mPushNotification = $push->getPush();
 
