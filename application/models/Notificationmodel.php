@@ -711,8 +711,14 @@ Class Notificationmodel extends CI_Model
 				if($users_id==2)
 				{
 				  //echo $users_id;
-
+				  
+					require_once 'assets/notification/Firebase.php';
+					require_once 'assets/notification/Push.php';
 					$push = null;
+					
+					$passphrase = 'hs123';
+					$loction ='assets/notification/heylaapp.pem';
+									
 					 //first check if the push has an image with it
 					$push = new Push(
 							$title,
@@ -753,10 +759,7 @@ Class Notificationmodel extends CI_Model
 							   echo $gcm_key = $trow->gcm_key;
 							   echo $mobile_type = $trow->mobile_type;
 						   
-								if ($mobile_type =='1'){
-									require_once 'assets/notification/Firebase.php';
-									require_once 'assets/notification/Push.php';
-									
+								if ($mobile_type =='1'){							
 									
 									//getting the push from push object
 									$mPushNotification = $push->getPush();
@@ -767,8 +770,7 @@ Class Notificationmodel extends CI_Model
 									
 								} else {
 									
-									$passphrase = 'hs123';
-									$loction ='assets/notification/heylaapp.pem';
+									
 
 									$ctx = stream_context_create();
 									stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
