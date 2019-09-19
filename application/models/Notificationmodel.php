@@ -26,6 +26,136 @@ Class Notificationmodel extends CI_Model
     }
 
 
+
+
+      function send_circular_via_push_notification($title_id,$notes,$tusers_id,$stusers_id,$pusers_id,$bmusers_id,$users_id)
+      {
+
+
+
+        if(!empty($tusers_id)){
+          $ids=$tusers_id;
+        }else if(!empty($stusers_id)){
+              $ids=$stusers_id;
+        }else if(!empty($pusers_id)){
+              $ids=$pusers_id;
+        }else if(!empty($bmusers_id)){
+              $ids=$bmusers_id;
+        }else{
+              $ids=$tusers_id;
+        }
+
+    	  $check_user = "SELECT * FROM edu_notification WHERE user_id IN ($ids)";
+        exit;
+    		$res=$this->db->query($check_user);
+
+    		if($res->num_rows()>0){
+    			$i = 1;
+    			$gcm_key ='';
+    			$count = $res->num_rows();
+
+    			foreach($res->result() as $rows){
+    				$temp_key = $rows->gcm_key;
+    				$mobile_type = $rows->mobile_type;
+    				$user_id = $rows->user_id;
+
+    				$query ="INSERT INTO notification_history(template_id,user_master_id,view_status,created_at) VALUES('$temp_id','$user_id','0',NOW())";
+    				$resultset=$this->db->query($query);
+
+
+        			if ($mobile_type =='1'){
+    						if ($i< $count){
+    							if ($temp_key!=""){
+    								$gcm_key .= $temp_key.",";
+    							}
+    						} else {
+    							$gcm_key .= $temp_key;
+    						}
+
+    						//echo $gcm_key;
+
+    						require_once 'assets/notification/Firebase.php';
+    						require_once 'assets/notification/Push.php';
+
+    						$device_token = explode(",", $gcm_key);
+    						$push = null;
+
+    			//        //first check if the push has an image with it
+    						$push = new Push(
+    								$subject,
+    								$cnotes,
+    								$img_url
+    							);
+
+    						//getting the push from push object
+    						$mPushNotification = $push->getPush();
+
+    						//creating firebase class object
+    						$firebase = new Firebase();
+    						//$firebase->send($gcm_key,$mPushNotification);
+
+    						foreach($device_token as $token) {
+    							 $firebase->send(array($token),$mPushNotification);
+    						}
+
+
+    				} else {
+
+    						if ($i< $count){
+                				if ($temp_key!=""){
+                					 $gcm_key .= $temp_key.",";
+                				}
+                			} else {
+                				 $gcm_key .= $temp_key;
+                			}
+
+    						 $device_token = explode(",", $gcm_key);
+    						$passphrase = 'hs123';
+    						$loction ='assets/notification/heylaapp.pem';
+
+    						$ctx = stream_context_create();
+    						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
+    						stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
+
+    						// Open a connection to the APNS server
+    						$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+
+    						if (!$fp)
+    							exit("Failed to connect: $err $errstr" . PHP_EOL);
+
+
+    							$payload = '{
+    								"aps": {
+    									"alert": {
+    										"body": "'.$subject.'",
+    										"title": "'.$cnotes.'"
+    									},
+    									"mutable-content": 1
+    								},
+    								"mediaUrl": "'.$img_url.'",
+    								"mediaType": "image"
+    							}';
+
+
+    						foreach($device_token as $token) {
+    							// Build the binary notification
+    							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $token)) . pack("n", strlen($payload)) . $payload;
+    							$result = fwrite($fp, $msg, strlen($msg));
+    						}
+
+    							fclose($fp);
+    							$i = $i+1;
+    				}
+
+    			}
+    			$data3= array("status"=>"Notify");
+                return $data3;
+    		}
+
+      }
+
+
+
      function send_notification_for_teacher_substitution($tname,$sub_teacher,$sub_tname,$leave_date,$cls_id,$period_id)
 	 {
         $sql="SELECT user_id,name,user_master_id,teacher_id FROM edu_users WHERE teacher_id='$sub_teacher' AND user_type=2 AND user_master_id='$sub_teacher'";
