@@ -727,14 +727,14 @@ Class Notificationmodel extends CI_Model
 						);
 							
 					$payload = '{
-							"aps": {
-								"alert": {
-									"body": "'.$notes.'",
-									"title": "'.$title.'"
-								}';
+						"aps": {
+							"alert": {
+								"body": "'.$notes.'",
+								"title": "'.$title.'"
+							}';
 						
-					print_r($push);
-					print_r ($payload);
+					//print_r($push);
+					//print_r ($payload);
 							
 					$tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$users_id' AND u.user_master_id=t.teacher_id AND u.status='Active'";
 					$tres=$this->db->query($tsql);
@@ -748,13 +748,16 @@ Class Notificationmodel extends CI_Model
 						$tgsm=$this->db->query($sql);
 						$tres1=$tgsm->result();
 		 
-						if($tgsm->num_rows()>0){
+						if($tgsm->num_rows()>0)
+						{
 							foreach($tres1 as $trow)
 							{
 							   echo $gcm_key = $trow->gcm_key;
 							   echo $mobile_type = $trow->mobile_type;
+							   echo "<br>";
 						   
-								if ($mobile_type =='1'){							
+								if ($mobile_type =='1')
+								{							
 									
 									//getting the push from push object
 									$mPushNotification = $push->getPush();
@@ -763,9 +766,7 @@ Class Notificationmodel extends CI_Model
 									$firebase = new Firebase();
 									$firebase->send($gcm_key,$mPushNotification);		
 									
-								} else {
-									
-									
+								} else {								
 
 									$ctx = stream_context_create();
 									stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
@@ -776,9 +777,7 @@ Class Notificationmodel extends CI_Model
 
 									if (!$fp)
 										exit("Failed to connect: $err $errstr" . PHP_EOL);
-									
-									
-										
+																		
 										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $token)) . pack("n", strlen($payload)) . $payload;
 										$result = fwrite($fp, $msg, strlen($msg));
 										fclose($fp);
