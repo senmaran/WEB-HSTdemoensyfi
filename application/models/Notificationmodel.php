@@ -712,6 +712,29 @@ Class Notificationmodel extends CI_Model
 				{
 				  //echo $users_id;
 
+					$push = null;
+					 //first check if the push has an image with it
+					$push = new Push(
+							$title,
+							$notes,
+							null
+						);
+							
+					$payload = '{
+							"aps": {
+								"alert": {
+									"body": "'.$notes.'",
+									"title": "'.$title.'"
+								},
+								"mutable-content": 1
+							},
+							"mediaUrl": "'.$img_url.'",
+							"mediaType": "image"
+						}';
+						
+					print_r($push);
+					print_r ($payload);
+							
 					$tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$users_id' AND u.user_master_id=t.teacher_id AND u.status='Active'";
 					$tres=$this->db->query($tsql);
 					$tresult1=$tres->result();
@@ -727,21 +750,14 @@ Class Notificationmodel extends CI_Model
 						if($tgsm->num_rows()>0){
 							foreach($tres1 as $trow)
 							{
-							   $gcm_key = $trow->gcm_key;
-							   $mobile_type = $trow->mobile_type;
+							   echo $gcm_key = $trow->gcm_key;
+							   echo $mobile_type = $trow->mobile_type;
 						   
-									if ($mobile_type =='1'){
+								if ($mobile_type =='1'){
 									require_once 'assets/notification/Firebase.php';
 									require_once 'assets/notification/Push.php';
 									
-									$push = null;
-									 //first check if the push has an image with it
-									$push = new Push(
-											$title,
-											$notes,
-											null
-										);
-							print_r($push);
+									
 									//getting the push from push object
 									$mPushNotification = $push->getPush();
 
@@ -764,17 +780,7 @@ Class Notificationmodel extends CI_Model
 									if (!$fp)
 										exit("Failed to connect: $err $errstr" . PHP_EOL);
 									
-									$payload = '{
-											"aps": {
-												"alert": {
-													"body": "'.$notes.'",
-													"title": "'.$title.'"
-												},
-												"mutable-content": 1
-											},
-											"mediaUrl": "'.$img_url.'",
-											"mediaType": "image"
-										}';
+									
 										
 										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $token)) . pack("n", strlen($payload)) . $payload;
 										$result = fwrite($fp, $msg, strlen($msg));
