@@ -731,12 +731,7 @@ Class Notificationmodel extends CI_Model
 								"alert": {
 									"body": "'.$notes.'",
 									"title": "'.$title.'"
-								},
-								"mutable-content": 1
-							},
-							"mediaUrl": "'.$img_url.'",
-							"mediaType": "image"
-						}';
+								}';
 						
 					print_r($push);
 					print_r ($payload);
