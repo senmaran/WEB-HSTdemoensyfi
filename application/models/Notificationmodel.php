@@ -752,13 +752,11 @@ Class Notificationmodel extends CI_Model
 						{
 							foreach($tres1 as $trow)
 							{
-							   echo $gcm_key = $trow->gcm_key;
-							   echo $mobile_type = $trow->mobile_type;
-							   echo "<br>";
+							   $gcm_key = $trow->gcm_key;
+							   $mobile_type = $trow->mobile_type;
 						   
 								if ($mobile_type =='1')
 								{							
-									
 									//getting the push from push object
 									$mPushNotification = $push->getPush();
 
