@@ -137,11 +137,46 @@ Class Notificationmodel extends CI_Model
 				$title = $rows->circular_title;
 				$notes = $rows->circular_description;
 			}
+
+
+			require_once 'assets/notification/Firebase.php';
+			require_once 'assets/notification/Push.php';
 			
+			$push = null;
+			 //first check if the push has an image with it
+			$push = new Push(
+					$title,
+					$notes,
+					null
+				);
+							
 		
+			$passphrase = 'hs123';
+			$loction ='assets/notification/heylaapp.pem';
+			$payload = '{
+						"aps": {
+							"alert": {
+								"body": "'.$notes.'",
+								"title": "'.$title.'"
+							}
+						}
+					}';
+			/* $payload = '{
+						"aps": {
+							"alert": {
+								"body": "'.$notes.'",
+								"title": "'.$title.'"
+							},
+							"mutable-content": 1
+						},
+						"mediaUrl": "'.$img_url.'",
+						"mediaType": "image"
+					}'; */
+
+// ---------------------- Teachers----------------------
 	        if($tusers_id!='')
 			{
-			      $countid = count($tusers_id);
+			     $countid = count($tusers_id);
                 
 				 for($i=0;$i<$countid;$i++)
 				 {
@@ -158,29 +193,16 @@ Class Notificationmodel extends CI_Model
 					} 
 
 					if ($mobile_type =='1'){
-						require_once 'assets/notification/Firebase.php';
-						require_once 'assets/notification/Push.php';
-						
-						$push = null;
-						 //first check if the push has an image with it
-						$push = new Push(
-								$title,
-								$notes,
-								null
-							);
 				
 						//getting the push from push object
 						$mPushNotification = $push->getPush();
 
 						//creating firebase class object
 						$firebase = new Firebase();
-						$firebase->send($gcm_key,$mPushNotification);		
+						$firebase->send(array($gcm_key),$mPushNotification);		
 						
 					} else {
 						
-						$passphrase = 'hs123';
-						$loction ='assets/notification/heylaapp.pem';
-
 						$ctx = stream_context_create();
 						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 						stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -189,21 +211,9 @@ Class Notificationmodel extends CI_Model
 						$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
 
 						if (!$fp)
-							exit("Failed to connect: $err $errstr" . PHP_EOL);
-						
-						$payload = '{
-								"aps": {
-									"alert": {
-										"body": "'.$notes.'",
-										"title": "'.$title.'"
-									},
-									"mutable-content": 1
-								},
-								"mediaUrl": "'.$img_url.'",
-								"mediaType": "image"
-							}';
+							exit("Failed to connect: $err $errstr" . PHP_EOL);					
 							
-							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $token)) . pack("n", strlen($payload)) . $payload;
+							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
 							$result = fwrite($fp, $msg, strlen($msg));
 							fclose($fp);
 						
@@ -212,11 +222,11 @@ Class Notificationmodel extends CI_Model
              }
 
 
-            // ---------------------- Board Members----------------------
+// ---------------------- Board Members----------------------
 
            if($bmusers_id!='')
 			{
-             $countid = count($bmusers_id);
+				$countid = count($bmusers_id);
                 
 				 for($i=0;$i<$countid;$i++)
 				 {
@@ -232,29 +242,16 @@ Class Notificationmodel extends CI_Model
 					} 
 
 					if ($mobile_type =='1'){
-						require_once 'assets/notification/Firebase.php';
-						require_once 'assets/notification/Push.php';
 						
-						$push = null;
-						 //first check if the push has an image with it
-						$push = new Push(
-								$title,
-								$notes,
-								null
-							);
-				
 						//getting the push from push object
 						$mPushNotification = $push->getPush();
 
 						//creating firebase class object
 						$firebase = new Firebase();
-						$firebase->send($gcm_key,$mPushNotification);		
+						$firebase->send(array($gcm_key),$mPushNotification);		
 						
 					} else {
 						
-						$passphrase = 'hs123';
-						$loction ='assets/notification/heylaapp.pem';
-
 						$ctx = stream_context_create();
 						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 						stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -265,78 +262,16 @@ Class Notificationmodel extends CI_Model
 						if (!$fp)
 							exit("Failed to connect: $err $errstr" . PHP_EOL);
 						
-						$payload = '{
-								"aps": {
-									"alert": {
-										"body": "'.$notes.'",
-										"title": "'.$title.'"
-									},
-									"mutable-content": 1
-								},
-								"mediaUrl": "'.$img_url.'",
-								"mediaType": "image"
-							}';
-							
-							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $token)) . pack("n", strlen($payload)) . $payload;
+							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
 							$result = fwrite($fp, $msg, strlen($msg));
 							fclose($fp);
 						
 					}
 				 }
-			 
-			 
-			 
-			 
-                     /* $data=array(
-                        'message' => $notes,
-                        'ctitle'  => $title,
-                        'vibrate'	=> 1,
-                          'sound'   => 1
-                  );
-           for($i=0;$i<$countid;$i++)
-           {
-            $userid=$bmusers_id[$i];
-			
-            $sql="SELECT * FROM edu_notification WHERE user_id='$userid'";
-            $tgsm=$this->db->query($sql);
-              $res=$tgsm->result();
-            foreach($res as $row)
-            { } $gsmkey=array($row->gcm_key);
-            //echo $gsmkey;
-            //sendPushNotification($data,$gsmkey);
-            $apiKey = 'AAAADRDlvEI:APA91bFi-gSDCTCnCRv1kfRd8AmWu0jUkeBQ0UfILrUq1-asMkBSMlwamN6iGtEQs72no-g6Nw0lO5h4bpN0q7JCQkuTYsdPnM1yfilwxYcKerhsThCwt10cQUMKrBrQM2B3U3QaYbWQ';
-            // Set POST request body
-            $post = array(
-                  'registration_ids'  => $gsmkey,
-                  'data'              => $data,
-                   );
-            // Set CURL request headers
-            $headers = array(
-                  'Authorization: key=' . $apiKey,
-                  'Content-Type: application/json'
-                    );
-               // Initialize curl handle
-              $ch = curl_init();
-              // Set URL to GCM push endpoint
-              curl_setopt($ch, CURLOPT_URL, 'https://gcm-http.googleapis.com/gcm/send');
-              // Set request method to POST
-              curl_setopt($ch, CURLOPT_POST, true);
-              // Set custom request headers
-              curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-              // Get the response back as string instead of printing it
-              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-              // Set JSON post data
-              curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
-              // Actually send the request
-              $result = curl_exec($ch);
-
-              curl_close($ch); 
-
-           }*/
-        }
+			}
 
 
-	//----------------------------------------------Students----------------------------------------
+//----------------------------------------------Students----------------------------------------
 
 			if($stusers_id!='')
 		     {
@@ -356,29 +291,16 @@ Class Notificationmodel extends CI_Model
 					} 
 
 					if ($mobile_type =='1'){
-						require_once 'assets/notification/Firebase.php';
-						require_once 'assets/notification/Push.php';
 						
-						$push = null;
-						 //first check if the push has an image with it
-						$push = new Push(
-								$title,
-								$notes,
-								null
-							);
-				
 						//getting the push from push object
 						$mPushNotification = $push->getPush();
 
 						//creating firebase class object
 						$firebase = new Firebase();
-						$firebase->send($gcm_key,$mPushNotification);		
+						$firebase->send(array($gcm_key),$mPushNotification);		
 						
 					} else {
 						
-						$passphrase = 'hs123';
-						$loction ='assets/notification/heylaapp.pem';
-
 						$ctx = stream_context_create();
 						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 						stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -389,86 +311,16 @@ Class Notificationmodel extends CI_Model
 						if (!$fp)
 							exit("Failed to connect: $err $errstr" . PHP_EOL);
 						
-						$payload = '{
-								"aps": {
-									"alert": {
-										"body": "'.$notes.'",
-										"title": "'.$title.'"
-									},
-									"mutable-content": 1
-								},
-								"mediaUrl": "'.$img_url.'",
-								"mediaType": "image"
-							}';
-							
-							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $token)) . pack("n", strlen($payload)) . $payload;
-							$result = fwrite($fp, $msg, strlen($msg));
-							fclose($fp);
+						$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+						$result = fwrite($fp, $msg, strlen($msg));
+						fclose($fp);
 						
 					}
 				 }
-				 
-				  /* //echo $scountid;
-                  $data=array(
-				              'message' => $notes,
-							  'ctitle'  => $title,
-							  'vibrate'	=> 1,
-			                  'sound'   => 1
-							  );
+				
+             }
 
-				 for($i=0;$i<$scountid;$i++)
-				 {
-
-				    $clsid=$stusers_id[$i];
-					 //print_r($data);
-					 $sql1="SELECT u.user_id,u.user_type,u.user_master_id,u.student_id,e.enroll_id,e.admission_id,e.admisn_no,e.name,e.class_id,a.admission_id,a.admisn_no,a.name,a.mobile FROM edu_enrollment AS e,edu_admission AS a,edu_users AS u  WHERE e.class_id='$clsid' AND e.admission_id=a.admission_id  AND u.user_type=3 AND a.admission_id=u.user_master_id AND
-            a.admission_id=u.student_id";
-					$scell=$this->db->query($sql1);
-					$res1=$scell->result();
-					foreach($res1 as $row1)
-					 {
-					    $userid=$row1->user_id;
-						$sql="SELECT * FROM edu_notification WHERE user_id='$userid'";
-            $sgsm=$this->db->query($sql);
-						$res=$sgsm->result();
-						foreach($res as $row)
-					    {
-						   $gsmkey=array($row->gcm_key);
-						   //print_r($gsmkey);exit;
-						  // sendPushNotification($data,$gsmkey);
-
-						  $apiKey = 'AAAADRDlvEI:APA91bFi-gSDCTCnCRv1kfRd8AmWu0jUkeBQ0UfILrUq1-asMkBSMlwamN6iGtEQs72no-g6Nw0lO5h4bpN0q7JCQkuTYsdPnM1yfilwxYcKerhsThCwt10cQUMKrBrQM2B3U3QaYbWQ';
-							// Set POST request body
-							$post = array(
-										'registration_ids'  => $gsmkey,
-										'data'              => $data,
-										 );
-							// Set CURL request headers
-							$headers = array(
-										'Authorization: key=' . $apiKey,
-										'Content-Type: application/json'
-											);
-							// Initialize curl handle
-							$ch = curl_init();
-							// Set URL to GCM push endpoint
-							curl_setopt($ch, CURLOPT_URL, 'https://gcm-http.googleapis.com/gcm/send');
-							// Set request method to POST
-							curl_setopt($ch, CURLOPT_POST, true);
-							// Set custom request headers
-							curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-							// Get the response back as string instead of printing it
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-							// Set JSON post data
-							curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
-							// Actually send the request
-							$result = curl_exec($ch);
-							curl_close($ch);
-					    }
-					}
-				 } */
-             }//studentclose
-
-		//---------------------------------Parents-------------------------------------------
+//---------------------------------Parents-------------------------------------------
 
 			 if($pusers_id!='')
 		     {
@@ -488,29 +340,16 @@ Class Notificationmodel extends CI_Model
 					} 
 
 					if ($mobile_type =='1'){
-						require_once 'assets/notification/Firebase.php';
-						require_once 'assets/notification/Push.php';
-						
-						$push = null;
-						 //first check if the push has an image with it
-						$push = new Push(
-								$title,
-								$notes,
-								null
-							);
 				
 						//getting the push from push object
 						$mPushNotification = $push->getPush();
 
 						//creating firebase class object
 						$firebase = new Firebase();
-						$firebase->send($gcm_key,$mPushNotification);		
+						$firebase->send(array($gcm_key),$mPushNotification);		
 						
 					} else {
 						
-						$passphrase = 'hs123';
-						$loction ='assets/notification/heylaapp.pem';
-
 						$ctx = stream_context_create();
 						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 						stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -520,122 +359,23 @@ Class Notificationmodel extends CI_Model
 
 						if (!$fp)
 							exit("Failed to connect: $err $errstr" . PHP_EOL);
-						
-						$payload = '{
-								"aps": {
-									"alert": {
-										"body": "'.$notes.'",
-										"title": "'.$title.'"
-									},
-									"mutable-content": 1
-								},
-								"mediaUrl": "'.$img_url.'",
-								"mediaType": "image"
-							}';
-							
-							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $token)) . pack("n", strlen($payload)) . $payload;
-							$result = fwrite($fp, $msg, strlen($msg));
-							fclose($fp);
+					
+						$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+						$result = fwrite($fp, $msg, strlen($msg));
+						fclose($fp);
 						
 					}
 				 }
-				 
-				  /* //echo $pcountid;
-                  $data=array(
-				              'message' => $notes,
-							  'ctitle'  => $title,
-							  'vibrate'	=> 1,
-			                  'sound'   => 1
-							  );
-
-				 for($i=0;$i<$pcountid;$i++)
-				 {
-
-				    $clsid=$pusers_id[$i];
-					 //print_r($data);
-					 $pgid="SELECT e.enroll_id,e.admission_id,e.admisn_no,e.name,e.class_id FROM edu_enrollment AS e WHERE e.class_id='$clsid'";
-					 $pcell=$this->db->query($pgid);
-				     $res2=$pcell->result();
-				     foreach($res2 as $row2)
-				     {
-					  $stuid=$row2->admission_id;
-					  $class="SELECT p.id,p.admission_id,u.user_id,u.user_type,u.user_master_id,u.parent_id FROM edu_parents AS p,edu_users AS u WHERE FIND_IN_SET('$stuid',admission_id) AND u.parent_id=p.id AND u.user_master_id=p.id AND u.user_type='4' AND u.status='Active'";
-					  $pcell1=$this->db->query($class);
-					  $res3=$pcell1->result();
-					  foreach($res3 as $row3)
-					   {
-					    $userid=$row3->user_id;
-						 $sql="SELECT * FROM edu_notification WHERE user_id='$userid'";
-						$pgsm=$this->db->query($sql);
-						$pres=$pgsm->result();
-						foreach($pres as $prow)
-					    {
-						   $gsmkey=array($prow->gcm_key);
-						   //print_r($gsmkey);exit;
-						  // sendPushNotification($data,$gsmkey);
-						  $apiKey = 'AAAADRDlvEI:APA91bFi-gSDCTCnCRv1kfRd8AmWu0jUkeBQ0UfILrUq1-asMkBSMlwamN6iGtEQs72no-g6Nw0lO5h4bpN0q7JCQkuTYsdPnM1yfilwxYcKerhsThCwt10cQUMKrBrQM2B3U3QaYbWQ';
-							// Set POST request body
-							$post = array(
-										'registration_ids'  => $gsmkey,
-										'data'              => $data,
-										 );
-							// Set CURL request headers
-							$headers = array(
-										'Authorization: key=' . $apiKey,
-										'Content-Type: application/json'
-											);
-							// Initialize curl handle
-							$ch = curl_init();
-							// Set URL to GCM push endpoint
-							curl_setopt($ch, CURLOPT_URL, 'https://gcm-http.googleapis.com/gcm/send');
-							// Set request method to POST
-							curl_setopt($ch, CURLOPT_POST, true);
-							// Set custom request headers
-							curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-							// Get the response back as string instead of printing it
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-							// Set JSON post data
-							curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
-							// Actually send the request
-							$result = curl_exec($ch);
-							curl_close($ch);
-					    }
-					}
-				 }
-			  } */
-             }//Parents close
+				  
+             }
 
 
-			//------------------------------Admin-----------------------
+//------------------------------All Select-----------------------
 			if($users_id!='')
 			{
-				require_once 'assets/notification/Firebase.php';
-				require_once 'assets/notification/Push.php';
-				$push = null;
-				
-				$passphrase = 'hs123';
-				$loction ='assets/notification/heylaapp.pem';
-								
-				 //first check if the push has an image with it
-				$push = new Push(
-						$title,
-						$notes,
-						null
-				);
-						
-				$payload = '{
-					"aps": {
-						"alert": {
-							"body": "'.$notes.'",
-							"title": "'.$title.'"
-				}';
-
-				//------------------------Teacher----------------------
+	//------------------------Teacher----------------------
 				if($users_id==2)
 				{
-					//echo $users_id;
-					//print_r($push);
-					//print_r ($payload);
 							
 					$tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$users_id' AND u.user_master_id=t.teacher_id AND u.status='Active'";
 					$tres=$this->db->query($tsql);
@@ -677,159 +417,75 @@ Class Notificationmodel extends CI_Model
 									if (!$fp)
 										exit("Failed to connect: $err $errstr" . PHP_EOL);
 																		
-										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $token)) . pack("n", strlen($payload)) . $payload;
-										$result = fwrite($fp, $msg, strlen($msg));
+										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+										echo $result = fwrite($fp, $msg, strlen($msg));
 										fclose($fp);
 									
 								}
 							}
-						   /* //print_r($gsmkey);exit;
-						  // sendPushNotification($data,$gsmkey);
-
-						  $apiKey = 'AAAADRDlvEI:APA91bFi-gSDCTCnCRv1kfRd8AmWu0jUkeBQ0UfILrUq1-asMkBSMlwamN6iGtEQs72no-g6Nw0lO5h4bpN0q7JCQkuTYsdPnM1yfilwxYcKerhsThCwt10cQUMKrBrQM2B3U3QaYbWQ';
-							// Set POST request body
-							$post = array(
-										'registration_ids'  => $gsmkey,
-										'data'              => $data,
-										 );
-							// Set CURL request headers
-							$headers = array(
-										'Authorization: key=' . $apiKey,
-										'Content-Type: application/json'
-											);
-							// Initialize curl handle
-							$ch = curl_init();
-							// Set URL to GCM push endpoint
-							curl_setopt($ch, CURLOPT_URL, 'https://gcm-http.googleapis.com/gcm/send');
-							// Set request method to POST
-							curl_setopt($ch, CURLOPT_POST, true);
-							// Set custom request headers
-							curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-							// Get the response back as string instead of printing it
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-							// Set JSON post data
-							curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
-							// Actually send the request
-							$result = curl_exec($ch);
-							curl_close($ch); */
+						  
 					    }
 				  }
 				}
 
-        if($users_id==5)
-        {
-         //echo $users_id;
+	//---------------------------Board Memebers----------------------
 
-          $tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$users_id' AND u.user_master_id=t.teacher_id AND u.status='Active'";
-          $tres=$this->db->query($tsql);
-          $tresult1=$tres->result();
-          foreach($tresult1 as $trows)
-          {
-            $userid=$trows->user_id;
+			if($users_id==5)
+			{
+				  $tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$users_id' AND u.user_master_id=t.teacher_id AND u.status='Active'";
+				  $tres=$this->db->query($tsql);
+				  $tresult1=$tres->result();
+				  foreach($tresult1 as $trows)
+				  {
+					$userid=$trows->user_id;
 
-            $sql="SELECT * FROM edu_notification WHERE user_id='$userid'";
-            $tgsm=$this->db->query($sql);
-            $tres1=$tgsm->result();
-			
-			if($tgsm->num_rows()>0){
-				
-				foreach($tres1 as $trow)
-				{
-				   $gcm_key = $trow->gcm_key;
-				   $mobile_type = $trow->mobile_type;
-			   
-					   if ($mobile_type =='1'){
-								require_once 'assets/notification/Firebase.php';
-								require_once 'assets/notification/Push.php';
-								
-								$push = null;
-								 //first check if the push has an image with it
-								$push = new Push(
-										$title,
-										$notes,
-										null
-									);
+					$sql="SELECT * FROM edu_notification WHERE user_id='$userid'";
+					$tgsm=$this->db->query($sql);
+					$tres1=$tgsm->result();
+					
+					if($tgsm->num_rows()>0){
 						
-								//getting the push from push object
-								$mPushNotification = $push->getPush();
-
-								//creating firebase class object
-								$firebase = new Firebase();
-								$firebase->send($gcm_key,$mPushNotification);		
+						foreach($tres1 as $trow)
+						{
+						   $gcm_key = $trow->gcm_key;
+						   $mobile_type = $trow->mobile_type;
+					   
+							   if ($mobile_type =='1'){
 								
-							} else {
-								
-								$passphrase = 'hs123';
-								$loction ='assets/notification/heylaapp.pem';
+										//getting the push from push object
+										$mPushNotification = $push->getPush();
 
-								$ctx = stream_context_create();
-								stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
-								stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
+										//creating firebase class object
+										$firebase = new Firebase();
+										$firebase->send(array($gcm_key),$mPushNotification);		
+										
+									} else {
+										
+										$ctx = stream_context_create();
+										stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
+										stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
 
-								// Open a connection to the APNS server
-								$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+										// Open a connection to the APNS server
+										$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
 
-								if (!$fp)
-									exit("Failed to connect: $err $errstr" . PHP_EOL);
-								
-								$payload = '{
-										"aps": {
-											"alert": {
-												"body": "'.$notes.'",
-												"title": "'.$title.'"
-											},
-											"mutable-content": 1
-										},
-										"mediaUrl": "'.$img_url.'",
-										"mediaType": "image"
-									}';
-									
-									$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $token)) . pack("n", strlen($payload)) . $payload;
-									$result = fwrite($fp, $msg, strlen($msg));
-									fclose($fp);
-								
-						}
+										if (!$fp)
+											exit("Failed to connect: $err $errstr" . PHP_EOL);
+																		
+											$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $token)) . pack("n", strlen($payload)) . $payload;
+											$result = fwrite($fp, $msg, strlen($msg));
+											fclose($fp);
+										
+								}
+							}
 					}
-               /* //print_r($gsmkey);exit;
-              // sendPushNotification($data,$gsmkey);
-
-              $apiKey = 'AAAADRDlvEI:APA91bFi-gSDCTCnCRv1kfRd8AmWu0jUkeBQ0UfILrUq1-asMkBSMlwamN6iGtEQs72no-g6Nw0lO5h4bpN0q7JCQkuTYsdPnM1yfilwxYcKerhsThCwt10cQUMKrBrQM2B3U3QaYbWQ';
-              // Set POST request body
-              $post = array(
-                    'registration_ids'  => $gsmkey,
-                    'data'              => $data,
-                     );
-              // Set CURL request headers
-              $headers = array(
-                    'Authorization: key=' . $apiKey,
-                    'Content-Type: application/json'
-                      );
-              // Initialize curl handle
-              $ch = curl_init();
-              // Set URL to GCM push endpoint
-              curl_setopt($ch, CURLOPT_URL, 'https://gcm-http.googleapis.com/gcm/send');
-              // Set request method to POST
-              curl_setopt($ch, CURLOPT_POST, true);
-              // Set custom request headers
-              curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-              // Get the response back as string instead of printing it
-              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-              // Set JSON post data
-              curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
-              // Actually send the request
-              $result = curl_exec($ch);
-              curl_close($ch); */
-              }
-          }
-        }
+				}
+			}
 
 
 
-				//---------------------------Students----------------------
+	//---------------------------Students----------------------
 				if($users_id==3)
 				{
-				   //echo $users_id;
-
 					$ssql="SELECT u.user_id,u.user_type,u.user_master_id,u.name,a.admission_id,a.name FROM edu_users AS u,edu_admission AS a  WHERE u.user_type='$users_id' AND u.user_master_id=a.admission_id AND u.name=a.name AND u.status='Active'";
 					$sres2=$this->db->query($ssql);
 					$sresult2=$sres2->result();
@@ -844,21 +500,10 @@ Class Notificationmodel extends CI_Model
 						if($sgsm->num_rows()>0){
 							foreach($sres1 as $srow)
 							{
-							
 							$gcm_key = $trow->gcm_key;
 							$mobile_type = $trow->mobile_type;
 			   
 								if ($mobile_type =='1'){
-									require_once 'assets/notification/Firebase.php';
-									require_once 'assets/notification/Push.php';
-									
-									$push = null;
-									 //first check if the push has an image with it
-									$push = new Push(
-											$title,
-											$notes,
-											null
-										);
 							
 									//getting the push from push object
 									$mPushNotification = $push->getPush();
@@ -869,8 +514,6 @@ Class Notificationmodel extends CI_Model
 									
 								} else {
 									
-									$passphrase = 'hs123';
-									$loction ='assets/notification/heylaapp.pem';
 
 									$ctx = stream_context_create();
 									stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
@@ -881,63 +524,21 @@ Class Notificationmodel extends CI_Model
 
 									if (!$fp)
 										exit("Failed to connect: $err $errstr" . PHP_EOL);
-									
-									$payload = '{
-											"aps": {
-												"alert": {
-													"body": "'.$notes.'",
-													"title": "'.$title.'"
-												},
-												"mutable-content": 1
-											},
-											"mediaUrl": "'.$img_url.'",
-											"mediaType": "image"
-										}';
-										
+																			
 										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $token)) . pack("n", strlen($payload)) . $payload;
 										$result = fwrite($fp, $msg, strlen($msg));
 										fclose($fp);
 									
 								}
 							}
-						   /* $gsmkey=array($srow->gcm_key);
-						   //print_r($gsmkey);exit;
-
-						  $apiKey = 'AAAADRDlvEI:APA91bFi-gSDCTCnCRv1kfRd8AmWu0jUkeBQ0UfILrUq1-asMkBSMlwamN6iGtEQs72no-g6Nw0lO5h4bpN0q7JCQkuTYsdPnM1yfilwxYcKerhsThCwt10cQUMKrBrQM2B3U3QaYbWQ';
-							// Set POST request body
-							$post = array(
-										'registration_ids'  => $gsmkey,
-										'data'              => $data,
-										 );
-							// Set CURL request headers
-							$headers = array(
-										'Authorization: key=' . $apiKey,
-										'Content-Type: application/json'
-											);
-							// Initialize curl handle
-							$ch = curl_init();
-							// Set URL to GCM push endpoint
-							curl_setopt($ch, CURLOPT_URL, 'https://gcm-http.googleapis.com/gcm/send');
-							// Set request method to POST
-							curl_setopt($ch, CURLOPT_POST, true);
-							// Set custom request headers
-							curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-							// Get the response back as string instead of printing it
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-							// Set JSON post data
-							curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
-							// Actually send the request
-							$result = curl_exec($ch);
-							curl_close($ch); */
 					    }
 
 				   }
 				}
 
-					//---------------------------Parents--------------------------------------------
+		//---------------------------Parents--------------------------------------------
 				if($users_id==4)
 				{
-				   //echo $users_id;
 
 					$psql="SELECT u.user_id,u.user_type,u.user_master_id,u.name,p.id FROM edu_users AS u,edu_parents AS p WHERE u.user_type='$users_id' AND u.user_master_id=p.id AND u.status='Active'";
 					$pres2=$this->db->query($psql);
@@ -957,17 +558,7 @@ Class Notificationmodel extends CI_Model
 							$mobile_type = $prow->mobile_type;
 			   
 							if ($mobile_type =='1'){
-									require_once 'assets/notification/Firebase.php';
-									require_once 'assets/notification/Push.php';
-									
-									$push = null;
-									 //first check if the push has an image with it
-									$push = new Push(
-											$title,
-											$notes,
-											null
-										);
-							
+
 									//getting the push from push object
 									$mPushNotification = $push->getPush();
 
@@ -977,8 +568,6 @@ Class Notificationmodel extends CI_Model
 									
 								} else {
 									
-									$passphrase = 'hs123';
-									$loction ='assets/notification/heylaapp.pem';
 
 									$ctx = stream_context_create();
 									stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
@@ -990,17 +579,6 @@ Class Notificationmodel extends CI_Model
 									if (!$fp)
 										exit("Failed to connect: $err $errstr" . PHP_EOL);
 									
-									$payload = '{
-											"aps": {
-												"alert": {
-													"body": "'.$notes.'",
-													"title": "'.$title.'"
-												},
-												"mutable-content": 1
-											},
-											"mediaUrl": "'.$img_url.'",
-											"mediaType": "image"
-										}';
 										
 										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $token)) . pack("n", strlen($payload)) . $payload;
 										$result = fwrite($fp, $msg, strlen($msg));
@@ -1008,47 +586,15 @@ Class Notificationmodel extends CI_Model
 									
 									}
 							}
-						   /* $gsmkey=array($prow->gcm_key);
-						   //print_r($gsmkey);exit;
-
-						  $apiKey = 'AAAADRDlvEI:APA91bFi-gSDCTCnCRv1kfRd8AmWu0jUkeBQ0UfILrUq1-asMkBSMlwamN6iGtEQs72no-g6Nw0lO5h4bpN0q7JCQkuTYsdPnM1yfilwxYcKerhsThCwt10cQUMKrBrQM2B3U3QaYbWQ';
-							// Set POST request body
-							$post = array(
-										'registration_ids'  => $gsmkey,
-										'data'              => $data,
-										 );
-							// Set CURL request headers
-							$headers = array(
-										'Authorization: key=' . $apiKey,
-										'Content-Type: application/json'
-											);
-							// Initialize curl handle
-							$ch = curl_init();
-							// Set URL to GCM push endpoint
-							curl_setopt($ch, CURLOPT_URL, 'https://gcm-http.googleapis.com/gcm/send');
-							// Set request method to POST
-							curl_setopt($ch, CURLOPT_POST, true);
-							// Set custom request headers
-							curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-							// Get the response back as string instead of printing it
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-							// Set JSON post data
-							curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
-							// Actually send the request
-							$result = curl_exec($ch);
-							curl_close($ch); */
 					    }
-
 				   }
 				}
+
 
 			}
 	   
 		 }
 	   
-	   
-
-
 
 
 
