@@ -216,7 +216,9 @@ Class Notificationmodel extends CI_Model
 						$firebase = new Firebase();
 						$firebase->send(array($gcm_key),$mPushNotification);		
 						
-					} else {
+					}
+					if ($mobile_type =='2')
+					{
 						
 						$ctx = stream_context_create();
 						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
@@ -265,8 +267,10 @@ Class Notificationmodel extends CI_Model
 						$firebase = new Firebase();
 						$firebase->send(array($gcm_key),$mPushNotification);		
 						
-					} else {
-						
+					} 
+					
+					if ($mobile_type =='2')
+					{
 						$ctx = stream_context_create();
 						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 						stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -314,8 +318,9 @@ Class Notificationmodel extends CI_Model
 						$firebase = new Firebase();
 						$firebase->send(array($gcm_key),$mPushNotification);		
 						
-					} else {
-						
+					} 
+					if ($mobile_type =='2')
+					{	
 						$ctx = stream_context_create();
 						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 						stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -363,8 +368,9 @@ Class Notificationmodel extends CI_Model
 						$firebase = new Firebase();
 						$firebase->send(array($gcm_key),$mPushNotification);		
 						
-					} else {
-						
+					} 
+					if ($mobile_type =='2')
+					{
 						$ctx = stream_context_create();
 						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 						stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -420,8 +426,9 @@ Class Notificationmodel extends CI_Model
 									$firebase = new Firebase();
 									$firebase->send(array($gcm_key),$mPushNotification);		
 									
-								} else {								
-
+								} 
+								if ($mobile_type =='2')
+								{								
 									$ctx = stream_context_create();
 									stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 									stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -474,8 +481,9 @@ Class Notificationmodel extends CI_Model
 										$firebase = new Firebase();
 										$firebase->send(array($gcm_key),$mPushNotification);		
 										
-									} else {
-										
+									} 
+									if ($mobile_type =='2')
+									{
 										$ctx = stream_context_create();
 										stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 										stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -527,9 +535,9 @@ Class Notificationmodel extends CI_Model
 									$firebase = new Firebase();
 									$firebase->send(array($gcm_key),$mPushNotification);		
 									
-								} else {
-									
-
+								} 
+								if ($mobile_type =='2')
+								{
 									$ctx = stream_context_create();
 									stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 									stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -581,9 +589,9 @@ Class Notificationmodel extends CI_Model
 									$firebase = new Firebase();
 									$firebase->send(array($gcm_key),$mPushNotification);		
 									
-								} else {
-									
-
+								} 
+								if ($mobile_type =='2')
+								{
 									$ctx = stream_context_create();
 									stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 									stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -742,7 +750,9 @@ Class Notificationmodel extends CI_Model
 									$firebase = new Firebase();
 									$firebase->send(array($gcm_key),$mPushNotification);		
 									
-								} else {
+							} 
+							if ($mobile_type =='2')
+							{
 									
 
 									$ctx = stream_context_create();
@@ -761,7 +771,6 @@ Class Notificationmodel extends CI_Model
 										fclose($fp);
 									
 							}
-						   
 						   //$this->sendNotification($gcm_key,$notes);
 					  }
 
@@ -901,7 +910,9 @@ Class Notificationmodel extends CI_Model
 							$firebase = new Firebase();
 							$firebase->send(array($gcm_key),$mPushNotification);		
 								
-					} else {
+					}
+					if ($mobile_type =='2')
+					{
 						$title = 'Attendance';
 						$passphrase = 'hs123';
 						$loction ='assets/notification/heylaapp.pem';
