@@ -60,7 +60,6 @@ Class Smsmodel extends CI_Model
    public function sendSMS($Phoneno,$Message)
    {
          //Your authentication key
-         // $authKey = "191431AStibz285a4f14b4";
          $authKey = "242202ALE69fBMks5bbee06b";
 
          //Multiple mobiles numbers separated by comma
@@ -136,7 +135,7 @@ Class Smsmodel extends CI_Model
 
 //$textmessage='This is to inform you that as '.$tname.' is on leave, '.$sub_tname.' will be the substitute teacher to fill in for '.$leave_date.' class & section ('.$cname.'-'.$sename.') period ('.$period_id.') day/s.';
 
-	 $textmsg =urlencode($textmessage);
+	$textmsg =urlencode($textmessage);
 
 	$smsGatewayUrl = 'http://173.45.76.227/send.aspx?';
 
@@ -462,7 +461,7 @@ Class Smsmodel extends CI_Model
 			$home_work_details[]=$message;
 		  }
 			//print_r($home_work_details);
-		 		     $hdetails=implode('',$home_work_details);
+				$hdetails=implode('',$home_work_details);
 			   $phone=implode(',',$cell);
 			   $count1=count($cell);
 
@@ -493,9 +492,12 @@ Class Smsmodel extends CI_Model
            $abs_date=$rows->abs_date;
            $abs_status=$rows->abs_atatus;
 
-           $textmessage='Your child '.$st_name.' was marked '.$abs_status.' today, '.$abs_date.' ON '.$at_ses.' To Known more details login into http://bit.ly/2wLwdRQ';
+           $notes='Your child '.$st_name.' was marked '.$abs_status.' today, '.$abs_date.' ON '.$at_ses.' To Known more details login into http://bit.ly/2wLwdRQ';
 
-          $textmsg =urlencode($textmessage);
+
+			$stat=$this->sendSMS($parents_num,$notes);
+			
+          /* $textmsg =urlencode($textmessage);
           $smsGatewayUrl = 'http://173.45.76.227/send.aspx?';
           $api_element = 'username=kvmhss&pass=kvmhss123&route=trans1&senderid=KVMHSS';
           $api_params = $api_element.'&numbers='.$parents_num.'&message='.$textmsg;
@@ -512,9 +514,9 @@ Class Smsmodel extends CI_Model
          if(!$output)
          {
               $output =  file_get_contents($smsgatewaydata);
-            }
+         }*/
 
-        }
+        } 
       }
 
 
