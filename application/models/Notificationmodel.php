@@ -633,10 +633,7 @@ Class Notificationmodel extends CI_Model
 				//------------------------Teacher----------------------
 				if($users_id==2)
 				{
-				  //echo $users_id;
-				  
-					
-						
+					//echo $users_id;
 					//print_r($push);
 					//print_r ($payload);
 							
@@ -666,7 +663,7 @@ Class Notificationmodel extends CI_Model
 
 									//creating firebase class object
 									$firebase = new Firebase();
-									$firebase->send($gcm_key,$mPushNotification);		
+									$firebase->send(arrya($gcm_key),$mPushNotification);		
 									
 								} else {								
 
