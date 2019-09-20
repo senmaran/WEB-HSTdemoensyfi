@@ -810,7 +810,7 @@ Class Notificationmodel extends CI_Model
 			}
 		  
 			$notes[]=implode('',$home_work_details);
-			$title = $type;
+			//$title = $type;
 			
             $pid="SELECT p.id,u.user_id FROM edu_parents AS p,edu_enrollment AS e,edu_users AS u WHERE e.class_id='$clssid' AND FIND_IN_SET(e.admission_id,p.admission_id) AND p.primary_flag='Yes' AND p.id=u.user_master_id AND u.user_type='4' GROUP BY p.id";
 
@@ -832,7 +832,7 @@ Class Notificationmodel extends CI_Model
 				if ($mobile_type =='1'){
 						require_once 'assets/notification/Firebase.php';
 						require_once 'assets/notification/Push.php';
-						//$title = 'Attendance';
+						$title = 'Home work & Class test';
 						$push = null;
 						 //first check if the push has an image with it
 						$push = new Push(
@@ -851,7 +851,7 @@ Class Notificationmodel extends CI_Model
 					}
 					if ($mobile_type =='2')
 					{
-						//$title = 'Attendance';
+						$title = 'Home work & Class test';
 						$passphrase = 'hs123';
 						$loction ='assets/notification/heylaapp.pem';
 						$payload = '{
