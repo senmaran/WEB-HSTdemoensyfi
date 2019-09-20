@@ -61,13 +61,13 @@ Class Smsmodel extends CI_Model
    {
          //Your authentication key
          // $authKey = "191431AStibz285a4f14b4";
-         $authKey = "1234444";
+         $authKey = "242202ALE69fBMks5bbee06b";
 
          //Multiple mobiles numbers separated by comma
          $mobileNumber = "$Phoneno";
 
          //Sender ID,While using route4 sender id should be 6 characters long.
-         $senderId = "EDUAPP";
+         $senderId = "ENSYFI";
 
          //Your message to send, Add URL encoding here.
          $message = urlencode($Message);
