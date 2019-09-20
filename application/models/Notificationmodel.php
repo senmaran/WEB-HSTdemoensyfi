@@ -59,7 +59,7 @@ Class Notificationmodel extends CI_Model
 			/* foreach($device_token as $token) {
 				 $firebase->send(array($token),$mPushNotification);
 			} */
-
+			echo "Sucess";
 
       }
 
