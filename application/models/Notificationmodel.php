@@ -25,7 +25,7 @@ Class Notificationmodel extends CI_Model
       }
     }
 
-	function sendNotification($gcm_key,$notes)
+	/* function sendNotification($gcm_key,$notes)
     {
 		  $gcm_key = array($gcm_key);
 		  $data = array
@@ -71,7 +71,7 @@ Class Notificationmodel extends CI_Model
             curl_close($ch);
 
             // Debug GCM response
-      }
+      } */
 			
 
 
@@ -95,13 +95,15 @@ Class Notificationmodel extends CI_Model
 			$sename=$cls->sec_name;
 		}
 		
-		$textmessage='This is to inform you that as '.$tname.' is on leave,'.$sub_tname.' will be the substitute teacher to fill in for '.$cname.'-'.$sename.',period ('.$period_id.') on '.$leave_date.' ';
-		$data=array(
+		$notes = 'This is to inform you that as '.$tname.' is on leave,'.$sub_tname.' will be the substitute teacher to fill in for '.$cname.'-'.$sename.',period ('.$period_id.') on '.$leave_date.' ';
+		
+		
+		/* $data=array(
 				  'message' => $textmessage,
 				  'ctitle'  => "SUBSTITUTION",
 				  'vibrate'	=> 1,
 				  'sound'   => 1
-				  );
+				  ); */
 
 		$sql="SELECT * FROM edu_notification WHERE user_id='$userid'";
 		$tgsm=$this->db->query($sql);
@@ -109,8 +111,71 @@ Class Notificationmodel extends CI_Model
 		
 		foreach($tres1 as $trow)
 		{
-		   $gsmkey=array($trow->gcm_key);
-		   //print_r($gsmkey);exit;
+		   $gsm_key= $trow->gcm_key;
+		   $mobile_type= $trow->mobile_type;
+		   
+		   
+		   if ($mobile_type =='1'){
+				require_once 'assets/notification/Firebase.php';
+				require_once 'assets/notification/Push.php';
+				$title = 'Substitution';
+				$push = null;
+				 //first check if the push has an image with it
+				$push = new Push(
+						$title,
+						$notes,
+						null
+					);		
+		
+					//getting the push from push object
+					$mPushNotification = $push->getPush();
+
+					//creating firebase class object
+					$firebase = new Firebase();
+					$firebase->send(array($gcm_key),$mPushNotification);		
+								
+					}
+			if ($mobile_type =='2')
+			{
+				$title = 'Substitution';
+				$passphrase = 'hs123';
+				$loction ='assets/notification/heylaapp.pem';
+				$payload = '{
+							"aps": {
+								"alert": {
+									"body": "'.$notes.'",
+									"title": "'.$title.'"
+								}
+							}
+						}';
+						/* $payload = '{
+							"aps": {
+								"alert": {
+									"body": "'.$notes.'",
+									"title": "'.$title.'"
+								},
+								"mutable-content": 1
+							},
+							"mediaUrl": "'.$img_url.'",
+							"mediaType": "image"
+						}';  */
+
+				$ctx = stream_context_create();
+				stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
+				stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
+
+				// Open a connection to the APNS server
+				$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+
+				if (!$fp)
+					exit("Failed to connect: $err $errstr" . PHP_EOL);
+					
+					$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+					$result = fwrite($fp, $msg, strlen($msg));
+					fclose($fp);
+			}
+		   
+		  /*  //print_r($gsmkey);exit;
 		  $apiKey = 'AAAADRDlvEI:APA91bFi-gSDCTCnCRv1kfRd8AmWu0jUkeBQ0UfILrUq1-asMkBSMlwamN6iGtEQs72no-g6Nw0lO5h4bpN0q7JCQkuTYsdPnM1yfilwxYcKerhsThCwt10cQUMKrBrQM2B3U3QaYbWQ';
 			// Set POST request body
 			$post = array(
@@ -136,7 +201,7 @@ Class Notificationmodel extends CI_Model
 			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
 			// Actually send the request
 			$result = curl_exec($ch);
-			curl_close($ch);
+			curl_close($ch); */
 		}
 	 }
 
