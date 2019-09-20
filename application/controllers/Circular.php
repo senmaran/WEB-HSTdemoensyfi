@@ -216,8 +216,8 @@ class Circular extends CI_Controller
 		   $acount=count($citrcular_type);
 
 
-       //$datanotify = $this->notificationmodel->send_circular_via_push_notification($title_id,$notes,$tusers_id,$stusers_id,$pusers_id,$bmusers_id,$users_id);
-
+       $datanotify = $this->notificationmodel->send_circular_via_push_notification();
+exit;
 
 		  if($acount==3)
 		  {
