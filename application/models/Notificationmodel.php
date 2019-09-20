@@ -789,7 +789,7 @@ Class Notificationmodel extends CI_Model
 
     function send_notify_homework($user_id,$user_type,$createdate,$clssid)
 	{
-		   $year_id=$this->getYear();
+		  $year_id=$this->getYear();
 
 		  $sms="SELECT h.title,h.hw_details,h.hw_type,h.test_date,s.subject_name FROM edu_homework AS h,edu_subject AS s WHERE h.class_id='$clssid' AND h.year_id='$year_id' AND DATE_FORMAT(h.created_at,'%Y-%m-%d')='$createdate' AND h.subject_id=s.subject_id";
 		  $sms1=$this->db->query($sms);
@@ -804,27 +804,94 @@ Class Notificationmodel extends CI_Model
 			$tdat=$value->test_date;
 
 			if($ht=='HW'){ $type="Home Work" ; }else{ $type="Class Test" ; }
-			//$message="Title : " .$hwtitle. ",Type : " .$type. ", Details : " .$hwdetails .", Subject : ".$subname.", ";
-			  $message="Title : " .$hwtitle. ",Type : " .$type. ", Details : " .$hwdetails .", Subject : ".$subname.", ";
-			$home_work_details[]=$message;
-		  }
-		   $notes[]=implode('',$home_work_details);
-			//print_r($notes); exit;
+				//$message="Title : " .$hwtitle. ",Type : " .$type. ", Details : " .$hwdetails .", Subject : ".$subname.", ";
+				$message="Title : " .$hwtitle. ",Type : " .$type. ", Details : " .$hwdetails .", Subject : ".$subname.", ";
+				$home_work_details[]=$message;
+			}
+		  
+			$notes[]=implode('',$home_work_details);
+			$title = $type;
+			
             $pid="SELECT p.id,u.user_id FROM edu_parents AS p,edu_enrollment AS e,edu_users AS u WHERE e.class_id='$clssid' AND FIND_IN_SET(e.admission_id,p.admission_id) AND p.primary_flag='Yes' AND p.id=u.user_master_id AND u.user_type='4' GROUP BY p.id";
 
-		  $pid1=$this->db->query($pid);
-		  $pid2=$pid1->result();
+			  $pid1=$this->db->query($pid);
+			  $pid2=$pid1->result();
+			  
 		  foreach($pid2 as $res1)
 		  {
-		    $paid=$res1->user_id;
-		    $psql="SELECT user_id,gcm_key FROM edu_notification WHERE user_id='$paid'";
-           $pagsm=$this->db->query($psql);
-           $pares=$pagsm->result();
+			$paid=$res1->user_id;
+			$psql="SELECT user_id,gcm_key,mobile_type FROM edu_notification WHERE user_id='$paid'";
+			$pagsm=$this->db->query($psql);
+			$pares=$pagsm->result();
+			
            foreach($pares as $parow)
 		   {
-            $gcm_key=array($parow->gcm_key);
+				$gcm_key=$parow->gcm_key;
+				$mobile_type=$parow->mobile_type;
 
-            //$this->sendNotification($gcm_key,$notes);
+				if ($mobile_type =='1'){
+						require_once 'assets/notification/Firebase.php';
+						require_once 'assets/notification/Push.php';
+						$title = 'Attendance';
+						$push = null;
+						 //first check if the push has an image with it
+						$push = new Push(
+								$title,
+								$notes,
+								null
+							);		
+				
+							//getting the push from push object
+							$mPushNotification = $push->getPush();
+
+							//creating firebase class object
+							$firebase = new Firebase();
+							$firebase->send(array($gcm_key),$mPushNotification);		
+								
+					}
+					if ($mobile_type =='2')
+					{
+						$title = 'Attendance';
+						$passphrase = 'hs123';
+						$loction ='assets/notification/heylaapp.pem';
+						$payload = '{
+									"aps": {
+										"alert": {
+											"body": "'.$notes.'",
+											"title": "'.$title.'"
+										}
+									}
+								}';
+								/* $payload = '{
+									"aps": {
+										"alert": {
+											"body": "'.$notes.'",
+											"title": "'.$title.'"
+										},
+										"mutable-content": 1
+									},
+									"mediaUrl": "'.$img_url.'",
+									"mediaType": "image"
+								}';  */
+
+						$ctx = stream_context_create();
+						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
+						stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
+
+						// Open a connection to the APNS server
+						$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+
+						if (!$fp)
+							exit("Failed to connect: $err $errstr" . PHP_EOL);
+							
+							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+							$result = fwrite($fp, $msg, strlen($msg));
+							fclose($fp);
+					}
+
+
+
+			/* //$this->sendNotification($gcm_key,$notes);
 
               $data = array
                     (
@@ -866,10 +933,12 @@ Class Notificationmodel extends CI_Model
             // Close curl handle
             curl_close($ch);
             // Debug GCM response
-            }
-		  }
-		  if($result){  $data= array("status"=>"success");
-		      return $data;}
+            }*/
+		  } 
+		  
+			$data= array("status"=>"success");
+			return $data;
+		}
 
 	}
 
@@ -950,46 +1019,10 @@ Class Notificationmodel extends CI_Model
 							$result = fwrite($fp, $msg, strlen($msg));
 							fclose($fp);
 					}
-							
-          /* $data = array
-                (
-                'message' 	=> $notes,
-                'vibrate'	=> 1,
-                'sound'		=> 1
-                );
-
-        // Insert real GCM API key from the Google APIs Console
-        $apiKey = 'AAAADRDlvEI:APA91bFi-gSDCTCnCRv1kfRd8AmWu0jUkeBQ0UfILrUq1-asMkBSMlwamN6iGtEQs72no-g6Nw0lO5h4bpN0q7JCQkuTYsdPnM1yfilwxYcKerhsThCwt10cQUMKrBrQM2B3U3QaYbWQ';
-        // Set POST request body
-        $post = array(
-            'registration_ids'  => $gcm_key,
-            'data'              => $data,
-             );
-        // Set CURL request headers
-        $headers = array(
-            'Authorization: key=' . $apiKey,
-            'Content-Type: application/json'
-              );
-        // Initialize curl handle
-        $ch = curl_init();
-        // Set URL to GCM push endpoint
-        curl_setopt($ch, CURLOPT_URL, 'https://gcm-http.googleapis.com/gcm/send');
-        // Set request method to POST
-        curl_setopt($ch, CURLOPT_POST, true);
-        // Set custom request headers
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        // Get the response back as string instead of printing it
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // Set JSON post data
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
-        // Actually send the request
-        $result = curl_exec($ch);
-        // Handle errors
-        if (curl_errno($ch)) {
-        //echo 'GCM error: ' . curl_error($ch); */
         }
     }
 
-}
 
-  ?>
+
+}
+?>
