@@ -111,8 +111,8 @@ Class Notificationmodel extends CI_Model
 		
 		foreach($tres1 as $trow)
 		{
-		   $gsm_key= $trow->gcm_key;
-		   $mobile_type= $trow->mobile_type;
+		   $gcm_key = $trow->gcm_key;
+		   $mobile_type = $trow->mobile_type;
 		   
 		   
 		   if ($mobile_type =='1'){
