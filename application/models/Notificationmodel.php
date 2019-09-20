@@ -866,21 +866,83 @@ Class Notificationmodel extends CI_Model
 
 
     function send_notification_attendance($attend_id){
-     $query="SELECT eu.user_id,en.gcm_key,ee.name,ep.mobile,ep.id,ee.admission_id,eah.abs_date,eah.student_id,eah.a_status,eah.attend_period,
-    CASE WHEN attend_period = 0 THEN 'MORNING'  ELSE 'AFTERNOON' END  AS a_session,CASE WHEN a_status = 'L' THEN 'Leave' WHEN a_status = 'A' THEN 'Absent' ELSE 'OnDuty' END  AS abs_atatus  FROM edu_attendance_history AS eah LEFT JOIN edu_enrollment AS ee ON ee.enroll_id=eah.student_id LEFT JOIN edu_parents AS ep ON ee.admission_id=ep.admission_id LEFT JOIN edu_users AS eu ON
-     eu.user_master_id=ep.id AND eu.user_type='4' LEFT JOIN edu_notification AS en ON eu.user_id=en.user_id WHERE eah.attend_id='$attend_id' AND ep.primary_flag='Yes'";
-     $result=$this->db->query($query);
-     $res=$result->result();
-     foreach($res as $rows){
-        $st_name=$rows->name;
-        $parents_gcm_key=$rows->gcm_key;
-        $at_ses=$rows->a_session;
-        $abs_date=$rows->abs_date;
-        $abs_status=$rows->abs_atatus;
-         $gcm_key=array($parents_gcm_key);
-        $notes='Your child '.$st_name.' was marked '.$abs_status.' today, '.$abs_date.' ON '.$at_ses.' To Known more details login into http://bit.ly/2wLwdRQ';
+		$query="SELECT eu.user_id,en.gcm_key,en.mobile_type,ee.name,ep.mobile,ep.id,ee.admission_id,eah.abs_date,eah.student_id,eah.a_status,eah.attend_period,
+			CASE WHEN attend_period = 0 THEN 'MORNING'  ELSE 'AFTERNOON' END  AS a_session,CASE WHEN a_status = 'L' THEN 'Leave' WHEN a_status = 'A' THEN 'Absent' ELSE 'OnDuty' END  AS abs_atatus  FROM edu_attendance_history AS eah LEFT JOIN edu_enrollment AS ee ON ee.enroll_id=eah.student_id LEFT JOIN edu_parents AS ep ON ee.admission_id=ep.admission_id LEFT JOIN edu_users AS eu ON eu.user_master_id=ep.id AND eu.user_type='4' LEFT JOIN edu_notification AS en ON eu.user_id=en.user_id WHERE eah.attend_id='$attend_id' AND ep.primary_flag='Yes'";
+		 $result=$this->db->query($query);
+		 $res=$result->result();
+     
+			foreach($res as $rows){
+				$st_name=$rows->name;
+				$gcm_key=$rows->gcm_key;
+				$mobile_type=$rows->mobile_type;
+				$at_ses=$rows->a_session;
+				$abs_date=$rows->abs_date;
+				$abs_status=$rows->abs_atatus;
+				//$gcm_key=array($parents_gcm_key);
+				$notes='Your child '.$st_name.' was marked '.$abs_status.' today, '.$abs_date.' ON '.$at_ses.' To Known more details login into http://bit.ly/2wLwdRQ';
 
-          $data = array
+
+					if ($mobile_type =='1'){
+
+
+							require_once 'assets/notification/Firebase.php';
+							require_once 'assets/notification/Push.php';
+							$title = 'Attendance';
+							$push = null;
+							 //first check if the push has an image with it
+							$push = new Push(
+									$title,
+									$notes,
+									null
+								);		
+					
+								//getting the push from push object
+								$mPushNotification = $push->getPush();
+
+								//creating firebase class object
+								$firebase = new Firebase();
+								$firebase->send(array($gcm_key),$mPushNotification);		
+								
+							} else {
+								$passphrase = 'hs123';
+								$loction ='assets/notification/heylaapp.pem';
+								$payload = '{
+											"aps": {
+												"alert": {
+													"body": "'.$notes.'",
+													"title": "'.$title.'"
+												}
+											}
+										}';
+										/* $payload = '{
+											"aps": {
+												"alert": {
+													"body": "'.$notes.'",
+													"title": "'.$title.'"
+												},
+												"mutable-content": 1
+											},
+											"mediaUrl": "'.$img_url.'",
+											"mediaType": "image"
+										}';  */
+
+								$ctx = stream_context_create();
+								stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
+								stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
+
+								// Open a connection to the APNS server
+								$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+
+								if (!$fp)
+									exit("Failed to connect: $err $errstr" . PHP_EOL);
+									
+									$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+									$result = fwrite($fp, $msg, strlen($msg));
+									fclose($fp);
+								
+						}
+							
+          /* $data = array
                 (
                 'message' 	=> $notes,
                 'vibrate'	=> 1,
@@ -915,7 +977,7 @@ Class Notificationmodel extends CI_Model
         $result = curl_exec($ch);
         // Handle errors
         if (curl_errno($ch)) {
-        //echo 'GCM error: ' . curl_error($ch);
+        //echo 'GCM error: ' . curl_error($ch); */
         }
       }
     }

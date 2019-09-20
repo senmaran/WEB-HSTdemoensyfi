@@ -49,7 +49,7 @@ class Firebase {
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
  
         //finally executing the curl request 
-        $result = curl_exec($ch);
+        echo $result = curl_exec($ch);
 		
         if ($result === FALSE) {
             die('Curl failed: ' . curl_error($ch));
