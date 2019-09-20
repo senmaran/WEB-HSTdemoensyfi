@@ -19,7 +19,7 @@ class Firebase {
 
     private function sendPushNotification($fields) {
         
-        $server_key='AAAAPi0cZ4E:APA91bFwS0VAJGiK805nyC45LnTYU4p1hQq8KuQ9rcE3c_Fqw2Lm3LBBvY26nd0T_LVGw_8POLg8xgxzm-EgkRFOVCKBXJShXtukAIaVFZyqSLd_7tXX4sMzbvP9lZ6g-QecuU0lYMr1';
+        $server_key='AAAADRDlvEI:APA91bFi-gSDCTCnCRv1kfRd8AmWu0jUkeBQ0UfILrUq1-asMkBSMlwamN6iGtEQs72no-g6Nw0lO5h4bpN0q7JCQkuTYsdPnM1yfilwxYcKerhsThCwt10cQUMKrBrQM2B3U3QaYbWQ';
         //firebase server url to send the curl request
         $url = 'https://fcm.googleapis.com/fcm/send';
  
@@ -49,7 +49,8 @@ class Firebase {
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
  
         //finally executing the curl request 
-        $result = curl_exec($ch);
+        echo $result = curl_exec($ch);
+		
         if ($result === FALSE) {
             die('Curl failed: ' . curl_error($ch));
         }
