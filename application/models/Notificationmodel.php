@@ -663,7 +663,7 @@ Class Notificationmodel extends CI_Model
 
 									//creating firebase class object
 									$firebase = new Firebase();
-									$firebase->send(arrya($gcm_key),$mPushNotification);		
+									$firebase->send(array($gcm_key),$mPushNotification);		
 									
 								} else {								
 
