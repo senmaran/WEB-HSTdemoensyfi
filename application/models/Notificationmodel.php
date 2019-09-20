@@ -883,8 +883,6 @@ Class Notificationmodel extends CI_Model
 
 
 					if ($mobile_type =='1'){
-
-
 							require_once 'assets/notification/Firebase.php';
 							require_once 'assets/notification/Push.php';
 							$title = 'Attendance';
@@ -903,7 +901,7 @@ Class Notificationmodel extends CI_Model
 								$firebase = new Firebase();
 								$firebase->send(array($gcm_key),$mPushNotification);		
 								
-							} else {
+					} else {
 								$passphrase = 'hs123';
 								$loction ='assets/notification/heylaapp.pem';
 								$payload = '{
@@ -939,8 +937,7 @@ Class Notificationmodel extends CI_Model
 									$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
 									$result = fwrite($fp, $msg, strlen($msg));
 									fclose($fp);
-								
-						}
+					}
 							
           /* $data = array
                 (
@@ -979,7 +976,6 @@ Class Notificationmodel extends CI_Model
         if (curl_errno($ch)) {
         //echo 'GCM error: ' . curl_error($ch); */
         }
-      }
     }
 
 }
