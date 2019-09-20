@@ -685,7 +685,7 @@ Class Notificationmodel extends CI_Model
 									$firebase->send(array($gcm_key),$mPushNotification);		
 									
 								} 
-							if ($mobile_type == '2')
+							if ($mobile_type == '2'){
 									$ctx = stream_context_create();
 									stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 									stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
