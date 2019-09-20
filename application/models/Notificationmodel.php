@@ -668,7 +668,7 @@ Class Notificationmodel extends CI_Model
 				
 				foreach($res2 as $result){
 					$parent_id=$result->id;
-					$sql="SELECT eu.user_id,en.gcm_key FROM edu_users as eu left join edu_notification as en on eu.user_id=en.user_id WHERE user_type='4' and user_master_id='$parent_id'";
+					$sql="SELECT eu.user_id,en.gcm_key,en.mobile_type FROM edu_users as eu left join edu_notification as en on eu.user_id=en.user_id WHERE user_type='4' and user_master_id='$parent_id'";
 					$sgsm=$this->db->query($sql);
 					$res=$sgsm->result();
 						foreach($res as $row){
