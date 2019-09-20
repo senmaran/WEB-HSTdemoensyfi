@@ -514,6 +514,14 @@ class Apimainmodel extends CI_Model {
                           $academic_marks=array("internals"=>$internal_marks,"externals"=>$external_marks);
 
 						$response = array("status" => "loggedIn", "msg" => "User loggedIn successfully", "userData" => $userData,"teacherProfile" =>$teacher_profile,"classSubject"=>$class_sub_result,"timeTabledays"=>$day_result,"timeTable"=>$timetable_result,"studDetails"=>$stud_result,"Exams"=>$exam_result,"examDetails"=>$examdetail_result,"homeWork"=>$hw_result,"Reminders"=>$reminder_result, "year_id" => $year_id, "academic_month" => $month,"academic_marks"=>$academic_marks);
+						
+						
+						$Title = "Testing Title";
+						$Message = "Testing Message";
+						$mobiletype = "1";
+						$this->sendNotification($gcm_key,$Title,$Message,$mobiletype);  
+						
+						
 						return $response;
 				  }
 				  else if ($user_type==3) {
