@@ -29,14 +29,14 @@ Class Mailmodel extends CI_Model
     {
 
       $htmlContent = '
-      <html>
-      <head><title></title>
-      </head>
-      <body>
-        <p style="margin-left:50px;">'.$email_message.'</p>
-        <p style="margin-left:50px;"><a href="'. base_url().'assets/circular/'. $att.'">Download here</a></p>
-      </body>
-      </html>';
+			  <html>
+			  <head><title></title>
+			  </head>
+			  <body>
+				<p style="margin-left:50px;">'.$email_message.'</p>
+				<p style="margin-left:50px;"><a href="'. base_url().'assets/circular/'. $att.'">Download here</a></p>
+			  </body>
+			  </html>';
       $headers = "MIME-Version: 1.0" . "\r\n";
       $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
       // Additional headers
@@ -46,7 +46,6 @@ Class Mailmodel extends CI_Model
 
     function sendMail($to,$subject,$email_message)
       {
-
         $htmlContent = '
         <html>
         <head><title></title>
@@ -106,15 +105,15 @@ Class Mailmodel extends CI_Model
 		$ssql = "SELECT * FROM edu_circular_master WHERE id ='$title_id'";
 		$res = $this->db->query($ssql);
 		$result =$res->result();
+
     if($res->num_rows()==0){
-      echo "";
+		echo "";
     }else{
-		foreach($result as $rows)
-		{ }
-		$title = $rows->circular_title;
-		$notes = $rows->circular_description;
-    $att = $rows->circular_doc;
-	  $user_type = $users_id;
+		foreach($result as $rows){ }
+			$title = $rows->circular_title;
+			$notes = $rows->circular_description;
+			$att = $rows->circular_doc;
+			$user_type = $users_id;
 
 
 
@@ -124,9 +123,7 @@ Class Mailmodel extends CI_Model
         // echo $user_type; echo $title; echo $notes;exit;
 		 switch($user_type)
 		 {
-
 			case '2':
-
 					$tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone,t.email FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$user_type' AND u.user_master_id=t.teacher_id AND u.status='Active'";
 					$res=$this->db->query($tsql);
 					$result1=$res->result();
@@ -142,11 +139,9 @@ Class Mailmodel extends CI_Model
             }
 
           }
-
-              //exit;
+             //exit;
             break;
             case '5':
-
                 $tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone,t.email FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$user_type' AND u.user_master_id=t.teacher_id AND u.status='Active'";
                 $res=$this->db->query($tsql);
                 $result1=$res->result();
@@ -161,9 +156,7 @@ Class Mailmodel extends CI_Model
                     $this->sendMailwithattachement($to,$subject,$email_message,$att);
                   }
                 }
-
-                  break;
-
+             break;
 			 case '3':
 
 					$ssql="SELECT u.user_id,u.user_type,u.user_master_id,u.name,a.admission_id,a.name,a.mobile,a.email FROM edu_users AS u,edu_admission AS a  WHERE u.user_type='$user_type' AND u.user_master_id=a.admission_id AND u.name=a.name AND u.status='Active'";
@@ -171,17 +164,17 @@ Class Mailmodel extends CI_Model
 					$result2=$res2->result();
 					foreach($result2 as $rows1)
 					{
-          $to=$rows1->email;
-					$subject=$title;
-          $email_message=$notes.' '.$cdate;
-          if(empty($att)){
-            $this->sendMail($to,$subject,$email_message);
-          }else{
-            $this->sendMailwithattachement($to,$subject,$email_message,$att);
-          }
-          }
+					  $to=$rows1->email;
+					  $subject=$title;
+					  $email_message=$notes.' '.$cdate;
+					  
+					  if(empty($att)){
+						$this->sendMail($to,$subject,$email_message);
+					  }else{
+						$this->sendMailwithattachement($to,$subject,$email_message,$att);
+					  }
+					  }
             break;
-
 			case '4':
 
 					$psql="SELECT u.user_id,u.user_type,u.user_master_id,u.name,p.id,p.mobile,p.email FROM edu_users AS u,edu_parents AS p WHERE u.user_type='$users_id' AND u.user_master_id=p.id AND u.status='Active'";
@@ -189,18 +182,17 @@ Class Mailmodel extends CI_Model
 					$presult2=$pres2->result();
 					foreach($presult2 as $prows1)
 					{
-            $to=$prows1->email;
-            $subject=$title;
- 					  $email_message=$notes.' '.$cdate;
-            if(empty($att)){
-              $this->sendMail($to,$subject,$email_message);
-            }else{
-              $this->sendMailwithattachement($to,$subject,$email_message,$att);
-            }
-          }
-
+						$to=$prows1->email;
+						$subject=$title;
+						$email_message=$notes.' '.$cdate;
+						
+						if(empty($att)){
+						  $this->sendMail($to,$subject,$email_message);
+						}else{
+						  $this->sendMailwithattachement($to,$subject,$email_message,$att);
+						}
+				}
             break;
-
 			default:
             echo "No result found";
             break;
@@ -227,14 +219,14 @@ Class Mailmodel extends CI_Model
 					 $to=$trow->email;
 					 $subject=$title;
 					 $email_message=$notes.' '.$cdate;
-           if(empty($att)){
-             $this->sendMail($to,$subject,$email_message);
-           }else{
-             $this->sendMailwithattachement($to,$subject,$email_message,$att);
-           }
-           }
-        }
-
+					 
+					   if(empty($att)){
+						 $this->sendMail($to,$subject,$email_message);
+					   }else{
+						 $this->sendMailwithattachement($to,$subject,$email_message,$att);
+					   }
+					}
+				}
              }
 
              // Board Memebers
@@ -243,25 +235,25 @@ Class Mailmodel extends CI_Model
               $countid=count($bmusers_id);
                for ($i=0;$i<$countid;$i++)
                {
-                $userid=$bmusers_id[$i];
+					$userid=$bmusers_id[$i];
 
-                $tesql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone,t.email FROM edu_users AS u,edu_teachers AS t WHERE u.user_id='$userid' AND u.user_type='5' AND u.user_master_id=t.teacher_id";
-                $tmail=$this->db->query($tesql);
-                $tres=$tmail->result();
-                foreach($tres as $trow)
-                {
-                 $to=$trow->email;
-                 $subject=$title;
-                 $email_message=$notes.' '.$cdate;
-                 if(empty($att)){
-                   $this->sendMail($to,$subject,$email_message);
-                 }else{
-                   $this->sendMailwithattachement($to,$subject,$email_message,$att);
-                 }
-                 }
-
-            }
-          }
+					$tesql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone,t.email FROM edu_users AS u,edu_teachers AS t WHERE u.user_id='$userid' AND u.user_type='5' AND u.user_master_id=t.teacher_id";
+					$tmail=$this->db->query($tesql);
+					$tres=$tmail->result();
+					foreach($tres as $trow)
+					{
+						 $to=$trow->email;
+						 $subject=$title;
+						 $email_message=$notes.' '.$cdate;
+						 
+						 if(empty($att)){
+						   $this->sendMail($to,$subject,$email_message);
+						 }else{
+						   $this->sendMailwithattachement($to,$subject,$email_message,$att);
+						 }
+					 }
+				}
+			}
         }
 
 
@@ -282,16 +274,15 @@ Class Mailmodel extends CI_Model
 					$res1=$scell->result();
 					foreach($res1 as $row1)
 					{
-   				 $to=$row1->email;
-           $subject=$title;
-           $email_message=$notes.' '.$cdate;
-           if(empty($att)){
-             $this->sendMail($to,$subject,$email_message);
-           }else{
-             $this->sendMailwithattachement($to,$subject,$email_message,$att);
-           }
-
-				}
+						$to=$row1->email;
+						$subject=$title;
+						$email_message=$notes.' '.$cdate;
+					   if(empty($att)){
+						 $this->sendMail($to,$subject,$email_message);
+					   }else{
+						 $this->sendMailwithattachement($to,$subject,$email_message,$att);
+					   }
+					}
               }
             }
 
@@ -318,14 +309,14 @@ Class Mailmodel extends CI_Model
 					  $res3=$pcell1->result();
 					  foreach($res3 as $row3)
 					   {
-       				 $to=$row3->email;
-               $subject=$title;
-               $email_message=$notes.' '.$cdate;
-               if(empty($att)){
-                 $this->sendMail($to,$subject,$email_message);
-               }else{
-                 $this->sendMailwithattachement($to,$subject,$email_message,$att);
-               }
+							$to=$row3->email;
+						   $subject=$title;
+						   $email_message=$notes.' '.$cdate;
+						   if(empty($att)){
+							 $this->sendMail($to,$subject,$email_message);
+						   }else{
+							 $this->sendMailwithattachement($to,$subject,$email_message,$att);
+						   }
 				      }
           }
         }
@@ -334,23 +325,20 @@ Class Mailmodel extends CI_Model
 
 
 
-
-
-
-
-    // Group Mail
+// Group Mail
     function send_mail($group_id,$notes,$user_id,$members_id){
-      $check_type="SELECT * FROM edu_grouping_members WHERE group_title_id='$group_id'";
-      $get_type=$this->db->query($check_type);
-        $res_type=$get_type->result();
-      if($get_type->num_rows()==0){
-        echo "";
-      }else{
-
+		$check_type="SELECT * FROM edu_grouping_members WHERE group_title_id='$group_id'";
+		$get_type=$this->db->query($check_type);
+		$res_type=$get_type->result();
+		
+		if($get_type->num_rows()==0){
+			echo "";
+		}else{
 
        foreach($res_type as $row_type){}
-           $member_type=$row_type->member_type;
-         $group_member_id=$row_type->group_member_id;
+			$member_type=$row_type->member_type;
+			$group_member_id=$row_type->group_member_id;
+			
          if($member_type='3'){
            $sql1="SELECT egm.group_member_id,ep.email,ep.mobile FROM edu_grouping_members AS egm
           LEFT JOIN edu_users AS eu ON eu.user_id=egm.group_member_id LEFT JOIN edu_admission AS ea ON ea.admission_id=eu.user_master_id
@@ -360,40 +348,43 @@ Class Mailmodel extends CI_Model
            $res1=$scell->result();
            foreach($res1 as $row1)
            {
-            $semail=$row1->email;
-            $to=$semail;
-            $subject="From Ensyfi";
-            $email_message=$notes;
-            $this->sendMail($to,$subject,$email_message);
+				$semail=$row1->email;
+				$to=$semail;
+				$subject="From Ensyfi";
+				$email_message=$notes;
+				$this->sendMail($to,$subject,$email_message);
+			}
          }
-         }
+		 
+		 
          $check_type_staff="SELECT * FROM edu_grouping_members WHERE group_title_id='$group_id'";
          $get_type_staff=$this->db->query($check_type_staff);
          $res_type_staff=$get_type_staff->result();
+		 
          foreach($res_type_staff as $row_type_staff){}
-          $member_type_staff=$row_type_staff->member_type;
-         $group_member_id_staff=$row_type_staff->group_member_id;
-         if($member_type='2' || $member_type='5'){
-          $send_mail="SELECT * FROM edu_users AS A LEFT JOIN edu_teachers AS C ON A.teacher_id = C.teacher_id WHERE A.user_id = '$group_member_id_staff'";
-           $get_mail=$this->db->query($send_mail);
-           $res_mail=$get_mail->result();
-           foreach($res_mail as $rows_mail){
-             $get_mail=$rows_mail->email;
-             $to=$get_mail;
-             $subject="From Ensyfi";
-             $email_message=$notes;
-             $this->sendMail($to,$subject,$email_message);
-           }
-
+			$member_type_staff=$row_type_staff->member_type;
+			$group_member_id_staff=$row_type_staff->group_member_id;
+         
+			if($member_type='2' || $member_type='5')
+			{
+				$send_mail="SELECT * FROM edu_users AS A LEFT JOIN edu_teachers AS C ON A.teacher_id = C.teacher_id WHERE A.user_id = '$group_member_id_staff'";
+				$get_mail=$this->db->query($send_mail);
+				$res_mail=$get_mail->result();
+				
+			   foreach($res_mail as $rows_mail){
+					 $get_mail=$rows_mail->email;
+					 $to=$get_mail;
+					 $subject="From Ensyfi";
+					 $email_message=$notes;
+					 $this->sendMail($to,$subject,$email_message);
+			   }
          }
        }
-
-
-
-
     }
 
-	//-----------------------Send Home Work In Mail-----------------------------------------
+
+
+//-----------------------Send Home Work In Mail-----------------------------------------
 
      function send_mail_homework($user_id,$user_type,$createdate,$clssid)
 		{
@@ -455,37 +446,38 @@ Class Mailmodel extends CI_Model
 	}
 
 
-  function send_mail_attendance($attend_id){
-    $query="SELECT ee.name,ep.mobile,ep.email,ee.admission_id,eah.abs_date,eah.student_id,eah.a_status,eah.attend_period,
-    CASE WHEN attend_period = 0 THEN 'MORNING'  ELSE 'AFTERNOON' END  AS a_session,CASE WHEN a_status = 'L' THEN 'Leave' WHEN a_status = 'A' THEN 'Absent' ELSE 'OnDuty' END  AS abs_atatus FROM edu_attendance_history AS eah LEFT JOIN edu_enrollment AS ee ON ee.enroll_id=eah.student_id LEFT JOIN edu_parents AS ep ON ee.admission_id=ep.admission_id WHERE
-     eah.attend_id='$attend_id' AND ep.primary_flag='Yes'";
-   $result=$this->db->query($query);
-   $res=$result->result();
-   foreach($res as $rows){
-      $st_name=$rows->name;
-      $parents_email=$rows->email;
-      $at_ses=$rows->a_session;
-      $abs_date=$rows->abs_date;
-      $abs_status=$rows->abs_atatus;
-      $textmessage='Your child '.$st_name.' was marked '.$abs_status.' today, '.$abs_date.' ON '.$at_ses.' To Known more details login into http://bit.ly/2wLwdRQ';
-      $to=$parents_email;
-      $subject="From ENSYFI";
+	function send_mail_attendance($attend_id)
+	{
+		$query="SELECT ee.name,ep.mobile,ep.email,ee.admission_id,eah.abs_date,eah.student_id,eah.a_status,eah.attend_period,
+		CASE WHEN attend_period = 0 THEN 'MORNING'  ELSE 'AFTERNOON' END  AS a_session,CASE WHEN a_status = 'L' THEN 'Leave' WHEN a_status = 'A' THEN 'Absent' ELSE 'OnDuty' END  AS abs_atatus FROM edu_attendance_history AS eah LEFT JOIN edu_enrollment AS ee ON ee.enroll_id=eah.student_id LEFT JOIN edu_parents AS ep ON ee.admission_id=ep.admission_id WHERE
+		 eah.attend_id='$attend_id' AND ep.primary_flag='Yes'";
+	   $result=$this->db->query($query);
+	   $res=$result->result();
+	   
+		foreach($res as $rows){
+			  $st_name=$rows->name;
+			  $parents_email=$rows->email;
+			  $at_ses=$rows->a_session;
+			  $abs_date=$rows->abs_date;
+			  $abs_status=$rows->abs_atatus;
+			  $textmessage='Your child '.$st_name.' was marked '.$abs_status.' today, '.$abs_date.' ON '.$at_ses.' To Known more details login into http://bit.ly/2wLwdRQ';
+			  $to=$parents_email;
+			  $subject="From ENSYFI";
 
-       $htmlContent = '
-        <html>
-        <head><title></title>
-        </head>
-        <body>
-        <p style="margin-left:50px;">'.$textmessage.'</p>
-        </body>
-        </html>';
-    $headers = "MIME-Version: 1.0" . "\r\n";
-    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    // Additional headers
-    $headers .= 'From: Ensyfi<info@ensyfi.com>' . "\r\n";
-    $send= mail($to,$subject,$htmlContent,$headers);
-
-   }
+			   $htmlContent = '
+				<html>
+				<head><title></title>
+				</head>
+				<body>
+				<p style="margin-left:50px;">'.$textmessage.'</p>
+				</body>
+				</html>';
+			$headers = "MIME-Version: 1.0" . "\r\n";
+			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+			// Additional headers
+			$headers .= 'From: Ensyfi<info@ensyfi.com>' . "\r\n";
+			$send= mail($to,$subject,$htmlContent,$headers);
+		}
   }
 
 
