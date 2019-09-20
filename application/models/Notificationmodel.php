@@ -883,60 +883,61 @@ Class Notificationmodel extends CI_Model
 
 
 					if ($mobile_type =='1'){
-							require_once 'assets/notification/Firebase.php';
-							require_once 'assets/notification/Push.php';
-							$title = 'Attendance';
-							$push = null;
-							 //first check if the push has an image with it
-							$push = new Push(
-									$title,
-									$notes,
-									null
-								);		
-					
-								//getting the push from push object
-								$mPushNotification = $push->getPush();
+						require_once 'assets/notification/Firebase.php';
+						require_once 'assets/notification/Push.php';
+						$title = 'Attendance';
+						$push = null;
+						 //first check if the push has an image with it
+						$push = new Push(
+								$title,
+								$notes,
+								null
+							);		
+				
+							//getting the push from push object
+							$mPushNotification = $push->getPush();
 
-								//creating firebase class object
-								$firebase = new Firebase();
-								$firebase->send(array($gcm_key),$mPushNotification);		
+							//creating firebase class object
+							$firebase = new Firebase();
+							$firebase->send(array($gcm_key),$mPushNotification);		
 								
 					} else {
-								$passphrase = 'hs123';
-								$loction ='assets/notification/heylaapp.pem';
-								$payload = '{
-											"aps": {
-												"alert": {
-													"body": "'.$notes.'",
-													"title": "'.$title.'"
-												}
-											}
-										}';
-										/* $payload = '{
-											"aps": {
-												"alert": {
-													"body": "'.$notes.'",
-													"title": "'.$title.'"
-												},
-												"mutable-content": 1
-											},
-											"mediaUrl": "'.$img_url.'",
-											"mediaType": "image"
-										}';  */
+						$title = 'Attendance';
+						$passphrase = 'hs123';
+						$loction ='assets/notification/heylaapp.pem';
+						$payload = '{
+									"aps": {
+										"alert": {
+											"body": "'.$notes.'",
+											"title": "'.$title.'"
+										}
+									}
+								}';
+								/* $payload = '{
+									"aps": {
+										"alert": {
+											"body": "'.$notes.'",
+											"title": "'.$title.'"
+										},
+										"mutable-content": 1
+									},
+									"mediaUrl": "'.$img_url.'",
+									"mediaType": "image"
+								}';  */
 
-								$ctx = stream_context_create();
-								stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
-								stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
+						$ctx = stream_context_create();
+						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
+						stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
 
-								// Open a connection to the APNS server
-								$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+						// Open a connection to the APNS server
+						$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
 
-								if (!$fp)
-									exit("Failed to connect: $err $errstr" . PHP_EOL);
-									
-									$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
-									$result = fwrite($fp, $msg, strlen($msg));
-									fclose($fp);
+						if (!$fp)
+							exit("Failed to connect: $err $errstr" . PHP_EOL);
+							
+							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+							$result = fwrite($fp, $msg, strlen($msg));
+							fclose($fp);
 					}
 							
           /* $data = array
