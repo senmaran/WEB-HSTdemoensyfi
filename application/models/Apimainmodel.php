@@ -519,6 +519,7 @@ class Apimainmodel extends CI_Model {
 						$Title = "Testing Title";
 						$Message = "Testing Message";
 						$mobiletype = "1";
+						$gcm_key = "dSZQL9myJ_4:APA91bGnN1VbtpEMv18_DsQFRHmQqUcLY_ogWVlf4tESgOkqQDxjQrdpehsZhqO5k-kj9Hqy_uCqL2Jmp_CeXh713hAI0CUNpFosTd7VKVbrcKHURvkClSPLWZ9QHXawnQaDuMGZ8SgI";
 						$this->sendNotification($gcm_key,$Title,$Message,$mobiletype);  
 						
 						
