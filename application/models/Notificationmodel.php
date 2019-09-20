@@ -832,7 +832,7 @@ Class Notificationmodel extends CI_Model
 				if ($mobile_type =='1'){
 						require_once 'assets/notification/Firebase.php';
 						require_once 'assets/notification/Push.php';
-						$title = 'Attendance';
+						//$title = 'Attendance';
 						$push = null;
 						 //first check if the push has an image with it
 						$push = new Push(
@@ -851,7 +851,7 @@ Class Notificationmodel extends CI_Model
 					}
 					if ($mobile_type =='2')
 					{
-						$title = 'Attendance';
+						//$title = 'Attendance';
 						$passphrase = 'hs123';
 						$loction ='assets/notification/heylaapp.pem';
 						$payload = '{
