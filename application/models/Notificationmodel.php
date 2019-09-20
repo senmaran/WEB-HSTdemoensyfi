@@ -675,7 +675,7 @@ Class Notificationmodel extends CI_Model
 							$gcm_key=$row->gcm_key;
 							$mobile_type=$row->mobile_type;
 							
-							if ($mobile_type =='1'){
+							if ($mobile_type == '1'){
 
 									//getting the push from push object
 									$mPushNotification = $push->getPush();
@@ -684,9 +684,8 @@ Class Notificationmodel extends CI_Model
 									$firebase = new Firebase();
 									$firebase->send(array($gcm_key),$mPushNotification);		
 									
-								} else {
-									
-
+								} 
+							if ($mobile_type == '2')
 									$ctx = stream_context_create();
 									stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 									stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -696,12 +695,10 @@ Class Notificationmodel extends CI_Model
 
 									if (!$fp)
 										exit("Failed to connect: $err $errstr" . PHP_EOL);
-									
 										
 										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
 										$result = fwrite($fp, $msg, strlen($msg));
 										fclose($fp);
-									
 							}
 							
 							//$this->sendNotification($gcm_key,$notes);
