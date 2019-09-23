@@ -197,7 +197,7 @@ class Circular extends CI_Controller
 			  $tusers_id=$this->input->post('tusers');
 			  $pusers_id=$this->input->post('pusers');
 			  $stusers_id=$this->input->post('stusers');
-        $bmusers_id=$this->input->post('busers');
+				$bmusers_id=$this->input->post('busers');
 			  $title_id=$this->input->post('ctitle');
 			  $cdate=$this->input->post('date');
 			  $dateTime = new DateTime($cdate);

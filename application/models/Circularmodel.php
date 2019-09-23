@@ -19,21 +19,22 @@ Class Circularmodel extends CI_Model
 	 function getall_parents()
 	 {
 		$query="SELECT * FROM edu_parents";
-    $resultset=$this->db->query($query);
-    return $resultset->result();
+		$resultset=$this->db->query($query);
+		return $resultset->result();
 	 }
+	 
 	 function get_classes()
 	 {
 		 $query="SELECT * FROM  edu_class";
-     $resultset=$this->db->query($query);
-     return $resultset->result();
+		 $resultset=$this->db->query($query);
+		 return $resultset->result();
 	 }
 
 
    function get_all_board_members(){
-     $query="SELECT u.user_id,u.name,u.user_type,u.user_master_id,u.status,t.teacher_id,t.name FROM edu_users AS u,edu_teachers AS t WHERE user_type=5 AND u.user_master_id=t.teacher_id AND u.status='Active'";
-      $resultset=$this->db->query($query);
-      return $resultset->result();
+		$query="SELECT u.user_id,u.name,u.user_type,u.user_master_id,u.status,t.teacher_id,t.name FROM edu_users AS u,edu_teachers AS t WHERE user_type=5 AND u.user_master_id=t.teacher_id AND u.status='Active'";
+		$resultset=$this->db->query($query);
+		return $resultset->result();
 
    }
 	 function get_stu_name($classid)
