@@ -101,8 +101,8 @@ public function create()
 		$exam_name=$this->input->post('exam_name');
 		$status=$this->input->post('status');
 		$exam_flag=$this->input->post('exam_flag');
-
-		$datas=$this->examinationmodel->exam_details($exam_year,$exam_name,$exam_flag,$status);
+		$grade_flag=$this->input->post('grade_flag');
+		$datas=$this->examinationmodel->exam_details($exam_year,$exam_name,$exam_flag,$grade_flag,$status);
 		//print_r($datas['status']);exit;
 		//print_r($data['exam_name']);exit;
 
@@ -153,7 +153,8 @@ public function update()
 		$exam_name=$this->input->post('exam_name');
 		$status=$this->input->post('status');
 		$exam_flag=$this->input->post('exam_flag');
-		$datas=$this->examinationmodel->update_exam($exam_id,$exam_year,$exam_name,$exam_flag,$status);
+		$grade_flag=$this->input->post('grade_flag');
+		$datas=$this->examinationmodel->update_exam($exam_id,$exam_year,$exam_name,$exam_flag,$grade_flag,$status);
 
 	if($datas['status']=="success")
 	{

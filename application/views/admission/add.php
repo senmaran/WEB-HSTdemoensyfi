@@ -32,9 +32,9 @@
                         <div class="col-sm-4">
                            <input type="text" name="admission_date" class="form-control datepicker" placeholder="Admission Date "/>
                         </div>
-                        <label class="col-sm-2 control-label">EMSI Number</label>
+                        <label class="col-sm-2 control-label">EMIS Number</label>
                         <div class="col-sm-4">
-                           <input type="text" name="emsi_num" class="form-control" placeholder="EMSI Number "/>
+                           <input type="text" name="emsi_num" class="form-control" placeholder="EMIS Number "/>
                         </div>
                      </div>
                   </fieldset>
@@ -149,7 +149,7 @@
                      <div class="form-group">
                         <label class="col-sm-2 control-label">Profile Picture</label>
                         <div class="col-sm-4">
-                           <input type="file" name="student_pic" class="form-control" onchange="loadFile(event)" accept="image/*" >
+                           <input type="file" name="student_pic" class="form-control" accept="image/*" >
                         </div>
                         <label class="col-sm-2 control-label">Blood Group</label>
                         <div class="col-sm-4">
@@ -186,21 +186,18 @@
 
                       <fieldset>
                            <div class="form-group">
-                               <label class="col-sm-2 control-label">Mode Of Entry</label>
+                              
+                             <label class="col-sm-2 control-label">Certificates</label>
+                             <div class="col-sm-4" style="padding-top:10px;">
+                                <input type="checkbox" name="trn_cert" value="1" id="trn_cert">Transfer Certificate&nbsp;&nbsp;<input type="checkbox" name="rec_sheet" value="1">Record Sheet
+                             </div>
+							 
+							  <label class="col-sm-2 control-label">Mode Of Entry</label>
                                <div class="col-md-4">
                                 <select name="qual" class="selectpicker" data-title="Mode Of Entry" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                    <option value="1">Transfer</option>
                                    <option value="0">Promotion</option>
                                 </select>
-                             </div>
-                             <label class="col-sm-2 control-label">Certificates</label>
-                             <div class="col-sm-4">
-                                <label class="checkbox checkbox-inline">
-                                <input type="checkbox" data-toggle="checkbox" name="trn_cert" value="1">Transfer Certificate
-                                </label>
-                                <label class="checkbox checkbox-inline">
-                                <input type="checkbox" data-toggle="checkbox" name="rec_sheet" value="1">Record Sheet
-                                </label>
                              </div>
                            </div>
                       </fieldset>
@@ -208,16 +205,23 @@
 
                   <fieldset>
                      <div class="form-group">
-
-                        <label class="col-sm-2 control-label">Status</label>
+                      <div id="answer" style="font-size:normal;">
+						<label class="col-sm-2 control-label">TC Copy</label>
+                        <div class="col-sm-4">
+                           <input type="file" name="tc_copy" class="form-control">
+                        </div>
+					 </div>
+					  <label class="col-sm-2 control-label">Status</label>
                         <div class="col-sm-4">
                            <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="Active">Active</option>
                               <option value="Deactive">Inactive</option>
                            </select>
                         </div>
-                     </div>
+					</div>
                   </fieldset>
+				  
+				  
                   <fieldset>
                      <div class="form-group">
 
@@ -237,10 +241,6 @@
    </div>
 </div>
 <script type="text/javascript">
-   var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-   };
 
    $(document).ready(function () {
 
@@ -248,7 +248,58 @@
    $('#admission').addClass('active');
    $('#admission1').addClass('active');
 
-      $('#admissionform').validate({ // initialize the plugin
+
+$("#answer").hide();
+$("#trn_cert").click(function() {
+    if($(this).is(":checked")) {
+        $("#answer").show();
+    } else {
+        $("#answer").hide();
+    }
+});
+
+$('#student_pic').on('change', function() {
+	  var f=this.files[0]
+	  var actual=f.size||f.fileSize;
+	  var orgi=actual/1024;
+		if(orgi<1024){
+		  $("#preview").html('');
+		  //$("#preview").html('<img src="<?php echo base_url(); ?>assets/loader.gif" alt="Uploading...."/>');
+		  $("#eventform").ajaxForm({
+			  target: '#preview'
+		  }).submit();
+		}else{
+		  //$("#preview").html('File Size Must be  Lesser than 1 MB');
+		  //alert("File Size Must be  Lesser than 1 MB");
+		  return false;
+		}
+	});
+
+$('#tc_copy').on('change', function() {
+	  var f=this.files[0]
+	  var actual=f.size||f.fileSize;
+	  var orgi=actual/1024;
+		if(orgi<1024){
+		  $("#preview").html('');
+		  //$("#preview").html('<img src="<?php echo base_url(); ?>assets/loader.gif" alt="Uploading...."/>');
+		  $("#eventform").ajaxForm({
+			  target: '#preview'
+		  }).submit();
+		}else{
+		  //$("#preview").html('File Size Must be  Lesser than 1 MB');
+		  //alert("File Size Must be  Lesser than 1 MB");
+		  return false;
+		}
+	});
+
+
+  $.validator.addMethod('filesize', function (value, element, param) {
+      return this.optional(element) || (element.files[0].size <= param)
+  }, 'File size must be less than 1 MB');
+
+
+
+   $('#admissionform').validate({ // initialize the plugin
         rules: {
             admission_no:{required:true, number: true,  // will count space
                maxlength: 9,  remote: {
@@ -283,7 +334,9 @@
               url: "<?php echo base_url(); ?>admission/check_mobile_number",
               type: "post"
             } },
-            //student_pic:{required:true }
+
+            student_pic:{accept: "jpg,jpeg,png", filesize: 1048576 },
+			tc_copy:{required:false,accept: "jpg,jpeg,png", filesize: 1048576 }
         },
         messages: {
               admission_no:{
@@ -315,8 +368,19 @@
               mobile:{
                 required:"This field cannot be empty!",
                 remote:"Mobile number already exist!"
-              }
-             // student_pic:"Enter the Student Picture"
+              },
+			  student_pic:{
+				  //required:"Select banner",
+				  accept:"Please upload .jpg or .png .",
+				  fileSize:"File must be JPG or PNG, less than 1MB"
+				},
+			 tc_copy:{
+				  //required:"Select banner",
+				  accept:"Please upload .jpg or .png .",
+				  fileSize:"File must be JPG or PNG, less than 1MB"
+				}
+			
+              //student_pic:"Enter the Student Picture"
             }
 
     });
@@ -343,7 +407,7 @@
 
    $('.datepicker1').datetimepicker({
        format: 'YYYY',
-   maxDate: new Date(),
+		maxDate: new Date(),
        icons: {
            time: "fa fa-clock-o",
            date: "fa fa-calendar",
@@ -358,4 +422,6 @@
     });
 
    });
+   
+ 
 </script>

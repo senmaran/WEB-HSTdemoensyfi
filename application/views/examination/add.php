@@ -13,8 +13,8 @@
                      <form method="post" action="<?php echo base_url(); ?>examination/create" class="form-horizontal" enctype="multipart/form-data" id="myformsection">
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-4 control-label">Exam Year</label>
-                              <div class="col-sm-4">
+                              <label class="col-sm-2 control-label">Exam Year</label>
+                              <div class="col-sm-6">
                                  <select name="exam_year" required class="selectpicker" data-title="Select From & To Year" data-menu-style="dropdown-blue">
                                     <?php
                                        foreach ($years as $rows1)
@@ -34,16 +34,16 @@
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-4 control-label">Exam Name</label>
-                              <div class="col-sm-4">
+                              <label class="col-sm-2 control-label">Exam Name</label>
+                              <div class="col-sm-6">
                                  <input type="text" name="exam_name" class="form-control" placeholder="Enter Exam Name" required value="">
                               </div>
                            </div>
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-4 control-label">Exam Type</label>
-                              <div class="col-sm-4">
+                              <label class="col-sm-2 control-label">Exam Type</label>
+                              <div class="col-sm-6">
                                  <select  name="exam_flag" id="exam_flag" class="selectpicker"  class="form-control">
                                     <option value="1">Internal/External</option>
                                     <option value="0">Total</option>
@@ -53,8 +53,19 @@
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-4 control-label">Status</label>
-                              <div class="col-sm-4">
+                              <label class="col-sm-2 control-label">Grade  Option</label>
+                              <div class="col-sm-6">
+                                 <select  name="grade_flag" id="grade_flag" class="selectpicker"  class="form-control">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                 </select>
+                              </div>
+                           </div>
+                        </fieldset>
+                        <fieldset>
+                           <div class="form-group">
+                              <label class="col-sm-2 control-label">Status</label>
+                              <div class="col-sm-6">
                                  <select name="status"  class="selectpicker form-control">
                                     <option value="Active">Active</option>
                                     <option value="Deactive">DeActive</option>
@@ -64,7 +75,7 @@
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
+                              <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                               <div class="text-center">
                                  <button type="submit" id="save" class="btn btn-info btn-fill center">Save</button>
                               </div>
@@ -95,6 +106,7 @@
                                  <th>S.no</th>
                                  <th>Exam Year</th>
                                  <th>Exam Name</th>
+								 <th>Grade Option</th>
                                  <th>Status</th>
                                  <th>Actions</th>
                               </thead>
@@ -112,7 +124,13 @@
                                  <tr>
                                     <td><?php echo $i; ?></td>
                                     <td><?php  echo  date('Y',$month); ?> (To) <?php  echo  date('Y',$month1); ?></td>
+									
                                     <td><?php echo $rows->exam_name; ?></td>
+									 <td><?php if($rows->grade_flag=='1'){ ?>
+                                      <i class="fa fa-check" aria-hidden="true"></i>
+                                  <?php   }else{ ?>
+
+                                    <?php  } ?></td>
                                     <td><?php if($status=='Active'){?>
                                        <button class="btn btn-success btn-fill btn-wd">Active</button>
                                        <?php }else{?>
@@ -155,7 +173,7 @@
         messages: {
 
 
-              exam_year: "Please Enter Section Name",
+              exam_year: "Please Select Year",
                  exam_name: "Please Enter Exam name"
 
 

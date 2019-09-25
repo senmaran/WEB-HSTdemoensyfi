@@ -20,7 +20,7 @@
                <div class="card">
                   <div class="header">
                      <h4 class="title">
-                        View Exam Marks ( <?php foreach($cls_exam as $rows){} echo $rows->exam_name;?> )
+                        View Exam Marks ( <?php if (count($cls_exam)>0) { foreach($cls_exam as $rows){} echo $rows->exam_name; }?> )
                         <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="float:right; ">Go Back</button>
                         <button style="float:right;margin-right: 10px;" class="btn btn-info btn-fill center download">Export Excel</button>
                         <!-- <button style="float:right;margin-right: 10px;" class="btn btn-info btn-fill center" onclick="generatefromtable()">Export PDF</button>-->
@@ -203,11 +203,16 @@
    </div>
 </div>
 <?php
-   foreach ($cls_exam as $rows) {} $cls=$rows->class_name; $sec=$rows->sec_name;
-   // echo $cls; echo $sec; ?>sorting
+   //foreach ($cls_exam as $rows) {} $cls=$rows->class_name; $sec=$rows->sec_name; ?>sorting
 <script type="text/javascript">
 $(document).ready(function(){
- $('th').attr('class','-');
+	
+	$('#exammenu').addClass('collapse in');
+        $('#exam').addClass('active');
+        $('#exam3').addClass('active');
+		
+		$('th').attr('class','-');
+		
 });
 
    function generatefromtable() {
@@ -244,9 +249,9 @@ $(document).ready(function(){
    });
    });
    
-   $('#exammenu').addClass('collapse in');
+   /* $('#exammenu').addClass('collapse in');
    $('#exam').addClass('active');
-   $('#exam3').addClass('active');
+   $('#exam3').addClass('active'); */
    });
    
    $('tr').each(function () {

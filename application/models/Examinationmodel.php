@@ -95,13 +95,13 @@ function getall_exam_inter_exter_details($exam_id,$cls_masid)
 	return $res;
 }
 
-function exam_details($exam_year,$exam_name,$exam_flag,$status)
+function exam_details($exam_year,$exam_name,$exam_flag,$grade_flag,$status)
 {
 	$check_exam_name="SELECT * FROM edu_examination WHERE exam_name='$exam_name' AND exam_year='$exam_year'";
 	$result=$this->db->query($check_exam_name);
 	if($result->num_rows()==0)
 	{
-		$query="INSERT INTO edu_examination(exam_year,exam_name,exam_flag,status,created_at,updated_at)VALUES('$exam_year','$exam_name','$exam_flag','$status',NOW(),NOW())";
+		$query="INSERT INTO edu_examination(exam_year,exam_name,exam_flag,grade_flag,status,created_at,updated_at)VALUES('$exam_year','$exam_name','$exam_flag','$grade_flag','$status',NOW(),NOW())";
 		$resultset=$this->db->query($query);
 		$data= array("status"=>"success");
 		return $data;
@@ -157,9 +157,9 @@ function edit_exam($exam_id)
 	$res=$this->db->query($query1);
 	return $res->result();
 }
-function update_exam($exam_id,$exam_year,$exam_name,$exam_flag,$status)
+function update_exam($exam_id,$exam_year,$exam_name,$exam_flag,$grade_flag,$status)
 {
-	$query="UPDATE edu_examination SET exam_year='$exam_year',exam_name='$exam_name',exam_flag='$exam_flag',status='$status' WHERE exam_id='$exam_id'";
+	$query="UPDATE edu_examination SET exam_year='$exam_year',exam_name='$exam_name',exam_flag='$exam_flag',grade_flag='$grade_flag',status='$status' WHERE exam_id='$exam_id'";
 	$res=$this->db->query($query);
 	$query1="UPDATE edu_exam_details SET status='$status' WHERE exam_id='$exam_id'";
 	$res=$this->db->query($query1);
@@ -247,6 +247,7 @@ $query="SELECT * FROM edu_exam_marks_status WHERE status='Publish' AND exam_id='
 
 function getall_stuname($user_id,$cls_masid,$exam_id)
 {
+	$year_id=$this->getYear();
 			 $sql="SELECT
 			en.enroll_id,
 			en.name,
@@ -275,7 +276,7 @@ function getall_stuname($user_id,$cls_masid,$exam_id)
 			edu_admission AS a,
 			edu_subject AS s
 		WHERE
-			en.class_id = '$cls_masid' AND en.enroll_id = m.stu_id AND m.exam_id = '$exam_id' AND en.admission_id = a.admission_id AND s.subject_id = a.language ORDER BY a.sex DESC,en.name ASC";
+			en.class_id = '$cls_masid' AND en.admit_year='$year_id' AND en.enroll_id = m.stu_id AND m.exam_id = '$exam_id' AND en.admission_id = a.admission_id AND s.subject_id = a.language ORDER BY a.sex DESC,en.name ASC";
 	
 	//$sql="SELECT en.enroll_id,en.name,en.admission_id,en.admisn_no,en.class_id,m.subject_id,m.classmaster_id,m.internal_mark,m.internal_grade,m.external_mark,m.external_grade,m.total_marks,m.total_grade,a.admission_id,a.admisn_no,a.name,a.sex,a.language,s.subject_name FROM edu_enrollment AS en,edu_exam_marks AS m,edu_admission AS a LEFT JOIN edu_subject AS s ON s.subject_id=a.language WHERE en.class_id='$cls_masid' AND en.enroll_id=m.stu_id AND m.exam_id='$exam_id' AND en.admission_id=a.admission_id ORDER BY a.sex DESC,en.name ASC";
 	//$sql="SELECT en.enroll_id,en.name,en.admisn_no,en.class_id,m.exam_id,m.subject_id,m.classmaster_id,m.marks FROM edu_enrollment AS en,edu_exam_marks AS m WHERE m.exam_id='$exam_id' AND m.classmaster_id='$cls_masid' AND en.class_id='$cls_masid' AND en.enroll_id=m.stu_id ";

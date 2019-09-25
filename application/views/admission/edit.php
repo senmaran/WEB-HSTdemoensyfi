@@ -23,7 +23,7 @@
                         <div class="col-sm-4">
                            <input type="text" class="form-control" name="admission_year" id="admission_year" value="<?php echo $rows->admisn_year; ?>" readonly>
                         </div>
-                        <label class="col-sm-2 control-label">Admission No</label>
+                        <label class="col-sm-2 control-label">Admission Number</label>
                         <div class="col-sm-4">
                            <input type="text" class="form-control" name="admission_no" id="admission_no" value="<?php echo $rows->admisn_no; ?>" >
                            <input type="hidden" class="form-control" name="admission_id" id="admission_no" value="<?php echo $rows->admission_id; ?>" readonly>
@@ -34,16 +34,23 @@
                      <div class="form-group">
                         <label class="col-sm-2 control-label">Admission Date</label>
                         <div class="col-sm-4">
-                           <input type="text" name="admission_date" class="form-control datepicker" value="<?php echo $rows->admisn_date; ?>"  placeholder="Admission Date "/>
+						<?php
+						$oDate = new DateTime($rows->admisn_date);
+						$sDate = $oDate->format("d-m-Y");
+						?>
+						 
+                           <input type="text" name="admission_date" class="form-control datepicker" value="<?php echo $sDate; ?>"  placeholder="Admission Date "/>
                         </div>
-                        <label class="col-sm-2 control-label">Email</label>
+						<label class="col-sm-2 control-label">EMIS Number</label>
                         <div class="col-sm-4">
-                           <input type="text" name="email" class="form-control " placeholder="Email Address" value="<?php echo $rows->email; ?>"/>
+                           <input type="text" name="emsi_num" value="<?php echo $rows->emsi_num; ?>" class="form-control" />
                         </div>
+                       
                      </div>
                   </fieldset>
-                  <fieldset>
-                     <div class="form-group">
+				  
+				  <fieldset>
+					<div class="form-group">
                         <label class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-4">
                            <input type="text" name="name" class="form-control"  value="<?php echo $rows->name; ?>" >
@@ -58,11 +65,31 @@
                         </div>
                      </div>
                   </fieldset>
+				  
+                  <fieldset>
+                     <div class="form-group">
+					  <label class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-4">
+                           <input type="text" name="email" class="form-control " placeholder="Email Address" value="<?php echo $rows->email; ?>"/>
+                        </div>
+						<label class="col-sm-2 control-label">Mobile</label>
+                        <div class="col-sm-4">
+                           <input type="text" placeholder="Mobile Number" name="mobile" class="form-control" value="<?php echo $rows->mobile; ?>">
+                        </div>
+					</div>
+					</fieldset>
+					
+					
+				  
                   <fieldset>
                      <div class="form-group">
                         <label class="col-sm-2 control-label">Date of birth</label>
                         <div class="col-sm-4">
-                           <input type="text" name="dob" class="form-control datepicker" placeholder="Date of Birth " value="<?php echo $rows->dob; ?>"/>
+						<?php
+						$pDate = new DateTime($rows->dob);
+						$qDate = $pDate->format("d-m-Y");
+						?>
+                           <input type="text" name="dob" class="form-control datepicker" placeholder="Date of Birth " value="<?php echo $qDate; ?>"/>
                         </div>
                         <label class="col-sm-2 control-label">Age</label>
                         <div class="col-sm-4">
@@ -115,40 +142,7 @@
                            </select>
                            <script>$('#mother_tongue').val('<?php echo $rows->mother_tongue; ?>');</script>
                         </div>
-                        <label class="col-sm-2 control-label">Mobile</label>
-                        <div class="col-sm-4">
-                           <input type="text" placeholder="Mobile Number" name="mobile" class="form-control" value="<?php echo $rows->mobile; ?>">
-                        </div>
-                     </div>
-                  </fieldset>
-                  <fieldset>
-                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Secondary Mobile</label>
-                        <div class="col-sm-4">
-                           <input type="text" placeholder="Mobile Number" name="sec_mobile" class="form-control" value="<?php echo $rows->sec_mobile; ?>">
-                        </div>
-                        <label class="col-sm-2 control-label">Secondary-Email</label>
-                        <div class="col-sm-4">
-                           <input type="text" name="sec_email" class="form-control" placeholder="Secondary Email Address" value="<?php echo $rows->sec_email; ?>" />
-                        </div>
-                     </div>
-                  </fieldset>
-                  <fieldset>
-                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Certificates</label>
-                        <div class="col-sm-4">
-                           <?php $t=$rows->transfer_certificate;
-                              $s=$rows->record_sheet;
-
-                              ?>
-                           <label class="checkbox checkbox-inline">
-                           <input type="checkbox" data-toggle="checkbox" name="trn_cert" value="1" checked>Transfer Certificate
-                           </label>
-                           <label class="checkbox checkbox-inline">
-                           <input type="checkbox" data-toggle="checkbox" name="rec_sheet" value="1" checked>Record Sheet
-                           </label>
-                        </div>
-                        <label class="col-sm-2 control-label">Language Proposed</label>
+                         <label class="col-sm-2 control-label">Language Proposed</label>
                         <div class="col-sm-4">
                            <select name="lang" class="selectpicker" data-style="btn-default btn-block" >
                              <?php foreach($lang as $res){ ?>
@@ -159,45 +153,14 @@
                         </div>
                      </div>
                   </fieldset>
-                  <fieldset>
-                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Student New Picture</label>
-                        <div class="col-sm-4">
-                           <input type="file" name="student_pic" class="form-control" onchange="loadFile(event)" accept="image/*" >
-                        </div>
-                        <label class="col-sm-2 control-label">EMSI Number</label>
-                        <div class="col-sm-4">
-                           <input type="text" name="emsi_num" value="<?php echo $rows->emsi_num; ?>" class="form-control" />
-                        </div>
-                        <label class="col-sm-2 control-label">&nbsp;</label>
-                        <div class="col-sm-4">
-                           <img  id="output" class="img-circle" style="width:110px;">
-                        </div>
-                     </div>
-                  </fieldset>
-
-
+              
                   <fieldset>
                      <div class="form-group">
                           <label class="col-sm-2 control-label">Previous School</label>
                             <div class="col-sm-4">
                                <input type="text" name="sch_name" value="<?php echo $rows->last_sch_name; ?>" class="form-control">
                             </div>
-                            <label class="col-sm-2 control-label"></label>
-                              <div class="col-sm-4">
-                                <select name="class_name" class="selectpicker" >
-                                   <?php foreach ($class as $clas) {  ?>
-                                   <option value="<?php  echo $clas->class_id; ?>"><?php  echo $clas->class_name; ?></option>
-                                   <?php } ?>
-                                </select>
-                                 <script language="JavaScript">document.formadmission.class_name.value="<?php echo $rows->last_studied; ?>";</script>
-                              </div>
-                     </div>
-                  </fieldset>
-
-                  <fieldset>
-                     <div class="form-group">
-                          <label class="col-sm-2 control-label">Qualified promotion</label>
+                           <label class="col-sm-2 control-label">Qualified promotion</label>
                             <div class="col-sm-4">
                               <select name="qual" class="selectpicker" >
                                  <option value="1">Yes</option>
@@ -205,24 +168,15 @@
                               </select>
                               <script language="JavaScript">document.formadmission.qual.value="<?php echo $rows->qualified_promotion; ?>";</script>
                             </div>
-                            <label class="col-sm-2 control-label"></label>
-                              <div class="col-sm-4">
-
-                              </div>
                      </div>
                   </fieldset>
+
+                  
 
 
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Status</label>
-                        <div class="col-sm-4">
-                           <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                              <option value="Active">Active</option>
-                              <option value="Deactive">DeActive</option>
-                           </select>
-                           <script language="JavaScript">document.formadmission.status.value="<?php echo $rows->status; ?>";</script>
-                        </div>
+                        
 
                         <label class="col-sm-2 control-label">Blood Group</label>
                         <div class="col-sm-4">
@@ -233,29 +187,87 @@
                            </select>
                             <script language="JavaScript">document.formadmission.blood_group.value="<?php echo $rows->blood_group; ?>";</script>
                         </div>
-
-                     </div>
+						
+						
+                           <?php 
+							   $t = $rows->transfer_certificate;
+							   $s = $rows->record_sheet;
+							   $tccopy = $rows->tccopy;
+                           ?>
+						   
+						   <label class="col-sm-2 control-label">Certificates</label>
+                             <div class="col-sm-4" style="padding-top:10px;">
+							 <input type="hidden" name="user_tc_old" class="form-control" value="<?php echo $rows->tccopy; ?>">
+							 <?php if ($t=='1') {?>
+                                <input type="checkbox" name="trn_cert" value="1" id="trn_cert" checked>
+								<?php if ($tccopy !='') { ?><a href="<?php echo base_url(); ?>assets/students/tccopy/<?php echo $tccopy; ?>" target="_blank">Transfer Certificate</a> <?php } else { ?> Transfer Certificate <?php } ?>
+							 <?php } else { ?>
+								 <input type="checkbox" name="trn_cert" value="1" id="trn_cert">Transfer Certificate
+							 <?php } ?>
+								&nbsp;&nbsp;
+							 <?php if ($s=='1') {?>
+								<input type="checkbox" name="rec_sheet" value="1"  checked>Record Sheet
+								<?php } else { ?>
+								<input type="checkbox" name="rec_sheet" value="1">Record Sheet
+								<?php } ?>
+								
+                             </div>
+						   
+					
                   </fieldset>
-                  <fieldset>
+				  <fieldset>
                      <div class="form-group">
-                       <label class="col-sm-2 control-label">Current  Pic</label>
+					 <label class="col-sm-2 control-label">Current  Pic</label>
                        <div class="col-sm-4">
                           <input type="hidden" name="user_pic_old" class="form-control" value="<?php echo $rows->student_pic; ?>">
                           <?php $spic=$rows->student_pic;
                              if(empty($spic)){?>
                           <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle" style="width:110px;">
                           <?php }else{?>
-                          <img src="<?php echo base_url(); ?>assets/students/<?php echo $rows->student_pic; ?>" class="img-circle" style="width:110px;">
+                          <img src="<?php echo base_url(); ?>assets/students/<?php echo $rows->student_pic; ?>" class="" style="width:110px;">
                           <?php }?>
                        </div>
-
+					   
+					  <div id="answer" style="font-size:normal;">
+						<label class="col-sm-2 control-label">TC Copy</label>
                         <div class="col-sm-4">
-                          <br>
-                           <button type="submit" id="save" class="btn btn-info btn-fill center">Save</button>
+                           <input type="file" name="tc_copy" class="form-control">
                         </div>
+					 </div>
+                     </div>
 
+                  </fieldset>
+                  
+				  <fieldset>
+                     <div class="form-group">
+						<label class="col-sm-2 control-label">Student New Picture</label>
+                        <div class="col-sm-4">
+                           <input type="file" name="student_pic" class="form-control"  accept="image/*" >
+                        </div>
+						
+						<label class="col-sm-2 control-label">Status</label>
+                        <div class="col-sm-4">
+                           <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                              <option value="Active">Active</option>
+                              <option value="Deactive">Inactive</option>
+                           </select>
+                           <script language="JavaScript">document.formadmission.status.value="<?php echo $rows->status; ?>";</script>
+                        </div>
                      </div>
                   </fieldset>
+				  
+				   <fieldset>
+                     <div class="form-group">
+                       <div class="col-sm-4">
+                       </div>
+                       <div class="col-sm-4">
+                           <button type="submit" id="save" class="btn btn-info btn-fill center">Save</button>
+                        </div>
+                     </div>
+                       
+
+                  </fieldset>
+				  
                </form>
             </div>
          </div>
@@ -264,15 +276,70 @@
    </div>
 </div>
 <script type="text/javascript">
-   var loadFile = function(event) {
+  /*  var loadFile = function(event) {
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
-   };
+   }; */
 
    $(document).ready(function () {
    jQuery('#admissionmenu').addClass('collapse in');
    $('#admission').addClass('active');
    $('#admission2').addClass('active');
+ 
+
+  <?php if ($t=='') {?>
+		$("#answer").hide();
+  <?php } ?>
+
+$("#trn_cert").click(function() {
+    if($(this).is(":checked")) {
+        $("#answer").show();
+    } else {
+        $("#answer").hide();
+    }
+});
+ 
+ 
+  $('#student_pic').on('change', function() {
+	  var f=this.files[0]
+	  var actual=f.size||f.fileSize;
+	  var orgi=actual/1024;
+		if(orgi<1024){
+		  $("#preview").html('');
+		  //$("#preview").html('<img src="<?php echo base_url(); ?>assets/loader.gif" alt="Uploading...."/>');
+		  $("#eventform").ajaxForm({
+			  target: '#preview'
+		  }).submit();
+		}else{
+		  //$("#preview").html('File Size Must be  Lesser than 1 MB');
+		  //alert("File Size Must be  Lesser than 1 MB");
+		  return false;
+		}
+	});
+
+
+$('#tc_copy').on('change', function() {
+	  var f=this.files[0]
+	  var actual=f.size||f.fileSize;
+	  var orgi=actual/1024;
+		if(orgi<1024){
+		  $("#preview").html('');
+		  //$("#preview").html('<img src="<?php echo base_url(); ?>assets/loader.gif" alt="Uploading...."/>');
+		  $("#eventform").ajaxForm({
+			  target: '#preview'
+		  }).submit();
+		}else{
+		  //$("#preview").html('File Size Must be  Lesser than 1 MB');
+		  //alert("File Size Must be  Lesser than 1 MB");
+		  return false;
+		}
+	});
+
+
+  $.validator.addMethod('filesize', function (value, element, param) {
+      return this.optional(element) || (element.files[0].size <= param)
+  }, 'File size must be less than 1 MB');
+
     $('#admissionform').validate({ // initialize the plugin
         rules: {
             admission_no:{required:true, number: true,maxlength:9,
@@ -307,8 +374,9 @@
             mobile:{required:false,maxlength:10,minlength:10,remote:{
               url: "<?php echo base_url(); ?>admission/check_mobile_number_exist/<?php echo $rows->admission_id;  ?>",
               type: "post"
-            }
-          }
+            }},
+			student_pic:{accept: "jpg,jpeg,png", filesize: 1048576 },
+          tc_copy:{required:false,accept: "jpg,jpeg,png", filesize: 1048576 }
 
         },
         messages: {
@@ -338,10 +406,55 @@
                mobile:{
                  required:"Enter mobile number",
                  remote:"Mobile number Already Exist"
-               }
+               },
+			  student_pic:{
+				  //required:"Select banner",
+				  accept:"Please upload .jpg or .png .",
+				  fileSize:"File must be JPG or PNG, less than 1MB"
+				},
+				tc_copy:{
+				  //required:"Select banner",
+				  accept:"Please upload .jpg or .png .",
+				  fileSize:"File must be JPG or PNG, less than 1MB"
+				}
               //student_pic:"Enter the Student Picture"
             }
     });
    });
 
+
+$().ready(function(){
+
+     $('.datepicker').datetimepicker({
+       format: 'DD-MM-YYYY',
+       icons: {
+           time: "fa fa-clock-o",
+           date: "fa fa-calendar",
+           up: "fa fa-chevron-up",
+           down: "fa fa-chevron-down",
+           previous: 'fa fa-chevron-left',
+           next: 'fa fa-chevron-right',
+           today: 'fa fa-screenshot',
+           clear: 'fa fa-trash',
+           close: 'fa fa-remove'
+       }
+    });
+
+   $('.datepicker1').datetimepicker({
+       format: 'YYYY',
+   maxDate: new Date(),
+       icons: {
+           time: "fa fa-clock-o",
+           date: "fa fa-calendar",
+           up: "fa fa-chevron-up",
+           down: "fa fa-chevron-down",
+           previous: 'fa fa-chevron-left',
+           next: 'fa fa-chevron-right',
+           today: 'fa fa-screenshot',
+           clear: 'fa fa-trash',
+           close: 'fa fa-remove'
+       }
+    });
+
+   });
 </script>

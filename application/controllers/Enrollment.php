@@ -37,6 +37,7 @@ class Enrollment extends CI_Controller {
 
 	 	public function home(){
 	 		$datas=$this->session->userdata();
+
 	 		$user_id=$this->session->userdata('user_id');
 			$datas['result'] = $this->yearsmodel->getall_years();
 			$datas['admisn'] = $this->admissionmodel->get_all_admission();

@@ -49,13 +49,22 @@ class Adminlogin extends CI_Controller {
 			}
 			$user_type=$this->session->userdata('user_type');
 			$user_type1=$result['user_type'];
+			
 					if($result['status']=='Active'){
 						switch($user_type1){
 							case '1':
-								$user_name=$result['user_name'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
-								$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
+								$user_name=$result['user_name'];
+								$msg=$result['msg'];
+								$name=$result['name'];
+								$user_type=$result['user_type'];
+								$status=$result['status'];
+								$user_id=$result['user_id'];
+								$user_pic=$result['user_pic'];
+								$school_id=$result['school_id'];
+								$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic,"school_id"=>$school_id);
+								//print_r($datas);
 								//$this->session->userdata($user_name);
-								$session_data=$this->session->set_userdata($datas);
+								 $session_data = $this->session->set_userdata($datas);
 								
 								$datas['res']=$this->dashboard->get_user_count_student();
 								$datas['parents']=$this->dashboard->get_user_count_parents();
@@ -69,7 +78,7 @@ class Adminlogin extends CI_Controller {
 								$datas['dash_reminder']=$this->dashboard->dash_reminder($user_id);
 								$datas['class']=$this->dashboard->get_all_class_sec();
 							   //print_r($datas['class']);exit;
-								
+								//print_r ($session_data);
 								$this->load->view('header',$datas);
 								$this->load->view('home',$datas);
 								$this->load->view('footer');

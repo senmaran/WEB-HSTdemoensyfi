@@ -30,7 +30,10 @@ Class Enrollmentmodel extends CI_Model
 //CREATE ADMISSION   ad_enrollment
 
         function ad_enrollment($admisnid,$admit_year,$formatted_date,$admisn_no,$name,$class,$quota_id,$groups_id,$activity_id,$status){
-			     $year_id=$this->getYear();
+			
+			$year_id=$this->getYear();
+			$school_id=$this->session->userdata('school_id');
+			
            $check_email="SELECT * FROM edu_enrollment WHERE admit_year='$admit_year'  AND admission_id='$admisnid'";
            $result=$this->db->query($check_email);
             if($result->num_rows()==0){
@@ -71,18 +74,17 @@ Class Enrollmentmodel extends CI_Model
        if(!empty($email)){
          $to=$email;
          $subject="Welcome Message";
-         $email_message="Dear : " .$name. "<br> Username : " .$user_id."<br> Password : ".$OTP."";
+         $email_message="Dear : " .$name. "<br><br> Username : " .$user_id."<br> Password : ".$OTP."<br> URL :".base_url()."";
          $this->mailmodel->sendMail($to,$subject,$email_message);
        }
       if(!empty($cell))
           {
-            $userdetails="Dear : " .$name. ", Username : " .$user_id.", Password : ".$OTP."";
-            $notes =utf8_encode($userdetails."To known more  detail click here  http://bit.ly/2wLwdRQ");
+            $userdetails="Dear : " .$name. ", Schoolid : " .$school_id.", Username : " .$user_id.", Password : ".$OTP."";
+             $notes =utf8_encode($userdetails."To known more  detail click here  http://bit.ly/2wLwdRQ");
             $phone=$cell;
-          //  $this->smsmodel->sendSMS($phone,$notes);
-
-      }
-
+            $this->smsmodel->sendSMS($phone,$notes);
+			
+			}
               $stude_insert="INSERT INTO edu_users (name,user_name,user_password,user_type,user_master_id,student_id,created_date,updated_date,status) VALUES ('$name','$user_id','$md5pwd','3','$admisnid','$admisnid',NOW(),NOW(),'$status')";
               $resultset=$this->db->query($stude_insert);
 

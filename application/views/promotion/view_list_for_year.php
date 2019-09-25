@@ -1,6 +1,8 @@
  <?php
+ if (count($res_list)>0) {
  foreach ($res_list as $rows) {}
 	$search_class = $rows->class_sec_id;
+ }
 ?>
 <div class="main-panel">
     <div class="content">

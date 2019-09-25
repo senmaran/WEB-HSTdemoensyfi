@@ -11,10 +11,10 @@ Class Login extends CI_Model
 
        function login($email,$password)
        {
-         $query = "SELECT * FROM edu_users WHERE  user_name = '$email'";
+          $query = "SELECT * FROM edu_users WHERE  user_name = '$email'";
           $resultset=$this->db->query($query);
           if($resultset->num_rows()==1){
-             $pwdcheck="SELECT * FROM edu_users WHERE user_name='$email' AND user_password='$password'";
+              $pwdcheck="SELECT * FROM edu_users WHERE user_name='$email' AND user_password='$password'";
             $res=$this->db->query($pwdcheck);
 
             if($res->num_rows()==1){
@@ -31,9 +31,10 @@ Class Login extends CI_Model
     
                         
                       $data = array("user_name"  => $rows->user_name,"msg"  =>"success","name"=>$rows->name, "school_id" => $rows->school_id,"user_type"=>$rows->user_type,"status"=>$rows->status,"user_id"=>$rows->user_id,"user_pic"=>$rows->user_pic);
+					 // print_r($data);exit;
                       return $data;
                       //break;
-                     print_r($data);exit;
+                     
                       // break;
                     case "Deactive":
 

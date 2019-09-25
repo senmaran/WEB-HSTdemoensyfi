@@ -108,13 +108,15 @@ Class Groupingmodel extends CI_Model
           }
 
           function view_members_in_groups($id){
+			  $year_id=$this->getYear();
             $query="SELECT egm.id,egm.group_member_id,eu.user_master_id,ee.name,c.class_name,s.sec_name,egm.status  FROM edu_grouping_members AS egm LEFT JOIN edu_users AS eu ON  eu.user_id=egm.group_member_id LEFT JOIN edu_admission AS ea ON eu.user_master_id=ea.admission_id
             LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id LEFT JOIN edu_classmaster AS cm ON ee.class_id=cm.class_sec_id
-            LEFT JOIN edu_class AS c ON cm.class=c.class_id LEFT JOIN edu_sections AS s ON cm.section=s.sec_id WHERE egm.group_title_id='$id' ORDER BY egm.id DESC";
+            LEFT JOIN edu_class AS c ON cm.class=c.class_id LEFT JOIN edu_sections AS s ON cm.section=s.sec_id WHERE egm.group_title_id='$id' AND ee.admit_year = '$year_id' AND egm.member_type = 3 ORDER BY egm.id DESC";
             $res=$this->db->query($query);
             return $res->result();
           }
           function view_members_in_groups_staff($id){
+
             $query="SELECT egm.id,egm.group_member_id,egm.member_type,eu.user_master_id,eu.name,egm.status,CASE  WHEN egm.member_type ='2' THEN 'Teacher' WHEN egm.member_type = 3 THEN '' WHEN egm.member_type = 5 THEN 'Board Members'  ELSE ' ' END  AS role_name FROM edu_grouping_members AS egm LEFT JOIN edu_users AS eu ON  eu.user_id=egm.group_member_id LEFT JOIN edu_teachers AS et ON  et.teacher_id=egm.group_member_id WHERE egm.group_title_id='$id' AND  egm.member_type='2' OR  egm.member_type='5' ORDER BY egm.id DESC";
             $res=$this->db->query($query);
             return $res->result();

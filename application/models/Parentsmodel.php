@@ -93,6 +93,7 @@ Class Parentsmodel extends CI_Model
 
 	   function add_parents($admission_id,$fname,$foccupation,$fincome,$fhaddress,$fpemail,$fsemail,$fpmobile,$fsmobile,$fhome_phone,$foffice_address,$foffice_phone,$frelationship,$fstatus,$flogin,$userFileName,$mname,$moccupation,$mincome,$mhaddress,$mpemail,$msemail,$mpmobile,$msmobile,$mhome_phone,$moffice_address,$moffice_phone,$mrelationship,$mstatus,$mlogin,$userFileName1,$gname,$goccupation,$gincome,$ghaddress,$gpemail,$gsemail,$gpmobile,$gsmobile,$ghome_phone,$goffice_address,$goffice_phone,$grelationship,$gstatus,$glogin,$userFileName2,$user_id)
 	   {
+		   $school_id=$this->session->userdata('school_id');
 		  //echo $flogin; echo $mlogin; echo $glogin; exit;
 		  /*$check_mobile="SELECT email,mobile FROM edu_parents WHERE mobile='$fpmobile'";
           $result=$this->db->query($check_mobile);
@@ -144,7 +145,7 @@ Class Parentsmodel extends CI_Model
 				 }
 				 if(!empty($fpmobile))
 				 {
-					$userdetails="Name : " .$fname. ", Username : " .$fuser_name.", Password : ".$OTP.", ";
+					$userdetails="Name : " .$fname. ", Schoolid : " .$school_id.", Username : " .$fuser_name.", Password : ".$OTP.", ";
 					$notes =utf8_encode($userdetails."To known more about your child click here  http://bit.ly/2wLwdRQ");
           $phone=$fpmobile;
           $this->smsmodel->sendSMS($phone,$notes);
@@ -199,7 +200,7 @@ Class Parentsmodel extends CI_Model
 				  }
 				if(!empty($mpmobile))
 				 {
-           $userdetails="Name : " .$mname. ", Username : " .$muser_name.", Password : ".$OTP.", ";
+           $userdetails="Name : " .$mname. ", Schoolid : " .$school_id.", Username : " .$muser_name.", Password : ".$OTP.", ";
            $notes =utf8_encode($userdetails."To known more about your child click here  http://bit.ly/2wLwdRQ");
             $phone=$mpmobile;
             $this->smsmodel->sendSMS($phone,$notes);
@@ -251,7 +252,7 @@ Class Parentsmodel extends CI_Model
                   }
                  if(!empty($gpmobile))
 				 {
-					$userdetails="Name : " .$gname . ", Username : " .$guser_name .", Password : ".$OTP.", ";
+					$userdetails="Name : " .$gname . ", Schoolid : " .$school_id.", Username : " .$guser_name .", Password : ".$OTP.", ";
           $notes =utf8_encode($userdetails."To known more about your child click here  http://bit.ly/2wLwdRQ");
            $phone=$gpmobile;
            $this->smsmodel->sendSMS($phone,$notes);
@@ -333,6 +334,7 @@ Class Parentsmodel extends CI_Model
 
 	   function add_new_parents($admission_id,$oldadmission_id,$name,$occupation,$income,$haddress,$pemail,$semail,$pmobile,$smobile,$home_phone,$office_address,$office_phone,$relationship,$status,$priority,$userFileName,$user_id)
 	   {
+		    $school_id=$this->session->userdata('school_id');
           $select="SELECT relationship FROM edu_parents  WHERE FIND_IN_SET('$admission_id',admission_id) AND relationship='$relationship'";
          $res_selec=$this->db->query($select);
          if($res_selec->num_rows()==0){
@@ -384,7 +386,7 @@ Class Parentsmodel extends CI_Model
             }
              if(!empty($pmobile))
              {
-              $userdetails="Name : " .$name. ", Username : " .$newuser_name.", Password : ".$OTP.", ";
+              $userdetails="Name : " .$name. ", Schoolid : " .$school_id.",Username : " .$newuser_name.", Password : ".$OTP.", ";
               $notes =utf8_encode($userdetails."To known more about your child click here  http://bit.ly/2wLwdRQ");
                $phone=$pmobile;
                $this->smsmodel->sendSMS($phone,$notes);
@@ -420,7 +422,9 @@ Class Parentsmodel extends CI_Model
 	   }
 
 	   function update_parents_details($stu_name,$admission_id,$morestu,$newstu,$oldstu,$flogin,$fid,$fname,$foccupation,$fincome,$fhaddress,$fpemail,$fsemail,$fpmobile,$fsmobile,$fhome_phone,$foffice_address,$foffice_phone,$frelationship,$fstatus,$userFileName,$mlogin,$mid,$mname,$moccupation,$mincome,$mhaddress,$mpemail,$msemail,$mpmobile,$msmobile,$mhome_phone,$moffice_address,$moffice_phone,$mrelationship,$mstatus,$userFileName1,$glogin,$gid,$gname,$goccupation,$gincome,$ghaddress,$gpemail,$gsemail,$gpmobile,$gsmobile,$ghome_phone,$goffice_address,$goffice_phone,$grelationship,$gstatus,$userFileName2,$user_id)
-	   {  // echo $stu_name; echo $morestu; exit;
+	   {  
+	    $school_id=$this->session->userdata('school_id');
+	   // echo $stu_name; echo $morestu; exit;
 	       $digits = 6;
 		   $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 		   //Father Details
@@ -478,7 +482,7 @@ Class Parentsmodel extends CI_Model
 				   }
 				   if(!empty($fpmobile))
 				   {
-					$userdetails="Name : " .$fname. ", Username : " .$fatherid.", Password : ".$OTP.", ";
+					$userdetails="Name : " .$fname. ", Schoolid : " .$school_id.",Username : " .$fatherid.", Password : ".$OTP.", ";
 					$notes =utf8_encode($userdetails."To Known more details login into http://bit.ly/2wLwdRQ");
           $phone=$fpmobile;
           $this->smsmodel->sendSMS($phone,$notes);
@@ -539,7 +543,7 @@ Class Parentsmodel extends CI_Model
 					  }
 					   if(!empty($mpmobile))
 				      {
-						$userdetails="Name : " .$mname. ", Username : " .$motherid.", Password : ".$OTP.", ";
+						$userdetails="Name : " .$mname. ", Schoolid : " .$school_id.",Username : " .$motherid.", Password : ".$OTP.", ";
 						$notes =utf8_encode($userdetails."To Known more details login into http://bit.ly/2wLwdRQ");
             $phone=$mpmobile;
             $this->smsmodel->sendSMS($phone,$notes);
@@ -599,7 +603,7 @@ Class Parentsmodel extends CI_Model
 					   }
 					    if(!empty($gpmobile))
 				        {
-							$userdetails="Name : " .$gname. ", Username : " .$guardianid.", Password : ".$OTP.", ";
+							$userdetails="Name : " .$gname. ", Schoolid : " .$school_id.", Username : " .$guardianid.", Password : ".$OTP.", ";
 							$notes =utf8_encode($userdetails."To Known more details login into http://bit.ly/2wLwdRQ");
               $phone=$gpmobile;
               $this->smsmodel->sendSMS($phone,$notes);
@@ -622,6 +626,7 @@ Class Parentsmodel extends CI_Model
 	   //New student Add
 	   function update_exiting_parents_details($morestu,$newstu,$oldstu,$flogin,$fid,$fname,$foccupation,$fincome,$fhaddress,$fpemail,$fsemail,$fpmobile,$fsmobile,$fhome_phone,$foffice_address,$foffice_phone,$frelationship,$fstatus,$userFileName,$mlogin,$mid,$mname,$moccupation,$mincome,$mhaddress,$mpemail,$msemail,$mpmobile,$msmobile,$mhome_phone,$moffice_address,$moffice_phone,$mrelationship,$mstatus,$userFileName1,$glogin,$gid,$gname,$goccupation,$gincome,$ghaddress,$gpemail,$gsemail,$gpmobile,$gsmobile,$ghome_phone,$goffice_address,$goffice_phone,$grelationship,$gstatus,$userFileName2,$user_id)
 	   {
+		   $school_id=$this->session->userdata('school_id');
 		   //echo $oldstu; echo'<br>'; echo $newstu; echo'<br>';echo $morestu;
 		    $newstu;
 	       $digits = 6;
@@ -683,7 +688,7 @@ Class Parentsmodel extends CI_Model
 				   }
 				 if(!empty($fpmobile))
 				   {
-					$userdetails="Name : " .$fname. ", Username : " .$fatherid.", Password : ".$OTP.", ";
+					$userdetails="Name : " .$fname. ", Schoolid : " .$school_id.", Username : " .$fatherid.", Password : ".$OTP.", ";
 					$notes =utf8_encode($userdetails."To Known more details login into http://bit.ly/2wLwdRQ");
           $phone=$fpmobile;
           $this->smsmodel->sendSMS($phone,$notes);
@@ -756,7 +761,7 @@ Class Parentsmodel extends CI_Model
 
 					 if(!empty($mpmobile))
 				      {
-						$userdetails="Name : " .$mname. ", Username : " .$motherid.", Password : ".$OTP.", ";
+						$userdetails="Name : " .$mname. ", Schoolid : " .$school_id.", Username : " .$motherid.", Password : ".$OTP.", ";
 						$notes =utf8_encode($userdetails."To Known more details login into http://bit.ly/2wLwdRQ");
             $phone=$mpmobile;
             $this->smsmodel->sendSMS($phone,$notes);
@@ -828,7 +833,7 @@ Class Parentsmodel extends CI_Model
 
 					   if(!empty($gpmobile))
 				      {
-						$userdetails="Name : " .$gname. ", Username : " .$guardianid.", Password : ".$OTP.", ";
+						$userdetails="Name : " .$gname. ", Schoolid : " .$school_id.", Username : " .$guardianid.", Password : ".$OTP.", ";
 						$notes =utf8_encode($userdetails."To Known more details login into http://bit.ly/2wLwdRQ");
             $phone=$gpmobile;
             $this->smsmodel->sendSMS($phone,$notes);
