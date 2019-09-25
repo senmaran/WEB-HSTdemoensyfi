@@ -139,7 +139,7 @@ Class Notificationmodel extends CI_Model
 			{
 				$title = 'Substitution';
 				$passphrase = 'hs123';
-				$loction ='assets/notification/heylaapp.pem';
+				$loction ='assets/notification/ensyfi.pem';
 				$payload = '{
 							"aps": {
 								"alert": {
@@ -232,7 +232,7 @@ Class Notificationmodel extends CI_Model
 							
 		
 			$passphrase = 'hs123';
-			$loction ='assets/notification/heylaapp.pem';
+			$loction ='assets/notification/ensyfi.pem';
 			$payload = '{
 						"aps": {
 							"alert": {
@@ -701,7 +701,7 @@ Class Notificationmodel extends CI_Model
 							
 		
 			$passphrase = 'hs123';
-			$loction ='assets/notification/heylaapp.pem';
+			$loction ='assets/notification/ensyfi.pem';
 			$payload = '{
 						"aps": {
 							"alert": {
@@ -918,7 +918,7 @@ Class Notificationmodel extends CI_Model
 					{
 						$title = 'Home work & Class test';
 						$passphrase = 'hs123';
-						$loction ='assets/notification/heylaapp.pem';
+						$loction ='assets/notification/ensyfi.pem';
 						$payload = '{
 									"aps": {
 										"alert": {
@@ -1049,7 +1049,7 @@ Class Notificationmodel extends CI_Model
 					{
 						$title = 'Attendance';
 						$passphrase = 'hs123';
-						$loction ='assets/notification/heylaapp.pem';
+						$loction ='assets/notification/ensyfi.pem';
 						$payload = '{
 									"aps": {
 										"alert": {
