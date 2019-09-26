@@ -4,10 +4,13 @@
    border:1px solid grey;
    }
    .table{
-     border:2px solid #642160;
+     border:2px solid #212f35;
+   }
+   .table > thead > tr > th{
+     color: #000;
    }
    .box{
-     background-color: red;
+     background-color: #cc521d;
    }
    .period{
      background-color: #cecfcf;
