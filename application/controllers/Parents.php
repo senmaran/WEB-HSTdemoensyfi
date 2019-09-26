@@ -210,7 +210,7 @@ class Parents extends CI_Controller {
 
 // GET ALL ADMISSION DETAILS
 
-			public function view()
+		public function view()
 			{
 				$datas=$this->session->userdata();
 				$user_id=$this->session->userdata('user_id');
@@ -286,6 +286,30 @@ class Parents extends CI_Controller {
 					 }
 					}
 
+
+		public function send_request($id)
+		{
+			 $datas=$this->session->userdata();
+			 $user_id=$this->session->userdata('user_id');
+			 $user_type=$this->session->userdata('user_type');
+		 	 if($user_type==1)
+			 {
+				$datas=$this->parentsmodel->send_request($id);
+				
+					if($datas['status']=="success")
+					{
+						$this->session->set_flashdata('msg','Login details send');
+						redirect('parents/view');
+					}else{
+						$this->session->set_flashdata('msg', 'Failed to Add');
+						redirect('parents/view');
+					}
+		   }
+			else{
+				redirect('/');
+			}	
+		}
+		
 
 		public function update_parents()
 		{

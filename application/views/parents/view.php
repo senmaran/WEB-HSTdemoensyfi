@@ -16,19 +16,18 @@
                             <div class="content">
                                 <div class="fresh-datatables">
                                   <h4 class="title">List of Parents Details </h4> <br>
-
-
-
-                           <table id="example" class="table table-striped table-no-bordered table-hover" cellspacing="0" >
+							<table id="example" class="table table-striped table-no-bordered table-hover" cellspacing="0" >
                               <thead>
                                 <th>ID</th>
                                 <th>Parents Name</th>
                                 <th>Email</th>
                                 <th>Mobile</th>
 								<th>Status</th>
+								<th>Action</th>
                               </thead>
                               <tbody>
                                 <?php
+								//print_r($result);
                                 $i=1;
                                 foreach ($result as $rows)
 								 {
@@ -45,8 +44,14 @@
 									  if($stu=='Active'){?>
 									   <button class="btn btn-success btn-fill btn-wd">Active</button>
 									 <?php  }else{?>
-									  <button class="btn btn-danger btn-fill btn-wd">DeActive</button><?php }
+									  <button class="btn btn-danger btn-fill btn-wd">Inactive</button><?php }
 									 ?></td>
+									 <td>
+									 <?php if (trim($rows->mobile)!=''){ ?>
+										<a href="<?php echo base_url(); ?>parents/send_request/<?php echo $rows->id; ?>" rel="tooltip" title="" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" data-original-title="send User Details">
+										<i class="fa fa-paper-plane"> </i></a>
+									 <?php } ?>
+                                    </td>
                                     <!-- <td>
                                       <a href="<?php echo base_url(); ?>parents/edit_parents/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
                                     </td>-->
