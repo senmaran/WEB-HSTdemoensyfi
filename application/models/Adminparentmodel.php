@@ -59,7 +59,7 @@ Class Adminparentmodel extends CI_Model
     function get_all_homework($enroll_id)
     {
 
-        $query2  = "SELECT * FROM edu_enrollment WHERE enroll_id='$enroll_id' AND status='Active'";
+         $query2  = "SELECT * FROM edu_enrollment WHERE enroll_id='$enroll_id' AND status='Active'";
         $result1 = $this->db->query($query2);
         $row3    = $result1->result();
         foreach ($row3 as $row4) {
@@ -69,10 +69,11 @@ Class Adminparentmodel extends CI_Model
         }
         $year_id = $this->getYear();
         //echo $year_id;exit;
-        $query3  = "SELECT h.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,se.sec_id,se.sec_name FROM edu_homework AS h,edu_classmaster AS cm,edu_class AS c,edu_sections AS se WHERE h.class_id='$class_id' AND h.status='Active'AND
+         $query3  = "SELECT h.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,se.sec_id,se.sec_name FROM edu_homework AS h,edu_classmaster AS cm,edu_class AS c,edu_sections AS se WHERE h.class_id='$class_id' AND h.status='Active'AND
          h.year_id='$year_id' AND h.class_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=se.sec_id ORDER BY h.hw_id DESC";
         $result2 = $this->db->query($query3);
         $row4    = $result2->result();
+		//exit;
         return $row4;
 
     }
