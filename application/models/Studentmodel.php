@@ -42,6 +42,8 @@ Class Studentmodel extends CI_Model
 //GET ALL
 		function get_stu_homework_details($user_id,$user_type)
 		{
+			$year_id=$this->getYear();
+			
 			$query="SELECT student_id,user_type,user_master_id FROM edu_users WHERE user_id='$user_id' AND user_type='$user_type'";
 			$resultset=$this->db->query($query);
 			$row=$resultset->result();
@@ -58,9 +60,10 @@ Class Studentmodel extends CI_Model
 			$name=$row2->name;
 			$parnt_guardn_id=$row2->parnt_guardn_id;}
 
-			$year_id=$this->getYear();
+			
 
-			$query2="SELECT * FROM edu_enrollment WHERE admit_year='$year_id' AND admission_id='$admission_id' AND admisn_no='$admisn_no' AND name='$name' AND status='Active'";
+			//$query2="SELECT * FROM edu_enrollment WHERE admit_year='$year_id' AND admission_id='$admission_id' AND admisn_no='$admisn_no' AND name='$name' AND status='Active'";
+			$query2="SELECT * FROM edu_enrollment WHERE admit_year='$year_id' AND admission_id='$admission_id' AND status='Active'";
 			$result1=$this->db->query($query2);
 			$row3=$result1->result();
 			foreach($row3 as $row4){
