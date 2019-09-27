@@ -587,7 +587,6 @@ Class Notificationmodel extends CI_Model
 //Group Notification
 	function send_notification($group_id,$notes,$user_id,$members_id)
 	{
-			
 			require_once 'assets/notification/Firebase.php';
 			require_once 'assets/notification/Push.php';
 			$title = 'Group Notification';
@@ -685,7 +684,7 @@ Class Notificationmodel extends CI_Model
 				  }else{
 					foreach($result as $notification_id){
 						$notify_id=$notification_id->user_id;
-						$sql="SELECT * FROM edu_notification where user_id='$notify_id'";
+						echo $sql="SELECT * FROM edu_notification where user_id='$notify_id'";
 						$sgsm=$this->db->query($sql);
 						$res=$sgsm->result();
 					   
