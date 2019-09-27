@@ -314,6 +314,7 @@ Class Notificationmodel extends CI_Model
 							
 							
 							$result = fwrite($fp, $msg, strlen($msg));
+							echo $result;
 							fclose($fp);
 						
 					}
