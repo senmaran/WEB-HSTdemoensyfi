@@ -262,9 +262,9 @@ Class Notificationmodel extends CI_Model
 				 {
 					$userid = $tusers_id[$i];
 
-					$sql = "SELECT * FROM edu_notification WHERE user_id='$userid'";
+					echo $sql = "SELECT * FROM edu_notification WHERE user_id='$userid'";
 					$tgsm=$this->db->query($sql);
-				    
+				    exit;
 					$res=$tgsm->result();
 					foreach($res as $row)
 					{ 
