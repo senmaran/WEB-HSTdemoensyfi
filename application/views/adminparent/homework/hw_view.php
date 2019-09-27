@@ -31,6 +31,7 @@
                            </thead>
                            <tbody>
                               <?php
+							  //print_r($result);
 							  if(empty($result)){echo "Homework Doesn't Add";}else{
 							  foreach($stu_id as $sid){}
 							  $stu_id=$sid->enroll_id;

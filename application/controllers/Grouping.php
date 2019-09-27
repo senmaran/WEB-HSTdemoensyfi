@@ -86,45 +86,50 @@ class Grouping extends CI_Controller {
 
 
 				if($cir_cnt==1){
-				 $ct1=$circular_type[0];
+					$ct1=$circular_type[0];
 				 }
+				 
 				 if($cir_cnt==2){
-				 $ct1=$circular_type[0];
-				 $ct2=$circular_type[1];
+					 $ct1=$circular_type[0];
+					 $ct2=$circular_type[1];
 				 }
+				 
 				 if($cir_cnt==3){
-				 $ct0=$circular_type[0];
-				 $ct1=$circular_type[1];
-				 $ct2=$circular_type[2];
-					}
-					if($cir_cnt==3)
+					 $ct0=$circular_type[0];
+					 $ct1=$circular_type[1];
+					 $ct2=$circular_type[2];
+				}
+				
+				if($cir_cnt==3)
 				 {
 					 $data=$this->smsmodel->send_msg($group_id,$notes,$user_id,$members_id);
 					 $data=$this->notificationmodel->send_notification($group_id,$notes,$user_id,$members_id);
 					 $data=$this->mailmodel->send_mail($group_id,$notes,$user_id,$members_id);
 				 }
-			 if($cir_cnt==2)  {
-		 		  $ct1=$circular_type[0];
-		 	    $ct2=$circular_type[1];
+				 
+				 if($cir_cnt==2)  {
+					$ct1=$circular_type[0];
+					$ct2=$circular_type[1];
 
-		 		  if($ct1=='SMS' && $ct2=='Mail')
-		 		  {
-					 $data=$this->smsmodel->send_msg($group_id,$notes,$user_id,$members_id);
- 					 $data=$this->mailmodel->send_mail($group_id,$notes,$user_id,$members_id);
-		 		  }
-		 		  if($ct1=='SMS' && $ct2=='Notification')
-		 		  {
-					 $data=$this->smsmodel->send_msg($group_id,$notes,$user_id,$members_id);
- 					 $data=$this->notificationmodel->send_notification($group_id,$notes,$user_id,$members_id);
-		 		  }
-		 		  if($ct1=='Mail' && $ct2=='Notification')
-		 		  {
+					  if($ct1=='SMS' && $ct2=='Mail')
+					  {
+						 $data=$this->smsmodel->send_msg($group_id,$notes,$user_id,$members_id);
+						 $data=$this->mailmodel->send_mail($group_id,$notes,$user_id,$members_id);
+					  }
+					  if($ct1=='SMS' && $ct2=='Notification')
+					  {
+						 $data=$this->smsmodel->send_msg($group_id,$notes,$user_id,$members_id);
+						 $data=$this->notificationmodel->send_notification($group_id,$notes,$user_id,$members_id);
+					  }
+					  if($ct1=='Mail' && $ct2=='Notification')
+					  {
 
- 					 $data=$this->notificationmodel->send_notification($group_id,$notes,$user_id,$members_id);
- 					 $data=$this->mailmodel->send_mail($group_id,$notes,$user_id,$members_id);
-		 		  }
+						 $data=$this->notificationmodel->send_notification($group_id,$notes,$user_id,$members_id);
+						 $data=$this->mailmodel->send_mail($group_id,$notes,$user_id,$members_id);
+					  }
 
-		 	  }
+				  }
+				  
 			 if($cir_cnt==1) {
 				  $ct=$circular_type[0];
 				  if($ct=='SMS')
