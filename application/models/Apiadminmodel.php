@@ -476,6 +476,24 @@ class Apiadminmodel extends CI_Model {
             }
 
 
+            //#################### GET  ALL Board Members ####################//
+
+        function get_all_board_members(){
+          $sql="SELECT et.name,et.sex,et.age,et.teacher_id FROM edu_teachers AS et WHERE et.status='Active' and et.role_type_id='5' order by et.teacher_id asc";
+          $res=$this->db->query($sql);
+          if($res->num_rows()==0){
+              $data=array("status"=>"error","msg"=>"No  profile created yet!");
+              return $data;
+          }else{
+            $result=$res->result();
+            $data=array("status"=>"success","msg"=>"success","data"=>$result);
+            return $data;
+          }
+
+        }
+
+
+
                 //#################### GET  ALL TEACHERS ####################//
 
             function get_all_teachers(){
@@ -492,6 +510,8 @@ class Apiadminmodel extends CI_Model {
               }
 
             }
+
+
 
 
             //#################### GET   TEACHER DETAILS  ####################//

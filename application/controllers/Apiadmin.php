@@ -330,6 +330,32 @@ class Apiadmin extends CI_Controller {
     	echo json_encode($response);
     }
 
+		// GET ALL Board Members
+		public function get_all_board_members()
+		{
+			$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+			if(!$this->checkMethod())
+			{
+				return FALSE;
+			}
+
+			if($_POST == FALSE)
+			{
+				$res = array();
+				$res["opn"] = "SOMETHING WENT WRONG ";
+				$res["scode"] = 204;
+				$res["message"] = "Input error";
+
+				echo json_encode($res);
+				return;
+			}
+
+			$data['result']=$this->apiadminmodel->get_all_board_members();
+			$response = $data['result'];
+			echo json_encode($response);
+		}
+
 
     // GET ALL TEACHERS
     public function get_all_teachers()
@@ -356,6 +382,7 @@ class Apiadmin extends CI_Controller {
     	$response = $data['result'];
     	echo json_encode($response);
     }
+
 
 
 
