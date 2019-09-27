@@ -679,8 +679,7 @@ Class Notificationmodel extends CI_Model
 		   
             if($member_type='2' || $member_type='5')
 			{
-				  echo $select="SELECT * from edu_users as eu where user_master_id IN($group_member_id_staff) and eu.user_type='5' and eu.user_type='2'";
-				  exit;
+				   $select="SELECT * from edu_users as eu where user_id IN('$group_member_id_staff')";
 				  $resultset=$this->db->query($select);
 				  $result=$resultset->result();
 				  if(empty($res)){
@@ -688,6 +687,7 @@ Class Notificationmodel extends CI_Model
 					foreach($result as $notification_id){
 						$notify_id=$notification_id->user_id;
 						echo $sql="SELECT * FROM edu_notification where user_id='$notify_id'";
+						exit;
 						$sgsm=$this->db->query($sql);
 						$res=$sgsm->result();
 					   
