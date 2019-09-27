@@ -346,5 +346,34 @@ class Admission extends CI_Controller {
 		}
 
 
+	public function camera_access()
+	{
+		 $datas=$this->session->userdata();
+		 $user_id=$this->session->userdata('user_id');
+		 $this->load->view('admission/camera_access');
+	}
+	
+	public function camera_pic_upload()
+	{
+		 $datas=$this->session->userdata();
+		 $user_id=$this->session->userdata('user_id');
+	
+		chdir('~');
+		if(mkdir('D:\/camera\/',0777)){
+			echo "yay!";
+		}else {
+			echo "fail :(";
+		}
+		$uploaddir = 'D:\/camera\/';	
+		$img = $_POST['base64image'];
+		$img = str_replace('data:image/jpeg;base64,', '', $img);
+		$img = str_replace(' ', '+', $img);
+		$data = base64_decode($img);
+		$file = $uploaddir. uniqid() . '.png';
+		$success = file_put_contents($file, $data);
+		print $success ? $file : 'Unable to save the file.'; 
+		
+	}
+
 
 }

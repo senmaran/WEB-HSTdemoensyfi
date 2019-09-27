@@ -150,7 +150,9 @@
                         <label class="col-sm-2 control-label">Profile Picture</label>
                         <div class="col-sm-4">
                            <input type="file" name="student_pic" class="form-control" accept="image/*" >
+						   <a href="<?php echo base_url(); ?>admission/camera_access" onclick="return popitup('<?php echo base_url(); ?>admission/camera_access')">Open Camera</a>
                         </div>
+						
                         <label class="col-sm-2 control-label">Blood Group</label>
                         <div class="col-sm-4">
                            <select name="blood_group" class="selectpicker" data-title="Blood Group" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
@@ -242,7 +244,7 @@
 </div>
 <script type="text/javascript">
 
-   $(document).ready(function () {
+$(document).ready(function () {
 
    jQuery('#admissionmenu').addClass('collapse in');
    $('#admission').addClass('active');
@@ -422,6 +424,10 @@ $('#tc_copy').on('change', function() {
     });
 
    });
-   
+   function popitup(url) {
+	camWindow=window.open(url,'camWindow','height=450,width=450');
+	if (window.focus) {camWindow.focus()}
+	return false;
+}
  
 </script>

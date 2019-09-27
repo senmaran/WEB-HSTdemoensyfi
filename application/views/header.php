@@ -48,6 +48,8 @@
 
       <script src="<?php echo base_url(); ?>assets/js/jquery.table2excel.js" type="text/javascript"></script>
 
+
+
       <!--  Forms Validations Plugin -->
       <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
       <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
