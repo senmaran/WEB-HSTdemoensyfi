@@ -263,9 +263,9 @@ Class Notificationmodel extends CI_Model
 				 {
 					$userid = $tusers_id[$i];
 
-					echo $sql = "SELECT * FROM edu_notification WHERE user_id='$userid'";
+					$sql = "SELECT * FROM edu_notification WHERE user_id='$userid'";
 					$tgsm=$this->db->query($sql);
-				    exit;
+
 					$res=$tgsm->result();
 					foreach($res as $row)
 					{ 
@@ -297,6 +297,8 @@ Class Notificationmodel extends CI_Model
 							exit("Failed to connect: $err $errstr" . PHP_EOL);					
 							
 							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+							print_r($msg);
+							exit;
 							$result = fwrite($fp, $msg, strlen($msg));
 							fclose($fp);
 						
