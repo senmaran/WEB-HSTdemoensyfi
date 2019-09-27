@@ -296,9 +296,12 @@ Class Notificationmodel extends CI_Model
 						if (!$fp)
 							exit("Failed to connect: $err $errstr" . PHP_EOL);					
 							
-							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
-							print_r($msg);
+							print_r($payload);
+							print_r ($gcm_key);
 							exit;
+							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+							
+							
 							$result = fwrite($fp, $msg, strlen($msg));
 							fclose($fp);
 						
