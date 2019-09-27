@@ -350,7 +350,7 @@ class Apiadmin extends CI_Controller {
 				echo json_encode($res);
 				return;
 			}
-
+			 $user_id=$this->input->post('user_id');
 			$data['result']=$this->apiadminmodel->get_all_board_members();
 			$response = $data['result'];
 			echo json_encode($response);
@@ -377,7 +377,7 @@ class Apiadmin extends CI_Controller {
     		echo json_encode($res);
     		return;
     	}
-
+			 $user_id=$this->input->post('user_id');
     	$data['result']=$this->apiadminmodel->get_all_teachers();
     	$response = $data['result'];
     	echo json_encode($response);
@@ -389,7 +389,7 @@ class Apiadmin extends CI_Controller {
     // GET  TEACHER DETAIlS
     public function get_teacher()
     {
-    	 //$_POST = json_decode(file_get_contents("php://input"), TRUE);
+    	$_POST = json_decode(file_get_contents("php://input"), TRUE);
 
     	if(!$this->checkMethod())
     	{
