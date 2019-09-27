@@ -464,7 +464,8 @@ Class Notificationmodel extends CI_Model
 				if($users_id==2)
 				{
 							
-					$tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$users_id' AND u.user_master_id=t.teacher_id AND u.status='Active'";
+					echo $tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$users_id' AND u.user_master_id=t.teacher_id AND u.status='Active'";
+					exit;
 					$tres=$this->db->query($tsql);
 					$tresult1=$tres->result();
 					
