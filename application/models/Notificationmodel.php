@@ -9,7 +9,7 @@ Class Notificationmodel extends CI_Model
 
   }
 
-  public function getYear()
+	public function getYear()
     {
       $sqlYear = "SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month AND status = 'Active'";
       $year_result = $this->db->query($sqlYear);
@@ -25,58 +25,8 @@ Class Notificationmodel extends CI_Model
       }
     }
 
-	/* function sendNotification($gcm_key,$notes)
-    {
-		  $gcm_key = array($gcm_key);
-		  $data = array
-				(
-				'message' 	=> $notes,
-				'vibrate'	=> 1,
-				'sound'		=> 1
-				);
-
-            // Insert real GCM API key from the Google APIs Console
-            $apiKey = 'AAAADRDlvEI:APA91bFi-gSDCTCnCRv1kfRd8AmWu0jUkeBQ0UfILrUq1-asMkBSMlwamN6iGtEQs72no-g6Nw0lO5h4bpN0q7JCQkuTYsdPnM1yfilwxYcKerhsThCwt10cQUMKrBrQM2B3U3QaYbWQ';
-            // Set POST request body
-            $post = array(
-                'registration_ids'  => $gcm_key,
-                'data'              => $data,
-                 );
-            // Set CURL request headers
-            $headers = array(
-                'Authorization: key=' . $apiKey,
-                'Content-Type: application/json'
-                  );
-            // Initialize curl handle
-            $ch = curl_init();
-            // Set URL to GCM push endpoint
-            curl_setopt($ch, CURLOPT_URL, 'https://gcm-http.googleapis.com/gcm/send');
-            // Set request method to POST
-            curl_setopt($ch, CURLOPT_POST, true);
-            // Set custom request headers
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            // Get the response back as string instead of printing it
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            // Set JSON post data
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
-            // Actually send the request
-            $result = curl_exec($ch);
-			//if(!$result){ echo "Success";}
-
-            // Handle errors
-            if (curl_errno($ch)) {
-            //echo 'GCM error: ' . curl_error($ch);
-            }
-            // Close curl handle
-            curl_close($ch);
-
-            // Debug GCM response
-      } */
-			
-
-
       
-     function send_notification_for_teacher_substitution($tname,$sub_teacher,$sub_tname,$leave_date,$cls_id,$period_id)
+	function send_notification_for_teacher_substitution($tname,$sub_teacher,$sub_tname,$leave_date,$cls_id,$period_id)
 	 {
         $sql="SELECT user_id,name,user_master_id,teacher_id FROM edu_users WHERE teacher_id='$sub_teacher' AND user_type=2 AND user_master_id='$sub_teacher'";
 		$resultset=$this->db->query($sql);
@@ -95,7 +45,7 @@ Class Notificationmodel extends CI_Model
 			$sename=$cls->sec_name;
 		}
 		
-		$notes = 'This is to inform you that as '.$tname.' is on leave,'.$sub_tname.' will be the substitute teacher to fill in for '.$cname.'-'.$sename.',period ('.$period_id.') on '.$leave_date.' ';
+			$notes = 'This is to inform you that as '.$tname.' is on leave,'.$sub_tname.' will be the substitute teacher to fill in for '.$cname.'-'.$sename.',period ('.$period_id.') on '.$leave_date.' ';
 		
 		
 		/* $data=array(
@@ -148,17 +98,6 @@ Class Notificationmodel extends CI_Model
 								}
 							}
 						}';
-						/* $payload = '{
-							"aps": {
-								"alert": {
-									"body": "'.$notes.'",
-									"title": "'.$title.'"
-								},
-								"mutable-content": 1
-							},
-							"mediaUrl": "'.$img_url.'",
-							"mediaType": "image"
-						}';  */
 
 				$ctx = stream_context_create();
 				stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
@@ -170,46 +109,18 @@ Class Notificationmodel extends CI_Model
 				if (!$fp)
 					exit("Failed to connect: $err $errstr" . PHP_EOL);
 					
-					$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+					$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
 					$result = fwrite($fp, $msg, strlen($msg));
 					fclose($fp);
 			}
-		   
-		  /*  //print_r($gsmkey);exit;
-		  $apiKey = 'AAAADRDlvEI:APA91bFi-gSDCTCnCRv1kfRd8AmWu0jUkeBQ0UfILrUq1-asMkBSMlwamN6iGtEQs72no-g6Nw0lO5h4bpN0q7JCQkuTYsdPnM1yfilwxYcKerhsThCwt10cQUMKrBrQM2B3U3QaYbWQ';
-			// Set POST request body
-			$post = array(
-						'registration_ids'  => $gsmkey,
-						'data'              => $data,
-						 );
-			// Set CURL request headers
-			$headers = array(
-						'Authorization: key=' . $apiKey,
-						'Content-Type: application/json'
-							);
-			// Initialize curl handle
-			$ch = curl_init();
-			// Set URL to GCM push endpoint
-			curl_setopt($ch, CURLOPT_URL, 'https://gcm-http.googleapis.com/gcm/send');
-			// Set request method to POST
-			curl_setopt($ch, CURLOPT_POST, true);
-			// Set custom request headers
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			// Get the response back as string instead of printing it
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			// Set JSON post data
-			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
-			// Actually send the request
-			$result = curl_exec($ch);
-			curl_close($ch); */
+		  
 		}
 	 }
 
        
 	function send_circular_via_notification($title_id,$notes,$tusers_id,$stusers_id,$pusers_id,$bmusers_id,$users_id)
-     {
+	{
 			$ssql = "SELECT * FROM edu_circular_master WHERE id ='$title_id'";
-			//exit;
 			$res = $this->db->query($ssql);
 			$result =$res->result();
 			
@@ -242,17 +153,6 @@ Class Notificationmodel extends CI_Model
 							}
 						}
 					}';
-			/* $payload = '{
-						"aps": {
-							"alert": {
-								"body": "'.$notes.'",
-								"title": "'.$title.'"
-							},
-							"mutable-content": 1
-						},
-						"mediaUrl": "'.$img_url.'",
-						"mediaType": "image"
-					}'; */
 
 // ---------------------- Teachers----------------------
 	        if($tusers_id!='')
@@ -347,7 +247,7 @@ Class Notificationmodel extends CI_Model
 						if (!$fp)
 							exit("Failed to connect: $err $errstr" . PHP_EOL);
 						
-							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
 							$result = fwrite($fp, $msg, strlen($msg));
 							fclose($fp);
 						
@@ -397,7 +297,7 @@ Class Notificationmodel extends CI_Model
 						if (!$fp)
 							exit("Failed to connect: $err $errstr" . PHP_EOL);
 						
-						$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+						$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
 						$result = fwrite($fp, $msg, strlen($msg));
 						fclose($fp);
 						
@@ -447,7 +347,7 @@ Class Notificationmodel extends CI_Model
 						if (!$fp)
 							exit("Failed to connect: $err $errstr" . PHP_EOL);
 					
-						$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+						$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
 						$result = fwrite($fp, $msg, strlen($msg));
 						fclose($fp);
 						
@@ -464,8 +364,7 @@ Class Notificationmodel extends CI_Model
 				if($users_id==2)
 				{
 							
-					echo $tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$users_id' AND u.user_master_id=t.teacher_id AND u.status='Active'";
-					exit;
+					 $tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$users_id' AND u.user_master_id=t.teacher_id AND u.status='Active'";
 					$tres=$this->db->query($tsql);
 					$tresult1=$tres->result();
 					
@@ -506,7 +405,7 @@ Class Notificationmodel extends CI_Model
 									if (!$fp)
 										exit("Failed to connect: $err $errstr" . PHP_EOL);
 																		
-										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
 										echo $result = fwrite($fp, $msg, strlen($msg));
 										fclose($fp);
 									
@@ -561,7 +460,7 @@ Class Notificationmodel extends CI_Model
 										if (!$fp)
 											exit("Failed to connect: $err $errstr" . PHP_EOL);
 																		
-											$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+											$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
 											$result = fwrite($fp, $msg, strlen($msg));
 											fclose($fp);
 										
@@ -615,7 +514,7 @@ Class Notificationmodel extends CI_Model
 									if (!$fp)
 										exit("Failed to connect: $err $errstr" . PHP_EOL);
 																			
-										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
 										$result = fwrite($fp, $msg, strlen($msg));
 										fclose($fp);
 									
@@ -629,7 +528,6 @@ Class Notificationmodel extends CI_Model
 		//---------------------------Parents--------------------------------------------
 				if($users_id==4)
 				{
-
 					$psql="SELECT u.user_id,u.user_type,u.user_master_id,u.name,p.id FROM edu_users AS u,edu_parents AS p WHERE u.user_type='$users_id' AND u.user_master_id=p.id AND u.status='Active'";
 					$pres2=$this->db->query($psql);
 					$presult2=$pres2->result();
@@ -670,7 +568,7 @@ Class Notificationmodel extends CI_Model
 										exit("Failed to connect: $err $errstr" . PHP_EOL);
 									
 										
-										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
 										$result = fwrite($fp, $msg, strlen($msg));
 										fclose($fp);
 									
@@ -683,12 +581,12 @@ Class Notificationmodel extends CI_Model
 
 			}
 	   
-		 }
+	}
 	   
 
 //Group Notification
-       function send_notification($group_id,$notes,$user_id,$members_id)
-		{
+	function send_notification($group_id,$notes,$user_id,$members_id)
+	{
 			
 			require_once 'assets/notification/Firebase.php';
 			require_once 'assets/notification/Push.php';
@@ -712,17 +610,6 @@ Class Notificationmodel extends CI_Model
 							}
 						}
 					}';
-			/* $payload = '{
-						"aps": {
-							"alert": {
-								"body": "'.$notes.'",
-								"title": "'.$title.'"
-							},
-							"mutable-content": 1
-						},
-						"mediaUrl": "'.$img_url.'",
-						"mediaType": "image"
-					}'; */
 					
            $check_type="SELECT * FROM edu_grouping_members WHERE group_title_id='$group_id'";
            $get_type=$this->db->query($check_type);
@@ -771,12 +658,10 @@ Class Notificationmodel extends CI_Model
 									if (!$fp)
 										exit("Failed to connect: $err $errstr" . PHP_EOL);
 										
-										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
 										$result = fwrite($fp, $msg, strlen($msg));
 										fclose($fp);
 							}
-							
-							//$this->sendNotification($gcm_key,$notes);
 						}
 
 				}
@@ -820,8 +705,6 @@ Class Notificationmodel extends CI_Model
 							} 
 							if ($mobile_type =='2')
 							{
-									
-
 									$ctx = stream_context_create();
 									stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 									stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -833,23 +716,17 @@ Class Notificationmodel extends CI_Model
 										exit("Failed to connect: $err $errstr" . PHP_EOL);
 									
 										
-										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+										$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
 										$result = fwrite($fp, $msg, strlen($msg));
 										fclose($fp);
 									
 							}
-						   //$this->sendNotification($gcm_key,$notes);
 					  }
 
 					}
 				  }
             }
-      }
-
-
-
-
-
+	}
 
 
 // Home Work Details
@@ -871,13 +748,10 @@ Class Notificationmodel extends CI_Model
 			$tdat=$value->test_date;
 
 			if($ht=='HW'){ $type="Home Work" ; }else{ $type="Class Test" ; }
-				//$message="Title : " .$hwtitle. ",Type : " .$type. ", Details : " .$hwdetails .", Subject : ".$subname.", ";
 				$message="Title : " .$hwtitle. ",Type : " .$type. ", Details : " .$hwdetails .", Subject : ".$subname.", ";
 				$home_work_details[]=$message;
 			}
-		  
 			$notes[]=implode('',$home_work_details);
-			//$title = $type;
 			
             $pid="SELECT p.id,u.user_id FROM edu_parents AS p,edu_enrollment AS e,edu_users AS u WHERE e.class_id='$clssid' AND FIND_IN_SET(e.admission_id,p.admission_id) AND p.primary_flag='Yes' AND p.id=u.user_master_id AND u.user_type='4' GROUP BY p.id";
 
@@ -929,18 +803,6 @@ Class Notificationmodel extends CI_Model
 										}
 									}
 								}';
-								/* $payload = '{
-									"aps": {
-										"alert": {
-											"body": "'.$notes.'",
-											"title": "'.$title.'"
-										},
-										"mutable-content": 1
-									},
-									"mediaUrl": "'.$img_url.'",
-									"mediaType": "image"
-								}';  */
-
 						$ctx = stream_context_create();
 						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 						stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -951,56 +813,11 @@ Class Notificationmodel extends CI_Model
 						if (!$fp)
 							exit("Failed to connect: $err $errstr" . PHP_EOL);
 							
-							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
 							$result = fwrite($fp, $msg, strlen($msg));
 							fclose($fp);
 					}
 
-
-
-			/* //$this->sendNotification($gcm_key,$notes);
-
-              $data = array
-                    (
-                    'message' 	=> $notes,
-                    'vibrate'	=> 1,
-                    'sound'		=> 1
-                    );
-
-            // Insert real GCM API key from the Google APIs Console
-            $apiKey = 'AAAADRDlvEI:APA91bFi-gSDCTCnCRv1kfRd8AmWu0jUkeBQ0UfILrUq1-asMkBSMlwamN6iGtEQs72no-g6Nw0lO5h4bpN0q7JCQkuTYsdPnM1yfilwxYcKerhsThCwt10cQUMKrBrQM2B3U3QaYbWQ';
-            // Set POST request body
-            $post = array(
-                'registration_ids'  => $gcm_key,
-                'data'              => $data,
-                 );
-            // Set CURL request headers
-            $headers = array(
-                'Authorization: key=' . $apiKey,
-                'Content-Type: application/json'
-                  );
-            // Initialize curl handle
-            $ch = curl_init();
-            // Set URL to GCM push endpoint
-            curl_setopt($ch, CURLOPT_URL, 'https://gcm-http.googleapis.com/gcm/send');
-            // Set request method to POST
-            curl_setopt($ch, CURLOPT_POST, true);
-            // Set custom request headers
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            // Get the response back as string instead of printing it
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            // Set JSON post data
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
-            // Actually send the request
-            $result = curl_exec($ch);
-            // Handle errors
-            if (curl_errno($ch)) {
-            //echo 'GCM error: ' . curl_error($ch);
-            }
-            // Close curl handle
-            curl_close($ch);
-            // Debug GCM response
-            }*/
 		  } 
 		  
 			$data= array("status"=>"success");
@@ -1011,10 +828,10 @@ Class Notificationmodel extends CI_Model
 
 
     function send_notification_attendance($attend_id){
-		$query="SELECT eu.user_id,en.gcm_key,en.mobile_type,ee.name,ep.mobile,ep.id,ee.admission_id,eah.abs_date,eah.student_id,eah.a_status,eah.attend_period,
+			$query="SELECT eu.user_id,en.gcm_key,en.mobile_type,ee.name,ep.mobile,ep.id,ee.admission_id,eah.abs_date,eah.student_id,eah.a_status,eah.attend_period,
 			CASE WHEN attend_period = 0 THEN 'MORNING'  ELSE 'AFTERNOON' END  AS a_session,CASE WHEN a_status = 'L' THEN 'Leave' WHEN a_status = 'A' THEN 'Absent' ELSE 'OnDuty' END  AS abs_atatus  FROM edu_attendance_history AS eah LEFT JOIN edu_enrollment AS ee ON ee.enroll_id=eah.student_id LEFT JOIN edu_parents AS ep ON ee.admission_id=ep.admission_id LEFT JOIN edu_users AS eu ON eu.user_master_id=ep.id AND eu.user_type='4' LEFT JOIN edu_notification AS en ON eu.user_id=en.user_id WHERE eah.attend_id='$attend_id' AND ep.primary_flag='Yes'";
-		 $result=$this->db->query($query);
-		 $res=$result->result();
+			 $result=$this->db->query($query);
+			 $res=$result->result();
      
 			foreach($res as $rows){
 				$st_name=$rows->name;
@@ -1023,7 +840,6 @@ Class Notificationmodel extends CI_Model
 				$at_ses=$rows->a_session;
 				$abs_date=$rows->abs_date;
 				$abs_status=$rows->abs_atatus;
-				//$gcm_key=array($parents_gcm_key);
 				$notes='Your child '.$st_name.' was marked '.$abs_status.' today, '.$abs_date.' ON '.$at_ses.' To Known more details login into http://bit.ly/2wLwdRQ';
 
 
@@ -1060,18 +876,6 @@ Class Notificationmodel extends CI_Model
 										}
 									}
 								}';
-								/* $payload = '{
-									"aps": {
-										"alert": {
-											"body": "'.$notes.'",
-											"title": "'.$title.'"
-										},
-										"mutable-content": 1
-									},
-									"mediaUrl": "'.$img_url.'",
-									"mediaType": "image"
-								}';  */
-
 						$ctx = stream_context_create();
 						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 						stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -1082,14 +886,12 @@ Class Notificationmodel extends CI_Model
 						if (!$fp)
 							exit("Failed to connect: $err $errstr" . PHP_EOL);
 							
-							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", array($gcm_key))) . pack("n", strlen($payload)) . $payload;
+							$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
 							$result = fwrite($fp, $msg, strlen($msg));
 							fclose($fp);
 					}
-        }
-    }
-
-
+			}
+	}
 
 }
 ?>
