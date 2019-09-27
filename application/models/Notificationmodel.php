@@ -680,15 +680,14 @@ Class Notificationmodel extends CI_Model
 				  $select="SELECT * from edu_users as eu where user_id IN('$group_member_id_staff')";
 				  $resultset=$this->db->query($select);
 				  $result=$resultset->result();
-				  if(empty($res)){
-					  echo "Nill";
+				  if(empty($result)){
+
 				  }else{
-					   echo "OK";
+
 					foreach($result as $notification_id){
-						echo $notify_id=$notification_id->user_id;
 						
-						 $sql="SELECT * FROM edu_notification where user_id='$notify_id'";
-						
+						$notify_id=$notification_id->user_id;
+						$sql="SELECT * FROM edu_notification where user_id='$notify_id'";
 						$sgsm=$this->db->query($sql);
 						$res=$sgsm->result();
 					   
