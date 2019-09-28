@@ -358,13 +358,15 @@ class Admission extends CI_Controller {
 		 $datas=$this->session->userdata();
 		 $user_id=$this->session->userdata('user_id');
 	
-		chdir('~');
+ 		chdir('~');
+		
 		if(mkdir('D:\/camera\/',0777)){
 			echo "yay!";
 		}else {
 			echo "fail :(";
-		}
-		$uploaddir = 'D:\/camera\/';	
+		} 
+		//$uploaddir = 'D:\/camera\/';
+		$uploaddir = 'D:/camera/';
 		$img = $_POST['base64image'];
 		$img = str_replace('data:image/jpeg;base64,', '', $img);
 		$img = str_replace(' ', '+', $img);
@@ -372,7 +374,6 @@ class Admission extends CI_Controller {
 		$file = $uploaddir. uniqid() . '.png';
 		$success = file_put_contents($file, $data);
 		print $success ? $file : 'Unable to save the file.'; 
-		
 	}
 
 
