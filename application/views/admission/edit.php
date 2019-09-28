@@ -458,9 +458,9 @@ $().ready(function(){
     });
    });
    
-      function popitup(url) {
-	camWindow=window.open(url,'camWindow','height=450,width=450');
-	if (window.focus) {camWindow.focus()}
-	return false;
-}
+   function popitup(url) {
+		camWindow=window.open(url,'camWindow','height=450,width=450');
+		if (window.focus) {camWindow.focus()}
+		return false;
+	}
 </script>
