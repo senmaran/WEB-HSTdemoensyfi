@@ -13,14 +13,15 @@ function take_snapshot() {
 });
 }
 function ShowCam(){
-Webcam.set({
-width: 350,
-height: 300,
-image_format: 'jpeg',
-jpeg_quality: 100
+	Webcam.set({
+	width: 350,
+	height: 300,
+	image_format: 'jpeg',
+	jpeg_quality: 100
 });
-Webcam.attach('#my_camera');
+	Webcam.attach('#my_camera');
 }
+
 function SaveSnap(){
     document.getElementById("loading").innerHTML="Saving, please wait...";
     var file =  document.getElementById("base64image").src;
@@ -31,13 +32,14 @@ function SaveSnap(){
     ajax.open("POST", "<?php echo base_url(); ?>admission/camera_pic_upload");
     ajax.send(formdata);
 }
+
 function uploadcomplete(event){
     document.getElementById("loading").innerHTML="";
     var image_return=event.target.responseText;
 	var disp_image = "<?php echo base_url(); ?>"+image_return;
 	//alert (disp_image);
     //var showup = document.getElementById("uploaded").src=disp_image;
-	alert ("Image Captured in your local machine")
+	alert ("Picture Uploaded in server..");
 	window.close();
 }
 window.onload= ShowCam;

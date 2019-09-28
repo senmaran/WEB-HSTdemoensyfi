@@ -243,6 +243,7 @@
 						<label class="col-sm-2 control-label">Student New Picture</label>
                         <div class="col-sm-4">
                            <input type="file" name="student_pic" class="form-control"  accept="image/*" >
+						   <a href="<?php echo base_url(); ?>admission/camera_access" onclick="return popitup('<?php echo base_url(); ?>admission/camera_access')">Open Camera</a>
                         </div>
 						
 						<label class="col-sm-2 control-label">Status</label>
@@ -455,6 +456,11 @@ $().ready(function(){
            close: 'fa fa-remove'
        }
     });
-
    });
+   
+      function popitup(url) {
+	camWindow=window.open(url,'camWindow','height=450,width=450');
+	if (window.focus) {camWindow.focus()}
+	return false;
+}
 </script>

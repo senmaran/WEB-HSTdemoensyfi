@@ -67,10 +67,10 @@ class Admission extends CI_Controller {
 				$language=$this->input->post('lang');
 				$blood_group=$this->input->post('blood_group');
 
-				$student_pic = $_FILES['student_pic']['name'];
+				$student_pic = $_FILES['student_pic']['name'];	
 				
 				if(empty($student_pic)){
-						$userFileName="";
+						$userFileName = "";
 				} else {
 					$temp = pathinfo($student_pic, PATHINFO_EXTENSION);
 					$file_name      = time() . rand(1, 5);
@@ -78,6 +78,11 @@ class Admission extends CI_Controller {
 					$uploaddir      = 'assets/students/';
 					$profilepic     = $uploaddir . $userFileName;
 					move_uploaded_file($_FILES['student_pic']['tmp_name'], $profilepic); 
+				}
+				
+				$s_pic = $this->session->userdata('camera_picture');
+				if ($s_pic!=""){
+					$userFileName = $s_pic;
 				}
 				
 				$last_sch=$this->input->post('sch_name');
@@ -99,11 +104,12 @@ class Admission extends CI_Controller {
 				}
 				$recod_sheet=$this->input->post('rec_sheet');
 				$status=$this->input->post('status');
-
+				
 				$datas=$this->admissionmodel->ad_create($admission_year,$admission_no,$emsi_num,$formatted_date,$name,$sex,$dob_date,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$language,$mobile,$sec_mobile,$email,$sec_email,$userFileName,$last_sch,$last_studied,$qual,$tran_cert,$tcFileName,$recod_sheet,$blood_group,$status);
 			   
 				if($datas['status']=="success"){
 					$id = $datas['last_id'];
+					$this->session->unset_userdata('camera_picture');
 					redirect('/parents/home/'.$id.'');
 				}else if($datas['status']=="Email Already Exist"){
 					$this->session->set_flashdata('msg', 'Email Already Exist');
@@ -253,9 +259,12 @@ class Admission extends CI_Controller {
 					$uploaddir      = 'assets/students/';
 					$profilepic     = $uploaddir . $userFileName;
 					move_uploaded_file($_FILES['student_pic']['tmp_name'], $profilepic); 
-				
 				}
 				
+				$s_pic = $this->session->userdata('camera_picture');
+				if ($s_pic!=""){
+					$userFileName = $s_pic;
+				}
 				
 				$tc_copy      = $_FILES['tc_copy']['name'];
 				if(empty($tc_copy)){
@@ -279,6 +288,7 @@ class Admission extends CI_Controller {
 
 				if($datas['status']=="success"){
 					$this->session->set_flashdata('msg', 'Updated Successfully');
+					$this->session->unset_userdata('camera_picture');
 					redirect('admission/view');
 				}else if($datas['status']=="Email Already Exist"){
 					$this->session->set_flashdata('msg', 'Email Already Exist');
@@ -357,23 +367,25 @@ class Admission extends CI_Controller {
 	{
 		 $datas=$this->session->userdata();
 		 $user_id=$this->session->userdata('user_id');
-	
- 		chdir('~');
-		
+
+ 		/* chdir('~');
 		if(mkdir('D:\/camera\/',0777)){
 			echo "yay!";
 		}else {
 			echo "fail :(";
-		} 
+		}  */
 		//$uploaddir = 'D:\/camera\/';
-		$uploaddir = 'D:/camera/';
+
+		$uploaddir = 'assets/students/';
 		$img = $_POST['base64image'];
 		$img = str_replace('data:image/jpeg;base64,', '', $img);
 		$img = str_replace(' ', '+', $img);
 		$data = base64_decode($img);
-		$file = $uploaddir. uniqid() . '.png';
+		$file_name = uniqid() . '.png';
+		$file = $uploaddir.$file_name ;
 		$success = file_put_contents($file, $data);
-		print $success ? $file : 'Unable to save the file.'; 
+		print $success ? $file : 'Unable to save the file.';
+		$this->session->set_userdata('camera_picture', $file_name);
 	}
 
 
