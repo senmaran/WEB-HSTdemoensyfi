@@ -52,7 +52,7 @@
                   <?php } ?>
                   <br>
                     <p class=""> <?php echo $rows->name; ?> </p>
-                    <p><b>Class</b>  <?php echo $rows->class_name; ?>-<?php echo $rows->sec_name; ?> &nbsp; - &nbsp; <b>Mother Tongue</b>  <?php echo $rows->mother_tongue; ?> </p>
+                    <p><b>Class</b>  <?php echo $rows->class_name; ?>-<?php echo $rows->sec_name; ?></p>
                   </div>
               </div>
           <div class="col-md-8">
