@@ -1950,7 +1950,7 @@ class Apimainmodel extends CI_Model {
       INNER JOIN edu_class AS c ON cm.class = c.class_id
       INNER JOIN edu_sections AS ss ON cm.section = ss.sec_id
       WHERE tt.class_id='$class_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id'
-      ORDER BY tt.day_id,tt.period";
+      ORDER BY tt.day_id";
 
     $timetable_res = $this->db->query($timetable_query);
     $timetable_result= $timetable_res->result();
