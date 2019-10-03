@@ -835,8 +835,9 @@ class Apiteachermodel extends CI_Model {
 		} else {
 
 
-		    $HWmarks_query = "INSERT INTO `edu_class_marks`(`enroll_mas_id`, `hw_mas_id`, `marks`, `remarks`, `status`, `created_by`, `created_at`)
+		   $HWmarks_query = "INSERT INTO edu_class_marks(enroll_mas_id, hw_mas_id, marks, remarks, status, created_by, created_at)
 			VALUES ('$student_id','$hw_masterid','$marks','$remarks','Active','$created_by','$created_at')";
+
 			$HWmarks_res = $this->db->query($HWmarks_query);
 			$last_HWmarksid = $this->db->insert_id();
 

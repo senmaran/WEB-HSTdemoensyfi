@@ -26,7 +26,7 @@
                            	 $clsname1=$rows1->class_name;
                            	 $sec_name1=$rows1->sec_name;
                                                 ?>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                            <a href="<?php echo base_url();?>teacheronduty/apply_stu_onduty/<?php echo $cls_tea_id; ?>" class="btn btn-wd"><?php echo $clsname1."-".$sec_name1; ?></a>
                         </div>
                         <?php  }  }?>
@@ -56,7 +56,7 @@
 						  $class_name=$row->class_name;
 						  $sec_name=$row->sec_name;
 					   ?>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                            <a rel="tooltip" href="<?php echo base_url(); ?>teacheronduty/student_ondy_details/<?php echo $cmaster_id; ?>"  class="btn btn-wd"><?php echo $class_name; ?> <?php echo $sec_name; ?> </a>
                         </div>
 						<?php } }?>

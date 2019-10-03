@@ -638,7 +638,8 @@ class Apiteacher extends CI_Controller {
 
 	public function add_HWmarks()
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		//$_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		if(!$this->checkMethod())
 		{
@@ -656,15 +657,10 @@ class Apiteacher extends CI_Controller {
 			return;
 		}
 
-        $hw_masterid = '';
-        $student_id = '';
-        $marks = '';
-        $remarks = '';
-        $created_by = '';
-        $created_at ='';
 
-		$hw_masterid = $this->input->post("hw_masterid");
-        $student_id = $this->input->post("student_id");
+
+				$hw_masterid = $this->input->post("hw_masterid");
+        $student_id = $this->input->post("student_id");			
         $marks = $this->input->post("marks");
         $remarks = $this->input->post("remarks");
         $created_by = $this->input->post("created_by");

@@ -863,11 +863,11 @@ class Apimain extends CI_Controller {
 			echo json_encode($res);
 			return;
 		}
-		
+
 		$user_id = '';
-		
+
 		$user_id = $this->input->post("user_id");
-		
+
 		$data['result']=$this->apimainmodel->Notificationstatus($user_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -900,11 +900,11 @@ class Apimain extends CI_Controller {
 		$notification_type = '';
 		$user_id = '';
 		$status = '';
-		
+
 		$type = $this->input->post("type");
 		$user_id = $this->input->post("user_id");
 		$status = $this->input->post("status");
-		
+
 
 		$data['result']=$this->apimainmodel->updateNotificationstatus($type,$user_id,$status);
 		$response = $data['result'];
@@ -934,11 +934,11 @@ class Apimain extends CI_Controller {
 			echo json_encode($res);
 			return;
 		}
-		
+
 		$user_id = '';
 		$user_id = $this->input->post("user_id");
-		
-		
+
+
 
 		$data['result']=$this->apimainmodel->listClasssection($user_id);
 		$response = $data['result'];
@@ -971,12 +971,43 @@ class Apimain extends CI_Controller {
 
 		$date = '';
 		$class_ids = '';
-		
+
 		$date = $this->input->post("date");
 		$class_ids = $this->input->post("class_ids");
-		
+
 
 		$data['result']=$this->apimainmodel->viewClassdayattendence($date,$class_ids);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+
+//-----------------------------------------------//
+
+	public function view_time_table_for_class()
+	{
+	 $_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Attendence Display";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$class_id = $this->input->post("class_id");
+		$data['result']=$this->apimainmodel->view_time_table_for_class($class_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
