@@ -842,7 +842,7 @@ class Apimainmodel extends CI_Model {
 												Do not reply to this email.</p>
 										 </body>
 										 </html>";
-				 
+
 						//$htmlContent = 'Dear '. $name . '<br><br>' .  'Password : '. $OTP.'<br><br>Regards<br>';
 						$this->sendMail($email,$subject,$htmlContent);
 
@@ -1567,7 +1567,7 @@ class Apimainmodel extends CI_Model {
 		LEFT JOIN edu_grouping_master AS egm  ON egh.group_title_id=egm.id LEFT JOIN edu_users as eu ON eu.user_id=egh.created_by WHERE egh.group_title_id='$group_id' order by egh.id desc;";
 		$resultset = $this->db->query($query);
 		$res = $resultset->result();
-		
+
 		$res_history_cnt = $resultset->num_rows();
 
 		if($res_history_cnt>0)
@@ -1763,7 +1763,7 @@ class Apimainmodel extends CI_Model {
 	}
 
 	//#################### Notification status End ####################//
-	
+
 	//#################### Update Notification status ####################//
 
 	public function updateNotificationstatus($type,$user_id,$status)
@@ -1817,7 +1817,7 @@ class Apimainmodel extends CI_Model {
 	{
 		$year_id = $this->getYear();
 		$term_id = $this->getTerm();
-		
+
 		$class_query = "SELECT
 							A.class_sec_id,
 							CONCAT(B.class_name, ' ', C.sec_name) AS class_name
@@ -1829,13 +1829,13 @@ class Apimainmodel extends CI_Model {
 							A.class_sec_id IN($class_ids) AND A.class = B.class_id AND A.section = C.sec_id";
 				$class_res = $this->db->query($class_query);
 				$class_result= $class_res->result();
-				
-    			 if($class_res->num_rows()>0) {		
+
+    			 if($class_res->num_rows()>0) {
 
 				$total_class = 0;
 				$total_present = 0;
-				$total_absent = 0; 
-				
+				$total_absent = 0;
+
 					 foreach($class_result as $rows){
 						$class_id = $rows->class_sec_id;
 
@@ -1851,11 +1851,11 @@ class Apimainmodel extends CI_Model {
 										= 'Active'";
 						$att_res = $this->db->query($att_query);
 						$att_result= $att_res->result();
-				
+
 					if($att_res->num_rows()>0) {
-					 
-					 
-					 
+
+
+
 							 foreach($att_result as $row){
 								$classData[]  = array(
 										"class_id" => $rows->class_sec_id,
@@ -1865,18 +1865,18 @@ class Apimainmodel extends CI_Model {
 										"no_of_absent" => $row->no_of_absent,
 										"status" =>'Yes'
 								);
-								
-						
+
+
 								$class_total = $row->class_total;
 								$total_class = ($total_class + $class_total);
-								
+
 								$no_of_present = $row->no_of_present;
 								$total_present = ($total_present + $no_of_present);
-								
+
 								$no_of_absent = $row->no_of_absent;
 								$total_absent = ($total_absent + $no_of_absent);
 						}
-					 
+
 					 } else {
 						 $classData[]  = array(
 								"class_id" => $rows->class_sec_id,
@@ -1887,14 +1887,14 @@ class Apimainmodel extends CI_Model {
 								"status" =>'No'
 						);
 					 }
-					 
+
 				 }
 			/* $att_query = "SELECT
 								A.class_id,
 								CONCAT(C.class_name,' ',D.sec_name) AS class_name,
 								A.class_total,
 								A.no_of_present,
-								A.no_of_absent								
+								A.no_of_absent
 							FROM
 								edu_attendence A,
 								edu_classmaster B,
@@ -1905,37 +1905,68 @@ class Apimainmodel extends CI_Model {
 							A.status = 'Active' AND A.class_id =B.class_sec_id AND B.class = C.class_id AND B.section = D.sec_id";
     		    $att_res = $this->db->query($att_query);
 				$att_result= $att_res->result();
-				
+
     			 if($att_res->num_rows()>0) {
-					 
+
 					 $total_class = 0;
 					 $total_present = 0;
 					 $total_absent = 0;
-					 
+
 					 foreach($att_result as $rows){
-						
+
 						$class_total = $rows->class_total;
 						$total_class = ($total_class + $class_total);
-						
+
 						$no_of_present = $rows->no_of_present;
 						$total_present = ($total_present + $no_of_present);
-						
+
 						$no_of_absent = $rows->no_of_absent;
 						$total_absent = ($total_absent + $no_of_absent);
 					} */
-					
+
 					 $response = array("status" => "success", "msg" => "Attendence Result","class_total"=>$total_class, "total_present"=>$total_present, "total_absent"=>$total_absent,"attendence_list"=>$classData);
     			}else{
 					$response = array("status" => "error", "msg" => "No Records Found");
 				}
-		
+
 		return $response;
 	}
 
 	//#################### View class day attendence end ####################//
-	
 
-  
+
+
+  // View time table for class
+
+  function view_time_table_for_class($class_id){
+    $year_id = $this->getYear();
+    $term_id = $this->getTerm();
+      $timetable_query ="SELECT tt.table_id,tt.class_id,c.class_name,ss.sec_name,
+      tt.subject_id,tt.teacher_id,tt.day,tt.period,t.name,s.subject_name,tt.from_time,tt.to_time,tt.is_break FROM edu_timetable AS tt
+      LEFT JOIN edu_subject AS s ON tt.subject_id = s.subject_id
+      LEFT JOIN edu_teachers AS t ON tt.teacher_id = t.teacher_id
+      LEFT JOIN edu_users AS eu ON eu.user_master_id=t.teacher_id AND eu.user_type=2
+      INNER JOIN edu_classmaster AS cm ON tt.class_id = cm.class_sec_id
+      INNER JOIN edu_class AS c ON cm.class = c.class_id
+      INNER JOIN edu_sections AS ss ON cm.section = ss.sec_id
+      WHERE tt.class_id='$class_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id'
+      ORDER BY tt.day,tt.period";
+
+    $timetable_res = $this->db->query($timetable_query);
+    $timetable_result= $timetable_res->result();
+
+
+     if($timetable_res->num_rows()==0){
+       $response = array("status" => "error", "msg" => "No timetable has been added yet!");
+    }else{
+      $response = array("status" => "success", "msg" => "View Timetable", "timetableDetails"=>$timetable_result);
+    }
+
+    return $response;
+  }
+
+
+
 }
 
 ?>
