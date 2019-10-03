@@ -20,7 +20,7 @@
                                   foreach($cls as $rows){
  					    ?>
 
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                            <a rel="tooltip" href="<?php echo base_url(); ?>examination/exam_mark_details_cls_teacher?var1=<?php echo $rows->classmaster_id; ?>&var2=<?php echo $rows->exam_id; ?>" class="btn btn-wd"><?php echo $rows->class_name; ?>-<?php echo $rows->sec_name; ?></a>
                         </div>
 

@@ -27,9 +27,9 @@
 						  $startdate = $row->startdate;
 						  $enddate = $row->enddate;
 					   ?>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                            <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/exam_duty?var=<?php echo $exam_id; ?>"  class="btn btn-wd"><?php echo $ex_name; ?><p style='font-size:11px;padding-top:5px;'><?php echo date('d/m/Y', strtotime($startdate)); ?> - <?php echo date('d/m/Y', strtotime($enddate)); ?></p></a>
-						   
+
                         </div>
 						<?php } }?>
 

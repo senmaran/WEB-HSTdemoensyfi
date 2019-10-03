@@ -15,12 +15,12 @@
                   </div>
                   <div class="content">
                      <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                            <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/internal_external_marks"  class="btn btn-wd">Internal Marks </a>
-						  </div>
-						  <div class="col-md-2">
-						   <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/internal_external_marks" class="btn btn-wd">External Marks </a>
-                        </div>
+						             </div>
+						        <div class="col-md-3">
+						          <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/internal_external_marks" class="btn btn-wd">External Marks </a>
+                    </div>
                      </div>
                   </div>
                </div>

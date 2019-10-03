@@ -17,7 +17,7 @@
                   </div>
                   <div class="content">
                      <div class="row">
-                        <?php 
+                        <?php
                            if(empty($exam)){echo "<p style=text-align:center;color:red;>Admin doesn't Approve The Reportcard </p>";}else{
                              foreach($stu_id as $sid){}
                                 $stu_id=$sid->enroll_id;
@@ -30,7 +30,7 @@
                            //  echo $ex_name;
                            // echo $exam_year;
                            ?>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                            <a rel="tooltip" href="<?php echo base_url(); ?>adminparent/exam_results/<?php echo $exam_id; ?>/<?php echo $stu_id;?>/<?php echo $cls_id;?>"  class="btn btn-wd"><?php echo $ex_name; ?></a>
                         </div>
                         <?php } }?>
@@ -49,13 +49,13 @@
     $('#examinationmenu').addClass('collapse in');
     $('#exam').addClass('active');
     $('#exam2').addClass('active');
-   
+
     });
-    
+
 </script>
 <script type="text/javascript">
    $().ready(function(){
-   
+
      $('.datepicker').datetimepicker({
        format: 'DD-MM-YYYY',
        icons: {
@@ -73,7 +73,7 @@
    });
 </script>
 <script type="text/javascript">
-   function changeText(id) 
+   function changeText(id)
    {
     $('#myModal').modal('show');
     //alert(id);
@@ -84,13 +84,13 @@
                  id:id
              },
            dataType: 'json',
-   
+
             success: function(test1)
       {
-   	    
-   		
+
+
                  if (test1.status=='Success') {
-                  
+
                      var sub = test1.subject_name;
    			//alert(sub.length);
                      var sub_id = test1.subject_id;
@@ -98,28 +98,27 @@
    			//alert(len);
                      var i;
                      var name = '';
-                   
+
                      for (i = 0; i < len; i++) {
                          name += '<option value='+ sub_id[i] +'>'+ sub[i] + '</option> ';
                          $("#ajaxres").html(name);
                          $('#msg').html('');
                      }
                  } else {
-   			
+
    			$('#msg').html('<span style="color:red;text-align:center;">Subject Not Found</p>');
    			  $("#ajaxres").html('');
-   
-                 }  
+
+                 }
              }
-    
-    
+
+
    });
    }
-   
+
    $(document).on("click", ".open-AddBookDialog", function () {
       var eventId = $(this).data('id');
       $(".modal-body #event_id").val( eventId );
    });
-   
-</script>
 
+</script>

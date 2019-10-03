@@ -11,13 +11,13 @@
                      <?php
                         //  print_r($stud_details);
                             if(empty($stud_details)){   ?>
-                     <div class="col-md-2">
+                     <div class="col-md-3">
                         <p>No Records Found</p>
                      </div>
                      <?php  }  else{   ?>
                      <?php  foreach($stud_details as $rows){
                         ?>
-                     <div class="col-md-2">
+                     <div class="col-md-3">
                         <a href="<?php echo  base_url(); ?>adminparent/exam_name/<?php echo $rows->enroll_id; ?>" class="btn btn-wd">
                         <?php echo $rows->name; ?></a>
                      </div>
@@ -36,8 +36,7 @@
      $('#examinationmenu').addClass('collapse in');
      $('#exam').addClass('active');
      $('#exam2').addClass('active');
-    
-     });
-   
-</script>
 
+     });
+
+</script>

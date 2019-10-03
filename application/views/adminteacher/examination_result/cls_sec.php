@@ -12,7 +12,7 @@
                <div class="card">
                   <div class="header">
                      <h4 class="title">Teacher Class & Section
-					 <?php  $exam_id=$this->input->get('var'); 
+					 <?php  $exam_id=$this->input->get('var');
 					     //echo $exam_id?>
 					 <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
                   </div>
@@ -41,12 +41,12 @@
 						{?>
                         <?php
                            if(empty($class_id)){   ?>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                            <p>No Records Found</p>
                         </div>
                         <?php  }else{?>
-						
-                        <?php  
+
+                        <?php
                            $cnt= count($class_id);
                          for($i=0;$i<$cnt;$i++)
 						  {  foreach($result as $row)
@@ -54,14 +54,14 @@
 									$e=$row->classmaster_id;
 									//echo $class_id[$i];
                      			     if($class_id[$i]==$e)	{	  ?>
-						   <div class="col-md-2">
+						   <div class="col-md-3">
                        <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/exam_mark_details?var1=<?php echo $class_id[$i]; ?>&var2=<?php echo $exam_id; ?>"
 						   onclick="changeText(<?php echo $class_id[$i]; ?>)"class="btn btn-wd"><?php echo $class_name[$i]."-".$sec_name[$i]; ?></a>
                         </div>
 						 <?php
 								 } }}  } ?>
-						   
-						   
+
+
 						   <!-- <a href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cls_id; ?>&var2=<?php if(empty($result))
 						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>"  class="btn btn-info btn-fill btn-wd">View Class Mark</a> -->
 
