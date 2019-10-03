@@ -48,7 +48,7 @@
 									 ?></td>
 									 <td>
 									 <?php if (trim($rows->mobile)!=''){ ?>
-										<a href="<?php echo base_url(); ?>parents/send_request/<?php echo $rows->id; ?>" rel="tooltip" title="" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" data-original-title="send User Details">
+										<a onclick="return confirm('User Password Reset.. Are you sure?')" href="<?php echo base_url(); ?>parents/send_request/<?php echo $rows->id; ?>" rel="tooltip" title="" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" data-original-title="Resend login details">
 										<i class="fa fa-paper-plane"> </i></a>
 									 <?php } ?>
                                     </td>
@@ -71,6 +71,10 @@
 </div>
 
 <script type="text/javascript">
+function myFunction() {
+  confirm("Press a button!");
+}
+
 $(document).ready(function() {
    $('#admissionmenu').addClass('collapse in');
        $('#admission').addClass('active');

@@ -130,10 +130,6 @@ Class Studentmodel extends CI_Model
 
 		function get_all_exam_views($user_id)
 		{
-			/* $query="SELECT student_id FROM edu_users WHERE user_id='$user_id'";
-			$resultset=$this->db->query($query);
-			$row=$resultset->result();
-			$student_id=$row[0]->student_id; */
 
 			 $year_id=$this->getYear();
 			 $sql1="SELECT * FROM edu_examination WHERE exam_year='$year_id' AND status='Active'";
@@ -395,11 +391,15 @@ LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id WHERE ed.user_
 				$sql="SELECT * FROM edu_enrollment WHERE admission_id='$student_id' AND admit_year='$year_id' ";
 				$resultset=$this->db->query($sql);
 				$row=$resultset->result();
-				foreach($row as $rows){}
-				$enr_id=$rows->enroll_id;
-				$cls_id=$rows->class_id;
-
-				$sql1="SELECT sc.*,t.teacher_id,t.name,cm.class_sec_id,cm.class,cm.section,c.class_id,c.	class_name,s.sec_id,s.sec_name,su.subject_id,su.subject_name FROM edu_special_class AS sc,edu_teachers AS t,edu_classmaster AS cm,edu_class AS c,edu_sections AS s,edu_subject AS su WHERE sc.year_id='$year_id' AND sc.teacher_id=t.teacher_id AND sc.class_master_id='$cls_id' AND sc.class_master_id=cm.class_sec_id  AND cm.class=c.class_id AND cm.section=s.sec_id AND sc.subject_id=su.subject_id AND sc.status='Active' ";
+				 if($resultset->num_rows()>0){
+					foreach($row as $rows){
+						$enr_id=$rows->enroll_id;
+						$cls_id=$rows->class_id;
+					}
+				 } else {
+					 $cls_id ='0';
+				 }
+				 $sql1="SELECT sc.*,t.teacher_id,t.name,cm.class_sec_id,cm.class,cm.section,c.class_id,c.	class_name,s.sec_id,s.sec_name,su.subject_id,su.subject_name FROM edu_special_class AS sc,edu_teachers AS t,edu_classmaster AS cm,edu_class AS c,edu_sections AS s,edu_subject AS su WHERE sc.year_id='$year_id' AND sc.teacher_id=t.teacher_id AND sc.class_master_id='$cls_id' AND sc.class_master_id=cm.class_sec_id  AND cm.class=c.class_id AND cm.section=s.sec_id AND sc.subject_id=su.subject_id AND sc.status='Active'";
 				$result1=$this->db->query($sql1);
 			    $res=$result1->result();
 				return $res;

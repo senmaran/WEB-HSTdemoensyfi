@@ -44,7 +44,9 @@ Class Adminparentmodel extends CI_Model
 
     function get_event_all()
     {
-        $query      = "SELECT * FROM edu_events ORDER BY event_date DESC";
+		$year_id = $this->getYear();
+        //$query      = "SELECT * FROM edu_events ORDER BY event_date DESC";
+		$query="SELECT ee.event_id,ee.event_name,ee.event_date,ee.event_details FROM edu_events as ee  where ee.year_id='$year_id' and ee.status='Active' GROUP by ee.event_id";
         $resultset1 = $this->db->query($query);
         return $resultset1->result();
     }
@@ -239,11 +241,16 @@ left join edu_enrollment as ee on ee.admission_id=ep.admission_id WHERE eu.user_
          $get_class_name = "SELECT eu.user_master_id, ea.admission_id, ee.admission_id,ee.enroll_id from edu_users eu,edu_admission ea, edu_enrollment ee WHERE eu.user_master_id = ea.admission_id AND ea.admission_id=ee.admission_id AND ee.admit_year ='$year_id' AND eu.user_id = '$user_id'";
         $resultset      = $this->db->query($get_class_name);
         $row            = $resultset->result();
-        foreach ($row as $rows) {
-        }
-        //$class_id   = $rows->class_id;
-		  $enroll_id   = $rows->enroll_id;
-
+		if($resultset->num_rows()>0){
+			foreach ($row as $rows) {
+				 //$class_id   = $rows->class_id;
+				$enroll_id   = $rows->enroll_id;
+			}
+       
+		} else {
+			$enroll_id = '0';
+		}
+		
         $query      = "SELECT *  FROM `edu_attendance_history` WHERE `student_id` = '$enroll_id'";
         $resultset1 = $this->db->query($query);
         return $resultset1->result();
