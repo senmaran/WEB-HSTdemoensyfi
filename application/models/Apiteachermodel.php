@@ -614,7 +614,7 @@ class Apiteachermodel extends CI_Model {
         INNER JOIN edu_class AS c ON cm.class = c.class_id
         INNER JOIN edu_sections AS ss ON cm.section = ss.sec_id
         WHERE eu.user_id='$user_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id'
-        ORDER BY tt.table_id ASC";
+        ORDER BY tt.day_id,tt.from_time ASC";
 			$timetable_res = $this->db->query($timetable_query);
 			$timetable_result= $timetable_res->result();
 
@@ -1768,7 +1768,15 @@ class Apiteachermodel extends CI_Model {
 
 
     function view_timetable_days($user_id){
-      $select="SELECT d_id as day_id,list_day as day_name FROM edu_days where d_id!=7";
+      $year_id = $this->getYear();
+			$term_id = $this->getTerm();
+      // $select="SELECT d_id as day_id,list_day as day_name FROM edu_days where d_id!=7";
+
+      $select="SELECT tt.day_id,ed.list_day as day_name FROM edu_timetable AS tt
+        LEFT JOIN edu_teachers AS t ON tt.teacher_id = t.teacher_id
+        left join edu_days as ed on ed.d_id=tt.day_id
+        LEFT JOIN edu_users AS eu ON eu.user_master_id=t.teacher_id AND eu.user_type=2
+        WHERE eu.user_id='$user_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id' GROUP by tt.day_id";
       $res=$this->db->query($select);
       if($res->num_rows()==0){
         $response = array("status" => "error", "msg" => "No Days Found");
