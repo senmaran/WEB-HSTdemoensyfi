@@ -123,8 +123,9 @@ Class Teacherprofilemodel extends CI_Model
        }
 
        function get_message_history($user_id){
+		   $year_id=$this->getYear();
          $query="SELECT egh.group_title_id,egm.group_title,egh.notes,egh.notification_type,egh.created_at FROM edu_grouping_history AS egh
-         LEFT JOIN edu_grouping_master AS egm  ON egh.group_title_id=egm.id WHERE egh.created_by='$user_id'";
+         LEFT JOIN edu_grouping_master AS egm  ON egh.group_title_id=egm.id WHERE egh.created_by='$user_id' AND egm.year_id = '$year_id'";
          $resultset=$this->db->query($query);
          return  $res=$resultset->result();
        }

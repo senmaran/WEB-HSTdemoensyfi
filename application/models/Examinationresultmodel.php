@@ -28,17 +28,19 @@ Class Examinationresultmodel extends CI_Model
 
     function get_teacher_id($user_id)
     {
+		$year_id=$this->getYear();
+		
         $query     = "SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
         $resultset = $this->db->query($query);
         $row       = $resultset->result();
         foreach ($row as $rows) {}
         $teacher_id = $rows->teacher_id;
 
-		  $get_year="SELECT * FROM edu_academic_year WHERE NOW()>=from_month AND NOW()<=to_month";
+		  /* $get_year="SELECT * FROM edu_academic_year WHERE NOW()>=from_month AND NOW()<=to_month";
 		  $result1=$this->db->query($get_year);
 		  $all_year= $result1->result();
 		  foreach($all_year as $cyear){}
-		  $current_year=$cyear->year_id;
+		  $current_year=$cyear->year_id; */
 
         //$sql= "SELECT ex.*,ed.exam_detail_id,ed.exam_id FROM edu_examination AS ex,edu_exam_details AS ed WHERE ex.status='Active' AND ex.exam_year='$current_year' AND ex.exam_id=ed.exam_id  GROUP By ed.exam_id";
 		
@@ -52,7 +54,7 @@ Class Examinationresultmodel extends CI_Model
 					edu_examination AS ex,
 					edu_exam_details AS ed
 				WHERE
-					ex.status = 'Active' AND ex.exam_year = '1' AND ex.exam_id = ed.exam_id
+					ex.status = 'Active' AND ex.exam_year = '$year_id' AND ex.exam_id = ed.exam_id
 				GROUP BY
 					ed.exam_id";
         $resultset1 = $this->db->query($sql);
