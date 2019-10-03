@@ -660,7 +660,7 @@ class Apiteacher extends CI_Controller {
 
 
 				$hw_masterid = $this->input->post("hw_masterid");
-        $student_id = $this->input->post("student_id");			
+        $student_id = $this->input->post("student_id");
         $marks = $this->input->post("marks");
         $remarks = $this->input->post("remarks");
         $created_by = $this->input->post("created_by");
@@ -1534,6 +1534,96 @@ class Apiteacher extends CI_Controller {
 
 //-----------------------------------------------//
 
+
+//-----------------------------------------------//
+
+	public function update_class_test_marks()
+	{
+	 $_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Timetable View";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+
+		$hw_masterid = $this->input->post("hw_masterid");
+		$student_id = $this->input->post("student_id");
+		$marks = $this->input->post("marks");
+		$user_id = $this->input->post("user_id");
+		$created_at=$this->input->post("created_at");
+
+		$data['result']=$this->apiteachermodel->update_class_test_marks($hw_masterid,$student_id,$marks,$user_id,$created_at);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+
+
+
+
+//-----------------------------------------------//
+
+	public function update_exam_marks()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Exam Marks Update";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+				$exam_id = '';
+        $teacher_id = '';
+        $subject_id = '';
+        $stu_id = '';
+        $classmaster_id = '';
+        $internal_mark = '';
+        $external_mark = '';
+				$marks = '';
+        $created_by = '';
+   			$is_internal_external= '';
+
+        $exam_id = $this->input->post("exam_id");
+        $teacher_id = $this->input->post("teacher_id");
+        $subject_id = $this->input->post("subject_id");
+        $stu_id = $this->input->post("stu_id");
+        $classmaster_id = $this->input->post("classmaster_id");
+        $internal_mark = $this->input->post("internal_mark");
+        $external_mark = $this->input->post("external_mark");
+				$marks = $this->input->post("marks");
+        $created_by = $this->input->post("created_by");
+        $is_internal_external = $this->input->post("is_internal_external");
+
+		$data['result']=$this->apiteachermodel->update_exam_marks($exam_id,$teacher_id,$subject_id,$stu_id,$classmaster_id,$internal_mark,$external_mark,$marks,$created_by,$is_internal_external);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+//-----------------------------------------------//
 
 
 

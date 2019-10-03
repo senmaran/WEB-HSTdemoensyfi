@@ -606,7 +606,7 @@ class Apiteachermodel extends CI_Model {
 			$term_id = $this->getTerm();
 
 	    	$timetable_query ="SELECT tt.table_id,tt.class_id,c.class_name,ss.sec_name,
-        tt.subject_id,tt.teacher_id,tt.day_id,tt.period,t.name,s.subject_name,tt.from_time,tt.to_time,tt.is_break FROM edu_timetable AS tt
+        tt.subject_id,tt.teacher_id,tt.day_id,tt.period,t.name,s.subject_name,tt.from_time,tt.to_time,tt.is_break,tt.break_name FROM edu_timetable AS tt
         LEFT JOIN edu_subject AS s ON tt.subject_id = s.subject_id
         LEFT JOIN edu_teachers AS t ON tt.teacher_id = t.teacher_id
         LEFT JOIN edu_users AS eu ON eu.user_master_id=t.teacher_id AND eu.user_type=2
@@ -614,7 +614,7 @@ class Apiteachermodel extends CI_Model {
         INNER JOIN edu_class AS c ON cm.class = c.class_id
         INNER JOIN edu_sections AS ss ON cm.section = ss.sec_id
         WHERE eu.user_id='$user_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id'
-        ORDER BY tt.day_id,tt.period";
+        ORDER BY tt.table_id ASC";
 			$timetable_res = $this->db->query($timetable_query);
 			$timetable_result= $timetable_res->result();
 
@@ -1794,8 +1794,98 @@ class Apiteachermodel extends CI_Model {
 
 
 
+    // Update Class Marks  in HOMEWORK
+
+    function update_class_test_marks($hw_masterid,$student_id,$marks,$user_id,$created_at){
+      $update="UPDATE edu_class_marks SET marks='$marks',updated_by='$user_id',updated_at=NOW() WHERE enroll_mas_id='$student_id' AND hw_mas_id='$hw_masterid'";
+      $res=$this->db->query($update);
+      if($res){
+        $response = array("status" => "success", "msg" => "Mark Updated");
+      }else{
+        $response = array("status" => "error", "msg" => "Something went wrong! Please try again later.");
+      }
+      return $response;
+    }
 
 
+      // Exam Marks Update
+
+
+      function update_exam_marks($exam_id,$teacher_id,$subject_id,$stu_id,$classmaster_id,$internal_mark,$external_mark,$marks,$created_by,$is_internal_external){
+        $totalMarks = "SELECT * FROM edu_exam_details WHERE exam_id = '$exam_id' AND subject_id ='$subject_id' AND classmaster_id ='$classmaster_id'";
+
+        $totalMarks_result = $this->db->query($totalMarks);
+
+        if($totalMarks_result->num_rows()>0)
+        {
+              foreach ($totalMarks_result->result() as $rows)
+                {
+                     $subject_total  = $rows->subject_total;
+                     $internal_mark_total  = $rows->internal_mark;
+                     $external_mark_total  = $rows->external_mark;
+                }
+        }
+
+
+        if ($is_internal_external=="0")
+        {
+
+            if(is_numeric($marks))
+                  {
+                      $total = ($marks/$subject_total)*100;
+                      $total_grade = $this->calculate_grade($total);
+                  } else {
+                      $total_grade = $marks;
+                  }
+
+                  $marks_query = "UPDATE edu_exam_marks SET total_marks='$marks',total_grade='$total_grade',updated_at=NOW(),updated_by='$teacher_id'  WHERE teacher_id='$teacher_id' AND subject_id='$subject_id' AND stu_id='$stu_id' AND classmaster_id='$classmaster_id'";
+
+
+        }
+        else 	{
+
+
+
+            if(is_numeric($internal_mark))
+                  {
+                       $total = ($internal_mark/$internal_mark_total)*100;
+
+                      $internal_grade = $this->calculate_grade($total);
+                  } else {
+                      $internal_grade = $internal_mark;
+                  }
+
+                   if(is_numeric($external_mark))
+                  {
+                      $total = ($external_mark/$external_mark_total)*100;
+                      $external_grade = $this->calculate_grade($total);
+                  } else {
+                      $external_grade = $external_mark;
+                  }
+
+                   if(is_numeric($internal_mark) || is_numeric($external_mark))
+                  {
+                      $total_marks = $internal_mark + $external_mark;
+                      $total = ($total_marks/$subject_total)*100;
+                      $total_grade = $this->calculate_grade($total);
+                  }else{
+                      $total_marks = $internal_mark;
+                      $total_grade = $internal_mark;
+                  }
+
+            $marks_query = "UPDATE edu_exam_marks SET internal_mark='$internal_mark',internal_grade='$internal_grade',external_mark='$external_mark',external_grade='$external_grade', total_marks='$total_marks',total_grade='$total_grade',updated_at=NOW(),updated_by='$teacher_id'  WHERE teacher_id='$teacher_id' AND subject_id='$subject_id' AND stu_id='$stu_id' AND classmaster_id='$classmaster_id'";
+
+      }
+
+        $marks_res = $this->db->query($marks_query);
+
+        if($marks_res) {
+            $response = array("status" => "success", "msg" => "Changes saved");
+        } else {
+            $response = array("status" => "error","msg" => "Something went wrong! Please try again later.");
+        }
+        return $response;
+      }
 
 }
 

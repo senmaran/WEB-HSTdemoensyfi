@@ -323,7 +323,7 @@ class Apimainmodel extends CI_Model {
 
 
 
-						$sqldays = "SELECT A.day_id, B.list_day FROM `edu_timetable` A, `edu_days` B WHERE A.day_id = B.d_id AND A.teacher_id = '$teacher_id' AND A.year_id = '$year_id' AND A.term_id = '$term_id' GROUP BY day_id ORDER BY A.day_id";
+						$sqldays = "SELECT A.day_id, B.list_day as day_name FROM `edu_timetable` A, `edu_days` B WHERE A.day_id = B.d_id AND A.teacher_id = '$teacher_id' AND A.year_id = '$year_id' AND A.term_id = '$term_id' GROUP BY day_id ORDER BY A.day_id";
 						$day_res = $this->db->query($sqldays);
 
 						if($day_res->num_rows()==0){
@@ -1701,7 +1701,7 @@ class Apimainmodel extends CI_Model {
 	    $year_id = $this->getYear();
 		 $term_id = $this->getTerm();
 
-		 $sqldays = "SELECT A.day_id, B.list_day FROM `edu_timetable` A, `edu_days` B WHERE A.day_id = B.d_id AND A.class_id = '$class_id' AND A.year_id = '$year_id' AND A.term_id = '$term_id' GROUP BY day_id ORDER BY A.day_id";
+		 $sqldays = "SELECT A.day_id, B.list_day as day_name FROM `edu_timetable` A, `edu_days` B WHERE A.day_id = B.d_id AND A.class_id = '$class_id' AND A.year_id = '$year_id' AND A.term_id = '$term_id' GROUP BY day_id ORDER BY A.day_id";
 
 			$day_res = $this->db->query($sqldays);
 			$day_result= $day_res->result();
@@ -1942,7 +1942,7 @@ class Apimainmodel extends CI_Model {
     $year_id = $this->getYear();
     $term_id = $this->getTerm();
       $timetable_query ="SELECT tt.table_id,tt.class_id,c.class_name,ss.sec_name,
-      tt.subject_id,tt.teacher_id,tt.day_id,tt.period,t.name,s.subject_name,tt.from_time,tt.to_time,tt.is_break FROM edu_timetable AS tt
+      tt.subject_id,tt.teacher_id,tt.day_id,tt.period,t.name,s.subject_name,tt.from_time,tt.to_time,tt.is_break ,tt.break_name FROM edu_timetable AS tt
       LEFT JOIN edu_subject AS s ON tt.subject_id = s.subject_id
       LEFT JOIN edu_teachers AS t ON tt.teacher_id = t.teacher_id
       LEFT JOIN edu_users AS eu ON eu.user_master_id=t.teacher_id AND eu.user_type=2
@@ -1950,7 +1950,7 @@ class Apimainmodel extends CI_Model {
       INNER JOIN edu_class AS c ON cm.class = c.class_id
       INNER JOIN edu_sections AS ss ON cm.section = ss.sec_id
       WHERE tt.class_id='$class_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id'
-      ORDER BY tt.day_id,tt.period";
+      ORDER BY tt.table_id ASC";
 
     $timetable_res = $this->db->query($timetable_query);
     $timetable_result= $timetable_res->result();
