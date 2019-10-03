@@ -1776,7 +1776,7 @@ class Apiteachermodel extends CI_Model {
         LEFT JOIN edu_teachers AS t ON tt.teacher_id = t.teacher_id
         left join edu_days as ed on ed.d_id=tt.day_id
         LEFT JOIN edu_users AS eu ON eu.user_master_id=t.teacher_id AND eu.user_type=2
-        WHERE eu.user_id='$user_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id' GROUP by tt.day_id"
+        WHERE eu.user_id='$user_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id' GROUP by tt.day_id";
       $res=$this->db->query($select);
       if($res->num_rows()==0){
         $response = array("status" => "error", "msg" => "No Days Found");
