@@ -1573,41 +1573,7 @@ class Apiteacher extends CI_Controller {
 
 
 
-//-----------------------------------------------//
 
-	public function update_class_test_marks()
-	{
-	 $_POST = json_decode(file_get_contents("php://input"), TRUE);
-
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
-
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Howework View";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-
-		$hw_masterid = $this->input->post("hw_masterid");
-		$student_id = $this->input->post("student_id");
-		$marks = $this->input->post("marks");
-		$user_id = $this->input->post("user_id");
-		$created_at=$this->input->post("created_at");
-
-		$data['result']=$this->apiteachermodel->update_class_test_marks($hw_masterid,$student_id,$marks,$user_id,$created_at);
-		$response = $data['result'];
-		echo json_encode($response);
-	}
-
-//-----------------------------------------------//
 
 //-----------------------------------------------//
 
