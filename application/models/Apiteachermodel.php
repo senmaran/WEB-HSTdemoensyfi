@@ -614,7 +614,7 @@ class Apiteachermodel extends CI_Model {
         INNER JOIN edu_class AS c ON cm.class = c.class_id
         INNER JOIN edu_sections AS ss ON cm.section = ss.sec_id
         WHERE eu.user_id='$user_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id'
-        ORDER BY tt.day_id";
+        ORDER BY tt.table_id ASC";
 			$timetable_res = $this->db->query($timetable_query);
 			$timetable_result= $timetable_res->result();
 
