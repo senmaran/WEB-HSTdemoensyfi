@@ -606,7 +606,7 @@ class Apiteachermodel extends CI_Model {
 			$term_id = $this->getTerm();
 
 	    	$timetable_query ="SELECT tt.table_id,tt.class_id,c.class_name,ss.sec_name,
-        tt.subject_id,tt.teacher_id,tt.day_id,tt.period,t.name,s.subject_name,tt.from_time,tt.to_time,tt.is_break FROM edu_timetable AS tt
+        tt.subject_id,tt.teacher_id,tt.day_id,tt.period,t.name,s.subject_name,tt.from_time,tt.to_time,tt.is_break,tt.break_name FROM edu_timetable AS tt
         LEFT JOIN edu_subject AS s ON tt.subject_id = s.subject_id
         LEFT JOIN edu_teachers AS t ON tt.teacher_id = t.teacher_id
         LEFT JOIN edu_users AS eu ON eu.user_master_id=t.teacher_id AND eu.user_type=2
