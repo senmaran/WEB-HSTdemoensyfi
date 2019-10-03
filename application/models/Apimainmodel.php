@@ -323,7 +323,7 @@ class Apimainmodel extends CI_Model {
 
 
 
-						$sqldays = "SELECT A.day_id, B.list_day FROM `edu_timetable` A, `edu_days` B WHERE A.day_id = B.d_id AND A.teacher_id = '$teacher_id' AND A.year_id = '$year_id' AND A.term_id = '$term_id' GROUP BY day_id ORDER BY A.day_id";
+						$sqldays = "SELECT A.day_id, B.list_day as day_name FROM `edu_timetable` A, `edu_days` B WHERE A.day_id = B.d_id AND A.teacher_id = '$teacher_id' AND A.year_id = '$year_id' AND A.term_id = '$term_id' GROUP BY day_id ORDER BY A.day_id";
 						$day_res = $this->db->query($sqldays);
 
 						if($day_res->num_rows()==0){
