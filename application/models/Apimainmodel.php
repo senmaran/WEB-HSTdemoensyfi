@@ -1701,7 +1701,7 @@ class Apimainmodel extends CI_Model {
 	    $year_id = $this->getYear();
 		 $term_id = $this->getTerm();
 
-		 $sqldays = "SELECT A.day_id, B.list_day FROM `edu_timetable` A, `edu_days` B WHERE A.day_id = B.d_id AND A.class_id = '$class_id' AND A.year_id = '$year_id' AND A.term_id = '$term_id' GROUP BY day_id ORDER BY A.day_id";
+		 $sqldays = "SELECT A.day_id, B.list_day as day_name FROM `edu_timetable` A, `edu_days` B WHERE A.day_id = B.d_id AND A.class_id = '$class_id' AND A.year_id = '$year_id' AND A.term_id = '$term_id' GROUP BY day_id ORDER BY A.day_id";
 
 			$day_res = $this->db->query($sqldays);
 			$day_result= $day_res->result();
