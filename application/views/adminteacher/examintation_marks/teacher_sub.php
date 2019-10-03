@@ -12,7 +12,7 @@
                <div class="card">
                   <div class="header">
                      <h4 class="title">Teacher Class & Section
-					 <?php  $exam_id=$this->input->get('var'); 
+					 <?php  $exam_id=$this->input->get('var');
 					     //echo $exam_id?>
 					 <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
                   </div>
@@ -20,18 +20,18 @@
                      <div class="row">
                         <?php
                            if(empty($result)){   ?>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                            <p>No Records Found</p>
                         </div>
                         <?php }else{?>
-                        <?php  
+                        <?php
                          foreach($result as $row)
 						   {
 							 $cmid=$row->class_master_id;
 							 $clsname=$row->class_name;
 							 $sec_name=$row->sec_name;
 							?>
-						   <div class="col-md-2">
+						   <div class="col-md-3">
                        <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/view_all_subject_name?var1=<?php echo $cmid; ?>&var2=<?php echo $exam_id; ?>" class="btn btn-wd"> <?php echo $clsname; echo "-"; echo $sec_name; ?></a>
                         </div>
 						 <?php } }?>
@@ -90,5 +90,5 @@
     });
    });
 
-  
+
 </script>

@@ -11,13 +11,13 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Teacher Handling Subject 
-					 <?php  $exam_id=$this->input->get('var2'); 
-					        $sub_id=$this->input->get('var1'); 
+                     <h4 class="title">Teacher Handling Subject
+					 <?php  $exam_id=$this->input->get('var2');
+					        $sub_id=$this->input->get('var1');
 					     //echo $exam_id?>
 					 <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
                   </div>
-                
+
 				  <?php
 						/* if(empty($result))
 						{?>
@@ -39,7 +39,7 @@
                      <div class="row">
                         <?php
                            if(empty($clssec)){   ?>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                            <p>No Records Found</p>
                         </div>
                         <?php }else{
@@ -50,7 +50,7 @@
 								$sub_id=$rows->subject_id;
 								//echo $class_id[$i];
                      	 ?>
-						   <div class="col-md-2">
+						   <div class="col-md-3">
                        <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/exam_mark_details?var1=<?php echo $cmid; ?>&var2=<?php echo $exam_id; ?>&var3=<?php echo $sub_id; ?>"class="btn btn-wd"><?php echo $subject_name; ?></a>
                         </div>
 						 <?php }} ?>
