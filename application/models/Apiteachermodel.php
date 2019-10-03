@@ -28,19 +28,19 @@ class Apiteachermodel extends CI_Model {
 	{
         //Your authentication key
         $authKey = "191431AStibz285a4f14b4";
-        
+
         //Multiple mobiles numbers separated by comma
         $mobileNumber = "$Phoneno";
-        
+
         //Sender ID,While using route4 sender id should be 6 characters long.
         $senderId = "EDUAPP";
-        
+
         //Your message to send, Add URL encoding here.
         $message = urlencode($Message);
-        
-        //Define route 
+
+        //Define route
         $route = "transactional";
-        
+
         //Prepare you post parameters
         $postData = array(
             'authkey' => $authKey,
@@ -49,10 +49,10 @@ class Apiteachermodel extends CI_Model {
             'sender' => $senderId,
             'route' => $route
         );
-        
+
         //API URL
         $url="https://control.msg91.com/api/sendhttp.php";
-        
+
         // init the resource
         $ch = curl_init();
         curl_setopt_array($ch, array(
@@ -62,22 +62,22 @@ class Apiteachermodel extends CI_Model {
             CURLOPT_POSTFIELDS => $postData
             //,CURLOPT_FOLLOWLOCATION => true
         ));
-        
-        
+
+
         //Ignore SSL certificate verification
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        
-        
+
+
         //get response
         $output = curl_exec($ch);
-        
+
         //Print error if any
         if(curl_errno($ch))
         {
             echo 'error:' . curl_error($ch);
         }
-        
+
         curl_close($ch);
 	}
 
@@ -92,11 +92,11 @@ class Apiteachermodel extends CI_Model {
 		if ($mobiletype =='1'){
 
 		    require_once 'assets/notification/Firebase.php';
-            require_once 'assets/notification/Push.php'; 
-            
+            require_once 'assets/notification/Push.php';
+
             $device_token = explode(",", $gcm_key);
-            $push = null; 
-        
+            $push = null;
+
         //first check if the push has an image with it
 		    $push = new Push(
 					$title,
@@ -112,28 +112,28 @@ class Apiteachermodel extends CI_Model {
 // 			 	);
 
     		//getting the push from push object
-    		$mPushNotification = $push->getPush(); 
-    
-    		//creating firebase class object 
-    		$firebase = new Firebase(); 
+    		$mPushNotification = $push->getPush();
+
+    		//creating firebase class object
+    		$firebase = new Firebase();
 
     	foreach($device_token as $token) {
     		 $firebase->send(array($token),$mPushNotification);
     	}
 
 		} else {
-            
+
 			$device_token = explode(",", $gcm_key);
 			$passphrase = 'hs123';
 		    $loction ='assets/notification/happysanz.pem';
-		   
+
 			$ctx = stream_context_create();
 			stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
 			stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
-			
+
 			// Open a connection to the APNS server
 			$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
-			
+
 			if (!$fp)
 				exit("Failed to connect: $err $errstr" . PHP_EOL);
 
@@ -148,15 +148,15 @@ class Apiteachermodel extends CI_Model {
 			$payload = json_encode($body);
 
 			foreach($device_token as $token) {
-			
+
 				// Build the binary notification
     			$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $token)) . pack("n", strlen($payload)) . $payload;
         		$result = fwrite($fp, $msg, strlen($msg));
 			}
-							
+
 				fclose($fp);
 		}
-		
+
 	}
 
 //#################### Notification End ####################//
@@ -169,7 +169,7 @@ class Apiteachermodel extends CI_Model {
 		$sqlYear = "SELECT * FROM edu_academic_year WHERE CURDATE() >= from_month AND CURDATE() <= to_month AND status = 'Active'";
 		$year_result = $this->db->query($sqlYear);
 		$ress_year = $year_result->result();
-		
+
 		if($year_result->num_rows()==1)
 		{
 			foreach ($year_result->result() as $rows)
@@ -191,7 +191,7 @@ class Apiteachermodel extends CI_Model {
 		$sqlTerm = "SELECT * FROM edu_terms WHERE CURDATE()>= from_date AND CURDATE()<= to_date AND year_id = '$year_id' AND status = 'Active'";
 		$term_result = $this->db->query($sqlTerm);
 		$ress_term = $term_result->result();
-		
+
 		if($term_result->num_rows()==1)
 		{
 			foreach ($term_result->result() as $rows)
@@ -251,8 +251,8 @@ class Apiteachermodel extends CI_Model {
             }
     }
 //#################### Grade System End ####################//
-    
-    
+
+
 //#################### Attendence for class ####################//
 	public function dispAttendence ($class_id,$disp_type,$disp_date,$month_year)
 	{
@@ -271,42 +271,42 @@ class Apiteachermodel extends CI_Model {
                         INNER JOIN edu_attendance_history AS ah ON en.enroll_id = ah.student_id
                         INNER JOIN edu_attendence AS at ON ah.attend_id = at.at_id
                         INNER JOIN edu_classmaster AS cm ON en.class_id = cm.class_sec_id
-                        INNER JOIN edu_class AS c ON cm.class=c.class_id 
+                        INNER JOIN edu_class AS c ON cm.class=c.class_id
                         INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE en.class_id='$class_id' AND en.admit_year = '$year_id' AND ah.abs_date = '$disp_date' GROUP by ah.student_id
-                        
+
                         UNION ALL
-                        
+
                         SELECT count(en.enroll_id) as count, en.enroll_id, en.class_id, en.name, c.class_name, s.sec_name, '' as abs_date, 'P' as a_status, '' as attend_period,'' as at_id
                         FROM edu_enrollment en
                         INNER JOIN edu_classmaster AS cm ON en.class_id = cm.class_sec_id
-                        INNER JOIN edu_class AS c ON cm.class=c.class_id 
-                        INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE en.class_id='$class_id'  AND en.admit_year = '$year_id' AND en.enroll_id 
+                        INNER JOIN edu_class AS c ON cm.class=c.class_id
+                        INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE en.class_id='$class_id'  AND en.admit_year = '$year_id' AND en.enroll_id
                         NOT IN (SELECT en.enroll_id FROM edu_enrollment en
                         INNER JOIN edu_attendance_history AS ah ON en.enroll_id = ah.student_id
                         INNER JOIN edu_attendence AS at ON ah.attend_id = at.at_id
                         INNER JOIN edu_classmaster AS cm ON en.class_id = cm.class_sec_id
-                        INNER JOIN edu_class AS c ON cm.class=c.class_id 
+                        INNER JOIN edu_class AS c ON cm.class=c.class_id
                         INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE en.class_id='$class_id' AND ah.abs_date = '$disp_date' GROUP by ah.student_id)  GROUP by en.enroll_id";
-    				
+
         				$attend_res = $this->db->query($attend_query);
             			$attend_result= $attend_res->result();
             			$attend_count = $attend_res->num_rows();
-        			
+
         			    $response = array("status" => "success", "msg" => "View Attendence", "count"=>$attend_count, "attendenceDetails"=>$attend_result);
-    			} 
-			    
-			} 
-			
+    			}
+
+			}
+
 			if ($disp_type=='month') {
-			    
+
     			$sdateDisp = explode('-', $month_year);
     		    $from_month = $sdateDisp[0];
     		    $from_year = $sdateDisp[1];
-    		
+
     			$first_date = date('Y-m-d',mktime(0, 0, 0, $from_month , 1, $from_year));
     			$last_day   = date('t',strtotime($first_date));
     			$last_date = date('Y-m-d',mktime(0, 0, 0, $from_month ,$last_day, $from_year));
-			
+
 			    $att_query = "SELECT * from edu_attendence WHERE date(created_at) >= '$first_date' AND date(created_at) <= '$last_date'  AND class_id ='$class_id' AND ac_year = '$year_id'  AND status = 'Active'";
     		    $att_res = $this->db->query($att_query);
 
@@ -318,35 +318,35 @@ class Apiteachermodel extends CI_Model {
                     INNER JOIN edu_attendance_history AS ah ON en.enroll_id = ah.student_id
                     INNER JOIN edu_attendence AS at ON ah.attend_id = at.at_id
                     INNER JOIN edu_classmaster AS cm ON en.class_id = cm.class_sec_id
-                    INNER JOIN edu_class AS c ON cm.class=c.class_id 
-                    INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE en.class_id='$class_id' AND en.admit_year = '$year_id' AND ah.abs_date >= '$first_date' AND ah.abs_date <= '$last_date' 
+                    INNER JOIN edu_class AS c ON cm.class=c.class_id
+                    INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE en.class_id='$class_id' AND en.admit_year = '$year_id' AND ah.abs_date >= '$first_date' AND ah.abs_date <= '$last_date'
                     GROUP BY ah.student_id
 
                     UNION ALL
 
-                    SELECT count(en.enroll_id) as leaves,en.enroll_id, en.class_id, en.name, c.class_name, s.sec_name, '' as abs_date, 'P' as a_status, '' as attend_period,'' as at_id FROM edu_enrollment en 
+                    SELECT count(en.enroll_id) as leaves,en.enroll_id, en.class_id, en.name, c.class_name, s.sec_name, '' as abs_date, 'P' as a_status, '' as attend_period,'' as at_id FROM edu_enrollment en
                     INNER JOIN edu_classmaster AS cm ON en.class_id = cm.class_sec_id
-                    INNER JOIN edu_class AS c ON cm.class=c.class_id 
-                    INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE en.class_id='$class_id' AND en.admit_year = '$year_id' AND en.enroll_id 
+                    INNER JOIN edu_class AS c ON cm.class=c.class_id
+                    INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE en.class_id='$class_id' AND en.admit_year = '$year_id' AND en.enroll_id
                     NOT IN (SELECT en.enroll_id FROM edu_enrollment en
                     INNER JOIN edu_attendance_history AS ah ON en.enroll_id = ah.student_id
                     INNER JOIN edu_attendence AS at ON ah.attend_id = at.at_id
                     INNER JOIN edu_classmaster AS cm ON en.class_id = cm.class_sec_id
-                    INNER JOIN edu_class AS c ON cm.class=c.class_id 
+                    INNER JOIN edu_class AS c ON cm.class=c.class_id
                     INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE en.class_id='$class_id' AND ah.abs_date >= '$first_date' AND ah.abs_date <= '$last_date')
                     GROUP BY en.enroll_id";
-                    
+
                     $attend_res = $this->db->query($attend_query);
         			$attend_result= $attend_res->result();
         			$attend_count = $attend_res->num_rows();
 
     				$response = array("status" => "success", "msg" => "View Attendence", "count"=>$attend_count, "attendenceDetails"=>$attend_result);
-        		} 
+        		}
 			}
 
-			return $response;		
+			return $response;
 	}
-	
+
 //#################### Attendence End ####################//
 
 
@@ -357,7 +357,7 @@ class Apiteachermodel extends CI_Model {
 			$sdateDisp = explode('-', $month_year);
 		    $from_month = $sdateDisp[0];
 		    $from_year = $sdateDisp[1];
-		
+
 			$first_date = date('Y-m-d',mktime(0, 0, 0, $from_month , 1, $from_year));
 			$last_day   = date('t',strtotime($first_date));
 			$last_date = date('Y-m-d',mktime(0, 0, 0, $from_month ,$last_day, $from_year));
@@ -366,22 +366,22 @@ class Apiteachermodel extends CI_Model {
 				INNER JOIN edu_attendance_history AS ah ON en.enroll_id = ah.student_id
 				INNER JOIN edu_attendence AS at ON ah.attend_id = at.at_id
 				INNER JOIN edu_classmaster AS cm ON en.class_id = cm.class_sec_id
-				INNER JOIN edu_class AS c ON cm.class=c.class_id 
+				INNER JOIN edu_class AS c ON cm.class=c.class_id
 				INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE en.class_id='$class_id' AND en.admit_year = '$year_id' AND ah.abs_date >= '$first_date' AND ah.abs_date <= '$last_date' AND ah.student_id = '$student_id' GROUP BY ah.abs_date";
 
 			$attend_res = $this->db->query($attend_query);
 			$attend_result= $attend_res->result();
 			$attend_count = $attend_res->num_rows();
-			
+
 			 if($attend_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "No Records Found");
 			}else{
 				$response = array("status" => "success", "msg" => "View Attendence", "count"=>$attend_count, "attendenceDetails"=>$attend_result);
-			} 
+			}
 
-			return $response;		
+			return $response;
 	}
-	
+
 //#################### Attendence month view ####################//
 
 
@@ -389,43 +389,43 @@ class Apiteachermodel extends CI_Model {
 	public function dispHomework($class_id,$teacher_id,$hw_type)
 	{
 			$year_id = $this->getYear();
-			
+
 			$hw_query = "SELECT A.hw_id,A.hw_type,A.title, A.test_date, A.due_date, A.hw_details, A.mark_status, B.subject_name FROM `edu_homework` A, `edu_subject` B WHERE A.subject_id = B.subject_id AND A.class_id ='$class_id' AND A.year_id='$year_id' AND  A.hw_type = '$hw_type' AND  A.teacher_id = '$teacher_id' AND A.status = 'Active'";
 			$hw_res = $this->db->query($hw_query);
 			$hw_result= $hw_res->result();
 			$hw_count = $hw_res->num_rows();
-			
+
 			 if($hw_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Homework/test hasn't been assigned yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Homework Details", "count"=>$hw_count, "homeworkDetails"=>$hw_result);
-			} 
+			}
 
-			return $response;		
+			return $response;
 	}
-	
-	
+
+
 		public function reloadHomework($teacher_id)
 	{
 			$year_id = $this->getYear();
-			
-			$hw_query = "SELECT A.hw_id, A.hw_type, A.title, A.test_date, A.due_date,A.teacher_id ,A.class_id, A.hw_details, A.mark_status, A.subject_id,B.subject_name, D.class_name, E.sec_name FROM 
-                            `edu_homework` A, `edu_subject` B, `edu_classmaster` C, `edu_class` D, `edu_sections` E WHERE 
-                            A.subject_id = B.subject_id AND A.year_id ='$year_id' AND 
-                            A.subject_id IN (SELECT DISTINCT subject_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id') AND A.class_id IN (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id') AND 
+
+			$hw_query = "SELECT A.hw_id, A.hw_type, A.title, A.test_date, A.due_date,A.teacher_id ,A.class_id, A.hw_details, A.mark_status, A.subject_id,B.subject_name, D.class_name, E.sec_name FROM
+                            `edu_homework` A, `edu_subject` B, `edu_classmaster` C, `edu_class` D, `edu_sections` E WHERE
+                            A.subject_id = B.subject_id AND A.year_id ='$year_id' AND
+                            A.subject_id IN (SELECT DISTINCT subject_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id') AND A.class_id IN (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id') AND
                             A.class_id = C. class_sec_id AND C.class = D.class_id AND
                             C.section = E.sec_id AND A.status = 'Active' AND A.teacher_id='$teacher_id'";
 			$hw_res = $this->db->query($hw_query);
 			$hw_result= $hw_res->result();
 			$hw_count = $hw_res->num_rows();
-			
+
 			 if($hw_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Homework/test hasn't been assigned yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Homework Details", "count"=>$hw_count, "homeworkDetails"=>$hw_result);
-			} 
+			}
 
-			return $response;		
+			return $response;
 	}
 //#################### Homework Details End ####################//
 
@@ -434,19 +434,19 @@ class Apiteachermodel extends CI_Model {
 	public function dispCtestmarks($hw_id)
 	{
 			$year_id = $this->getYear();
-			
-			$hw_query = "SELECT B.name, A.marks  FROM `edu_class_marks`A, edu_enrollment B WHERE A.enroll_mas_id = B.enroll_id AND A.hw_mas_id = '$hw_id'";
-		
+
+			$hw_query = "SELECT B.enroll_id,B.name, A.marks  FROM edu_class_marks A, edu_enrollment B WHERE A.enroll_mas_id = B.enroll_id AND A.hw_mas_id = '$hw_id'";
+
 			$hw_res = $this->db->query($hw_query);
 			$hw_result= $hw_res->result();
-			
+
 			 if($hw_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Marks not added for this test yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Class Test", "ctestmarkDetails"=>$hw_result);
-			} 
+			}
 
-			return $response;		
+			return $response;
 	}
 //#################### Homework test marks End ####################//
 
@@ -455,7 +455,7 @@ class Apiteachermodel extends CI_Model {
 	public function dispExams($class_ids)
 	{
 			$year_id = $this->getYear();
-			
+
 	        $exam_query = "SELECT ex.exam_id,ex.exam_name,ex.exam_flag AS is_internal_external,ed.classmaster_id, ss.sec_name,c.class_name,COALESCE(DATE_FORMAT(MIN(ed.exam_date), '%d/%b/%y'),'') AS Fromdate,
 				COALESCE(DATE_FORMAT(MAX(ed.exam_date), '%d/%b/%y'),'') AS Todate,
 				CASE WHEN ems.status='Publish' THEN 1 ELSE 0 END AS MarkStatus
@@ -463,24 +463,24 @@ class Apiteachermodel extends CI_Model {
 				RIGHT JOIN edu_exam_details ed on ex.exam_id = ed.exam_id and ed.classmaster_id in ($class_ids)
 				LEFT JOIN edu_exam_marks_status ems ON ems.exam_id = ex.exam_id and ems.classmaster_id = ed.classmaster_id
 				INNER JOIN edu_classmaster AS cm ON ed.classmaster_id = cm.class_sec_id
-				INNER JOIN edu_class AS c ON cm.class=c.class_id 
+				INNER JOIN edu_class AS c ON cm.class=c.class_id
 				INNER JOIN edu_sections AS ss ON cm.section=ss.sec_id
 				WHERE ex.exam_year ='$year_id' and ex.status = 'Active' and ed.classmaster_id in ($class_ids)
 				GROUP by ed.classmaster_id
-				
+
 				UNION ALL
-			
+
 				SELECT ex.exam_id,ex.exam_name,ex.exam_flag AS is_internal_external,ed.classmaster_id, ss.sec_name,c.class_name, COALESCE(DATE_FORMAT(MIN(ed.exam_date), '%d/%b/%y'),'') AS Fromdate,
 				COALESCE(DATE_FORMAT(MAX(ed.exam_date), '%d/%b/%y'),'') AS Todate,
 				CASE WHEN ems.status='Publish' THEN 1 ELSE 0 END AS MarkStatus
 				FROM edu_examination ex
 				LEFT JOIN edu_exam_details ed on ed.exam_id = ex.exam_id and ed.classmaster_id in ($class_ids)
-				LEFT JOIN edu_exam_marks_status ems ON ems.exam_id = ex.exam_id and ems.classmaster_id = ed.classmaster_id 
+				LEFT JOIN edu_exam_marks_status ems ON ems.exam_id = ex.exam_id and ems.classmaster_id = ed.classmaster_id
 				INNER JOIN edu_classmaster AS cm ON ed.classmaster_id = cm.class_sec_id
-				INNER JOIN edu_class AS c ON cm.class=c.class_id 
+				INNER JOIN edu_class AS c ON cm.class=c.class_id
 				INNER JOIN edu_sections AS ss ON cm.section=ss.sec_id
 				WHERE ex.exam_year ='$year_id' and ex.status = 'Active' and ex.exam_id NOT IN (SELECT DISTINCT exam_id FROM edu_exam_details where classmaster_id in ($class_ids)) GROUP by ed.classmaster_id";
-			
+
 			$exam_res = $this->db->query($exam_query);
 			$exam_result= $exam_res->result();
 
@@ -488,16 +488,16 @@ class Apiteachermodel extends CI_Model {
         				 $response = array("status" => "error", "msg" => "No exam has been assigned to this class!");
         		}else{
         				$response = array("status" => "success", "msg" => "View Exams", "examDetails"=>$exam_result);
-        	} 
+        	}
 
-			return $response;		
+			return $response;
 	}
-	
-//#################### Reload Exams for Teachers ####################//	
+
+//#################### Reload Exams for Teachers ####################//
 	public function reloadExam($teacher_id)
 	{
 			$year_id = $this->getYear();
-			
+
 			$exam_query = "SELECT ex.exam_id,ex.exam_name,ex.exam_flag AS is_internal_external,ed.classmaster_id, ss.sec_name,c.class_name,COALESCE(DATE_FORMAT(MIN(ed.exam_date), '%d/%b/%y'),'') AS Fromdate,
 						COALESCE(DATE_FORMAT(MAX(ed.exam_date), '%d/%b/%y'),'') AS Todate,
 						CASE WHEN ems.status='Publish' OR ems.status='Approved' THEN 1 ELSE 0 END AS MarkStatus
@@ -505,51 +505,51 @@ class Apiteachermodel extends CI_Model {
 						RIGHT JOIN edu_exam_details ed on ex.exam_id = ed.exam_id and ed.classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')
 						LEFT JOIN edu_exam_marks_status ems ON ems.exam_id = ex.exam_id and ems.classmaster_id = ed.classmaster_id
 						INNER JOIN edu_classmaster AS cm ON ed.classmaster_id = cm.class_sec_id
-						INNER JOIN edu_class AS c ON cm.class=c.class_id 
+						INNER JOIN edu_class AS c ON cm.class=c.class_id
 						INNER JOIN edu_sections AS ss ON cm.section=ss.sec_id
 						WHERE ex.exam_year ='$year_id' and ex.status = 'Active' and ed.classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')
 						GROUP by ed.classmaster_id, ed.exam_id
-						
+
 						UNION ALL
-						
+
 						SELECT ex.exam_id,ex.exam_name,ex.exam_flag AS is_internal_external,ed.classmaster_id, ss.sec_name,c.class_name, COALESCE(DATE_FORMAT(MIN(ed.exam_date), '%d/%b/%y'),'') AS Fromdate,
 						COALESCE(DATE_FORMAT(MAX(ed.exam_date), '%d/%b/%y'),'') AS Todate,
 						CASE WHEN ems.status='Publish' OR ems.status='Approved' THEN 1 ELSE 0 END AS MarkStatus
 						FROM edu_examination ex
 						LEFT JOIN edu_exam_details ed on ed.exam_id = ex.exam_id and ed.classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')
-						LEFT JOIN edu_exam_marks_status ems ON ems.exam_id = ex.exam_id and ems.classmaster_id = ed.classmaster_id 
+						LEFT JOIN edu_exam_marks_status ems ON ems.exam_id = ex.exam_id and ems.classmaster_id = ed.classmaster_id
 						INNER JOIN edu_classmaster AS cm ON ed.classmaster_id = cm.class_sec_id
-						INNER JOIN edu_class AS c ON cm.class=c.class_id 
+						INNER JOIN edu_class AS c ON cm.class=c.class_id
 						INNER JOIN edu_sections AS ss ON cm.section=ss.sec_id
 						WHERE ex.exam_year ='$year_id' and ex.status = 'Active' and ex.exam_id NOT IN (SELECT DISTINCT exam_id FROM edu_exam_details where classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')) GROUP by ed.classmaster_id,ed.exam_id";
-					
+
 						$exam_res = $this->db->query($exam_query);
-	
+
 						 if($exam_res->num_rows()==0){
 							 $exam_result = array("status" => "error", "msg" => "No exam has been assigned to this class!");
-						
+
 						}else{
 							$exam_result= $exam_res->result();
-						} 
-						
-						$examdetail_query = "SELECT A.exam_id,A.exam_name,C.subject_name,B.exam_date, B.times,B.classmaster_id, E.class_name, F.sec_name FROM 
-							`edu_examination` A, `edu_exam_details` B, `edu_subject` C, `edu_classmaster` D, `edu_class` E, `edu_sections` F WHERE 
-							A.`exam_id` = B. exam_id AND B.subject_id = C.subject_id AND 
-							B.classmaster_id=D.class_sec_id AND D.class = E.class_id AND 
+						}
+
+						$examdetail_query = "SELECT A.exam_id,A.exam_name,C.subject_name,B.exam_date, B.times,B.classmaster_id, E.class_name, F.sec_name FROM
+							`edu_examination` A, `edu_exam_details` B, `edu_subject` C, `edu_classmaster` D, `edu_class` E, `edu_sections` F WHERE
+							A.`exam_id` = B. exam_id AND B.subject_id = C.subject_id AND
+							B.classmaster_id=D.class_sec_id AND D.class = E.class_id AND
 							D.section = F.sec_id AND B.classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')";
 							$examdetail_res = $this->db->query($examdetail_query);
-	
+
 						 if($examdetail_res->num_rows()==0){
 							 $examdetail_result = array("status" => "error", "msg" => "No exam has been assigned to this class!");
-						
+
 						}else{
 							$examdetail_result= $examdetail_res->result();
 							$response = array("status" => "success","msg" => "Examsfound","Exams"=>$exam_result,"examDetails"=>$examdetail_result);
-						
-						}  
-			return $response;		
-	}	
-	
+
+						}
+			return $response;
+	}
+
 //#################### Reload Exams for Teachers End ####################//
 
 
@@ -557,7 +557,7 @@ class Apiteachermodel extends CI_Model {
 	public function dispExamdetails($class_id,$exam_id)
 	{
 			 $year_id = $this->getYear();
-		
+
 			$exam_query = "SELECT A.exam_id,A.exam_name,C.subject_name,B.exam_date, B.times FROM `edu_examination` A, `edu_exam_details` B, `edu_subject` C WHERE A.`exam_id` = B. exam_id AND B.subject_id = C.subject_id AND B.classmaster_id ='$class_id' AND B.exam_id='$exam_id'";
 			$exam_res = $this->db->query($exam_query);
 			$exam_result= $exam_res->result();
@@ -567,9 +567,9 @@ class Apiteachermodel extends CI_Model {
 				 $response = array("status" => "error", "msg" => "Exams Not Found");
 			}else{
 				$response = array("status" => "success", "msg" => "View Exam Details", "count"=>$exam_result_count,"examDetails"=>$exam_result);
-			} 
-			
-			return $response;		
+			}
+
+			return $response;
 	}
 //#################### Exam Details End ####################//
 
@@ -578,80 +578,54 @@ class Apiteachermodel extends CI_Model {
 	public function dispMarkdetails($class_id,$exam_id,$subject_id,$is_internal_external)
 	{
 			$year_id = $this->getYear();
-			
+
 			if ($is_internal_external =='0') {
 			  	$mark_query = "SELECT C.exam_name, B.subject_name, D.name, A.internal_mark, A.internal_grade, A.external_mark,A.external_grade, A.total_marks, A.total_grade FROM `edu_exam_marks` A, `edu_subject` B, `edu_examination` C, `edu_enrollment` D WHERE A.`exam_id` = '$exam_id' AND A.`classmaster_id` = '$class_id' AND A.subject_id = '$subject_id' AND A.subject_id = B.subject_id AND A.exam_id = C.exam_id AND A.stu_id = D.enroll_id";
-		  
+
 			} else {
 				$mark_query = "SELECT C.exam_name, B.subject_name, D.name, A.internal_mark, A.internal_grade, A.external_mark,A.external_grade, A.total_marks, A.total_grade FROM `edu_exam_marks` A, `edu_subject` B, `edu_examination` C, `edu_enrollment` D WHERE A.`exam_id` = '$exam_id' AND A.`classmaster_id` = '$class_id' AND A.subject_id = '$subject_id' AND A.subject_id = B.subject_id AND A.exam_id = C.exam_id AND A.stu_id = D.enroll_id";
 			}
-			
+
 			$mark_res = $this->db->query($mark_query);
 			$mark_result= $mark_res->result();
-			
+
 			 if($mark_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Marks not added for this exam yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Marks Details", "marksDetails"=>$mark_result);
-			} 
+			}
 
-			return $response;		
+			return $response;
 	}
 //#################### Mark Details End ####################//
 
 //#################### Timetable  for Teachers ####################//
-	public function dispTimetable($teacher_id)
+	public function view_timetable_for_teacher($user_id)
 	{
 			$year_id = $this->getYear();
 			$term_id = $this->getTerm();
-			
-	    	$timetable_query = "SELECT
-									tt.table_id,
-									tt.class_id,
-									c.class_name,
-									ss.sec_name,
-									tt.subject_id,
-									tt.teacher_id,
-									tt.day_id,
-									tt.period,
-									t.name,
-									s.subject_name,
-									tt.from_time,
-									tt.to_time,
-									tt.is_break
-								FROM
-									edu_timetable AS tt
-								LEFT JOIN edu_subject AS s
-								ON
-									tt.subject_id = s.subject_id
-								LEFT JOIN edu_teachers AS t
-								ON
-									tt.teacher_id = t.teacher_id
-								INNER JOIN edu_classmaster AS cm
-								ON
-									tt.class_id = cm.class_sec_id
-								INNER JOIN edu_class AS c
-								ON
-									cm.class = c.class_id
-								INNER JOIN edu_sections AS ss
-								ON
-									cm.section = ss.sec_id
-								WHERE
-									tt.teacher_id = '$teacher_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id'
-								ORDER BY
-									tt.day_id,
-									tt.period";
+
+	    	$timetable_query ="SELECT tt.table_id,tt.class_id,c.class_name,ss.sec_name,
+        tt.subject_id,tt.teacher_id,tt.day_id,tt.period,t.name,s.subject_name,tt.from_time,tt.to_time,tt.is_break FROM edu_timetable AS tt
+        LEFT JOIN edu_subject AS s ON tt.subject_id = s.subject_id
+        LEFT JOIN edu_teachers AS t ON tt.teacher_id = t.teacher_id
+        LEFT JOIN edu_users AS eu ON eu.user_master_id=t.teacher_id AND eu.user_type=2
+        INNER JOIN edu_classmaster AS cm ON tt.class_id = cm.class_sec_id
+        INNER JOIN edu_class AS c ON cm.class = c.class_id
+        INNER JOIN edu_sections AS ss ON cm.section = ss.sec_id
+        WHERE eu.user_id='$user_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id'
+        ORDER BY tt.day_id,tt.period";
 			$timetable_res = $this->db->query($timetable_query);
 			$timetable_result= $timetable_res->result();
 
-			
+
 			 if($timetable_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "No timetable has been scheduled for this teacher yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Timetable", "timetableDetails"=>$timetable_result);
-			} 
+			}
 
-			return $response;		
+			return $response;
 	}
 //#################### Timetable End ####################//
 
@@ -659,19 +633,19 @@ class Apiteachermodel extends CI_Model {
 	public function dispReminder($user_id)
 	{
 			$year_id = $this->getYear();
-			
+
 	    	$reminder_query = "SELECT * from edu_reminder WHERE to_do_user_id ='$user_id'";
 			$reminder_res = $this->db->query($reminder_query);
 			$reminder_result= $reminder_res->result();
 
-			
+
 			 if($reminder_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Reminders Not Found");
 			}else{
 				$response = array("status" => "success", "msg" => "View Reminder", "dispReminder"=>$reminder_res);
-			} 
+			}
 
-			return $response;		
+			return $response;
 	}
 //#################### Reminder End ####################//
 
@@ -679,19 +653,19 @@ class Apiteachermodel extends CI_Model {
 	public function dispCommunication ($teacher_id)
 	{
 			$year_id = $this->getYear();
-			
+
 			$comm_query = "SELECT commu_title,commu_details,commu_date FROM `edu_communication` WHERE find_in_set('$teacher_id', `teacher_id`)";
 			$comm_res = $this->db->query($comm_query);
 			$comm_result= $comm_res->result();
 			$comm_count = $comm_res->num_rows();
-			
+
 			 if($comm_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Communication Not Found");
 			}else{
 				$response = array("status" => "success", "msg" => "View Communication", "count"=>$comm_count, "communicationDetails"=>$comm_result);
-			} 
+			}
 
-			return $response;		
+			return $response;
 	}
 //#################### Communication End ####################//
 
@@ -699,19 +673,19 @@ class Apiteachermodel extends CI_Model {
 	public function dispLeavetype ($user_id)
 	{
 			$year_id = $this->getYear();
-			
+
 			$leave_type_query = "SELECT id,leave_title,leave_type from edu_user_leave_master WHERE status = 'Active' ";
 			$leave_type_res = $this->db->query($leave_type_query);
 			$leave_type_result= $leave_type_res->result();
 			$leave_type_count = $leave_type_res->num_rows();
-			
+
 			 if($leave_type_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Leaves Not Found");
 			}else{
 				$response = array("status" => "success", "msg" => "View Leave Types", "leaveDetails"=>$leave_type_result);
-			} 
+			}
 
-			return $response;		
+			return $response;
 	}
 //#################### Communication End ####################//
 
@@ -719,7 +693,7 @@ class Apiteachermodel extends CI_Model {
 	public function dispUserleaves ($user_id)
 	{
 			$year_id = $this->getYear();
-		
+
 			$leave_query = "SELECT
                             B.leave_title,
                             A.from_leave_date,
@@ -741,14 +715,14 @@ class Apiteachermodel extends CI_Model {
 			$leave_res = $this->db->query($leave_query);
 			$leave_result= $leave_res->result();
 			$leave_count = $leave_res->num_rows();
-			
+
 			 if($leave_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "No leave has been applied yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Leaves", "leaveDetails"=>$leave_result);
-			} 
+			}
 
-			return $response;		
+			return $response;
 	}
 //#################### Display Leaves End ####################//
 
@@ -757,11 +731,11 @@ class Apiteachermodel extends CI_Model {
 	public function dispTimetablereview ($teacher_id)
 	{
 		$year_id = $this->getYear();
-			
+
     		$sql = "SELECT * FROM edu_users WHERE teacher_id ='$teacher_id'";
     		$user_result = $this->db->query($sql);
     		$ress = $user_result->result();
-    		
+
     		if($user_result->num_rows()>0)
     		{
     			foreach ($user_result->result() as $rows)
@@ -769,7 +743,7 @@ class Apiteachermodel extends CI_Model {
     			    $user_id = $rows->user_id;
     			}
     		}
-		
+
 			 $review_query = "SELECT
 			 			A.timetable_id AS review_id,
                         A.time_date,
@@ -791,18 +765,18 @@ class Apiteachermodel extends CI_Model {
                         A.class_id = B.class_sec_id AND B.class = D.class_id AND B.section = E.sec_id AND A.subject_id = C.subject_id AND A.user_id = '$user_id' AND A.year_id = '$year_id'
                     ORDER BY
                         A.time_date DESC";
-                        
+
 			$review_res = $this->db->query($review_query);
 			$review_result= $review_res->result();
 			$review_count = $review_res->num_rows();
-			
+
 			 if($review_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "No note has been added!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Reviews", "reviewDetails"=>$review_result);
-			} 
+			}
 
-			return $response;		
+			return $response;
 	}
 //#################### Display Timetablereview End ####################//
 
@@ -814,13 +788,13 @@ class Apiteachermodel extends CI_Model {
 
 		    $leave_query = "INSERT INTO `edu_user_leave` (`year_id`, `user_type`, `user_id`, `leave_master_id`, `type_leave`, `from_leave_date`, `to_leave_date`, `frm_time`, `to_time`, `leave_description`, `status`,`created_at`) VALUES ('$year_id', '$user_type', '$user_id', '$leave_master_id', '$leave_type', '$date_from', '$date_to', '$fromTime', '$toTime', '$description', 'Pending',NOW())";
 			$leave_res = $this->db->query($leave_query);
-		
+
 			if($leave_res) {
 			    $response = array("status" => "success", "msg" => "Leave Added");
 			} else {
 			    $response = array("status" => "error");
 			}
-			return $response;	
+			return $response;
 	}
 //#################### Add Leave End ####################//
 
@@ -829,17 +803,17 @@ class Apiteachermodel extends CI_Model {
 	public function addHomework ($class_id,$teacher_id,$homeWork_type,$subject_id,$title,$test_date,$due_date,$homework_details,$created_by,$created_at)
 	{
 			$year_id = $this->getYear();
-			
+
 		    $hw_query = "INSERT INTO `edu_homework`(`year_id`, `class_id`, `teacher_id`, `hw_type`, `subject_id`, `title`, `test_date`, `due_date`, `hw_details`, `status`, `created_by`, `created_at`) VALUES ('$year_id','$class_id','$teacher_id','$homeWork_type','$subject_id','$title','$test_date','$due_date','$homework_details','Active','$created_by','$created_at')";
 			$hw_res = $this->db->query($hw_query);
 			$last_hwid = $this->db->insert_id();
-				
+
 			if($hw_res) {
 			    $response = array("status" => "success", "msg" => "Homework Added", "last_id"=>$last_hwid);
 			} else {
 			    $response = array("status" => "error");
 			}
-			return $response;		
+			return $response;
 	}
 //#################### Add Leave End ####################//
 
@@ -847,7 +821,7 @@ class Apiteachermodel extends CI_Model {
 	public function addHWmarks ($hw_masterid,$student_id,$marks,$remarks,$created_by,$created_at)
 	{
 		$year_id = $this->getYear();
-			
+
 		$sqlMarks = "SELECT * FROM edu_class_marks WHERE hw_mas_id  = '$hw_masterid' AND enroll_mas_id ='$student_id'";
 		$Marks_result = $this->db->query($sqlMarks);
 
@@ -859,9 +833,9 @@ class Apiteachermodel extends CI_Model {
 		        }
 			$response = array("status" => "AlreadyAdded", "msg" => "Already added", "mark_id"=>$marks_id);
 		} else {
-			
-			
-		    $HWmarks_query = "INSERT INTO `edu_class_marks`(`enroll_mas_id`, `hw_mas_id`, `marks`, `remarks`, `status`, `created_by`, `created_at`) 
+
+
+		    $HWmarks_query = "INSERT INTO `edu_class_marks`(`enroll_mas_id`, `hw_mas_id`, `marks`, `remarks`, `status`, `created_by`, `created_at`)
 			VALUES ('$student_id','$hw_masterid','$marks','$remarks','Active','$created_by','$created_at')";
 			$HWmarks_res = $this->db->query($HWmarks_query);
 			$last_HWmarksid = $this->db->insert_id();
@@ -875,7 +849,7 @@ class Apiteachermodel extends CI_Model {
 			    $response = array("status" => "error");
 			}
 		}
-			return $response;		
+			return $response;
 	}
 //#################### Add Leave End ####################//
 
@@ -883,7 +857,7 @@ class Apiteachermodel extends CI_Model {
 	public function addExammarks ($exam_id,$teacher_id,$subject_id,$stu_id,$classmaster_id,$internal_mark,$external_mark,$marks,$created_by,$is_internal_external)
 	{
 		$year_id = $this->getYear();
-		
+
 		$totalMarks = "SELECT * FROM edu_exam_details WHERE exam_id = '$exam_id' AND subject_id ='$subject_id' AND classmaster_id ='$classmaster_id'";
 		$totalMarks_result = $this->db->query($totalMarks);
 
@@ -895,7 +869,7 @@ class Apiteachermodel extends CI_Model {
 		            $internal_mark_total  = $rows->internal_mark;
 		            $external_mark_total  = $rows->external_mark;
 		        }
-		} 
+		}
 
         $sqlMarks = "SELECT * FROM edu_exam_marks WHERE exam_id = '$exam_id' AND subject_id ='$subject_id' AND stu_id ='$stu_id'  AND classmaster_id ='$classmaster_id'";
 		$Marks_result = $this->db->query($sqlMarks);
@@ -908,8 +882,8 @@ class Apiteachermodel extends CI_Model {
 		        }
 			$response = array("status" => "AlreadyAdded", "msg" => "Already added", "exam_mark_id"=>$exam_marks_id);
 		} else {
-    		    
-			if ($is_internal_external=="0") 
+
+			if ($is_internal_external=="0")
 			{
 
 			    if(is_numeric($marks))
@@ -919,9 +893,9 @@ class Apiteachermodel extends CI_Model {
                 } else {
 					$total_grade = $marks;
                 }
-			    
+
 			    /*
-				if ($marks >= 91 && $marks <= 100) { 
+				if ($marks >= 91 && $marks <= 100) {
 					$total_grade = 'A1';
                 }
                 if ($marks >= 81 && $marks <= 90) {
@@ -953,11 +927,11 @@ class Apiteachermodel extends CI_Model {
                 }
 				*/
 				   $marks_query = "INSERT INTO `edu_exam_marks`(`exam_id`, `teacher_id`, `subject_id`, `stu_id`, `classmaster_id`, `total_marks`, `total_grade`, `created_by`, `created_at`) VALUES ('$exam_id','$teacher_id','$subject_id','$stu_id','$classmaster_id','$marks','$total_grade','$created_by',NOW())";
-		
-			} 	
+
+			}
 			else 	{
-				
-				
+
+
 			    if(is_numeric($internal_mark))
                 {
     			    $total = ($internal_mark/$internal_mark_total)*100;
@@ -965,7 +939,7 @@ class Apiteachermodel extends CI_Model {
                 } else {
 					$internal_grade = $internal_mark;
                 }
-                
+
                  if(is_numeric($external_mark))
                 {
     			    $total = ($external_mark/$external_mark_total)*100;
@@ -973,7 +947,7 @@ class Apiteachermodel extends CI_Model {
                 } else {
 					$external_grade = $external_mark;
                 }
-                
+
                  if(is_numeric($internal_mark) || is_numeric($external_mark))
                 {
                     $total_marks = $internal_mark + $external_mark;
@@ -983,11 +957,11 @@ class Apiteachermodel extends CI_Model {
                     $total_marks = $internal_mark;
                     $total_grade = $internal_mark;
                 }
-            
+
             /*
-            
+
                 $total_marks = $internal_mark + $external_mark;
-                
+
                 if(is_numeric($total_marks))
                 {
     			    $total = ($total_marks/$subject_total)*100;
@@ -995,8 +969,8 @@ class Apiteachermodel extends CI_Model {
                 } else {
 					$total_grade = '';
                 }
-			    
-				
+
+
 				//Internal Marks Grade
                 if ($internal_mark >= 37 && $internal_mark <= 40) {
                 	$internal_grade = 'A1';
@@ -1028,7 +1002,7 @@ class Apiteachermodel extends CI_Model {
                 if ($internal_mark == 'AB') {
                		$internal_grade = '';
                 }
-                
+
                 //External Mark Grade
                 if ($external_mark >= 55 && $external_mark <= 60) {
                 	$external_grade = 'A1';
@@ -1060,11 +1034,11 @@ class Apiteachermodel extends CI_Model {
                 if ($external_mark == 'AB') {
                		$external_grade = '';
                 }
-                
+
                 //Total Mark Grade
                 $total_marks = $internal_mark + $external_mark;
-                
-                if ($total_marks >= 91 && $total_marks <= 100) { 
+
+                if ($total_marks >= 91 && $total_marks <= 100) {
 					$total_grade = 'A1';
                 }
                 if ($total_marks >= 81 && $total_marks <= 90) {
@@ -1091,13 +1065,13 @@ class Apiteachermodel extends CI_Model {
                 if ($total_marks <= 20) {
 					$total_grade = 'E2';
                 }
-                if ($internal_mark == 'AB' && $external_mark == 'AB') { 
+                if ($internal_mark == 'AB' && $external_mark == 'AB') {
 					$total_grade = '';
                 }
                 */
 		      $marks_query = "INSERT INTO `edu_exam_marks`(`exam_id`, `teacher_id`, `subject_id`, `stu_id`, `classmaster_id`, `internal_mark`, `internal_grade`, `external_mark`, `external_grade`, `total_marks`, `total_grade`, `created_by`, `created_at`) VALUES ('$exam_id','$teacher_id','$subject_id','$stu_id','$classmaster_id','$internal_mark','$internal_grade','$external_mark','$external_grade','$total_marks','$total_grade','$created_by',NOW())";
 		}
-		
+
 			$marks_res = $this->db->query($marks_query);
 			$last_marksid = $this->db->insert_id();
 
@@ -1107,7 +1081,7 @@ class Apiteachermodel extends CI_Model {
 			    $response = array("status" => "error");
 			}
 		}
-			return $response;		
+			return $response;
 	}
 //#################### Exam marks End ####################//
 
@@ -1115,7 +1089,7 @@ class Apiteachermodel extends CI_Model {
 	public function addReminder ($user_id,$title,$description,$date)
 	{
 			$year_id = $this->getYear();
-			
+
 		    $reminder_query = "	INSERT INTO `edu_reminder`(`user_id`, `to_do_date`, `to_do_title`, `to_do_description`, `status`, `created_by`, `created_at`)
 			VALUES ('$user_id','$date','$title','$description','Active','$user_id',NOW())";
 			$reminder_res = $this->db->query($reminder_query);
@@ -1126,7 +1100,7 @@ class Apiteachermodel extends CI_Model {
 			} else {
 			    $response = array("status" => "error");
 			}
-			return $response;		
+			return $response;
 	}
 //#################### Add Reminder End ####################//
 
@@ -1135,7 +1109,7 @@ class Apiteachermodel extends CI_Model {
 	public function viewExamduty ($teacher_id)
 	{
 			$year_id = $this->getYear();
-			
+
 			 $exam_query = "SELECT
 							ex.exam_name,
 							s.subject_name,
@@ -1155,14 +1129,14 @@ class Apiteachermodel extends CI_Model {
 							ed.exam_date";
 			$exam_res = $this->db->query($exam_query);
 			$exam_result = $exam_res->result();
-			
+
 		    if($exam_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "No examy duty assigned yet!");
 			}else{
 				$response = array("status" => "success", "msg" => "View Exam Duty", "examdutyDetails"=>$exam_result);
 			}
 
-			return $response;	
+			return $response;
 	}
 //#################### Exam Duty End ####################//
 
@@ -1171,7 +1145,7 @@ class Apiteachermodel extends CI_Model {
 	public function addTimetablereview ($time_date,$class_id,$subject_id,$period_id,$user_type,$user_id,$comments,$created_at)
 	{
 			$year_id = $this->getYear();
-			
+
 		    $review_query = "	INSERT INTO `edu_timetable_review`(`time_date`,`year_id` , `class_id`, `subject_id`, `period_id`, `user_type`, `user_id`, `comments`, `status`, `created_at`)
 			VALUES ('$time_date','$year_id','$class_id','$subject_id','$period_id','$user_type','$user_id','$comments','Active','$created_at')";
 			$review_res = $this->db->query($review_query);
@@ -1182,7 +1156,7 @@ class Apiteachermodel extends CI_Model {
 			} else {
 			    $response = array("status" => "error");
 			}
-			return $response;		
+			return $response;
 	}
 //#################### Add Timetablereview End ####################//
 
@@ -1192,7 +1166,7 @@ class Apiteachermodel extends CI_Model {
 			$year_id = $this->getYear();
             $createDate = new DateTime($created_at);
             $createDateonly = $createDate->format('Y-m-d');
-            
+
 			$sqlAttendance = "SELECT * FROM edu_attendence WHERE ac_year ='$ac_year' AND class_id ='$class_id' AND attendence_period ='$attendence_period' AND date(created_at) = '$createDateonly'";
     		$Attendance_result = $this->db->query($sqlAttendance);
 
@@ -1208,14 +1182,14 @@ class Apiteachermodel extends CI_Model {
 				$attend_query = "INSERT INTO `edu_attendence`(`ac_year`, `class_id`, `class_total`, `no_of_present`, `no_of_absent`, `attendence_period`, `created_by`,`created_at`,`status`) VALUES ('$ac_year','$class_id','$class_total','$no_of_present','$no_of_absent','$attendence_period','$created_by','$created_at','$status')";
 				$attend_res = $this->db->query($attend_query);
 				$last_attendid = $this->db->insert_id();
-	
+
 				if($attend_res) {
 					$response = array("status" => "success", "msg" => "Attendance Added", "last_attendance_id"=>$last_attendid);
 				} else {
 					$response = array("status" => "error");
 				}
 			}
-			return $response;		
+			return $response;
 	}
 //#################### Sync Attendance End ####################//
 
@@ -1224,7 +1198,7 @@ class Apiteachermodel extends CI_Model {
 	{
   			$sqlAttendance = "SELECT * FROM edu_attendance_history WHERE class_id ='$class_id' AND attend_period ='$attend_period' AND abs_date ='$abs_date' AND student_id = '$student_id'";
     		$Attendance_result = $this->db->query($sqlAttendance);
-    		
+
     		if($Attendance_result->num_rows()>0)
     		{
     		    	foreach ($Attendance_result->result() as $rows)
@@ -1233,11 +1207,11 @@ class Apiteachermodel extends CI_Model {
 			        }
     			$response = array("status" => "AlreadyAdded", "msg" => "Alredy Added", "attendance_history_id"=>$absent_id);
     		} else {
-			
+
 				$attend_his_query = "INSERT INTO `edu_attendance_history`(`attend_id`, `class_id`, `student_id`, `abs_date`, `a_status`, `attend_period`, `a_val`,`a_taken_by`,`created_at`,`status`) VALUES ('$attend_id','$class_id','$student_id','$abs_date','$a_status','$attend_period','$a_val','$a_taken_by','$created_at','$status')";
 				$attend_his_res = $this->db->query($attend_his_query);
 				$last_historyid = $this->db->insert_id();
-	
+
 				if($attend_his_res) {
 					$response = array("status" => "success", "msg" => "Attendance History Added", "last_attendance_history_id"=>$last_historyid);
 				} else {
@@ -1255,8 +1229,8 @@ class Apiteachermodel extends CI_Model {
   			$sqlAttendance = "SELECT ea.*,eu.name FROM edu_attendence  AS ea JOIN edu_users  AS eu ON eu.user_id=ea.created_by WHERE class_id='$class_id' AND ac_year='$year_id' ORDER BY created_at DESC";
     		$Attendance_result = $this->db->query($sqlAttendance);
     		$attendance_histor = $Attendance_result->result();
-    		
-	
+
+
 				if($Attendance_result) {
 					$response = array("status" => "success", "msg" => "Class Teacher Attendance History", "ct_attendance_history"=>$attendance_histor);
 				} else {
@@ -1278,7 +1252,7 @@ class Apiteachermodel extends CI_Model {
 									a.sex,
 									o.a_status,
 									(
-									CASE 
+									CASE
 										WHEN a_status = 'A' THEN 'ABSENT'
 										WHEN a_status = 'L' THEN 'LEAVE'
 										WHEN a_status = 'OD' THEN 'OD'
@@ -1296,8 +1270,8 @@ class Apiteachermodel extends CI_Model {
 									a.sex DESC, c.name ASC";
 			$Attendance_result = $this->db->query($sqlAttendance);
     		$attendance_histor = $Attendance_result->result();
-    		
-	
+
+
 				if($Attendance_result) {
 					$response = array("status" => "success", "msg" => "Class Teacher Student Attendance History", "ct_student_history"=>$attendance_histor);
 				} else {
@@ -1312,7 +1286,7 @@ class Apiteachermodel extends CI_Model {
 	 public function send_attendance_sms($attend_id)
 	 {
 			$query = "SELECT ee.name,ep.mobile,ee.admission_id,eah.abs_date,eah.student_id,eah.a_status,eah.attend_period,CASE WHEN attend_period = 0 THEN 'MORNING' ELSE 'AFTERNOON' END  AS a_session,CASE WHEN a_status = 'L' THEN 'Leave' WHEN a_status = 'A' THEN 'Absent' ELSE 'OnDuty' END  AS abs_atatus FROM edu_attendance_history AS eah LEFT JOIN edu_enrollment AS ee ON ee.enroll_id=eah.student_id LEFT JOIN edu_parents AS ep ON ee.admission_id=ep.admission_id WHERE eah.attend_id='$attend_id' AND ep.primary_flag='Yes'";
-	
+
 			$result=$this->db->query($query);
 			$res=$result->result();
 			foreach($res as $rows){
@@ -1342,7 +1316,7 @@ class Apiteachermodel extends CI_Model {
 			  $at_ses=$rows->a_session;
 			  $abs_date=$rows->abs_date;
 			  $abs_status=$rows->abs_atatus;
-			  
+
 			  /* Subject: Student not present!
 				Body:
 				$textmessage='Dear Parent,<br>
@@ -1360,8 +1334,8 @@ class Apiteachermodel extends CI_Model {
 
 //#################### send attendance Email to Parents END ####################//
 
-//#################### send attendance Notification to Parents ####################//		
-		
+//#################### send attendance Notification to Parents ####################//
+
 	 public function send_attendance_notification($attend_id)
 	 {
      		$query = "SELECT eu.user_id,en.gcm_key,en.mobile_type,ee.name,ep.mobile,ep.id,ee.admission_id,eah.abs_date,eah.student_id,eah.a_status,eah.attend_period,
@@ -1376,26 +1350,26 @@ class Apiteachermodel extends CI_Model {
 			$abs_status=$rows->abs_atatus;
 			$mobile_type=$rows->mobile_type;
 			$subject="School Attendance";
-			
+
 			$notes='Hi,\n	Your child '.$st_name.' has been marked absent today.\n Please check ENSYFi mobile app for further details.\n http://bit.ly/2wLwdRQ';
 			//$notes='Your child '.$st_name.' was marked '.$abs_status.' today, '.$abs_date.'. To Known more details login into http://bit.ly/2wLwdRQ';
 			$this->sendNotification($gcm_key,$subject,$notes,$mobile_type);
 	      }
     }
-		
-//#################### send attendance Notification to Parents END ####################//		
 
-//#################### Attendance Status Change ####################//		
+//#################### send attendance Notification to Parents END ####################//
+
+//#################### Attendance Status Change ####################//
 	 public function send_attendance_status($attend_id)
 		{
 			$query="UPDATE edu_attendence SET sent_status='1' WHERE at_id='$attend_id'";
 			$res=$this->db->query($query);
-			
+
 			$response = array("status" => "success", "msg" => "Attendance Send to Parents");
 			return $response;
       	}
 
-//#################### Attendance Status Change End ####################//	
+//#################### Attendance Status Change End ####################//
 
 
 
@@ -1412,11 +1386,11 @@ class Apiteachermodel extends CI_Model {
 				} else {
 					$response = array("status" => "error");
 				}
-				
+
 			return $response;
 
 	}
-//#################### list Class teacher All hwork End ####################//	
+//#################### list Class teacher All hwork End ####################//
 
 
 //#################### list Class teacher All hwork for days ####################//
@@ -1432,18 +1406,18 @@ class Apiteachermodel extends CI_Model {
 				} else {
 					$response = array("status" => "error", "msg" => "No Records Found");
 				}
-				
+
 			return $response;
 
 	}
-//#################### list Class teacher All hwork for days ####################//	
+//#################### list Class teacher All hwork for days ####################//
 
 
 //#################### send all HW sms to Parents ####################//
 	 public function send_allhw_sms($user_id,$createdate,$clssid)
 	 {
 		 $year_id = $this->getYear();
-		 
+
 		 $sQuery = "SELECT h.title,h.hw_details,h.hw_type,h.test_date,s.subject_name FROM edu_homework AS h,edu_subject AS s WHERE h.class_id='$clssid' AND h.year_id='$year_id' AND DATE_FORMAT(h.created_at,'%Y-%m-%d')='$createdate' AND h.subject_id=s.subject_id";
 		  $sms1 = $this->db->query($sQuery);
 		  $sms2 = $sms1->result();
@@ -1462,17 +1436,17 @@ class Apiteachermodel extends CI_Model {
 			$home_work_details[]= $message;
 		  }
 		  	$hwdetails = implode('--',$home_work_details);
-		  
+
 			$sql = "SELECT p.mobile FROM edu_parents AS p,edu_enrollment AS e WHERE e.class_id='$clssid' AND FIND_IN_SET( e.admission_id,p.admission_id) GROUP BY p.name";
 			$result = $this->db->query($sql);
 			$p_resulr = $result->result();
-		  
+
 		  	foreach($p_resulr as $rows)
-		  	{  
+		  	{
 				$parents_num = $rows->mobile;
 				$this->sendSMS($parents_num,$hwdetails);
 			}
-			   
+
 		  }
 //#################### send all HW sms to Parents END ####################//
 
@@ -1480,7 +1454,7 @@ class Apiteachermodel extends CI_Model {
 	 public function send_allhw_email($user_id,$createdate,$clssid)
 	 {
 		$year_id = $this->getYear();
-		 
+
 		 $sQuery = "SELECT h.title,h.hw_details,h.hw_type,h.test_date,s.subject_name FROM edu_homework AS h,edu_subject AS s WHERE h.class_id='$clssid' AND h.year_id='$year_id' AND DATE_FORMAT(h.created_at,'%Y-%m-%d')='$createdate' AND h.subject_id=s.subject_id";
 		  $sms1 = $this->db->query($sQuery);
 		  $sms2 = $sms1->result();
@@ -1499,13 +1473,13 @@ class Apiteachermodel extends CI_Model {
 			$home_work_details[]= $message;
 		  }
 		  	$hwdetails = implode('--',$home_work_details);
-		  
+
 			$sql = "SELECT p.email FROM edu_parents AS p,edu_enrollment AS e WHERE e.class_id='$clssid' AND FIND_IN_SET( e.admission_id,p.admission_id) GROUP BY p.name";
 			$result = $this->db->query($sql);
 			$p_resulr = $result->result();
-		  
+
 		  	foreach($p_resulr as $rows)
-		  	{  
+		  	{
 				$subject="HomeWork / Class Test Details";
 				$parents_email = $rows->email;
 				$this->sendMail($parents_email,$subject,$hwdetails);
@@ -1515,12 +1489,12 @@ class Apiteachermodel extends CI_Model {
 
 //#################### send all HW  Email to Parents END ####################//
 
-//#################### ssend all HW Notification to Parents ####################//		
-		
+//#################### ssend all HW Notification to Parents ####################//
+
 	 public function send_allhw_notification($user_id,$createdate,$clssid)
 	 {
      		$year_id = $this->getYear();
-		 
+
 		 $sQuery = "SELECT h.title,h.hw_details,h.hw_type,h.test_date,s.subject_name FROM edu_homework AS h,edu_subject AS s WHERE h.class_id='$clssid' AND h.year_id='$year_id' AND DATE_FORMAT(h.created_at,'%Y-%m-%d')='$createdate' AND h.subject_id=s.subject_id";
 		  $sms1 = $this->db->query($sQuery);
 		  $sms2 = $sms1->result();
@@ -1539,12 +1513,12 @@ class Apiteachermodel extends CI_Model {
 			$home_work_details[]= $message;
 		  }
 		  	$hwdetails = implode('--',$home_work_details);
-		  
+
 			$sql = "SELECT p.id,u.user_id FROM edu_parents AS p,edu_enrollment AS e,edu_users AS u WHERE e.class_id='$clssid' AND FIND_IN_SET(e.admission_id,p.admission_id) AND p.primary_flag='Yes' AND p.id=u.user_master_id AND u.user_type='4' GROUP BY p.id";
 
 		  	$result = $this->db->query($sql);
 			$p_resulr = $result->result();
-		  
+
 		  	foreach($p_resulr as $rows)
 		  	{
 			$user_id = $rows->user_id;
@@ -1560,15 +1534,15 @@ class Apiteachermodel extends CI_Model {
 				}
 		  }
     }
-		
-//#################### send all HW Notification to Parents END ####################//		
 
-//#################### Homeworks Status Change ####################//		
+//#################### send all HW Notification to Parents END ####################//
+
+//#################### Homeworks Status Change ####################//
 	 public function updateAllhworkstatus($user_id,$createdate,$clssid)
 		{
 			$query="UPDATE edu_homework SET send_option_status='1',updated_by='$user_id',updated_at=NOW() WHERE class_id='$clssid' AND DATE_FORMAT(created_at, '%Y-%m-%d')='$createdate'";
 			$res=$this->db->query($query);
-			
+
 			$response = array("status" => "success", "msg" => "HW Send to Parents");
 			return $response;
      	}
@@ -1578,7 +1552,7 @@ class Apiteachermodel extends CI_Model {
 	 public function send_singlehw_sms($user_id,$hw_id,$clssid)
 	 {
 		 $year_id = $this->getYear();
-		 
+
 		  $sQuery = "SELECT h.title,h.hw_details,h.hw_type,h.test_date,s.subject_name FROM edu_homework AS h,edu_subject AS s WHERE h.class_id='$clssid' AND h.year_id='$year_id' AND h.hw_id='$hw_id' AND h.subject_id=s.subject_id";
 		  $sms1 = $this->db->query($sQuery);
 		  $sms2 = $sms1->result();
@@ -1595,17 +1569,17 @@ class Apiteachermodel extends CI_Model {
 
 			$hwdetails = "Title : " .$hwtitle. ",Type : " .$type. ", Details : " .$hwdetails .", Subject : ".$subname ;
 		  }
-		  
+
 			$sql = "SELECT p.mobile FROM edu_parents AS p,edu_enrollment AS e WHERE e.class_id='$clssid' AND FIND_IN_SET( e.admission_id,p.admission_id) GROUP BY p.name";
 			$result = $this->db->query($sql);
 			$p_resulr = $result->result();
-		  
+
 		  	foreach($p_resulr as $rows)
-		  	{  
+		  	{
 				$parents_num = $rows->mobile;
 				$this->sendSMS($parents_num,$hwdetails);
 			}
-			   
+
 		  }
 //#################### send single HW sms to Parents END ####################//
 
@@ -1613,7 +1587,7 @@ class Apiteachermodel extends CI_Model {
 	 public function send_singlehw_email($user_id,$hw_id,$clssid)
 	 {
 		$year_id = $this->getYear();
-		 
+
 		 $sQuery = "SELECT h.title,h.hw_details,h.hw_type,h.test_date,s.subject_name FROM edu_homework AS h,edu_subject AS s WHERE h.class_id='$clssid' AND h.year_id='$year_id' AND hw_id='$hw_id' AND h.subject_id=s.subject_id";
 		  $sms1 = $this->db->query($sQuery);
 		  $sms2 = $sms1->result();
@@ -1630,13 +1604,13 @@ class Apiteachermodel extends CI_Model {
 			$message = " <br> Title : " .$hwtitle. " <br> Type : " .$type. " <br> Details : " .$hwdetails ." <br> Subject : ".$subname;
 		  }
 
-		  
+
 			$sql = "SELECT p.email FROM edu_parents AS p,edu_enrollment AS e WHERE e.class_id='$clssid' AND FIND_IN_SET(e.admission_id,p.admission_id) GROUP BY p.name";
 			$result = $this->db->query($sql);
 			$p_resulr = $result->result();
-		  
+
 		  	foreach($p_resulr as $rows)
-		  	{  
+		  	{
 				$subject="HomeWork / Class Test Details";
 				$parents_email = $rows->email;
 				$this->sendMail($parents_email,$subject,$message);
@@ -1646,12 +1620,12 @@ class Apiteachermodel extends CI_Model {
 
 //#################### send all HW  Email to Parents END ####################//
 
-//#################### ssend single HW Notification to Parents ####################//		
-		
+//#################### ssend single HW Notification to Parents ####################//
+
 	 public function send_singlehw_notification($user_id,$hw_id,$clssid)
 	 {
      		$year_id = $this->getYear();
-		 
+
 		 $sQuery = "SELECT h.title,h.hw_details,h.hw_type,h.test_date,s.subject_name FROM edu_homework AS h,edu_subject AS s WHERE h.class_id='$clssid' AND h.year_id='$year_id' AND hw_id = '$hw_id' AND h.subject_id=s.subject_id";
 		  $sms1 = $this->db->query($sQuery);
 		  $sms2 = $sms1->result();
@@ -1667,12 +1641,12 @@ class Apiteachermodel extends CI_Model {
 			if($ht=='HW'){ $type="Home Work" ; }else{ $type="Class Test" ; }
 			$message = "Title : " .$hwtitle. ",Type : " .$type. ", Details : " .$hwdetails .", Subject : ".$subname;
 		  }
-		  
+
 			$sql = "SELECT p.id,u.user_id FROM edu_parents AS p,edu_enrollment AS e,edu_users AS u WHERE e.class_id='$clssid' AND FIND_IN_SET(e.admission_id,p.admission_id) AND p.primary_flag='Yes' AND p.id=u.user_master_id AND u.user_type='4' GROUP BY p.id";
 
 		  	$result = $this->db->query($sql);
 			$p_resulr = $result->result();
-		  
+
 		  	foreach($p_resulr as $rows)
 		  	{
 			$user_id = $rows->user_id;
@@ -1688,19 +1662,139 @@ class Apiteachermodel extends CI_Model {
 				}
 		  }
     }
-		
-//#################### send all HW Notification to Parents END ####################//		
 
-//#################### Homeworks Status Change ####################//		
+//#################### send all HW Notification to Parents END ####################//
+
+//#################### Homeworks Status Change ####################//
 	 public function updateSinglehwhworkstatus($user_id,$hw_id,$clssid)
 		{
 			$query="UPDATE edu_homework SET send_option_status='1',updated_by='$user_id',updated_at=NOW() WHERE hw_id='$hw_id'";
 			$res=$this->db->query($query);
-			
+
 			$response = array("status" => "success", "msg" => "HW send to parents");
 			return $response;
      	}
 //#################### Homeworks Status Change End ####################//
+
+
+  function view_special_class($user_id){
+    $year_id = $this->getYear();
+    $select="SELECT IFNULL(c.class_name, '') AS class_name,IFNULL(s.sec_name, '') AS sec_name,esu.subject_name,sc.* FROM edu_special_class AS sc
+    LEFT JOIN edu_classmaster AS cm ON sc.class_master_id=cm.class_sec_id
+    LEFT JOIN edu_class AS c ON cm.class=c.class_id
+    LEFT JOIN edu_sections AS s ON  cm.section=s.sec_id
+    LEFT JOIN edu_subject AS esu ON sc.subject_id=esu.subject_id
+    WHERE sc.year_id='$year_id' AND sc.teacher_id='$user_id' AND sc.status='Active'";
+    $res=$this->db->query($select);
+    if($res->num_rows()==0){
+      $response = array("status" => "error", "msg" => "No Special Found");
+
+    }else{
+      foreach($res->result() as $rows){
+        $special_class[]=array(
+          "class_sec_name" => $rows->class_name.$rows->sec_name,
+          "class_sec_id" => $rows->class_master_id,
+          "subject_name" => $rows->subject_name,
+          "subject_topic" => $rows->subject_topic,
+          "special_class_date" => $rows->special_class_date,
+          "start_time" => $rows->start_time,
+          "end_time" => $rows->end_time,
+        );
+      }
+      $response = array("status" => "success", "msg" => "Special Found","special_details"=>$special_class);
+
+    }
+    return $response;
+
+  }
+
+
+
+    // Teacher view_substitution
+
+    function view_substitution($user_id){
+        $year_id = $this->getYear();
+        $select="SELECT IFNULL(c.class_name, '') AS class_name,IFNULL(s.sec_name, '') AS sec_name,es.sub_date,es.period_id,es.class_master_id,eu.user_id FROM edu_substitution as es
+        LEFT JOIN edu_classmaster AS cm ON es.class_master_id=cm.class_sec_id
+        LEFT JOIN edu_class AS c ON cm.class=c.class_id
+        LEFT JOIN edu_sections AS s ON  cm.section=s.sec_id
+        left join edu_teachers as et on et.teacher_id=es.sub_teacher_id
+        left join edu_users as eu on eu.user_master_id=et.teacher_id and eu.user_type=2
+        where eu.user_id='$user_id' and  es.sub_date >= CURDATE() and es.status='Active'";
+        $res=$this->db->query($select);
+        if($res->num_rows()==0){
+          $response = array("status" => "error", "msg" => "No Substitution Found");
+        }else{
+          foreach($res->result() as $rows){
+            $data[]=array(
+              "class_sec_name" => $rows->class_name.$rows->sec_name,
+              "class_sec_id" => $rows->class_master_id,
+              "period" => $rows->period_id,
+              "sub_date" => $rows->sub_date,
+            );
+          }
+          $response = array("status" => "success", "msg" => "Substitution Found","substitution_details"=>$data);
+        }
+          return $response;
+    }
+
+    function view_substitution_for_past($user_id){
+        $year_id = $this->getYear();
+        $select="SELECT IFNULL(c.class_name, '') AS class_name,IFNULL(s.sec_name, '') AS sec_name,es.sub_date,es.period_id,es.class_master_id,eu.user_id FROM edu_substitution as es
+        LEFT JOIN edu_classmaster AS cm ON es.class_master_id=cm.class_sec_id
+        LEFT JOIN edu_class AS c ON cm.class=c.class_id
+        LEFT JOIN edu_sections AS s ON  cm.section=s.sec_id
+        left join edu_teachers as et on et.teacher_id=es.sub_teacher_id
+        left join edu_users as eu on eu.user_master_id=et.teacher_id and eu.user_type=2
+        where eu.user_id='$user_id' and  es.sub_date <= CURDATE() and es.status='Active'";
+        $res=$this->db->query($select);
+        if($res->num_rows()==0){
+          $response = array("status" => "error", "msg" => "No Substitution Found");
+        }else{
+          foreach($res->result() as $rows){
+            $data[]=array(
+              "class_sec_name" => $rows->class_name.$rows->sec_name,
+              "class_sec_id" => $rows->class_master_id,
+              "period" => $rows->period_id,
+              "sub_date" => $rows->sub_date,
+            );
+          }
+          $response = array("status" => "success", "msg" => "Substitution Found","substitution_details"=>$data);
+        }
+          return $response;
+    }
+
+
+
+    function view_timetable_days($user_id){
+      $select="SELECT d_id as day_id,list_day as day_name FROM edu_days where d_id!=7";
+      $res=$this->db->query($select);
+      if($res->num_rows()==0){
+        $response = array("status" => "error", "msg" => "No Days Found");
+      }else{
+        $result_days=$res->result();
+        $response = array("status" => "success", "msg" => "Days Found","days_list"=>$result_days);
+      }
+      return $response;
+
+    }
+
+
+    function view_exam_mark_status($exam_id,$class_id){
+      $select="SELECT * FROM edu_exam_marks_status where exam_id='$exam_id' and classmaster_id='$class_id'";
+      $res=$this->db->query($select);
+      if($res->num_rows()==0){
+        $response = array("status" => "success", "msg" => "Can edit marks");
+      }else{
+        $response = array("status" => "error", "msg" => "You can't edit marks");
+      }
+      return $response;
+    }
+
+
+
+
+
 
 }
 
