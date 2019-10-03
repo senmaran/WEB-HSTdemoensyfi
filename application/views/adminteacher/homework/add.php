@@ -23,7 +23,7 @@
                            	 $clsname1=$rows1->class_name;
                            	 $sec_name1=$rows1->sec_name;
                                                 ?>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                            <a href="<?php echo base_url();?>homework/get_all_homework/<?php echo $cls_tutor_id; ?>" class="btn btn-wd"><?php echo $clsname1."-".$sec_name1; ?></a>
                         </div>
                         <?php  }  ?>
@@ -52,7 +52,7 @@
                            	 $clsname=$row->class_name;
                            	 $sec_name=$row->sec_name;
                                                 ?>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                            <a rel="tooltip" href="" onclick="changeText(<?php echo $cmid; ?>)" data-toggle="modal" data-target="#addmodel" data-id="<?php echo $cmid; ?>"  class=" open-AddBookDialog  btn btn-wd"><?php echo $clsname."-".$sec_name; ?></a>
                         </div>
                         <?php  }  }?>

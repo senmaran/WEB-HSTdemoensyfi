@@ -1942,7 +1942,7 @@ class Apimainmodel extends CI_Model {
     $year_id = $this->getYear();
     $term_id = $this->getTerm();
       $timetable_query ="SELECT tt.table_id,tt.class_id,c.class_name,ss.sec_name,
-      tt.subject_id,tt.teacher_id,tt.day,tt.period,t.name,s.subject_name,tt.from_time,tt.to_time,tt.is_break FROM edu_timetable AS tt
+      tt.subject_id,tt.teacher_id,tt.day_id,tt.period,t.name,s.subject_name,tt.from_time,tt.to_time,tt.is_break FROM edu_timetable AS tt
       LEFT JOIN edu_subject AS s ON tt.subject_id = s.subject_id
       LEFT JOIN edu_teachers AS t ON tt.teacher_id = t.teacher_id
       LEFT JOIN edu_users AS eu ON eu.user_master_id=t.teacher_id AND eu.user_type=2
@@ -1950,7 +1950,7 @@ class Apimainmodel extends CI_Model {
       INNER JOIN edu_class AS c ON cm.class = c.class_id
       INNER JOIN edu_sections AS ss ON cm.section = ss.sec_id
       WHERE tt.class_id='$class_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id'
-      ORDER BY tt.day,tt.period";
+      ORDER BY tt.day_id,tt.period";
 
     $timetable_res = $this->db->query($timetable_query);
     $timetable_result= $timetable_res->result();

@@ -12,7 +12,7 @@
 
 
                                 ?>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                   <a href="<?php echo  base_url(); ?>teachertimetable/view/<?php echo base64_encode($rows->class_master_id); ?>" class="btn btn-wd"><?php echo $rows->class_name.'-'.$rows->sec_name; ?></a>
                                  </div>
 

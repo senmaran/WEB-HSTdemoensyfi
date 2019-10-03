@@ -606,7 +606,7 @@ class Apiteachermodel extends CI_Model {
 			$term_id = $this->getTerm();
 
 	    	$timetable_query ="SELECT tt.table_id,tt.class_id,c.class_name,ss.sec_name,
-        tt.subject_id,tt.teacher_id,tt.day,tt.period,t.name,s.subject_name,tt.from_time,tt.to_time,tt.is_break FROM edu_timetable AS tt
+        tt.subject_id,tt.teacher_id,tt.day_id,tt.period,t.name,s.subject_name,tt.from_time,tt.to_time,tt.is_break FROM edu_timetable AS tt
         LEFT JOIN edu_subject AS s ON tt.subject_id = s.subject_id
         LEFT JOIN edu_teachers AS t ON tt.teacher_id = t.teacher_id
         LEFT JOIN edu_users AS eu ON eu.user_master_id=t.teacher_id AND eu.user_type=2
@@ -614,7 +614,7 @@ class Apiteachermodel extends CI_Model {
         INNER JOIN edu_class AS c ON cm.class = c.class_id
         INNER JOIN edu_sections AS ss ON cm.section = ss.sec_id
         WHERE eu.user_id='$user_id' AND tt.year_id = '$year_id' AND tt.term_id = '$term_id'
-        ORDER BY tt.day,tt.period";
+        ORDER BY tt.day_id,tt.period";
 			$timetable_res = $this->db->query($timetable_query);
 			$timetable_result= $timetable_res->result();
 
@@ -835,8 +835,9 @@ class Apiteachermodel extends CI_Model {
 		} else {
 
 
-		    $HWmarks_query = "INSERT INTO `edu_class_marks`(`enroll_mas_id`, `hw_mas_id`, `marks`, `remarks`, `status`, `created_by`, `created_at`)
+		   $HWmarks_query = "INSERT INTO edu_class_marks(enroll_mas_id, hw_mas_id, marks, remarks, status, created_by, created_at)
 			VALUES ('$student_id','$hw_masterid','$marks','$remarks','Active','$created_by','$created_at')";
+
 			$HWmarks_res = $this->db->query($HWmarks_query);
 			$last_HWmarksid = $this->db->insert_id();
 
