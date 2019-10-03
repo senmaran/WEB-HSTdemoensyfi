@@ -1575,7 +1575,7 @@ class Apiteacher extends CI_Controller {
 
 //-----------------------------------------------//
 
-	public function update_class_exam_marks()
+	public function update_class_test_marks()
 	{
 	 $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
@@ -1602,7 +1602,7 @@ class Apiteacher extends CI_Controller {
 		$user_id = $this->input->post("user_id");
 		$created_at=$this->input->post("created_at");
 
-		$data['result']=$this->apiteachermodel->update_class_exam_marks($hw_masterid,$student_id,$marks,$user_id,$created_at);
+		$data['result']=$this->apiteachermodel->update_class_test_marks($hw_masterid,$student_id,$marks,$user_id,$created_at);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
