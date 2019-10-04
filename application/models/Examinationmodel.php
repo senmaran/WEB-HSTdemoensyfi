@@ -207,7 +207,7 @@ function check_add_exam($classid,$examid)
 function exam_name_status()
 {
 	//$sql="SELECT * FROM edu_exam_marks_status ";
-	$sql="SELECT ms.*,ex.exam_id,ex.exam_year,ex.exam_name FROM edu_exam_marks_status AS ms,edu_examination AS ex WHERE ms.exam_id=ex.exam_id GROUP BY ms.exam_id";
+	$sql="SELECT ms.*,ex.exam_id,ex.exam_year,ex.exam_name FROM edu_exam_marks_status AS ms,edu_examination AS ex WHERE ms.exam_id=ex.exam_id GROUP BY ms.exam_id ORDER BY ex.exam_id";
 	$res=$this->db->query($sql);
 	$result=$res->result();
 	return $result;
