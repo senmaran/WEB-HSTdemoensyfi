@@ -1685,7 +1685,9 @@ class Apiteachermodel extends CI_Model {
     LEFT JOIN edu_class AS c ON cm.class=c.class_id
     LEFT JOIN edu_sections AS s ON  cm.section=s.sec_id
     LEFT JOIN edu_subject AS esu ON sc.subject_id=esu.subject_id
-    WHERE sc.year_id='$year_id' AND sc.teacher_id='$user_id' AND sc.status='Active'";
+    LEFT JOIN edu_teachers as et on et.teacher_id=sc.teacher_id
+    LEFT JOIN edu_users as eu on eu.user_master_id=et.teacher_id where eu.user_id='$user_id'
+    AND sc.year_id='$year_id'  AND sc.status='Active'";
     $res=$this->db->query($select);
     if($res->num_rows()==0){
       $response = array("status" => "error", "msg" => "No Special Found");
