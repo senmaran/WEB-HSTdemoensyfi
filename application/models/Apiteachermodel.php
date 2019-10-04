@@ -580,7 +580,7 @@ class Apiteachermodel extends CI_Model {
 			$year_id = $this->getYear();
 
 			if ($is_internal_external =='0') {
-			  	$mark_query = "SELECT C.exam_name, B.subject_name, D.name, A.internal_mark, A.internal_grade, A.external_mark,A.external_grade, A.total_marks, A.total_grade,D.enroll_id FROM edu_exam_marks A, edu_subject B, edu_examination C, edu_enrollment D WHERE A.exam_id = '$exam_id' AND Aclassmaster_id = '$class_id' AND A.subject_id = '$subject_id' AND A.subject_id = B.subject_id AND A.exam_id = C.exam_id AND A.stu_id = D.enroll_id";
+			  	$mark_query = "SELECT C.exam_name, B.subject_name, D.name, A.internal_mark, A.internal_grade, A.external_mark,A.external_grade, A.total_marks, A.total_grade,D.enroll_id FROM edu_exam_marks A, edu_subject B, edu_examination C, edu_enrollment D WHERE A.exam_id = '$exam_id' AND A.classmaster_id = '$class_id' AND A.subject_id = '$subject_id' AND A.subject_id = B.subject_id AND A.exam_id = C.exam_id AND A.stu_id = D.enroll_id";
 
 			} else {
 				$mark_query = "SELECT C.exam_name, B.subject_name, D.name, A.internal_mark, A.internal_grade, A.external_mark,A.external_grade, A.total_marks, A.total_grade,D.enroll_id FROM edu_exam_marks A, edu_subject B, edu_examination C, edu_enrollment D WHERE A.exam_id = '$exam_id' AND A.classmaster_id = '$class_id' AND A.subject_id = '$subject_id' AND A.subject_id = B.subject_id AND A.exam_id = C.exam_id AND A.stu_id = D.enroll_id";
