@@ -1895,6 +1895,33 @@ class Apiteachermodel extends CI_Model {
         return $response;
       }
 
+
+      // Exam details check
+
+      function view_exam_details($user_id,$exam_id,$class_id){
+        $examdetail_query = "SELECT ee.exam_name,IFNULL(c.class_name, '') AS class_name,IFNULL(se.sec_name, '') AS sec_name,s.subject_name,
+        eed.exam_id,eed.subject_id,eed.classmaster_id,eed.exam_date,eed.times,eed.is_internal_external,eed.subject_total,eed.internal_mark,
+        eed.external_mark FROM edu_exam_details  AS eed
+        LEFT JOIN edu_examination AS ee ON ee.exam_id=eed.exam_id
+        LEFT JOIN edu_subject AS s ON s.subject_id=eed.subject_id
+        LEFT JOIN edu_classmaster AS cm ON eed.classmaster_id=cm.class_sec_id
+        LEFT JOIN edu_class AS c ON cm.class=c.class_id
+        LEFT JOIN edu_sections AS se ON  cm.section=se.sec_id
+        WHERE eed.exam_id='$exam_id' AND eed.classmaster_id='$class_id'";
+            $examdetail_res = $this->db->query($examdetail_query);
+
+           if($examdetail_res->num_rows()==0){
+             $response = array("status" => "error", "msg" => "Exams not found");
+          }else{
+             $response = array("status" => "success", "msg" => "Exams found","data"=>$examdetail_result= $examdetail_res->result());
+          }
+          return $response;
+      }
+
+
+
+
+
 }
 
 ?>

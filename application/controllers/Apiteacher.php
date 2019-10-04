@@ -1627,4 +1627,47 @@ class Apiteacher extends CI_Controller {
 
 
 
+
+
+//-----------------------------------------------//
+
+	public function view_exam_details()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Exam Marks Update";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$user_id = $this->input->post("user_id");
+		$exam_id = $this->input->post("exam_id");
+		$class_id = $this->input->post("classmaster_id");
+
+		$data['result']=$this->apiteachermodel->view_exam_details($user_id,$exam_id,$class_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+//-----------------------------------------------//
+
+
+
+
+
+
+
+
+
+
 }
