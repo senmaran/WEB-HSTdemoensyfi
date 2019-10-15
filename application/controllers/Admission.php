@@ -134,16 +134,29 @@ class Admission extends CI_Controller {
 			 $datas=$this->session->userdata();
 			 $user_id=$this->session->userdata('user_id');
 			 $user_type=$this->session->userdata('user_type');
-			 $gender=$this->input->post('gender');
+			 $year=$this->input->post('years');
+			 $current_year = date("Y");
+			 
+			 
+			  //$gender=$this->input->post('gender');
+			// if(!empty($gender)){
+			//	$datas['gender'] = $this->admissionmodel->get_sorting_gender_details($gender);
+			// }
+			 
+			 $datas['years'] = $this->admissionmodel->get_all_admission_years();
 
-			 $datas['result'] = $this->admissionmodel->get_all_admission();
-			 if(!empty($gender)){
-				$datas['gender'] = $this->admissionmodel->get_sorting_gender_details($gender);
+			 if(!empty($year)){
+				 $datas['result'] = $this->admissionmodel->get_all_admission($year);
+			 } else {
+				  $datas['result'] = $this->admissionmodel->get_all_admission($current_year);
 			 }
+			 //print_r($datas['result']);
+			 //exit;
+			 
 		     if($user_type==1){
-			 $this->load->view('header');
-			 $this->load->view('admission/view',$datas);
-			 $this->load->view('footer');
+				 $this->load->view('header');
+					$this->load->view('admission/view',$datas);
+				 $this->load->view('footer');
 			 }
 			 else{
 					redirect('/');

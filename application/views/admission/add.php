@@ -428,6 +428,6 @@ $('#tc_copy').on('change', function() {
 	camWindow=window.open(url,'camWindow','height=450,width=450');
 	if (window.focus) {camWindow.focus()}
 	return false;
-	}
+}
  
 </script>

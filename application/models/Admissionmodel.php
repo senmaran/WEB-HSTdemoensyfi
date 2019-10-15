@@ -22,10 +22,12 @@ Class Admissionmodel extends CI_Model
           }
 
        //GET ALL Admission Form
-      function get_all_admission()
+      function get_all_admission($year)
      {
         //$query="SELECT a.admission_id,a.name,a.admisn_no,a.sex,a.mobile,a.email,a.status,a.enrollment,a.parents_status,a.parnt_guardn_id,b.blood_group_name,(select GROUP_CONCAT(p.name SEPARATOR ',') from  edu_parents AS p where FIND_IN_SET (p.id,a.parnt_guardn_id)) as parentsname FROM edu_admission as a,edu_blood_group as b WHERE a.blood_group=b.id  ORDER BY a.admission_id DESC";
-		   $query="SELECT a.admission_id,a.name,a.admisn_no,a.sex,a.mobile,a.email,a.status,a.enrollment,a.parents_status,a.parnt_guardn_id,(select GROUP_CONCAT(p.name SEPARATOR ',') from edu_parents AS p where FIND_IN_SET (p.id,a.parnt_guardn_id)) as parentsname,(Select b.blood_group_name FROM edu_blood_group as b WHERE  b.id IN(a.blood_group)) AS blood_group_name FROM edu_admission as a ORDER BY a.admission_id DESC";
+		  // $query="SELECT a.admission_id,a.name,a.admisn_no,a.sex,a.mobile,a.email,a.status,a.enrollment,a.parents_status,a.parnt_guardn_id,(select GROUP_CONCAT(p.name SEPARATOR ',') from edu_parents AS p where FIND_IN_SET (p.id,a.parnt_guardn_id)) as parentsname,(Select b.blood_group_name FROM edu_blood_group as b WHERE  b.id IN(a.blood_group)) AS blood_group_name FROM edu_admission as a ORDER BY a.admission_id DESC";
+		  
+		   $query="SELECT a.admission_id,a.name,a.admisn_no,a.admisn_year,a.sex,a.mobile,a.email,a.status,a.enrollment,a.parents_status,a.parnt_guardn_id,(select GROUP_CONCAT(p.name SEPARATOR ',') from edu_parents AS p where FIND_IN_SET (p.id,a.parnt_guardn_id)) as parentsname,(Select b.blood_group_name FROM edu_blood_group as b WHERE  b.id IN(a.blood_group)) AS blood_group_name FROM edu_admission as a  WHERE admisn_year = '$year' ORDER BY a.admission_id DESC";
 			$res=$this->db->query($query);
 			return $res->result();
        }
@@ -192,6 +194,13 @@ Class Admissionmodel extends CI_Model
  	    function get_sorting_admission_details()
 		{
 		   $sql="SELECT sex FROM edu_admission GROUP BY sex ";
+		   $res=$this->db->query($sql);
+		   return $res->result();
+
+		}
+		 function get_all_admission_years()
+		{
+		   $sql="SELECT admisn_year FROM edu_admission GROUP BY admisn_year ";
 		   $res=$this->db->query($sql);
 		   return $res->result();
 

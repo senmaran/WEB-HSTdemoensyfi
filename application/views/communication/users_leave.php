@@ -16,6 +16,31 @@
 					  <a href="<?php echo base_url(); ?>userleavemaster/home" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Create Leave Master</a>
 					  </legend>
                   </div>
+				  <form method="post" action="<?php echo base_url(); ?>enrollment/view" class="form-horizontal" enctype="multipart/form-data" id="search_year" name="search_year">
+                        <fieldset>
+                           <div class="form-group">
+                              <div class="col-sm-4">
+                                 <select name="ace_year" id="ace_year"  required class="selectpicker" >
+								  							 <option value="">Select Year</option>
+                                    <?php foreach($ace_years as $rows)
+                                       {
+                                       $fyear=$rows->from_month;
+                                       $month= strtotime($fyear);
+
+                                       $eyear=$rows->to_month;
+                                       $month1= strtotime($eyear);
+                                    ?>
+                                    <option value="<?php  echo $rows->year_id; ?>"><?php  echo  date('Y',$month); ?> (To) <?php  echo  date('Y',$month1); ?></option>
+                                    <?php } ?>
+                                 </select> <script language="JavaScript">document.search_year.ace_year.value="<?php echo $search_year; ?>";</script>
+                              </div>
+
+                              <div class="col-sm-4">
+                                  <button type="submit" id="search" class="btn btn-info btn-fill center">Search </button>
+                              </div>
+                           </div>
+                        </fieldset>
+                     </form>
                   <div class="content">
                            <div class="fresh-datatables">
                         <table id="bootstrap-table" class="table">

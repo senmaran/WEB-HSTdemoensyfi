@@ -28,7 +28,7 @@
                      <div class="content">
                         <h4 class="title" style="padding-bottom: 20px;">List of Student Registration</h4>
 
-						<!-- <form method="post" action="<?php echo base_url(); ?>enrollment/view" class="form-horizontal" enctype="multipart/form-data" id="search_year" name="search_year">
+						<form method="post" action="<?php echo base_url(); ?>enrollment/view" class="form-horizontal" enctype="multipart/form-data" id="search_year" name="search_year">
                         <fieldset>
                            <div class="form-group">
                               <div class="col-sm-4">
@@ -52,7 +52,7 @@
                               </div>
                            </div>
                         </fieldset>
-                     </form> -->
+                     </form>
 
 
 

@@ -13,7 +13,7 @@ class Communication extends CI_Controller
         $this->load->model('mailmodel');
         $this->load->model('notificationmodel');
         $this->load->model('class_manage');
-       
+		$this->load->model('yearsmodel');
     }
     
     public function index()
@@ -25,7 +25,10 @@ class Communication extends CI_Controller
         $datas=$this->session->userdata();
         $user_id=$this->session->userdata('user_id');
         $user_type=$this->session->userdata('user_type');
-        $datas['result'] =$this->communicationmodel->user_leaves();
+		$search_year = $this->input->post('ace_year');
+		
+		$datas['ace_years'] = $this->yearsmodel->getall_years();
+        $datas['result'] =$this->communicationmodel->user_leaves($search_year);
         //echo'<pre>';print_r($datas['result']);exit;
         if ($user_type == 1) {
             $this->load->view('header');

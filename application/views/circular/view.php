@@ -25,13 +25,13 @@
 						     <div class="content">
                                 <ul role="tablist" class="nav nav-tabs" style="border-bottom: none;padding-left:165px;">
                                     <li class="active">
-                                        <a href="#company" class="btn btn-info btn-fill"  id="teacher"   data-toggle="tab">Parents</a>
+                                        <a href="#company" class="btn btn-info btn-fill"  id="teacher"   data-toggle="tab">Teachers</a>
                                     </li>
                                     <li>
-                                        <a href="#style"  class="btn btn-info btn-fill" id="classes"  data-toggle="tab">Teachers</a>
+                                        <a href="#style"  class="btn btn-info btn-fill" id="classes"  data-toggle="tab">Students</a>
                                     </li>
                                     <li>
-                                        <a href="#settings" class="btn btn-info btn-fill" id="parents" data-toggle="tab">Students</a>
+                                        <a href="#settings" class="btn btn-info btn-fill" id="parents" data-toggle="tab">Parents</a>
                                     </li>
                                 </ul>
                             </div>

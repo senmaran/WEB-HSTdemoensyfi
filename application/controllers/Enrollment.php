@@ -147,10 +147,12 @@ class Enrollment extends CI_Controller {
 		 $datas=$this->session->userdata();
 		 $user_id=$this->session->userdata('user_id');
 		 $user_type=$this->session->userdata('user_type');
+		 
 		$search_year = $this->input->post('ace_year');
 		$datas['ace_years'] = $this->yearsmodel->getall_years();
 		$datas['result'] = $this->enrollmentmodel->get_all_enrollment($search_year);
 		$datas['years']=$this->enrollmentmodel->get_current_years();
+		
  		 if($user_type==1){
 			 $this->load->view('header');
 			 $this->load->view('enrollment/view',$datas);
