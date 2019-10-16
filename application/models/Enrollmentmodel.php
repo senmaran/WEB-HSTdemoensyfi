@@ -113,7 +113,7 @@ Class Enrollmentmodel extends CI_Model
 
 	    function get_current_years()
 		{
-		  $get_year="SELECT * FROM edu_academic_year WHERE NOW()>=from_month AND NOW()<=to_month";
+		  $get_year="SELECT * FROM edu_academic_year WHERE NOW()>=from_month AND NOW()<=to_month AND status = 'Active'";
 		  $result1=$this->db->query($get_year);
 		  if($result1->num_rows()==0){
 			$data= array("status" => "no data Found");

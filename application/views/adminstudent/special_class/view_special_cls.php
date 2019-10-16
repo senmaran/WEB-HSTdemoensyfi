@@ -20,12 +20,12 @@
                                  <th>Date</th>
                                  <th>Start Time</th>
 								  <th>End time</th>
-
                               </thead>
                               <tbody>
                                  <?php
                                     $i=1;
-                                    foreach ($view as $rows) { $stu=$rows->status;
+										foreach ($view as $rows) { 
+										$stu=$rows->status;
                                      ?>
                                  <tr>
                                     <td><?php  echo $i; ?></td>
@@ -36,8 +36,6 @@
                                     <td><?php $dateTime=new DateTime($rows->special_class_date); $tdate=date_format($dateTime,'d-m-Y' ); echo $tdate; ?></td>
 									<td><?php  echo $rows->start_time; ?></td>
 									<td><?php  echo $rows->end_time; ?></td>
-
-
                                  </tr>
                                  <?php $i++;  }  ?>
                               </tbody>

@@ -35,12 +35,11 @@ Class Communicationmodel extends CI_Model
     
     function user_leaves()
     {
-        $get_year = "SELECT * FROM edu_academic_year WHERE NOW()>=from_month AND NOW()<=to_month";
-        $result1  = $this->db->query($get_year);
-        $all_year = $result1->result();
-        foreach ($all_year as $cyear) {
-        }
-        $current_year = $cyear->year_id;
+         if ($search_year !='') {
+			   $year_id = $search_year;
+		   } else {
+				$year_id=$this->getYear();
+		   }
         
         $query     = "SELECT u.user_id,u.user_type,u.user_master_id,ul.*,lm.leave_title,lm.leave_type,lm.id,t.teacher_id,t.name FROM edu_user_leave AS ul,edu_teachers AS t,edu_user_leave_master AS lm,edu_users AS u WHERE u.user_type=ul.user_type AND u.user_id=ul.user_id AND ul.year_id='$current_year' AND t.teacher_id=u.user_master_id AND ul.leave_master_id=lm.id  ORDER BY ul.leave_id DESC";
         $resultset = $this->db->query($query);

@@ -1,5 +1,11 @@
-
-
+<?php
+ if (count($result)>0) {
+	foreach ($result as $rows) {}
+		$ad_year = $rows->admisn_year;
+ } else {
+	 $ad_year = "";
+ }
+?>
 <style>
    .formdesign
    {
@@ -24,7 +30,28 @@
                      <div class="content">
                         <div class="fresh-datatables">
                            <h4 class="title" style="padding-bottom:10px;">List of Admission</h4>
+						   
+								<form method="post" action="<?php echo base_url(); ?>admission/view" class="form-horizontal" enctype="multipart/form-data" id="search_class" name="search_class">
 
+                        <fieldset>
+                           <div class="form-group">
+                            
+                              <div class="col-sm-4">
+                                 <select name="years" id="years"  required class="selectpicker" >
+								  <option value="">Select Years</option>
+                                    <?php foreach($years as $rows) { ?>
+                                    <option value="<?php  echo $rows->admisn_year; ?>"><?php  echo  $rows->admisn_year; ?></option>
+                                    <?php } ?>
+                                 </select>
+                              </div>
+                              
+                              <div class="col-sm-4">
+                                  <button type="submit" id="search" class="btn btn-info btn-fill center">Search </button>
+                              </div>
+                           </div>
+                        </fieldset>
+
+                     </form><script language="JavaScript">document.search_class.years.value="<?php echo $ad_year; ?>";</script>
 
                            <table id="example" class="table table-striped table-no-bordered table-hover" cellspacing="0" >
                               <thead>
