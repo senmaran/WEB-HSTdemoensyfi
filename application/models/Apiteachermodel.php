@@ -1690,7 +1690,7 @@ class Apiteachermodel extends CI_Model {
     AND sc.year_id='$year_id'  AND sc.status='Active'";
     $res=$this->db->query($select);
     if($res->num_rows()==0){
-      $response = array("status" => "error", "msg" => "No Special Found");
+      $response = array("status" => "error", "msg" => "No Special class Found");
 
     }else{
       foreach($res->result() as $rows){

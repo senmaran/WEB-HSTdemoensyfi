@@ -572,3 +572,6 @@ float: left;
     padding-top: 10px;
     padding-bottom: 10px;
 }
+.btn-fill{
+  width:100px;
+}
