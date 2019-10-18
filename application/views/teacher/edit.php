@@ -3,7 +3,7 @@
       <div class="col-md-12">
          <div class="card">
             <div class="header">
-               <legend>Update Staff</legend>
+               <legend>Edit Staff</legend>
             </div>
             <?php if($this->session->flashdata('msg')): ?>
             <div class="alert alert-success">
@@ -16,7 +16,7 @@
                <form method="post" action="<?php echo base_url(); ?>teacher/save" class="form-horizontal" enctype="multipart/form-data" id="admissionform" name="teacherform">
                  <fieldset>
                     <div class="form-group">
-                       <label class="col-sm-2 control-label">Select Role </label>
+                       <label class="col-sm-2 control-label">Role </label>
                        <div class="col-sm-4">
                           <select name="role_type_id" id="role_type_id" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                             <?php foreach($res_user_role as $res_user_role_name){ ?>
@@ -34,7 +34,7 @@
                            <input type="text" name="name" class="form-control" value="<?php echo $rows->name; ?>">
                            <input type="hidden" placeholder="Community" name="teacher_id" class="form-control" value="<?php echo $rows->teacher_id; ?>">
                         </div>
-                        <label class="col-sm-2 control-label">Email</label>
+                        <label class="col-sm-2 control-label">Email ID</label>
                         <div class="col-sm-4">
                            <input type="text" name="email" required  class="form-control" id="email" value="<?php echo $rows->email; ?>"/>
                         </div>
@@ -58,11 +58,11 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Secondary Email</label>
+                        <label class="col-sm-2 control-label">Alternate Email ID</label>
                         <div class="col-sm-4">
                            <input type="text" name="sec_email" placeholder="Email Address" class="form-control" value="<?php echo $rows->sec_email;?>">
                         </div>
-                        <label class="col-sm-2 control-label">Secondary Mobile</label>
+                        <label class="col-sm-2 control-label">Alternate Mobile </label>
                         <div class="col-sm-4">
                            <input type="text" name="sec_phone" value="<?php echo $rows->sec_phone;?> " class="form-control" placeholder="Mobile Number" />
                         </div>
@@ -70,7 +70,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Date of birth</label>
+                        <label class="col-sm-2 control-label">Date of Birth</label>
                         <div class="col-sm-4">
                            <input type="text" name="dob" id="dob" class="form-control datepicker" placeholder="Date of Birth " value="<?php echo $rows->dob; ?>"/>
                         </div>
@@ -94,9 +94,9 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Community Class</label>
+                        <label class="col-sm-2 control-label">Community Category</label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Community Class" name="community_class" class="form-control"  value="<?php echo $rows->community_class; ?>">
+                           <input type="text" placeholder="Community Category" name="community_class" class="form-control"  value="<?php echo $rows->community_class; ?>">
                         </div>
                         <label class="col-sm-2 control-label">Community</label>
                         <div class="col-sm-4">
@@ -111,7 +111,7 @@
                         <div class="col-sm-4">
                            <textarea name="address" MaxLength="150" class="form-control" rows="4" cols="80" placeholder="Max Characters 150"><?php echo $rows->address; ?></textarea>
                         </div>
-                        <label class="col-sm-2 control-label">Main Subject</label>
+                        <label class="col-sm-2 control-label">Subject Taught</label>
                         <div class="col-sm-4">
                            <select   name="subject" id="subject_id" class="selectpicker" data-style="btn-block" onchange="getListClass()"  data-menu-style="dropdown-blue">
                               <?php foreach ($resubject as $rows3) {  ?>
@@ -130,7 +130,7 @@
                         </div>
 
                         <div id="class_tutor_teacher">
-                        <label class="col-sm-2 control-label">CLASS TUTOR</label>
+                        <label class="col-sm-2 control-label">Class Teacher For</label>
                         <div class="col-sm-4">
                            <select   name="class_teacher"  class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
                              <option value="">None</option>
@@ -149,7 +149,7 @@
                   <fieldset>
                      <div class="form-group">
 
-                        <label class="col-sm-2 control-label">Groups Name</label>
+                        <label class="col-sm-2 control-label">House</label>
                         <div class="col-sm-4">
                            <select name="groups_id" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <?php foreach ($groups as $row2) {  ?>
@@ -162,7 +162,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Extra curricular Activities</label>
+                        <label class="col-sm-2 control-label">Co-curricular Activity</label>
                         <div class="col-sm-4">
                            <select name="activity_id[]" multiple="multiple" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 							  <?php
@@ -196,7 +196,7 @@
                         <div class="col-sm-4">
                            <select name="status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="Active">Active</option>
-                              <option value="Deactive">DeActive</option>
+                              <option value="Deactive">Inactive</option>
                            </select>
                            <script language="JavaScript">document.teacherform.status.value="<?php echo $rows->status; ?>";</script>
                         </div>
@@ -217,7 +217,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                       <label class="col-sm-2 control-label">Teacher  Pic</label>
+                       <label class="col-sm-2 control-label">Profile Picture</label>
                        <div class="col-sm-4">
                           <input type="file" name="teacher_pic" class="form-control" onchange="loadFile(event)" accept="image/*" >
                        </div>
@@ -232,7 +232,7 @@
 
                         <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                         <div class="text-center">
-                           <button type="submit" class="btn btn-info btn-fill center">Save Profile</button>
+                           <button type="submit" class="btn btn-info btn-fill center">SAVE</button>
                         </div>
                      </div>
                   </fieldset>
@@ -317,29 +317,29 @@
    },
    messages: {
 
-   address: "Enter Address",
-   admission_date: "Select Admission Date",
-   name: "Enter Name",
-   "class_name[]":"Select class",
+   address: "This field cannot be empty!",
+   admission_date: "This field cannot be empty!",
+   name: "This field cannot be empty!",
+   "class_name[]":"This field cannot be empty!",
    email:{
-         required: "Please enter your email address.",
+         required: "This field cannot be empty!",
          email: "Please enter a valid email address.",
          remote: "Email already in use!"
    },
-   sex: "Select Gender",
-   dob: "Select Date of Birth",
-   age: "Enter AGE",
-   nationality: "Nationality",
-   religion: "Enter the Religion",
-   community:"Enter the Community",
-   community_class:"Enter the Community Class",
-   mother_tongue:"Enter The Mother tongue",
+   sex: "Please choose an option!",
+   dob: "This field cannot be empty!",
+   age: "This field cannot be empty!",
+   nationality: "This field cannot be empty!",
+   religion: "This field cannot be empty!",
+   community:"This field cannot be empty!",
+   community_class:"This field cannot be empty!",
+   mother_tongue:"This field cannot be empty!",
    mobile:{
-     required: "Please enter your mobile Number.",
+     required: "This field cannot be empty!",
      mobile: "Please enter a valid mobile Number.",
      remote: "Mobile Number already in use!"
    },
-   status:"Select Status Name"
+   status:"Please choose an option!"
 
    }
    });

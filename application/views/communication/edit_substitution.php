@@ -6,7 +6,7 @@
 
 <div class="card">
   <div class="header">
-	 <legend>Edit Substitution</legend>
+	 <legend>Edit Substitute Teacher</legend>
   </div>
 		   <?php foreach($result as $res){}  $id=$this->input->get('v3');  ?>
   <div class="content">
@@ -15,7 +15,7 @@
 		<fieldset>
 		   <div class="form-group">
 		   
-						<label class="col-sm-2 control-label">Substitution Class</label>
+						<label class="col-sm-2 control-label">Class</label>
 			  <div class="col-sm-4">
 				 <select class="selectpicker form-control"  name="sub_cls" >
 				 <?php
@@ -35,7 +35,7 @@
 						<input type="hidden" name="lid" value="<?php echo $id;?>">
 								
 			  
-			  <label class="col-sm-2 control-label">Substitution Date</label>
+			  <label class="col-sm-2 control-label">Date</label>
 				<div class="col-sm-4">
 					<input type="text" name="leave_date" class="form-control datepicker" placeholder="Registration Date"  value="<?php $date=date_create($res->sub_date);
 					  echo date_format($date,"d-m-Y");  ?>" />                             
@@ -45,7 +45,7 @@
 
 		<fieldset>
 		   <div class="form-group">
-			  <label class="col-sm-2 control-label">Teachers</label>
+			  <label class="col-sm-2 control-label">Teacher</label>
 			  <div class="col-sm-4">
 			   
 				<select class="selectpicker form-control" data-title="Select Substitution Teacher" name="sub_teacher">
@@ -94,13 +94,13 @@
 		   <div class="col-sm-4">
 		   <select name="status"  class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 			  <option value="Active">Active</option>
-			  <option value="De-Active">De-Active</option>
+			  <option value="De-Active">Inactive</option>
 		   </select>
 							  <script language="JavaScript">document.myformsection.status.value="<?php echo $res->status; ?>";</script>
 					  </div>
 			  <label class="col-sm-2 control-label">&nbsp;</label>
 			  <div class="col-sm-4">
-				 <button type="submit" id="save" class="btn btn-info btn-fill center">Update</button>
+				 <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
 			  </div>
 		   </div>
 		</fieldset>
@@ -126,11 +126,11 @@ period_id:{required:true },
 status:{required:true },
 },
 messages: {
-sub_cls:"Select Class",
-leave_date:"Select Leave Date",
-sub_teacher:"Select Substitution Teacher",
-period_id:"Select Period Time",
-status:"Select To Status",
+sub_cls:"Please choose an option!",
+leave_date:"This field cannot be empty!",
+sub_teacher:"Please choose an option!",
+period_id:"Please choose an option!",
+status:"Please choose an option!",
 }
 });
 

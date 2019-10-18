@@ -9,7 +9,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Parents Details</h4>
+                    <h4 class="title">Parent Profile</h4>
                 </div>
                 <?php if($this->session->flashdata('msg')): ?>
                     <div class="alert alert-success">
@@ -58,34 +58,34 @@
                                                       <div class="col-sm-4">
                                                           <input type="text" name="name" placeholder="Enter Name" class="form-control" value="">
                                                       </div>
-                                                      <label class="col-sm-2 control-label">Login</label>
+                                                      <label class="col-sm-2 control-label">Login Access</label>
                                                       <div class="col-sm-4">
-                                                          <select name="priority" class="selectpicker form-control" data-title="Select Login Priority">
-                                                              <option value="Yes">Yes</option>
-                                                              <option value="No">No</option>
+                                                          <select name="priority" class="selectpicker form-control">
+                                                              <option value="Yes">Need</option>
+                                                              <option value="No">No Need</option>
                                                           </select>
                                                       </div>
                                                     </div>
                                                 </fieldset>
                                                 <fieldset>
                                                     <div class="form-group">
-                                                      <label class="col-sm-2 control-label">Primary Email</label>
+                                                      <label class="col-sm-2 control-label">Email ID</label>
                                                       <div class="col-sm-4">
-                                                          <input type="text" name="pemail" id="pemail" class="form-control" placeholder="Email Address"  />
+                                                          <input type="text" name="pemail" id="pemail" class="form-control" placeholder="Email ID"  />
                                                       </div>
-                                                      <label class="col-sm-2 control-label">Secondary Email</label>
+                                                      <label class="col-sm-2 control-label">Alternate Email ID</label>
                                                       <div class="col-sm-4">
-                                                          <input type="text" name="semail" class="form-control " id="email" placeholder="Email Address" />
+                                                          <input type="text" name="semail" class="form-control " id="email" placeholder="Secondary Email ID" />
                                                       </div>
                                                     </div>
                                                 </fieldset>
                                                 <fieldset>
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label">Primary Mobile</label>
+                                                        <label class="col-sm-2 control-label">Mobile Number</label>
                                                         <div class="col-sm-4">
                                                             <input type="text" placeholder="Mobile Number" name="pmobile" maxlength="10" class="form-control">
                                                         </div>
-                                                        <label class="col-sm-2 control-label">Secondary Mobile</label>
+                                                        <label class="col-sm-2 control-label"> Alternate Mobile Number</label>
                                                         <div class="col-sm-4">
                                                             <input type="text" placeholder="Mobile Number" pattern="[1-9]{1}[0-9]{9}" maxlength="10" name="smobile" class="form-control">
                                                         </div>
@@ -105,7 +105,7 @@
                                                 </fieldset>
                                                 <fieldset>
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label">Home Address</label>
+                                                        <label class="col-sm-2 control-label">Residential Address</label>
                                                         <div class="col-sm-4">
                                                             <textarea name="haddress" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"></textarea>
                                                         </div>
@@ -118,9 +118,9 @@
                                                 </fieldset>
                                                 <fieldset>
                                                     <div class="form-group">
-                                                      <label class="col-sm-2 control-label">Home Phone</label>
+                                                      <label class="col-sm-2 control-label">Telephone</label>
                                                       <div class="col-sm-4">
-                                                          <input type="text" placeholder="Home Phone" name="home_phone" class="form-control">
+                                                          <input type="text" placeholder="Telephone" name="home_phone" class="form-control">
                                                       </div>
                                                         <label class="col-sm-2 control-label">Office Phone</label>
                                                         <div class="col-sm-4">
@@ -131,7 +131,7 @@
                                                 <fieldset>
                                                     <div class="form-group">
 
-                                                        <label class="col-sm-2 control-label">Picture</label>
+                                                        <label class="col-sm-2 control-label">Profile Picture</label>
                                                         <div class="col-sm-4">
                                                             <input type="file" name="parents_picture" id="pic" class="form-control" onchange="loadFile(event)" accept="image/*">
                                                         </div>
@@ -147,7 +147,7 @@
                                                         <div class="col-sm-4">
                                                             <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                                 <option value="Active">Active</option>
-                                                                <option value="Deactive">DeActive</option>
+                                                                <option value="Deactive">Inactive</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -156,7 +156,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">&nbsp;</label>
                                                         <div class="col-sm-4">
-                                                            <button type="submit" id="save" class="btn btn-info btn-fill center">Submit</button>
+                                                            <button type="submit" id="save" class="btn btn-info btn-fill center">SUBMIT</button>
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -172,6 +172,7 @@
         output.src = URL.createObjectURL(event.target.files[0]);
     };
     $(document).ready(function() {
+
         $('#parentform').validate({ // initialize the plugin
             rules: {
                 admission_no: {
@@ -217,25 +218,25 @@
                 },
             },
             messages: {
-                admission_no: "Enter Admission No",
-                name: "Enter Name",
-                occupation: "Enter Occupation",
-                income: "Enter Income",
-                haddress: "Enter Home Address",
+                admission_no: "This field cannot be empty!",
+                name: "This field cannot be empty!",
+                occupation: "This field cannot be empty!",
+                income: "This field cannot be empty!",
+                haddress: "This field cannot be empty!",
                 //office_address: "Enter Office Address",
                 pemail: {
-                  required:"Enter Primary Email Address",
+                  required:"This field cannot be empty!",
                   remote:"Email id Already exist"
                 },
                 //home_phone: "Enter the Home Phone",
                 //office_phone:"Enter the Office Phone",
                 relationship:{
-                  required: "Select the relationship"
+                  required: "Please choose an option!"
 
                 },
                 community_class: "Enter the Community Class",
                 pmobile: {
-                  required:"Enter The Primary Mobile Number",
+                  required:"This field cannot be empty!",
                   remote:"Mobile Number Already exist"
                 },
                 status: "Select Status",

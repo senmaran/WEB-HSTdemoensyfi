@@ -11,7 +11,7 @@
                <?php endif; ?>
                <div class="card">
                   <div class="header">
-                     <legend> User Leave Details</legend>
+                     <legend>Staff Leave Details</legend>
                   </div>
                   <div class="content">
                      <form method="post" action="<?php echo base_url(); ?>communication/update_status" class="form-horizontal" enctype="multipart/form-data" id="myformsection" name="myformsection">
@@ -27,11 +27,11 @@
                            } ?>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Type of Leave</label>
+                              <label class="col-sm-2 control-label">Title</label>
                               <div class="col-sm-4">
                                  <input type="text" name="leaves_type" id="leaves_type" readonly value="<?php echo  $row->leave_title; ?>" class="form-control">
                               </div>
-                              <label class="col-sm-2 control-label">From Leave Date</label>
+                              <label class="col-sm-2 control-label">From Date</label>
                               <div class="col-sm-4">
                                  <input type="text" name="leave_date" readonly value="<?php $date1=date_create($row->from_leave_date);
                                     echo date_format($date1,"d-m-Y"); ?>" class="form-control">
@@ -56,7 +56,7 @@
                         <br/>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">To Leave Date</label>
+                              <label class="col-sm-2 control-label">To Date</label>
                               <div class="col-sm-4">
                                  <input type="text" name="tleave_date" readonly value="<?php $date1=date_create($row->to_leave_date);
                                     echo date_format($date1,"d-m-Y"); ?>" class="form-control">
@@ -74,13 +74,13 @@
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Leave Description</label>
+                              <label class="col-sm-2 control-label">Description</label>
                               <div class="col-sm-4">
                                  <textarea name="leave_description" disabled class="form-control"  rows="4" cols="80"><?php echo $row->leave_description;?></textarea>
                               </div>
                               <label class="col-sm-2 control-label">&nbsp;</label>
                               <div class="col-sm-4">
-                                 <button type="submit" id="save" class="btn btn-info btn-fill center">Update</button>
+                                 <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
                               </div>
                            </div>
                         </fieldset>
@@ -107,11 +107,11 @@
    
         },
         messages: {
-              leave_type:"Select Type Of Leave",
-              leave_date:"Select Leave Date",
+              leave_type:"Please choose an option!",
+              leave_date:"This field cannot be empty!",
               leave_description:"Enter The Leave Description",
-     frm_time:"Select From Time",
-     to_time:"Select To Time",
+			  frm_time:"Please choose an option!",
+			  to_time:"Please choose an option!",
             }
     });
    demo.initFormExtendedDatetimepickers();

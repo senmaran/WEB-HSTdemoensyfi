@@ -5,7 +5,7 @@
 
                         <div class="card">
                             <div class="header">
-                                <legend>Edit Fees Master Status</legend>
+                                <legend>Edit Fees Master</legend>
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
                               <div class="alert alert-success">
@@ -33,7 +33,7 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                          <label class="col-sm-4 control-label">Terms</label>
+                                          <label class="col-sm-4 control-label">Term</label>
                                           <div class="col-sm-4">
 										                         <select name="terms"   class="selectpicker form-control"  >
                                                     <?php foreach ($terms as $row) {  ?>
@@ -60,7 +60,7 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Fees Amount</label>
+                                            <label class="col-sm-4 control-label">Fees</label>
                       						      	  <div class="col-sm-4">
                       				                <input type="text" name="fees_amount"  value="<?php echo $rows->fees_amount;?>" class="form-control" placeholder="Enter Fees Amount"/>
                       											  </div>
@@ -82,19 +82,19 @@
                                     </fieldset>
 									                  <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Due Date (From)</label>
+                                            <label class="col-sm-4 control-label">Issue Date</label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="due_date_from" value="<?php $date=date_create($rows->due_date_from);
-                                                        echo date_format($date,"d-m-Y");?>"  class="form-control datepicker" placeholder=" Select Due Date"/>
+                                                        echo date_format($date,"d-m-Y");?>"  class="form-control datepicker" placeholder="Issue date"/>
                                             </div>
                                         </div>
                                     </fieldset>
 									                 <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Due Date (To)</label>
+                                            <label class="col-sm-4 control-label">Due Date</label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="due_date_to" value="<?php $date=date_create($rows->due_date_to);
-                                                 echo date_format($date,"d-m-Y");?>" class="form-control datepicker" placeholder=" Select Due Date"/>
+                                                 echo date_format($date,"d-m-Y");?>" class="form-control datepicker" placeholder="Due date"/>
                                             </div>
 
                                         </div>
@@ -115,7 +115,7 @@
                                             <div class="col-sm-4">
                                               <select name="status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                   <option value="Active">Active</option>
-                                                    <option value="Deactive">De-Active</option>
+                                                    <option value="Deactive">Inactive</option>
                                               </select>
 											                          <script language="JavaScript">document.feesform.status.value="<?php echo $rows->status; ?>";</script>
                                             </div>
@@ -126,7 +126,7 @@
                                         <div class="form-group">
                                             <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
                                             <div class="text-center">
-                                              <button type="submit" id="save1" class="btn btn-info btn-fill center">Save </button>
+                                              <button type="submit" id="save1" class="btn btn-info btn-fill center">SAVE </button>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -157,16 +157,16 @@ $('#feesmenu').addClass('collapse in');
 
      },
      messages: {
-           year_id:"Academic Year not enable",
-		       year_name:"Academic Year not enable",
-           terms: "Select Terms",
-           class_name: "Select Class",
-           quota_name: "Enter Quota Name",
-            fees_amount: "Enter The Fees Amount",
-           due_date_from: "Select due date ",
-           due_date_to: "Select due date ",
-		       notes: "Enter notes",
-           status: "Select Status"
+           year_id:"Please choose an option!",
+			year_name:"Please choose an option!",
+			terms: "Please choose an option!",
+			class_name: "Please choose an option!",
+			quota_name: "Please choose an option!",
+			fees_amount: "This field cannot be empty!",
+			due_date_from: "Please choose an option!",
+			due_date_to: "Please choose an option!",
+			notes: "This field cannot be empty!",
+			status: "Please choose an option!"
 
          }
  });

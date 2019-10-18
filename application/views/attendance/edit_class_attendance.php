@@ -10,8 +10,10 @@
             <div class="col-md-10">
                <div class="card">
                   <div class="content">
-                     <legend>  <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:10px;">Go Back</button>  </legend>
-                     <h4 class="title"> Edit  Class Attendance for  <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?></h4>
+
+					 <h4 class="title"> Edit Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?></h4>
+					 <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:10px;">BACK</button>  
+                     
                      <div class="fresh-datatables">
                        <form action="" method="post" enctype="multipart/form-data" name="attendanceform" id="update_attendance">
                          <input type="hidden" name="attend_id" value="<?php echo $attend_id; ?>">
@@ -19,8 +21,8 @@
                            <thead>
                               <th data-field="id" class="text-center"  data-sortable="true">S.No</th>
                               <th data-field="date" class="text-center" data-sortable="true">Name</th>
-                              <th data-field="year" class="text-center" data-sortable="true">Current Status </th>
-                              <th data-field="Status" class="text-center" data-sortable="true">Update Attendance </th>
+                              <th data-field="year" class="text-center" data-sortable="true">Status </th>
+                              <th data-field="Status" class="text-center" data-sortable="true">Edit Status</th>
                            </thead>
                            <tbody>
                               <?php
@@ -51,7 +53,7 @@
                                      <option value="P" <?php if($stat=="P") echo 'selected="selected"'; ?>>Present</option>
                                     <option value="A"  <?php if($stat=="A") echo 'selected="selected"'; ?>>Absent</option>
                                     <option value="L" <?php if($stat=="L") echo 'selected="selected"'; ?>>Leave</option>
-                                    <option value="OD" <?php if($stat=="OD") echo 'selected="selected"'; ?>>On-Duty</option>
+                                    <option value="OD" <?php if($stat=="OD") echo 'selected="selected"'; ?>>On Duty</option>
                                    </select>
                                    <input type="hidden" name="enroll_id[]" value="<?php echo $rows->enroll_id; ?>">
                                    <input type="hidden" name="class_id" value="<?php  echo $class_id;; ?>">
@@ -64,8 +66,7 @@
                            </tbody>
 
                         </table>
-                        <button type="button"   class="btn btn-warning btn-fill btn-wd pull-right"  id="submit" style="margin-top:20px;" onclick="submitAttendence()">
-                       Submit Attendance  </button>
+                        <button type="button"   class="btn btn-warning btn-fill btn-wd pull-right"  id="submit" style="margin-top:20px;" onclick="submitAttendence()">SAVE</button>
                       </form>
                      </div>
                   </div>
@@ -149,8 +150,8 @@
                          //  swal("Success!", "Thanks for Your Note!", "success");
                            $('#update_attendance')[0].reset();
                            swal({
-                    title: "Attendance Done!",
-                    text: "Thank You!",
+                    title: "Done!",
+                    text: "Changes made are saved",
                     type: "success"
                 }, function() {
                     window.location = "<?php echo base_url(); ?>adminattendance/home";

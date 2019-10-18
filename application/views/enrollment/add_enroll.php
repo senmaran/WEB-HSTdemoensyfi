@@ -1,11 +1,9 @@
-
-
 <div class="main-panel">
    <div class="content">
       <div class="col-md-12">
          <div class="card">
             <div class="header">
-               <legend>Student Registration</legend>
+               <legend>Class Allocation</legend>
             </div>
             <?php if($this->session->flashdata('msg')): ?>
             <div class="alert alert-success">
@@ -45,7 +43,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Admission No</label>
+                        <label class="col-sm-4 control-label">Admission Number</label>
                         <div class="col-sm-4">
                            <input type="text" class="form-control" readonly value="<?php echo $rows->admisn_no; ?>" name="admisn_no" id="admission_no">
                            <input type="text" class="form-control" value="<?php echo $rows->admission_id; ?>" name="admission_id" id="admission_id">
@@ -84,7 +82,7 @@
                      <div class="form-group">
                         <label class="col-sm-4 control-label">Quota</label>
                         <div class="col-sm-4">
-                           <select name="quota_id" class="selectpicker form-control" data-title="Select Quota Name" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                           <select name="quota_id" class="selectpicker form-control" data-title="Select Quota" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <?php foreach ($quota as $row1) {  ?>
                               <option value="<?php echo $row1->id; ?>"><?php echo $row1->quota_name; ?></option>
                               <?php      } ?>
@@ -94,9 +92,9 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">House Groups</label>
+                        <label class="col-sm-4 control-label">House</label>
                         <div class="col-sm-4">
-                           <select name="groups_id" class="selectpicker form-control" data-title="Select Groups Name" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                           <select name="groups_id" class="selectpicker form-control" data-title="Select House" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <?php foreach ($groups as $row2) {  ?>
                               <option value="<?php echo $row2->id; ?>"><?php echo $row2->group_name; ?></option>
                               <?php      } ?>
@@ -106,9 +104,9 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Extra curricular Activities</label>
+                        <label class="col-sm-4 control-label">Co-curricular Activity</label>
                         <div class="col-sm-4">
-                           <select multiple name="activity_id[]" class="selectpicker form-control" data-title="Select Actvities Name" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                           <select multiple name="activity_id[]" class="selectpicker form-control" data-title="Select Activity" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <?php foreach ($activities as $row3) {  ?>
                               <option value="<?php echo $row3->id; ?>"><?php echo $row3->extra_curricular_name; ?></option>
                               <?php      } ?>
@@ -122,7 +120,7 @@
                         <div class="col-sm-4">
                            <select name="status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="Active">Active</option>
-                              <option value="Deactive">DE-Active</option>
+                              <option value="Deactive">Inactive</option>
                            </select>
                         </div>
                      </div>
@@ -131,7 +129,7 @@
                      <div class="form-group">
                         <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
                         <div class="text-center">
-                           <button type="submit" class="btn btn-info btn-fill center">Save Profile</button>
+                           <button type="submit" class="btn btn-info btn-fill center">ALLOCATE</button>
                         </div>
                      </div>
                   </fieldset>
@@ -163,19 +161,19 @@
 
         },
         messages: {
-              year_id:"Academic Year not enable",
-         year_name:"Academic Year not enable",
-              admit_year: "Enter Admission Year",
-              admisn_no: "Enter Admission No",
-              admit_date: "Select Admission Date",
-              name: "Enter Name",
-               admit_date: "Select The Date",
-              class: "Select Class",
-              section: "Select Section",
-          quota_id: "Select Quota",
-               groups_id: "Select House Groups ",
+              year_id:"Please choose an option!",
+				year_name:"This field cannot be empty!",
+              admit_year: "Please choose an option!",
+              admisn_no: "Please choose an option!",
+              admit_date: "This field cannot be empty!",
+              name: "This field cannot be empty!",
+               admit_date: "This field cannot be empty!",
+              class: "Please choose an option!",
+              section: "Please choose an option!",
+			quota_id: "Please choose an option!",
+               groups_id: "Please choose an option!",
               //"activity_id[]": "Select Extra Curricular  ",
-              status: "Select Status"
+              status: "Please choose an option!"
 
             }
     });

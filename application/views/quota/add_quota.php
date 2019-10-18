@@ -6,7 +6,7 @@
                <div class="col-md-12">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Add Quota</h4>
+                           <h4 class="title">Create Quota</h4>
                        </div>
                        <div class="content">
                            <form method="post" action="<?php echo base_url(); ?>quota/create_quota" class="form-horizontal" enctype="multipart/form-data" id="feesformsection" name="feesformsection">
@@ -20,7 +20,7 @@
                                           <div class="col-sm-4">
                       										   <select name="status"  class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                         											  <option value="Active">Active</option>
-                        											  <option value="Deactive">De-Active</option>
+                        											  <option value="Deactive">Inactive</option>
                       											</select>
                                           </div>
                                       </div>
@@ -29,7 +29,7 @@
                                         <div class="form-group">
 										                      	<!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                                             <div class="text-center">
-											                         <input type="submit" id="save" class="btn btn-info btn-fill center"  value="Save">
+											                         <input type="submit" id="save" class="btn btn-info btn-fill center"  value="CREATE">
                                             </div>
                                             </div>
                                    </fieldset>
@@ -75,12 +75,12 @@
 										  if($stu=='Active'){?>
 											<button class="btn btn-success btn-fill btn-wd">Active</button>
 										 <?php  }else{?>
-										  <button class="btn btn-danger btn-fill btn-wd">De Active</button>
+										  <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
 										  <?php } ?></td>
 
 
                                     <td class="text-right">
-                                      <a href="<?php echo base_url(); ?>quota/edit_quota/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                      <a href="<?php echo base_url(); ?>quota/edit_quota/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" rel="tooltip" title="Edit" ><i class="fa fa-edit"></i></a>
                                     </td>
                                   </tr>
 							                  <?php $i++;   } ?>
@@ -110,8 +110,8 @@ $(document).ready(function () {
   		     status:{required:true }
        },
        messages: {
-             quota_name:"Please Enter Quota Name",
-  		       status:"select Status"
+             quota_name:"This field cannot be empty!",
+  		       status:"Please choose an option!"
           }
    });
 });

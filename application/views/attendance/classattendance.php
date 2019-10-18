@@ -5,8 +5,8 @@
          <div class="card">
             <div class="content">
 
-                <h4 class="title">  List of Record in <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> </h4>
-                  <p class="pull-right"> <button onclick="history.go(-1);" class="btn btn-wd btn-default">Go Back</button></p>
+                <h4 class="title">Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> </h4>
+                  <p class="pull-right"> <button onclick="history.go(-1);" class="btn btn-wd btn-default">BACK</button></p>
 
 
 
@@ -16,10 +16,10 @@
                         <th data-field="id" class="text-center">S.No</th>
                         <th data-field="date" class="text-center" data-sortable="true">Date</th>
                         <th data-field="year" class="text-center" data-sortable="true">Total Students </th>
-                        <th data-field="no" class="text-center" data-sortable="true">No.Of.Present</th>
-                        <th data-field="name" class="text-center" data-sortable="true">no.Of.Absent</th>
-                        <th data-field="taken" class="text-center" data-sortable="true">Attendance Taken by</th>
-                        <th data-field="Section" class="text-center" data-sortable="true">View Absent</th>
+                        <th data-field="no" class="text-center" data-sortable="true">Present Students</th>
+                        <th data-field="name" class="text-center" data-sortable="true">Absent Students</th>
+                        <th data-field="taken" class="text-center" data-sortable="true">Attendance By</th>
+                        <th data-field="Section" class="text-center" data-sortable="true">Actions</th>
                      </thead>
                      <tbody>
                         <?php
@@ -35,8 +35,8 @@
                            <td><?php echo $rows->no_of_absent; ?></td>
                            <td><?php echo $rows->name; ?></td>
                            <td>
-                              <a href="<?php echo base_url(); ?>adminattendance/view_all/<?php echo $rows->at_id; ?>/<?php echo $rows->class_id; ?>" rel="tooltip" title="View Attendance " class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
-                              <a href="<?php echo base_url(); ?>adminattendance/edit_class_attendance/<?php echo $rows->at_id; ?>/<?php echo $rows->class_id; ?>" rel="tooltip" title="Update Attendance " class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                              <a href="<?php echo base_url(); ?>adminattendance/view_all/<?php echo $rows->at_id; ?>/<?php echo $rows->class_id; ?>" rel="tooltip" title="Attendance Details" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
+                              <a href="<?php echo base_url(); ?>adminattendance/edit_class_attendance/<?php echo $rows->at_id; ?>/<?php echo $rows->class_id; ?>" rel="tooltip" title="Edit Attendance" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                            </td>
                         </tr>
                         <?php $i++;  }  ?>

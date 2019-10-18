@@ -21,12 +21,12 @@
                               <thead>
                                  <th data-field="id" >S.No</th>
                                 <th data-field="year"  data-sortable="true">Year</th>
-                                <th data-field="term"  data-sortable="true">Term Name</th>
+                                <th data-field="term"  data-sortable="true">Term</th>
                                 <th data-field="class"  data-sortable="true">Class</th>
-                                 <th data-field="quota"  data-sortable="true">Quota</th>
-								                 <th data-field="fees"  data-sortable="true">Fees Amount</th>
-                                <th data-field="date_from"  data-sortable="true">From Date </th>
-                                <th data-field="date_to"  data-sortable="true">To Date </th>
+                                <th data-field="quota"  data-sortable="true">Quota</th>
+								<th data-field="fees"  data-sortable="true">Fees</th>
+                                <th data-field="date_from"  data-sortable="true">Issue Date</th>
+                                <th data-field="date_to"  data-sortable="true">Due Date</th>
                                 <!-- <th data-field="notes"  data-sortable="true">Notes</th> -->
                                 <th data-field="status"  data-sortable="true">Status</th>
 								<th data-field="Section"  data-sortable="true">Action</th>
@@ -58,7 +58,7 @@
                   									  <?php } ?></td>
 
                                     <td >
-                                        <a href="<?php echo base_url(); ?>feesstructure/view_term_fees/<?php echo $rows->id; ?>" rel="tooltip" title="Fees Status For Students" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
+                                        <a href="<?php echo base_url(); ?>feesstructure/view_term_fees/<?php echo $rows->id; ?>" rel="tooltip" title="Student Fees Status" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
                                     </td>
                                   </tr>
                                   <?php $i++;  }  ?>

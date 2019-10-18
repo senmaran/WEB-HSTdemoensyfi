@@ -6,17 +6,17 @@
 <div class="col-md-10">
 <div class="card">
    <div class="header">
-	   <h4 class="title">Add Leaves</h4>
+	   <h4 class="title">Create Leave</h4>
    </div>
    <div class="content">
 	   <form method="post" action="<?php echo base_url(); ?>userleavemaster/create_leave" class="form-horizontal" enctype="multipart/form-data" id="leaveformsection" name="leaveformsection">
 			 <fieldset>
 				  <div class="form-group">
-					  <label class="col-sm-2 control-label">Leave Name</label>
+					  <label class="col-sm-2 control-label">Title</label>
 					  <div class="col-sm-4">
 						<input type="text" name="leave_name" class="form-control"  value="">
 					  </div>
-					  <label class="col-sm-2 control-label">Leave Type</label>
+					  <label class="col-sm-2 control-label">Category</label>
 					  <div class="col-sm-4">
 					   <select name="leave_type"  class="selectpicker form-control" data-title="Leave Type" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 							  <option value="1">Leave</option>
@@ -31,13 +31,13 @@
 					  <div class="col-sm-4">
 					   <select name="status"  class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 							  <option value="Active">Active</option>
-							  <option value="Deactive">DeActive</option>
+							  <option value="Deactive">Inactive</option>
 						</select>
 					  </div>
 
 					<label class="col-sm-2 control-label">&nbsp;</label>
 						<div class="col-sm-4">
-		                 <input type="submit" id="save" class="btn btn-info btn-fill center"  value="Save">
+		                 <input type="submit" id="save" class="btn btn-info btn-fill center"  value="CREATE">
 						</div>
 						</div>
 			   </fieldset>
@@ -65,8 +65,8 @@
 	  <table id="bootstrap-table" class="table">
 		  <thead>
 			<th>S.no</th>
-			<th>Leave Name</th>
-			<th>Leave Type</th>
+			<th>Title</th>
+			<th>Category </th>
 			<th>Status</th>
 			<th class="disabled-sorting text-right">Actions</th>
 		  </thead>
@@ -84,7 +84,7 @@
 					  if($stu=='Active'){?>
 						<button class="btn btn-success btn-fill btn-wd">Active</button>
 					 <?php  }else{?>
-					  <button class="btn btn-danger btn-fill btn-wd">DeActive</button>
+					  <button class="btn btn-danger btn-fill btn-wd">InActive</button>
 					  <?php } ?></td>
 				<td class="text-right">
 				  <a href="<?php echo base_url(); ?>userleavemaster/edit_leave/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
@@ -118,9 +118,9 @@ leave_type:{required:true },
 status:{required:true }
 },
 messages: {
-leave_name:"Please Enter Leave Name",
-leave_type:"Please Enter Leave Type",
-status:"select Status"
+leave_name:"This field cannot be empty!",
+leave_type:"Please choose an option!",
+status:"Please choose an option!"
 }
 });
 });

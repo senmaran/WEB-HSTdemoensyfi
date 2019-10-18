@@ -79,7 +79,7 @@ class Feesstructure extends CI_Controller
 			//print_r($datas);exit;
 			 if($datas['status']=="success")
 		     {
-				$this->session->set_flashdata('msg','Added Successfully');
+				$this->session->set_flashdata('msg','New fees master created');
 				redirect('feesstructure/view_fees_master');
 		     }else if($datas['status']=="Date"){
 				 $this->session->set_flashdata('msg','To Date Should Be Grater Than From Date');
@@ -167,7 +167,7 @@ class Feesstructure extends CI_Controller
 			 //print_r($datas);exit;
 			 if($datas['status']=="success")
 		     {
-				$this->session->set_flashdata('msg','Updated Successfully');
+				$this->session->set_flashdata('msg','Changes made are saved');
 				redirect('feesstructure/view_fees_master');
 		     }else{
 				$this->session->set_flashdata('msg','Faild To Update');
@@ -256,7 +256,7 @@ class Feesstructure extends CI_Controller
 		//print_r($datas);exit;
 		if($datas['status']=="success")
 		     {
-				$this->session->set_flashdata('msg','Updated Successfully');
+				$this->session->set_flashdata('msg','Changes made are saved');
 				redirect('feesstructure/view_term_fees/'.$id.'');
 		     }else{
 				$this->session->set_flashdata('msg','Faild To Update');

@@ -93,7 +93,7 @@
                                           if($enrollment_status==0)
                                           {
                                           ?>
-                                       <a href="<?php echo base_url(); ?>enrollment/add_enrollment/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Add Registration" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">
+                                       <a href="<?php echo base_url(); ?>enrollment/add_enrollment/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Allocate Class" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">
                                           <i class="fa fa-address-book" aria-hidden="true"></i>
                                           <!--  <i class="fa fa-address-card-o" aria-hidden="true"></i> -->
                                        </a>
@@ -101,7 +101,7 @@
                                           }
                                           else{
                                              ?>
-                                       <a href="<?php echo base_url(); ?>enrollment/edit_enroll/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Already Added Registration Details " class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">
+                                       <a href="<?php echo base_url(); ?>enrollment/edit_enroll/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Edit Class Allocation" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">
                                        <i class="fa fa-address-card-o" aria-hidden="true"></i>
                                        </a>
                                        <?php
@@ -112,7 +112,7 @@
                                           if($parent_status==0)
                                           {
                                              ?>
-                                       <a href="<?php echo base_url(); ?>parents/home/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Add Parent" class="btn btn-simple btn-info btn-icon table-action view" >
+                                       <a href="<?php echo base_url(); ?>parents/home/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Add Parent Details" class="btn btn-simple btn-info btn-icon table-action view" >
                                        <i class="fa fa-user-plus" aria-hidden="true"></i></a>
                                        <?php
                                           }
@@ -122,12 +122,12 @@
                                        <!-- <a href="<?php echo base_url(); ?>parents/edit_parents/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Already Added Parent Details" class="btn btn-simple btn-info btn-icon table-action view" >
                                        <i class="fa fa-id-card-o" aria-hidden="true"></i></a> -->
 
-                                       <a href="<?php echo base_url(); ?>parents/view_parents_details/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Already Added Parent Details" class="btn btn-simple btn-info btn-icon table-action view" >
+                                       <a href="<?php echo base_url(); ?>parents/view_parents_details/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Edit Parent Details" class="btn btn-simple btn-info btn-icon table-action view" >
                                        <i class="fa fa-id-card-o" aria-hidden="true"></i></a>
                                        <?php
                                           }
                                           ?>
-                                       <a href="<?php echo base_url(); ?>admission/get_ad_id/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                       <a href="<?php echo base_url(); ?>admission/get_ad_id/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Edit Admission" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
                                     </td>
                                  </tr>
                                  <?php $i++;  } ?>

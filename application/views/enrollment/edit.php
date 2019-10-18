@@ -5,7 +5,7 @@
 
                         <div class="card">
                             <div class="header">
-                                <legend>Edit Student Registration</legend>
+                                <legend>Edit Class Allocation</legend>
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
                               <div class="alert alert-success">
@@ -43,7 +43,7 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                          <label class="col-sm-4 control-label">Admission No</label>
+                                          <label class="col-sm-4 control-label">Admission Number</label>
                                           <div class="col-sm-4">
                                               <input type="text" class="form-control" name="admisn_no" id="admission_no" value="<?php echo $rows->admisn_no; ?>" readonly="">
                                               <input type="hidden" class="form-control" name="enroll_id" id="admission_no" value="<?php echo $rows->enroll_id; ?>" readonly="">
@@ -118,7 +118,7 @@ echo date_format($date,"d-m-Y");  ?>" />
 
 									<fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">House Groups</label>
+                                            <label class="col-sm-4 control-label">House</label>
                                             <div class="col-sm-4">
 
 											 <select name="groups_id" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
@@ -135,7 +135,7 @@ echo date_format($date,"d-m-Y");  ?>" />
 
 									<fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Extra curricular Activities</label>
+                                            <label class="col-sm-4 control-label">Co-curricular Activity</label>
                                             <div class="col-sm-4">
 
 											 <select multiple name="activity_id[]" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
@@ -179,7 +179,7 @@ echo date_format($date,"d-m-Y");  ?>" />
                                               <select name="status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 
                                                   <option value="Active">Active</option>
-                                                    <option value="Deactive">DeActive</option>
+                                                    <option value="Deactive">Inactive</option>
 
                                               </select>
                                               <script language="JavaScript">document.enrollform.status.value="<?php echo $rows->status; ?>";</script>
@@ -192,7 +192,7 @@ echo date_format($date,"d-m-Y");  ?>" />
                                         <div class="form-group">
                                             <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
                                             <div class="text-center">
-                                                   <button type="submit" class="btn btn-info btn-fill center">Update Registration</button>
+                                                   <button type="submit" class="btn btn-info btn-fill center">SAVE</button>
                                             </div>
 
                                         </div>

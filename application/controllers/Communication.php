@@ -79,7 +79,7 @@ class Communication extends CI_Controller
 		 
 		if($datas['status'] == "success")
 		{
-           $this->session->set_flashdata('msg','Update Successfully');
+           $this->session->set_flashdata('msg','Changes made are saved');
             redirect('communication/view_user_leaves');
         }else{
             $this->session->set_flashdata('msg','Falid To Update');
@@ -94,11 +94,11 @@ class Communication extends CI_Controller
         $user_id   = $this->session->userdata('user_id');
         $user_type = $this->session->userdata('user_type');
         
-        $datas             = $this->communicationmodel->get_all_class_list($leave_id);
+        $datas = $this->communicationmodel->get_all_class_list($leave_id);
         $datas['teachers'] = $this->communicationmodel->get_all_teachers_list($leave_id);
-        $datas['view']     = $this->communicationmodel->get_all_view_list($leave_id);
-        //echo '<pre>';print_r($datas['view']);exit;
-        //print_r($datas['res']);exit;
+        $datas['view'] = $this->communicationmodel->get_all_view_list($leave_id);
+        //echo '<pre>';print_r($datas['teachers']);exit;
+        //print_r($datas['result']);exit;
         if ($user_type == 1) {
             $this->load->view('header');
             $this->load->view('communication/add_substitution', $datas);
@@ -145,10 +145,10 @@ class Communication extends CI_Controller
         
         if ($datas['status']=="success") 
         {
-            $this->session->set_flashdata('msg', 'Added Successfully');
+            $this->session->set_flashdata('msg', 'Teacher Substituted');
             redirect('communication/add_substitution/' . $leave_id . '');
         }elseif ($datas['status'] == "Already_Exist") {
-            $this->session->set_flashdata('msg', 'Already Exist');
+            $this->session->set_flashdata('msg', 'Already exist');
             redirect('communication/add_substitution/' . $leave_id . '');
         }else{
             $this->session->set_flashdata('msg', 'Falid To Add');
@@ -195,7 +195,7 @@ class Communication extends CI_Controller
         $datas       = $this->communicationmodel->update_substitution_list($user_id, $cls_id, $teacher_id, $leave_date, $sub_teacher, $period_id, $id, $status);
         //print_r($datas);exit;
         if ($datas['status'] == "success") {
-            $this->session->set_flashdata('msg', 'Updated Successfully');
+            $this->session->set_flashdata('msg', 'Changes made are saved');
             redirect('communication/add_substitution/' . $leave_id . '');
         } else {
             $this->session->set_flashdata('msg', 'Falid To Update');

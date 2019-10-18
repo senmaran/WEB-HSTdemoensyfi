@@ -23,15 +23,15 @@
                      <div class="content" id="content1">
                         <div class="fresh-datatables">
                            <!-- <h4 class="title" style="padding-bottom: 20px;">List of Teacher</h4> -->
-                           <legend>List of Staff <a href="<?php echo base_url(); ?>teacher/view_subject_handling" class="btn btn-default" style="margin-top:-10px;float:right;">Teacher Handling Subject</a></legend>
+                           <legend>Staff Details <a href="<?php echo base_url(); ?>teacher/view_subject_handling" class="btn btn-default" style="margin-top:-10px;float:right;"> Handling Subjects</a></legend>
                            <table id="example" class="table table-striped table-no-bordered table-hover" cellspacing="0" >
                               <thead>
                                  <th data-field="id" class="text-left" data-sortable="true">S.No</th>
 																 <th data-field="Role" class="text-left" data-sortable="true">Role</th>
                                  <th data-field="name" class="text-left" data-sortable="true">Name</th>
-                                 <th data-field="email" class="text-left" data-sortable="true">Email</th>
+                                 <th data-field="email" class="text-left" data-sortable="true">Email ID</th>
                                  <th data-field="mobile" class="text-left" data-sortable="true">Mobile</th>
-                                 <th data-field="class" class="text-left" data-sortable="true">Class Teacher</th>
+                                 <th data-field="class" class="text-left" data-sortable="true">Class Teacher For</th>
                                  <th data-field="status" class="text-left" data-sortable="true">Status</th>
                                  <th data-field="Section" class="text-left" data-sortable="true">Action</th>
                               </thead>
@@ -54,7 +54,7 @@
                                        if($stu=='Active'){?>
                                        <button class="btn btn-success btn-fill btn-wd">Active</button>
                                        <?php  }else{?>
-                                       <button class="btn btn-danger btn-fill btn-wd">Deactive</button><?php }
+                                       <button class="btn btn-danger btn-fill btn-wd">Inactive</button><?php }
                                           ?>
                                     </td>
                                     <td class="text-left">
@@ -62,7 +62,7 @@
 																			 <?php if($rows->role_type_id=='5'){
 
 																			 }else{ ?>
-																				 <a rel="tooltip" href="#myModal" data-id="<?php echo $rows->teacher_id; ?>" title="Add Subjects" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" style="color:#eb34ff;" data-toggle="modal" data-target="#myModal"   >
+																				 <a rel="tooltip" href="#myModal" data-id="<?php echo $rows->teacher_id; ?>" title="Add Subject" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" style="color:#eb34ff;" data-toggle="modal" data-target="#myModal"   >
 																				 <i class="fa fa-user-plus">  </i></a>
 																		<?php	 } ?>
 
@@ -77,13 +77,13 @@
                                  <div class="modal-content">
                                     <div class="modal-header">
                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                       <h4 class="modal-title">Add Subject To Teacher</h4>
+                                       <h4 class="modal-title">Add Subject</h4>
                                     </div>
                                     <div class="modal-body">
                                        <form action="" method="post" class="form-horizontal" id="subject_handling_form">
                                           <fieldset>
                                              <div class="form-group">
-                                                <label class="col-sm-4 control-label">Select Subject</label>
+                                                <label class="col-sm-4 control-label">Subject</label>
                                                 <div class="col-sm-6">
                                                    <select  name="subject_id" id="subject_id"  data-title="Select Subject" class="selectpicker" data-style=" btn-block" data-menu-style="dropdown-blue" onchange="getListClass()">
                                                       <?php foreach ($resubject as $rows) {  ?>
@@ -94,33 +94,31 @@
                                                 </div>
                                              </div>
                                              <div class="form-group">
-                                                <label class="col-sm-4 control-label">Select Class</label>
+                                                <label class="col-sm-4 control-label">Class</label>
                                                 <div class="col-sm-6">
                                                    <select   name="class_master_id" id="class_master_id" class="form-control">
                                                    </select>
                                                 </div>
                                              </div>
                                              <div class="form-group">
-                                                <label class="col-sm-4 control-label">Select Status</label>
+                                                <label class="col-sm-4 control-label">Status</label>
                                                 <div class="col-sm-6">
                                                    <select   name="status" id="status" class="form-control">
                                                       <option value="Active">Active</option>
-                                                      <option value="Deactive">Deactive</option>
+                                                      <option value="Deactive">Inactive</option>
                                                    </select>
                                                 </div>
                                              </div>
                                              <div class="form-group">
                                                 <label class="col-sm-4 control-label">&nbsp;</label>
                                                 <div class="col-sm-6">
-                                                   <button type="submit" id="save" class="btn btn-info btn-fill center">Save </button>
+                                                   <button type="submit" id="save" class="btn btn-info btn-fill center">ADD </button>
                                                 </div>
                                              </div>
                                           </fieldset>
                                        </form>
                                     </div>
-                                    <div class="modal-footer">
-                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
+                                   
                                  </div>
                               </div>
                            </div>
@@ -176,8 +174,8 @@
 
      },
      messages: {
-           subject_id: "Select Subject",
-           class_master_id:"Select Class"
+           subject_id: "Please choose an option!",
+           class_master_id:"Please choose an option!"
 
          },
        submitHandler: function(form) {

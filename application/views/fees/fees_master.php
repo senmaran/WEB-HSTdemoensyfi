@@ -5,8 +5,8 @@
 
 <div class="card">
 	<div class="header">
-		<legend>Create Fees Master
-		 <a href="<?php echo base_url(); ?>feesstructure/view_fees_master" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">View Fees Details</a>
+		<legend>Fees Master
+		 <a href="<?php echo base_url(); ?>feesstructure/view_fees_master" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Fees Masters</a>
 		 </legend>
 	</div>
 	<?php if($this->session->flashdata('msg')): ?>
@@ -38,9 +38,9 @@
 
 			<fieldset>
 				<div class="form-group">
-				  <label class="col-sm-4 control-label">Terms</label>
+				  <label class="col-sm-4 control-label">Term</label>
 				  <div class="col-sm-4">
-				 <select name="terms" id="terms"  class="selectpicker form-control" data-title="Select Terms" >
+				 <select name="terms" id="terms"  class="selectpicker form-control" data-title="Select term" >
 							<?php foreach ($terms as $row) {  ?>
 						<option value="<?php echo $row->term_id; ?>"><?php echo $row->term_name; ?></option>
 					  <?php      } ?>
@@ -55,7 +55,7 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label">Class</label>
 					<div class="col-sm-4">
-					   <select name="class_name" class="selectpicker" data-title="Select Class" data-style="btn-default btn-block" onchange="getsecnamefun(this.value)" data-menu-style="dropdown-blue">
+					   <select name="class_name" class="selectpicker" data-title="Select class" data-style="btn-default btn-block" onchange="getsecnamefun(this.value)" data-menu-style="dropdown-blue">
 						  <?php foreach ($enr_cls as $clas) {  ?>
 					  <option value="<?php  echo $clas->class_id; ?>"><?php  echo $clas->class_name; ?></option>
 					  <?php } ?>
@@ -82,7 +82,7 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label">Quota</label>
 					<div class="col-sm-4">
-												<select name="quota_name"  class="selectpicker form-control" data-title="Select quota name" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+												<select name="quota_name"  class="selectpicker form-control" data-title="Select quota" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 							<?php foreach ($quota as $rows) {  ?>
 							<option value="<?php echo $rows->id; ?>"><?php echo $rows->quota_name; ?></option>
 						   <?php } ?>
@@ -93,17 +93,17 @@
 			</fieldset>
 							  <fieldset>
 				<div class="form-group">
-					<label class="col-sm-4 control-label">Due Date (From)</label>
+					<label class="col-sm-4 control-label">Issue Date</label>
 					<div class="col-sm-4">
-						<input type="text" name="due_date_from"  class="form-control datepicker" placeholder=" Select Due Date"/>
+						<input type="text" name="due_date_from"  class="form-control datepicker" placeholder="Select issue date"/>
 					</div>
 				</div>
 			</fieldset>
 							 <fieldset>
 				<div class="form-group">
-					<label class="col-sm-4 control-label">Due Date (To)</label>
+					<label class="col-sm-4 control-label">Due Date</label>
 					<div class="col-sm-4">
-						<input type="text" name="due_date_to"  class="form-control datepicker" placeholder=" Select Due Date"/>
+						<input type="text" name="due_date_to"  class="form-control datepicker" placeholder="Select due date"/>
 
 					</div>
 
@@ -127,7 +127,7 @@
 					  <select name="status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 
 						  <option value="Active">Active</option>
-							<option value="Deactive">DeActive</option>
+							<option value="Deactive">Inactive</option>
 					  </select>
 
 					</div>
@@ -138,7 +138,7 @@
 				<div class="form-group">
 					<!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
 					<div class="text-center">
-				<button type="submit" id="save1" class="btn btn-info btn-fill center">Save </button>
+				<button type="submit" id="save1" class="btn btn-info btn-fill center">CREATE </button>
 					</div>
 
 				</div>
@@ -172,16 +172,16 @@ status:{required:true }
 
 },
 messages: {
-year_id:"Academic Year not enable",
-year_name:"Academic Year not enable",
-terms: "Select Terms",
-class_name: "Select Class",
-quota_name: "Enter Quota Name",
-fees_amount: "Enter The Fees Amount",
-due_date_from: "Select due date ",
-due_date_to: "Select due date ",
-notes: "Enter notes",
-status: "Select Status"
+year_id:"Please choose an option!",
+year_name:"Please choose an option!",
+terms: "Please choose an option!",
+class_name: "Please choose an option!",
+quota_name: "Please choose an option!",
+fees_amount: "Please choose an option!",
+due_date_from: "Please choose an option!",
+due_date_to: "Please choose an option!",
+notes: "This field cannot be empty!",
+status: "Please choose an option!"
 
 }
 });
@@ -234,11 +234,11 @@ var amount='';
 		var clsid = test[i].class_sec_id;
 		var sec_name = test[i].sec_name;
 		secction += '<input name="subject_name" readonly type="text" required class="form-control"  value="' + sec_name + '"><input name="class_id[]" required type="hidden" class="form-control"  value="' + clsid + '"></br>';
-		amount += '<input type="text" name="fees_amount[]"  class="form-control" placeholder="Enter Fees Amount"/></br>';
+		amount += '<input type="text" name="fees_amount[]"  class="form-control" placeholder="Enter fees"/></br>';
 		}
 		$("#sec").html(secction);
 		$("#amt").html(amount);
-		$("#lab").html('Section & Fees Amount');
+		$("#lab").html('Sections and Fees');
 		$("#sec").show();
 		$("#amt").show();
 		$("#lab").show();

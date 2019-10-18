@@ -24,7 +24,7 @@
                                           <div class="col-sm-4">
                       										   <select name="status" class="selectpicker form-control">
                         											  <option value="Active">Active</option>
-                        											  <option value="Deactive">De-Active</option>
+                        											  <option value="Deactive">Inactive</option>
                       											</select>
                                             <script language="JavaScript">
                         											document.feesformsection.status.value="<?php echo $res->status; ?>";
@@ -36,7 +36,7 @@
                                         <div class="form-group">
 										                      	<!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                                             <div class="text-center">
-											                         <input type="submit" id="save" class="btn btn-info btn-fill center"  value="Update">
+											                         <input type="submit" id="save" class="btn btn-info btn-fill center"  value="SAVE">
                                             </div>
                                             </div>
                                    </fieldset>

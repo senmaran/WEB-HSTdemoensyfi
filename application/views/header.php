@@ -278,20 +278,20 @@
                      <ul class="nav">
                         <li id="teacher1"><a href="<?php echo base_url(); ?>teacher/home">Create Staff</a></li>
                         <li id="teacher2"><a href="<?php echo base_url(); ?>teacher/view">Staff Search</a></li>
-                        <li id="teacher3"><a href="<?php echo base_url(); ?>communication/view_user_leaves">Teachers Leaves </a></li>
+                        <li id="teacher3"><a href="<?php echo base_url(); ?>communication/view_user_leaves">Staff Leaves</a></li>
                      </ul>
                   </div>
                </li>
                <li id="payment">
                   <a data-toggle="collapse" href="#feesmenu">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/fees.png"/>
-                     <p>Payment</p>
+                     <p>Fees</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="feesmenu">
                      <ul class="nav">
                          <li id="fees2"><a href="<?php echo base_url(); ?>quota/home">Quota</a></li>
-                        <li id="fees"><a href="<?php echo base_url(); ?>feesstructure/fees_master">Fees Structure</a></li>
+                        <li id="fees"><a href="<?php echo base_url(); ?>feesstructure/fees_master">Fees Master</a></li>
                         <li id="fees1"><a href="<?php echo base_url(); ?>feesstructure/view_term_fees_master">Fee Status</a></li>
 
                      </ul>
@@ -305,8 +305,8 @@
                   </a>
                   <div class="collapse" id="attend">
                      <ul class="nav">
-                        <li id="attend1"><a href="<?php echo base_url(); ?>adminattendance/home">Day Wise View</a></li>
-                        <li id="attend2"><a href="<?php echo base_url(); ?>adminattendance/monthclass">Month view </a></li>
+                        <li id="attend1"><a href="<?php echo base_url(); ?>adminattendance/home">Daywise Attendance</a></li>
+                        <li id="attend2"><a href="<?php echo base_url(); ?>adminattendance/monthclass">Monthwise Attendance</a></li>
 						<li id="attend3"><a href="<?php echo base_url(); ?>adminattendance/class_date">Date view </a></li>
                      </ul>
                   </div>
@@ -319,7 +319,7 @@
                   </a>
                   <div class="collapse" id="eventmenu">
                      <ul class="nav">
-                        <li id="event2"><a href="<?php echo base_url(); ?>event/create">Add / View Event</a></li>
+                        <li id="event2"><a href="<?php echo base_url(); ?>event/create">Create/View Event</a></li>
                         <li id="event1"><a href="<?php echo base_url(); ?>event/home">Event Calendar</a></li>
                         <li id="leave1"><a href="<?php echo base_url(); ?>leavemanage/home">Add/ View Leave </a></li>
                         <!-- <li><a href="<?php echo base_url(); ?>event/view">View Event</a></li> -->

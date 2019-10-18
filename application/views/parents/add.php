@@ -106,22 +106,23 @@
                                                             <div class="col-sm-4">
                                                                 <textarea name="fhaddress" id="fhaddress" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
                                                             </div>
-                                                            <label class="col-sm-2 control-label">Home Phone</label>
+															 <label class="col-sm-2 control-label">Office Address</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" placeholder="Home Phone" name="fhome_phone" id="fhome_phone" class="form-control">
+                                                                <textarea name="foffice_address" id="foffice_address" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
                                                             </div>
+                                                            
 
                                                         </div>
                                                     </fieldset>
 
                                                     <fieldset>
                                                         <div class="form-group">
-                                                            <label class="col-sm-2 control-label">Office Address</label>
+                                                           <label class="col-sm-2 control-label">Telephone</label>
                                                             <div class="col-sm-4">
-                                                                <textarea name="foffice_address" id="foffice_address" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
+                                                                <input type="text" placeholder="Telephone" name="fhome_phone" id="fhome_phone" class="form-control">
                                                             </div>
 
-                                                            <label class="col-sm-2 control-label">Office Phone</label>
+                                                            <label class="col-sm-2 control-label">Office Phone Number</label>
                                                             <div class="col-sm-4">
                                                                 <input type="text" placeholder="Office Phone" name="foffice_phone" class="form-control">
                                                                   <input type="hidden" placeholder="Office Phone" name="frelationship" class="form-control" value="Father">
@@ -218,10 +219,11 @@
                                                             <div class="col-sm-4">
                                                                 <textarea name="mhaddress" id="mhaddress" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
                                                             </div>
-                                                            <label class="col-sm-2 control-label">Home Phone</label>
+															  <label class="col-sm-2 control-label">Office Address</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" placeholder="Home Phone" name="mhome_phone" id="mhome_phone" class="form-control">
+                                                                <textarea name="moffice_address" id="moffice_address" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
                                                             </div>
+                                                            
 
                                                         </div>
                                                     </fieldset>
@@ -229,11 +231,11 @@
 
                                                     <fieldset>
                                                         <div class="form-group">
-                                                            <label class="col-sm-2 control-label">Office Address</label>
+                                                          
+															<label class="col-sm-2 control-label">Telephone</label>
                                                             <div class="col-sm-4">
-                                                                <textarea name="moffice_address" id="moffice_address" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
+                                                                <input type="text" placeholder="Telephone" name="mhome_phone" id="mhome_phone" class="form-control">
                                                             </div>
-
                                                             <label class="col-sm-2 control-label">Office Phone</label>
                                                             <div class="col-sm-4">
                                                                 <input type="text" placeholder="Office Phone" name="moffice_phone" class="form-control">
@@ -335,19 +337,20 @@
                                                             <div class="col-sm-4">
                                                                 <textarea name="ghaddress" id="ghaddress" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
                                                             </div>
-                                                            <label class="col-sm-2 control-label">Home Phone</label>
+                                                            <label class="col-sm-2 control-label">Office Address</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" placeholder="Home Phone" name="ghome_phone" id="ghome_phone" class="form-control">
+                                                                <textarea name="goffice_address" id="goffice_address" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
                                                             </div>
                                                         </div>
                                                     </fieldset>
 
                                                     <fieldset>
                                                         <div class="form-group">
-                                                            <label class="col-sm-2 control-label">Office Address</label>
+														<label class="col-sm-2 control-label">Telephone</label>
                                                             <div class="col-sm-4">
-                                                                <textarea name="goffice_address" id="goffice_address" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="4" cols="80"></textarea>
+                                                                <input type="text" placeholder="Telephone" name="ghome_phone" id="ghome_phone" class="form-control">
                                                             </div>
+                                                            
 
                                                             <label class="col-sm-2 control-label">Office Phone</label>
                                                             <div class="col-sm-4">
@@ -386,11 +389,7 @@
                                                         </div>
                                                     </fieldset>
 
-                                                    <fieldset>
-                                                        <div class="form-group">
-
-                                                        </div>
-                                                    </fieldset>
+                                                   
                                                 </div>
                                                 <!-- Guardian -->
                                             </div>

@@ -20,7 +20,7 @@
                                 <form method="post" action="<?php echo base_url(); ?>event/save" class="form-horizontal" enctype="multipart/form-data" id="eventform" name="eventform">
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Event Date</label>
+                                            <label class="col-sm-4 control-label">Date</label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="event_date" class="form-control datepicker" placeholder="Event Date" value="<?php echo $rows->event_date; ?>"/>
 
@@ -30,7 +30,7 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Event Name</label>
+                                            <label class="col-sm-4 control-label">Title</label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="event_name" class="form-control" value="<?php echo $rows->event_name; ?>">
                                                   <input type="hidden" name="event_id" class="form-control" value="<?php echo $rows->event_id; ?>">
@@ -41,9 +41,9 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Event Details</label>
+                                            <label class="col-sm-4 control-label">Description</label>
                                             <div class="col-sm-4">
-                                                <textarea type="text" MaxLength="350" placeholder="MaxCharacters 350" name="event_details" class="form-control"><?php echo $rows->event_details; ?></textarea>
+                                                <textarea type="text" MaxLength="350" placeholder="Maximum 350 characters" name="event_details" class="form-control"><?php echo $rows->event_details; ?></textarea>
 
                                             </div>
 
@@ -56,7 +56,7 @@
                                             <div class="col-sm-4">
                                               <select name="event_status" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="Active">Active</option>
-                                                <option value="Deactive">De-Active</option>
+                                                <option value="Deactive">Inactive</option>
 
                                               </select>
                                               <script language="JavaScript">document.eventform.event_status.value="<?php echo $rows->status; ?>";</script>
@@ -71,7 +71,7 @@
                                         <div class="form-group">
                                             <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
                                             <div class="text-center">
-                                                   <button type="submit" class="btn btn-info btn-fill center">Update Event</button>
+                                                   <button type="submit" class="btn btn-info btn-fill center">SAVE</button>
                                             </div>
 
                                         </div>
@@ -97,10 +97,10 @@ $(document).ready(function () {
          event_status:{required:true }
      },
      messages: {
-           event_details: "Enter Event Details",
-           event_date: "Select Event Date",
-           event_name: "Enter Event Name",
-           event_status: "Select Status"
+           event_details: "This field cannot be empty!",
+           event_date: "Please choose an option!",
+           event_name: "This field cannot be empty!",
+           event_status: "Please choose an option!"
          }
  });
 });

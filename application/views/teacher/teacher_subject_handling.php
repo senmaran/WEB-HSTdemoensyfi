@@ -13,9 +13,9 @@
                   <div class="card">
                      <div class="content" id="content1">
                         <div class="fresh-datatables">
-                           <h4 class="title" style="padding-bottom: 20px;">List of Teacher Handling Subject
-                               <a href="#myModal"  data-target="#myModal" data-toggle="modal" class="btn btn-wd btn-default " >Add Staff to Class</a> &nbsp;
-                            <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button>
+                           <h4 class="title" style="padding-bottom: 20px;">Handling Subjects
+                               <!--<a href="#myModal"  data-target="#myModal" data-toggle="modal" class="btn btn-wd btn-default " >Add Staff to Class</a> &nbsp;-->
+                            <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button>
                           </h4>
                            <form method="post" action="<?php echo base_url(); ?>teacher/get_sorting_details" class="form-horizontal" enctype="multipart/form-data" name="myformsection">
 
@@ -45,7 +45,7 @@
                                        if($rows->status=='Active'){?>
                                        <button class="btn btn-success btn-fill btn-wd">Active</button>
                                        <?php  }else{?>
-                                       <button class="btn btn-danger btn-fill btn-wd">DeActive</button><?php }
+                                       <button class="btn btn-danger btn-fill btn-wd">Inactive</button><?php }
                                           ?>
                                     </td>
                                     <td class="text-center">
@@ -93,7 +93,7 @@
 
                                     <select   name="status" id="status" class="form-control">
                                       <option value="Active">Active</option>
-                                      <option value="Deactive">Deactive</option>
+                                      <option value="Deactive">Inactive</option>
                                     </select>
                                  </div>
                               </div>

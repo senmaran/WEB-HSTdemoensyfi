@@ -5,15 +5,15 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <legend>Add Substitution</legend>
+                     <legend>Substitute Teacher</legend>
                   </div>
                   <div class="content">
                      <form method="post" action="<?php echo base_url(); ?>communication/create_substition" class="form-horizontal" enctype="multipart/form-data" id="myformsection" name="myformsection">
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Substitution Class</label>
+                              <label class="col-sm-2 control-label">Class</label>
                               <div class="col-sm-4">
-                                 <select class="selectpicker form-control" data-title="Select Substitution Class" name="sub_cls" >
+                                 <select class="selectpicker form-control" data-title="Select Class" name="sub_cls" >
                                     <?php
                                        if(empty($class_id)){   ?>
                                     <div class="col-md-2">
@@ -30,7 +30,7 @@
 							  <input type="hidden" name="tname" value="<?php echo $teaname;?>">
 							    <input type="hidden" name="num" value="<?php echo $cell;?>">
                               <input type="hidden" name="leave_id" value="<?php echo $leave_id;?>">
-                              <label class="col-sm-2 control-label">Substitution Date</label>
+                              <label class="col-sm-2 control-label">Date</label>
                               <div class="col-sm-4">
                                  <input type="text" name="leave_date"  value="<?php $dateTime = new DateTime($from_leave_date);$fdate=date_format($dateTime,'d-m-Y' );echo $fdate;  ?>" class="form-control datepicker">
                               </div>
@@ -38,9 +38,9 @@
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Teachers</label>
+                              <label class="col-sm-2 control-label">Teacher</label>
                               <div class="col-sm-4">
-                                 <select class="selectpicker form-control" data-title="Select Substitution Teacher" name="sub_teacher" id="subteacher" onChange="get_teacher_name()">
+                                 <select class="selectpicker form-control" data-title="Select Teacher" name="sub_teacher" id="subteacher" onChange="get_teacher_name()">
                                     <?php foreach($teachers as $tec){ ?>
                                     <option value="<?php echo $tec->teacher_id; ?> - <?php echo $tec->name; ?>"><?php echo $tec->name; ?></option>
                                     <?php }?>
@@ -67,12 +67,12 @@
                               <div class="col-sm-4">
                                  <select name="status"  class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                     <option value="Active">Active</option>
-                                    <option value="De-Active">De-Active</option>
+                                    <option value="De-Active">Inactive</option>
                                  </select>
                               </div>
                               <label class="col-sm-2 control-label">&nbsp;</label>
                               <div class="col-sm-4">
-                                 <button type="submit" id="save" class="btn btn-info btn-fill center">Assign</button>
+                                 <button type="submit" id="save" class="btn btn-info btn-fill center">SUBSTITUTE</button>
                               </div>
                            </div>
                         </fieldset>
@@ -93,13 +93,16 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="card">
+				   <div class="header">
+                     <legend>Substitute Teacher</legend>
+                  </div>
                      <div class="content">
                         <div class="fresh-datatables">
                            <table id="bootstrap-table" class="table">
                               <thead>
                                  <th>S.no</th>
-                                 <th>Substitution Teacher</th>
-                                 <th>Substitution Date</th>
+                                 <th>Teacher</th>
+                                 <th>Date</th>
                                  <th>Class</th>
                                  <th>Period</th>
                                  <th>Action</th>
@@ -153,11 +156,11 @@
     		 status:{required:true },
         },
         messages: {
-              sub_cls:"Select Class",
-              leave_date:"Select Leave Date",
-              sub_teacher:"Select Substitution Teacher",
-      			  period_id:"Select Period Time",
-      			  status:"Select To Status",
+              sub_cls:"Please choose an option!",
+              leave_date:"This field cannot be empty!",
+              sub_teacher:"Please choose an option!",
+			  period_id:"Please choose an option!",
+			  status:"Please choose an option!",
             }
     });
    

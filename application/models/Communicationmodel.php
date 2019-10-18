@@ -9,6 +9,22 @@ Class Communicationmodel extends CI_Model
         
     }
     
+	public function getYear()
+	{
+		$sqlYear = "SELECT * FROM edu_academic_year WHERE CURDATE() >= from_month AND CURDATE() <= to_month AND status = 'Active'";
+		$year_result = $this->db->query($sqlYear);
+		$ress_year = $year_result->result();
+
+		if($year_result->num_rows()==1)
+		{
+			foreach ($year_result->result() as $rows)
+			{
+			    $year_id = $rows->year_id;
+			}
+			return $year_id;
+		}
+	}
+	
     function get_teachers()
     {
         $query     = "SELECT * FROM edu_teachers WHERE status='Active'";
@@ -33,7 +49,7 @@ Class Communicationmodel extends CI_Model
     
     
     
-    function user_leaves()
+    function user_leaves($search_year)
     {
          if ($search_year !='') {
 			   $year_id = $search_year;
@@ -41,7 +57,8 @@ Class Communicationmodel extends CI_Model
 				$year_id=$this->getYear();
 		   }
         
-        $query     = "SELECT u.user_id,u.user_type,u.user_master_id,ul.*,lm.leave_title,lm.leave_type,lm.id,t.teacher_id,t.name FROM edu_user_leave AS ul,edu_teachers AS t,edu_user_leave_master AS lm,edu_users AS u WHERE u.user_type=ul.user_type AND u.user_id=ul.user_id AND ul.year_id='$current_year' AND t.teacher_id=u.user_master_id AND ul.leave_master_id=lm.id  ORDER BY ul.leave_id DESC";
+       $query     = "SELECT u.user_id,u.user_type,u.user_master_id,ul.*,lm.leave_title,lm.leave_type,lm.id,t.teacher_id,t.name FROM edu_user_leave AS ul,edu_teachers AS t,edu_user_leave_master AS lm,edu_users AS u WHERE u.user_type=ul.user_type AND u.user_id=ul.user_id AND ul.year_id='$year_id' AND t.teacher_id=u.user_master_id AND ul.leave_master_id=lm.id  ORDER BY ul.leave_id DESC";
+	   //exit;
         $resultset = $this->db->query($query);
         $result    = $resultset->result();
         return $result;
@@ -103,17 +120,17 @@ Class Communicationmodel extends CI_Model
         $resultset = $this->db->query($sql);
         $row       = $resultset->result();
         foreach ($row as $res) {
-        }
-        $tid   = $res->user_id;
-        $utype = $res->user_type;
-        $ldate = $res->from_leave_date;
-        $tdate = $res->to_leave_date;
-        $lid   = $res->leave_id;
+			$tid   = $res->user_id;
+			$utype = $res->user_type;
+			$ldate = $res->from_leave_date;
+			$tdate = $res->to_leave_date;
+			$lid   = $res->leave_id;
+		 }
         //return $tid;
         //echo $tid;
         // exit;
         
-        $sql1       = "SELECT u.user_id,u.user_type,u.user_master_id,estc.id,estc.class_master_id,estc.subject_id,estc.teacher_id,estc.status,t.name,t.teacher_id,t.phone,c.class_id,c.class_name,s.sec_id,s.sec_name,cm.class_sec_id,cm.class,cm.section FROM edu_users AS u,edu_teacher_handling_subject AS estc,edu_class AS c,edu_sections AS s ,edu_classmaster AS cm,edu_teachers AS t WHERE u.user_id='$tid' AND u.user_type='$utype' AND estc.teacher_id=u.user_master_id AND t.teacher_id=u.user_master_id AND estc.class_master_id=cm.class_sec_id AND cm.class = c.class_id AND cm.section = s.sec_id GROUP BY estc.class_master_id";
+         $sql1       = "SELECT u.user_id,u.user_type,u.user_master_id,estc.id,estc.class_master_id,estc.subject_id,estc.teacher_id,estc.status,t.name,t.teacher_id,t.phone,c.class_id,c.class_name,s.sec_id,s.sec_name,cm.class_sec_id,cm.class,cm.section FROM edu_users AS u,edu_teacher_handling_subject AS estc,edu_class AS c,edu_sections AS s ,edu_classmaster AS cm,edu_teachers AS t WHERE u.user_id='$tid' AND u.user_type='$utype' AND estc.teacher_id=u.user_master_id AND t.teacher_id=u.user_master_id AND estc.class_master_id=cm.class_sec_id AND cm.class = c.class_id AND cm.section = s.sec_id GROUP BY estc.class_master_id";
         $resultset3 = $this->db->query($sql1);
         $res1       = $resultset3->result();
         if (empty($res1)) {
@@ -152,12 +169,15 @@ Class Communicationmodel extends CI_Model
         $resultset = $this->db->query($sql);
         $row       = $resultset->result();
         foreach ($row as $res) {
+			$uid   = $res->user_id;
+			$utype = $res->user_type;
         }
-        $uid   = $res->user_id;
-        $utype = $res->user_type;
+			
         
-        $query  = "SELECT u.user_id,u.user_type,u.user_master_id,s.*,t.teacher_id,t.name,c.class_id,c.class_name,se.sec_name,se.sec_id,cm.class_sec_id,cm.class,cm.section FROM edu_substitution AS s,edu_users AS u,edu_teachers AS t,edu_class AS c,edu_sections AS se,edu_classmaster AS cm WHERE u.user_id='$uid' AND u.user_type='$utype' AND  s.teacher_id=u.user_master_id AND t.teacher_id=s.sub_teacher_id AND s.class_master_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=se.sec_id ORDER BY s.id DESC";
+         $query  = "SELECT u.user_id,u.user_type,u.user_master_id,s.*,t.teacher_id,t.name,c.class_id,c.class_name,se.sec_name,se.sec_id,cm.class_sec_id,cm.class,cm.section FROM edu_substitution AS s,edu_users AS u,edu_teachers AS t,edu_class AS c,edu_sections AS se,edu_classmaster AS cm WHERE u.user_id='$uid' AND u.user_type='$utype' AND  s.teacher_id=u.user_master_id AND t.teacher_id=s.sub_teacher_id AND s.class_master_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=se.sec_id ORDER BY s.id DESC";
         $result = $this->db->query($query);
+		//exit;
+		
         $row    = $result->result();
         return $row;
     }

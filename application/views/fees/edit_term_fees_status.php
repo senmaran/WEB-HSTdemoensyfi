@@ -5,7 +5,7 @@
 
                         <div class="card">
                             <div class="header">
-                                <legend>Edit Term Fees Status</legend>
+                                <legend>Edit Fees Status</legend>
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
                               <div class="alert alert-success">
@@ -55,7 +55,7 @@
 									
 									                  <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Student Name</label>
+                                            <label class="col-sm-2 control-label">Student</label>
                       							         <div class="col-sm-4">
                       				                    <input type="text" name="stu_name" readonly  value="<?php echo $rows->name;?>" class="form-control" />
                       								</div>
@@ -65,7 +65,7 @@
 									
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Fees Amount</label>
+                                            <label class="col-sm-2 control-label">Fees</label>
                       							       <div class="col-sm-4">
                       				                 <input type="text" name="fees_amount" readonly  value="<?php echo $rows->fees_amt;?>" class="form-control" placeholder="Enter Fees Amount"/>
                       											  </div>
@@ -108,7 +108,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">&nbsp;</label>
                                             <div class="col-sm-10">
-                                               <button type="submit" id="save1" class="btn btn-info btn-fill center">Update </button>
+                                               <button type="submit" id="save1" class="btn btn-info btn-fill center">SAVE</button>
                                             </div>
 
                                         </div>
@@ -137,7 +137,8 @@ $('#feesmenu').addClass('collapse in');
          due_date_from:{required:true },
          due_date_to:{required:true },
 		     notes:{required:true },
-         status:{required:true }
+         status:{required:true },
+		 paid_by:{required:true }
 
      },
      messages: {
@@ -150,8 +151,8 @@ $('#feesmenu').addClass('collapse in');
            due_date_from: "Select due date ",
            due_date_to: "Select due date ",
 		       notes: "Enter notes",
-           status: "Select Status"
-
+           status: "Select Status",
+			paid_by:"This field cannot be empty!"
          }
  });
 });

@@ -10,7 +10,7 @@
   <?php  if($status=="success"){ ?>
                    <div class="card">
                        <div class="header">
-                           List Of Student in class
+                           Students
                        </div>
                        <?php
 
@@ -27,7 +27,7 @@
                                    <tr>
                                        <th class="text-center">#</th>
                                        <th class="text-center">Name</th>
-                                       <th class="text-center">Present  / Absent</th>
+                                       <th class="text-center">Status</th>
                                    </tr>
                                </thead>
                                <tbody>
@@ -46,7 +46,7 @@
                                          <option value="P">Present</option>
                                         <option value="A">Absent</option>
                                         <option value="L">Leave</option>
-                                        <option value="OD">On-Duty</option>
+                                        <option value="OD">On Duty</option>
                                        </select>
                                        </td>
 
@@ -60,8 +60,7 @@
                                </tbody>
 
                            </table>
-                          <button type="button"   class="btn btn-warning btn-fill btn-wd pull-right"  id="submit" style="margin-top:20px;" onclick="submitAttendence()">
-                        Submit Attendance  </button>
+                          <button type="button"   class="btn btn-warning btn-fill btn-wd pull-right"  id="submit" style="margin-top:20px;" onclick="submitAttendence()">SUBMIT</button>
                          </form>
 
                        </div>
@@ -111,8 +110,8 @@ function submitAttendence(){
                 //  swal("Success!", "Thanks for Your Note!", "success");
                   $('#take_attendance')[0].reset();
                   swal({
-           title: "Attendance Done!",
-           text: "Thank You!",
+           title: "Done!",
+           text: "Attendance for saved",
            type: "success"
        }, function() {
            window.location = "<?php echo base_url(); ?>adminattendance/home";

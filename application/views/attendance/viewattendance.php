@@ -16,7 +16,7 @@
                   <div class="col-md-12">
                      <div class="">
                         <div class="">
-                          <h4 class="title">Attendance for Class in Daywise</h4>
+                          <h4 class="title">Daywise Class Attendance</h4>
                           <p class="pull-right">
                             <a href="<?php echo base_url(); ?>adminattendance/take_attendance_for_class" class="btn btn-default">Take Attendance</a>
                           </p>
@@ -24,7 +24,7 @@
                               <table id="bootstrap-table" class="table">
                                  <thead>
                                     <th data-field="id">S.No</th>
-                                    <th data-field="year"  data-sortable="true">Class Name</th>
+                                    <th data-field="year"  data-sortable="true">Class</th>
                                     <th data-field="status"  data-sortable="true">Class Strength</th>
                                     <th data-field="Section" data-sortable="true">View</th>
                                  </thead>
@@ -37,7 +37,7 @@
                                        <td><?php echo $i; ?></td>
                                        <td><?php echo $rows->class_name.'&nbsp;'.$rows->sec_name; ?></td>
                                        <td><?php echo $rows->total_count;  ?></td>
-                                       <td><a href="<?php echo base_url(); ?>adminattendance/daywise/<?php echo $rows->class_id;  ?>" class="btn btn-default">Check it</a></td>
+                                       <td><a href="<?php echo base_url(); ?>adminattendance/daywise/<?php echo $rows->class_id;  ?>" class="btn btn-default">VIEW</a></td>
                                     </tr>
                                     <?php $i++; } ?>
                                  </tbody>

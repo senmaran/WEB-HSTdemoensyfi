@@ -12,11 +12,11 @@
 
                <div class="card">
                   <div class="header">
-                     <legend>Staff Leave Details
-					  <a href="<?php echo base_url(); ?>userleavemaster/home" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Create Leave Master</a>
+                     <legend>Staff Leaves
+					  <a href="<?php echo base_url(); ?>userleavemaster/home" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Leave Master</a>
 					  </legend>
                   </div>
-				  <form method="post" action="<?php echo base_url(); ?>enrollment/view" class="form-horizontal" enctype="multipart/form-data" id="search_year" name="search_year">
+				  <form method="post" action="<?php echo base_url(); ?>communication/view_user_leaves" class="form-horizontal" enctype="multipart/form-data" id="search_year" name="search_year">
                         <fieldset>
                            <div class="form-group">
                               <div class="col-sm-4">
@@ -46,10 +46,10 @@
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th>S.no</th>
-                              <th>Users Name</th>
+                              <th>Staff</th>
                               <th>Leave Type</th>
-                              <th>From Leave Date</th>
-							  <th>To Leave Date</th>
+                              <th>From</th>
+							  <th>To</th>
                               <th>Status</th>
                               <th>Action</th>
                            </thead>
@@ -82,10 +82,10 @@
                 								 <?php }?>
                 								  </td>
                                    <td><?php //if($status=='A'){ ?>
-								                  <a href="<?php echo base_url(); ?>communication/add_substitution/<?php echo $rows->leave_id; ?>" rel="tooltip" title="Add Substitution" class="btn btn-simple btn-info btn-icon table-action view" >
+								                  <a href="<?php echo base_url(); ?>communication/add_substitution/<?php echo $rows->leave_id; ?>" rel="tooltip" title="Substitute Teacher" class="btn btn-simple btn-info btn-icon table-action view" >
 								                  <i class="fa fa-user-plus" aria-hidden="true"></i></a>
 								                 <?php //}else{ echo "";} ?>
-                                 <a href="<?php echo base_url();?>communication/user_leave_approval/<?php echo $rows->leave_id; ?>" title="Edit Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit">
+                                 <a href="<?php echo base_url();?>communication/user_leave_approval/<?php echo $rows->leave_id; ?>" title="Leave Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit">
                                   <i class="fa fa-edit" aria-hidden="true"></i>
                                  </td>
                               </tr>

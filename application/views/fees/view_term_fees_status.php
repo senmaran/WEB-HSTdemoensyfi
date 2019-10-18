@@ -16,16 +16,16 @@
                             <div class="content">
 
                                 <div class="fresh-datatables">
-                                  <h4 class="title">Fees Status</h4> <br>
+                                  <h4 class="title">Student Fees Status</h4> <br>
                           <table id="bootstrap-table" class="table">
                               <thead>
                                  <th data-field="id" >S.No</th>
-								  <th data-field="notes"  data-sortable="true">Student Name</th>
+								  <th data-field="notes"  data-sortable="true">Student</th>
                                 <th data-field="year"  data-sortable="true">Year</th>
-                                <th data-field="term"  data-sortable="true">Term Name</th>
+                                <th data-field="term"  data-sortable="true">Term</th>
                                 <th data-field="class"  data-sortable="true">Class</th>
                                 <th data-field="quota"  data-sortable="true">Quota</th>
-								<th data-field="fees"  data-sortable="true">Fees Amount</th>
+								<th data-field="fees"  data-sortable="true">Fees</th>
                                 <th data-field="status"  data-sortable="true">Status</th>
 								<th data-field="Section"  data-sortable="true">Action</th>
                               </thead>
@@ -47,7 +47,7 @@
 
                   									 <td><?php
                   									  if($stu=='Unpaid'){?>
-                  									  <button class="btn btn-danger btn-fill btn-wd">UnPaid</button>
+                  									  <button class="btn btn-danger btn-fill btn-wd">Unpaid</button>
                   									 <?php  }else{?>
                   									   <button class="btn btn-success btn-fill btn-wd">Paid</button>
 

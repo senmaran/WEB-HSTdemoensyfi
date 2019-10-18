@@ -9,6 +9,21 @@ Class Feesstructuremodel extends CI_Model
      }
   
     
+	public function getYear()
+	{
+		$sqlYear = "SELECT * FROM edu_academic_year WHERE CURDATE() >= from_month AND CURDATE() <= to_month AND status = 'Active'";
+		$year_result = $this->db->query($sqlYear);
+		$ress_year = $year_result->result();
+
+		if($year_result->num_rows()==1)
+		{
+			foreach ($year_result->result() as $rows)
+			{
+			    $year_id = $rows->year_id;
+			}
+			return $year_id;
+		}
+	}
 	
 	 function get_current_years()
 		{
@@ -38,8 +53,9 @@ Class Feesstructuremodel extends CI_Model
 		
            
     function get_terms()
-	    {	 
-  		  $sql="SELECT * FROM edu_terms";
+	    {
+			$year_id = $this->getYear();
+  		  $sql="SELECT * FROM edu_terms WHERE year_id = '$year_id';";
   		  $res=$this->db->query($sql);
   		  $result=$res->result();
         return $result;

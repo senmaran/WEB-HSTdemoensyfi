@@ -11,8 +11,8 @@
                <div class="card">
                   <div class="content">
 
-                     <h4 class="title"> List of Record in <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?></h4>
-                        <p class="pull-right"> <button onclick="history.go(-1);" class="btn btn-wd btn-default">Go Back</button></p>
+                     <h4 class="title"><?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> Attendance Details</h4>
+                        <p class="pull-right"> <button onclick="history.go(-1);" class="btn btn-wd btn-default">BACK</button></p>
                      <div class="fresh-datatables">
                         <table id="bootstrap-table" class="table">
                            <thead>

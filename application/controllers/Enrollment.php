@@ -37,10 +37,10 @@ class Enrollment extends CI_Controller {
 
 	 	public function home(){
 	 		$datas=$this->session->userdata();
-
+			$current_year = date("Y");
 	 		$user_id=$this->session->userdata('user_id');
 			$datas['result'] = $this->yearsmodel->getall_years();
-			$datas['admisn'] = $this->admissionmodel->get_all_admission();
+			$datas['admisn'] = $this->admissionmodel->get_all_admission($current_year);
 	 		$datas['clas'] = $this->classmodel->getclass();
 			$datas['sec'] = $this->sectionmodel->getsection();
 			$datas['getall_class']=$this->class_manage->getall_active_class();
@@ -123,13 +123,13 @@ class Enrollment extends CI_Controller {
 			// $section=$this->input->post('section');
 			 $datas=$this->enrollmentmodel->ad_enrollment($admisnid,$admit_year,$formatted_date,$admisn_no,$name,$class,$quota_id,$groups_id,$activity_id,$status);
 			 if($datas['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Added Successfully');
+				 $this->session->set_flashdata('msg', 'Class allocated for studen>');
 				 redirect('enrollment/view');
 			 }else if($datas['status']=="Admission Already Exist"){
-				 $this->session->set_flashdata('msg', 'Admission Already Exist');
+				 $this->session->set_flashdata('msg', 'Oops! Something went wrong. Please try again few minutes later.');
 				 redirect('enrollment/home');
 			 }else{
-				 $this->session->set_flashdata('msg', 'Failed to Add');
+				 $this->session->set_flashdata('msg', 'Oops! Something went wrong. Please try again few minutes later.');
 				 redirect('enrollment/home');
 			 }
 			 }

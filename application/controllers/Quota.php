@@ -42,13 +42,13 @@ class Quota extends CI_Controller
 		$datas=$this->quotamodel->create_quota_list($quota_name,$status,$user_id);
 		if($datas['status']=="success")
 		{
-			$this->session->set_flashdata('msg','Added Successfully');
+			$this->session->set_flashdata('msg','New quota created');
 			redirect('quota/home');
 		}else if($datas['status']=="Name Already Exist"){
-			$this->session->set_flashdata('msg','Name Already Exist');
+			$this->session->set_flashdata('msg','Name already exist');
 			redirect('quota/home');
 		}else{
-			$this->session->set_flashdata('msg','Faild To Add');
+			$this->session->set_flashdata('msg','Oops! Something went wrong. Please try again few minutes later.');
 			redirect('quota/home');
 		}
 		
@@ -85,7 +85,7 @@ class Quota extends CI_Controller
 		$datas=$this->quotamodel->update_quota_list($quota_name,$status,$user_id,$id);
 		if($datas['status']=="success")
 		{
-			$this->session->set_flashdata('msg','Updated Successfully');
+			$this->session->set_flashdata('msg','Changes made are saved');
 			redirect('quota/home');
 		}else{
 			$this->session->set_flashdata('msg','Faild To Update');

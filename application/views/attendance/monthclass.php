@@ -15,14 +15,14 @@
                   <div class="col-md-12">
                      <div class="">
                         <div class="">
-                             <h4 class="title">Attendance for Class in Month View</h4><br>
+                             <h4 class="title">Monthwise Class Attendance</h4><br>
                            <div class="fresh-datatables">
                               <table id="bootstrap-table" class="table">
                                  <thead>
                                     <th data-field="id">S.No</th>
                                     <th data-field="year"  data-sortable="true">Class Name</th>
                                     <th data-field="status"  data-sortable="true">Class Strength</th>
-                                    <th data-field="Section" data-sortable="true">View</th>
+                                    <th data-field="Section" data-sortable="true">Actions</th>
                                  </thead>
                                  <tbody>
                                     <?php
@@ -33,7 +33,7 @@
                                        <td><?php echo $i; ?></td>
                                        <td><?php echo $rows->class_name.'&nbsp;'.$rows->sec_name; ?></td>
                                        <td><?php echo $rows->total_count;  ?></td>
-                                       <td><a href="<?php echo base_url(); ?>adminattendance/month_view_class/<?php echo $rows->class_id;  ?>" class="btn btn-default">Check it</a></td>
+                                       <td><a href="<?php echo base_url(); ?>adminattendance/month_view_class/<?php echo $rows->class_id;  ?>" class="btn btn-default">VIEW</a></td>
                                     </tr>
                                     <?php $i++; } ?>
                                  </tbody>

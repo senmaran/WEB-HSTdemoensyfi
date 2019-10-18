@@ -16,18 +16,18 @@
                             <div class="content">
 
                                 <div class="fresh-datatables">
-                                  <h4 class="title">List of Fees Master</h4>
+                                  <h4 class="title">Fees Masters</h4>
 
                           <table id="bootstrap-table" class="table">
                               <thead>
                                  <th data-field="id" class="text-left">S.No</th>
                                 <th data-field="year" class="text-left" data-sortable="true">Year</th>
-                                <th data-field="term" class="text-left" data-sortable="true">Term Name</th>
+                                <th data-field="term" class="text-left" data-sortable="true">Term</th>
                                 <th data-field="class" class="text-left" data-sortable="true">Class</th>
                                 <th data-field="quota" class="text-left" data-sortable="true">Quota</th>
-								<th data-field="fees" class="text-left" data-sortable="true">Fees Amount</th>
-                                <th data-field="date_from" class="text-left" data-sortable="true">From Date </th>
-                                <th data-field="date_to" class="text-left" data-sortable="true">To Date </th>
+								<th data-field="fees" class="text-left" data-sortable="true">Fees</th>
+                                <th data-field="date_from" class="text-left" data-sortable="true">Issue Date</th>
+                                <th data-field="date_to" class="text-left" data-sortable="true">Due Date</th>
                                  <!-- <th data-field="notes" class="text-left" data-sortable="true">Notes</th> -->
                                 <th data-field="status" class="text-left" data-sortable="true">Status</th>
 								<th data-field="Section" class="text-left" data-sortable="true">Action</th>

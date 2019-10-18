@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Parents Details</h4>
+                    <h4 class="title">Parent Profile</h4>
                 </div>
                 <?php if($this->session->flashdata('msg')): ?>
                     <div class="alert alert-success">
@@ -59,7 +59,7 @@
                                             <fieldset>
                                                 <div class="form-group">
                                                   <div class="col-md-12">
-                                                    <a onclick="remove_parents(<?php  echo $fid; ?>,<?php  echo $sid; ?>)" class="btn pull-right">Remove Parents</a>
+                                                    <a onclick="remove_parents(<?php  echo $fid; ?>,<?php  echo $sid; ?>)" class="btn pull-right">Remove Parent</a>
                                                   </div>
                                                 </div>
                                             </fieldset>
@@ -80,11 +80,11 @@
                                             </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
-                                                  <label class="col-sm-2 control-label">Primary Email <span class="mandatory_field">*</span></label>
+                                                  <label class="col-sm-2 control-label">Email ID <span class="mandatory_field">*</span></label>
                                                   <div class="col-sm-4">
                                                       <input type="text" name="fpemail" id="fpemail" value="<?php echo $prow->email; ?>" class="form-control" placeholder="Email Address" onblur="checkemailfun(this.value)" />
                                                   </div>
-                                                  <label class="col-sm-2 control-label">Secondary Email</label>
+                                                  <label class="col-sm-2 control-label">Alternate Email ID</label>
                                                   <div class="col-sm-4">
                                                       <input type="text" name="fsemail" id="fsemail" class="form-control" value="<?php echo $prow->sec_email; ?>" id="email" placeholder="Email Address" />
                                                   </div>
@@ -92,12 +92,12 @@
                                             </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
-                                                  <label class="col-sm-2 control-label">Primary Mobile <span class="mandatory_field">*</span></label>
+                                                  <label class="col-sm-2 control-label">Mobile Number <span class="mandatory_field">*</span></label>
                                                   <div class="col-sm-4">
                                                       <input type="text" placeholder="Mobile Number" value="<?php echo $prow->mobile; ?>" name="fpmobile" id="fpmobile" class="form-control" onblur="fcheckmobilefun(this.value)">
 
                                                   </div>
-                                                  <label class="col-sm-2 control-label">Secondary Mobile</label>
+                                                  <label class="col-sm-2 control-label">Alternate Mobile Number</label>
                                                   <div class="col-sm-4">
                                                       <input type="text" placeholder="Mobile Number" value="<?php echo $prow->sec_mobile; ?>" name="fsmobile" id="fsmobile" class="form-control">
                                                   </div>
@@ -117,11 +117,11 @@
                                             </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Home Address</label>
+                                                    <label class="col-sm-2 control-label">Residential Address</label>
                                                     <div class="col-sm-4">
               <textarea name="fhaddress" id="fhaddress"  placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"><?php echo $prow->home_address; ?></textarea>
                                                     </div>
-                                                    <label class="col-sm-2 control-label">Home Phone</label>
+                                                    <label class="col-sm-2 control-label">Telephone</label>
                                                     <div class="col-sm-4">
                                                         <input type="text" placeholder="Home Phone" value="<?php echo $prow->home_phone; ?>" name="fhome_phone" id="fhome_phone" class="form-control">
                                                     </div>
@@ -134,7 +134,7 @@
                                                         <textarea name="foffice_address" id="foffice_address"
                                                        placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"><?php echo $prow->office_address; ?></textarea>
                                                     </div>
-                                                    <label class="col-sm-2 control-label">Office Phone</label>
+                                                    <label class="col-sm-2 control-label">Office Phone Number</label>
                                                     <div class="col-sm-4">
                                                         <input type="text" placeholder="Office Phone" value="<?php echo $prow->office_phone; ?>" name="foffice_phone" id="foffice_phone" class="form-control">
                                                     </div>
@@ -142,7 +142,7 @@
                                             </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Father Pic</label>
+                                                    <label class="col-sm-2 control-label">Profile Picture</label>
                                                     <div class="col-sm-4">
                                                         <input type="file" name="father_pic" id="fpic" class="form-control" onchange="loadFile(event)" accept="image/*">
                                                         <input type="hidden" name="frelationship" value="<?php echo "Father";?>" readonly class="form-control">
@@ -160,7 +160,7 @@
                                                     <div class="col-sm-4">
                                                         <select name="fstatus" id="fstatus" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                             <option value="Active">Active</option>
-                                                            <option value="Deactive">Deactive</option>
+                                                            <option value="Deactive">Inactive</option>
                                                         </select>
 
                                                           <script>$('#fstatus').val('<?php echo $prow->status; ?>');</script>
@@ -171,7 +171,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">&nbsp;</label>
                                                     <div class="col-sm-4">
-                                                        <button type="submit" id="save1" class="btn btn-info btn-fill center">Update Father</button>
+                                                        <button type="submit" id="save1" class="btn btn-info btn-fill center">SAVE</button>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -229,7 +229,7 @@
                                             <fieldset>
                                                 <div class="form-group">
                                                   <div class="col-md-12">
-                                                    <a onclick="remove_parents(<?php  echo $mid; ?>,<?php  echo $sid; ?>)" class="btn pull-right">Remove Parents</a>
+                                                    <a onclick="remove_parents(<?php  echo $mid; ?>,<?php  echo $sid; ?>)" class="btn pull-right">Remove Parent</a>
                                                   </div>
                                                 </div>
                                             </fieldset>
@@ -242,8 +242,8 @@
                                                     <label class="col-sm-2 control-label">Login <span class="mandatory_field">*</span></label>
                                                     <div class="col-sm-4">
                                                         <select name="mlogin" id="mlogin" class="selectpicker form-control">
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
+                                                            <option value="Yes">Need</option>
+                                                            <option value="No">No Need</option>
                                                         </select>
                                                         <script>$('#mlogin').val('<?php echo $prow->primary_flag; ?>');</script>
                                                     </div>
@@ -251,11 +251,11 @@
                                             </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
-                                                  <label class="col-sm-2 control-label">Primary Email <span class="mandatory_field">*</span></label>
+                                                  <label class="col-sm-2 control-label">Email ID <span class="mandatory_field">*</span></label>
                                                   <div class="col-sm-4">
                                                       <input type="text" name="mpemail" id="mpemail" value="<?php echo $prow->email; ?>" class="form-control" placeholder="Email Address" onblur="mcheckemailfun(this.value)" />
                                                   </div>
-                                                  <label class="col-sm-2 control-label">Secondary Email</label>
+                                                  <label class="col-sm-2 control-label">Alternate Email ID</label>
                                                   <div class="col-sm-4">
                                                       <input type="text" name="msemail" id="msemail" value="<?php echo $prow->sec_email; ?>" class="form-control" placeholder="Email Address" />
                                                   </div>
@@ -263,11 +263,11 @@
                                             </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
-                                                  <label class="col-sm-2 control-label">Primary Mobile <span class="mandatory_field">*</span></label>
+                                                  <label class="col-sm-2 control-label">Mobile Number <span class="mandatory_field">*</span></label>
                                                   <div class="col-sm-4">
                                                       <input type="text" placeholder="Mobile Number" value="<?php echo $prow->mobile; ?>" name="mpmobile" id="mpmobile" class="form-control" onblur="mcheckmobilefun(this.value)">
                                                   </div>
-                                                  <label class="col-sm-2 control-label">Secondary Mobile</label>
+                                                  <label class="col-sm-2 control-label">Alternate Mobile Number</label>
                                                   <div class="col-sm-4">
                                                       <input type="text" placeholder="Mobile Number" value="<?php echo $prow->sec_mobile; ?>" name="msmobile" id="msmobile" class="form-control">
                                                   </div>
@@ -287,11 +287,11 @@
                                             </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Home Address</label>
+                                                    <label class="col-sm-2 control-label">Residential Address</label>
                                                     <div class="col-sm-4">
                                                 <textarea name="mhaddress" id="mhaddress"  placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"><?php echo $prow->home_address; ?></textarea>
                                                     </div>
-                                                    <label class="col-sm-2 control-label">Home Phone</label>
+                                                    <label class="col-sm-2 control-label">Telephone</label>
                                                     <div class="col-sm-4">
                                                         <input type="text" placeholder="Home Phone" value="<?php echo $prow->home_phone; ?>" name="mhome_phone" id="mhome_phone" class="form-control">
                                                     </div>
@@ -304,7 +304,7 @@
                                                         <textarea name="moffice_address" id="moffice_address"  placeholder="MaxCharacters 150"
                                                         class="form-control" rows="4" cols="80"><?php echo $prow->office_address; ?></textarea>
                                                     </div>
-                                                    <label class="col-sm-2 control-label">Office Phone</label>
+                                                    <label class="col-sm-2 control-label"> Office Phone Number</label>
                                                     <div class="col-sm-4">
                                                         <input type="text" placeholder="Office Phone" value="<?php echo $prow->office_phone; ?>" name="moffice_phone" id="moffice_phone" class="form-control">
                                                     </div>
@@ -312,7 +312,7 @@
                                             </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Mother Pic</label>
+                                                    <label class="col-sm-2 control-label">Profile Picture</label>
                                                     <div class="col-sm-4">
                                                         <input type="file" name="mother_pic" id="mpic" class="form-control" onchange="loadFile1(event)" accept="image/*">
                                                         <input type="hidden" placeholder="Office Phone" value="<?php echo $prow->relationship; ?>" name="mrelationship" id="mrelationship" class="form-control">
@@ -332,7 +332,7 @@
                                                     <div class="col-sm-4">
                                                         <select name="mstatus" id="mstatus" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                             <option value="Active">Active</option>
-                                                            <option value="Deactive">DeActive</option>
+                                                            <option value="Deactive">Inactive</option>
                                                         </select>
 
                                                         <script>$('#mstatus').val('<?php echo $prow->status; ?>');</script>
@@ -344,7 +344,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">&nbsp;</label>
                                                     <div class="col-sm-4">
-                                                        <button type="submit" id="save1" class="btn btn-info btn-fill center">Update Mother</button>
+                                                        <button type="submit" id="save1" class="btn btn-info btn-fill center">SAVE</button>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -401,7 +401,7 @@
                                             <fieldset>
                                                 <div class="form-group">
                                                   <div class="col-md-12">
-                                                    <a onclick="remove_parents(<?php  echo $gid; ?>,<?php  echo $sid; ?>)" class="btn pull-right">Remove Parents</a>
+                                                    <a onclick="remove_parents(<?php  echo $gid; ?>,<?php  echo $sid; ?>)" class="btn pull-right">Remove Parent</a>
                                                   </div>
                                                 </div>
                                             </fieldset>
@@ -414,8 +414,8 @@
                                                     <label class="col-sm-2 control-label">Login <span class="mandatory_field">*</span></label>
                                                     <div class="col-sm-4">
                                                         <select name="glogin" id="glogin" class="selectpicker form-control">
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
+                                                            <option value="Yes">Need</option>
+                                                            <option value="No">No Need</option>
 
                                                         </select>
 
@@ -425,12 +425,12 @@
                                             </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
-                                                  <label class="col-sm-2 control-label">Primary Email <span class="mandatory_field">*</span></label>
+                                                  <label class="col-sm-2 control-label">Email ID <span class="mandatory_field">*</span></label>
                                                   <div class="col-sm-4">
                                                       <input type="text" name="gpemail" id="gpemail" value="<?php echo $prow->email; ?>" class="form-control" placeholder="Email Address" onblur="gcheckemailfun(this.value)" />
 
                                                   </div>
-                                                  <label class="col-sm-2 control-label">Secondary Email</label>
+                                                  <label class="col-sm-2 control-label">Alternate Email ID</label>
                                                   <div class="col-sm-4">
                                                       <input type="text" name="gsemail" value="<?php echo $prow->sec_email; ?>" class="form-control " id="gsemail" placeholder="Email Address" />
                                                   </div>
@@ -438,11 +438,11 @@
                                             </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
-                                                  <label class="col-sm-2 control-label">Primary Mobile <span class="mandatory_field">*</span></label>
+                                                  <label class="col-sm-2 control-label">Mobile Number <span class="mandatory_field">*</span></label>
                                                   <div class="col-sm-4">
                                                       <input type="text" placeholder="Mobile Number" value="<?php echo $prow->mobile; ?>" name="gpmobile" id="gpmobile" class="form-control" onblur="gcheckmobilefun(this.value)">
                                                   </div>
-                                                  <label class="col-sm-2 control-label">Secondary Mobile</label>
+                                                  <label class="col-sm-2 control-label">Alternate Mobile Number</label>
                                                   <div class="col-sm-4">
                                                       <input type="text" placeholder="Mobile Number" value="<?php echo $prow->sec_mobile; ?>" name="gsmobile" id="gsmobile" class="form-control">
                                                   </div>
@@ -462,11 +462,11 @@
                                             </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Home Address</label>
+                                                    <label class="col-sm-2 control-label">Residential Address</label>
                                                     <div class="col-sm-4">
                           <textarea name="ghaddress" id="ghaddress"  placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"><?php echo $prow->home_address; ?></textarea>
                                                     </div>
-                                                    <label class="col-sm-2 control-label">Home Phone</label>
+                                                    <label class="col-sm-2 control-label">Telephone</label>
                                                     <div class="col-sm-4">
                                                         <input type="text" placeholder="Home Phone" value="<?php echo $prow->home_phone; ?>" name="ghome_phone" id="ghome_phone" class="form-control">
                                                     </div>
@@ -479,7 +479,7 @@
                                                         <textarea name="goffice_address" id="goffice_address"
                                                         placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"><?php echo $prow->office_address; ?></textarea>
                                                     </div>
-                                                    <label class="col-sm-2 control-label">Office Phone</label>
+                                                    <label class="col-sm-2 control-label">Office Phone Number</label>
                                                     <div class="col-sm-4">
                                                         <input type="text" placeholder="Office Phone" value="<?php echo $prow->office_phone; ?>" name="goffice_phone" id="goffice_phone" class="form-control">
                                                     </div>
@@ -487,7 +487,7 @@
                                             </fieldset>
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Guardian Pic</label>
+                                                    <label class="col-sm-2 control-label">Profile Picture</label>
                                                     <div class="col-sm-4">
                                                         <input type="file" name="guardian_pic" id="gpic" class="form-control" onchange="loadFile2(event)" accept="image/*">
                                                           <input type="hidden" placeholder="Office Phone" value="<?php echo $prow->relationship; ?>" name="grelationship" id="grelationship" class="form-control">
@@ -506,7 +506,7 @@
                                                     <div class="col-sm-4">
                                                         <select name="gstatus" id="gstatus" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                             <option value="Active">Active</option>
-                                                            <option value="Deactive">DeActive</option>
+                                                            <option value="Deactive">Inactive</option>
                                                         </select>
 
                                                         <script>$('#gstatus').val('<?php echo $prow->status; ?>');</script>

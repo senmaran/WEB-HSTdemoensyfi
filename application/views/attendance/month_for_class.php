@@ -8,17 +8,17 @@
       <div class="container-fluid">
          <div class="col-md-12">
             <div class="card">
-               <div class="">
 
                   <div class="content">
                     <h4 class="title">
-                       Month View For <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> <button onclick="history.go(-1);" class="btn btn-wd btn-default" style="margin-left:60%;">Go Back</button>
-                    </h4>
+                       <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?>  Monthwise Attendance</h4>
+					   <button onclick="history.go(-1);" class="btn btn-wd btn-default" style="margin-left:60%;">Go Back</button>
+                    
                     <hr>
                      <form action="<?php echo base_url(); ?>adminattendance/get_month_class" method="post" class="form-horizontal" id="select_month">
                        <fieldset>
                           <div class="form-group">
-                             <label class="col-sm-4 control-label">Select Year</label>
+                             <label class="col-sm-4 control-label">Year</label>
                              <div class="col-sm-4">
 
                                 <select name="year_class" class="selectpicker form-control" data-title="Select Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
@@ -31,7 +31,7 @@
                        </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-4 control-label">Select Month</label>
+                              <label class="col-sm-4 control-label">Month</label>
                               <div class="col-sm-4">
                                  <input type="hidden" name="class_master_id" value="<?php echo $class_id; ?>">
                                  <select name="month_id" class="selectpicker form-control" data-title="Select Month" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
@@ -54,7 +54,7 @@
                   </div>
                </div>
             </div>
-         </div>
+
       </div>
    </div>
 </div>
@@ -69,8 +69,8 @@
 
        },
        messages: {
-             year_class: "Select year",
-             month_id: "Select Month"
+             year_class: "Please choose an option!",
+             month_id: "Please choose an option!"
 
            }
    });

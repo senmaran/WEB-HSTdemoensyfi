@@ -95,13 +95,13 @@ class Teacher extends CI_Controller {
 				move_uploaded_file($_FILES['teacher_pic']['tmp_name'], $profilepic);
 				$datas=$this->teachermodel->teacher_create($role_type_id,$name,$email,$sec_email,$sex,$formatted_date,$age,$nationality,$religion,$community_class,$community,$mobile,$sec_phone,$address,$class_teacher,$class_name,$subject,$multiple_sub,$qualification,$groups_id,$activity_id,$status,$user_id,$userFileName);
 				if($datas['status']=="success"){
-					$this->session->set_flashdata('msg', 'Added Successfully');
+					$this->session->set_flashdata('msg', 'New staff profile for created');
 					redirect('teacher/view');
 				}else if($datas['status']=="Email Already Exist"){
-					$this->session->set_flashdata('msg', 'Email Already Exist');
+					$this->session->set_flashdata('msg', 'Email already exist');
 					redirect('teacher/home');
 				}else{
-					$this->session->set_flashdata('msg', 'Failed to Add');
+					$this->session->set_flashdata('msg', 'Oops! Something went wrong. Please try again few minutes later.');
 					redirect('teacher/home');
 				}
 			 }
@@ -161,7 +161,7 @@ class Teacher extends CI_Controller {
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
 			$datas['res'] = $this->teachermodel->view_subject_handling_teacher();
-			//echo '<pre>';print_r($datas['result']);exit;
+			//echo '<pre>';print_r($datas['res']);exit;
 		 if($user_type==1){
 		 $this->load->view('header');
 		 $this->load->view('teacher/teacher_subject_handling',$datas);
@@ -281,7 +281,7 @@ class Teacher extends CI_Controller {
 				$datas=$this->teachermodel->save_teacher($role_type_id,$name,$email,$sec_email,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$mobile,$sec_phone,$address,$userFileName,$class_teacher,$class_name,$subject,$multiple_sub,$qualification,$groups_id,$activity_id,$status,$user_id,$teacher_id);
 			//	print_r($datas['status']);exit;
 				if($datas['status']=="success"){
-					$this->session->set_flashdata('msg', 'Updated Successfully');
+					$this->session->set_flashdata('msg', 'Changes made are saved');
 					redirect('teacher/view');
 				}else if($datas['status']=="Email Already Exist"){
 					$this->session->set_flashdata('msg', 'Email Already Exist');

@@ -196,7 +196,7 @@ class Parents extends CI_Controller {
 				 $datas=$this->parentsmodel->add_new_parents($admission_id,$oldadmission_id,$name,$occupation,$income,$haddress,$pemail,$semail,$pmobile,$smobile,$home_phone,$office_address,$office_phone,$relationship,$status,$priority,$userFileName,$user_id);
 				 if($datas['status']=="success")
 				 {
-				   $this->session->set_flashdata('msg','Updated Successfully');
+				   $this->session->set_flashdata('msg','Changes made are saved');
 				   redirect('parents/view');
 				 }else{
 				  $this->session->set_flashdata('msg','Relationship Already Exist');
@@ -420,7 +420,7 @@ class Parents extends CI_Controller {
 		//print_r($datas['status']);exit;
 			if($datas['status']=="success")
 			{
-				$this->session->set_flashdata('msg','Updated Successfully');
+				$this->session->set_flashdata('msg','Changes made are saved');
 				redirect('parents/view');
 			}else{
 				$this->session->set_flashdata('msg', 'Failed to Add');

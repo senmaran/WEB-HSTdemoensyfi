@@ -26,7 +26,7 @@
                <div class="col-md-12">
                   <div class="card">
                      <div class="content">
-                        <h4 class="title" style="padding-bottom: 20px;">List of Student Registration</h4>
+                        <h4 class="title" style="padding-bottom: 20px;">Students Allocated to Classes</h4>
 
 						<form method="post" action="<?php echo base_url(); ?>enrollment/view" class="form-horizontal" enctype="multipart/form-data" id="search_year" name="search_year">
                         <fieldset>
@@ -108,14 +108,14 @@
                              if($stu=='Active'){?>
                              <button class="btn btn-success btn-fill btn-wd">Active</button>
                              <?php  }else{?>
-                             <button class="btn btn-danger btn-fill btn-wd">DeActive</button><?php }
+                             <button class="btn btn-danger btn-fill btn-wd">Inactive</button><?php }
                                 ?>
                           </td>
                           <td>
-                             <a href="<?php echo base_url(); ?>admission/get_ad_id1/<?php echo $rows->admission_id; ?>" rel="tooltip" title="View Admission Details " class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">
+                             <a href="<?php echo base_url(); ?>admission/get_ad_id1/<?php echo $rows->admission_id; ?>" rel="tooltip" title="View Student Profile" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">
                              <i class="fa fa-address-card-o" aria-hidden="true"></i>
                              </a>
-                             <a href="<?php echo base_url(); ?>enrollment/edit_enroll/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                             <a href="<?php echo base_url(); ?>enrollment/edit_enroll/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Edit Class Allocation" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
                           </td>
                        </tr>
 									<?php $i++;  }  ?>

@@ -4,7 +4,7 @@
 
                         <div class="card">
                             <div class="header">
-                                <legend>Add Events</legend>
+                                <legend>Create Event</legend>
 
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
@@ -18,7 +18,7 @@
                                 <form method="post" action="<?php echo base_url(); ?>event/add" class="form-horizontal" enctype="multipart/form-data" id="eventform">
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Event Date</label>
+                                            <label class="col-sm-4 control-label">Date</label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="event_date" class="form-control datepicker" placeholder="Event Date"/>
 
@@ -28,9 +28,9 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Event Name</label>
+                                            <label class="col-sm-4 control-label">Title</label>
                                             <div class="col-sm-4">
-                                                <input type="text" name="event_name" id="event_name" class="form-control">
+                                                <input type="text" name="event_name" id="event_name" class="form-control" placeholder="Event Title">
 
                                             </div>
 
@@ -38,9 +38,9 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Event Details</label>
+                                            <label class="col-sm-4 control-label">Description</label>
                                             <div class="col-sm-4">
-                                                <textarea type="text" MaxLength="350" placeholder="MaxCharacters 350" name="event_details" class="form-control"></textarea>
+                                                <textarea type="text" MaxLength="350" placeholder="Maximum 350 characters" name="event_details" class="form-control"></textarea>
 
                                             </div>
 
@@ -49,11 +49,11 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Event Status</label>
+                                            <label class="col-sm-4 control-label">Status</label>
                                             <div class="col-sm-4">
                                               <select name="event_status" class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="Active">Active</option>
-                                                <option value="Deactive">De-Active</option>
+                                                <option value="Deactive">Inactive</option>
 
                                               </select>
 
@@ -68,7 +68,7 @@
                                         <div class="form-group">
                                             <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
                                             <div class="text-center">
-                                                   <button type="submit" class="btn btn-info btn-fill center">Save </button>
+                                                   <button type="submit" class="btn btn-info btn-fill center">CREATE </button>
                                             </div>
 
                                         </div>
@@ -95,8 +95,8 @@
                                       <thead>
 
                                           <th data-field="id">ID</th>
-                                            <th data-field="year"  data-sortable="true">Event Name</th>
-                                              <th data-field="no"  data-sortable="true">Event Date</th>
+                                            <th data-field="year"  data-sortable="true">Event</th>
+                                              <th data-field="no"  data-sortable="true">Date</th>
                                         <!-- <th data-field="name" class="text-center" data-sortable="true">Event -Details</th> -->
 
                                         <th data-field="status"  data-sortable="true">Status</th>
@@ -120,19 +120,19 @@
                                               <td><?php if($rows->status=='Active'){  ?>
                                               <button class="btn btn-success btn-fill btn-wd">Active</button>
                                                                                           <?php  } else{  ?>
-                                              <button class="btn btn-danger btn-fill btn-wd">De-Active</button>
+                                              <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                                         <?php    } ?></td>
                                             <td>
 
-    <a rel="tooltip" href="#myModal" data-id="<?php echo $rows->event_id; ?>" title="Add Coordinator" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" style="color:#eb34ff;" data-toggle="modal" data-target="#addmodel"   >
+    <a rel="tooltip" href="#myModal" data-id="<?php echo $rows->event_id; ?>" title="Assign Coordinator" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" style="color:#eb34ff;" data-toggle="modal" data-target="#addmodel"   >
 	<i class="fa fa-user-plus">  </i></a>
 
-<a href="<?php echo base_url(); ?>event/view_sub_event/<?php echo $rows->event_id; ?>" rel="tooltip" title="View of Coordinator List" class="btn btn-xs btn-fill">View</a>
+<a href="<?php echo base_url(); ?>event/view_sub_event/<?php echo $rows->event_id; ?>" rel="tooltip" title="View Coordinators" class="btn btn-xs btn-fill">View</a>
 
                                                <!-- <a rel="tooltip" title="Add " class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">
 											    <i class="fa fa-address-card-o" aria-hidden="true"></i>
                                                 </a> -->
-                                              <a href="<?php echo base_url(); ?>event/edit/<?php echo $rows->event_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                              <a href="<?php echo base_url(); ?>event/edit/<?php echo $rows->event_id; ?>" rel="tooltip" title="Edit Event" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
                                                 </td>
                                           </tr>
                                           <?php $i++;  }  ?>
@@ -159,7 +159,7 @@
 		<!--  <a  style="margin-left: 500px;float: left;"  href="<?php //echo base_url(); ?>event/view_sub_event/<?php //echo $rows->event_id; ?>" rel="tooltip" title="view" class="btn btn-xs btn-fill">view</a>
 		 <form style="width:0px;margin:0px;" method="post" action=""></form> -->
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Coordinator</h4>
+          <h4 class="modal-title">Assign Coordinator</h4>
 
         </div>
         <div class="modal-body">
@@ -169,13 +169,13 @@
                             <div class="content">
                                 <form method="post" action="" class="form-horizontal" enctype="multipart/form-data" id="coordinatorform">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Sub Event Name</label>
+                                        <label class="col-md-3 control-label">Sub Event</label>
                                         <div class="col-md-9">
-                                            <input type="text" id="sub_event_name" name="sub_event_name" value="" placeholder="Sub Event Name" class="form-control">
+                                            <input type="text" id="sub_event_name" name="sub_event_name" value="" placeholder="Sub Event" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Coordinator Name</label>
+                                        <label class="col-md-3 control-label">Coordinator</label>
                                         <div class="col-md-9">
 
 										<select   id="co_name"  data-title="Select Teacher" class="selectpicker" data-style=" btn-block"  data-menu-style="dropdown-blue">
@@ -198,7 +198,7 @@
 										 <select id="status" class="selectpicker form-control" data-title="Select Status"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 
                                                   <option value="Active">Active</option>
-                                                    <option value="Deactive">Deactive</option>
+                                                    <option value="Deactive">Inactive</option>
 
                                               </select>
 											 <input type="hidden" id="event_id"  class="form-control" value="<?php ?>"/>
@@ -269,8 +269,8 @@ function submitContactForm(){
                 if(msg == 'Added Successfully')
 				{
 
-					$('#msg').html(msg);
-          window.setTimeout(function(){location.reload()},2000)
+					$('#msg').html('Coordinator assigned');
+					window.setTimeout(function(){location.reload()},2000)
 					//$('#coordinatorform')[0].reset();
                 }else{
 					 $("#msg").html(msg);
@@ -311,10 +311,10 @@ $(document).ready(function () {
          event_status:{required:true }
      },
      messages: {
-           event_details: "Enter Event Details",
-           event_date: "Select Event Date",
-           event_name: "Enter Event Name",
-           event_status: "Select Status"
+           event_details: "This field cannot be empty!",
+           event_date: "Please choose an option!",
+           event_name: "This field cannot be empty!",
+           event_status: "Please choose an option!"
          }
  });
 });
