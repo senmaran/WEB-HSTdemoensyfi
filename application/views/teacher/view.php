@@ -186,8 +186,8 @@
                        type: "success",
                        showCancelButton: true,
                        confirmButtonColor: '#DD6B55',
-                       confirmButtonText: 'Yes, I am sure!',
-                       cancelButtonText: "No, cancel it!",
+                       confirmButtonText: 'Yes',
+                       cancelButtonText: "No",
                        closeOnConfirm: false,
                        closeOnCancel: false
                    },
