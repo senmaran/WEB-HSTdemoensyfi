@@ -43,10 +43,14 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
+					
+					 <div class="header">
+                            <h4 class="title">Promotions</h4>					
                         <a rel="" href="#myModal" data-id="12" title="Promotion" class="open-AddBookDialog btn btn  edit" data-toggle="modal" data-target="#myModal" style="margin:20px;">
-                    Add Promotion</a>
+                     PROMOTE</a>
+					 </div>
                         <div class="header">
-                            List Of Year
+                           Academic Years
                         </div>
                         <div class="row">
 
@@ -61,7 +65,7 @@
                         </div>
 
                         <div class="header">
-                            Promotion History
+                            Promotion Details
                         </div>
 
                         <div class="content">
@@ -70,12 +74,12 @@
                                 <thead>
                                     <th data-field="id">S.No</th>
                                     <th data-field="Name" data-sortable="true"> Name </th>
-                                    <th data-field="Last_year" data-sortable="true">Last year </th>
-                                    <th data-field="Promoted" data-sortable="true">Promoted year </th>
-                                    <th data-field="Last" data-sortable="true">Last Studied </th>
+                                    <th data-field="Last_year" data-sortable="true"> Year Qualified</th>
+                                    <th data-field="Promoted" data-sortable="true">Year Promoted To</th>
+                                    <th data-field="Last" data-sortable="true">Class Qualified</th>
                                     <th data-field="Result" data-sortable="true">Result </th>
-                                    <th data-field="Promotion" data-sortable="true">Promotion To </th>
-                                    <th data-field="Action" data-sortable="true">Action </th>
+                                    <th data-field="Promotion" data-sortable="true">Class Promoted To</th>
+                                    <th data-field="Action" data-sortable="true">Actions</th>
 
                                 </thead>
                                 <tbody>
@@ -139,13 +143,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Promoting Students</h4>
+                <h4 class="modal-title">Promote Students</h4>
             </div>
             <div class="modal-body">
                 <form action="" method="post" class="form-horizontal" id="promotion_forms">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Current Year</label>
+                            <label class="col-sm-4 control-label">Academic Year</label>
                             <div class="col-sm-6">
                                 <?php  $status=$years['status']; if($status=="success"){
                         foreach($years['all_years'] as $rows){}
@@ -196,7 +200,7 @@
                     </fieldset>
                     <fieldset>
                         <div class="form-group">
-                            <center>List of Students to include </center>
+                            
                             <div class="subject-info-box-1">
                                 <select multiple="multiple" id='lstBox1' class="form-control">
                                     <option value=""></option>
@@ -219,10 +223,10 @@
                         </div>
                         <input type="button" id="select_all" class="pull-right" name="select_all" value="Confirm All"> <br>
                         <div class="form-group">
-                            <label class="col-sm-4" style="margin-top:5px;text-align:right;">Result Status</label>
+                            <label class="col-sm-4" style="margin-top:5px;text-align:right;">Result</label>
                             <div class="col-sm-6">
                                 <select name="result_status" id="status" class="form-control">
-                                    <option value="Promote">Promote</option>
+                                    <option value="Promote">Promoted</option>
                                     <option value="Demoted">Demoted</option>
                                 </select>
                             </div>
@@ -230,15 +234,13 @@
                         <div class="form-group">
                             <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
                             <div class="text-center">
-                                <button type="submit" id="save" class="btn btn-info btn-fill center">Save </button>
+                                <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
                             </div>
                         </div>
                     </fieldset>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+           
         </div>
     </div>
 </div>
@@ -360,13 +362,13 @@ $('#promo1').addClass('active');
         messages: {
             year_id: "Enter Grouping Name",
             next_year_id: {
-                required: "Select year",
+                required: "Please choose an option!",
                 notEqualTo: "Current Year and To Year Cannot be Same"
             },
-            class_master_id_for_last_academic_year: "Select From Class",
-            promotion_class_master_id: "Select To Class",
-            "student_reg_id_for_last_academic_year[]": "Select Student ",
-            status: "select status"
+            class_master_id_for_last_academic_year: "Please choose an option!",
+            promotion_class_master_id: "Please choose an option!",
+            "student_reg_id_for_last_academic_year[]": "Please select atleast one person to move",
+            status: "Please choose an option!"
 
         },
 
@@ -378,8 +380,8 @@ $('#promo1').addClass('active');
                        type: "success",
                        showCancelButton: true,
                        confirmButtonColor: '#DD6B55',
-                       confirmButtonText: 'Yes, I am sure!',
-                       cancelButtonText: "No, cancel it!",
+                       confirmButtonText: 'Yes',
+                       cancelButtonText: "No",
                        closeOnConfirm: false,
                        closeOnCancel: false
                    },
@@ -395,7 +397,7 @@ $('#promo1').addClass('active');
                    $('#promotion_forms')[0].reset();
                    swal({
             title: "Wow!",
-            text: "Message!",
+            text: "Student(s) Promoted",
             type: "success"
         }, function() {
              location.reload();

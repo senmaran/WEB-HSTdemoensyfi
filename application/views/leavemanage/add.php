@@ -27,9 +27,9 @@
                   </fieldset>
                   <fieldset id="leave_years">
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Years</label>
+                        <label class="col-sm-4 control-label">Year</label>
                         <div class="col-sm-4">
-                           <select name="years" id="leave_years1" class="selectpicker form-control" data-title="Years" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                           <select name="years" id="leave_years1" class="selectpicker form-control" data-title="Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="2017">2017</option>
                               <option value="2018">2018</option>
                               <option value="2019">2019</option>
@@ -54,9 +54,9 @@
                   </fieldset>
                   <fieldset id="days">
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Days</label>
+                        <label class="col-sm-4 control-label">Day</label>
                         <div class="col-sm-4">
-                           <select name="days" id="leave_days" class="selectpicker form-control" data-title="Days" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                           <select name="days" id="leave_days" class="selectpicker form-control" data-title="Day" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="Sunday">Sunday</option>
                               <option value="Monday">Monday</option>
                               <option value="Tuesday">Tuesday</option>
@@ -71,9 +71,9 @@
                   </fieldset>
                   <fieldset id="weeks">
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Weeks</label>
+                        <label class="col-sm-4 control-label">Week</label>
                         <div class="col-sm-4">
-                           <select name="weeks" id="leave_weeks" class="selectpicker form-control" data-title="Weeks" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                           <select name="weeks" id="leave_weeks" class="selectpicker form-control" data-title="Week" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -86,18 +86,18 @@
                   </fieldset>
                   <fieldset  id="leaves_date">
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Leave Date</label>
+                        <label class="col-sm-4 control-label">Date</label>
                         <div class="col-sm-4">
-                           <input type="text" name="leave_date" id="leave_date" class="form-control datepicker" placeholder="Leave Date"/>
+                           <input type="text" name="leave_date" id="leave_date" class="form-control datepicker" placeholder="Date"/>
                            <p id="errordates"></p>
                         </div>
                      </div>
                   </fieldset>
                   <fieldset id="leaves_name">
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Leave Name</label>
+                        <label class="col-sm-4 control-label">Title</label>
                         <div class="col-sm-4">
-                           <input type="text" name="leave_name" id="leave_name" class="form-control">
+                           <input type="text" name="leave_name" id="leave_name" class="form-control" placeholder="Title">
                            <p id="errorname"></p>
                         </div>
                      </div>
@@ -114,11 +114,11 @@
                      </fieldset> -->
                   <fieldset id="leave_status">
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Leave Status</label>
+                        <label class="col-sm-4 control-label">Status</label>
                         <div class="col-sm-4">
                            <select name="leave_status" id="leave_status1" class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="Active">Active</option>
-                              <option value="Deactive">De-Active</option>
+                              <option value="Deactive">Inactive</option>
                            </select>
                            <p id="errorstatus"></p>
                         </div>
@@ -204,14 +204,14 @@
 
        },
        messages: {
-             leave_type: "Select Type",
-             years:"Select Years",
-             leave_name:"Enter name",
-             weeks:"Select Weeks",
-             leave_date:"Pick the Date",
-             leave_status:"Select Status",
-             "class_name[]":"Select the Class",
-             days:"Select Days"
+             leave_type: "Please choose an option!",
+             years:"Please choose an option!",
+             leave_name:"This field cannot be empty!",
+             weeks:"Please choose an option!",
+             leave_date:"Please choose an option!",
+             leave_status:"Please choose an option!",
+             "class_name[]":"Please choose an option!",
+             days:"Please choose an option!"
 
            },
          submitHandler: function(form) {
@@ -222,8 +222,8 @@
                          type: "success",
                          showCancelButton: true,
                          confirmButtonColor: '#DD6B55',
-                         confirmButtonText: 'Yes, I am sure!',
-                         cancelButtonText: "No, cancel it!",
+                         confirmButtonText: 'Yes',
+                         cancelButtonText: "No",
                          closeOnConfirm: false,
                          closeOnCancel: false
                      },
@@ -237,7 +237,7 @@
                                             if(data=="success"){
                                               swal({
                                                  title: "Success!",
-                                                 text: "Redirecting in 2 seconds.",
+                                                 text: "Holiday created!.. Redirecting in 2 seconds.",
                                                  type: "success",
                                                  timer: 2000,
                                                  showConfirmButton: false
@@ -248,7 +248,7 @@
                                             else if(data=="special leave already Added for this date"){
                                                sweetAlert("Oops...", data, "error");
                                             }else{
-                                               sweetAlert("Oops...", "Something went wrong!", "error");
+                                               sweetAlert("Oops...", "Oops! Something went wrong. Please try again few minutes later.", "error");
                                             }
                                          }
                                      });

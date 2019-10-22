@@ -329,13 +329,13 @@
                <li id="time">
                   <a data-toggle="collapse" href="#timetablemenu">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/timetable.png"/>
-                     <p>TimeTable</p>
+                     <p>Timetable</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="timetablemenu">
                      <ul class="nav">
-                        <li id="time1"><a href="<?php echo base_url(); ?>timetable/select_term">Create TimeTable</a></li>
-                        <li id="time2"><a href="<?php echo base_url(); ?>timetable/view_term">Manage TimeTable</a></li>
+                        <li id="time1"><a href="<?php echo base_url(); ?>timetable/select_term">Create Timetable</a></li>
+                        <li id="time2"><a href="<?php echo base_url(); ?>timetable/view_term">Manage Timetable</a></li>
                      </ul>
                   </div>
                </li>
@@ -347,9 +347,9 @@
                   </a>
                   <div class="collapse" id="exammenu">
                      <ul class="nav">
-                        <li id="exam1"><a href="<?php echo base_url(); ?>examination/add_exam">Add / View Exams</a></li>
+                        <li id="exam1"><a href="<?php echo base_url(); ?>examination/add_exam">Create/View Exams</a></li>
                         <li id="exam2"><a href="<?php echo base_url(); ?>examination/add_exam_detail">Examination Calendar</a></li>
-                        <li id="exam3"><a href="<?php echo base_url(); ?>examination/exam_name_status">Exam Result Details</a></li>
+                        <li id="exam3"><a href="<?php echo base_url(); ?>examination/exam_name_status">Exam Results</a></li>
                      </ul>
                   </div>
                </li>
@@ -370,12 +370,12 @@
                <li id="grouping">
                   <a data-toggle="collapse" href="#groupingmenu">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/grp.png"/>
-                     <p>Grouping</p>
+                     <p>Group Messages</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="groupingmenu">
                      <ul class="nav">
-                        <li id="group1"><a href="<?php echo base_url(); ?>grouping/home">Create/ View Groups</a></li>
+                        <li id="group1"><a href="<?php echo base_url(); ?>grouping/home">Create/ View Group</a></li>
                         <li id="group2"><a href="<?php echo base_url(); ?>grouping/send">Send Message </a></li>
                      </ul>
                   </div>
@@ -383,12 +383,12 @@
                <li id="promotion">
                   <a data-toggle="collapse" href="#promotionmenu">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/promo.png"/>
-                     <p>Promotion</p>
+                     <p>Promotions</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="promotionmenu">
                      <ul class="nav">
-                        <li id="promo1"><a href="<?php echo base_url(); ?>promotion/home">Promotion</a></li>
+                        <li id="promo1"><a href="<?php echo base_url(); ?>promotion/home">View Promotions</a></li>
                      </ul>
                   </div>
                </li>
@@ -422,7 +422,7 @@
                <li id="rank">
                   <a href="<?php echo base_url(); ?>rank/home">
                    <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/homework&classtest.png"/>
-                     <p>Rank</p>
+                     <p>School Report</p>
                   </a>
 
                </li>

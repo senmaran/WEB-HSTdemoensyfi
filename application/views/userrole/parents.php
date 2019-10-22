@@ -14,7 +14,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="content">
-                              <h4 class="title">List of Parents</h4>
+                              <h4 class="title">List Of Parents</h4>
                                 <div class="fresh-datatables">
 
                             <hr>
@@ -24,8 +24,8 @@
                                   <th data-field="id">S.No</th>
                                   <th data-field="year"  data-sortable="true"> Name</th>
                                   <th data-field="no"  data-sortable="true">Username</th>
-                                   <th data-field="email"  data-sortable="true">Email</th>
-                                  <th data-field="name"  data-sortable="true">Created Date</th>
+                                   <th data-field="email"  data-sortable="true">Email ID</th>
+                                  <th data-field="name"  data-sortable="true">Date Created</th>
                                   <th data-field="status"  data-sortable="true">Status</th>
                                   <th data-field="Section" data-sortable="true">Action</th>
 
@@ -51,7 +51,7 @@
                                         <?php if($rows->status=='Active'){ ?>
                                           <button class="btn btn-success btn-fill btn-wd">Active</button>
                                       <?php  }else{ ?>
-                                        <button class="btn btn-danger btn-fill btn-wd">De-Active</button>
+                                        <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                                       <?php } ?></td>
                                     <td>
 

@@ -206,7 +206,9 @@ function check_add_exam($classid,$examid)
 
 function exam_name_status()
 {
+	$year_id=$this->getYear();
 	//$sql="SELECT * FROM edu_exam_marks_status ";
+	//$sql="SELECT ms.*,ex.exam_id,ex.exam_year,ex.exam_name FROM edu_exam_marks_status AS ms,edu_examination AS ex WHERE ex.exam_year = '$year_id' AND ms.exam_id=ex.exam_id GROUP BY ms.exam_id ORDER BY ex.exam_id";
 	$sql="SELECT ms.*,ex.exam_id,ex.exam_year,ex.exam_name FROM edu_exam_marks_status AS ms,edu_examination AS ex WHERE ms.exam_id=ex.exam_id GROUP BY ms.exam_id ORDER BY ex.exam_id";
 	$res=$this->db->query($sql);
 	$result=$res->result();
@@ -230,7 +232,9 @@ function clsname_examname($exam_id,$cls_masid)
 	foreach($all_year as $cyear){}
 	$current_year=$cyear->year_id; 
 
-	$sql="SELECT ex.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name FROM edu_examination AS ex,edu_classmaster AS cm,edu_class AS c,edu_sections AS s WHERE ex.exam_id='$exam_id' AND exam_year='$current_year' AND cm.class_sec_id='$cls_masid' AND cm.class=c.class_id AND cm.section=s.sec_id";
+	//$sql="SELECT ex.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name FROM edu_examination AS ex,edu_classmaster AS cm,edu_class AS c,edu_sections AS s WHERE ex.exam_id='$exam_id' AND exam_year='$current_year' AND cm.class_sec_id='$cls_masid' AND cm.class=c.class_id AND cm.section=s.sec_id";
+	$sql="SELECT ex.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name FROM edu_examination AS ex,edu_classmaster AS cm,edu_class AS c,edu_sections AS s WHERE ex.exam_id='$exam_id' AND cm.class_sec_id='$cls_masid' AND cm.class=c.class_id AND cm.section=s.sec_id";
+	//exit;
 	$res=$this->db->query($sql);
 	$result=$res->result();
  return $result;

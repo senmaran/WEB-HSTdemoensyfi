@@ -60,25 +60,25 @@
               <div class="header">
                  <legend style="border-bottom:none;padding-bottom:10px;"><?php foreach ($res_group_name as $rows) {
                     } ?> <?php echo $rows->group_title; ?> - Group Members
-                    <a rel="" href="#myModal" data-id="<?php echo $id; ?>" title="Add Memebers" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#myModal"   >
+                    <a rel="" href="#myModal" data-id="<?php echo $id; ?>" title="Add Memebers" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#myModal" style="width:150px;">
                     Add Parents</a>
-                    <a rel="" href="#staffmodal" data-id="<?php echo $id; ?>" title="Add Memebers" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#staffmodal"   >
+                    <a rel="" href="#staffmodal" data-id="<?php echo $id; ?>" title="Add Memebers" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#staffmodal" style="width:150px;">
                     Add Staff</a>
-                    <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button>
+                    <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button>
                  </legend>
               </div>
                 </div>
                <div class="col-md-6">
                   <div class="card">
                      <div class="content">
-                         <p class="heading">List Of Student</p>
+                         <p class="heading">List of Parents</p>
                         <div class="fresh-datatables1">
                            <table id="example1" class="table">
                               <thead>
                                  <th data-field="id">S.No</th>
                                  <th data-field="year"  data-sortable="true"> Name </th>
                                  <th data-field="no"  data-sortable="true">Class </th>
-                                 <th data-field="Section" data-sortable="true">Action</th>
+                                 <th data-field="Section" data-sortable="true">Actions</th>
                               </thead>
                               <tbody>
                                  <?php
@@ -114,7 +114,7 @@
                                  <th data-field="id">S.No</th>
                                  <th data-field="year"  data-sortable="true"> Name </th>
                                  <th data-field="no"  data-sortable="true">Class </th>
-                                 <th data-field="Section" data-sortable="true">Action</th>
+                                 <th data-field="Section" data-sortable="true">Actions</th>
                               </thead>
                               <tbody>
                                  <?php
@@ -146,13 +146,13 @@
                      <div class="modal-content">
                         <div class="modal-header">
                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                           <h4 class="modal-title">Add Members To Group</h4>
+                           <h4 class="modal-title">Add Parents</h4>
                         </div>
                         <div class="modal-body">
                            <form action="" method="post" class="form-horizontal" id="members_adding_form">
                               <fieldset>
                                  <div class="form-group">
-                                    <label class="col-sm-4 control-label">Select Class </label>
+                                    <label class="col-sm-4 control-label">Class </label>
                                     <div class="col-sm-6">
                                        <select  name="class_master_id" id="class_master_id"    data-title="Select Class" class="selectpicker" data-style=" btn-block" data-menu-style="dropdown-blue" onchange="get_student_list()">
                                           <?php foreach($res_class as $rows){ ?>
@@ -164,7 +164,7 @@
                                     </div>
                                  </div>
                                  <div class="form-group">
-                                    <center>List of Students to include </center>
+                                    <center>Parents</center>
                                     <div class="subject-info-box-1">
                                        <select multiple="multiple" id='lstBox1' class="form-control">
                                           <option value=""></option>
@@ -183,26 +183,24 @@
                                  </div>
                                  <input type="button" id="select_all" class="pull-right" name="select_all" value="Select All">
                                  <div class="form-group">
-                                    <label class="col-sm-4 control-label">Select Status</label>
+                                    <label class="col-sm-4 control-label">Status</label>
                                     <div class="col-sm-6">
                                        <select   name="status" id="status" class="form-control">
                                           <option value="Active">Active</option>
-                                          <option value="Deactive">Deactive</option>
+                                          <option value="Deactive">Inactive</option>
                                        </select>
                                     </div>
                                  </div>
                                  <div class="form-group">
                                     <label class="col-sm-4 control-label">&nbsp;</label>
                                     <div class="col-sm-6">
-                                       <button type="submit" id="save" class="btn btn-info btn-fill center">Save </button>
+                                       <button type="submit" id="save" class="btn btn-info btn-fill center">ADD </button>
                                     </div>
                                  </div>
                               </fieldset>
                            </form>
                         </div>
-                        <div class="modal-footer">
-                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
+                      
                      </div>
                   </div>
                </div>
@@ -212,13 +210,13 @@
                      <div class="modal-content">
                         <div class="modal-header">
                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                           <h4 class="modal-title">Add Staff To Group</h4>
+                           <h4 class="modal-title">Add Staff</h4>
                         </div>
                         <div class="modal-body">
                            <form action="" method="post" class="form-horizontal" id="adding_staff_form">
                               <fieldset>
                                  <div class="form-group">
-                                    <label class="col-sm-4 control-label">Select Role </label>
+                                    <label class="col-sm-4 control-label">Role </label>
                                     <div class="col-sm-6">
                                        <select  name="role_id" id="staff_role_id"    data-title="Select Role" class="selectpicker" data-style=" btn-block" data-menu-style="dropdown-blue" onchange="get_staff_list()">
                                           <?php foreach($res_role as $rows_role){ ?>
@@ -229,7 +227,7 @@
                                     </div>
                                  </div>
                                  <div class="form-group">
-                                    <center>List of Staff to include </center>
+                                    <center>Staffs</center>
                                     <div class="subject-info-box-1">
                                        <select multiple="multiple" id='lstBox12' class="form-control">
                                           <option value=""></option>
@@ -252,22 +250,20 @@
                                     <div class="col-sm-6">
                                        <select   name="status" id="status" class="form-control">
                                           <option value="Active">Active</option>
-                                          <option value="Deactive">Deactive</option>
+                                          <option value="Deactive">Inactive</option>
                                        </select>
                                     </div>
                                  </div>
                                  <div class="form-group">
                                     <label class="col-sm-4 control-label">&nbsp;</label>
                                     <div class="col-sm-6">
-                                       <button type="submit" id="save" class="btn btn-info btn-fill center">Save </button>
+                                       <button type="submit" id="save" class="btn btn-info btn-fill center">ADD </button>
                                     </div>
                                  </div>
                               </fieldset>
                            </form>
                         </div>
-                        <div class="modal-footer">
-                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
+                       
                      </div>
                   </div>
                </div>
@@ -288,12 +284,12 @@ $('#group1').addClass('active');
      var del_id=delete_id;
                 swal({
                             title: "Are you sure?",
-                            text: "You Want confirm  this form",
+                            text: "Remove from the group?",
                             type: "success",
                             showCancelButton: true,
                             confirmButtonColor: '#DD6B55',
-                            confirmButtonText: 'Yes, I am sure!',
-                            cancelButtonText: "No, cancel it!",
+                            confirmButtonText: 'Yes',
+                            cancelButtonText: "No",
                             closeOnConfirm: false,
                             closeOnCancel: false
                         },
@@ -502,14 +498,14 @@ $('#group1').addClass('active');
 
       $('#members_adding_form').validate({ // initialize the plugin
         rules: {
-            class_master_id:{required:true },
+            role_id:{required:true },
             "members_id[]":{required:true },
             status:{required:true},
 
         },
         messages: {
-              class_master_id: "Select class",
-              "members_id[]":"Select members",
+              role_id: "Select Role",
+              "members_id[]":"Please select atleast one person to move",
               status:"Select Status"
 
             },
@@ -522,8 +518,8 @@ $('#group1').addClass('active');
                           type: "success",
                           showCancelButton: true,
                           confirmButtonColor: '#DD6B55',
-                          confirmButtonText: 'Yes, I am sure!',
-                          cancelButtonText: "No, cancel it!",
+                          confirmButtonText: 'Yes',
+                          cancelButtonText: "No",
                           closeOnConfirm: false,
                           closeOnCancel: false
                       },
@@ -566,7 +562,7 @@ $('#group1').addClass('active');
         },
         messages: {
               class_master_id: "Select class",
-              "members_id[]":"Select members",
+              "members_id[]":"Please select atleast one person to move",
               status:"Select Status"
 
             },
@@ -579,8 +575,8 @@ $('#group1').addClass('active');
                           type: "success",
                           showCancelButton: true,
                           confirmButtonColor: '#DD6B55',
-                          confirmButtonText: 'Yes, I am sure!',
-                          cancelButtonText: "No, cancel it!",
+                          confirmButtonText: 'Yes',
+                          cancelButtonText: "No",
                           closeOnConfirm: false,
                           closeOnCancel: false
                       },

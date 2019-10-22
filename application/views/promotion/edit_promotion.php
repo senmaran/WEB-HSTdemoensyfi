@@ -45,7 +45,7 @@
                     <div class="card">
 
                         <div class="header">
-                            Edit Promotion History
+                            Edit Promotion
                         </div>
                         <?php foreach ($res_pro as $rows_res) {
 
@@ -54,7 +54,7 @@
                                 <form method="post" action="" class="form-horizontal" name="edit_promotion_forms" enctype="multipart/form-data" id="edit_promotion_forms">
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Current Year</label>
+                                            <label class="col-sm-3 control-label">Year Qualified</label>
                                             <div class="col-sm-6">
                                                 <input type="hidden" name="current_year_id" id="current_year_id" class="form-control" value="<?php  echo $rows_res->current_academic_year_id; ?>" readonly="">
                                                 <input type="hidden" name="student_admission_id" id="student_admission_id" class="form-control" value="<?php  echo $rows_res->student_admission_id; ?>" readonly="">
@@ -64,10 +64,9 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Promoted Year</label>
+                                            <label class="col-sm-3 control-label">Year Promoted To</label>
                                             <div class="col-sm-6">
                                                 <select name="next_year_id" id="next_year_id" class="form-control">
-                                                    <option value="">Select Year</option>
                                                     <?php foreach($res_year as $years)  {?>
                                                         <option value="<?php echo $years->year_id ?>">
                                                             <?php echo date('Y', strtotime($years->from_month));  echo "-"; echo date('Y', strtotime( $years->to_month));  ?>
@@ -83,7 +82,7 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Name</label>
+                                            <label class="col-sm-3 control-label">Name</label>
                                             <div class="col-sm-6">
                                                 <input type="text" name="name" class="form-control" value="<?php echo $rows_res->name; ?>" readonly="">
                                                 <input type="hidden" name="id" class="form-control" value="<?php echo $rows_res->id; ?>" readonly="">
@@ -92,7 +91,7 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Current Studying</label>
+                                            <label class="col-sm-3 control-label">Class Qualified</label>
                                             <div class="col-sm-6">
                                                 <input type="text" name="name" class="form-control" value="<?php echo $rows_res->last_class; ?>-<?php echo $rows_res->last_sec; ?>" readonly="">
                                             </div>
@@ -100,7 +99,7 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Promoted To </label>
+                                            <label class="col-sm-3 control-label">Class Promoted To</label>
                                             <div class="col-sm-6">
                                                 <select name="promotion_class_master_id" id="promotion_class_master_id" class="selectpicker" data-style=" btn-block" data-menu-style="dropdown-blue">
                                                     <?php foreach($res_class_all as $rows){ ?>
@@ -119,10 +118,10 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Result Status </label>
+                                            <label class="col-sm-3 control-label">Result</label>
                                             <div class="col-sm-6">
                                                 <select name="result_status" id="result_status" class="form-control">
-                                                    <option value="Promote">Promote</option>
+                                                    <option value="Promote">Promoted</option>
                                                     <option value="Demoted">Demoted</option>
                                                 </select>
                                                 <script language="JavaScript">
@@ -134,10 +133,10 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label"> </label>
+                                            <label class="col-sm-3 control-label"> </label>
                                             <div class="col-sm-6">
 
-                                                <input type="submit" name="name" class="form-control btn-info btn-fill" value="Save">
+                                                <input type="submit" name="name" class="form-control btn-info btn-fill" value="SAVE">
                                             </div>
                                         </div>
                                     </fieldset>
@@ -197,8 +196,8 @@
                        type: "success",
                        showCancelButton: true,
                        confirmButtonColor: '#DD6B55',
-                       confirmButtonText: 'Yes, I am sure!',
-                       cancelButtonText: "No, cancel it!",
+                       confirmButtonText: 'Yes',
+                       cancelButtonText: "No",
                        closeOnConfirm: false,
                        closeOnCancel: false
                    },
@@ -214,7 +213,7 @@
                    $('#edit_promotion_forms')[0].reset();
                    swal({
             title: "Wow!",
-            text: "Message!",
+            text: "Changes made are saved",
             type: "success"
         }, function() {
            window.location.href = "<?php echo base_url(); ?>promotion/home";

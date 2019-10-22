@@ -85,7 +85,7 @@
 
                                     <div class="content">
 
-                                      <h4 class="title">List of Events</h4> <br>
+                                      <h4 class="title">List Events</h4> <br>
 
 
                                         <div class="fresh-datatables">
@@ -100,7 +100,7 @@
                                         <!-- <th data-field="name" class="text-center" data-sortable="true">Event -Details</th> -->
 
                                         <th data-field="status"  data-sortable="true">Status</th>
-                                        <th data-field="Section" data-sortable="true">Action</th>
+                                        <th data-field="Section" data-sortable="true">Actions</th>
 
 
                                       </thead>
@@ -164,7 +164,7 @@
         </div>
         <div class="modal-body">
 
-                        <p id="msg" style="text-align:center;"></p>
+								<p id="msg" style="text-align:center;"></p>
 
                             <div class="content">
                                 <form method="post" action="" class="form-horizontal" enctype="multipart/form-data" id="coordinatorform">
@@ -269,7 +269,7 @@ function submitContactForm(){
                 if(msg == 'Added Successfully')
 				{
 
-					$('#msg').html('Coordinator assigned');
+					$('#msg').html('<span style="color:green;text-align:center;">Coordinator assigned</span>');
 					window.setTimeout(function(){location.reload()},2000)
 					//$('#coordinatorform')[0].reset();
                 }else{

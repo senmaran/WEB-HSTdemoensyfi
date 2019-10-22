@@ -5,7 +5,7 @@
 
                         <div class="card">
                             <div class="header">
-                                <legend>Edit Special Leave  </legend>
+                                <legend>Edit Special Holiday</legend>
 
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
@@ -68,7 +68,7 @@
 
                                     <fieldset  id="leaves_date">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Leave Date</label>
+                                            <label class="col-sm-2 control-label">Date</label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="leave_date" class="form-control datepicker" placeholder="Leave Date" value="<?php echo $rows->leave_date; ?>"/>
 
@@ -78,7 +78,7 @@
                                     </fieldset>
                                     <fieldset id="leaves_name">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Leave Name</label>
+                                            <label class="col-sm-2 control-label">Title</label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="leave_name" class="form-control" value="<?php echo $rows->leaves_name; ?>">
 
@@ -90,11 +90,11 @@
 
                                     <fieldset id="leave_status1">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Leave Status</label>
+                                            <label class="col-sm-2 control-label">Status</label>
                                             <div class="col-sm-4">
                                               <select name="leave_status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="Active">Active</option>
-                                                <option value="Deactive">De-Active</option>
+                                                <option value="Deactive">Inactive</option>
 
                                               </select>
                                    <script language="JavaScript">document.specialleaveform.leave_status.value="<?php echo $rows->status; ?>";</script>
@@ -110,7 +110,7 @@
                                             <label class="col-sm-2 control-label">&nbsp;</label>
                                             <div class="col-sm-10">
                                                <!-- <input type="button" id="more" value="Add more" /> -->
-                                                   <button type="submit" class="btn btn-info btn-fill center">Save </button>
+                                                   <button type="submit" class="btn btn-info btn-fill center">SAVE</button>
                                             </div>
 
                                         </div>
@@ -140,10 +140,10 @@ $(document).ready(function () {
 		 "class_name[]":{required:true }
      },
      messages: {
-           leave_date: "Select Leave Date",
+           leave_date: "This field cannot be empty!",
            leave_type: "Select Leave Type",
            leave_status: "Select Status",
-           leave_name: "Enter Leave Name",
+           leave_name: "This field cannot be empty!",
 		   "class_name[]":"Select Classes"
          }
  });

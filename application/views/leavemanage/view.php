@@ -20,9 +20,9 @@
                     <th data-field="id">S.No</th>
                     <th data-field="year">Year</th>
                     <th data-field="no">Day</th>
-                    <th data-field="name">On week</th>
+                    <th data-field="name">week</th>
                     <th data-field="status">Status</th>
-                    <th data-field="Section">Action</th>
+                    <th data-field="Section">Actions</th>
               </thead>
               <tbody>
                 <?php
@@ -39,7 +39,7 @@
                       <td><?php  if($rows->status=='Active'){ ?>
                         <button class="btn btn-success btn-fill btn-wd">Active</button>
                     <?php  }else{  ?>
-                      <button class="btn btn-danger btn-fill btn-wd">De-Active</button>
+                      <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                     <?php  } ?></td>
                     <td>
                       <!-- <a rel="tooltip" title="View" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)"><i class="fa fa-image"></i>
@@ -67,11 +67,11 @@
           <table id="bootstrap-table1" class="table">
               <thead>
                     <th data-field="id">S.No</th>
-                    <th data-field="year">Leave Type</th>
-                    <th data-field="no">Leave Date</th>
-                    <th data-field="name">Leave Name</th>
+
+                    <th data-field="no">Date</th>
+                    <th data-field="name">Title</th>
                     <th data-field="status">Status</th>
-                    <th data-field="Section">Action</th>
+                    <th data-field="Section">Actions</th>
               </thead>
               <tbody>
                 <?php
@@ -82,14 +82,14 @@
                 ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                      <td><?php echo $rows->leave_type; ?></td>
+                     
                       <td><?php $date=date_create($rows->leave_date);
                       echo date_format($date,"d-m-Y");  ?></td>
                         <td><?php echo $rows->leaves_name; ?></td>
                         <td><?php  if($rows->status=='Active'){ ?>
                           <button class="btn btn-success btn-fill btn-wd">Active</button>
                       <?php  }else{  ?>
-                        <button class="btn btn-danger btn-fill btn-wd">De-Active</button>
+                        <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                       <?php  } ?></td>
                     <td>
 
@@ -111,12 +111,12 @@
 function deleteLeaves(id){
   swal({
               title: "Are you sure?",
-              text: "You Want to Delete the this Date",
+              text: "You wnt to delete this date",
               type: "warning",
               showCancelButton: true,
               confirmButtonColor: '#DD6B55',
-              confirmButtonText: 'Yes, I am sure!',
-              cancelButtonText: "No, cancel it!",
+              confirmButtonText: 'Yes',
+              cancelButtonText: "No",
               closeOnConfirm: false,
               closeOnCancel: false
           },
@@ -129,7 +129,7 @@ function deleteLeaves(id){
                          success: function(data){
                            //alert(data)
                          if(data=='success'){
-                           swal({title: "Good job", text: "Deleted Successfully!", type: "success"},
+                           swal({title: "Done", text: "Deleted Successfully!", type: "success"},
                               function(){
                                   location.reload();
                               }
@@ -150,12 +150,12 @@ function deleteLeaves(id){
 function functionSpecial(id){
   swal({
               title: "Are you sure?",
-              text: "You Want to Delete the this Date",
+              text: "You want to delete this date",
               type: "warning",
               showCancelButton: true,
               confirmButtonColor: '#DD6B55',
-              confirmButtonText: 'Yes, I am sure!',
-              cancelButtonText: "No, cancel it!",
+              confirmButtonText: 'Yes',
+              cancelButtonText: "No",
               closeOnConfirm: false,
               closeOnCancel: false
           },
@@ -168,7 +168,7 @@ function functionSpecial(id){
                          success: function(data){
                            //alert(data)
                          if(data=='success'){
-                           swal({title: "Good job", text: "Deleted Successfully!", type: "success"},
+                           swal({title: "Done", text: "Deleted Successfully!", type: "success"},
                               function(){
                                   location.reload();
                               }

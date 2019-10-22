@@ -13,7 +13,7 @@
                      <form method="post" action="<?php echo base_url(); ?>examination/create" class="form-horizontal" enctype="multipart/form-data" id="myformsection">
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Exam Year</label>
+                              <label class="col-sm-2 control-label">Academic year</label>
                               <div class="col-sm-6">
                                  <select name="exam_year" required class="selectpicker" data-title="Select From & To Year" data-menu-style="dropdown-blue">
                                     <?php
@@ -68,7 +68,7 @@
                               <div class="col-sm-6">
                                  <select name="status"  class="selectpicker form-control">
                                     <option value="Active">Active</option>
-                                    <option value="Deactive">DeActive</option>
+                                    <option value="Deactive">Inactive</option>
                                  </select>
                               </div>
                            </div>
@@ -77,7 +77,7 @@
                            <div class="form-group">
                               <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                               <div class="text-center">
-                                 <button type="submit" id="save" class="btn btn-info btn-fill center">Save</button>
+                                 <button type="submit" id="save" class="btn btn-info btn-fill center">CREATE</button>
                               </div>
                            </div>
                         </fieldset>
@@ -99,12 +99,12 @@
                <div class="col-md-12">
                   <div class="card">
                      <div class="content">
-                       <h4 class="title">List of Examination</h4><br>
+                       <h4 class="title">List of Examinations</h4><br>
                         <div class="fresh-datatables">
                            <table id="bootstrap-table" class="table">
                               <thead>
                                  <th>S.no</th>
-                                 <th>Exam Year</th>
+                                 <th>Academic Year</th>
                                  <th>Exam Name</th>
 								 <th>Grade Option</th>
                                  <th>Status</th>
@@ -134,7 +134,7 @@
                                     <td><?php if($status=='Active'){?>
                                        <button class="btn btn-success btn-fill btn-wd">Active</button>
                                        <?php }else{?>
-                                       <button class="btn btn-danger btn-fill btn-wd">Deactive</button>
+                                       <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                                        <?php }
                                           //echo $rows->status;?>
                                     </td>
@@ -171,12 +171,8 @@
 
         },
         messages: {
-
-
-              exam_year: "Please Select Year",
-                 exam_name: "Please Enter Exam name"
-
-
+              exam_year: "Please choose an option!",
+              exam_name: "This field cannot be empty!"
             }
     });
    });

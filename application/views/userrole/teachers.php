@@ -14,7 +14,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="content">
-                              <h4 class="title">List of staff</h4> <hr>
+                              <h4 class="title">List Of Teachers</h4> <hr>
                                 <div class="fresh-datatables">
                       
 
@@ -22,10 +22,10 @@
                               <thead>
 
                                   <th>S.No</th>
-                                  <th> Name</th>
+                                  <th>Name</th>
                                   <th>Username</th>
-                                  <th>Email</th>
-                                  <th>Created Date</th>
+                                  <th>Email ID</th>
+                                  <th>Date Created</th>
 								  <th>Status</th>
 								  <th>Action</th>
 
@@ -49,7 +49,7 @@
                                         <?php if($rows->status=='Active'){ ?>
                                           <button class="btn btn-success btn-fill btn-wd">Active</button>
                                       <?php  }else{ ?>
-                                        <button class="btn btn-danger btn-fill btn-wd">DeActive</button>
+                                        <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                                       <?php } ?></td>
                                     <td>
 

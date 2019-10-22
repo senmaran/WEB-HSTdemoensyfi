@@ -28,7 +28,7 @@
                               <label class="col-sm-2 control-label">Exam</label>
                               <div class="col-sm-4">
                                  <input type="hidden" name="admit_date" class="form-control datepicker" placeholder="Enrollment Date"/>
-                                 <select name="exam_year" required id="exam_year" onchange="checksubject(this.value)" class="selectpicker" data-title="Select Exam Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                 <select name="exam_year" required id="exam_year" onchange="checksubject(this.value)" class="selectpicker" data-title="Academic year/Exam" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                     <?php foreach ($year as $sect)
                                        {
                                        $fyear=$sect->from_month;
@@ -93,7 +93,7 @@
                               <div class="col-sm-4">
                                  <select name="status"  class="selectpicker form-control">
                                     <option value="Active">Active</option>
-                                    <option value="Deactive">DeActive</option>
+                                    <option value="Deactive">Inactive</option>
                                  </select>
                               </div>
 
@@ -104,7 +104,7 @@
                            <div class="form-group">
                              <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                              <div class="text-center">
-                                <input type="submit" id="save" class="btn btn-info btn-fill center" value="Save">
+                                <input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
                              </div>
                            </div>
                          </fieldset>
@@ -126,16 +126,19 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="card">
+				  <div class="header">
+                     <h4 class="title">Examinations</h4>
+                  </div>
                      <div class="content">
                         <div class="fresh-datatables">
            <table id="bootstrap-table" class="table">
               <thead>
-                 <th data-field="id">ID</th>
-                 <th data-field="exam_year"  data-sortable="true">Exam Year</th>
-                 <th data-field="exam_name"  data-sortable="true">Exam Name</th>
+                 <th data-field="id">S. No</th>
+                 <th data-field="exam_year"  data-sortable="true">Year</th>
+                 <th data-field="exam_name"  data-sortable="true">Exam </th>
                  <th data-field="class_section"  data-sortable="true">Class/Section</th>
                  <th data-field="Status"  data-sortable="true">Status</th>
-                 <th>Action</th>
+                 <th>Actions</th>
               </thead>
               <tbody>
                  <?php
@@ -170,12 +173,12 @@
                           if($sta=='Active'){?>
                        <button class="btn btn-success btn-fill btn-wd">Active</button>
                        <?php  }else{?>
-                       <button class="btn btn-danger btn-fill btn-wd">De Active</button>
+                       <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                        <?php } ?>
                     </td>
                     <td>
                        <!--a href="<?php echo base_url(); ?>examination/edit_exam_details/<?php echo $rows->exam_detail_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a-->
-                       <a href="<?php echo base_url(); ?>examination/view_exam_details/<?php echo $rows->exam_id; ?>/<?php echo $rows->classmaster_id; ?>" rel="tooltip" title="View All Exam Details" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-th"></i></a>
+                       <a href="<?php echo base_url(); ?>examination/view_exam_details/<?php echo $rows->exam_id; ?>/<?php echo $rows->classmaster_id; ?>" rel="tooltip" title="View Exam Details" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-th"></i></a>
                     </td>
                  </tr>
                  <?php $i++;  }

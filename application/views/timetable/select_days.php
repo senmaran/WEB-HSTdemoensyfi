@@ -73,9 +73,9 @@
    <div class="col-md-12">
       <div class="card">
          <div class="header">
-            <legend><h4 class="title">Add Time table for <?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name;  ?></h4>  </legend>
-              <center><input type="button" class="btn btn-wd btn-default" value="Refresh Page" onClick="window.location.reload()"></center>
-              <span><button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-40px;">Go Back</button></span>
+            <legend><h4 class="title">Create Timetable for  <?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name;  ?></h4>  </legend>
+              <center><input type="button" class="btn btn-wd btn-default" value="Refresh" onClick="window.location.reload()"></center>
+              <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-40px;">Back</button>
 
 
          </div>
@@ -96,7 +96,7 @@
     </div>
     <div class="card">
        <div class="header">
-          <legend><h4 class="modal-title">Time table for <?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name;  ?></h4></legend>
+          <legend><h4 class="modal-title"><?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name;  ?> Timetable</h4></legend>
        </div>
        <div class="content">
           <div class="row">
@@ -360,13 +360,13 @@
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">ADD Periods for <?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name;  ?></h4>
+            <h4 class="modal-title">Create Period for <?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name;  ?></h4>
          </div>
          <div class="modal-body">
             <form action="" method="post" class="form-horizontal" id="add_periods">
               <fieldset>
               <div class="form-group">
-                 <label class="col-sm-4 control-label">Current Year</label>
+                 <label class="col-sm-4 control-label">Academic Year</label>
                  <div class="col-sm-6">
                     <?php  $status=$years['status']; if($status=="success"){
                        foreach($years['all_years'] as $rows){}
@@ -389,13 +389,13 @@
 
                   <div class="form-group">
                       <input type="checkbox" class="" id="break_id"  name="is_break" value="1">Break
-                     <label class="col-sm-4 control-label">From time </label>
+                     <label class="col-sm-4 control-label">Starting Time</label>
                      <div class="col-sm-6 clockpicker">
                        <input type="text" class="form-control"  name="from_time" id="from_time"  placeholder="From Time" required>
                      </div>
                   </div>
                   <div class="form-group" >
-                     <label class="col-sm-4 control-label">To Time</label>
+                     <label class="col-sm-4 control-label">Ending Time</label>
                      <div class="col-sm-6 clockpicker">
                        <input type="text" class="form-control"  name="to_time" id="to_time"  placeholder="To Time" required>
                      </div>
@@ -407,10 +407,10 @@
                      </div>
                   </div>
                   <div class="form-group" id="subject_id_tab">
-                     <label class="col-sm-4 control-label">Select Subject </label>
+                     <label class="col-sm-4 control-label">Subject </label>
                      <div class="col-sm-6 clockpicker">
                       <select id="subject_id" name="subject_id" class="subject_id ">
-                         <option value="">--Select Subject--</option>
+                         <option value="">Subject</option>
                         <?php foreach($res_subject['res'] as $row_subject){ ?>
                           <option value="<?php echo $row_subject->subject_id; ?>"><?php echo $row_subject->subject_name; ?></option>
                        <?php } ?>
@@ -421,7 +421,7 @@
                      <label class="col-sm-4 control-label">Teacher  </label>
                      <div class="col-sm-6 clockpicker">
                          <select id="teacher_id" name="teacher_id" class="subject_id ">
-                           <option value="">--Select Teacher--</option>
+                           <option value="">Teacher</option>
                            <?php foreach($res_teacher['res'] as $row_teacher){ ?>
                              <option value="<?php echo $row_teacher->teacher_id; ?>"><?php echo $row_teacher->name; ?></option>
                           <?php } ?>
@@ -435,15 +435,13 @@
                   <div class="form-group">
                      <label class="col-sm-4 control-label">&nbsp;</label>
                      <div class="col-sm-6">
-                        <button type="submit" id="save" class="btn btn-info btn-fill center">Add Another Period </button>
+                        <button type="submit" id="save" class="btn btn-info btn-fill center">CREATE</button>
                      </div>
                   </div>
                </fieldset>
             </form>
          </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         </div>
+        
       </div>
    </div>
 </div>
@@ -547,11 +545,11 @@ $(document).ready(function() {
 
          },
          messages: {
-               from_time:"Select From Time",
-               to_time:"Select to time",
-               break_name:"Enter the Break name",
-               subject_id:"Select Subject",
-               teacher_id:"Select Teacher",
+               from_time:"Please choose an option!",
+               to_time:"Please choose an option!",
+               break_name:"This field cannot be empty!",
+               subject_id:"Please choose an option!",
+               teacher_id:"Please choose an option!",
              },
 
        submitHandler: function(form) {

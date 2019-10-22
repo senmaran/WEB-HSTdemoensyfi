@@ -62,7 +62,7 @@
                                  <th>Blood Group</th>
                                  <th>Gender</th>
                                  <th>Status</th>
-                                 <th>Action</th>
+                                 <th>Actions</th>
                               </thead>
                               <tbody>
                                  <?php

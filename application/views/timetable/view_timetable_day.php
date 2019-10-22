@@ -27,10 +27,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <legend>Time Table- view   <?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name;  ?> <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </legend>
+                        <legend><?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name;  ?> Timetable <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Back</button> </legend>
 
                     </div>
-                    <center><a onclick="delte_time_table(<?php echo base64_decode($this->uri->segment(3))/9876; ?>,<?php echo base64_decode($this->uri->segment(4))/9876; ?>,<?php echo base64_decode($this->uri->segment(5)); ?>)" class=" btn btn-primary">Delete  All Periods Here</a></center>
+                    <center><a onclick="delte_time_table(<?php echo base64_decode($this->uri->segment(3))/9876; ?>,<?php echo base64_decode($this->uri->segment(4))/9876; ?>,<?php echo base64_decode($this->uri->segment(5)); ?>)" class=" btn btn-primary">Delete All Periods</a></center>
                     <div class="content">
                         <div class="row">
                             <div class="col-md-12">
@@ -38,9 +38,9 @@
                                     <thead>
 
                                         <th data-field="id" class="text-center">S.No</th>
-                                        <th data-field="name" class="text-center" data-sortable="true">From time - To time</th>
-                                        <th data-field="name" class="text-center" data-sortable="true">Subject Name</th>
-                                        <th data-field="name" class="text-center" data-sortable="true">Teacher Name</th>
+                                        <th data-field="name" class="text-center" data-sortable="true">Timings</th>
+                                        <th data-field="name" class="text-center" data-sortable="true">Subject</th>
+                                        <th data-field="name" class="text-center" data-sortable="true">Teacher</th>
                                         <th data-field="actions" class="td-actions text-center" data-events="operateEvents">Actions</th>
                                     </thead>
                                     <tbody>

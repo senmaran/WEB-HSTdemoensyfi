@@ -33,7 +33,7 @@
                                  <th data-field="mobile" class="text-left" data-sortable="true">Mobile</th>
                                  <th data-field="class" class="text-left" data-sortable="true">Class Teacher For</th>
                                  <th data-field="status" class="text-left" data-sortable="true">Status</th>
-                                 <th data-field="Section" class="text-left" data-sortable="true">Action</th>
+                                 <th data-field="Section" class="text-left" data-sortable="true">Actions</th>
                               </thead>
                               <tbody>
                                  <?php

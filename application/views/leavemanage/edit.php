@@ -5,7 +5,7 @@
 
                         <div class="card">
                             <div class="header">
-                                <legend>Edit Regular Leave</legend>
+                                <legend>Edit Regular Holiday</legend>
 
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
@@ -36,7 +36,7 @@
 
                                   <fieldset id="">
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">Years</label>
+                                          <label class="col-sm-2 control-label">Year</label>
                                           <div class="col-sm-4">
                                             <select name="years" id="years" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="2017">2017</option>
@@ -89,7 +89,7 @@
 
                                   <fieldset id="">
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">Days</label>
+                                          <label class="col-sm-2 control-label">Day</label>
                                           <div class="col-sm-4">
                                             <select name="days" id="days" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="Sunday">Sunday</option>
@@ -106,7 +106,7 @@
                                   </fieldset>
                                   <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">Weeks</label>
+                                          <label class="col-sm-2 control-label">Week</label>
                                           <div class="col-sm-4">
                                             <select name="weeks" id="weeks" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="1">1</option>
@@ -124,11 +124,11 @@
 
                                     <fieldset id="">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Leave Status</label>
+                                            <label class="col-sm-2 control-label">Status</label>
                                             <div class="col-sm-4">
                                               <select name="leave_status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="Active">Active</option>
-                                                <option value="Deactive">De-Active</option>
+                                                <option value="Deactive">Inactive</option>
 
                                               </select>
                                               <script language="JavaScript">document.leaveform.leave_status.value="<?php echo $rows->status; ?>";</script>
@@ -144,7 +144,7 @@
                                             <label class="col-sm-2 control-label">&nbsp;</label>
                                             <div class="col-sm-10">
                                                <!-- <input type="button" id="more" value="Add more" /> -->
-                                                   <button type="submit" class="btn btn-info btn-fill center">Update </button>
+                                                   <button type="submit" class="btn btn-info btn-fill center">SAVE</button>
                                             </div>
 
                                         </div>

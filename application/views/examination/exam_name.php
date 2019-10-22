@@ -5,7 +5,8 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Exam Name</h4>
+                     <h4 class="title">Select Examination</h4>
+
                   </div>
                   <div class="content">
                      <div class="row">

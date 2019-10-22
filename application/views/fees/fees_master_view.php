@@ -30,7 +30,7 @@
                                 <th data-field="date_to" class="text-left" data-sortable="true">Due Date</th>
                                  <!-- <th data-field="notes" class="text-left" data-sortable="true">Notes</th> -->
                                 <th data-field="status" class="text-left" data-sortable="true">Status</th>
-								<th data-field="Section" class="text-left" data-sortable="true">Action</th>
+								<th data-field="Section" class="text-left" data-sortable="true">Actions</th>
 
 
                               </thead>

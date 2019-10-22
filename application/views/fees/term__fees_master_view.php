@@ -29,7 +29,7 @@
                                 <th data-field="date_to"  data-sortable="true">Due Date</th>
                                 <!-- <th data-field="notes"  data-sortable="true">Notes</th> -->
                                 <th data-field="status"  data-sortable="true">Status</th>
-								<th data-field="Section"  data-sortable="true">Action</th>
+								<th data-field="Section"  data-sortable="true">Actions</th>
                               </thead>
                               <tbody>
                                 <?php

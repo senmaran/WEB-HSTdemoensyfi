@@ -22,7 +22,7 @@
    <div class="col-md-12">
       <div class="card">
          <div class="header">
-            <legend>Time Table</legend>
+            <legend>Select Academic Term</legend>
          </div>
          <div class="content">
             <div class="row">

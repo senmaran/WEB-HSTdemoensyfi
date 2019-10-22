@@ -11,14 +11,14 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title"> Rank System</h4>
+                     <h4 class="title">Student Mark Report</h4>
                   </div>
                   <div class="content">
                   <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>rank/get_all_rank" enctype="multipart/form-data" id="rankform" name="rankform">
                            <div class="form-group">
                               <label class="col-sm-2 control-label"> YEAR</label>
                               <div class="col-sm-4">
-                                 <select name="year_id"  required class="selectpicker" data-title="Select From & To Year " data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                 <select name="year_id"  required class="selectpicker" data-title="Select academic year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                     <?php foreach($result as $rows)
                                        {
                                          $fyear=$rows->from_month;
@@ -26,13 +26,13 @@
                                          $eyear=$rows->to_month;
                                          $month1= strtotime($eyear);
                                          ?>
-                                    <option value="<?php  echo $rows->year_id; ?>"><?php  echo  date('Y',$month); ?> (To) <?php  echo  date('Y',$month1); ?></option>
+                                    <option value="<?php  echo $rows->year_id; ?>"><?php  echo  date('Y',$month); ?> - <?php  echo  date('Y',$month1); ?></option>
                                     <?php } ?>
                                  </select>
                               </div>
-                               <label class="col-sm-2 control-label">Select Exam</label>
+                               <label class="col-sm-2 control-label">Exams</label>
                               <div class="col-sm-4">
-                                 <select name="exam_id[]"  class="selectpicker" multiple="multiple" data-title="Select Exam" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                 <select name="exam_id[]"  class="selectpicker" multiple="multiple" data-title="Select exams" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                     <?php  foreach($exam_view as $rows)
                                        {
                                         $exam_id=$rows->exam_id;
@@ -44,7 +44,7 @@
                            </div>
 
                         <div class="form-group">
-                           <label class="col-lg-2 control-label">Select Class</label>
+                           <label class="col-lg-2 control-label">Class</label>
                            <div class="col-md-4">
                               <select name="class_id" id="class_id" class="selectpicker" data-title="Select Class " data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                  <?php foreach($cls_view as $rows)
@@ -58,7 +58,7 @@
                               </select>
                            </div>
 
-                            <label class="col-lg-2 control-label">Select Subjects</label>
+                            <label class="col-lg-2 control-label">Subjects</label>
                            <div class="col-sm-4">
                               <select  id="sub_id" name="sub_name_id[]" class="selectpicker" multiple data-title="Select Subjects" >
                               </select>
@@ -67,9 +67,9 @@
                         </div>
 
                         <div class="form-group">
-                           <label class="col-lg-2 control-label">Filter By Marks</label>
+                           <label class="col-lg-2 control-label">Set Pass Mark </label>
                            <div class="col-sm-4">
-                           <input type="text" class="form-control" name="pass_mark"  placeholder="Enter The Marks">
+                           <input type="text" class="form-control" name="pass_mark"  placeholder="Enter marks - Ex: 35">
                            </div>
 
                         </div>
@@ -145,11 +145,11 @@ $(document).ready(function() {
          pass_mark:{required: true}
        },
        messages: {
-          year_id: "Please Select Year",
-         'exam_id[]': "Please Select Exame",
-          class_id: "Please Select Class",
-         'sub_name_id[]': "Please Select Subjects",
-         pass_mark:"Enter The Marks"
+          year_id: "Please choose an option!",
+         'exam_id[]': "Please choose an option!",
+          class_id: "Please choose an option!",
+         'sub_name_id[]': "Please choose an option!",
+         pass_mark:"This field cannot be empty!"
        }
     });
 });

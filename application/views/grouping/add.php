@@ -5,7 +5,7 @@
                <div class="col-md-12">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Create Grouping</h4>
+                           <h4 class="title">Create Group</h4>
                        </div>
 
                        <div class="content">
@@ -13,14 +13,14 @@
 
                                  <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-4 control-label">Group Title</label>
+                                          <label class="col-sm-4 control-label">Title</label>
                                           <div class="col-sm-4">
                                               <input type="text" name="group_title" class="form-control" value="">
 
                                           </div>
                                             </div>
                                       <div class="form-group">
-                                          <label class="col-sm-4 control-label">Group Lead</label>
+                                          <label class="col-sm-4 control-label">Admin</label>
                                           <div class="col-sm-4">
                                             <select name="group_lead"  data-title="Select" class="selectpicker form-control">
                                               <?php foreach($list_of_teacher as $rows){ ?>
@@ -35,9 +35,9 @@
                                       <div class="form-group">
                                           <label class="col-sm-4 control-label">Status</label>
                                           <div class="col-sm-4">
-                                            <select name="status" data-title="Select status" class="selectpicker form-control">
+                                            <select name="status" data-title="Status" class="selectpicker form-control">
                                                <option value="Active">Active</option>
-                                               <option value="Deactive">De-Active</option>
+                                               <option value="Deactive">Inactive</option>
                                            </select>
                                           </div>
 
@@ -46,7 +46,7 @@
                                         <div class="form-group">
 											                               <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
                                             <div class="text-center">
-                                                   <button type="submit" id="save" class="btn btn-info btn-fill center">Create</button>
+                                                   <button type="submit" id="save" class="btn btn-info btn-fill center">CREATE</button>
                                             </div>
 
                                             </div>
@@ -62,7 +62,7 @@
              <div class="col-md-12">
                  <div class="card">
                      <div class="toolbar">
-                         <div class="header">List of Grouping </div>
+                         <div class="header">List of Groups</div>
                      </div>
 
                      <table id="bootstrap-table" class="table">
@@ -70,9 +70,9 @@
 
                            <th data-field="id" class="text-left">S.No</th>
                            <th data-field="name" class="text-left" data-sortable="true">Group Name</th>
-                           <th data-field="Section" class="text-left" data-sortable="true">Lead</th>
-                           <th data-field="status" class="text-left" data-sortable="true">status</th>
-                           <th data-field="actions" class="td-actions text-left" data-events="operateEvents">Actions</th>
+                           <th data-field="Section" class="text-left" data-sortable="true">Admin</th>
+                           <th data-field="status" class="text-left" data-sortable="true">Status</th>
+                           <th data-field="actions" class="td-actions text-left" data-events="operateEvents">Action</th>
                          </thead>
                          <tbody>
                            <?php $i=1; foreach ($list_of_grouping as $rowsclass) { $sta=$rowsclass->status; ?>
@@ -85,7 +85,7 @@
                                     if($sta=='Active'){?>
                                     <button class="btn btn-success btn-fill btn-wd">Active</button>
                                     <?php  }else{?>
-                                    <button class="btn btn-danger btn-fill btn-wd">De Active</button>
+                                    <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                                     <?php } ?>
                                   </td>
                                <td>
@@ -127,9 +127,9 @@ $('#grouping_form').validate({ // initialize the plugin
       status:{required:true },
   },
   messages: {
-        group_title: "Enter Grouping Name",
-        group_lead:"Select group incharge",
-        status:"select status"
+        group_title: "This field cannot be empty!",
+        group_lead:"Please choose an option!",
+        status:"Please choose an option!"
 
       },
 
@@ -141,8 +141,8 @@ submitHandler: function(form) {
                type: "success",
                showCancelButton: true,
                confirmButtonColor: '#DD6B55',
-               confirmButtonText: 'Yes, I am sure!',
-               cancelButtonText: "No, cancel it!",
+               confirmButtonText: 'Yes',
+               cancelButtonText: "No",
                closeOnConfirm: false,
                closeOnCancel: false
            },
@@ -158,7 +158,7 @@ $.ajax({
            $('#grouping_form')[0].reset();
            swal({
     title: "Wow!",
-    text: "Message!",
+    text: "Group created",
     type: "success"
 }, function() {
      location.reload();

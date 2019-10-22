@@ -17,7 +17,7 @@
 
                             <div class="content">
 
-                              <h4 class="title">List of Coordinator  <button style="float: right;" onclick="history.go(-1);" class="btn btn-wd btn-default">Go Back</button></h4> <br>
+                              <h4 class="title">List Of Coordinators  <button style="float: right;" onclick="history.go(-1);" class="btn btn-wd btn-default">Go Back</button></h4> <br>
 
 
                                 <div class="fresh-datatables">
@@ -27,9 +27,9 @@
                               <thead>
 
                                   <th data-field="id">ID</th>
-                                  <th data-field="year" data-sortable="true">Event Name</th>
-                                  <th data-field="no" data-sortable="true">Sub Event Name</th>
-                                  <th data-field="name" data-sortable="true">Coordinator Name</th>
+                                  <th data-field="year" data-sortable="true">Event</th>
+                                  <th data-field="no" data-sortable="true">Sub Event</th>
+                                  <th data-field="name" data-sortable="true">Coordinator</th>
                                   <th data-field="status" data-sortable="true">Status</th>
                                   <th data-field="Section" data-sortable="true">Action</th>
 
@@ -57,7 +57,7 @@
 									<?php if($rows->status=='Active') {?>
 									<button class="btn btn-success btn-fill btn-wd">Active</button>
 									<?php }else{?>
-									<button class="btn btn-danger btn-fill btn-wd">Deactive</button>
+									<button class="btn btn-danger btn-fill btn-wd">Inactive</button>
 									<?php } //echo $rows->status; ?>
 									</td>
                                     <td>

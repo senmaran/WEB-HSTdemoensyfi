@@ -172,7 +172,7 @@ class Leavemanage extends CI_Controller {
 			$leave_status=$this->input->post('leave_status');
 			$datas=$this->leavemodel->udate_special_leave($leave_type,$leave_id,$leave_mas_id,$leave_date,$class_name,$leave_name,$leave_status);
 			if($datas['status']=="success"){
-				$this->session->set_flashdata('msg', 'Updated Successfully');
+				$this->session->set_flashdata('msg', 'Changes made are saved');
 				redirect('leavemanage/view');
 			}else if($datas['status']=="regular already"){
 				$this->session->set_flashdata('msg', 'Regular Leave Already Added to this Date');
@@ -215,7 +215,7 @@ class Leavemanage extends CI_Controller {
 
 			$datas=$this->leavemodel->udate_regular_leave($leave_type,$leave_id,$leave_mas_id,$years,$class_name,$days,$weeks,$leave_status);
 			if($datas['status']=="success"){
-				$this->session->set_flashdata('msg', 'Updated  Successfully');
+				$this->session->set_flashdata('msg', 'Changes made are saved');
 				redirect('leavemanage/view');
 			}else{
 				$this->session->set_flashdata('msg', 'Something Went Wrong');

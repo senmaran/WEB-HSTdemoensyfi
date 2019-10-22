@@ -80,7 +80,7 @@ Class Timetablemodel extends CI_Model
                    echo "failure";
                }
            }else{
-              echo "already added for this period";
+              echo "A period already exists in the selected timing! ";
            }
          }
       }

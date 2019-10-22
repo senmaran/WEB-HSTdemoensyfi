@@ -5,7 +5,8 @@
 
                         <div class="card">
                             <div class="header">
-                                <legend>Edit Event   <p class="pull-right"><a href="<?php echo base_url(); ?>event/create" class="">View Event</a></p></legend>
+							<h4 class="title">Edit Event  <button style="float: right;" onclick="history.go(-1);" class="btn btn-wd btn-default">Go Back</button></h4>
+                              <hr>
 
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
@@ -52,7 +53,7 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Event Status</label>
+                                            <label class="col-sm-4 control-label">Status</label>
                                             <div class="col-sm-4">
                                               <select name="event_status" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="Active">Active</option>

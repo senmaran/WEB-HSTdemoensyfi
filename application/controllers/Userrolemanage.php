@@ -151,7 +151,7 @@ public function get_user_parents($user_id)
 			  $status=$this->input->post('status');
 				$datas=$this->usermodel->save_profile_id($user_profile_id,$status);
 				if($datas['status']=="success"){
-					$this->session->set_flashdata('msg', 'Updated Successfully');
+					$this->session->set_flashdata('msg', 'Changes made are saved');
 					redirect('userrolemanage/teachers');
 				}else{
 					$this->session->set_flashdata('msg', 'SomeThing Went Wrong');
@@ -174,7 +174,7 @@ public function get_user_parents($user_id)
 			 $status=$this->input->post('status');
 			 $datas=$this->usermodel->save_profile_id($user_profile_id,$status);
 			 if($datas['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Updated Successfully');
+				 $this->session->set_flashdata('msg', 'Changes made are saved');
 				 redirect('userrolemanage/parents');
 			 }else{
 				 $this->session->set_flashdata('msg', 'SomeThing Went Wrong');
@@ -198,7 +198,7 @@ public function get_user_parents($user_id)
 			$status=$this->input->post('status');
 			$datas=$this->usermodel->save_profile_id($user_profile_id,$status);
 			if($datas['status']=="success"){
-				$this->session->set_flashdata('msg', 'Updated Successfully');
+				$this->session->set_flashdata('msg', 'Changes made are saved');
 				redirect('userrolemanage/students');
 			}else{
 				$this->session->set_flashdata('msg', 'SomeThing Went Wrong');

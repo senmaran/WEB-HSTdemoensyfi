@@ -53,7 +53,7 @@
                                        <a href="#settings" class="btn btn-info btn-fill" id="parents" data-toggle="tab">Parents</a>
                                     </li>
                                     <li>
-                                       <a href="#board" class="btn btn-info btn-fill" id="parents" data-toggle="tab">Board Memebers</a>
+                                       <a href="#board" class="btn btn-info btn-fill" id="parents" data-toggle="tab" style="width:150px;">Board Memebers</a>
                                     </li>
                                  </ul>
                               </div>
@@ -128,10 +128,10 @@
                            <div class="form-group">
                               <label class="col-sm-2 control-label">Circular Type</label>
                               <div class="col-sm-4">
-                                 <select multiple name="citrcular_type[]" id="citrcular_type" data-title="Select Circular Type" class="selectpicker form-control">
+                                 <select multiple name="citrcular_type[]" id="citrcular_type" data-title="Select circular type" class="selectpicker form-control">
                                     <option value="SMS">SMS</option>
                                     <option value="Mail">Mail</option>
-                                    <option value="Notification">Notification</option>
+                                    <option value="Notification">Push Notification</option>
                                  </select>
                               </div>
                               <!-- <label class="col-sm-2 control-label">Date</label>
@@ -145,7 +145,7 @@
                               <label class="col-sm-2 control-label">Title</label>
                               <div class="col-sm-4">
                                  <div id="tnone">
-                                    <select name="ctitle" id="cititle" class="selectpicker form-control" data-title="Select Title" onchange="circulardescription(this)">
+                                    <select name="ctitle" id="cititle" class="selectpicker form-control" data-title="Select title" onchange="circulardescription(this)">
                                        <?php foreach($cmaster as $cmtitle) {?>
                                        <option value="<?php echo $cmtitle->id; ?>"><?php echo $cmtitle->circular_title; ?></option>
                                        <?php } ?>
@@ -178,7 +178,7 @@
                        <div class="form-group">
                         <label class="col-sm-2 control-label">&nbsp;</label>
                         <div class="col-sm-6">
-                           <button type="submit" id="save" class="btn btn-info btn-fill center" >Send</button>
+                           <button type="submit" id="save" class="btn btn-info btn-fill center" >SEND</button>
                         </div>
                         </div>
                           </fieldset>
@@ -216,13 +216,13 @@
    citrcular_type:{required:true },
    status:{required:true }
      },
-     messages: {
+   messages: {
    teacher:"Select Teachers",
    class_name:"Select Classes",
-   ctitle:"Enter Title",
-   title:"Enter Title",
+   ctitle:"Please choose an option!",
+   title:"Please choose an option!",
    date:"Enter Date",
-   notes:"Enter The Details",
+   notes:"This field cannot be empty!",
    citrcular_type:"Select Circular Type",
    status:"Select Status"
           },
@@ -235,8 +235,8 @@
            type: "success",
            showCancelButton: true,
            confirmButtonColor: '#DD6B55',
-           confirmButtonText: 'Yes, I am sure!',
-           cancelButtonText: "No, cancel it!",
+           confirmButtonText: 'Yes',
+           cancelButtonText: "No",
            closeOnConfirm: false,
            closeOnCancel: false
      },
@@ -265,8 +265,8 @@
         {
            $('#myformsection')[0].reset();
              swal({
-                     title: "Wow!",
-                     text: "Circular Sent Successfully!",
+                     title: "Done!",
+                     text: "Circular sent!",
                      type: "success"
                   },
       function(){

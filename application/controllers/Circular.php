@@ -142,13 +142,16 @@ class Circular extends CI_Controller
 		  $datas=$this->session->userdata();
 		  $user_id=$this->session->userdata('user_id');
 		  $user_type=$this->session->userdata('user_type');
-		  $datas['parents']=$this->circularmodel->get_parents_circular();
-		  $datas['students']=$this->circularmodel->get_students_circular();
 		  $datas['teachers']=$this->circularmodel->get_all_circular();
+		  $datas['students']=$this->circularmodel->get_students_circular();
+		  $datas['parents']=$this->circularmodel->get_parents_circular();
+		  $datas['bmembers']=$this->circularmodel->get_bmember_circular();
+		  //echo json_encode($datas);
+		  //exit;
 		  if($user_type==1){
-		  $this->load->view('header');
-		  $this->load->view('circular/view',$datas);
-		  $this->load->view('footer');
+			  $this->load->view('header');
+			  $this->load->view('circular/view',$datas);
+			  $this->load->view('footer');
 		  }else{
 		  redirect('/');
 		  }

@@ -26,7 +26,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <legend>Edit Time Table- view   <?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name; echo "-";  echo  $this->uri->segment(5); ?> <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button>  </legend>
+                        <legend>Edit Timetable for <?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name; echo " (";  echo  $this->uri->segment(5); echo ") "; ?> <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Back</button>  </legend>
                     </div>
                     <div class="content">
                         <div class="row">
@@ -36,13 +36,13 @@
                                  <fieldset>
                                     <div class="form-group">
                                         <input type="checkbox" class="" id="break_id"  name="is_break" value="1" <?php echo ($rows->is_break==1 ? 'checked' : '');?>>Break
-                                       <label class="col-sm-2 control-label">From time </label>
+                                       <label class="col-sm-2 control-label">Starting Time</label>
                                        <div class="col-sm-4 clockpicker">
                                          <input type="text" class="form-control"  name="" id="from_time"  placeholder="From Time" value="<?php echo $rows->from_time; ?>" readonly>
                                        </div>
                                     </div>
                                     <div class="form-group" >
-                                       <label class="col-sm-2 control-label">To Time</label>
+                                       <label class="col-sm-2 control-label">Ending Time</label>
                                        <div class="col-sm-4 clockpicker">
                                          <input type="text" class="form-control"  name="to_time" id="to_time"  placeholder="To Time" value="<?php echo $rows->to_time; ?>" readonly>
                                          <input type="hidden" class="form-control"  name="table_id" id="table_id" value="<?php echo $rows->table_id; ?>" readonly>
@@ -56,10 +56,10 @@
                                     </div>
 
                                       <div class="form-group" id="subject_id_tab" style="display:<?php echo $rows->is_break==1 ? 'none':'block' ?>">
-                                         <label class="col-sm-2 control-label">Select Subject </label>
+                                         <label class="col-sm-2 control-label">Subject </label>
                                          <div class="col-sm-4 clockpicker">
                                           <select id="subject_id" name="subject_id" class="subject_id ">
-                                             <option value="">--Select Subject--</option>
+                                             <option value="">Subject</option>
                                             <?php foreach($res_subject['res'] as $row_subject){ ?>
                                               <option value="<?php echo $row_subject->subject_id; ?>"><?php echo $row_subject->subject_name; ?></option>
                                            <?php } ?>
@@ -70,10 +70,10 @@
                                          </div>
                                       </div>
                                       <div class="form-group" id="teacher_id_tab" style="display:<?php echo $rows->is_break==1 ? 'none':'block' ?>">
-                                         <label class="col-sm-2 control-label">Teacher  </label>
+                                         <label class="col-sm-2 control-label">Teacher</label>
                                          <div class="col-sm-4 clockpicker">
                                              <select id="teacher_id" name="teacher_id" class="subject_id ">
-                                               <option value="">--Select Teacher--</option>
+                                               <option value="">Teacher</option>
                                                <?php foreach($res_teacher['res'] as $row_teacher){ ?>
                                                  <option value="<?php echo $row_teacher->teacher_id; ?>"><?php echo $row_teacher->name; ?></option>
                                               <?php } ?>
@@ -86,7 +86,7 @@
                                     <div class="form-group">
                                        <label class="col-sm-3 control-label">&nbsp;</label>
                                        <div class="col-sm-4">
-                                          <button type="submit" id="save" class="btn btn-info btn-fill center">Update Period </button>
+                                          <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
                                        </div>
                                     </div>
                                  </fieldset>
@@ -125,7 +125,7 @@
                     if(response=="success"){
                       swal({
                        title: "Success!",
-                       text: "Period Added"
+                       text: "Changes made are saved"
 
                      });
 

@@ -25,13 +25,16 @@
 						     <div class="content">
                                 <ul role="tablist" class="nav nav-tabs" style="border-bottom: none;padding-left:165px;">
                                     <li class="active">
-                                        <a href="#company" class="btn btn-info btn-fill"  id="teacher"   data-toggle="tab">Teachers</a>
+                                        <a href="#Teachers" class="btn btn-info btn-fill"  id="teacher"   data-toggle="tab">Teachers</a>
                                     </li>
                                     <li>
-                                        <a href="#style"  class="btn btn-info btn-fill" id="classes"  data-toggle="tab">Students</a>
+                                        <a href="#Students"  class="btn btn-info btn-fill" id="classes"  data-toggle="tab">Students</a>
                                     </li>
                                     <li>
-                                        <a href="#settings" class="btn btn-info btn-fill" id="parents" data-toggle="tab">Parents</a>
+                                        <a href="#Parents" class="btn btn-info btn-fill" id="parents" data-toggle="tab">Parents</a>
+                                    </li>
+									 <li>
+                                        <a href="#bmember" class="btn btn-info btn-fill" id="parents" data-toggle="tab" style="width:150px;">Board Members</a>
                                     </li>
                                 </ul>
                             </div>
@@ -50,53 +53,9 @@
                         </fieldset-->
 							<!-- Parents---->
                    <div class="tab-content">
-				     <div id="company" class="tab-pane active">
-                        <div class="fresh-datatables">
-
-                                  <table id="bootstrap-table1" class="table">
-                              <thead>
-                                <th class="text-left">S.No</th>
-                                 <th class="text-left" data-sortable="true">Target</th>
-                                 <th class="text-left" data-sortable="true">Title</th>
-                                 <th class="text-left" data-sortable="true">Sent Via</th>
-								 <th class="text-left" data-sortable="true">Status</th>
-                                 <th class="text-left" data-sortable="true">Date</th>
-                              </thead>
-
-                              <tbody>
-                                 <?php
-                                    $i=1;
-                                    foreach ($parents as $rows1) {
-									$type=$rows1->user_type;
-									$cls=$rows1->class_id;
-									$query="select cm.class_sec_id,cm.class,cm.section,c.class_name,s.sec_name FROM edu_classmaster AS cm,edu_class AS c,edu_sections AS s WHERE cm.class_sec_id='$cls' AND c.class_id=cm.class AND s.sec_id=cm.section";
-								   $result1=$this->db->query($query);
-								   $result2= $result1->result();
-								   foreach($result2 as $cls_sec){}
-								   $cs=$cls_sec->class_name;
-								   $se=$cls_sec->sec_name;
-									if($type==4){
-									?>
-                                 <tr class="trheight">
-                                    <td class="text-left"><?php echo $i; ?></td>
-                                    <td class="text-left"><?php echo $cs; ?> <?php echo $se; ?></td>
-                                   <td class="text-left"><?php echo $rows1->circular_title;?></td>
-									 <td class="text-left"><?php echo $rows1->circular_type;?></td>
-									  <td class="text-left"><?php echo $rows1->status;?></td>
-                                    <td class="text-left"><?php $date=date_create($rows1->circular_date);
-                                       echo date_format($date,"d-m-Y");
-                                       ?></td>
-                                 </tr>
-									<?php $i++;  } }  ?>
-                              </tbody>
-                           </table>
-
-
-						   </div>
-                        </div>
-
-						<!-- Teachers---->
-               <div id="style" class="tab-pane">
+				   
+				   <!-- Teachers---->
+               <div id="Teachers" class="tab-pane  active">
                         <div class="fresh-datatables">
                             <table id="bootstrap-table2" class="table">
                               <thead>
@@ -131,21 +90,22 @@
                            </table>
                         </div>
 				</div>
-
-				<!-- Students---->
-                      <div id="settings" class="tab-pane">
+				
+				
+				
+				     <div id="Students" class="tab-pane">
                         <div class="fresh-datatables">
-                           <table id="bootstrap-table3" class="table">
+
+                                  <table id="bootstrap-table1" class="table">
                               <thead>
                                 <th class="text-left">S.No</th>
-                                <th class="text-left" data-sortable="true">Target</th>
+                                 <th class="text-left" data-sortable="true">Target</th>
                                  <th class="text-left" data-sortable="true">Title</th>
                                  <th class="text-left" data-sortable="true">Sent Via</th>
 								 <th class="text-left" data-sortable="true">Status</th>
                                  <th class="text-left" data-sortable="true">Date</th>
                               </thead>
-
-                              <tbody>
+<tbody>
                                  <?php
                                     $i=1;
                                     foreach ($students as $rows) {
@@ -172,10 +132,104 @@
                                  </tr>
 									<?php $i++;  } }  ?>
                               </tbody>
+                              
+                           </table>
+
+
+						   </div>
+                        </div>
+
+						
+
+
+                      <div id="Parents" class="tab-pane">
+                        <div class="fresh-datatables">
+                           <table id="bootstrap-table3" class="table">
+                              <thead>
+                                <th class="text-left">S.No</th>
+                                <th class="text-left" data-sortable="true">Target</th>
+                                 <th class="text-left" data-sortable="true">Title</th>
+                                 <th class="text-left" data-sortable="true">Sent Via</th>
+								 <th class="text-left" data-sortable="true">Status</th>
+                                 <th class="text-left" data-sortable="true">Date</th>
+                              </thead>
+
+								<tbody>
+                                 <?php
+                                    $i=1;
+                                    foreach ($parents as $rows1) {
+									$type=$rows1->user_type;
+									$cls=$rows1->class_id;
+									$query="select cm.class_sec_id,cm.class,cm.section,c.class_name,s.sec_name FROM edu_classmaster AS cm,edu_class AS c,edu_sections AS s WHERE cm.class_sec_id='$cls' AND c.class_id=cm.class AND s.sec_id=cm.section";
+								   $result1=$this->db->query($query);
+								   $result2= $result1->result();
+								   foreach($result2 as $cls_sec){}
+								   $cs=$cls_sec->class_name;
+								   $se=$cls_sec->sec_name;
+									if($type==4){
+									?>
+                                 <tr class="trheight">
+                                    <td class="text-left"><?php echo $i; ?></td>
+                                    <td class="text-left"><?php echo $cs; ?> <?php echo $se; ?></td>
+                                   <td class="text-left"><?php echo $rows1->circular_title;?></td>
+									 <td class="text-left"><?php echo $rows1->circular_type;?></td>
+									  <td class="text-left"><?php echo $rows1->status;?></td>
+                                    <td class="text-left"><?php $date=date_create($rows1->circular_date);
+                                       echo date_format($date,"d-m-Y");
+                                       ?></td>
+                                 </tr>
+									<?php $i++;  } }  ?>
+                              </tbody>
+                              
                            </table>
                         </div>
 				</div>
 
+
+				<!-- Board Members---->
+                      <div id="bmember" class="tab-pane">
+                        <div class="fresh-datatables">
+                           <table id="bootstrap-table3" class="table">
+                              <thead>
+                                <th class="text-left">S.No</th>
+                                <th class="text-left" data-sortable="true">Target</th>
+                                 <th class="text-left" data-sortable="true">Title</th>
+                                 <th class="text-left" data-sortable="true">Sent Via</th>
+								 <th class="text-left" data-sortable="true">Status</th>
+                                 <th class="text-left" data-sortable="true">Date</th>
+                              </thead>
+
+                              <tbody>
+                                 <?php
+                                    $i=1;
+                                    foreach ($bmembers as $rows) {
+									$type=$rows->user_type;
+									/* $cls=$rows->class_id;
+									$query="select cm.class_sec_id,cm.class,cm.section,c.class_name,s.sec_name FROM edu_classmaster AS cm,edu_class AS c,edu_sections AS s WHERE cm.class_sec_id='$cls' AND c.class_id=cm.class AND s.sec_id=cm.section";
+								   $result1=$this->db->query($query);
+								   $result2= $result1->result();
+								   foreach($result2 as $cls_sec){}
+								   $cs=$cls_sec->class_name;
+								   $se=$cls_sec->sec_name; */
+									if($type==5){
+									?>
+                                 <tr class="trheight">
+                                    <td class="text-left"><?php echo $i; ?></td>
+                                     <td class="text-left"><?php echo $rows->name;  ?></td>
+                                   <td class="text-left"><?php echo $rows->circular_title;?></td>
+
+									 <td class="text-left"><?php echo $rows->circular_type;?></td>
+									  <td class="text-left"><?php echo $rows->status;?></td>
+                                    <td class="text-left"><?php $date=date_create($rows->circular_date);
+                                       echo date_format($date,"d-m-Y");
+                                       ?></td>
+                                 </tr>
+									<?php $i++;  } }  ?>
+                              </tbody>
+                           </table>
+                        </div>
+				</div>
+				
                      </div>
                      <!-- end content-->
                   </div>

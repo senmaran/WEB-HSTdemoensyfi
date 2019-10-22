@@ -51,7 +51,7 @@
                               <th>From</th>
 							  <th>To</th>
                               <th>Status</th>
-                              <th>Action</th>
+                              <th>Actions</th>
                            </thead>
                            <tbody>
                               <?php

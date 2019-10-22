@@ -5,7 +5,7 @@
 
                         <div class="card">
                             <div class="header">
-                                <legend>Edit Coordinator Name</legend>
+                                <legend>Edit Coordinator Assignment</legend>
 
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
@@ -20,15 +20,15 @@
                                 <form method="post" action="<?php echo base_url(); ?>event/sub_event_update" class="form-horizontal" enctype="multipart/form-data" id="eventform" name="eventform">
 								 <?php foreach ($res as $rows) {   } ?>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Sub Event Name</label>
+                                        <label class="col-md-3 control-label">Sub Event</label>
                                         <div class="col-md-4">
 										 <input type="hidden" name="event_id" value="<?php echo $rows->event_id; ?>" class="form-control">
 										 <input type="hidden" name="co_id" value="<?php echo $rows->co_id; ?>" class="form-control">
-                                            <input type="text" required name="sub_event_name" value="<?php echo $rows->sub_event_name; ?>" placeholder="Sub Event Name" class="form-control">
+                                            <input type="text" required name="sub_event_name" value="<?php echo $rows->sub_event_name; ?>" placeholder="Sub Event" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Coordinator Name</label>
+                                        <label class="col-md-3 control-label">Coordinator</label>
                                         <div class="col-md-4">
 
 
@@ -65,7 +65,7 @@
                                             <div class="col-sm-4">
                                               <select name="status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                   <option value="Active">Active</option>
-                                                  <option value="Deactive">DE-Active</option>
+                                                  <option value="Deactive">Inactive</option>
                                               </select>
                      <script language="JavaScript">document.eventform.status.value="<?php echo $rows->status; ?>";</script>
                                             </div>
@@ -75,7 +75,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3"></label>
                                         <div class="col-md-9">
-								 <button type="submit" id="save" class="btn btn-info btn-fill center">Update</button>
+								 <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
                                            <!-- <button type="submit" class="btn btn-fill btn-info">Save</button> -->
                                         </div>
                                     </div>
@@ -100,7 +100,7 @@ $(document).ready(function () {
          event_status:{required:true }
      },
      messages: {
-           event_details: "Enter Event Details",
+           sub_event_name: "This field cannot be empty!",
            event_date: "Select Event Date",
            event_name: "Enter Event Name",
            event_status: "Select Status"

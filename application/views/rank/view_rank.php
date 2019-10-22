@@ -21,16 +21,16 @@
                   <div class="card">
                      <div class="content">
                         <div class="fresh-datatables">
-                           <h4 class="title" style="padding-bottom:10px;">List of Rank
-                            <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-bottom:10px;">Go Back</button> </h4>
+                           <h4 class="title" style="padding-bottom:10px;">Student Mark Report
+                            <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-bottom:10px;">BACK</button> </h4>
                              <hr>
                           
                        <table id="example" class="table table-striped table-no-bordered table-hover" cellspacing="0" >
                           <thead>
                              <th>S.no</th>
-                             <th>Student-Name</th>
+                             <th>Student</th>
                              <th>Class</th>
-                             <th>Total</th>
+                             <th>Total Marks</th>
                              <th>Status</th>
                           </thead>
                           <tbody>

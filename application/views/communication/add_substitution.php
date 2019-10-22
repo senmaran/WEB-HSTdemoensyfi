@@ -105,7 +105,7 @@
                                  <th>Date</th>
                                  <th>Class</th>
                                  <th>Period</th>
-                                 <th>Action</th>
+                                 <th>Actions</th>
                               </thead>
                               <tbody>
                                  <?php

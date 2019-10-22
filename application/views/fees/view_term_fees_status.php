@@ -27,7 +27,7 @@
                                 <th data-field="quota"  data-sortable="true">Quota</th>
 								<th data-field="fees"  data-sortable="true">Fees</th>
                                 <th data-field="status"  data-sortable="true">Status</th>
-								<th data-field="Section"  data-sortable="true">Action</th>
+								<th data-field="Section"  data-sortable="true">Actions</th>
                               </thead>
                               <tbody>
                                 <?php

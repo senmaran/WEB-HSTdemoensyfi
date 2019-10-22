@@ -77,7 +77,7 @@
                                  <th>Class-Section</th>
                                  <th>Registration Date</th>
                                  <th>Status</th>
-                                 <th>Action</th>
+                                 <th>Actions</th>
                               </thead>
                               <tbody>
                           <?php

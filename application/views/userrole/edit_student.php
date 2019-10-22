@@ -12,7 +12,7 @@
                  </div>
 
            <?php endif; ?>
-                           <h4 class="title">Student Profile</h4>
+                           <h4 class="title">Edit Student Profile</h4>
                        </div>
                        <?php
                        //print_r($result);
@@ -45,7 +45,7 @@
                                            <label>Status</label>
                                            <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                              <option value="Active">Active</option>
-                                             <option value="Deactive">De-Active</option>
+                                             <option value="Deactive">Inactive</option>
 
                                            </select>
                                            <script language="JavaScript">document.save_form.status.value="<?php echo $rows->status; ?>";</script>
@@ -66,7 +66,7 @@
 
                                <div class="col-md-12">
                                    <div class="form-group text-center">
-                                      <button type="submit" class="btn btn-info btn-fill text-center">Save</button>
+                                      <button type="submit" class="btn btn-info btn-fill text-center">SAVE</button>
                                    </div>
                                </div>
 

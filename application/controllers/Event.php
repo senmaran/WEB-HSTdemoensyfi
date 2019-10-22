@@ -82,7 +82,7 @@ class Event extends CI_Controller {
 			 $event_status=$this->input->post('event_status');
 			 $datas=$this->eventmodel->create_event($event_date,$event_name,$event_details,$event_status);
 			 if($datas['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Added Successfully');
+				 $this->session->set_flashdata('msg', 'New event created');
 				 redirect('event/create');
 			 }else{
 				 $this->session->set_flashdata('msg', 'Failed to Add');
@@ -139,7 +139,7 @@ class Event extends CI_Controller {
 			 $event_status=$this->input->post('event_status');
 			 $datas=$this->eventmodel->save_event($event_id,$event_date,$event_name,$event_details,$event_status);
 			 if($datas['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Updated  Successfully');
+				 $this->session->set_flashdata('msg', 'Changes made are saved');
 				 redirect('event/create');
 			 }else{
 				 $this->session->set_flashdata('msg', 'Failed to Add');

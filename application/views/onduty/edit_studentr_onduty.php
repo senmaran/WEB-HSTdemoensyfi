@@ -5,7 +5,7 @@
                <div class="col-md-12">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Update Student OnDuty Form</h4>
+                           <h4 class="title">Edit  Student On Duty Details</h4>
                        </div>
                        <hr>
 						<?php foreach($edit as $res){}	?>
@@ -19,7 +19,7 @@
                                  <input type="text" name="tname" readonly class="form-control" value="<?php echo $res->name; ?> ( <?php  echo $res->class_name	; ?> - <?php  echo $res->sec_name; ?> )">
                               </div>
 
-                              <label class="col-sm-2 control-label">Reason Out</label>
+                              <label class="col-sm-2 control-label">Reason</label>
                               <div class="col-sm-4">
 							   <input type="text" name="reason" readonly value="<?php echo $res->od_for; ?>" class="form-control">
 							    <input type="hidden" name="id" value="<?php echo $res->id; ?>" class="form-control">
@@ -30,12 +30,12 @@
                         </fieldset>
 						 <fieldset>
                            <div class="form-group">
-						   <label class="col-sm-2 control-label">From Date</label>
+						   <label class="col-sm-2 control-label">From</label>
                               <div class="col-sm-4">
                                  <input type="text" name="fdate"  readonly class="form-control datepicker" value="<?php $dateTime=new DateTime($res->from_date); $fdate=date_format($dateTime,'d-m-Y' ); echo $fdate; ?>">
                               </div>
 
-                              <label class="col-sm-2 control-label">To Date</label>
+                              <label class="col-sm-2 control-label">To</label>
                               <div class="col-sm-4">
                                  <input type="text" name="tdate" readonly class="form-control datepicker" value="<?php $dateTime=new DateTime($res->to_date); $tdate=date_format($dateTime,'d-m-Y' ); echo $tdate; ?>">
                               </div>
@@ -53,7 +53,7 @@
                                  <select class="form-control" name="status" id="choose" >
 												<option value="Pending">Pending</option>
 												<option value="Approved">Approved</option>
-												<option value="Rejected">Reject</option>
+												<option value="Denied">Denied</option>
 
 								</select>
 								<script language="JavaScript">document.ondutysection.status.value="<?php echo $res->status; ?>";</script>
@@ -63,7 +63,7 @@
                         <div class="form-group">
                            <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                            <div class="text-center">
-                              <button type="submit" id="save" class="btn btn-info btn-fill center">Update </button>
+                              <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE </button>
                            </div>
                         </div>
                         </fieldset>

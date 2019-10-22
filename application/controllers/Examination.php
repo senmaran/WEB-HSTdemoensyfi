@@ -107,11 +107,11 @@ public function create()
 		//print_r($data['exam_name']);exit;
 
 	if($datas['status']=="success"){
-		$this->session->set_flashdata('msg','Added Successfully');
+		$this->session->set_flashdata('msg','New exam created');
 		redirect('examination/add_exam');
 	}else if($datas['status']=="Exam Name Already Exist")
 	{
-		$this->session->set_flashdata('msg','Exam Name Already Exist');
+		$this->session->set_flashdata('msg','Exam name already exist');
 		redirect('examination/add_exam');
 	}else{
 		$this->session->set_flashdata('msg','Failed to Add');
@@ -158,7 +158,7 @@ public function update()
 
 	if($datas['status']=="success")
 	{
-		$this->session->set_flashdata('msg','Updated Successfully');
+		$this->session->set_flashdata('msg','Changes made are saved');
 		redirect('examination/add_exam');
 	}else{
 		$this->session->set_flashdata('msg','Failed To Updated');
@@ -194,7 +194,7 @@ public function add_exam_details()
 
 	$datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject_name,$exdate,$time,$teacher_id,$status,$sub_total,$inter_mark,$exter_mark,$inter_exter_mark,$user_id);
 	if($datas['status']=="success"){
-		$this->session->set_flashdata('msg','Added Successfully');
+		$this->session->set_flashdata('msg','Exam details created!');
 		redirect('examination/add_exam_detail');
 	}else if($datas['status']=="Exam Already Exist")
 	{
@@ -287,7 +287,7 @@ public function update_exam_details()
       
 	if($datas['status']=="success")
 	{
-		$this->session->set_flashdata('msg','Updated Successfully');
+		$this->session->set_flashdata('msg','Changes made are saved');
 		redirect('examination/view_exam_details/'.$exam_year.'/'.$classmaster_id.'');
 	}else if($datas['status']=="Exam Already Exist")
 	{
@@ -323,6 +323,8 @@ public function exam_name_status()
 	$datas=$this->session->userdata();
 	$user_id=$this->session->userdata('user_id');
 	$user_type=$this->session->userdata('user_type');
+	
+	
 	$datas['exam_name']=$this->examinationmodel->exam_name_status();
 	//print_r($datas['exam_name']);exit;
 	if($user_type==1)
@@ -372,7 +374,7 @@ public function exam_mark_details_cls_teacher()
 	$datas['smark']=$this->examinationmodel->marks_status_details($cls_masid,$exam_id);
 	$datas['eflag'] = $this->examinationmodel->getall_exam_inter_exter_details($exam_id,$cls_masid);
 	//echo '<pre>';print_r($datas);
-	//echo '<pre>';print_r($datas['stu']); exit;
+	//echo '<pre>';print_r($datas['cls_exam']); exit;
 
 	if($user_type==1)
 	{ 

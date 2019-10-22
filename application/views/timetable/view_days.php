@@ -64,7 +64,7 @@
    <div class="col-md-12">
       <div class="card">
          <div class="header">
-            <legend><h4 class="modal-title">View the Day for <?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name;  ?></h4><span><button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-40px;">Go Back</button></span></legend>
+            <legend><h4 class="modal-title">Select Day for <?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name;  ?></h4><span><button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-40px;">Go Back</button></span></legend>
          </div>
          <div class="content">
             <div class="row">

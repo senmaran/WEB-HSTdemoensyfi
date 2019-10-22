@@ -3,7 +3,7 @@
       <div class="col-md-12">
          <div class="card">
             <div class="header">
-               <legend>Update Examination Calendar</legend>
+               <legend>Edit Examination Calendar</legend>
             </div>
             <?php if($this->session->flashdata('msg')): ?>
             <div class="alert alert-success">
@@ -71,7 +71,7 @@
 
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Select Subject</label>
+                        <label class="col-sm-2 control-label">Subject</label>
                         <div class="col-sm-2">
                            <select disabled class="selectpicker"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                            <?php
@@ -99,7 +99,7 @@
                         <div class="col-sm-2">
                            <input type="text" name="exam_date" class="form-control datepicker"  placeholder="Enter Exam Date" value="<?php $date=date_create($rows->exam_date);echo date_format($date,"d-m-Y");?>">
                         </div>
-                        <label class="col-sm-2 control-label">Teacher</label>
+                        <label class="col-sm-2 control-label">Invigilator</label>
                         <div class="col-sm-2">
                            <select name="teacher_id" class="selectpicker" data-title="Select Subject" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                            <?php
@@ -135,7 +135,7 @@
 
                   <fieldset>
                      <div class="form-group">
-                       <label class="col-sm-2 control-label">Subject Total</label>
+                       <label class="col-sm-2 control-label"> Total Marks</label>
                          <div class="col-sm-2">
                             <input type="text"  name="sub_total" maxlength="3" id="sub_total" class="form-control" value="<?php echo $rows->subject_total;?>">
                          </div>
@@ -165,7 +165,7 @@
                         <div class="col-sm-4">
                            <select name="status" class="selectpicker form-control">
                               <option value="Active">Active</option>
-                              <option value="Deactive">DeActive</option>
+                              <option value="Deactive">Inactive</option>
                            </select>
                            <script language="JavaScript">document.examform.status.value="<?php echo $rows->status; ?>";</script>
                         </div>
@@ -177,7 +177,7 @@
                      <div class="form-group">
                        <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                        <div class="text-center">
-                          <button type="submit" id="save" class="btn btn-info btn-fill center">Update </button>
+                          <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
                        </div>
                      </div>
                    </fieldset>

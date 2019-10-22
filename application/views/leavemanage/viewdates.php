@@ -11,12 +11,12 @@
 <div class="col-md-12">
   <div class="card">
     <div class="content">
-      <p>Regular Holiday     <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">Go Back</button></p>
+      <p>Regular Holiday Dates<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">Go Back</button></p>
       <table id="bootstrap-table" class="table">
           <thead>
                 <th data-field="id">S.No</th>
 
-                <th data-field="no">Leave Date</th>
+                <th data-field="no">Date</th>
 
 
                 <th data-field="Section">Action</th>
@@ -103,12 +103,12 @@ function deleteLeave(id){
 
   swal({
               title: "Are you sure?",
-              text: "You Want to Delete the this Date",
+              text: "You want to delete this date",
               type: "warning",
               showCancelButton: true,
               confirmButtonColor: '#DD6B55',
-              confirmButtonText: 'Yes, I am sure!',
-              cancelButtonText: "No, cancel it!",
+              confirmButtonText: 'Yes',
+              cancelButtonText: "No",
               closeOnConfirm: false,
               closeOnCancel: false
           },
@@ -121,7 +121,7 @@ function deleteLeave(id){
                          success: function(data){
                            //alert(data)
                          if(data=="success"){
-                           swal({title: "Good job", text: "Deleted Successfully!", type: "success"},
+                           swal({title: "Done", text: "Holiday removed from the records", type: "success"},
                               function(){
                                   location.reload();
                               }

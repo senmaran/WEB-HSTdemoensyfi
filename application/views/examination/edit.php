@@ -5,7 +5,7 @@
                <div class="col-md-12">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Update Examination</h4>
+                           <h4 class="title">Edit Examination</h4>
 
                        </div>
 <?php foreach ($res as $rows)
@@ -20,7 +20,7 @@
 								<input type="hidden" name="exam_id" class="form-control" id="yexam" placeholder="Enter Exam Year" required value="<?php echo $rows->exam_id; ?>">
                                         <div class="form-group">
 
-                                            <label class="col-sm-2 control-label">Exam Year</label>
+                                            <label class="col-sm-2 control-label">Academic year</label>
                                             <div class="col-sm-4">
 
 							 <select name="exam_year"  required class="selectpicker" data-title="Select From & To Year " data-style="btn-default btn-block" data-menu-style="dropdown-blue">
@@ -101,7 +101,7 @@
                                           <div class="col-sm-4">
                                    <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" >
                                         <option value="Active">Active</option>
-                                         <option value="Deactive">Deactive</option>
+                                         <option value="Deactive">Inactive</option>
                                    </select>
                           <script language="JavaScript">document.myformsection.status.value="<?php echo $rows->status; ?>";</script>
                                             </div></div>
@@ -111,7 +111,7 @@
 											<!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
 
                                             <div class="text-center">
-                                                <button type="submit" id="save" class="btn btn-info btn-fill center">Update Exam</button>
+                                                <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
                                             </div>
 
                                             </div>
@@ -132,7 +132,25 @@
 
 
 </div>
+<script type="text/javascript">
+   $(document).ready(function () {
 
+    $('#myformsection').validate({ // initialize the plugin
+        rules: {
+            exam_year:{required:true },
+            exam_name:{required:true },
+
+
+        },
+        messages: {
+              exam_year: "Please choose an option!",
+              exam_name: "This field cannot be empty!"
+            }
+    });
+   });
+
+
+</script>
 <script type="text/javascript">
 $('#exammenu').addClass('collapse in');
 $('#exam').addClass('active');

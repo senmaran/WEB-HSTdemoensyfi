@@ -20,9 +20,9 @@
                <div class="card">
                   <div class="header">
                      <h4 class="title">
-                        View Exam Marks ( <?php if (count($cls_exam)>0) { foreach($cls_exam as $rows){} echo $rows->exam_name; }?> )
-                        <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="float:right; ">Go Back</button>
-                        <button style="float:right;margin-right: 10px;" class="btn btn-info btn-fill center download">Export Excel</button>
+                        Exam Results ( <?php if (count($cls_exam)>0) { foreach($cls_exam as $rows){} echo $rows->exam_name; }?> )
+                        <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="float:right; ">BACK</button>
+                        <button style="float:right;margin-right: 10px;" class="btn btn-info btn-fill center download">EXPORT</button>
                         <!-- <button style="float:right;margin-right: 10px;" class="btn btn-info btn-fill center" onclick="generatefromtable()">Export PDF</button>-->
                      </h4>
                      <p class="category"></p>
@@ -56,7 +56,7 @@
                            <thead>
                               <th>Sno</th>
                               <th>Name</th>
-                              <th style="width:180px;">Preferred Language</th>
+                              <th style="width:180px;">Second Language</th>
                               <?php
                                  if($status=="Success")
                                  {
@@ -93,7 +93,7 @@
                                  $k++;
                                  echo'<td>';
 								 if ($s->pref_language!=''){
-                                    echo'('; echo' ';  echo $s->pref_language;  echo' '; echo')'; 
+                                    echo' ';  echo $s->pref_language;  echo' ';  
 								 }
                                  echo'</td>';
                                  }
@@ -186,7 +186,7 @@
                               <tr>
                                  <td></td>
                                  <td>
-                                    <button type="submit" class="btn btn-info btn-fill center">Approve</button>
+                                    <button type="submit" class="btn btn-info btn-fill center">APPROVE</button>
                                  </td>
                               </tr>
                               <?php }

@@ -23,7 +23,7 @@
                                 <th>Email</th>
                                 <th>Mobile</th>
 								<th>Status</th>
-								<th>Action</th>
+								<th>Actions</th>
                               </thead>
                               <tbody>
                                 <?php

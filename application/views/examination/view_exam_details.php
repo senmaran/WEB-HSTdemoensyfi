@@ -31,20 +31,20 @@
                       foreach ($view_details as $rows)
                       {}
                       echo '<b>'; echo $rows->class_name;
-                      echo $rows->sec_name; echo'('; echo' '; echo $rows->exam_name; echo' ';  echo')'; echo '</b>'; }?></h4>
+                      echo $rows->sec_name; echo' ('; echo $rows->exam_name; echo') '; echo '</b>'; }?></h4>
                   </div>
                      <div class="content">
                   <div class="fresh-datatables">
                     
            <table id="bootstrap-table" class="table">
               <thead>
-                 <th data-field="id">ID</th>
+                 <th data-field="id">S. No</th>
                  <th data-field="name" data-sortable="true"> Subject</th>
-                 <th data-field="edate" data-sortable="true">Exam Date</th>
+                 <th data-field="edate" data-sortable="true">Date</th>
                  <!--th data-field="section"  data-sortable="true">Class/Section</th-->
-                 <th data-field="total"  data-sortable="true">Total Marks</th>
-                 <th data-field="internal"  data-sortable="true">Internal Marks</th>
-                 <th data-field="external"  data-sortable="true">External Marks</th>
+                 <th data-field="total"  data-sortable="true">Total</th>
+                 <th data-field="internal"  data-sortable="true">Internal</th>
+                 <th data-field="external"  data-sortable="true">External</th>
                  <th data-field="teacher"  data-sortable="true">Teacher</th>
                  <th data-field="Status"  data-sortable="true">Status</th>
                  <th>Action</th>
@@ -97,7 +97,7 @@
                           if($sta=='Active'){?>
                        <button class="btn btn-success btn-fill btn-wd">Active</button>
                        <?php  }else{?>
-                       <button class="btn btn-danger btn-fill btn-wd">De Active</button>
+                       <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                        <?php } ?>
                     </td>
                     <td>
