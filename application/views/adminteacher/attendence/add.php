@@ -5,7 +5,7 @@
 
 
                         <div class="card">
-                            <div class="header">List of Class For Attendance</div>
+                            <div class="header">Select Class</div>
                             <div class="content">
                                 <div class="row">
                               <?php

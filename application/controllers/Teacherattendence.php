@@ -12,11 +12,11 @@ class Teacherattendence extends CI_Controller {
 			$this->load->model('adminattendancemodel');
 			$this->load->model('homeworkmodel');
 			$this->load->model('smsmodel');
-		  $this->load->model('mailmodel');
-		  $this->load->model('notificationmodel');
-	    $this->load->helper('url');
-		  $this->load->library('encryption');
-	    $this->load->library('session');
+			$this->load->model('mailmodel');
+			$this->load->model('notificationmodel');
+			$this->load->helper('url');
+			$this->load->library('encryption');
+			$this->load->library('session');
  }
 
 	/**

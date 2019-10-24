@@ -289,7 +289,7 @@ class Teacherprofile extends CI_Controller {
 						$res=$this->teacherprofilemodel->updateprofile($user_id,$oldpassword,$newpassword);
 
 						if($res['status']=="success"){
-						 $this->session->set_flashdata('msg', 'Update Successfully');
+						 $this->session->set_flashdata('msg', 'Password changed');
 						  redirect('teacherprofile/profile');
 
 					      }else{
@@ -337,7 +337,7 @@ class Teacherprofile extends CI_Controller {
 			$res=$this->teacherprofilemodel->update_notification($Sms,$Mail,$Push,$user_id);
 
 			if($res['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Update Successfully');
+				 $this->session->set_flashdata('msg', 'Changes made are saved');
 					redirect('teacherprofile/notification_status');
 			 }else{
 				 $this->session->set_flashdata('msg', 'Failed to update');

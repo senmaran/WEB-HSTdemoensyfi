@@ -12,17 +12,17 @@
 
                <div class="card">
                   <div class="header">
-                     <legend>On Duty Details</legend>
+                     <legend>Students' On Duty</legend>
                   </div>
                   <div class="content">
                            <div class="fresh-datatables">
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th>S.no</th>
-							  <th>Student Name</th>
-                                 <th>Reason Out</th>
-                                 <th>From Date</th>
-                                 <th>To Date</th>
+							  <th>Student</th>
+                                 <th>Reason</th>
+                                 <th>From</th>
+                                 <th>To</th>
                                  <th>Status</th>
                            </thead>
                            <tbody>

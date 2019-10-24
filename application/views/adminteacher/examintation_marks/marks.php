@@ -12,7 +12,7 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Enter Exam Marks
+                     <h4 class="title">Mark List
                         <?php
                            foreach($result as $flag){} $ename=$flag->exam_name;
                            echo '('; echo $ename; echo ')';
@@ -26,11 +26,11 @@
                            //echo $cls_masid;
                            if($cid==$cls_masid)
                            {?>
-                        <a href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cid; ?>&var2=<?php  echo $exam_id; ?>"  class="btn btn-info btn-fill btn-wd">View Class Mark</a>
+                        <a href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cid; ?>&var2=<?php  echo $exam_id; ?>"  class="btn btn-info btn-fill btn-wd" style="width:150px;">View All Subjects</a>
                         <?php }
                            //foreach($res as $row){}echo $row->class_id;
                            ?>
-                        <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button>
+                        <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button>
                      </h4>
                      <p class="category"></p>
                   </div>
@@ -41,7 +41,7 @@
                               if(!empty($res))
                               {?>
                            <thead>
-                              <th>Sno</th>
+                              <th>S. No</th>
                               <th>Name</th>
                               <?php
                                  if(empty($res))
@@ -57,15 +57,15 @@
                                  	if($eflag==1){
                                  	?>
                               <input type="hidden" name="examid" value="<?php echo $id;?>" />
-                              <th> Internal <?php echo $row->subject_name; ?> Marks
+                              <th> Internal Marks - <?php echo $row->subject_name; ?> 
                                  <input type="hidden" name="subjectid" value="<?php echo $row->subject_id; ?>" />
                               </th>
-                              <th> External <?php echo $row->subject_name; ?> Marks<input type="hidden" name="subjectid" value="<?php echo $row->subject_id; ?>" /></th>
+                              <th> External Marks - <?php echo $row->subject_name; ?> <input type="hidden" name="subjectid" value="<?php echo $row->subject_id; ?>" /></th>
                               <?php if(!empty($mark)){?>
-                              <th> Total <?php echo $row->subject_name; ?> Marks<input type="hidden" name="subjectid" value="<?php echo $row->subject_id; ?>" /></th>
+                              <th> Mark - <?php echo $row->subject_name; ?><input type="hidden" name="subjectid" value="<?php echo $row->subject_id; ?>" /></th>
                               <?php }}else{?>
                               <input type="hidden" name="examid" value="<?php echo $id;?>" />
-                              <th> Total <?php echo $row->subject_name; ?> Marks<input type="hidden" name="subjectid" value="<?php echo $row->subject_id; ?>" /></th>
+                              <th> Mark - <?php echo $row->subject_name; ?> <input type="hidden" name="subjectid" value="<?php echo $row->subject_id; ?>" /></th>
                               <th></th>
                               <th></th>
                               <?php }?>
@@ -189,7 +189,7 @@
                                  <td></td>
                                  <td>
                                     <div class="col-sm-10">
-                                       <button type="submit" class="btn btn-info btn-fill center">Save</button>
+                                       <button type="submit" class="btn btn-info btn-fill center">SAVE</button>
                                     </div>
                                  </td>
                                  <td></td>

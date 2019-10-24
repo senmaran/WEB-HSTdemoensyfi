@@ -15,13 +15,13 @@
                   <div class="col-md-12">
                      <div class="">
                         <div class="">
-                             <h4 class="title">Class Handling Subject </h4>
+                             <h4 class="title">My Subjects </h4>
                              <hr>
                            <div class="fresh-datatables">
                               <table id="bootstrap-table" class="table">
                                  <thead>
-                                    <th data-field="id">S.No</th>
-                                    <th data-field="year"  data-sortable="true">Class Name</th>
+                                    <th data-field="id">S. No</th>
+                                    <th data-field="year"  data-sortable="true">Class</th>
                                     <th data-field="status"  data-sortable="true">Subject</th>
 
                                  </thead>

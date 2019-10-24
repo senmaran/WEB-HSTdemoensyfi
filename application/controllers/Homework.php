@@ -74,7 +74,7 @@ class Homework extends CI_Controller
 			$datas = $this->homeworkmodel->enter_marks($enroll,$hwid,$marks,$remarks,$user_id,$user_type);
 			  if($datas['status']=="success")
 			  {
-				$this->session->set_flashdata('msg','Added Successfully');
+				$this->session->set_flashdata('msg','Marks added successfully');
                 redirect('homework/home',$datas);  
 			  }else{
 			   $this->session->set_flashdata('msg','Falid To Added');
@@ -173,7 +173,7 @@ class Homework extends CI_Controller
 			$datas = $this->homeworkmodel->update_marks($enroll,$hwid,$marks,$remarks,$user_id,$user_type);
 			  if($datas['status']=="success")
 			  {
-				$this->session->set_flashdata('msg','Update Successfully');
+				$this->session->set_flashdata('msg','Changes made are saved');
                 redirect('homework/home',$datas);  
 			  }else{
 			   $this->session->set_flashdata('msg','Falid To Update');
@@ -227,7 +227,7 @@ class Homework extends CI_Controller
 			$datas= $this->homeworkmodel->update_test_details($id,$hw_type,$title,$formatted_date,$format_date,$test_details,$status,$user_id,$user_type);
 			  if($datas['status']=="success")
 			  {
-				$this->session->set_flashdata('msg','Update Successfully');
+				$this->session->set_flashdata('msg','Changes made are saved');
                 redirect('homework/home',$datas);  
 			  }else{
 			   $this->session->set_flashdata('msg','Falid To Update');

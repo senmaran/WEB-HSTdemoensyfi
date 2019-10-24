@@ -10,7 +10,7 @@
   <?php  if($status=="success"){ ?>
                    <div class="card">
                        <div class="header">
-                           List Of Student in class
+                           Take Attendance
                        </div>
                        <?php
 
@@ -24,9 +24,9 @@
                            <table class="table table-striped">
                                <thead>
                                    <tr>
-                                       <th class="text-center">#</th>
+                                       <th class="text-center">S. No</th>
                                        <th class="text-center">Name</th>
-                                       <th class="text-center">Present  / Absent</th>
+                                       <th class="text-center">Status</th>
                                    </tr>
                                </thead>
                                <tbody>
@@ -58,7 +58,7 @@ echo $dateTime->format("A");
                                         <option value="OD,<?php echo $rows->enroll_id; ?>,<?php
 $dateTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
 echo $dateTime->format("A");
-?>">On-Duty</option>
+?>">On Duty</option>
                                        </select>
                                        </td>
                                         <!-- <td class="text-center">
@@ -81,8 +81,8 @@ echo $dateTime->format("A");
                                </tbody>
 
                            </table>
-                          <button type="button"   class="btn btn-warning btn-fill btn-wd pull-right"  id="submit" style="margin-top:20px;" onclick="submitAttendence()">
-                        Submit Attendance  </button>
+                          <button type="button"   class="btn btn-warning btn-fill btn-wd pull-right"  id="submit" style="margin-top:20px;width:150px;" onclick="submitAttendence()">
+                        Submit </button>
                          </form>
 
                        </div>
@@ -90,10 +90,10 @@ echo $dateTime->format("A");
                    <?php  } else{  ?>
                      <div class="card-header" data-background-color="purple">
 	                        <h4 class="title">Sorry</h4>
-	                        <p class="category"><?php echo $status; ?> </p>
+	                        <p class="category"><?php echo "Attendance already taken for this class"; ?> </p>
 	                    </div>
 
-                  <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button>
+                  <button onclick="history.go(-1);" class="btn btn-wd btn-default" style="margin-top:0px;">BACK</button>
                   <?php  } ?>
                </div>
 
@@ -115,8 +115,8 @@ function submitAttendence(){
                       type: "success",
                       showCancelButton: true,
                       confirmButtonColor: '#DD6B55',
-                      confirmButtonText: 'Yes, I am sure!',
-                      cancelButtonText: "No, cancel it!",
+                      confirmButtonText: 'Yes',
+                      cancelButtonText: "No",
                       closeOnConfirm: false,
                       closeOnCancel: false
                   },
@@ -132,8 +132,8 @@ function submitAttendence(){
                 //  swal("Success!", "Thanks for Your Note!", "success");
                   $('#takeattendence')[0].reset();
                   swal({
-           title: "Attendance Done!",
-           text: "Thank You!",
+           title: "Done!",
+           text: "Attendance submitted",
            type: "success"
        }, function() {
            window.location = "<?php echo base_url(); ?>teacherattendence/view";

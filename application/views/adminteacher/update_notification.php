@@ -5,7 +5,8 @@
                <div class="col-md-12">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Notification Preference</h4>
+                          <h4 class="title">Notification Settings</h4>
+						   <p>Choose the way you want to get notified</p>
                            <?php if($this->session->flashdata('msg')): ?>
                              <div class="alert alert-success">
                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -32,7 +33,7 @@
                                    </div>
 								   <div class="col-md-4">
                                        <div class="form-group">
-                                           <input type="radio" name="Sms" value="Y" <?php if ($sstatus == 'Y' ) echo "checked";?>> Yes <input type="radio" name="Sms" value="N" <?php if ($sstatus == 'N' ) echo "checked";?>> No
+                                           <input type="radio" name="Sms" value="Y" <?php if ($sstatus == 'Y' ) echo "checked";?>> Enable <input type="radio" name="Sms" value="N" <?php if ($sstatus == 'N' ) echo "checked";?>> Disable
                                        </div>
                                    </div>
 								</div>
@@ -44,7 +45,7 @@
                                    </div>
 								    <div class="col-md-4">
                                        <div class="form-group">
-                                           <input type="radio" name="Mail" value="Y" <?php if ($mstatus == 'Y' ) echo "checked";?>> Yes <input type="radio" name="Mail" value="N" <?php if ($mstatus == 'N' ) echo "checked";?>> No
+                                           <input type="radio" name="Mail" value="Y" <?php if ($mstatus == 'Y' ) echo "checked";?>> Enable <input type="radio" name="Mail" value="N" <?php if ($mstatus == 'N' ) echo "checked";?>> Disable
                                        </div>
                                    </div>
 								 </div>
@@ -56,7 +57,7 @@
                                    </div>
 								   <div class="col-md-4">
                                        <div class="form-group">
-                                          <input type="radio" name="Push" value="Y" <?php if ($pstatus == 'Y' ) echo "checked";?>> Yes <input type="radio" name="Push" value="N" <?php if ($pstatus == 'N' ) echo "checked";?>> No
+                                          <input type="radio" name="Push" value="Y" <?php if ($pstatus == 'Y' ) echo "checked";?>> Enable <input type="radio" name="Push" value="N" <?php if ($pstatus == 'N' ) echo "checked";?>> Disable
                                        </div>
                                    </div>
 								  
@@ -68,7 +69,7 @@
                                    </div>
 								    <div class="col-md-4">
                                        <div class="form-group">
-                                          <button type="submit" class="btn btn-info btn-fill">Update</button>
+                                          <button type="submit" class="btn btn-info btn-fill">SAVE</button>
                                        </div>
                                    </div>
                                </div>

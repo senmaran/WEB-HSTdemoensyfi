@@ -219,11 +219,11 @@ class Examinationresult extends CI_Controller
         $datas = $this->examinationresultmodel->exam_marks_details($exam_id,$subid,$sutid,$clsmastid,$teaid,$internal_marks, $external_marks,$user_id,$eflag,$total_marks,$ttlmark,$interlimit,$exterlimit);
         //print_r($datas);exit;
         if ($datas['status']=="success") {
-            $this->session->set_flashdata('msg', 'Added Successfully');
+            $this->session->set_flashdata('msg', 'Exam marks added');
             redirect('examinationresult/marks_details_view?var='.$exam_id.'',$datas);
                  
         }if($datas['status']=="Already Added"){
-			$this->session->set_flashdata('msg', 'Already Added');
+			$this->session->set_flashdata('msg', 'Exam marks already added!');
             redirect('examinationresult/exam_mark_details?var1='.$clsmastid.'&var2='.$exam_id.'',$datas);
 		}else {
             $this->session->set_flashdata('msg', 'Falid To Added');
@@ -248,7 +248,7 @@ class Examinationresult extends CI_Controller
         $datas = $this->examinationresultmodel->add_marks_detail_ajax($exam_id, $subid, $sutid, $clsmastid, $teaid, $marks);
         //print_r($datas);
         if ($datas['status'] == "success") {
-            $this->session->set_flashdata('msg', 'Added Successfully');
+            $this->session->set_flashdata('msg', 'Exam marks added');
             redirect('examinationresult/exam_mark_details', $datas);
             //redirect('add_test');        
         } else {
@@ -341,7 +341,7 @@ class Examinationresult extends CI_Controller
         $datas=$this->examinationresultmodel->update_marks_details($teaid,$clsmastid,$exam_id,$subid,$internal_marks,$external_marks,$sutid,$user_id,$eflag,$total_marks,$ttlmark,$interlimit,$exterlimit);
        // print_r($datas);exit;
         if($datas['status']="success"){
-            $this->session->set_flashdata('msg','Updated Successfully');
+            $this->session->set_flashdata('msg','Changes made are saved');
             redirect('examinationresult/view_exam_name_marks',$datas);
         }else{
            $this->session->set_flashdata('msg','Falid To Updated');
@@ -366,7 +366,7 @@ class Examinationresult extends CI_Controller
             $this->session->set_flashdata('msg', 'Approved Successfully');
             redirect('examinationresult/exam_mark_details_cls_teacher?var1=' . $b . '&var2=' . $a . '', $datas);
             //redirect('add_test');        
-        } elseif ($datas['status'] == "Already Added Exam Marks") {
+        } elseif ($datas['status'] == "Already Approved") {
             $a = $datas['var1'];
             $b = $datas['var2'];
             $this->session->set_flashdata('msg', 'Already Added Exam Marks');

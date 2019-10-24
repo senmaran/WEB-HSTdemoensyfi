@@ -28,7 +28,7 @@
                                <div class="row">
                                    <div class="col-md-4">
                                        <div class="form-group">
-                                           <label>SMS</label><br>
+                                           <label>SMS Notification</label><br>
                                        </div>
                                    </div>
 								   <div class="col-md-4">
@@ -40,7 +40,7 @@
 								<div class="row">
                                    <div class="col-md-4">
                                        <div class="form-group">
-                                           <label>Email</label><br>
+                                           <label>Email Notification</label><br>
                                        </div>
                                    </div>
 								    <div class="col-md-4">

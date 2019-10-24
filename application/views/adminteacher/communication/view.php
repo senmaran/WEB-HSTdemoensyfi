@@ -16,7 +16,7 @@
                             <div class="content">
 
                                 <div class="fresh-datatables">
-                                  <h4 class="title">View All Circular </h4>
+                                  <h4 class="title">Circulars</h4>
                                 <div class="dtypo-line" style="padding:30px;">
                                     <div class="row">
                                        <?php
@@ -30,15 +30,10 @@
                                             <blockquote>
                                                <p><?php echo $rows->circular_description; ?></p>
                                                <?php if(empty($rows->circular_doc)){
-
                                                }else{ ?>
-                                                 <a href="<?php echo base_url(); ?>assets/circular/<?php echo $rows->circular_doc; ?>">Download here</a>
+                                                 <a href="<?php echo base_url(); ?>assets/circular/<?php echo $rows->circular_doc; ?>">Download</a>
                                               <?php } ?>
-                                               <small>
-
-                                                  <cite title="Source Title">
-	           <?php $dateTime=new DateTime($rows->circular_date); $fdate=date_format($dateTime,'d-m-Y' ); echo $fdate; ?></cite>
-                                               </small>
+                                               <p>Date: <?php $dateTime=new DateTime($rows->circular_date); $fdate=date_format($dateTime,'d-m-Y' ); echo $fdate; ?></p>
                                             </blockquote>
                                         </div>
 									   <?php $i++;  }  }?>

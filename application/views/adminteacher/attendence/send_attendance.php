@@ -8,9 +8,9 @@
       <div class="card">
 
         <div class="content">
-          <legend>List of Record in
+          <legend>Attendance for 
             <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?>
-            <button onclick="history.go(-1);" class="btn btn-wd btn-default" style="margin-left:62%;">Go Back</button>
+            <button onclick="history.go(-1);" class="btn btn-wd btn-default" style="margin-left:62%;">BACK</button>
           </legend>
 
           <div class="fresh-datatables">
@@ -20,13 +20,13 @@
 
                 <th data-field="id" class="text-center">S.No</th>
                 <th data-field="date" class="text-center" data-sortable="true">Date</th>
-                <th data-field="year" class="text-center" data-sortable="true">Total Students </th>
-                <th data-field="no" class="text-center" data-sortable="true">No.Of.Present</th>
-                <th data-field="name" class="text-center" data-sortable="true">no.Of.Absent</th>
-                <th data-field="taken" class="text-center" data-sortable="true">Attendance Taken by</th>
-                <th data-field="Section" class="text-center" data-sortable="true">View Absent</th>
-                <th data-field="send" class="text-center" data-sortable="true">Send Attendance</th>
-                <th data-field="send_status" class="text-center" data-sortable="true">Send Status</th>
+                <th data-field="year" class="text-center" data-sortable="true">Strength </th>
+                <th data-field="no" class="text-center" data-sortable="true">Present Students</th>
+                <th data-field="name" class="text-center" data-sortable="true">Absent Students</th>
+                <th data-field="taken" class="text-center" data-sortable="true">Attendance By</th>
+                <th data-field="Section" class="text-center" data-sortable="true">Actions</th>
+                <!--<th data-field="send" class="text-center" data-sortable="true">Send Attendance</th>-->
+                <th data-field="send_status" class="text-center" data-sortable="true">Message Status </th>
 
               </thead>
               <tbody>
@@ -57,15 +57,13 @@
                     </td>
 
                     <td>
-                      <a href="<?php echo base_url(); ?>teacherattendence/view_all/<?php echo $rows->at_id; ?>/<?php echo $rows->class_id; ?>" rel="tooltip" title="View " class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
+                      <a href="<?php echo base_url(); ?>teacherattendence/view_all/<?php echo $rows->at_id; ?>/<?php echo $rows->class_id; ?>" rel="tooltip" title="View Students" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a> &nbsp;  <a href="#" rel="tooltip" title="Send Attendance" data-toggle="modal" data-target="#myModal" data-id="<?php echo $rows->at_id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
                     </td>
-                    <td>
-                      <a href="#" rel="tooltip" title="Send" data-toggle="modal" data-target="#myModal" data-id="<?php echo $rows->at_id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
-                    </td>
+                    
                     <td>
                       <?php $sent=$rows->sent_status;
                       if($sent=="1"){
-                        echo "<i class='fa fa-check' ></i>";
+                        echo "<i class='fa fa-check' rel='tooltip' title='Message Send'></i>";
                       }else{
                           echo "";
                       }
@@ -87,7 +85,7 @@
                       <form action="" method="post" class="form-horizontal" id="send_attendance_parents">
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-4 control-label">Select type</label>
+                              <label class="col-sm-4 control-label">Message Type</label>
                               <div class="col-sm-6">
                                 <select multiple name="msg_type[]" id="msg_type" data-title="Select  Type" class="selectpicker form-control">
                                    <option value="SMS">SMS</option>
@@ -104,16 +102,13 @@
                             <div class="form-group">
                                <label class="col-sm-4 control-label">&nbsp;</label>
                                <div class="col-sm-4">
-                                  <button type="submit" class="btn btn-info btn-fill center">Send Message </button>
+                                  <button type="submit" class="btn btn-info btn-fill center">SEND</button>
                                </div>
                             </div>
                          </fieldset>
                       </form>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-                    </div>
+                 
                   </div>
                 </div>
               </div>
@@ -135,7 +130,7 @@ $('#send_attendance_parents').validate({ // initialize the plugin
       "msg_type[]":{required:true },
   },
   messages: {
-        "msg_type[]": "Select Type"
+        "msg_type[]": "Please choose an option!"
       },
     submitHandler: function(form) {
       //alert("hi");
@@ -145,8 +140,8 @@ $('#send_attendance_parents').validate({ // initialize the plugin
                     type: "success",
                     showCancelButton: true,
                     confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Yes, I am sure!',
-                    cancelButtonText: "No, cancel it!",
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: "No",
                     closeOnConfirm: false,
                     closeOnCancel: false,
                 },
@@ -161,8 +156,8 @@ $('#send_attendance_parents').validate({ // initialize the plugin
              if(response=="success"){
                 $('#send_attendance_parents')[0].reset();
                 swal({
-         title: "Wow!",
-         text: response,
+         title: "Success!",
+         text: "Attendance sent",
          type: "success"
      }, function() {
         location.reload();

@@ -12,7 +12,7 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Apply Onduty For Students </h4>
+                     <h4 class="title">Apply On Duty For Students</h4>
                   </div>
                   <div class="content">
                      <div class="row">
@@ -40,7 +40,7 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">View Students Onduty</h4>
+                     <h4 class="title">View Students On Duty</h4>
                   </div>
                   <div class="content">
                      <div class="row">

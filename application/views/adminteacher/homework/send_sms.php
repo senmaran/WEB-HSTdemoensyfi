@@ -16,14 +16,14 @@
           <div class="col-md-12">
             <div class="card">
               <div class="content">
-                <h4 class="title">Send SMS  <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
+                <h4 class="title">Homework / Test Notifications <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></h4>
                 <div class="fresh-datatables">
                   <table id="bootstrap-table" class="table">
                     <thead>
                       <th>S.no</th>
-                      <th>Home Work / Class Test <br> Created Date</th>
+                      <th>Date</th>
                       <!--<th>Home Work / Class Test</th>-->
-                      <th>Action</th>
+                      <th>Actions</th>
                     </thead>
                     <tbody>
                       <?php
@@ -46,9 +46,9 @@
                           </td>
                           <td>
 						  
-						  <a  style="padding-right:15px;" href="<?php echo base_url(); ?>homework/view_send_all_homework/<?php echo $tdate; ?>/<?php echo $cid; ?>" ><i class="fa fa-list" aria-hidden="true"></i></a>
+						  <a rel="tooltip" title="View Details" style="padding-right:15px;" href="<?php echo base_url(); ?>homework/view_send_all_homework/<?php echo $tdate; ?>/<?php echo $cid; ?>" ><i class="fa fa-list" aria-hidden="true"></i></a>
 						  
-                            <a rel="tooltip" href="" data-toggle="modal" data-target="#addmodel" data-id="<?php echo $tdate; ?>"  class="open-AddBookDialog"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+                            <a rel="tooltip" title="Send Message" href="" data-toggle="modal" data-target="#addmodel" data-id="<?php echo $tdate; ?>"  class="open-AddBookDialog"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
                             <span style="padding-left:20px;"></span>
 							
                             <?php if($send_status=="1")
@@ -79,7 +79,7 @@
                 <div class="modal-content">
                   <div class="modal-header" style="padding:10px;">
                     <button type="button" class="close" style="margin:25px;" data-dismiss="modal">&times;</button>
-                    <h4 class="title">Send Home Work And Class Test</h4>
+                    <h4 class="title">Message Homework / Test Details</h4>
                   </div>
                   <div class="modal-body">
                     <p id="msg" style="text-align:center;"></p>
@@ -92,9 +92,10 @@
                               <input type="hidden" name="clsid" id="csid" value="<?php echo $cid; ?>">
                               <fieldset>
                                 <div class="form-group">
-                                  <label class="col-sm-4 control-label">Send Option</label>
+                                  <label class="col-sm-4 control-label">Message Type</label>
+								 
                                   <div class="col-sm-6">
-                                    <select multiple name="sendoption[]" class="selectpicker form-control" >
+                                    <select multiple name="sendoption[]" data-title="Select Type" class="selectpicker form-control" >
                                       <option value="SMS">SMS</option>
                                       <option value="Mail">Mail</option>
                                       <option value="Notification">Notification</option>
@@ -106,7 +107,7 @@
                                 <div class="form-group">
                                   <label class="col-sm-4 control-label">&nbsp;</label>
                                   <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-info btn-fill center">Send </button>
+                                    <button type="submit" class="btn btn-info btn-fill center">SEND </button>
                                   </div>
                                 </div>
                               </fieldset>
@@ -137,7 +138,7 @@
             'sendoption[]':{required:true },
           },
           messages: {
-            'sendoption[]':"Select Send Option",
+            'sendoption[]':"Please choose an option!",
           },
 
            submitHandler: function(form) {
@@ -149,8 +150,8 @@
               type: "success",
               showCancelButton: true,
               confirmButtonColor: '#DD6B55',
-              confirmButtonText: 'Yes, I am sure!',
-              cancelButtonText: "No, cancel it!",
+              confirmButtonText: 'Yes',
+              cancelButtonText: "No",
               closeOnConfirm: false,
               closeOnCancel: false
             },
@@ -167,8 +168,8 @@
                       //  swal("Success!", "Thanks for Your Note!", "success");
                       $('#homeworkform')[0].reset();
                       swal({
-                        title: "Wow!",
-                        text: "Message!",
+                        title: "Success!",
+                        text: "Homework / Test Details sent",
                         type: "success"
                       },
                       function() {

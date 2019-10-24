@@ -4,7 +4,7 @@
          <div class="col-md-12">
 
                         <div class="card">
-                            <div class="header">Class for Timetable</div>
+                            <div class="header">Choose Class</div>
                             <div class="content">
                                 <div class="row">
                               <?php

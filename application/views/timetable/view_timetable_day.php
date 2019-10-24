@@ -80,12 +80,12 @@
         function delte_time_table(class_id,term_id,day_id){
           swal({
                   title: "Are you sure?",
-                  text: "You Want to Delete the this Timetable",
+                  text: "You Want to delete the this timetable",
                   type: "warning",
                   showCancelButton: true,
                   confirmButtonColor: '#DD6B55',
-                  confirmButtonText: 'Yes, I am sure!',
-                  cancelButtonText: "No, cancel it!",
+                  confirmButtonText: 'Yes',
+                  cancelButtonText: "No",
                   closeOnConfirm: false,
                   closeOnCancel: false
               },
@@ -103,8 +103,8 @@
                               // alert(data)
                               if (data == 'success') {
                                   swal({
-                                          title: "Good job",
-                                          text: "Deleted Successfully!",
+                                          title: "Success",
+                                          text: "Deleted successfully!",
                                           type: "success"
                                       },
                                       function() {

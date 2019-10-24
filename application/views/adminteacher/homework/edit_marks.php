@@ -6,15 +6,15 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Update Marks Details <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
-                     <?php foreach ($result as $rows)
+				   <?php foreach ($result as $rows)
                         {} ?>
                      <?php
                         $subname=$rows->subject_name;
 						$cname=$rows->class_name;
 						$sename=$rows->sec_name;?>
-                     <p class="category"><b>Subject Name </b>= <?php echo $subname ;?> </br>
-                     <b>Class&Section Name </b>= <?php echo $cname ;?> - <?php echo $sename;?> 
+                     <h4 class="title">Edit Marks <?php echo $cname ;?> - <?php echo $sename;?> <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></h4>
+                    
+                     <p class="category"><b>Subject </b>- <?php echo $subname ;?> </br>
                      </p>
                   </div>
                   <div class="content table-responsive table-full-width">
@@ -23,7 +23,7 @@
                            <th>S.No</th>
                            <th>Name</th>
                            <th>Marks</th>
-                           <th>ReMarks</th>
+                           <th>Comments</th>
                         </thead>
                         <form method="post" action="<?php echo base_url(); ?>homework/update" class="form-horizontal" enctype="multipart/form-data" id="markform">
                            <tbody>
@@ -40,7 +40,7 @@
                                  <td style="width:20%;">
                                     <input type="text" name="marks[]" value="<?php echo $rows->marks; ?>" class="form-control"/>
                                  </td>
-                                 <td> <textarea name="remarks[]" MaxLength="150" placeholder="MaxLength 150" class="form-control" rows="1" cols="03"><?php echo $rows->remarks; ?></textarea></td>
+                                 <td> <textarea name="remarks[]" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="1" cols="03"><?php echo $rows->remarks; ?></textarea></td>
                                  <td></td>
                               </tr>
                               <?php $i++;  }?>
@@ -48,7 +48,7 @@
                                  <td></td>
                                  <td></td>
                                  <td>
-                                    <button type="submit" id="save" class="btn btn-info btn-fill center">Update</button>
+                                    <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
                                  </td>
                                  <td></td>
                                  <td></td>

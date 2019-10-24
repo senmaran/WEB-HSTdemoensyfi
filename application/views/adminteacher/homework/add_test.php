@@ -11,9 +11,7 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Marks Details Enter
-                     <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
-                     <?php if(empty($result))
+				  <?php if(empty($result))
                         {
                         	echo "<p style=color:red;text-align:center;>No Student Added For This Class</p>";
                         }else{
@@ -23,16 +21,18 @@
                         	$cls=$res->class_name;
                         	$sec=$res->sec_name;
                         	}?>
-                     <p class="category"><b>Subject Name </b>= <?php echo $sub; ?> </br> <b>Class&Section Name </b>= <?php echo $cls; ?> - <?php echo $sec; ?> </p>
-                     
+                    <h4 class="title">Enter Marks For <?php echo $cls; ?> - <?php echo $sec; ?>
+                     <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></h4>
+                      <p class="category"><b>Subject </b> - <?php echo $sub; ?></p>
                   </div>
+                     
                   <div class="content table-responsive table-full-width">
                      <table class="table table-hover table-striped">
                         <thead>
                            <th>S.No</th>
                            <th>Name</th>
                            <th>Marks</th>
-                           <th>ReMarks</th>
+                           <th>Comments</th>
                         </thead>
                         <form method="post" action="<?php echo base_url(); ?>homework/marks" class="form-horizontal" enctype="multipart/form-data" id="markform">
                            <tbody>
@@ -52,7 +52,7 @@
                                  <td style="width:20%;">
                                     <input type="text" required name="marks[]" value class="form-control"/>
                                  </td>
-                                 <td> <textarea required name="remarks[]" MaxLength="150" placeholder="MaxLength 150" class="form-control" rows="1" cols="03"></textarea></td>
+                                 <td> <textarea required name="remarks[]" MaxLength="150" placeholder="Maximum 150 characters" class="form-control" rows="1" cols="03"></textarea></td>
                                  <td></td>
                               </tr>
                               <?php $i++;  } ?>
@@ -60,7 +60,7 @@
                                  <td></td>
                                  <td></td>
                                  <td>
-                                    <button type="submit" id="save" class="btn btn-info btn-fill center">Save </button>
+                                    <button type="submit" id="save" class="btn btn-info btn-fill center">SUBMIT </button>
                                  </td>
                                  <td></td>
                                  <td></td>
@@ -85,7 +85,7 @@
     $('#myformsection').validate({ // initialize the plugin
         rules: {
             marks:{required:true },
-   		 remarks:{required:true }
+			remarks:{required:true }
         },
         messages: {
                marks: "Please Enter The Marks",

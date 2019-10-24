@@ -15,7 +15,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Exam Duty Details</h4>
+                                <h4 class="title">Exam Duty</h4>
                                 
                             </div>
                             <div class="content table-responsive table-full-width">
@@ -26,10 +26,10 @@
 									  }else{?>
                                     <thead>
                                         <th>S.No</th>
-                                    	<th>Exam Name</th>
-                                    	<th>Subject Name</th>
+                                    	<th>Exam</th>
+                                    	<th>Subject</th>
                                     	<th>Exam Date</th>
-                                    	<th>Time</th>
+                                    	<th>Session</th>
 										<th>Class & Section </th>
                                     </thead>
                                     <tbody>
@@ -46,7 +46,7 @@
                                         	<td><?php echo $res->subject_name;  ?></td>
                                         	<td><?php echo date_format($exdate,"d-m-Y"); ?></td>
                                         	<td><?php echo $res->times;  ?></td>
-                                        	<td><?php echo $res->class_name;  ?><?php echo $res->sec_name; ?></td>
+                                        	<td><?php echo $res->class_name;  ?> <?php echo $res->sec_name; ?></td>
                                         </tr>
 									  <?php $i++;  } } ?>
                                     </tbody>

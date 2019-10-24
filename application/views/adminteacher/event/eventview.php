@@ -6,7 +6,7 @@
 <div class="content">
 
   <div class="">
-    <h4 class="title">Events    (<i class="fa fa-user" aria-hidden="true"></i>) You have Been Allocated as Co-Ordinator </h4><span></span> <br><br>
+    <h4 class="title">Coordinating Events</h4><span></span> <br><br>
   <div class="row">
     <?php
     foreach($res as $rows_event){
@@ -29,7 +29,7 @@
   </div>
 
 <div class="">
-  <h4 class="title">List of all Event  </h4>
+  <h4 class="title">All Events</h4>
 <div class="row">
   <?php
   foreach($event_all as $rows){

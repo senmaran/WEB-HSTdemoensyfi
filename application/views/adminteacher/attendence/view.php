@@ -20,7 +20,7 @@
                     <?php  } ?>
 
                         <div class="card">
-                            <div class="header">View the Attendance By Class wise</div>
+                            <div class="header">View Classwise Attendance</div>
                             <div class="content">
 
                                 <div class="row">

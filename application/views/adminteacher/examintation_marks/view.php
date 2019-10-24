@@ -13,7 +13,7 @@
                <div class="card">
                   <div class="content">
                      <div class="fresh-datatables">
-					 					 <h4 class="title">Marks Details<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4><hr>
+					 					 <h4 class="title">Mark List<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></h4><hr>
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th>S.no</th>
@@ -54,7 +54,7 @@
 								 ?> </td>
 
                                  <td>
-                                    <a href="<?php echo base_url(); ?>examinationresult/exam_mark_edit_details?var1=<?php echo $rows->subject_id; ?>&var2=<?php echo $rows->classmaster_id; ?>&var3=<?php echo $rows->exam_id; ?>" title="Edit Mark Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" ><i class="fa fa-edit"></i></a>
+                                    <a href="<?php echo base_url(); ?>examinationresult/exam_mark_edit_details?var1=<?php echo $rows->subject_id; ?>&var2=<?php echo $rows->classmaster_id; ?>&var3=<?php echo $rows->exam_id; ?>" title="Edit mark list" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" ><i class="fa fa-edit"></i></a>
 									</td>
                               </tr>
                               <?php $i++;  }  ?>

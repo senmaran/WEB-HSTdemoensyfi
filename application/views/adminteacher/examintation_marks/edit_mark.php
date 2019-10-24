@@ -11,16 +11,16 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Edit Exam Marks <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
+                     <h4 class="title">Edit Mark List <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></h4>
                      <p class="category"></p>
                   </div>
                   <div class="content table-responsive table-full-width">
                      <form method="post" action="<?php echo base_url(); ?>examinationresult/update_marks_details" class="form-horizontal" enctype="multipart/form-data" id="markform" name="markform">
-                        <?php if(!empty($mark)){ echo "<p style=color:red;text-align:center;>You cannot make further changes as the admin has already approved.</p>";}else{ } ?>
+                        <?php if(!empty($mark)){ echo "<p style=color:red;text-align:center;>Instruction: You cannot make further changes as the admin has already approved the mark list.</p>";}else{ } ?>
                         <table class="table table-hover table-striped">
 
                            <thead>
-                              <th>Sno</th>
+                              <th>S. No</th>
                               <th>Name</th>
                               <?php
                                 foreach($edit as $row)
@@ -32,7 +32,7 @@
                               <th>Internal <?php echo $row->subject_name;?></th>
                               <th>External <?php echo $row->subject_name;?></th>
                               <?php }else{ ?>
-                              <th>Total Marks In <?php echo $row->subject_name;?></th>
+                              <th>Marks <?php echo $row->subject_name;?></th>
                               <?php } ?>
                            </thead>
 
@@ -103,7 +103,7 @@
                                  <td></td>
                                  <td>
                                     <div class="col-sm-10">
-                                       <button type="submit" id="update" class="btn btn-info btn-fill center">Update</button>
+                                       <button type="submit" id="update" class="btn btn-info btn-fill center">SAVE</button>
                                     </div>
                                  </td>
                                  <td></td>

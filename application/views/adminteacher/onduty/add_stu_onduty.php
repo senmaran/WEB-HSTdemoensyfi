@@ -7,7 +7,7 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Students On Duty Form</h4>
+                     <h4 class="title">Student On Duty Form</h4>
                   </div>
                   <div class="content">
                      <form method="post" action="<?php echo base_url(); ?>teacheronduty/apply_onduty_for_student" class="form-horizontal" enctype="multipart/form-data" id="ondutysection" name="ondutysection">
@@ -17,7 +17,7 @@
                         <fieldset>
                            <div class="form-group">
 
-						   <label class="col-sm-2 control-label">Students Name</label>
+						   <label class="col-sm-2 control-label">Student</label>
                               <div class="col-sm-4">
 							     <select name="stu_userid" class="selectpicker form-control" data-title="Select Students " data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 								 <?php  if(!empty($clsstudlist)){ foreach($clsstudlist as $rows){?>
@@ -26,7 +26,7 @@
 								  </select>
                               </div>
 
-                              <label class="col-sm-2 control-label">Reason Out</label>
+                              <label class="col-sm-2 control-label">Reason</label>
                               <div class="col-sm-4">
 							   <input type="text" name="reason" class="form-control">
                               </div>
@@ -35,12 +35,12 @@
                         </fieldset>
 						 <fieldset>
                            <div class="form-group">
-						   <label class="col-sm-2 control-label">From Date</label>
+						   <label class="col-sm-2 control-label">From</label>
                               <div class="col-sm-4">
                                  <input type="text" name="fdate" required class="form-control datepicker" value="">
                               </div>
 
-                              <label class="col-sm-2 control-label">To Date</label>
+                              <label class="col-sm-2 control-label">To</label>
                               <div class="col-sm-4">
                                  <input type="text" name="tdate" required class="form-control datepicker" value="">
                               </div>
@@ -50,7 +50,7 @@
                            <div class="form-group">
 						     <label class="col-sm-2 control-label">Notes</label>
                               <div class="col-sm-4">
-                                 <textarea rows="4" cols="80" MaxLength="250" placeholder="MaxLength 250" name="notes" class="form-control"></textarea>
+                                 <textarea rows="4" cols="80" MaxLength="250" placeholder="Maximum 250 characters" name="notes" class="form-control"></textarea>
                               </div>
 
                            </div>
@@ -58,7 +58,7 @@
                         <div class="form-group">
                            <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                            <div class="text-center">
-                              <button type="submit" id="save" class="btn btn-info btn-fill center">Save </button>
+                              <button type="submit" id="save" class="btn btn-info btn-fill center">APPLY </button>
                            </div>
                         </div>
                         </fieldset>
@@ -80,15 +80,15 @@
                <div class="col-md-12">
                   <div class="card">
                      <div class="content">
-                       <h4 class="title">List of Students OnDuty</h4><hr>
+                       <h4 class="title">Students' On Duty</h4><hr>
                         <div class="fresh-datatables">
                            <table id="bootstrap-table" class="table">
                               <thead>
                                  <th>S.no</th>
-								 <th>Students Name</th>
-                                 <th>Reason Out</th>
-                                 <th>From Date</th>
-                                 <th>To Date</th>
+								 <th>Student</th>
+                                 <th>Reason</th>
+                                 <th>From</th>
+                                 <th>To</th>
                                  <th>Status</th>
 								 <th>Actions</th>
                               </thead>
@@ -113,8 +113,7 @@
 								  </td>
 
                                     <td><?php if($stu=='Approved' || $stu=='Rejected' ){echo"-";}else{ ?>
-                                       <a href="<?php echo base_url();  ?>teacheronduty/edit_stu_onduty/<?php echo $rows->id; ?>/<?php echo $rows->class_id; ?>" class="btn btn-simple btn-warning btn-icon edit">
-									<i class="fa fa-edit"></i></a><?php }?>
+                                       <a href="<?php echo base_url();  ?>teacheronduty/edit_stu_onduty/<?php echo $rows->id; ?>/<?php echo $rows->class_id; ?>" class="btn btn-simple btn-warning btn-icon edit" rel="tooltip" title="Edit"><i class="fa fa-edit"></i></a><?php }?>
                                     </td>
                                  </tr>
                                  <?php $i++;  }  ?>
@@ -140,6 +139,7 @@
      $('#stuonduty').addClass('active');
     $('#ondutysection').validate({ // initialize the plugin
         rules: {
+			stu_userid:{required:true },
             reason:{required:true },
 			notes:{required:true },
 			fdate:{required:true },
@@ -147,10 +147,11 @@
 			status:{required:true }
         },
         messages: {
-               reason: "Enter Reason Out",
-			   notes: "Enter Notes",
-			   fdate: "Select From Date",
-			   tdate: "Select To Date",
+				stu_userid:"Please choose an option!",
+               reason: "This field cannot be empty!",
+			   notes: "This field cannot be empty!",
+			   fdate: "Please choose an option!",
+			   tdate: "Please choose an option!",
 			   status: "Select Status",
             }
     });

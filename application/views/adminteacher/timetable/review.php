@@ -7,17 +7,17 @@
                   <div class="card">
                      <div class="content">
                         <div class="header">
-                           <legend>Time Table Reivew<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </legend>
+                           <legend>Subject Reviews<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button> </legend>
                         </div>
                         <div class="fresh-datatables">
                            <table id="bootstrap-table" class="table">
                               <thead>
                                  <th data-field="id" class="text-center">S.no</th>
-                                 <th data-field="name" class="text-center" data-sortable="true">Class/Section</th>
+                                 <th data-field="name" class="text-center" data-sortable="true">Class | Section</th>
                                  <th data-field="Subject" class="text-center" data-sortable="true">Subject</th>
-                                 <th data-field="Period" class="text-center" data-sortable="true">Period</th>
+                                 <th data-field="Period" class="text-center" data-sortable="true">Timing</th>
                                  <th data-field="comments" class="text-center" data-sortable="true">Comments</th>
-                                 <th data-field="DateTime" class="text-center" data-sortable="true">DateTime</th>
+                                 <th data-field="DateTime" class="text-center" data-sortable="true">Date | Time</th>
                                  <th data-field="Remarks" class="text-center" data-sortable="true">Remarks</th>
                               </thead>
                               <tbody>

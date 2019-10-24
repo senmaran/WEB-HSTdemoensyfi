@@ -126,7 +126,7 @@
                      <ul class="dropdown-menu dropdown-with-icons">
                         <li>
                            <a href="<?php echo base_url(); ?>teacherprofile/profilepic">
-                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile Update
+                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
                            </a>
                         </li>
                         <li>
@@ -136,7 +136,7 @@
                         </li>
 						<li>
                            <a href="<?php echo base_url(); ?>teacherprofile/notification_status">
-                        <i class="fa fa-cog" aria-hidden="true"></i>  Notification Preference
+                        <i class="fa fa-cog" aria-hidden="true"></i>  Notification Settings
                            </a>
                         </li>
                         <li class="divider"></li>
@@ -198,7 +198,7 @@
                <li id="classhandling">
                   <a href="<?php echo base_url(); ?>teachertimetable/classhandling_subject">
                       <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/classhandling.png"/>
-                     <p>Class Handling 	</p>
+                     <p>My Subjects 	</p>
                   </a>
 
                </li>
@@ -206,7 +206,7 @@
                <li id="grouping">
                   <a href="<?php echo base_url(); ?>teacherprofile/grouping">
                       <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/classhandling.png"/>
-                     <p>Group Message 	</p>
+                     <p>Group Messages 	</p>
                   </a>
 
                </li>
@@ -219,76 +219,73 @@
                   </a>
                   <div class="collapse" id="attendmenu">
                      <ul class="nav">
-                        <li id="atten1"><a href="<?php echo base_url();  ?>teacherattendence/home">Update Attendance</a></li>
+                        <li id="atten1"><a href="<?php echo base_url();  ?>teacherattendence/home">Take Attendance</a></li>
                         <li id="atten2"><a href="<?php echo base_url();  ?>teacherattendence/view">View Attendance</a></li>
-                        <li id="atten3"><a href="<?php echo base_url();  ?>teacherattendence/monthview">Month view</a></li>
+                        <li id="atten3"><a href="<?php echo base_url();  ?>teacherattendence/monthview">Month View</a></li>
                      </ul>
                   </div>
                </li>
                <li id="home">
                   <a href="<?php echo base_url(); ?>homework/home">
                    <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/homework&classtest.png"/>
-                     <p>Home Work / Class Test	</p>
+                     <p>Homeworks and Tests</p>
                   </a>
                </li>
                <li id="exam">
                   <a data-toggle="collapse" href="#examinationmenu">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/Results.png"/>
-                     <p>Examination Result</p>
+                     <p>Examinations</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="examinationmenu">
                      <ul class="nav">
-                        <li id="exam3"><a href="<?php echo base_url(); ?>examinationresult/exam_namefor_duty"> Exam Duty</a></li>
-						<li id="exam4"><a href="<?php echo base_url(); ?>examinationresult/exname"> Add & View Exam Marks</a></li>
+                        <li id="exam3"><a href="<?php echo base_url(); ?>examinationresult/exam_namefor_duty">Exam Duty</a></li>
+						<li id="exam4"><a href="<?php echo base_url(); ?>examinationresult/exname"> View Mark List</a></li>
                         <!-- <li id="exam1"><a href="<?php echo base_url(); ?>examinationresult/home">Add Exam Marks</a></li> -->
-                        <li id="exam2"><a href="<?php echo base_url(); ?>examinationresult/view_exam_name_marks">Edit Exam Marks</a></li>
+                        <li id="exam2"><a href="<?php echo base_url(); ?>examinationresult/view_exam_name_marks">Edit Mark List</a></li>
                      </ul>
                   </div>
                </li>
 			   <li id="stuonduty">
                   <a href="<?php echo base_url(); ?>teacheronduty/view_class">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/on duty.png"/>
-                     <p>Student Onduty </p>
+                     <p>Student On Duty</p>
                   </a>
-				  </li>
+			   </li>
                <li id="calendar">
                   <a data-toggle="collapse" href="#calendermenu">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/calender.png"/>
-                     <p>Calendar	</p>
+                     <p>View Calendar</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="calendermenu">
                      <ul class="nav">
                         <li id="calendar1"><a href="<?php echo base_url(); ?>teacherevent/calender">Calendar</a></li>
-                        <li id="calendar2"><a href="<?php echo base_url(); ?>teacherevent/home">List of Event</a></li>
+                        <li id="calendar2"><a href="<?php echo base_url(); ?>teacherevent/home">Events List</a></li>
                      </ul>
                   </div>
                </li>
-               <li id="comm">
-                  <a data-toggle="collapse" href="#commmenu">
-                    <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/circular.png"/>
-                     <p>Circular</p>
-                     <b class="caret"></b>
+			   
+			    <li id="comm">
+                  <a href="<?php echo base_url(); ?>teachercommunication/view_circular">
+                     <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/circular.png"/>
+                     <p>Circulars</p>
                   </a>
-                  <div class="collapse" id="commmenu">
-                     <ul class="nav">
+			   </li>
+			   
 
-                        <li id="comm2"><a href="<?php echo base_url(); ?>teachercommunication/view_circular">View Circulars</a></li>
-                     </ul>
-                  </div>
-               </li>
+			   
                <li id="timetable">
                   <a data-toggle="collapse" href="#timetablemenu">
                    <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/timetable.png"/>
-                     <p>Time Table	</p>
+                     <p>Timetable</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="timetablemenu">
                      <ul class="nav">
-                        <li id="timetable1"><a href="<?php echo base_url(); ?>teachertimetable/teachertimetable">Teacher Time Table</a></li>
-                        <li id="timetable2"><a href="<?php echo base_url(); ?>teachertimetable/home">Time Table</a></li>
-                        <li id="timetable3"><a href="<?php echo base_url(); ?>teachertimetable/reviewview">Reviews</a></li>
+                        <li id="timetable1"><a href="<?php echo base_url(); ?>teachertimetable/teachertimetable">Weekly Schedule</a></li>
+                        <li id="timetable2"><a href="<?php echo base_url(); ?>teachertimetable/home">Class Timetable</a></li>
+                        <li id="timetable3"><a href="<?php echo base_url(); ?>teachertimetable/reviewview"> Subject Review</a></li>
                      </ul>
                   </div>
                </li>

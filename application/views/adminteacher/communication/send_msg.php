@@ -5,14 +5,14 @@
                <div class="col-md-12">
                   <div class="card">
                      <div class="content">
-                       <h4 class="title">List of Groups <a href="<?php echo base_url(); ?>teacherprofile/message_history" class="btn btn pull-right">Message History</a></h4>    
+                       <h4 class="title">Groups <a href="<?php echo base_url(); ?>teacherprofile/message_history" class="btn btn pull-right">Message History</a></h4>    
                        <hr>
                         <div class="fresh-datatables">
                   <table id="bootstrap-table" class="table">
                      <thead>
                         <th data-field="id" class="text-left">S.No</th>
                         <th data-field="name" class="text-left" data-sortable="true">Group Name</th>
-                        <th data-field="Section" class="text-left" data-sortable="true">Lead</th>
+                        <th data-field="Section" class="text-left" data-sortable="true">Admin</th>
                         <th data-field="actions" class="td-actions text-left" data-events="operateEvents">Actions</th>
                      </thead>
                      <tbody>
@@ -22,7 +22,7 @@
                            <td><?php echo $rowsclass->group_title;  ?></td>
                            <td><?php echo $rowsclass->name;  ?></td>
                            <td>
-                             <a href="#myModal" data-toggle="modal" data-target="#myModal"  data-id="<?php echo $rowsclass->id; ?>" rel="tooltip" title="SEND"  class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit">
+                             <a href="#myModal" data-toggle="modal" data-target="#myModal"  data-id="<?php echo $rowsclass->id; ?>" rel="tooltip" title="Send Message"  class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit">
                               <i class="fa fa-paper-plane"> </i></a>
                               <a href="<?php echo base_url(); ?>teacherprofile/view_members/<?php echo   $rowsclass->id; ?>" rel="tooltip" title="View Members" >
                                  <i class="fa fa-th">  </i></a>
@@ -50,13 +50,13 @@
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Send Message To Group</h4>
+            <h4 class="modal-title">Message To Group</h4>
          </div>
          <div class="modal-body">
             <form action="" method="post" class="form-horizontal" id="send_msg">
                <fieldset>
                   <div class="form-group">
-                     <label class="col-sm-4 control-label">Notification Type </label>
+                     <label class="col-sm-4 control-label">Message Type</label>
                      <div class="col-sm-6">
                         <select multiple name="circular_type[]" id="circular_type" data-title="Select  Type" class="selectpicker form-control">
                            <option value="SMS">SMS</option>
@@ -71,21 +71,19 @@
                   <div class="form-group">
                      <label class="col-sm-4 control-label">Notes </label>
                      <div class="col-sm-6">
-                        <textarea name="notes" MaxLength="160" placeholder="MaxLength 160" id="notes" class="form-control"  rows="4" cols="80"></textarea>
+                        <textarea name="notes" MaxLength="160" placeholder="Maximum 160 characters" id="notes" class="form-control"  rows="4" cols="80"></textarea>
                      </div>
                   </div>
                   <div class="form-group">
                      <label class="col-sm-4 control-label">&nbsp;</label>
                      <div class="col-sm-6">
-                        <button type="submit" id="save" class="btn btn-info btn-fill center">Send </button>
+                        <button type="submit" id="save" class="btn btn-info btn-fill center">SEND </button>
                      </div>
                   </div>
                </fieldset>
             </form>
          </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         </div>
+        
       </div>
    </div>
 </div>
@@ -98,8 +96,8 @@
 
      },
      messages: {
-           "circular_type[]": "Select Type",
-           notes:"Enter Notes "
+           "circular_type[]": "Please choose an option!",
+           notes:"This field cannot be empty!"
 
 
          },
@@ -111,8 +109,8 @@
                        type: "success",
                        showCancelButton: true,
                        confirmButtonColor: '#DD6B55',
-                       confirmButtonText: 'Yes, I am sure!',
-                       cancelButtonText: "No, cancel it!",
+                       confirmButtonText: 'Yes',
+                       cancelButtonText: "No",
                        closeOnConfirm: false,
                        closeOnCancel: false,
 

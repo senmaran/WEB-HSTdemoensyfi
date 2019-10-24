@@ -14,16 +14,16 @@
 
                         <div class="content">
 
-                                <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:0px;">Go Back</button>
+                                <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:0px;">BACK</button>
 
-                            <h4 class="title"> List of Record in <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?></h4>
+                            <h4 class="title">Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?></h4>
                             <hr>
                             <div class="fresh-datatables">
 
                                 <table id="bootstrap-table" class="table">
                                     <thead>
 
-                                        <th data-field="id" class="text-center" data-sortable="true">S.No</th>
+                                        <th data-field="id" class="text-center" data-sortable="true">S. No</th>
                                         <th data-field="date" class="text-center" data-sortable="true">Name</th>
                                         <th data-field="year" class="text-center" data-sortable="true">Status </th>
 

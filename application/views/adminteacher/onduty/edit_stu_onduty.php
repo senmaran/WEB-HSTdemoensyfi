@@ -5,7 +5,7 @@
                <div class="col-md-10">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Update Students On Duty Form</h4>
+                           <h4 class="title">Edit Student On Duty Form</h4>
                        </div>
 						<?php foreach($editstu as $res){}	?>
                        <div class="content">
@@ -15,7 +15,7 @@
                         <fieldset>
                            <div class="form-group">
 						   
-						    <label class="col-sm-2 control-label">Students Name</label>
+						    <label class="col-sm-2 control-label">Student</label>
                               <div class="col-sm-4">
 							     <select name="stu_userid" class="selectpicker form-control">
 								 <?php foreach($clsstudlist as $rows){?>
@@ -26,7 +26,7 @@
                               </div>  
 						   
 						   
-                              <label class="col-sm-2 control-label">Reason Out</label>
+                              <label class="col-sm-2 control-label">Reason</label>
                               <div class="col-sm-4">
 							   <input type="text" name="reason" value="<?php echo $res->od_for; ?>" class="form-control">
 							    <input type="hidden" name="id" value="<?php echo $res->id; ?>" class="form-control">
@@ -36,12 +36,12 @@
                         </fieldset>
 						 <fieldset>
                            <div class="form-group">
-						   <label class="col-sm-2 control-label">From Date</label>
+						   <label class="col-sm-2 control-label">From</label>
                               <div class="col-sm-4">
                                  <input type="text" name="fdate"  class="form-control datepicker" value="<?php $dateTime=new DateTime($res->from_date); $fdate=date_format($dateTime,'d-m-Y' ); echo $fdate; ?>">
                               </div>
 							  
-                              <label class="col-sm-2 control-label">To Date</label>
+                              <label class="col-sm-2 control-label">To</label>
                               <div class="col-sm-4">
                                  <input type="text" name="tdate" class="form-control datepicker" value="<?php $dateTime=new DateTime($res->to_date); $tdate=date_format($dateTime,'d-m-Y' ); echo $tdate; ?>">
                               </div>
@@ -53,14 +53,14 @@
                            <div class="form-group">
 						   <label class="col-sm-2 control-label">Notes</label>
                               <div class="col-sm-4">
-                                 <textarea rows="4" cols="80" MaxLength="250" placeholder="MaxLength 250" name="notes" class="form-control"><?php echo $res->notes; ?></textarea>
+                                 <textarea rows="4" cols="80" MaxLength="250" placeholder="maximum 250 characters" name="notes" class="form-control"><?php echo $res->notes; ?></textarea>
                               </div>
 						   </div>
                         </fieldset>
                         <div class="form-group">
                            <label class="col-sm-2 control-label">&nbsp;</label>
                            <div class="col-sm-4">
-                              <button type="submit" id="save" class="btn btn-info btn-fill center">Update</button>
+                              <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
                            </div>
                         </div>
                         </fieldset>
@@ -83,21 +83,20 @@
 		
 		 $('#ondutysection').validate({ // initialize the plugin
         rules: {
-           reason:{required:true },
+			stu_userid:{required:true },
+            reason:{required:true },
 			notes:{required:true },
 			fdate:{required:true },
 			tdate:{required:true },
 			status:{required:true }
-			
         },
         messages: {
-              reason: "Enter Reason Out",
-			   notes: "Enter Notes",
-			   fdate: "Select From Date",
-			   tdate: "Select To Date",
+				stu_userid:"Please choose an option!",
+               reason: "This field cannot be empty!",
+			   notes: "This field cannot be empty!",
+			   fdate: "Please choose an option!",
+			   tdate: "Please choose an option!",
 			   status: "Select Status",
-			   
-			  
             }
     });
 	//demo.initFormExtendedDatetimepickers();

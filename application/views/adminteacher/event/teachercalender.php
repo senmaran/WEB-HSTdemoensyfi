@@ -11,7 +11,7 @@
             <div class="container-fluid">
 							<div class="content">
 								<div class="header">
-										<legend>Event Calendar </legend>
+										<legend>Calendar </legend>
 
 								</div>
 								<div class="container-fluid">
@@ -32,30 +32,30 @@
 									<div class="col-md-4">
 
 										<div class="card">
-                            <div class="header">Add to Reminder</div>
+                            <div class="header">Create Reminder</div>
                             <div class="content">
                                 <form method="post" action="#" id="to_do_form">
                                     <div class="form-group">
-                                        <label>Pick Date</label>
-                                        <input type="text" name="to_do_date" placeholder="" class="form-control datepicker">
+                                        <label>Date</label>
+                                        <input type="text" name="to_do_date" placeholder="Select date" class="form-control datepicker">
                                     </div>
                                     <div class="form-group">
-                                        <label>To Do List</label>
-                                        <input type="text" name="to_do_list" placeholder="To Do List" class="form-control">
+                                        <label>Title</label>
+                                        <input type="text" name="to_do_list" placeholder="Title" class="form-control">
                                     </div>
 																		<div class="form-group">
-                                        <label>Notes</label>
-                                        <textarea MaxLength="150" placeholder="MaxCharacters 150" id="comments" name="to_do_notes" name="comments" class="form-control"></textarea>
+                                        <label>Description</label>
+                                        <textarea MaxLength="150" placeholder="Maximum 150 characters" id="comments" name="to_do_notes" name="comments" class="form-control"></textarea>
                                     </div>
                                   <div class="form-group">
                                         <label>Status</label>
                                        <select name="status"  class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 																				  <option value="Active">Active</option>
-																				  <option value="Deactive">DeActive</option>
+																				  <option value="Deactive">Inactive</option>
 																			</select>
                                     </div>
 
-                                    <button type="submit" class="btn btn-fill btn-info">Save</button>
+                                    <button type="submit" class="btn btn-fill btn-info">CREATE</button>
                                 </form>
                             </div>
                         </div>
@@ -131,12 +131,12 @@ eventMouseout: function(calEvent, jsEvent) {
 	    rules: {
 	        to_do_date:{required:true },
 	        to_do_list:{required:true },
-					to_do_notes:{required:true },
+			to_do_notes:{required:true },
 	    },
 	    messages: {
-	          to_do_date: "Select date",
-	          to_do_list:"Enter To Do List",
-						to_do_notes:"Enter Some Notes"
+	          to_do_date: "Please choose an option!",
+	          to_do_list:"This field cannot be empty!",
+			  to_do_notes:"This field cannot be empty!"
 
 	        },
 	      submitHandler: function(form) {
@@ -147,8 +147,8 @@ eventMouseout: function(calEvent, jsEvent) {
 	                      type: "success",
 	                      showCancelButton: true,
 	                      confirmButtonColor: '#DD6B55',
-	                      confirmButtonText: 'Yes, I am sure!',
-	                      cancelButtonText: "No, cancel it!",
+	                      confirmButtonText: 'Yes',
+	                      cancelButtonText: "No",
 	                      closeOnConfirm: false,
 	                      closeOnCancel: false
 	                  },
@@ -163,8 +163,8 @@ eventMouseout: function(calEvent, jsEvent) {
 	                //  swal("Success!", "Thanks for Your Note!", "success");
 	                  $('#to_do_form')[0].reset();
 	                  swal({
-	           title: "Wow!",
-	           text: "Message!",
+	           title: "Success!",
+	           text: "Reminder created!",
 	           type: "success"
 	       }, function() {
 	           window.location = "<?php echo base_url(); ?>teacherevent/calender";

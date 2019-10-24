@@ -54,7 +54,7 @@ font-weight: bold;}
                    <?php } ?>
                    <br>
                      <p class=""> <?php echo $rows->name; ?> </p>
-                     <p><b>Class</b>  <?php echo $rows->class_name; ?>-<?php echo $rows->sec_name; ?> &nbsp; - &nbsp; <b>Core Subject</b>  <?php echo $rows->subject_name; ?> </p>
+                     <p><b>Class</b>  <?php echo $rows->class_name; ?>-<?php echo $rows->sec_name; ?> &nbsp; - &nbsp; <b>Subject</b>  <?php echo $rows->subject_name; ?> </p>
                    </div>
                </div>
            <div class="col-md-4">
@@ -63,8 +63,9 @@ font-weight: bold;}
                  <p><b>Gender</b> - <?php echo $rows->sex; ?> </p>
                  <p><b>DOB</b> - <?php echo $fdate; ?> </p>
                  <p><b>Age</b> - <?php echo $currentage; ?> </p>
-                 <p><b>Contact</b> - <?php echo  $rows->phone; ?> </p>
-                 <p><b>Email</b> - <?php echo  $rows->email; ?> </p>
+				 <p><b>Email ID</b> - <?php echo  $rows->email; ?> </p>
+                 <p><b>Phone Number</b> - <?php echo  $rows->phone; ?> </p>
+                 
                </div>
            </div>
            <div class="col-md-4">
@@ -88,7 +89,7 @@ font-weight: bold;}
                   <div class="table-full-width">
                      <table class="table">
 					 <thead class="setcolor">
-						<th colspan="2" style="padding-bottom: 8px;"><span class="rem"> UpComing Events <a href="<?php echo base_url(); ?>teacherevent/home" >
+						<th colspan="2" style="padding-bottom: 8px;"><span class="rem"> Upcoming Events <a href="<?php echo base_url(); ?>teacherevent/home" >
 						<img class="img-responsive plusicon" src="<?php echo base_url(); ?>assets/img/icons/view1.png"/></a></span></th>
 								</thead>
                         <tbody>

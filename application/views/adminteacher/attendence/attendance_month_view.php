@@ -7,20 +7,20 @@
    <div class="content">
       <div class="container-fluid">
          <div class="col-md-12">
-            <div class="col-md-10">
+      
                <div class="card">
                   <div class="content">
-                 <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:10px;">Go Back</button>
-                     <h4 class="title"> List of Record in <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?></h4>
+                 <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:10px;">BACK</button>
+                     <h4 class="title">Monthwise Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?></h4>
                      <div class="fresh-datatables">
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th data-field="id" class="text-center"  data-sortable="true">S.No</th>
                               <th data-field="date" class="text-center" data-sortable="true">Name</th>
                               <th data-field="month" class="text-center" data-sortable="true">Month</th>
-                              <th data-field="year" class="text-center" data-sortable="true">Not Present in Class- in Days </th>
-                              <th data-field="pp" class="text-center" data-sortable="true">No.of.Present- in Days </th>
-                              <th data-field="check" class="text-center" data-sortable="true">Check Leave dates </th>
+                              <th data-field="year" class="text-center" data-sortable="true">Days Not Present </th>
+                              <th data-field="pp" class="text-center" data-sortable="true">Days Present </th>
+                              <th data-field="check" class="text-center" data-sortable="true">View Leave Dates</th>
                            </thead>
                               <p>Total Working Days
                            <?php if($res_total['status']=="success"){echo $wrk= $res_total['result']; }else{echo "No data"; } ?>
@@ -54,7 +54,7 @@
                <!--  end card  -->
                </tbody>
                </table>
-            </div>
+
          </div>
                  <div id="myModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
@@ -62,13 +62,13 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Leave Dates</h4>
+                <h4 class="modal-title">Days Not Present</h4>
               </div>
               <div class="modal-body">
               <table id="bootstrap-table" class="table">
                  <thead>
                 <tr>
-                  <th>Leavedates</th><th>Status</th>
+                  <th>Date</th><th>Status</th>
                 </tr>
               </thead>
               <tbody id="leavesdates12">
@@ -76,9 +76,7 @@
               </tbody>
               </table>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
+            
             </div>
 
           </div>

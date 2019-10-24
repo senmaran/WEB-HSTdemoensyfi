@@ -196,8 +196,8 @@
 
 			},
 			messages: {
-				email: "Please enter username ",
-				password: "Please enter password"
+				email: "Username cannot be empty!",
+				password: "Password cannot be empty!"
 
 			}
 		});

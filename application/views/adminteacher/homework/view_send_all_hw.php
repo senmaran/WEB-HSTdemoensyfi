@@ -12,19 +12,19 @@
             
                <div class="card">
                   <div class="header">
-                     <legend>Send Homework Details   <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></legend>
+                     <legend>Homework / Test Details<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></legend>
                   </div>
                   <div class="content">
                            <div class="fresh-datatables">
                         <table id="bootstrap-table" class="table">
                            <thead>
                              <th>S.no</th>
-							 <th>Teacher Name</th>
-							 <th>Type</th>
+							 <th>Teacher</th>
+							 <th>Work</th>
 							 <th>Title</th>
-							 <th>subject Name</th>
-							 <th>Home Work / Class Test Date</th>
-							 <th>Details</th>
+							 <th>Subject</th>
+							 <th>Due/Test Date</th>
+							 <th>Description</th>
                            </thead>
                            <tbody>
 					 <?php

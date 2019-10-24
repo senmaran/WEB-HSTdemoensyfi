@@ -11,11 +11,11 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Teacher Handling Subject
+                     <h4 class="title">Select Subject
 					 <?php  $exam_id=$this->input->get('var2');
 					        $sub_id=$this->input->get('var1');
 					     //echo $exam_id?>
-					 <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
+					 <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></h4>
                   </div>
 
 				  <?php

@@ -5,7 +5,7 @@
                <div class="col-md-12">
                    <div class="card">
                        <div class="header">
-                           <h4 class="title">Password</h4>
+                           <h4 class="title">Change Password</h4>
                            <?php if($this->session->flashdata('msg')): ?>
                              <div class="alert alert-success">
                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -44,8 +44,8 @@
                                <div class="row">
                                    <div class="col-md-6">
                                        <div class="form-group">
-                                           <label>Old Password</label>
-                                           <input type="password" class="form-control" name="oldpassword" placeholder="Current Password" value="">
+                                           <label>Current Password </label>
+                                           <input type="password" class="form-control" name="oldpassword" placeholder="Enter current password" value="">
                                        </div>
                                    </div>
                                    <div class="col-md-6">
@@ -57,13 +57,13 @@
                                    <div class="col-md-6">
                                        <div class="form-group">
                                            <label>New Password</label>
-                                           <input type="password" class="form-control"  name="newpassword" id="newpassword" placeholder="New Password" value="">
+                                           <input type="password" class="form-control"  name="newpassword" id="newpassword" placeholder="Enter new password" value="">
                                        </div>
                                    </div>
                                    <div class="col-md-6">
                                        <div class="form-group">
-                                           <label>Re-type Password</label>
-                                           <input type="password" class="form-control" name="retypepassword" placeholder="Re-type Password" value="">
+                                           <label>Confirm New Password</label>
+                                           <input type="password" class="form-control" name="retypepassword" placeholder="Type it one more time" value="">
                                        </div>
                                    </div>
                                </div>
@@ -73,7 +73,7 @@
 
                                    <div class="text-center">
                                        <div class="form-group">
-                                             <button type="submit" class="btn btn-info btn-fill">Update Profile</button>
+                                             <button type="submit" class="btn btn-info btn-fill">SAVE</button>
                                        </div>
                                    </div>
                                </div>
@@ -134,9 +134,9 @@ $(document).ready(function () {
      messages: {
 
 
-           oldpassword: "Please Enter Old Password",
-           newpassword: "Please Enter New Password",
-           retypepassword: "Please Enter Confirm Password Should Same as New",
+           oldpassword: "This field cannot be empty!",
+           newpassword: "This field cannot be empty!",
+           retypepassword: "This field cannot be empty!",
 
          }
  });

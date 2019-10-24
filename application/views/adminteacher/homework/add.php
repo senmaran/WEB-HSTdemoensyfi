@@ -12,7 +12,7 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title"> Class Teacher </h4>
+                     <h4 class="title">Homework / Test Notifications</h4>
                   </div>
                   <div class="content">
                      <div class="row">
@@ -38,7 +38,7 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Teacher Class & Section</h4>
+                     <h4 class="title">Assign Homework / Test</h4>
                   </div>
                   <div class="content">
                      <div class="row">
@@ -72,7 +72,7 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="content">
-                    <h4 class="title">List of Home work</h4> <hr>
+                    <h4 class="title">Homework / Class Test</h4> <hr>
                      <div class="fresh-datatables">
                         <table id="bootstrap-table" class="table">
                            <thead>
@@ -120,17 +120,17 @@
                                  <td><?php if($status=='Active'){?>
                                     <button class="btn btn-success btn-fill btn-wd">Active</button>
                                     <?php }else{?>
-                                    <button class="btn btn-danger btn-fill btn-wd">Deactive</button>
+                                    <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                                     <?php }
                                        //echo $status; ?>
                                  </td>
                                  <td class="text-right">
                                     <?php if($sta==0 && $type=="HT")
                                        {?>
-                                    <a href="<?php echo base_url();?>homework/add_mark/<?php echo $rows->hw_id; ?>" rel="tooltip" title="Add Mark Details" class="btn btn-simple btn-info btn-icon table-action view" >
+                                    <a href="<?php echo base_url();?>homework/add_mark/<?php echo $rows->hw_id; ?>" rel="tooltip" title="Enter Marks" class="btn btn-simple btn-info btn-icon table-action view" >
                                     <i class="fa fa-list-ol" aria-hidden="true"></i></a>
-                                    <?php }elseif($sta==1){?>  <a href="<?php echo base_url();?>homework/edit_mark/<?php echo $rows->hw_id; ?>" title="Edit Mark Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;"><i class="fa fa-id-card-o" aria-hidden="true"></i>	<?php }?>
-                                    <a href="<?php echo base_url();?>homework/edit_test/<?php echo $rows->hw_id; ?>" title="Edit Mark Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i>
+                                    <?php }elseif($sta==1){?>  <a href="<?php echo base_url();?>homework/edit_mark/<?php echo $rows->hw_id; ?>" title="Edit Marks" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;"><i class="fa fa-id-card-o" aria-hidden="true"></i>	<?php }?>
+                                    <a href="<?php echo base_url();?>homework/edit_test/<?php echo $rows->hw_id; ?>" title="Edit" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i>
                                  </td>
                               </tr>
                               <?php $i++;  }  ?>
@@ -152,7 +152,7 @@
                <div class="modal-content">
                   <div class="modal-header" style="padding:10px;">
                      <button type="button" class="close" style="margin:25px;" data-dismiss="modal">&times;</button>
-                     <h4 class="title">Home Work And Class Test</h4>
+                     <h4 class="title">Assign Homework / Test</h4>
                   </div>
                   <div class="modal-body">
                      <p id="msg" style="text-align:center;"></p>
@@ -163,7 +163,7 @@
                                  <form method="post" action="<?php echo base_url(); ?>homework/create" class="form-horizontal" enctype="multipart/form-data" id="classsection">
                                     <fieldset>
                                        <div class="form-group">
-                                          <label class="col-sm-2 control-label">Academic Year</label>
+                                          <label class="col-sm-3 control-label">Academic Year</label>
                                           <div class="col-sm-6">
                                              <?php
                                                 foreach($ayear as $academic)
@@ -175,8 +175,8 @@
                                     </fieldset>
                                     <fieldset>
                                        <div class="form-group">
-                                          <label class="col-sm-2 control-label">Type</label>
-                                          <div class="col-sm-10">
+                                          <label class="col-sm-3 control-label">Type</label>
+                                          <div class="col-sm-6">
                                              <label class="">
                                              <input type="radio"  name="test_type" value="HT" checked onclick="myFunction1()">
 											 <span  style="color:#5a5757;">Class Test</span>
@@ -191,15 +191,15 @@
                                     </fieldset>
                                     <fieldset>
                                        <div class="form-group">
-                                          <label class="col-sm-2 control-label">Title</label>
+                                          <label class="col-sm-3 control-label">Work</label>
                                           <div class="col-sm-6">
-                                             <input type="text" placeholder="Title" name="title" class="form-control">
+                                             <input type="text" placeholder="Work" name="title" class="form-control">
                                           </div>
                                        </div>
                                     </fieldset>
                                     <fieldset>
                                        <div class="form-group">
-                                          <label class="col-sm-2 control-label">Subject</label>
+                                          <label class="col-sm-3 control-label">Subject</label>
                                           <div class="col-sm-6">
                                              <select id="ajaxres" name="subject_name"  class="form-control">
                                              </select>
@@ -208,7 +208,7 @@
                                     </fieldset>
                                     <fieldset>
                                        <div class="form-group">
-                                          <label class="col-sm-2 control-label">Date</label>
+                                          <label class="col-sm-3 control-label">Date</label>
                                           <div class="col-sm-6">
                                              <input type="text" placeholder="Select Date" name="tet_date" class="form-control datepicker" >
                                           </div>
@@ -217,24 +217,24 @@
                                     <div id="submission" style="display:none">
                                        <fieldset>
                                           <div class="form-group">
-                                             <label class="col-sm-2 control-label">Submission Date</label>
+                                             <label class="col-sm-3 control-label">Due Date</label>
                                              <div class="col-sm-6">
-                                                <input type="text" placeholder="Select Submission Date" name="sub_date" class="form-control datepicker" >
+                                                <input type="text" placeholder="Select Due Date" name="sub_date" class="form-control datepicker" >
                                              </div>
                                           </div>
                                        </fieldset>
                                     </div>
                                     <fieldset>
                                        <div class="form-group">
-                                          <label class="col-sm-2 control-label">Details</label>
+                                          <label class="col-sm-3 control-label">Details</label>
                                           <div class="col-sm-6">
-                                             <textarea name="details" MaxLength="250" placeholder="MaxCharacters 250"  class="form-control" rows="4" cols="80"></textarea>
+                                             <textarea name="details" MaxLength="250" placeholder="Maximum 250 characters"  class="form-control" rows="4" cols="80"></textarea>
                                           </div>
                                        </div>
                                     </fieldset>
                                     <fieldset>
                                        <div class="form-group">
-                                          <label class="col-sm-2 control-label">&nbsp;</label>
+                                          <label class="col-sm-3 control-label">&nbsp;</label>
                                           <div class="col-sm-10">
                                              <button type="submit" class="btn btn-info btn-fill center">Save </button>
                                           </div>
@@ -271,11 +271,11 @@
         },
         messages: {
               test_type:"Please Select Type Of Test",
-     title:"Please Enter Title Name",
-     subject_name:"Please Select Subject Name",
-     tet_date:"Please Select Date",
-     details:"Please Enter Details",
-     class_id:"Please Enter Class Name"
+			 title:"This field cannot be empty!",
+			 subject_name:"Please choose an option!",
+			 tet_date:"Please choose an option!",
+			 details:"This field cannot be empty!",
+			 class_id:"Please Enter Class Name"
 
             }
     });
@@ -335,7 +335,7 @@
                    //var subid=test1.res2;
           var i;
                    var subjectname = '';
-   	   subjectname +='<option value="">select Subject</option>';
+   	   subjectname +='<option value="">Select subject</option>';
                    for (i = 0; i < len; i++) {
                        subjectname +='<option value='+ res1[i].subject_id +'>'+ res1[i].subject_name + '</option>';
                        $("#ajaxres").html(subjectname);

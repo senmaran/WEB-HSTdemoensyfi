@@ -34,7 +34,7 @@
 
       <div class="card">
         <div class="header">
-           <legend>View  Class Time table  <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </legend>
+           <legend>Teachers' Weekly Schedule <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button> </legend>
         </div>
       <div class="content">
          <div class="row">
@@ -44,8 +44,8 @@
                 <table id="" class="table" >
                    <thead>
                       <th data-field="Monday" class="text-center" data-sortable="true">Class</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">From time -To time</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">Subject /Staff</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Timing</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Subject</th>
                    </thead>
                    <tbody>
                       <?php
@@ -88,8 +88,8 @@
                 <center><span class="btn btn-primary btn-day">Tuesday</span></center>
                 <table id="" class="table" >
                    <thead>
-                      <th data-field="Monday" class="text-center" data-sortable="true">Period</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">From time -To time</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Class</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Timing</th>
                       <th data-field="Monday" class="text-center" data-sortable="true">Subject</th>
                    </thead>
                    <tbody>
@@ -133,8 +133,8 @@
                 <center><span class="btn btn-primary btn-day">Wednesday</span></center>
                 <table id="" class="table" >
                    <thead>
-                      <th data-field="Monday" class="text-center" data-sortable="true">Period</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">From time -To time</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Class</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Timing</th>
                       <th data-field="Monday" class="text-center" data-sortable="true">Subject</th>
                    </thead>
                    <tbody>
@@ -178,8 +178,8 @@
                 <center><span class="btn btn-primary btn-day">Thursday</span></center>
                 <table id="" class="table" >
                    <thead>
-                      <th data-field="Monday" class="text-center" data-sortable="true">Period</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">From time -To time</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Class</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Timing</th>
                       <th data-field="Monday" class="text-center" data-sortable="true">Subject</th>
                    </thead>
                    <tbody>
@@ -223,8 +223,8 @@
                 <center><span class="btn btn-primary btn-day">Friday</span></center>
                 <table id="" class="table" >
                    <thead>
-                      <th data-field="Monday" class="text-center" data-sortable="true">Period</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">From time -To time</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Class</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Timing</th>
                       <th data-field="Monday" class="text-center" data-sortable="true">Subject</th>
                    </thead>
                    <tbody>
@@ -267,8 +267,8 @@
                 <center><span class="btn btn-primary btn-day">Saturday</span></center>
                 <table id="" class="table" >
                    <thead>
-                      <th data-field="Monday" class="text-center" data-sortable="true">Period</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">From time -To time</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Class</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Timing</th>
                       <th data-field="Monday" class="text-center" data-sortable="true">Subject</th>
                    </thead>
                    <tbody>
@@ -320,13 +320,13 @@
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Add Review  for <span id="subject_name"></span></h4>
+            <h4 class="modal-title"> Review <span id="subject_name"></span></h4>
          </div>
          <div class="modal-body">
             <form action="" method="post" class="form-horizontal" id="timetablereviewform">
               <fieldset>
               <div class="form-group">
-                 <label class="col-sm-4 control-label">Current Time</label>
+                 <label class="col-sm-4 control-label">Timing</label>
                  <div class="form-group">
 
                     <div class="col-md-6">
@@ -359,15 +359,13 @@
                   <div class="form-group">
                      <label class="col-sm-4 control-label">&nbsp;</label>
                      <div class="col-sm-6">
-                        <button type="submit" id="save" class="btn btn-info btn-fill center">Submit Review </button>
+                        <button type="submit" id="save" class="btn btn-info btn-fill center">SUBMIT</button>
                      </div>
                   </div>
                </fieldset>
             </form>
          </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         </div>
+        
       </div>
    </div>
 </div>
@@ -398,7 +396,7 @@
            comments:{required:true },
        },
        messages: {
-             comments: "Please Enter Comments"
+             comments: "This field cannot be empty!"
 
            },
          submitHandler: function(form) {
@@ -409,8 +407,8 @@
                          type: "success",
                          showCancelButton: true,
                          confirmButtonColor: '#DD6B55',
-                         confirmButtonText: 'Yes, I am sure!',
-                         cancelButtonText: "No, cancel it!",
+                         confirmButtonText: 'Yes',
+                         cancelButtonText: "No!",
                          closeOnConfirm: false,
                          closeOnCancel: false
                      },
@@ -425,8 +423,8 @@
                    //  swal("Success!", "Thanks for Your Note!", "success");
                      $('#timetablereviewform')[0].reset();
                      swal({
-              title: "Review!",
-              text: "Added Successfully!",
+              title: "Success!",
+              text: "Review saved!",
               type: "success"
           }, function() {
               window.location = "<?php echo base_url(); ?>teachertimetable/reviewview";

@@ -3,7 +3,7 @@
    <div class="col-md-12">
       <div class="card">
          <div class="header">
-            <legend>Update Test Details <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></legend>
+            <legend>Edit Homework / Test<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></legend>
          </div>
          <?php if($this->session->flashdata('msg')): ?>
          <div class="alert alert-success">
@@ -16,7 +16,7 @@
             <form method="post" action="<?php echo base_url(); ?>homework/update_test" class="form-horizontal" enctype="multipart/form-data" id="testform" name="testform">
                <fieldset>
                   <div class="form-group">
-                     <label class="col-sm-2 control-label">Class & Section</label>
+                     <label class="col-sm-2 control-label">Class</label>
                      <div class="col-sm-4">
                         <!-- <select multiple disabled  name="class_name[]" id="multiple-class" class="selectpicker" data-style="btn-block" onchange="select_class('classname')" data-menu-style="dropdown-blue">
                         </select>-->
@@ -30,7 +30,7 @@
                </fieldset>
                <fieldset>
                   <div class="form-group">
-                     <label class="col-sm-2 control-label">Homework Type</label>
+                     <label class="col-sm-2 control-label">Type</label>
                      <div class="col-sm-4">
                         <select name="hw_type" class="selectpicker form-control" data-style="btn-default btn-block" >
                            <option value="HT">Class Test</option>
@@ -38,7 +38,7 @@
                         </select>
                         <script language="JavaScript">document.testform.hw_type.value="<?php echo $rows->hw_type; ?>";</script>
                      </div>
-                     <label class="col-sm-2 control-label">Title</label>
+                     <label class="col-sm-2 control-label">Work</label>
                      <div class="col-sm-4">
                         <input type="text"  name="title"  class="form-control"  value="<?php echo $rows->title; ?>">
                         <input type="hidden"  name="id"  class="form-control"  value="<?php echo $rows->hw_id; ?>">
@@ -47,13 +47,13 @@
                </fieldset>
                <fieldset>
                   <div class="form-group">
-                     <label class="col-sm-2 control-label">Test Date</label>
+                     <label class="col-sm-2 control-label">Date</label>
                      <div class="col-sm-4">
                         <input type="text"  name="test_date" class="form-control datepicker"  value="<?php $date=date_create($rows->test_date);
                            echo date_format($date,"d-m-Y");?>">
                      </div>
                      <?php if($rows->hw_type=="HW"){ ?>
-                     <label class="col-sm-2 control-label">Submission Date</label>
+                     <label class="col-sm-2 control-label">Due Date</label>
                      <div class="col-sm-4">
                         <input type="text" name="sub_date" value="<?php $date=date_create($rows->due_date);
                            echo date_format($date,"d-m-Y");?>" class="form-control datepicker" >
@@ -63,7 +63,7 @@
                </fieldset>
                <fieldset>
                   <div class="form-group">
-                     <label class="col-sm-2 control-label">Test Details</label>
+                     <label class="col-sm-2 control-label">Details</label>
                      <div class="col-sm-4">
                         <textarea name="test_details"  MaxLength="250" placeholder="MaxCharacters 250" class="form-control" rows="3" cols="03"><?php echo $rows->hw_details; ?></textarea>
                      </div>
@@ -71,7 +71,7 @@
                      <div class="col-sm-4">
                         <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" >
                            <option value="Active">Active</option>
-                           <option value="Deactive">Deactive</option>
+                           <option value="Deactive">Inactive</option>
                         </select>
                         <script language="JavaScript">document.testform.status.value="<?php echo $rows->status; ?>";</script>
                      </div>
@@ -80,7 +80,7 @@
                <div class="form-group">
                <label class="col-sm-2 control-label">&nbsp;</label>
                <div class="col-sm-10">
-               <button type="submit" class="btn btn-info btn-fill center">Update</button>
+               <button type="submit" class="btn btn-info btn-fill center">SAVE</button>
                </div>
                </div>
                </fieldset>
@@ -102,13 +102,13 @@
            rules: {
    
                title:{required:true },
-   			test_date:{required:true },
+			  test_date:{required:true },
                hw_type:{required:true }
            },
            messages: {
    
-                 title: "Enter The Title",
-                 test_date: "Select Test Date",
+                 title: "This field cannot be empty!",
+                 test_date: "This field cannot be empty!",
                  hw_type: "Select Test Type"
                }
        });

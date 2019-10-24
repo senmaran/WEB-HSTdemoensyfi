@@ -160,7 +160,8 @@ Class Homeworkmodel extends CI_Model
 	   }
 	  function get_stu_details($hw_id,$user_id,$user_type)
 	  { 
-		    $query="SELECT eh.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name,su.subject_id,su.subject_name,ed.enroll_id,ed.admission_id,ed.admit_year,ed.admisn_no,ed.name,ed.class_id,ed.status,a.admission_id,a.admisn_no,a.name,a.sex FROM edu_homework as eh,edu_classmaster AS cm,edu_subject AS su,edu_class AS c,edu_sections AS s,edu_enrollment AS ed,edu_admission AS a WHERE ed.class_id=eh.class_id AND eh.class_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=s.sec_id AND eh.subject_id=su.subject_id And eh.hw_id='$hw_id' AND ed.status='Active' AND ed.admission_id=a.admission_id AND ed.name=a.name ORDER BY a.sex DESC,ed.name ASC ";
+	  $year_id=$this->getYear();
+		    $query="SELECT eh.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name,su.subject_id,su.subject_name,ed.enroll_id,ed.admission_id,ed.admit_year,ed.admisn_no,ed.name,ed.class_id,ed.status,a.admission_id,a.admisn_no,a.name,a.sex FROM edu_homework as eh,edu_classmaster AS cm,edu_subject AS su,edu_class AS c,edu_sections AS s,edu_enrollment AS ed,edu_admission AS a WHERE ed.class_id=eh.class_id AND eh.class_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=s.sec_id AND eh.subject_id=su.subject_id And eh.hw_id='$hw_id' AND ed.status='Active' AND ed.admission_id=a.admission_id AND ed.name=a.name AND ed.admit_year = '$year_id' ORDER BY a.sex DESC,ed.name ASC ";
 		  $result=$this->db->query($query);
           return $result->result();
 		  
