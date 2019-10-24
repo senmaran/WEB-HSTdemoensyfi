@@ -7,10 +7,10 @@
                                     <blockquote>
                                       <h5><?php echo $rows->event_name; ?></h5>
                                      <p>
-                                <?php echo $rows->event_details; ?>   </p>
-                                     <small>
-                                    <?php echo $new_date = date('d-m-Y', strtotime($rows->event_date)); ?>
-                                     </small>
+										<?php echo $rows->event_details; ?>   </p>
+                                    <p>
+                                    Date : <?php echo $new_date = date('d-m-Y', strtotime($rows->event_date)); ?>
+                                    </p>
                                     </blockquote>
                                 </div>
 

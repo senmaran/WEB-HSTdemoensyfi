@@ -4,7 +4,7 @@
 
 
     <div class="">
-      <h5>List of All Events </h5>
+      <h5>All Events</h5>
     <div class="row">
       <?php if(empty($res)){  ?>
         <p>No Event</p>

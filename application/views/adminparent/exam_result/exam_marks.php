@@ -24,15 +24,15 @@
                            $row=$sql1->result();
                            $sub_id=$row[0]->subject_name;
                         }?>
-                     <h4 class="title">Exam Marks  ( Preferred Language = <?php if(empty($result)){}else{ echo'<b>'; echo'<span style="color:green;">'; echo $sub_id; echo'</span>'; echo'</b>';}?> ) <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </h4>
-                     <p class="category"></p>
+                     <h4 class="title">Mark List  <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button> </h4>
+                     <p class="category">( Second Language = <?php if(empty($result)){}else{ echo'<b>'; echo'<span style="color:green;">'; echo $sub_id; echo'</span>'; echo'</b>';}?> ) </p>
                   </div>
                   <div class="content table-responsive table-full-width">
                      <form method="post" action="<?php echo base_url(); ?>examinationresult/marks_details" class="form-horizontal" enctype="multipart/form-data" id="markform">
                         <table id="resulttable" class="table table-hover table-striped">
                <thead>
-                <th>Sno</th>
-                <th>Subject Name</th>
+                <th>S. No</th>
+                <th>Subject</th>
                 <th>Internal Marks</th>
                 <th>External Marks</th>
                 <th>Total Marks</th>
@@ -59,14 +59,14 @@
 			 <td><?php echo $rows->external_grade; ?>  </span></td>
                          <td>
                        <input type="hidden" style="width:30%;" name="marks" disabled id="smark" class="form-control" value="<?php echo $rows->total_marks; ?>" />
-                       <span class="total"><?php //echo $rows->total_marks; ?></span>   <span class="grade"><?php echo $rows->total_grade; ?>  </span>
+                       <span class="total"><?php echo $rows->total_marks; ?></span>   <span class="grade"><?php echo $rows->total_grade; ?>  </span>
                      </td>
                       <?php }else{ ?>
-                          <td><?php //echo $rows->internal_mark; ?>  <span class="grade"><?php echo $rows->internal_grade; ?>  </span></td>
-                      <td><?php //echo $rows->external_mark; ?>   <span class="grade"><?php echo $rows->external_grade; ?>  </span></td>
+                          <td><?php echo $rows->internal_mark; ?>  <span class="grade"><?php echo $rows->internal_grade; ?>  </span></td>
+                      <td><?php echo $rows->external_mark; ?>   <span class="grade"><?php echo $rows->external_grade; ?>  </span></td>
                       <td>
                        <input type="hidden" style="width:30%;" name="marks" disabled id="smark" class="form-control" value="<?php echo $rows->total_marks; ?>" />
-                       <span class="total"><?php //echo $rows->total_marks; ?></span>  <span class="grade"><?php echo $rows->total_grade; ?> </span>
+                       <span class="total"><?php echo $rows->total_marks; ?></span>  <span class="grade"><?php echo $rows->total_grade; ?> </span>
                      </td>
                       <?php } ?>
                      </tr>

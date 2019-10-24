@@ -157,7 +157,7 @@ class Parentprofile extends CI_Controller {
 
 						//print_r($res);exit;
 						if($res['status']=="success"){
-						 $this->session->set_flashdata('msg', 'Update Successfully');
+						 $this->session->set_flashdata('msg', 'Password changed');
 						  redirect('parentprofile/pwd_edit');
 
 						  }else{
@@ -205,7 +205,7 @@ class Parentprofile extends CI_Controller {
 			$res=$this->parentprofilemodel->update_notification($Sms,$Mail,$Push,$user_id);
 
 			if($res['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Update Successfully');
+				 $this->session->set_flashdata('msg', 'Changes made are saved');
 					redirect('parentprofile/notification_status');
 			 }else{
 				 $this->session->set_flashdata('msg', 'Failed to update');

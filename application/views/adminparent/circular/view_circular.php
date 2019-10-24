@@ -13,26 +13,29 @@
                   <div class="card">
                      <div class="content">
                         <div class="fresh-datatables">
-                           <h4 class="title">View All Circular </h4>
-                           <div class="dtypo-line" style="padding:30px;">
-                              <div class="row">
-                                 <?php
-                                    if(empty($circular)){ echo "No Circular";}else{
-                                                                $i=1;
-                                                                  foreach ($circular as $rows) {?>
-                                 <div class="col-md-10">
-                                    <h5><?php echo $i; ?>. <?php echo $rows->circular_title; ?> </h5>
-                                    <blockquote>
-                                       <p><?php echo $rows->circular_description; ?></p>
-                                       <small>
-                                       <cite title="Source Title">
-                                       <?php $dateTime=new DateTime($rows->circular_date); $fdate=date_format($dateTime,'d-m-Y' ); echo $fdate; ?></cite>
-                                       </small>
-                                    </blockquote>
-                                 </div>
-                                 <?php $i++;  }  }?>
-                              </div>
-                           </div>
+                           <h4 class="title">Circulars</h4>
+                                <div class="dtypo-line" style="padding:30px;">
+                                    <div class="row">
+                                       <?php
+									   if(empty($circular)){ echo "No Circular Found";}else{
+                                $i=1;
+                                foreach ($circular as $rows) {
+
+                                ?>
+                                        <div class="col-md-10">
+                                            <h5><?php echo $i; ?>. <?php echo $rows->circular_title; ?> </h5>
+                                            <blockquote>
+                                               <p><?php echo $rows->circular_description; ?></p>
+                                               <?php if(empty($rows->circular_doc)){
+                                               }else{ ?>
+                                                 <a href="<?php echo base_url(); ?>assets/circular/<?php echo $rows->circular_doc; ?>">Download</a>
+                                              <?php } ?>
+                                               <p>Date: <?php $dateTime=new DateTime($rows->circular_date); $fdate=date_format($dateTime,'d-m-Y' ); echo $fdate; ?></p>
+                                            </blockquote>
+                                        </div>
+									   <?php $i++;  }  }?>
+                                    </div>
+                                </div>
                         </div>
                      </div>
                      <!-- end content-->

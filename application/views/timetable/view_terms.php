@@ -22,7 +22,8 @@
    <div class="col-md-12">
       <div class="card">
          <div class="header">
-            <legend>Select Academic Term</legend>
+            <legend>Select Academic Term <a href="<?php echo base_url(); ?>timetable/reviewview" class="btn  btn-fill btn-wd pull-right" style="margin-top:-10px;">Go To Review</a></legend>
+			
          </div>
          <div class="content">
             <div class="row">

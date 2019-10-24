@@ -21,7 +21,7 @@
 							<div class="content">
 								<div class="header">
 									<?php  //echo json_encode($res); ?>
-										<legend>Attendance Calender </legend>
+										<legend>View Attendance</legend>
 
 								</div>
 								<div class="container-fluid">
@@ -42,19 +42,18 @@
 										<div class="row" style="padding-top: 150px;">
 											<h5>Total Working days</h5>
 											<p> <?php if(empty($total)){
-
 											} else{
 												echo count($total);
 											}?> </p>
 										</div>
 										<div class="Words">
 									Absent & Leave -
-																				<?php if(empty($ableavedays)){
+									<?php if(empty($ableavedays)){
 
 									} else{
 										echo count($ableavedays);
 									}?>
-																				</div>
+										</div>
 										<div class="noote" style="    display: inline-flex;   ">
 										<div class="notice">
 											<p class="red">1</p>

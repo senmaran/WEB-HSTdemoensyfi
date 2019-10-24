@@ -16,7 +16,7 @@
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th>S.no</th>
-                              <th>Subject Name</th>
+                              <th>Subject</th>
                               <th>Exam Date</th>
                            </thead>
                            <tbody>

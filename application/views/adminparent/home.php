@@ -58,17 +58,17 @@ font-weight: bold;}
             <div class="other_details">
             <br>
               <p><b>Relationship</b> - <?php echo $relationship; ?> </p>
-              <p><b>Contact</b> - <?php echo  $rows->mobile; ?> </p>
-              <p><b>Email</b> - <?php echo  $rows->email; ?> </p>
+              <p><b>Mobile Number</b> - <?php echo  $rows->mobile; ?> </p>
+              <p><b>Email ID</b> - <?php echo  $rows->email; ?> </p>
             </div>
         </div>
         <div class="col-md-4">
           <div  class="textborder"></div>
             <div class="other_details">
                 <br>
-              <h4 class="title">Children details</h4>
+              <h4 class="title">Children</h4>
               <?php foreach($stud_details as $rows_studen){ ?>
-                <p class="">Name  - <b><?php  echo $rows_studen->name; ?></b> &nbsp; <span>Class  - <b><?php echo  $rows_studen->class_name; ?>-<?php echo $rows_studen->sec_name; ?></b> </span></p>
+                <p class="">Name  : <b><?php  echo $rows_studen->name; ?></b> &nbsp; <span>Class  : <b><?php echo  $rows_studen->class_name; ?>-<?php echo $rows_studen->sec_name; ?></b> </span></p>
             <?php   } ?>
 
 

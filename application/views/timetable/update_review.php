@@ -7,14 +7,14 @@
   <div class="col-md-6">
 
                   <div class="card">
-                      <div class="header">ReView form</div>
+                      <div class="header">Edit Review</div>
                       <div class="content">
                         <?php foreach ($res as $rows) {
                           # code...
                         } ?>
 
                             <div class="form-group">
-                                <label>Teacher Name</label>
+                                <label>Name</label>
                                <input type="text" class="form-control"  placeholder="" id="classname" name="classname" value="<?php echo $rows->name; ?>" readonly="">
 
                                <input type="hidden" class="form-control"  placeholder="" id="timetable_id" name="timetable_id" value="<?php echo $rows->timetable_id; ?>" readonly="">
@@ -22,26 +22,24 @@
 
                             </div>
                               <div class="form-group">
-                                  <label>Class Name</label>
+                                  <label>Class </label>
                                  <input type="text" class="form-control" readonly  placeholder="" id="classname" name="classname" value="<?php echo $rows->class_name; ?><?php echo $rows->sec_name; ?>">
 
 
                               </div>
 
                               <div class="form-group">
-                                  <label>Subject Name</label>
+                                  <label>Subject </label>
                                  <input type="text" class="form-control" readonly placeholder="" id="classname" name="classname" value="<?php echo $rows->subject_name; ?>">
 
 
                               </div>
-                              <div class="form-group">
+                              <!--<div class="form-group">
                                   <label>Period</label>
                                  <input type="text" class="form-control" readonly placeholder="" id="classname" name="classname" value="<?php echo $rows->period_id; ?>">
-
-
-                              </div>
+                              </div>-->
                               <div class="form-group">
-                                  <label>Date Time</label>
+                                  <label>Date | Time</label>
                                    <input type="text" class="form-control"  placeholder="" id="classname" name="classname" readonly value=" <?php echo $rows->time_date;  ?>">
                            </select>
                               </div>
@@ -67,7 +65,7 @@
                   </div>
 
                 </div>
-                  <button type="submit" class="btn btn-fill btn-info">Save</button>
+                  <button type="submit" class="btn btn-fill btn-info">SAVE</button>
 
 
               </div>

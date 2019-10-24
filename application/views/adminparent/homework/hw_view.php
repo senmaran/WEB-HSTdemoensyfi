@@ -12,8 +12,8 @@
             <div class="col-md-12">
                <div class="card">
 
-						 <div class="header text-center">
-                                <h4 class="title">Homework & Class Test <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
+						 <div class="header">
+                                <h4 class="title">Homeworks and Class Tests<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></h4>
                             </div>
 
                     <div class="content">
@@ -23,11 +23,11 @@
                               <th>S.no</th>
                               <th>Teacher</th>
                               <th>Subject</th>
-                              <th>Type</th>
+                              <th>Work</th>
                               <th>Title</th>
-                              <th>DATE</th>
-                              <th>Details</th>
-                              <th>View Marks </th>
+                              <th>Date</th>
+                              <th>Description</th>
+                              <th>Status </th>
                            </thead>
                            <tbody>
                               <?php
@@ -79,7 +79,7 @@
                                        { ?>
                                     <a href="" rel="tooltip" title="Doesn't Add Mark Details" class="btn btn-simple btn-info btn-icon table-action view" >
                                     <i class="fa fa-id-card-o" aria-hidden="true"></i></a>
-                                    <?php }elseif($sta==1){?> <a href="<?php echo base_url();?>adminparent/view_mark?var1=<?php echo $rows->hw_id; ?>&var2=<?php echo $stu_id;?>" title="View Mark Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;"><i class="fa fa-id-card-o" aria-hidden="true"></i></a>	<?php }?>
+                                    <?php }elseif($sta==1){?> <a href="<?php echo base_url();?>adminparent/view_mark?var1=<?php echo $rows->hw_id; ?>&var2=<?php echo $stu_id;?>" title="View marks" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;"><i class="fa fa-id-card-o" aria-hidden="true"></i></a>	<?php }?>
 
                                  </td>
                               </tr>

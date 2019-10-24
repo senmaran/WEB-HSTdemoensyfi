@@ -453,7 +453,7 @@ class Timetable extends CI_Controller {
 				$this->session->set_flashdata('msg', 'Somthing Went Wrong');
 				redirect('timetable/reviewview');
 			}elseif($datas['status']=='success'){
-				$this->session->set_flashdata('msg', 'Updated Successfully');
+				$this->session->set_flashdata('msg', 'Changes made are saved');
 			 redirect('timetable/reviewview');
 			}
 			else{
@@ -500,22 +500,5 @@ class Timetable extends CI_Controller {
 			 redirect('/');
 		 }
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

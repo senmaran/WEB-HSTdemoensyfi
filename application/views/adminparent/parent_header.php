@@ -108,13 +108,13 @@ font-weight: 500;
                      </a>
                      <ul class="dropdown-menu dropdown-with-icons">
                         <li>
-                           <a href="<?php echo base_url(); ?>parentprofile/profile_edit"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile Update </a>
+                           <a href="<?php echo base_url(); ?>parentprofile/profile_edit"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Profile </a>
                         </li>
                         <li>
-                           <a href="<?php echo base_url(); ?>parentprofile/pwd_edit"><i class="fa fa-cog" aria-hidden="true"></i> Change Password</a>
+                           <a href="<?php echo base_url(); ?>parentprofile/pwd_edit"><i class="fa fa-cog" aria-hidden="true"></i>Change Password</a>
                         </li>
 						 <li>
-                           <a href="<?php echo base_url(); ?>parentprofile/notification_status"><i class="fa fa-cog" aria-hidden="true"></i> Notification Preference</a>
+                           <a href="<?php echo base_url(); ?>parentprofile/notification_status"><i class="fa fa-cog" aria-hidden="true"></i>Notification Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -189,19 +189,19 @@ font-weight: 500;
                <li id="circular">
                   <a href="<?php echo base_url(); ?>adminparent/view_circular">
                     <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/circular.png"/>
-                     <p>circular</p>
+                     <p>Circulars</p>
                   </a>
                </li>
                <li id="homework">
                   <a href="<?php echo base_url(); ?>adminparent/homework">
                    <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/homework&classtest.png"/>
-                     <p>Home Work / Class Test</p>
+                     <p>Homeworks and Tests</p>
                   </a>
                </li>
 			    <li id="specialcls">
                   <a href="<?php echo base_url(); ?>adminparent/view_special_cls">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/specialclass.png"/>
-                     <p>Special Class</p>
+                     <p>Special Classes</p>
                   </a>
                </li>
                <li id="fees">
@@ -214,16 +214,16 @@ font-weight: 500;
                <li id="exam">
                   <a data-toggle="collapse"  href="#examinationmenu">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/Results.png"/>
-                     <p>Examination </p>
+                     <p>Examinations </p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="examinationmenu">
                      <ul class="nav">
                         <li id="exam1">
-                           <a href="<?php echo base_url(); ?>adminparent/exam_name_calender">Examination Calendar</a>
+                           <a href="<?php echo base_url(); ?>adminparent/exam_name_calender">Exam Schedule</a>
                         </li>
                         <li id="exam2">
-                           <a href="<?php echo base_url(); ?>adminparent/exam_result">Examination Result</a>
+                           <a href="<?php echo base_url(); ?>adminparent/exam_result">Results</a>
                         </li>
                      </ul>
                   </div>
@@ -232,7 +232,7 @@ font-weight: 500;
                <li id="timetable">
                   <a href="<?php echo base_url(); ?>adminparent/timetable">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/timetable.png"/>
-                     <p>Time Table	</p>
+                     <p>Timetable</p>
                   </a>
                </li>
             </ul>

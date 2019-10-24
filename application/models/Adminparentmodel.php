@@ -155,7 +155,7 @@ Class Adminparentmodel extends CI_Model
     {
 
         $year_id   = $this->getYear();
-        $com       = "SELECT c.id,c.user_type,c.user_id,c.circular_master_id,c.circular_date,cm.id,cm.academic_year_id,cm.circular_title,cm.circular_description,cm.status FROM edu_circular AS c,edu_circular_master AS cm WHERE c.user_id='$user_id' AND c.user_type='4' AND cm.academic_year_id='$year_id' AND c.circular_master_id=cm.id AND cm.status='Active' ORDER BY c.id DESC";
+        $com       = "SELECT c.id,c.user_type,c.user_id,c.circular_master_id,c.circular_date,cm.id,cm.academic_year_id,cm.circular_title,cm.circular_description,cm.circular_doc,cm.status FROM edu_circular AS c,edu_circular_master AS cm WHERE c.user_id='$user_id' AND c.user_type='4' AND cm.academic_year_id='$year_id' AND c.circular_master_id=cm.id AND cm.status='Active' ORDER BY c.id DESC";
         $resultset = $this->db->query($com);
         $row       = $resultset->result();
         return $row;
@@ -201,15 +201,16 @@ Class Adminparentmodel extends CI_Model
     function get_total_working_days_parent($user_id, $user_type)
     {
 		 $year_id    = $this->getYear();
-         $get_class_name = "SELECT eu.user_id,ep.admission_id ,ee.class_id FROM edu_users AS eu LEFT JOIN edu_parents AS ep ON eu.user_master_id=ep.id
-left join edu_enrollment as ee on ee.admission_id=ep.admission_id WHERE eu.user_id='$user_id'";
+          $get_class_name = "SELECT eu.user_id,ep.admission_id ,ee.class_id FROM edu_users AS eu LEFT JOIN edu_parents AS ep ON eu.user_master_id=ep.id
+left join edu_enrollment as ee on ee.admission_id=ep.admission_id WHERE eu.user_id='$user_id' AND ee.admit_year='$year_id'";
         $resultset      = $this->db->query($get_class_name);
         $row            = $resultset->result();
         foreach ($row as $rows) {
         }
         $class_id   = $rows->class_id;
 
-        $query      = "SELECT at_id AS total FROM edu_attendence WHERE class_id='$class_id'  AND ac_year='$year_id'";
+         $query      = "SELECT at_id AS total FROM edu_attendence WHERE class_id='$class_id'  AND ac_year='$year_id'";
+		
         $resultset1 = $this->db->query($query);
         return $resultset1->result();
     }
@@ -218,17 +219,19 @@ left join edu_enrollment as ee on ee.admission_id=ep.admission_id WHERE eu.user_
 // GET TOTAL WORKING DAYS for parent
     function get_absent_leave_days_parent($user_id, $user_type)
     {
-         $get_class_name = "SELECT eu.user_id,ep.admission_id ,ee.class_id FROM edu_users AS eu LEFT JOIN edu_parents AS ep ON eu.user_master_id=ep.id
-left join edu_enrollment as ee on ee.admission_id=ep.admission_id WHERE eu.user_id='$user_id'";
+		$year_id    = $this->getYear();
+        $get_class_name = "SELECT eu.user_id,ep.admission_id ,ee.enroll_id,ee.class_id FROM edu_users AS eu LEFT JOIN edu_parents AS ep ON eu.user_master_id=ep.id
+left join edu_enrollment as ee on ee.admission_id=ep.admission_id WHERE eu.user_id='$user_id' AND ee.admit_year='$year_id'";
+
         $resultset      = $this->db->query($get_class_name);
         $row            = $resultset->result();
         foreach ($row as $rows) {
         }
-        $class_id   = $rows->class_id;
-		 $student_id   = $rows->admission_id;
-        $year_id    = $this->getYear();
-        $query      = "SELECT *  FROM `edu_attendance_history` WHERE student_id = '$student_id'";
-        $resultset1 = $this->db->query($query);
+			$class_id   = $rows->class_id;
+			$student_id   = $rows->enroll_id;
+			$year_id    = $this->getYear();
+         $query      = "SELECT *  FROM `edu_attendance_history` WHERE student_id = '$student_id'  ";
+	     $resultset1 = $this->db->query($query);
         return $resultset1->result();
     }
 

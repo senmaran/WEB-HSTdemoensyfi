@@ -12,7 +12,8 @@
                  </div>
                  <?php endif; ?>
                      <div class="content">
- <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button>
+					  <legend>Reviews <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></legend>
+ 
                          <div class="fresh-datatables">
 
 
@@ -24,9 +25,9 @@
                          <th data-field="name" data-sortable="true">Class/Section</th>
                           <th data-field="username" data-sortable="true">Name</th>
                          <th data-field="Subject"  data-sortable="true">Subject</th>
-                         <th data-field="Period"  data-sortable="true">Period</th>
+                         <!--<th data-field="Period"  data-sortable="true">Period</th>-->
                          <th data-field="comments"  data-sortable="true">Comments</th>
-                          <th data-field="DateTime"  data-sortable="true">DateTime</th>
+                          <th data-field="DateTime"  data-sortable="true">Date | time</th>
                           <th data-field="Remarks"  data-sortable="true">Remarks</th>
                             <th data-field="Action"  data-sortable="true">Action</th>
 
@@ -42,7 +43,7 @@
                              <td><?php echo $rows->class_name; echo "-"; echo $rows ->sec_name; ?> </td>
                                <td><?php echo $rows->name; ?></td>
                            <td><?php echo $rows->subject_name; ?></td>
-                            <td><?php echo $rows->period_id; ?></td>
+                            <!--<td><?php echo $rows->period_id; ?></td>-->
                             <td><?php echo $rows->comments; ?></td>
                               <td><?php $cls_date = new DateTime($rows->time_date);
 echo $cls_date->format('d-m-Y H:i A');  ?></td>

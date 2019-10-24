@@ -30,7 +30,7 @@
 
       <div class="card">
         <div class="header">
-           <legend>View  Class Time table <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </legend>
+           <legend>View Timetable</legend>
         </div>
 
       <div class="content">
@@ -40,9 +40,9 @@
                 <center><span class="btn btn-primary btn-day">Monday</span></center>
                 <table id="" class="table" >
                    <thead>
-                      <th data-field="Monday" class="text-center" data-sortable="true">Class</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">From time -To time</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">Subject /Staff</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Period</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Timing</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Subject</th>
                    </thead>
                    <tbody>
                       <?php
@@ -83,7 +83,7 @@
                 <table id="" class="table" >
                    <thead>
                       <th data-field="Monday" class="text-center" data-sortable="true">Period</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">From time -To time</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Timing</th>
                       <th data-field="Monday" class="text-center" data-sortable="true">Subject</th>
                    </thead>
                    <tbody>
@@ -124,7 +124,7 @@
                 <table id="" class="table" >
                    <thead>
                       <th data-field="Monday" class="text-center" data-sortable="true">Period</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">From time -To time</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Timing</th>
                       <th data-field="Monday" class="text-center" data-sortable="true">Subject</th>
                    </thead>
                    <tbody>
@@ -166,7 +166,7 @@
                 <table id="" class="table" >
                    <thead>
                       <th data-field="Monday" class="text-center" data-sortable="true">Period</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">From time -To time</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Timing</th>
                       <th data-field="Monday" class="text-center" data-sortable="true">Subject</th>
                    </thead>
                    <tbody>
@@ -207,7 +207,7 @@
                 <table id="" class="table" >
                    <thead>
                       <th data-field="Monday" class="text-center" data-sortable="true">Period</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">From time -To time</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Timing</th>
                       <th data-field="Monday" class="text-center" data-sortable="true">Subject</th>
                    </thead>
                    <tbody>
@@ -248,7 +248,7 @@
                 <table id="" class="table" >
                    <thead>
                       <th data-field="Monday" class="text-center" data-sortable="true">Period</th>
-                      <th data-field="Monday" class="text-center" data-sortable="true">From time -To time</th>
+                      <th data-field="Monday" class="text-center" data-sortable="true">Timing</th>
                       <th data-field="Monday" class="text-center" data-sortable="true">Subject</th>
                    </thead>
                    <tbody>

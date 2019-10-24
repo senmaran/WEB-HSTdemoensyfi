@@ -15,7 +15,8 @@
                   <div class="card">
                      <div class="content">
                         <div class="fresh-datatables">
-                           <h4 class="title">Fees Status(<?php  if(empty($fees)){ echo " Fees Status Not Found";}else{  foreach ($fees as $rows){ } echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month)); } ?> ) </h4>
+                           <h4 class="title">Fees Status</h4>
+						   <h5> Academic Year : <?php  if(empty($fees)){ echo " Fees Status Not Found";}else{  foreach ($fees as $rows){ } echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month)); } ?> </h5>
                            <div class="dtypo-line" style="padding:30px;">
                               <div class="row">
                                  <?php
@@ -25,8 +26,8 @@
                                     
                                                         ?>
                                  <div class="col-md-10">
-                                    <h5><?php echo $i; ?>. <?php echo $rows->term_name;  ?> ( <button class="btn btn-social btn-simple btn-linkedin"> Due Date : <?php $date=date_create($rows->due_date_to);
-                                       echo date_format($date,"d-m-Y");  ?> </button>  ) </h5>
+                                    <h5><?php echo $i; ?>. <?php echo $rows->term_name;  ?> - <button class="btn btn-social btn-simple btn-linkedin"> Due Date : <?php $date=date_create($rows->due_date_to);
+                                       echo date_format($date,"d-m-Y");  ?> </button> </h5>
                                     <blockquote>
                                        <p><?php echo $rows->notes; ?><span style="float: right;"> <?php 
                                           if($paid=='Paid'){?>
@@ -35,11 +36,10 @@
                                           <button class="btn btn-danger btn-fill btn-wd">Unpaid</button>
                                           <?php } ?> </span>
                                        </p>
-                                       <small>
-                                       <cite title="Source Title">
+                                       <p>
                                        <?php $date=date_create($rows->due_date_from);
-                                          echo date_format($date,"d-m-Y");?></cite>
-                                       </small>
+                                          echo date_format($date,"d-m-Y");?>
+                                     </p>
                                     </blockquote>
                                  </div>
                                  <?php $i++;  }  }?>

@@ -12,7 +12,7 @@
             
                <div class="card">
                   <div class="header">
-                     <legend>On Duty Details</legend>
+                     <legend>On Duty Status</legend>
                   </div>
                   <div class="content">
                            <div class="fresh-datatables">
@@ -20,9 +20,9 @@
                            <thead>
                               <th>S.no</th>
 							 
-                                 <th>Reason Out</th>
-                                 <th>From Date</th>
-                                 <th>To Date</th>
+                                 <th>Reason</th>
+                                 <th>From</th>
+                                 <th>To</th>
                                  <th>Status</th>
                            </thead>
                            <tbody>
@@ -38,8 +38,8 @@
 						
 					<td><?php if($stu=='Pending'){ ?>
 					 <button class="btn btn-warning btn-fill btn-wd">Pending</button>
-					 <?php }elseif($stu=='Rejected'){?>
-					 <button class="btn btn-danger btn-fill btn-wd">Reject</button>
+					 <?php }elseif($stu=='Denied'){?>
+					 <button class="btn btn-danger btn-fill btn-wd">Denied</button>
 					 <?php }else{ ?>
 					 <button class="btn btn-success btn-fill btn-wd">Approved</button>
 					 <?php }?>
