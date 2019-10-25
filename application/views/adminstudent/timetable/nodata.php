@@ -3,13 +3,12 @@
 <div class="content">
 <div class="col-md-12">
 
-
-                            <?php if($this->session->flashdata('msg')): ?>
-                              <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            ×</button> <?php echo $this->session->flashdata('msg'); ?>
-                     </div>
-                     <?php endif; ?>
+	<?php if($this->session->flashdata('msg')): ?>
+	<div class="alert alert-success">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+	×</button> <?php echo $this->session->flashdata('msg'); ?>
+	</div>
+	<?php endif; ?>
 
 </div>
 
@@ -18,7 +17,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="header">
-          <legend>Time Table <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></legend>
+          <legend>Class Timetable<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></legend>
 
       </div>
 
@@ -26,7 +25,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="card">
-              <p>NO  Time Table found  Found</p>
+              <p>Timetable not found</p>
 
             </div>
           </div>

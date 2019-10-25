@@ -18,7 +18,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="header">
-          <legend>Time Table <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></legend>
+          <legend>Class Timetable <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></legend>
 
       </div>
 
@@ -26,7 +26,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="card">
-              <p>NO  Time Table found  Found</p>
+              <p>Timetable not found</p>
 
             </div>
           </div>
