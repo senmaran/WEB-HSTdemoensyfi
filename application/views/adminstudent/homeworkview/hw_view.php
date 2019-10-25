@@ -14,7 +14,7 @@ td{
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Homework & Class Test</h4>
+                     <h4 class="title">Homeworks and Class Tests</h4>
                   </div><hr>
                     <div class="content">
                      <div class="fresh-datatables">
@@ -23,11 +23,11 @@ td{
                               <th>S.no</th>
                               <th>Teacher</th>
                               <th>Subject</th>
-                              <th>Type</th>
+                              <th>Work</th>
                               <th>Title</th>
-                              <th>DATE</th>
-                              <th>Details</th>
-                              <th>View Marks </th>
+                              <th>Date</th>
+                              <th>Description</th>
+                              <th>Action</th>
                            </thead>
                            <tbody>
                               <?php
@@ -75,9 +75,9 @@ td{
                                  <td>
                                     <?php if($sta==0 && $type=="HT")
                                        {?>
-                                    <a href="" rel="tooltip" title="Doesn't Add Mark Details" class="btn btn-simple btn-info btn-icon table-action view" >
+                                    <a href="" rel="tooltip" title="Mark details not added!" class="btn btn-simple btn-info btn-icon table-action view" >
                                     <i class="fa fa-id-card-o" aria-hidden="true"></i></a>
-                                    <?php }elseif($sta==1){?> <a href="<?php echo base_url();?>student/view_mark/<?php echo $rows->hw_id; ?>" title="View Mark Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;"><i class="fa fa-id-card-o" aria-hidden="true"></i></a>	<?php }?>
+                                    <?php }elseif($sta==1){?> <a href="<?php echo base_url();?>student/view_mark/<?php echo $rows->hw_id; ?>" title="View Marks" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;"><i class="fa fa-id-card-o" aria-hidden="true"></i></a>	<?php }?>
                                  </td>
                               </tr>
                               <?php $i++;  }  ?>

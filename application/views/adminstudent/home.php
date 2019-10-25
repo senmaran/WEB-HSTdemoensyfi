@@ -58,11 +58,11 @@
           <div class="col-md-8">
             <div  class="textborder"></div>
               <div class="other_details">
-                <p><b>Gender</b> - <?php echo $rows->sex; ?> </p>
-                <p><b>DOB</b> - <?php echo $fdate; ?> </p>
-                <p><b>Age</b> - <?php echo $currentage; ?> </p>
-                <p><b>Contact</b> - <?php echo  $rows->mobile; ?> </p>
-                <p><b>Email</b> - <?php echo  $rows->email; ?> </p>
+                <p><b>Gender</b> : <?php echo $rows->sex; ?> </p>
+                <p><b>DOB</b> : <?php echo $fdate; ?> </p>
+                <p><b>Age</b> : <?php echo $currentage; ?> </p>
+                <p><b>Mobile Number</b> : <?php echo  $rows->mobile; ?> </p>
+                <p><b>Email ID</b> : <?php echo  $rows->email; ?> </p>
               </div>
           </div>
       </div>

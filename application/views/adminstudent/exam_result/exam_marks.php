@@ -27,8 +27,8 @@
 				   $row=$sql1->result();
 				   $sub_id=$row[0]->subject_name;
 				}?>
-			<h4 class="title">Exam Marks ( Preferred Language = <?php if(empty($result)){}else{ echo'<b>'; echo'<span style="color:green;">'; echo $sub_id; echo'</span>'; echo'</b>';}?> )
-				<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button><button class="btn btn-info btn-fill center pull-right " style="margin-top:-10px; margin-right:10px;" onclick="generatefromtable()">Generate PDF</button> </h4>
+			<h4 class="title">Mark List( Preferred Language = <?php if(empty($result)){}else{ echo'<b>'; echo'<span style="color:green;">'; echo $sub_id; echo'</span>'; echo'</b>';}?> )
+				<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button><button class="btn btn-info btn-fill center pull-right " style="margin-top:-10px; margin-right:10px; width:150px;" onclick="generatefromtable()">Generate PDF</button> </h4>
 				<p class="category"></p>
 			</div>
 			<div class="content table-responsive table-full-width">
@@ -36,10 +36,10 @@
 	<table id="resulttable" class="table table-hover table-striped">
 	<thead>
 	 <th>Sno</th>
-	 <th>Subject Name</th>
-	 <th>Internal Marks</th>
-	 <th>External Marks</th>
-	 <th>Total Marks</th>
+	 <th>Subject</th>
+	 <th>Internal</th>
+	 <th>External</th>
+	 <th>Total</th>
 	</thead>
 	<tbody>
 	<?php

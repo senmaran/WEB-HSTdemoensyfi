@@ -120,7 +120,7 @@
                      <ul class="dropdown-menu dropdown-with-icons">
                         <li>
                            <a href="<?php echo base_url(); ?>studentprofile/profile_update">
-                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile Update
+                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
                            </a>
                         </li>
                         <li>
@@ -130,7 +130,7 @@
                         </li>
 						 <li>
                            <a href="<?php echo base_url(); ?>studentprofile/notification_status">
-                              <i class="fa fa-cog" aria-hidden="true"></i> Notification Preference
+                              <i class="fa fa-cog" aria-hidden="true"></i> Notification Settings
                            </a>
                         </li>
                         <li class="divider"></li>
@@ -196,7 +196,7 @@
                <li id="homework">
                   <a href="<?php echo base_url(); ?>student/homework_view">
                    <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/homework&classtest.png"/>
-                     <p>Home Work / Class Test</p>
+                     <p>Homeworks and Tests</p>
                   </a>
 
                </li>
@@ -209,22 +209,22 @@
                <li id="circular">
                   <a href="<?php echo base_url(); ?>student/view_all_circular">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/fees.png"/>
-                     <p>Circular</p>
+                     <p>Circulars</p>
                   </a>
                </li>
                <li id="exam">
                   <a data-toggle="collapse"  href="#examinationmenu">
                    <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/Results.png"/>
-                     <p>Examination </p>
+                     <p>Examinations</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="examinationmenu">
                      <ul class="nav">
                         <li id="exam1">
-                           <a href="<?php echo base_url(); ?>student/exam_name_calender">Examination Calendar</a>
+                           <a href="<?php echo base_url(); ?>student/exam_name_calender">Exam Schedule</a>
                         </li>
                         <li id="exam2">
-                           <a href="<?php echo base_url(); ?>student/exam_views">Examination Result</a>
+                           <a href="<?php echo base_url(); ?>student/exam_views">Results</a>
                         </li>
                      </ul>
                   </div>
@@ -232,13 +232,13 @@
                <li id="events">
                   <a href="<?php echo base_url(); ?>student/event">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/calender.png"/>
-                     <p>Event</p>
+                     <p>Events</p>
                   </a>
                </li>
                <li id="timetable">
                   <a href="<?php echo base_url(); ?>student/timetable">
                    <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/timetable.png"/>
-                     <p>Time Table	</p>
+                     <p>Timetable</p>
                   </a>
                </li>
             </ul>

@@ -232,7 +232,13 @@ LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id WHERE ed.user_
 
 	 function get_circular($user_id){
            $current_year=$this->getYear();
-		 $com="SELECT c.id,c.user_type,c.user_id,c.circular_master_id,c.circular_date,cm.id,cm.academic_year_id,cm.circular_doc,cm.circular_title,cm.circular_description,cm.status FROM edu_circular AS c,edu_circular_master AS cm WHERE c.user_id='$user_id' AND c.user_type=3 AND cm.academic_year_id='$current_year' AND c.circular_master_id=cm.id AND cm.status='Active' ORDER BY c.id DESC";
+		   
+		   /*  $get_enroll_id="SELECT ed.name,ed.student_id,ea.admisn_year,ea.admisn_no,ee.enroll_id FROM edu_users AS ed LEFT JOIN edu_admission AS ea ON ed.student_id=ea.admission_id
+LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id WHERE ed.user_id=$user_id";
+        $results=$this->db->query($get_enroll_id);
+			foreach($results->result() as $rows){}   $enroll_id=$rows->enroll_id; */
+		
+		  $com="SELECT c.id,c.user_type,c.user_id,c.circular_master_id,c.circular_date,cm.id,cm.academic_year_id,cm.circular_doc,cm.circular_title,cm.circular_description,cm.status FROM edu_circular AS c,edu_circular_master AS cm WHERE c.user_id='$user_id' AND c.user_type=3 AND cm.academic_year_id='$current_year' AND c.circular_master_id=cm.id AND cm.status='Active' ORDER BY c.id DESC";
 		 $resultset=$this->db->query($com);
 		 $row=$resultset->result();
 		 return $row;

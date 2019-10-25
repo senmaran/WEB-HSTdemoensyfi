@@ -8,7 +8,7 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">View Marks Details <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
+                     <h4 class="title">View Marks Details <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></h4>
                      <?php //foreach ($res as $rows)
                         //{} ?>
                      <?php
@@ -24,7 +24,7 @@
                         <thead>
                            <th>S.No</th>
                            <th>Marks</th>
-                           <th>ReMarks</th>
+                           <th>Comments</th>
                         </thead>
                         <form method="post" action="<?php echo base_url(); ?>homework/update" class="form-horizontal" enctype="multipart/form-data" id="markform">
                            <tbody>

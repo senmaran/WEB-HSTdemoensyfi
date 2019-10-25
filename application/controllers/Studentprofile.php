@@ -134,7 +134,7 @@ class Studentprofile extends CI_Controller {
 						$res=$this->studentprofilemodel->updatepwd($user_id,$oldpassword,$newpassword);
 
 						if($res['status']=="success"){
-							  $this->session->set_flashdata('msg', 'Update Successfully');
+							  $this->session->set_flashdata('msg', 'Password changed');
 							  redirect('studentprofile/pwd_reset');
 						  }else{
 								$this->session->set_flashdata('msg', 'Failed to update');
@@ -179,7 +179,7 @@ class Studentprofile extends CI_Controller {
 			$res=$this->studentprofilemodel->update_notification($Sms,$Mail,$Push,$user_id);
 
 			if($res['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Update Successfully');
+				 $this->session->set_flashdata('msg', 'Changes made are saved');
 					redirect('studentprofile/notification_status');
 			 }else{
 				 $this->session->set_flashdata('msg', 'Failed to update');

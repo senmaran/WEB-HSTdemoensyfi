@@ -52,7 +52,6 @@ Class Mailmodel extends CI_Model
         </head>
         <body>
           <p style="margin-left:50px;">'.$email_message.'</p>
-
         </body>
         </html>';
         $headers = "MIME-Version: 1.0" . "\r\n";

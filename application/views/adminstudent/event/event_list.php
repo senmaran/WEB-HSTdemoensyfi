@@ -2,7 +2,7 @@
    <div class="content">
       <div class="row">
          <div class="container" style="padding-right:110px;padding-bottom:20px;">
-            <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">Go Back</button>
+            <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">BACK</button>
          </div>
       </div>
       <div class="card">
@@ -13,9 +13,9 @@
                                             <h5><?php echo $rows1->event_name; ?></h5>
                                            <p>
                                       <?php echo $rows1->event_details; ?>   </p>
-                                           <small>
+                                          <p>
                                           <?php echo $new_date = date('d-m-Y', strtotime($rows1->event_date)); ?>
-                                           </small>
+                                          </p>
                                           </blockquote>
                                       </div>
                                       <?php }else{
@@ -39,7 +39,7 @@
               <div class="event_box">
                 <div class="event_date"><?php echo $e_date; ?> <?php echo $e_mon; ?> <?php echo $e_year; ?></div>
                 <div class="event_name"><?php echo $rows->sub_event_name;  ?></div>
-                <div class="event_co_name"><?php echo $rows->name;  ?>(<i class="fa fa-user" aria-hidden="true"></i>)</div>
+                <div class="event_co_name"><?php echo $rows->name;  ?><!--(<i class="fa fa-user" aria-hidden="true"></i>)--></div>
               </div>
             </a>
             </div>
@@ -48,7 +48,7 @@
 
             <?php  } } else{  ?>
             <div class="col-md-6">
-               <p>No Event Found</p>
+               <p>No Sub Events Found</p>
             </div>
             <?php   } ?>
          </div>

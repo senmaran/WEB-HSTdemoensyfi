@@ -16,8 +16,8 @@
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th>S.no</th>
-                              <th>Subject Name</th>
-                              <th>Exam Date</th>
+                              <th>Subject</th>
+                              <th>Date</th>
                            </thead>
                            <tbody>
                               <?php

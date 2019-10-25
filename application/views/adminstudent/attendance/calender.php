@@ -16,7 +16,7 @@
       <div class="container-fluid">
          <div class="content">
             <div class="header">
-               <legend>Attendance Calender </legend>
+               <legend>View Attendance</legend>
             </div>
             <div class="container-fluid">
                <div class="row">
@@ -29,28 +29,42 @@
                         </div>
                      </center>
                   </div>
-                  <div class="col-md-4 text-center">
-                     <div class="row" style="padding-top: 150px;">
-                        <h5>Total Working days</h5>
-                        <p> <?php if(empty($total)){
-                           } else{
-                           	echo count($total);
-                           }?> </p>
-                     </div>
-                     <div class="noote" style="display: inline-flex;">
-                        <div class="notice">
-                           <p class="red">1</p>
-                        </div>
-                        <div class="Words">
-											Absent & Leave - 
-                                            <?php if(empty($ableavedays)){
-
+                 <div class="col-md-4">
+										<div class="row">
+											<h5>Total Working days:
+											<?php if(empty($total)){
+												$total = 0;
+												echo "Nil";
 											} else{
-												echo count($ableavedays);
-											}?> 
-                                            </div>
-                     </div>
-                  </div>
+												echo $total = count($total);
+											}?> </h5>
+										</div>
+										
+										<div class="row">
+											<h5>Absent / Leave:
+											<?php if(empty($ableavedays)){
+												$leaves = 0;
+												echo "Nil";
+											} else{
+												echo $leaves = count($ableavedays);
+											}?> </h5>
+										</div>
+										
+										<div class="row">
+											<h5>Days present:
+											<?php 
+												echo $present = ($total - $leaves);
+											?> </h5>
+										</div>
+										
+										
+										<div class="noote" style="display: inline-flex; padding-top:100px;">
+										<div class="notice">
+											<p class="red">1</p>
+										</div>
+										<div class="Words">Absent / Leave</div>
+									</div>
+										</div>
                </div>
             </div>
          </div>

@@ -127,12 +127,12 @@ class Adminlogin extends CI_Controller {
 	 			}
 				elseif($msg=="Password Wrong"){
 					$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
-					$this->session->set_flashdata('msg', 'Password Wrong');
+					$this->session->set_flashdata('msg', 'Password invalid');
 					redirect('/');
 				}
 				else{
 					$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
-					$this->session->set_flashdata('msg', ' Email invalid');
+					$this->session->set_flashdata('msg', 'Username and Password invalid');
 					 redirect('/');
 				}
 

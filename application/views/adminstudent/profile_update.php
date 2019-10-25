@@ -10,7 +10,7 @@
                   <div class="content">
 
                <div class=" panel-default">
-                   <h4 class="title">Change Profile Image</h4>
+                   <h4 class="title">Profile Picture</h4>
                    <div class="panel-body" align="center">
                      <input type="file" name="upload_image" id="upload_image" />
 
@@ -39,9 +39,7 @@
 					</div>
 				</div>
       		</div>
-      		<div class="modal-footer">
-        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      		</div>
+      		
     	</div>
     </div>
 </div>
@@ -71,7 +69,7 @@
                         </a>
                         <h4 class="title" style="line-height:20px;"><?php echo $rows->name; ?></h4>
                         <br>
-                        <p><a onclick="remove_img()" style="cursor: pointer;">Remove Picture</a>
+                        <p><a onclick="remove_img()" style="cursor: pointer;">Remove Profile Picture</a>
 
                      </div>
                   </div>
@@ -90,10 +88,10 @@ function remove_img(){
     success:function(data)
     {
       if(data=="success"){
-          alert("Picture Removed");
+          alert("Profile picture removed");
           window.setTimeout(function(){location.reload()},1000)
       }else{
-          alert("Something Went Wrong");
+          alert("Profile picture not found!");
       }
     }
   });
@@ -139,7 +137,7 @@ $(document).ready(function(){
         success:function(data)
         {
           if(data=="success"){
-              alert("Picture Updated");
+              alert("Profile picture changed");
               window.setTimeout(function(){location.reload()},1000)
           }else{
               alert("Something Went Wrong");

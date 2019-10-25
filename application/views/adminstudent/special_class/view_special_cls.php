@@ -8,7 +8,7 @@
                <div class="col-md-12">
                   <div class="card">
                      <div class="content">
-                       <h4 class="title">List of Special Class</h4><hr>
+                       <h4 class="title">Special Classes</h4><hr>
                         <div class="fresh-datatables">
                            <table id="bootstrap-table" class="table">
                               <thead>
@@ -16,10 +16,10 @@
                                  <th>Class</th>
                                  <th>Teacher</th>
                                  <th>Subject</th>
-								 <th>Subject Topic</th>
+								 <th>Topic</th>
                                  <th>Date</th>
-                                 <th>Start Time</th>
-								  <th>End time</th>
+                                 <th>Starting Time</th>
+								  <th>Ending Time</th>
                               </thead>
                               <tbody>
                                  <?php

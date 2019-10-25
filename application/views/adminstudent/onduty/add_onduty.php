@@ -68,14 +68,14 @@
                   <div class="card">
 
                      <div class="content">
-                       <h4 class="title">OnDuty List</h4> <hr>
+                       <h4 class="title">On Duty Status</h4> <hr>
                         <div class="fresh-datatables">
                            <table id="bootstrap-table" class="table">
                               <thead>
                                  <th>S.no</th>
-                                 <th>Reason Out</th>
-                                 <th>From Date</th>
-                                 <th>To Date</th>
+                                 <th>Reason</th>
+                                 <th>From</th>
+                                 <th>To</th>
                                  <th>Status</th>
 
                               </thead>
@@ -91,8 +91,8 @@
                                     <td><?php $dateTime=new DateTime($rows->to_date); $tdate=date_format($dateTime,'d-m-Y' ); echo $tdate; ?></td>
 								<td><?php if($stu=='Pending'){ ?>
 								 <button class="btn btn-warning btn-fill btn-wd">Pending</button>
-								 <?php }elseif($stu=='Rejected'){?>
-								 <button class="btn btn-danger btn-fill btn-wd">Reject</button>
+								 <?php }elseif($stu=='Denied'){?>
+								 <button class="btn btn-danger btn-fill btn-wd">Denied</button>
 								 <?php }else{ ?>
 								 <button class="btn btn-success btn-fill btn-wd">Approved</button>
 								 <?php }?>
