@@ -24,6 +24,20 @@ Class Apisuperadminmodel extends CI_Model
 
 
 
+    function get_user_count(){
+      $query="SELECT count(user_id) as user_count,eu.user_type,er.user_type_name from edu_users as eu left join edu_role as er on er.role_id=eu.user_type GROUP by eu.user_type";
+      $res    = $this->db->query($query);
+      if($res->num_rows()==0){
+        $data=array('status'=>"error");
+      }else{
+        $result=$res->result();
+        $data=array('status'=>"success","user_data"=>$result);
+      }
+      return $data;
+    }
+
+
+
 
 
 

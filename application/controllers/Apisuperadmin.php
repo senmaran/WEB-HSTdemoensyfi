@@ -44,5 +44,21 @@ class Apisuperadmin extends CI_Controller {
     }
 
 
+		public function get_user_count()
+		{
+
+			$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+			if(!$this->checkMethod())
+			{
+				return FALSE;
+			}
+			$data['result']=$this->apisuperadminmodel->get_user_count();
+			$response = $data['result'];
+			echo json_encode($response);
+		}
+
+
+
 
 }
