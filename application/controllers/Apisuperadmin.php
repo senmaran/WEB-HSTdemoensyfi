@@ -37,7 +37,8 @@ class Apisuperadmin extends CI_Controller {
     	{
     		return FALSE;
     	}
-    	$data['result']=$this->apisuperadminmodel->get_all_staff_details();
+			$role_type_id = $this->input->post("role_type_id");			
+    	$data['result']=$this->apisuperadminmodel->get_all_staff_details($role_type_id);
     	$response = $data['result'];
     	echo json_encode($response);
     }

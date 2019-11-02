@@ -9,15 +9,15 @@ Class Apisuperadminmodel extends CI_Model
     }
 
 
-    function get_all_staff_details()
+    function get_all_staff_details($role_type_id)
     {
-        $query = "SELECT teacher_id,role_type_id,name,status,created_at FROM edu_teachers";
+        $query = "SELECT teacher_id,role_type_id,name,status,created_at FROM edu_teachers WHERE role_type_id='$role_type_id'";
         $res    = $this->db->query($query);
         return $res->result();
     }
 
 
-    
+
 
 
 
