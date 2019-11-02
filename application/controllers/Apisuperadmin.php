@@ -31,7 +31,7 @@ class Apisuperadmin extends CI_Controller {
     public function get_all_staff_details()
     {
 
-    	$_POST = json_decode(file_get_contents("php://input"), TRUE);
+    	//$_POST = json_decode(file_get_contents("php://input"), TRUE);
 
     	if(!$this->checkMethod())
     	{
@@ -40,7 +40,7 @@ class Apisuperadmin extends CI_Controller {
 			$role_type_id = $this->uri->segment(3);
     	$data['result']=$this->apisuperadminmodel->get_all_staff_details($role_type_id);
     	$response = $data['result'];
-    
+    	echo json_encode($response);
     }
 
 

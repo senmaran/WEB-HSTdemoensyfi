@@ -13,7 +13,13 @@ Class Apisuperadminmodel extends CI_Model
     {
         $query = "SELECT teacher_id,role_type_id,name,status,created_at FROM edu_teachers WHERE role_type_id='$role_type_id'";
         $res    = $this->db->query($query);
-        return $res->result();
+        if($res->num_rows()==0){
+          $data=array('status'=>"error");
+        }else{
+          $result=$res->result();
+          $data=array('status'=>"success","staff_data"=>$result);
+        }
+        return $data;
     }
 
 
