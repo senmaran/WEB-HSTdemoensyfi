@@ -32,6 +32,11 @@ class Apisuperadmin extends CI_Controller {
     {
 
     	$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+    	if(!$this->checkMethod())
+    	{
+    		return FALSE;
+    	}
     	$data['result']=$this->apisuperadminmodel->get_all_staff_details();
     	$response = $data['result'];
     	echo json_encode($response);
