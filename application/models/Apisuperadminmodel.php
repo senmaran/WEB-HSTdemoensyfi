@@ -44,7 +44,7 @@ Class Apisuperadminmodel extends CI_Model
       }
 
       $response=array("status"=>"success","total_count"=>$total_count,"year_based_count"=>$year_based_student);
-      return $response;
+      return $total_count;
     }
 
 
