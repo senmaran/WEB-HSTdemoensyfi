@@ -33,18 +33,18 @@ Class Apisuperadminmodel extends CI_Model
         $result=$res->result();
         $total_count=array('status'=>"success","user_data"=>$result);
       }
-
-      $query_student="SELECT count(admit_year) as student,admit_year FROM edu_enrollment GROUP BY admit_year";
-      $res_student    = $this->db->query($query_student);
-      if($res_student->num_rows()==0){
-        $year_based_student=array('status'=>"error");
-      }else{
-        $result_student=$res_student->result();
-        $year_based_student=array('status'=>"success","year_stu_count"=>$result_student);
-      }
-
-      $response=array("status"=>"success","total_count"=>$total_count,"year_based_count"=>$year_based_student);
       return $total_count;
+      // $query_student="SELECT count(admit_year) as student,admit_year FROM edu_enrollment GROUP BY admit_year";
+      // $res_student    = $this->db->query($query_student);
+      // if($res_student->num_rows()==0){
+      //   $year_based_student=array('status'=>"error");
+      // }else{
+      //   $result_student=$res_student->result();
+      //   $year_based_student=array('status'=>"success","year_stu_count"=>$result_student);
+      // }
+      //
+      // $response=array("status"=>"success","total_count"=>$total_count,"year_based_count"=>$year_based_student);
+
     }
 
 
