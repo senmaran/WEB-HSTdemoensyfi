@@ -295,7 +295,7 @@ class Parents extends CI_Controller {
 		 	 if($user_type==1)
 			 {
 				$datas=$this->parentsmodel->send_request($id);
-				
+
 					if($datas['status']=="success")
 					{
 						$this->session->set_flashdata('msg','Login details send');
@@ -307,9 +307,9 @@ class Parents extends CI_Controller {
 		   }
 			else{
 				redirect('/');
-			}	
+			}
 		}
-		
+
 
 		public function update_parents()
 		{
@@ -641,6 +641,10 @@ class Parents extends CI_Controller {
 					$data['res'] = $this->parentsmodel->check_fpmobile_number($mobile);
 				}
 
+				public function check_mpemail_id(){
+					$email = $this->input->post('mpemail');
+					$data['res'] = $this->parentsmodel->check_fpemail_id($email);
+				}
 
 				public function check_fpemail_id(){
 					$email = $this->input->post('fpemail');
