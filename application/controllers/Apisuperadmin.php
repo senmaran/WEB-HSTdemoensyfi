@@ -55,7 +55,7 @@ class Apisuperadmin extends CI_Controller {
 			}
 			$data['result']=$this->apisuperadminmodel->get_user_count();
 			$response = $data['result'];
-			// echo json_encode($response);
+			echo json_encode($response);
 		}
 
 
