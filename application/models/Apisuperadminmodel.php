@@ -34,7 +34,7 @@ Class Apisuperadminmodel extends CI_Model
         $total_count=array('status'=>"success","user_data"=>$result);
       }
 
-      $query_student="SELECT count(admit_year) as student,admit_year FROM edu_enrollment GROUP BY admit_year";
+      $query_student="SELECT count(admit_year) as student,ee.admit_year,DATE_FORMAT(ey.from_month,'%Y-%M') as from_year,DATE_FORMAT(ey.to_month,'%Y-%M') as to_year FROM edu_enrollment as ee left join edu_academic_year as ey on ey.year_id=ee.admit_year GROUP BY admit_year";
       $res_student    = $this->db->query($query_student);
       if($res_student->num_rows()==0){
         $year_based_student=array('status'=>"error");
