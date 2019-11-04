@@ -645,6 +645,10 @@ class Parents extends CI_Controller {
 					$email = $this->input->post('mpemail');
 					$data['res'] = $this->parentsmodel->check_fpemail_id($email);
 				}
+				public function check_gpemail_id(){
+					$email = $this->input->post('gpemail');
+					$data['res'] = $this->parentsmodel->check_fpemail_id($email);
+				}
 
 				public function check_fpemail_id(){
 					$email = $this->input->post('fpemail');
