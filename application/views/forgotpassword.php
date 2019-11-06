@@ -86,7 +86,7 @@ body{
 
                                 <div class="content">
 								<h4>Forgot Password?</h4>
-								<p>No problems. Please enter your username and 
+								<p>No problems. Please enter your username and
 we'll reset the password for you.</p>
 										<div class="form-group">
                                         <label>Username</label>
@@ -202,8 +202,8 @@ we'll reset the password for you.</p>
 				            type:'POST',
 				           data: $('#forgotform').serialize(),
 				           success: function(response) {
-										 //alert(response);
-										 if(response=="Please check your email. We've sent you the reset password"){
+										// alert(response);
+										 if(response=="Password  Reset and send to your Mail Please check it"){
 											 swal({
 												   title: "Success",
 												    text: response,

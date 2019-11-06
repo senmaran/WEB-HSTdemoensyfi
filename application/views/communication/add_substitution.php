@@ -72,7 +72,7 @@
                               </div>
                               <label class="col-sm-2 control-label">&nbsp;</label>
                               <div class="col-sm-4">
-                                 <button type="submit" id="save" class="btn btn-info btn-fill center">SUBSTITUTE</button>
+                                 <button type="submit" id="save" class="btn btn-info  center">SUBSTITUTE</button>
                               </div>
                            </div>
                         </fieldset>
@@ -123,7 +123,7 @@
                                     <td><?php  echo $cn; ?> <?php  echo $sn; ?></td>
                                     <td><?php  echo $rows->period_id; ?></td>
                                     <td>
-                                       <a href="<?php echo base_url();?>communication/sub_edit?v=<?php echo $rows->id; ?>&v1=<?php echo $teacher_id; ?>&v3=<?php echo $leave_id; ?>" title="Edit Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit" aria-hidden="true"></i> 
+                                       <a href="<?php echo base_url();?>communication/sub_edit?v=<?php echo $rows->id; ?>&v1=<?php echo $teacher_id; ?>&v3=<?php echo $leave_id; ?>" title="Edit Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit" aria-hidden="true"></i>
                                     </td>
                                  </tr>
                                  <?php $i++;  }  ?>
@@ -163,7 +163,7 @@
 			  status:"Please choose an option!",
             }
     });
-   
+
    $('.datepicker').datetimepicker({
           format: 'DD-MM-YYYY',
           icons: {
@@ -177,17 +177,17 @@
               clear: 'fa fa-trash',
               close: 'fa fa-remove'
           }
-     
-   }); 
+
    });
-   
+   });
+
    /* function get_teacher_name()
    {
 	   var tname=document.getElementById('subteacher').value ;
 	   alert(tname);
 	   var a=document.getElementById('choose').value ;
    } */
-   
+
      var $table = $('#bootstrap-table');
          $().ready(function(){
              $table.bootstrapTable({
@@ -202,7 +202,7 @@
                  pageSize: 8,
                  clickToSelect: false,
                  pageList: [8,10,25,50,100],
-   
+
                  formatShowingRows: function(pageFrom, pageTo, totalRows){
                      //do nothing here, we don't want to show the text "showing x of y from..."
                  },
@@ -217,18 +217,17 @@
                      detailClose: 'fa fa-minus-circle'
                  }
              });
-   
+
              //activate the tooltips after the data table is initialized
              $('[rel="tooltip"]').tooltip();
-   
+
              $(window).resize(function () {
                  $table.bootstrapTable('resetView');
              });
-   
-   
-         }); 
-   
-   
-   
-</script>
 
+
+         });
+
+
+
+</script>

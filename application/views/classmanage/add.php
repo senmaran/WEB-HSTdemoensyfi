@@ -4,8 +4,8 @@
          <div class="col-md-12">
 
 
-					
-					   
+
+
                         <div class="card">
 						<div class="header">
                            <h4 class="title">Create Subject</h4>

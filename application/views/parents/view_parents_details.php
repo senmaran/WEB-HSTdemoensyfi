@@ -18,19 +18,19 @@
 
                                     <ul role="tablist" class="nav nav-tabs" style="border-bottom: none;padding-left:05px;">
                                         <li role="presentation" class="active">
-                                            <a href="#father" class="btn btn-info btn-fill" style="border-bottom-color:#976dea;" data-toggle="tab">Father</a>
+                                            <a href="#father" class="btn btn-info " style="border-bottom-color:#976dea;" data-toggle="tab">Father</a>
                                         </li>
                                         <li>
-                                            <a href="#mothers" class="btn btn-info btn-fill" style="border-bottom-color:#976dea;" data-toggle="tab">Mother</a>
+                                            <a href="#mothers" class="btn btn-info " style="border-bottom-color:#976dea;" data-toggle="tab">Mother</a>
                                         </li>
                                         <li>
-                                            <a href="#guardian" class="btn btn-info btn-fill" style="border-bottom-color:#976dea;" data-toggle="tab">Guardian</a>
+                                            <a href="#guardian" class="btn btn-info " style="border-bottom-color:#976dea;" data-toggle="tab">Guardian</a>
                                         </li>
                                         <?php   $s=count($editres);
  									if($s==3){ }else{
 									?>
                                             <li style="margin-left:560px;">
-                                                <a href="<?php echo base_url(); ?>parents/create_new_parents_details/<?php echo $sid;?>/<?php echo 0;?>" class="btn btn-info btn-fill">Add More Details </a>
+                                                <a href="<?php echo base_url(); ?>parents/create_new_parents_details/<?php echo $sid;?>/<?php echo 0;?>" class="btn btn-info ">Add More Details </a>
                                             </li>
                                             <?php } ?>
                                     </ul>
@@ -171,7 +171,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">&nbsp;</label>
                                                     <div class="col-sm-4">
-                                                        <button type="submit" id="save1" class="btn btn-info btn-fill center">SAVE</button>
+                                                        <button type="submit" id="save1" class="btn btn-info  center">SAVE</button>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -344,7 +344,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">&nbsp;</label>
                                                     <div class="col-sm-4">
-                                                        <button type="submit" id="save1" class="btn btn-info btn-fill center">SAVE</button>
+                                                        <button type="submit" id="save1" class="btn btn-info  center">SAVE</button>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -517,7 +517,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">&nbsp;</label>
                                                     <div class="col-sm-4">
-                                                        <button type="submit" id="save1" class="btn btn-info btn-fill center">Update Guardian</button>
+                                                        <button type="submit" id="save1" class="btn btn-info  center">Update Guardian</button>
                                                     </div>
                                                 </div>
                                             </fieldset>

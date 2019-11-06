@@ -475,7 +475,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">&nbsp;</label>
                                                     <div class="col-sm-4">
-                                                        <button type="submit" id="save1" class="btn btn-info btn-fill center">Update Guardian</button>
+                                                        <button type="submit" id="save1" class="btn btn-info  center">Update Guardian</button>
                                                     </div>
                                                 </div>
                                             </fieldset>

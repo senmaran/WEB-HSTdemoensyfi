@@ -17,9 +17,9 @@
                      <form method="post" action="<?php echo base_url(); ?>communication/update_status" class="form-horizontal" enctype="multipart/form-data" id="myformsection" name="myformsection">
                        <input type="hidden" name="leave_id" value="<?php echo $leaveid; ?>">
 
-					   <?php 
+					   <?php
                            //print_r($res);
-                           foreach($res as $row){ 
+                           foreach($res as $row){
                            $id=$row->leave_id;
                            $date1=date_create($row->from_leave_date);
                            $leave=$row->type_leave;
@@ -104,7 +104,7 @@
    		 leave_description:{required:true },
    frm_time:{required:true },
    to_time:{required:true },
-   
+
         },
         messages: {
               leave_type:"Please choose an option!",
@@ -116,7 +116,7 @@
     });
    demo.initFormExtendedDatetimepickers();
    });
-   
+
      var $table = $('#bootstrap-table');
          $().ready(function(){
              $table.bootstrapTable({
@@ -131,7 +131,7 @@
                  pageSize: 8,
                  clickToSelect: false,
                  pageList: [8,10,25,50,100],
-   
+
                  formatShowingRows: function(pageFrom, pageTo, totalRows){
                      //do nothing here, we don't want to show the text "showing x of y from..."
                  },
@@ -146,30 +146,30 @@
                      detailClose: 'fa fa-minus-circle'
                  }
              });
-   
+
              //activate the tooltips after the data table is initialized
              $('[rel="tooltip"]').tooltip();
-   
+
              $(window).resize(function () {
                  $table.bootstrapTable('resetView');
              });
-   
-   
-         }); 
-   
-   
+
+
+         });
+
+
    $(function () {
         $("#choose").change(function () {
             if ($(this).val() == "Permisssion") {
                 $("#permissiontime").show();
-   	
+
             } else {       }
         });
-    }); 
-   
-   
+    });
+
+
    $().ready(function(){
-   
+
      $('.datepicker').datetimepicker({
        format: 'DD-MM-YYYY',
      minDate: new Date(),
@@ -185,6 +185,5 @@
            close: 'fa fa-remove'
        }
     });
-   }); 
+   });
 </script>
-
