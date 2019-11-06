@@ -1,6 +1,5 @@
 <?php
           $server_url = $_SERVER['HTTP_HOST'];
-		  
           $query="SELECT user_pic,school_id,name FROM edu_users WHERE user_type=1";
 		  $objRs=$this->db->query($query);
 		  $row=$objRs->result();
@@ -182,7 +181,7 @@
     <!-- <script src="<?php echo base_url(); ?>assets/js/demo.js"></script> -->
 
     <script type="text/javascript">
-    
+
 
      $(document).ready(function() {
 		$('#myform').validate({ // initialize the plugin
