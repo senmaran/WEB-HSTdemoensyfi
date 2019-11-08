@@ -180,7 +180,7 @@ public function add_exam_details()
 		$subject_name=$this->input->post('subject_id');
 		//print_r($subject_name);exit;
 		$exdate=$this->input->post('exam_dates');
-	
+
 		$time=$this->input->post('time');
 		//print_r($time);exit;
 		$teacher_id=$this->input->post('teacher_id');
@@ -190,7 +190,7 @@ public function add_exam_details()
 		$sub_total=$this->input->post('sub_total');
 		$inter_mark=$this->input->post('inter_mark');
 		$exter_mark=$this->input->post('exter_mark');
-		$inter_exter_mark=$this->input->post('inter_exter_mark'); 
+		$inter_exter_mark=$this->input->post('inter_exter_mark');
 
 	$datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject_name,$exdate,$time,$teacher_id,$status,$sub_total,$inter_mark,$exter_mark,$inter_exter_mark,$user_id);
 	if($datas['status']=="success"){
@@ -226,7 +226,7 @@ public function view_exam_details($exam_id,$classmaster_id)
 	else{
 		redirect('/');
 	}
-	
+
 }
 
 public function edit_exam_details($exam_detail_id)
@@ -258,12 +258,12 @@ public function update_exam_details()
 	{
 		$id=$this->input->post('id');
 		$exam_year=$this->input->post('eid');
-		//echo $exam_year; 
+		//echo $exam_year;
 		$class_name=$this->input->post('class_name');
 
 		$subject_name=$this->input->post('subject_name');
 		//echo $subject_name; exit;
-		$exam_date=$this->input->post('exam_date'); 
+		$exam_date=$this->input->post('exam_date');
 		$dateTime = new DateTime($exam_date);
 		$formatted_date=date_format($dateTime,'Y-m-d' );
 
@@ -280,11 +280,11 @@ public function update_exam_details()
 		$inter_mark=$this->input->post('inter_mark');
 		$exter_mark=$this->input->post('exter_mark');
 		//echo $inter_mark; echo $exter_mark; exit;
-		$inter_exter_mark=$this->input->post('inter_exter_mark'); 
+		$inter_exter_mark=$this->input->post('inter_exter_mark');
 
 		$datas=$this->examinationmodel->update_exam_detail($id,$exam_year,$class_name,$subject_name,$formatted_date,$time,$teacher_id,$status,$sub_total,$inter_mark,$exter_mark,$inter_exter_mark,$user_id);
 
-      
+
 	if($datas['status']=="success")
 	{
 		$this->session->set_flashdata('msg','Changes made are saved');
@@ -323,8 +323,8 @@ public function exam_name_status()
 	$datas=$this->session->userdata();
 	$user_id=$this->session->userdata('user_id');
 	$user_type=$this->session->userdata('user_type');
-	
-	
+
+
 	$datas['exam_name']=$this->examinationmodel->exam_name_status();
 	//print_r($datas['exam_name']);exit;
 	if($user_type==1)
@@ -354,7 +354,7 @@ public function marks_status($exam_id)
 	}
 	else{
 		redirect('/');
-	} 
+	}
 
 }
 
@@ -366,18 +366,14 @@ public function exam_mark_details_cls_teacher()
 
 	$cls_masid=$this->input->get('var1');
 	$exam_id=$this->input->get('var2');
-	//echo $cls_masid;echo $exam_id;exit;
 	$datas=$this->examinationmodel->getall_subname($user_id,$cls_masid,$exam_id);
 	$datas['stu']=$this->examinationmodel->getall_stuname($user_id,$cls_masid,$exam_id);
-	//echo "<pre>";print_r($datas['stu']);exit;
 	$datas['cls_exam']=$this->examinationmodel->clsname_examname($exam_id,$cls_masid);
 	$datas['smark']=$this->examinationmodel->marks_status_details($cls_masid,$exam_id);
 	$datas['eflag'] = $this->examinationmodel->getall_exam_inter_exter_details($exam_id,$cls_masid);
-	//echo '<pre>';print_r($datas);
-	//echo '<pre>';print_r($datas['cls_exam']); exit;
 
 	if($user_type==1)
-	{ 
+	{
 		$this->load->view('header');
 		$this->load->view('examination/exam_class_result',$datas);
 		$this->load->view('footer');
@@ -400,15 +396,15 @@ public function marks_status_update()
 
 	// print_r($datas);exit;
 	if($datas['status']=="success")
-	{ 
+	{
 		$a=$datas['var1']; $b=$datas['var2'];//echo $a;exit;
 		$this->session->set_flashdata('msg','Approved Successfully');
 		redirect('examination/exam_mark_details_cls_teacher?var1='.$b.'&var2='.$a.'',$datas);
 	}elseif($datas['status']=="Already Approved Exam Marks")
-	{ 
+	{
 		$a=$datas['var1']; $b=$datas['var2'];
 		$this->session->set_flashdata('msg','Already Approved Exam Marks');
-		redirect('examination/exam_mark_details_cls_teacher?var1='.$b.'&var2='.$a.'',$datas);  
+		redirect('examination/exam_mark_details_cls_teacher?var1='.$b.'&var2='.$a.'',$datas);
 	}else{
 		$a=$datas['var1']; $b=$datas['var2'];
 		$this->session->set_flashdata('msg','Falid To Approve');

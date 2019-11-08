@@ -20,7 +20,7 @@
                <div class="card">
                   <div class="header">
                      <h4 class="title">
-                        Exam Results ( <?php if (count($cls_exam)>0) { foreach($cls_exam as $rows){} echo $rows->exam_name; }?> )
+                        Exam Results ( <?php if (count($cls_exam)>0) { foreach($cls_exam as $rows){} echo $name_exam=$rows->exam_name; }?> )
                         <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="float:right; ">BACK</button>
                         <button style="float:right;margin-right: 10px;" class="btn btn-info btn-fill center download">EXPORT</button>
                         <!-- <button style="float:right;margin-right: 10px;" class="btn btn-info btn-fill center" onclick="generatefromtable()">Export PDF</button>-->
@@ -31,7 +31,8 @@
                      <!--php //echo base_url(); ?>examinationresult/marks_details-->
                      <form method="post" action="<?php echo base_url(); ?>examination/marks_status_update" class="form-horizontal" enctype="multipart/form-data" id="markform">
                         <?php
-                           $cls_id=$this->input->get('var1');
+                            $cls_id=$this->input->get('var1');
+
                            $exam_id=$this->input->get('var2');
                            //echo $exam_id;
                            $student_array_generate = function($stu,&$student_arr) use ($subject_name,$subject_id)
@@ -56,15 +57,15 @@
                            <thead>
                               <th>Sno</th>
                               <th>Name</th>
-                              <th style="width:180px;">Second Language</th>
+                              <th style="width:180px;">Elective Subject</th>
                               <?php
                                  if($status=="Success")
                                  {
                                     $cnt= count($subject_name);
                                     for($i=0;$i<$cnt;$i++)
                                  { ?>
-                              <th> <?php echo $subject_name[$i]; ?> <?php echo $subject_id[$i]; ?></th>
-							 
+                              <th> <?php echo $subject_name[$i]; ?> <?php  $subject_id[$i]; ?></th>
+
                               <?php  }
                                  }else{  ?>
                               <th style="color:red;">Subject Not Found</th>
@@ -77,7 +78,7 @@
                                  {
                                  $student_arr = array();
                                  $student_array_generate($stu,$student_arr);
-                                 
+
                                  $i = 1;
                                  foreach ($student_arr as $k => $s1)
                                  {
@@ -93,13 +94,13 @@
                                  $k++;
                                  echo'<td>';
 								 if ($s->pref_language!=''){
-                                    echo' ';  echo $s->pref_language;  echo' ';  
+                                    echo' ';  echo $s->pref_language;  echo' ';
 								 }
                                  echo'</td>';
                                  }
-                                 
+
                                  if($status=="Success")
-                                 {    
+                                 {
                                  echo '<input type="hidden" required  name="subid" value="'.$k1.'" class="form-control"/>';
                                  echo '<td>';
                                  if(!empty($s))
@@ -125,12 +126,12 @@
                                  echo $s->total_marks; echo "&nbsp";
                                  echo'</span>';
                                  echo '<span class="space">';echo $s->total_grade;echo'</span>';
-                                 }   
+                                 }
                                  }else{
                                  //echo"AB";
                                  echo '<span class="space" style="color:red;">';echo $s->total_marks;echo'</span>';
                                  }
-                                 
+
                                  }else{
                                  echo '<span class="grade">';
                                  if(is_numeric($im)){
@@ -139,14 +140,14 @@
                                  echo'</span>';
                                  }else{ echo'<span style="color:red;">'; echo $s->internal_mark; echo'</span>'; }
                                  echo "&nbsp";
-                                 
+
                                  echo '<span class="grade1">';
                                  if(is_numeric($em)){
                                  echo $s->external_mark;  echo "&nbsp";
                                  echo '<span class="space">';echo $s->external_grade;echo'</span>';
                                  }else{ echo'<span style="color:red;">'; echo $s->external_mark; echo'</span>'; }
                                  echo'</span>';
-                                 
+
                                  echo '<span class="grade2">';
                                  if(is_numeric($tm)){
                                  if($tm <'35' || !is_numeric($im) || !is_numeric($em)){
@@ -178,7 +179,7 @@
                                  }
                                  echo '<td class="total-combat">
                                  </td>';
-                                 
+
                                  echo '</tr>';
                                  $i++;
                                  }
@@ -203,16 +204,17 @@
    </div>
 </div>
 <?php
-   //foreach ($cls_exam as $rows) {} $cls=$rows->class_name; $sec=$rows->sec_name; ?>sorting
+   foreach ($cls_exam as $rows) {} $cls=$rows->class_name; $sec=$rows->sec_name; ?>
+   sorting
 <script type="text/javascript">
 $(document).ready(function(){
-	
+
 	$('#exammenu').addClass('collapse in');
         $('#exam').addClass('active');
         $('#exam3').addClass('active');
-		
+
 		$('th').attr('class','-');
-		
+
 });
 
    function generatefromtable() {
@@ -220,7 +222,7 @@ $(document).ready(function(){
    doc = new jsPDF('p', 'pt', 'a3', true);
    doc.setFont("times", "normal");
    doc.setFontSize(fontSize);
-   doc.text(40,20, "Exam Result Of ( <?php echo $cls; echo $sec; ?> ) ");
+   doc.text(40,20, "Exam Result <?php echo $name_exam; ?> ");
    data = [];
    data = doc.tableToJson('bootstrap-table');
    height = doc.drawTable(data, {
@@ -232,28 +234,28 @@ $(document).ready(function(){
    yOffset : 15
    });
    //doc.text(50, height + 20, 'hi world');
-   doc.save("<?php echo $cls; echo $sec; ?>.pdf");
+   doc.save("doc.pdf");
    }
-   
-   $(function() 
+
+   $(function()
    {
    $(".download").click(function() {
    $("#bootstrap-table").table2excel({
    exclude: ".noExl",
    name: "Excel Document Name",
-   filename: "Exam Result Of ( <?php echo $cls; echo $sec; ?> ) ",
+   filename: "Exam Result <?php echo $name_exam; ?>-<?php echo $cls.$sec; ?> ",
    fileext: ".xls",
    exclude_img: true,
    exclude_links: true,
    exclude_inputs: true
    });
    });
-   
+
    /* $('#exammenu').addClass('collapse in');
    $('#exam').addClass('active');
    $('#exam3').addClass('active'); */
    });
-   
+
    $('tr').each(function () {
    var sum = 0;
    $(this).find('.combat').each(function () {
@@ -264,7 +266,7 @@ $(document).ready(function(){
    });
    $(this).find('.total-combat').html(sum);
    });
-   
+
    $('#markform').validate({ // initialize the plugin
    rules:{
    marks1:{required:true },
@@ -275,7 +277,7 @@ $(document).ready(function(){
    marks: "Please Enter The Marks"
    }
    });
-   
+
    function insertfun()
    {//onkeyup="insertfun(this.value)"
    var m=document.getElementById("mark").value;
@@ -302,16 +304,15 @@ $(document).ready(function(){
    $("#msg").html(test);
    $("#save").show();
    }
-   
+
    }
    });
    }
-   
+
    var table = $('#bootstrap-table').DataTable( {
    responsive: true,
    paging: false
    } );
-   
+
    new $.fn.dataTable.FixedHeader( table );
 </script>
-
