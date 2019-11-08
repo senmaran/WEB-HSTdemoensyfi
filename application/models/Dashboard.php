@@ -135,7 +135,7 @@ Class Dashboard extends CI_Model
 						We have reset your ENSYFi account password. Your new password is '$OTP'<br>
 						You can also reset the password yourself in your profile settings.<br><br>
 
-						<a href='$base_url()'>Click here</a> to go to ENSYFi's login page.<br><br>
+						<a href="''. base_url()''">Click here</a> to go to ENSYFi's login page.<br><br>
 
 						Cordially,<br>
 						Team ENSYFi<br><br>
