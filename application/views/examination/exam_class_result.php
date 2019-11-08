@@ -20,7 +20,7 @@
                <div class="card">
                   <div class="header">
                      <h4 class="title">
-                        Exam Results ( <?php if (count($cls_exam)>0) { foreach($cls_exam as $rows){} echo $rows->exam_name; }?> )
+                        Exam Results ( <?php if (count($cls_exam)>0) { foreach($cls_exam as $rows){} echo $name_exam=$rows->exam_name; }?> )
                         <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="float:right; ">BACK</button>
                         <button style="float:right;margin-right: 10px;" class="btn btn-info btn-fill center download">EXPORT</button>
                         <!-- <button style="float:right;margin-right: 10px;" class="btn btn-info btn-fill center" onclick="generatefromtable()">Export PDF</button>-->
@@ -64,7 +64,7 @@
                                     $cnt= count($subject_name);
                                     for($i=0;$i<$cnt;$i++)
                                  { ?>
-                              <th> <?php echo $subject_name[$i]; ?> <?php echo $subject_id[$i]; ?></th>
+                              <th> <?php echo $subject_name[$i]; ?> <?php  $subject_id[$i]; ?></th>
 
                               <?php  }
                                  }else{  ?>
@@ -204,7 +204,8 @@
    </div>
 </div>
 <?php
-   //foreach ($cls_exam as $rows) {} $cls=$rows->class_name; $sec=$rows->sec_name; ?>sorting
+   foreach ($cls_exam as $rows) {} $cls=$rows->class_name; $sec=$rows->sec_name; ?>
+   sorting
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -221,7 +222,7 @@ $(document).ready(function(){
    doc = new jsPDF('p', 'pt', 'a3', true);
    doc.setFont("times", "normal");
    doc.setFontSize(fontSize);
-   doc.text(40,20, "Exam Result  ");
+   doc.text(40,20, "Exam Result <?php echo $name_exam; ?> ");
    data = [];
    data = doc.tableToJson('bootstrap-table');
    height = doc.drawTable(data, {
@@ -242,7 +243,7 @@ $(document).ready(function(){
    $("#bootstrap-table").table2excel({
    exclude: ".noExl",
    name: "Excel Document Name",
-   filename: "Exam Result  ",
+   filename: "Exam Result <?php echo $name_exam; ?>-<?php echo $cls.$sec; ?> ",
    fileext: ".xls",
    exclude_img: true,
    exclude_links: true,
