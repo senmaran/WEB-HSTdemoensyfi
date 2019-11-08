@@ -152,7 +152,7 @@ Class Dashboard extends CI_Model
              $sent= mail($to,$subject,$htmlContent,$headers);
 			 
              if($sent){
-                 echo "Password  Reset and send to your Mail Please check it";
+                 echo "Password Reset and send to your Mail Please check it";
              }else{
                echo "Somthing Went Wrong";
              }
@@ -202,7 +202,7 @@ Class Dashboard extends CI_Model
 		  }
 
             if($sent){
-                echo "Password  Reset and send to your Mail Please check it";
+                echo "Password Reset and send to your Mail Please check it";
             }else{
               echo "Somthing Went Wrong";
             }
@@ -254,7 +254,7 @@ Class Dashboard extends CI_Model
 			}
 
           if($sent){
-              echo "Password  Reset and send to your Mail Please check it";
+              echo "Password Reset and send to your Mail Please check it";
           }else{
             echo "Somthing Went Wrong";
           }
