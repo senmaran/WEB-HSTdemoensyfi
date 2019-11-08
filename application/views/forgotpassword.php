@@ -203,7 +203,7 @@ we'll reset the password for you.</p>
 				           data: $('#forgotform').serialize(),
 				           success: function(response) {
 										// alert(response);
-										 if(response=="Password  Reset and send to your Mail Please check it"){
+										 if(response=="Password Reset and send to your Mail Please check it"){
 											 swal({
 												   title: "Success",
 												    text: response,
