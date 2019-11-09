@@ -82,7 +82,7 @@
                 								 <?php }?>
                 								  </td>
                                    <td><?php //if($status=='A'){ ?>
-								                  <a href="<?php echo base_url(); ?>communication/add_substitution/<?php echo $rows->leave_id; ?>" rel="tooltip" title="Substitute Teacher" class="btn btn-simple btn-info btn-icon table-action view" >
+								                  <a href="<?php echo base_url(); ?>communication/add_substitution/<?php echo $rows->leave_id; ?>" rel="tooltip" title="Substitute Teacher" class="btn btn-simple btn-info btn-icon table-action view" style="cursor: pointer;">
 								                  <i class="fa fa-user-plus" aria-hidden="true"></i></a>
 								                 <?php //}else{ echo "";} ?>
                                  <a href="<?php echo base_url();?>communication/user_leave_approval/<?php echo $rows->leave_id; ?>" title="Leave Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit">
