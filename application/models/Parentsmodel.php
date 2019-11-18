@@ -422,7 +422,7 @@ Class Parentsmodel extends CI_Model
 	   }
 
 	   function update_parents_details($stu_name,$admission_id,$morestu,$newstu,$oldstu,$flogin,$fid,$fname,$foccupation,$fincome,$fhaddress,$fpemail,$fsemail,$fpmobile,$fsmobile,$fhome_phone,$foffice_address,$foffice_phone,$frelationship,$fstatus,$userFileName,$mlogin,$mid,$mname,$moccupation,$mincome,$mhaddress,$mpemail,$msemail,$mpmobile,$msmobile,$mhome_phone,$moffice_address,$moffice_phone,$mrelationship,$mstatus,$userFileName1,$glogin,$gid,$gname,$goccupation,$gincome,$ghaddress,$gpemail,$gsemail,$gpmobile,$gsmobile,$ghome_phone,$goffice_address,$goffice_phone,$grelationship,$gstatus,$userFileName2,$user_id)
-	   {  
+	   {
 	    $school_id=$this->session->userdata('school_id');
 	   // echo $stu_name; echo $morestu; exit;
 	       $digits = 6;
@@ -622,11 +622,11 @@ Class Parentsmodel extends CI_Model
 		  $data= array("status"=>"success");
           return $data;
 	   }
-	   
-	   
-	   
+
+
+
 	   function send_request($id)
-	   {  
+	   {
 			$school_id=$this->session->userdata('school_id');
 
 			$digits = 6;
@@ -643,7 +643,7 @@ Class Parentsmodel extends CI_Model
 					edu_users AS u
 				WHERE
 					e.id = u.parent_id AND e.id = '$id'";
-		   
+
 				$result=$this->db->query($sQuery);
 				$resultset=$result->result();
 				if($result->num_rows()>0)
@@ -654,19 +654,19 @@ Class Parentsmodel extends CI_Model
 						    $mobile=$rows->mobile;
 						    $user_name=$rows->user_name;
 						}
-					   
+
 						$sql="UPDATE edu_users SET user_password=md5($OTP) WHERE user_id = '$user_id'";
 					    $upsql=$this->db->query($sql);
-					   
+
 						 $userdetails="Name : " .$name. ", Schoolid : " .$school_id.",Username : " .$user_name.", Password : ".$OTP.", ";
 						 $notes =utf8_encode($userdetails."To Known more details login into http://bit.ly/2wLwdRQ");
 						 $this->smsmodel->sendSMS($mobile,$notes);
 				 }
-		   
+
 				  $data= array("status"=>"success");
 				  return $data;
 		}
-	   
+
 
 	   //New student Add
 	   function update_exiting_parents_details($morestu,$newstu,$oldstu,$flogin,$fid,$fname,$foccupation,$fincome,$fhaddress,$fpemail,$fsemail,$fpmobile,$fsmobile,$fhome_phone,$foffice_address,$foffice_phone,$frelationship,$fstatus,$userFileName,$mlogin,$mid,$mname,$moccupation,$mincome,$mhaddress,$mpemail,$msemail,$mpmobile,$msmobile,$mhome_phone,$moffice_address,$moffice_phone,$mrelationship,$mstatus,$userFileName1,$glogin,$gid,$gname,$goccupation,$gincome,$ghaddress,$gpemail,$gsemail,$gpmobile,$gsmobile,$ghome_phone,$goffice_address,$goffice_phone,$grelationship,$gstatus,$userFileName2,$user_id)
@@ -923,6 +923,7 @@ Class Parentsmodel extends CI_Model
 	   function get_all_details($admission_id)
 	   {
 		     $query3="SELECT admission_id FROM edu_parents WHERE FIND_IN_SET($admission_id,admission_id)";
+
          $res=$this->db->query($query3);
          return $res->result();
 	   }
@@ -936,6 +937,7 @@ Class Parentsmodel extends CI_Model
        function edit_parents($admission_id)
 	   {
           $query4="SELECT * FROM edu_parents WHERE FIND_IN_SET('$admission_id',admission_id)";
+
          $res=$this->db->query($query4);
          return $res->result();
        }

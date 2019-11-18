@@ -520,7 +520,7 @@ class Apimainmodel extends CI_Model {
 
 						$student_id = $rows->student_id;
 
-						$student_query = "SELECT * from edu_admission WHERE admission_id='$student_id' AND status = 'Active'";
+					 	$student_query = "SELECT * from edu_admission WHERE admission_id='$student_id' AND status = 'Active'";
 						$student_res = $this->db->query($student_query);
 						$student_profile= $student_res->result();
 
@@ -529,7 +529,9 @@ class Apimainmodel extends CI_Model {
 								$parent_id = $rows->parnt_guardn_id;
 							}
 
-						$father_query = "SELECT * from edu_parents WHERE id IN ($parent_id) AND relationship = 'Father' AND status = 'Active'";
+						// echo $father_query = "SELECT * from edu_parents WHERE id IN ($parent_id) AND relationship = 'Father' AND status = 'Active'";
+          $father_query = "SELECT * from edu_parents WHERE FIND_IN_SET('$admit_id',admission_id) AND relationship = 'Father' AND status = 'Active'";
+
 						$father_res = $this->db->query($father_query);
 						$father_profile = $father_res->result();
 
@@ -567,7 +569,7 @@ class Apimainmodel extends CI_Model {
 
 						);
 
-						$mother_query = "SELECT * from edu_parents WHERE id IN ($parent_id) AND relationship = 'Mother' AND status = 'Active'";
+						$mother_query = "SELECT * from edu_parents WHERE FIND_IN_SET('$admit_id',admission_id) AND relationship = 'Mother' AND status = 'Active'";
 						$mother_res = $this->db->query($mother_query);
 						$mother_profile = $mother_res->result();
 
@@ -602,7 +604,7 @@ class Apimainmodel extends CI_Model {
                             "user_pic" => (!isset($mother_profile[0]) || is_null($mother_profile[0])) ? '' : $mother_profile[0]->user_pic
 						);
 
-						$guardian_query = "SELECT * from edu_parents WHERE id IN ($parent_id) AND relationship = 'Guardian' AND status = 'Active'";
+						$guardian_query = "SELECT * from edu_parents WHERE  FIND_IN_SET('$admit_id',admission_id) AND relationship = 'Guardian' AND status = 'Active'";
 						$guardian_res = $this->db->query($guardian_query);
 						$guardian_profile = $guardian_res->result();
 
