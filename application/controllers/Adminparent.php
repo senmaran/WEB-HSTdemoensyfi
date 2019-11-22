@@ -364,7 +364,7 @@ class Adminparent extends CI_Controller
 
             if ($stu == 1) {
                 $datas['stud_details'] = $this->dashboard->get_students($user_id);
-                foreach ($datas['stud_details'] as $rows) {
+					foreach ($datas['stud_details'] as $rows) {
                 }
                 $enroll_id       = $rows->enroll_id;
                 //echo $enroll_id;

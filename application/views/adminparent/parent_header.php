@@ -177,7 +177,7 @@ font-weight: 500;
                <li id="attendence">
                   <a href="<?php echo base_url(); ?>adminparent/attendance">
                     <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/Attendance.png"/>
-                     <p>Attendence</p>
+                     <p>Attendance</p>
                   </a>
                </li>
                <li id="events">

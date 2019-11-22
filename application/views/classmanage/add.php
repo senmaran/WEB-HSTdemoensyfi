@@ -8,7 +8,7 @@
 
                         <div class="card">
 						<div class="header">
-                           <h4 class="title">Create Subject</h4>
+                           <h4 class="title">Class Management</h4>
 						   <h5>Allocating Section for Class</h5>
                        </div>
 
