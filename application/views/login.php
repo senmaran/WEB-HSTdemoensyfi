@@ -1,13 +1,13 @@
 <?php
           $server_url = $_SERVER['HTTP_HOST'];
-          $query="SELECT user_pic,school_id,name FROM edu_users WHERE user_type=1";
+          echo $query="SELECT user_pic,school_id,name FROM edu_users WHERE user_type=1";
 		  $objRs=$this->db->query($query);
 		  $row=$objRs->result();
 		  foreach ($row as $rows1)
 		  {
-			   $pic=$rows1->user_pic;
-			   $sid=$rows1->school_id;
-				$sname=$rows1->name;
+			echo $pic=$rows1->user_pic;
+			echo $sid=$rows1->school_id;
+			echo $sname=$rows1->name;
 		  }
 ?>
     <!doctype html>
