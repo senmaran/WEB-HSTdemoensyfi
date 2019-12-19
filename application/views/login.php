@@ -1,13 +1,13 @@
 <?php
           $server_url = $_SERVER['HTTP_HOST'];
-          echo $query="SELECT user_pic,school_id,name FROM edu_users WHERE user_type=1";
+           $query="SELECT user_pic,school_id,name FROM edu_users WHERE user_type=1";
 		  $objRs=$this->db->query($query);
 		  $row=$objRs->result();
 		  foreach ($row as $rows1)
 		  {
-			echo $pic=$rows1->user_pic;
-			echo $sid=$rows1->school_id;
-			echo $sname=$rows1->name;
+			 $pic=$rows1->user_pic;
+			 $sid=$rows1->school_id;
+			 $sname=$rows1->name;
 		  }
 ?>
     <!doctype html>
@@ -39,88 +39,6 @@
             background-position: contain;
             background-size: 100%;
         }
-
-    </style>
-
-    <body>
-
-        <div class="wrapper">
-            <div class="login-page" data-image="">
-
-                <div class="content" style="padding-top:12vh;">
-                    <div class="container">
-
-
-
-                                    <div class="row">
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-4 ">
-                                      <div class="border-box ">
-                                        <div class="big_logo"><img src="<?php echo base_url();  ?>assets/ensyfi_logo.png" class="ensyfi_logo_big"></div>
-                                      </div>
-
-                                    </div>
-                                    <div class="col-md-4">
-
-
-                                        <form method="post" action="<?php echo base_url(); ?>adminlogin/home" id="myform">
-                                            <div class="card">
-                                              <?php if($this->session->flashdata('msg')): ?>
-                                                  <div class="alert alert-danger">
-                                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                                                          ×</button>
-                                                      <?php echo $this->session->flashdata('msg'); ?>
-                                                  </div>
-
-                                                  <?php endif; ?>
-
-                                                <?php
-									  if($pic!='')
-									  {
-									?>
-                                                    <div class="header text-center">
-                                                        <img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>
-                                     <?php } else { ?>
-                                                        <div class="header text-center">
-                                                            <img src="http://<?php echo $server_url; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"> </div>
-                                  <?php } ?>
-                                                            <div class="content">
-
-                                                                <div class="form-group">
-                                                                    <label>Username</label>
-                                                                    <input type="text" placeholder="Enter username" name="email" class="form-control">
-                                                                </div>
-                                                                <br>
-                                                                <div class="form-group">
-                                                                    <label>Password</label>
-                                                                    <input type="password" placeholder="Enter password" name="password" class="form-control">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label style="float:right;"><a href="<?php echo base_url(); ?>home/forgotpassword">Forgot password?</a></label>
-                                                                </div>
-
-                                                            </div>
-
-                                                            <div class="footer text-center" style="padding: 15px 15px;">
-                                                                <button type="submit" class="btn btn-fill btn-warning btn-wd">LOGIN</button>
-                                                            </div>
-
-                                            </div>
-                                        </form>
-                                    </div>
-                                      <div class="col-md-2"></div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </body>
-
-    <style>
         .alert button.close {
             position: relative;
             top: 10px;
@@ -130,6 +48,68 @@
             float: left;
         }
     </style>
+    <body>
+        <div class="wrapper">
+            <div class="login-page">
+
+                <div class="content" style="padding-top:12vh;">
+                    <div class="container">
+						<div class="row">
+						<div class="col-md-2"></div>
+						
+						<div class="col-md-4 ">
+						  <div class="border-box ">
+							<div class="big_logo"><img src="<?php echo base_url();  ?>assets/ensyfi_logo.png" class="ensyfi_logo_big"></div>
+						  </div>
+						</div>
+						
+						<div class="col-md-4">
+							<form method="post" action="<?php echo base_url(); ?>adminlogin/home" id="myform">
+							<div class="card">
+							<?php if($this->session->flashdata('msg')): ?>
+							<div class="alert alert-danger">
+							  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+								  ×</button>
+							  <?php echo $this->session->flashdata('msg'); ?>
+							</div>
+
+							<?php endif; ?>
+
+							<?php if($pic!='') { ?>
+								<div class="header text-center"><img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>
+							<?php } else { ?>
+									<!--<div class="header text-center"><img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"></div>-->
+									<div class="header text-center"><img src="http://<?php echo $server_url; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"></div>
+							<?php } ?>
+									<div class="content">
+										<div class="form-group">
+											<label>Username</label>
+											<input type="text" placeholder="Enter username" name="email" class="form-control">
+										</div>
+										<br>
+										<div class="form-group">
+											<label>Password</label>
+											<input type="password" placeholder="Enter password" name="password" class="form-control">
+										</div>
+										<div class="form-group">
+											<label style="float:right;"><a href="<?php echo base_url(); ?>home/forgotpassword">Forgot password?</a></label>
+										</div>
+									</div>
+									<div class="footer text-center" style="padding: 15px 15px;">
+										<button type="submit" class="btn btn-fill btn-warning btn-wd">LOGIN</button>
+									</div>
+							</div>
+							</form>
+                          </div>
+                          
+						  <div class="col-md-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    
     <!--   Core JS Files and PerfectScrollbar library inside jquery.ui   -->
     <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js" type="text/javascript"></script>
