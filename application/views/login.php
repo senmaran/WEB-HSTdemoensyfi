@@ -77,15 +77,13 @@
                                                 <?php
 									  if($pic!='')
 									  {
-								?>
+									?>
                                                     <div class="header text-center">
-
                                                         <img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>
-                                                    <?php }else{
-							   ?>
+                                     <?php } else { ?>
                                                         <div class="header text-center">
-                                                            <img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"> </div>
-                                                        <?php } ?>
+                                                            <img src="http://<?php echo $server_url; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"> </div>
+                                  <?php } ?>
                                                             <div class="content">
 
                                                                 <div class="form-group">
