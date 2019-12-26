@@ -53,29 +53,15 @@
                            </div>
                         </fieldset>
                      </form>
-
-
-
-
-
-                           <div class="toolbar" style="text-align:right; padding-bottom:30px; float:right;">
-
-
-
-
-
-
-	                       </div>
-
-
-                           <table id="example" class="table table-striped table-no-bordered table-hover" cellspacing="0">
+					 <hr>
+                      <table id="example" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                               <thead>
                                  <th>S.No</th>
                                  <th>Name</th>
                                  <th>Admission No</th>
                                  <th>Blood Group</th>
                                  <th>Class-Section</th>
-                                 <th>Registration Date</th>
+                                 <th>Reg. Date</th>
                                  <th>Status</th>
                                  <th>Actions</th>
                               </thead>
@@ -112,10 +98,10 @@
                                 ?>
                           </td>
                           <td>
-                             <a href="<?php echo base_url(); ?>admission/get_ad_id1/<?php echo $rows->admission_id; ?>" rel="tooltip" title="View Student Profile" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">
+                             <a href="<?php echo base_url(); ?>admission/get_ad_id1/<?php echo $rows->admission_id; ?>" rel="tooltip" title="View Student Profile" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" style="cursor:pointer;">
                              <i class="fa fa-address-card-o" aria-hidden="true"></i>
                              </a>
-                             <a href="<?php echo base_url(); ?>enrollment/edit_enroll/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Edit Class Allocation" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                             <a href="<?php echo base_url(); ?>enrollment/edit_enroll/<?php echo $rows->admission_id; ?>" rel="tooltip" title="Edit Class Allocation" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
                           </td>
                        </tr>
 									<?php $i++;  }  ?>
@@ -136,35 +122,46 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
-   jQuery('#enrollmentmenu').addClass('collapse in');
+			jQuery('#enrollmentmenu').addClass('collapse in');
             $('#enroll').addClass('active');
             $('#enroll2').addClass('active');
 
 		$('#example').DataTable({
-			dom: 'lBfrtip',
-			buttons: [
-              {
-                  extend: 'excelHtml5',
-                  exportOptions: {
-                      columns: ':visible'
-                  }
-              },
-              {
-                  extend: 'pdfHtml5',
-                  exportOptions: {
-                       columns: ':visible'
-                  }
-              },
-              'colvis'
-          ],
-		    "pagingType": "full_numbers",
-		    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-		    responsive: true,
-		    language: {
-		    search: "_INPUT_",
-		    searchPlaceholder: "Search records",
-		    }
-		});
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search Students",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "25%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "8%" }
+				  ]
+         }); 
 	});
 
 

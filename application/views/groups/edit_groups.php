@@ -1,6 +1,6 @@
 <div class="main-panel">
-
 <div class="content">
+
        <div class="container-fluid">
            <div class="row">
                <div class="col-md-12">
@@ -11,42 +11,32 @@
                        <?php foreach ($edit as  $res) { } ?>
                        <div class="content">
                            <form method="post" action="<?php echo base_url(); ?>groups/update_groups" class="form-horizontal" enctype="multipart/form-data" id="feesformsection" name="feesformsection">
-                                 <fieldset>
-                                      <div class="form-group">
-                                          <label class="col-sm-2 control-label">House Name</label>
-                                          <div class="col-sm-4">
-										                         <input type="text" name="groups_name" class="form-control"  value="<?php echo $res->group_name; ?>">
-
-                                              <input type="hidden" name="id" class="form-control"  value="<?php echo $res->id; ?>">
-
-                                          </div>
-                                          <label class="col-sm-2 control-label">Status</label>
-                                          <div class="col-sm-4">
-                      										   <select name="status" class="selectpicker form-control">
-                        											  <option value="Active">Active</option>
-                        											  <option value="Deactive">Inactive</option>
-                      											</select>
-                                            <script language="JavaScript">
-                        											document.feesformsection.status.value="<?php echo $res->status; ?>";
-                        										</script>
-                                          </div>
-                                      </div>
-                                  </fieldset>
-								                   <fieldset>
-                                        <div class="form-group">
-										                      	<!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
-                                            <div class="text-center">
-											                         <input type="submit" id="save" class="btn btn-info btn-fill center"  value="SAVE">
-                                            </div>
-                                            </div>
-                                   </fieldset>
-
+						        <div class="form-group">
+									  <label class="col-sm-2 control-label">House Name <span class="mandatory_field">*</span></label>
+									  <div class="col-sm-3">
+											<input type="text" name="groups_name" class="form-control"  value="<?php echo $res->group_name; ?>" maxlength="30">
+											<input type="hidden" name="id" class="form-control"  value="<?php echo $res->id; ?>">
+									  </div>
+									  
+									  <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
+									  <div class="col-sm-3">
+									   <select name="status"  class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+										  <option value="Active">Active</option>
+										  <option value="Deactive">Inactive</option>
+										</select><script language="JavaScript">document.feesformsection.status.value="<?php echo $res->status; ?>";</script>
+									  </div>
+									  
+									<div class="col-sm-2">
+										<input type="submit" id="save" class="btn btn-info btn-fill center"  value="SAVE">
+									</div>
+                                 </div>
                              </form>
                        </div>
                    </div>
                </div>
            </div>
        </div>
+	   
    </div>
 </div>
 

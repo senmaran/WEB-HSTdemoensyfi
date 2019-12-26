@@ -3,11 +3,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-				<div class="card">
-                        <div class="header" style="padding:10px 10px 10px 10px">
-                            <h4 class="title">Circular Master</h4>
-                        </div>
-				</div>
+
                     <div class="card">
                         <div class="header" >
                             <h4 class="title">Create Circular</h4>
@@ -25,17 +21,11 @@
                                             <input type="hidden" name="year_name" class="form-control" value="<?php echo date('Y', strtotime($rows->from_month));  echo " - "; echo date('Y', strtotime( $rows->to_month));  ?>" readonly="">
                                             <?php   }?>
 
-                                                <label class="col-sm-2 control-label">Title</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" name="ctitle" required class="form-control" />
-                                                </div>
-                                                <label class="col-sm-2 control-label">Status</label>
-                                                <div class="col-sm-4">
-                                                    <select name="status" class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                                                        <option value="Active">Active</option>
-                                                        <option value="Deactive">Inactive</option>
-                                                    </select>
-                                                </div>
+											<label class="col-sm-2 control-label">Title <span class="mandatory_field">*</span></label>
+											<div class="col-sm-4">
+												<input type="text" name="ctitle" required class="form-control" maxlength="30" />
+											</div>
+											<div class="col-sm-6"></div>
                                     </div>
                                 </fieldset>
                                 <fieldset>
@@ -44,34 +34,43 @@
                                         <div class="col-sm-4">
                                           <input type="file" name="circular_doc"  class="form-control" />
                                         </div>
-
+									<div class="col-sm-6"></div>
                                     </div>
                                 </fieldset>
                                 <fieldset>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label"> Description</label>
+                                        <label class="col-sm-2 control-label"> Description <span class="mandatory_field">*</span></label>
                                         <div class="col-sm-4">
                                             <textarea name="cdescription" MaxLength="500" placeholder="Maximum 500 characters" id="cdescription" class="form-control" rows="4" cols="80"></textarea>
 
                                         </div>
-
+										<div class="col-sm-6"></div>
                                     </div>
                                 </fieldset>
 
-                                <div class="form-group">
-
-                                </div>
-                                </fieldset>
-
-                                <fieldset>
-                                    <div class="form-group">
-                                      <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
-                                      <div class="text-center">
-                                          <button type="submit" id="save" class="btn btn-info btn-fill center">CREATE</button>
-                                      </div>
+								<fieldset>
+                                    <div class="form-group">                                     
+										<label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
+										<div class="col-sm-4">
+											<select name="status" class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+												<option value="Active">Active</option>
+												<option value="Deactive">Inactive</option>
+											</select>
+										</div>
+										<div class="col-sm-6"></div>
                                     </div>
                                 </fieldset>
-
+								
+								<fieldset>
+                                    <div class="form-group">                                     
+										<label class="col-sm-2 control-label"></label>
+										<div class="col-sm-4">
+											<button type="submit" id="save" class="btn btn-info btn-fill center">CREATE</button>
+										</div>
+										<div class="col-sm-6"></div>
+                                    </div>
+                                </fieldset>
+                                
                             </form>
                         </div>
                     </div>
@@ -126,7 +125,7 @@
                                                                         <?php } ?>
                                                             </td>
                                                             <td>
-                                                                <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>circular/edit_circular_master/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit">
+                                                                <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>circular/edit_circular_master/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit" style="font-size:20px;">
                                                                     <i class="fa fa-edit"></i></a>
                                                             </td>
                                                         </tr>

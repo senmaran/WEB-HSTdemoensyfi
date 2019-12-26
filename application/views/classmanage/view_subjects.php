@@ -27,13 +27,13 @@ td{
 
                               <div class="header">
 								<legend>View Subject For Class
-								<a rel="" href="#myModal" data-id="<?php echo $class_master_id; ?>" title="Add Subjects" class="open-AddBookDialog btn btn-simple   btn-info  edit"  data-toggle="modal" data-target="#myModal">ADD SUBJECT</a>
-								<button class="btn btn-info  center" onclick="generatefromtable()">GENERATE PDF</button>
-								<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></legend>
+								<a rel="" href="#myModal" data-id="<?php echo $class_master_id; ?>" title="Add Subjects" class="open-AddBookDialog btn btn-simple   btn-info  edit"  data-toggle="modal" data-target="#myModal" style="margin-bottom:10px;margin-left:10px;cursor: pointer;">ADD SUBJECT</a>
+								<button class="btn btn-info  center" onclick="generatefromtable()" style="margin-bottom:10px;cursor: pointer;">GENERATE PDF</button>
+								<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;cursor: pointer;">BACK</button></legend>
                               </div>
 
 
-                                <div class="fresh-datatables">
+                                <div class="fresh-datatables" style="margin-top:10px;">
 
                           <table id="bootstrap-table" class="table">
                               <thead>
@@ -54,23 +54,23 @@ td{
                                 ?>
                                   <tr>
                                     <td><?php echo $i; ?></td>
-                                    <td class="text-center"><?php echo $rows->class_name;?>-<?php echo $rows->sec_name; ?></td>
+                                    <td><?php echo $rows->class_name;?>-<?php echo $rows->sec_name; ?></td>
                                     <td><?php echo $rows->subject_name; ?></td>
-
-
-                                      <td>
+                                    <td>
                                         <?php if($rows->status=='Active'){ ?>
                                           <button class="btn btn-success btn-fill btn-wd">Active</button>
                                       <?php  }else{ ?>
                                         <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
-                                      <?php } ?></td>
+                                      <?php } ?>
+									</td>
                                     <td>
-                                      <a href="<?php echo base_url(); ?>classmanage/edit_subjects_class/<?php echo $rows->id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-                                        </td>
+                                      <a href="<?php echo base_url(); ?>classmanage/edit_subjects_class/<?php echo $rows->id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
+									</td>
                                   </tr>
                                   <?php $i++;  }  ?>
                               </tbody>
                           </table>
+						  
                           <div id="myModal" class="modal fade" role="dialog">
                              <div class="modal-dialog">
                                 <!-- Modal content-->
@@ -83,7 +83,7 @@ td{
                                       <form action="" method="post" class="form-horizontal" id="subject_handling_form">
                                          <fieldset>
                                             <div class="form-group">
-                                               <label class="col-sm-4 control-label">Subject</label>
+                                               <label class="col-sm-4 control-label">Subject <span class="mandatory_field">*</span></label>
                                                <div class="col-sm-6">
                                                   <select  name="subject_id[]" id="subject_id"  multiple  data-title="Select Subject" class="selectpicker" data-style=" btn-block" data-menu-style="dropdown-blue">
                                                      <?php foreach ($resubject as $rows) {  ?>
@@ -94,7 +94,7 @@ td{
                                                </div>
                                             </div>
                                             <div class="form-group">
-                                               <label class="col-sm-4 control-label">Module</label>
+                                               <label class="col-sm-4 control-label">Module <span class="mandatory_field">*</span></label>
                                                <div class="col-sm-6">
                                                   <select   name="exam_flag" id="exam_flag" class="form-control">
                                                     <option value="0">Core</option>
@@ -103,7 +103,7 @@ td{
                                                </div>
                                             </div>
                                             <div class="form-group">
-                                               <label class="col-sm-4 control-label">Status</label>
+                                               <label class="col-sm-4 control-label">Status <span class="mandatory_field">*</span></label>
                                                <div class="col-sm-6">
                                                   <select   name="status" id="status" class="form-control">
                                                      <option value="Active">Active</option>
@@ -114,16 +114,14 @@ td{
                                             <div class="form-group">
                                                <label class="col-sm-4 control-label">&nbsp;</label>
                                                <div class="col-sm-6">
-                                                  <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
+											   <input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
+                                               
                                                </div>
                                             </div>
                                          </fieldset>
                                       </form>
                                    </div>
-                                   <div class="modal-footer">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
                                    </div>
-                                </div>
                              </div>
                           </div>
 

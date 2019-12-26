@@ -4,44 +4,47 @@
            <div class="row">
                <div class="col-md-12">
                    <div class="card">
-                       <div class="header">
+                       
+					   <div class="header">
                            <h4 class="title">Create Subject</h4>
-
                        </div>
 
                        <div class="content">
                            <form action="<?php echo base_url(); ?>subjectadd/createsubject" method="post" enctype="multipart/form-data" id="myformsub">
                                <div class="row">
-                                   <div class="col-md-4">
+							   
+                                   <div class="col-md-3">
                                        <div class="form-group">
-                                           <label>Subject</label>
-                                           <input type="text" class="form-control"  placeholder="" name="subjectname" id="subjectname" value="">
-
+                                           <label>Subject <span class="mandatory_field">*</span></label>
+                                           <input type="text" class="form-control"  placeholder="" name="subjectname" id="subjectname" value="" maxlength="30">
                                        </div>
                                    </div>
-								                   <div class="col-md-4">
+								   
+								   <div class="col-md-3">
                                        <div class="form-group">
-  <label class="col-sm-2 control-label">Status</label>
-                  										   <select name="status"  class="selectpicker form-control">
-                  												  <option value="Active">Active</option>
-                  												  <option value="Deactive">Inactive</option>
-                  											</select>
+											<label>Status <span class="mandatory_field">*</span></label>
+											   <select name="status"  class="selectpicker form-control">
+													  <option value="Active">Active</option>
+													  <option value="Deactive">Inactive</option>
+												</select>
                                       </div>
                                     </div>
-                                    <div class="col-md-4">
-
-                                      <div class="form-group"><br>
-                                          <label class="col-sm-2 control-label"></label>
-                                        <label><input type="checkbox" name="is_preferred_lang" value="1" style="margin-right:10px;">Set as second language</label>
+									
+                                    <div class="col-md-3">
+                                      <div class="form-group">
+                                        <label style="margin-top:30px;"><input type="checkbox" name="is_preferred_lang" value="1" style="margin-right:10px;">Set as second language</label>
+                                     </div>
+                                    </div>
+									
+									 <div class="col-md-3">
+                                      <div class="form-group" style="margin-top:20px;">
+										<label>&nbsp;</label>
+										<input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
                                         </div>
                                     </div>
+									
                                   </div>
-                                  <div class="row">
-                                    <div class="text-center">
-
-                                         <button type="submit" class="btn btn-info btn-fill">CREATE</button>
-                                     </div>
-                               </div>
+  
 
                                <div class="clearfix"></div>
                            </form>
@@ -93,7 +96,7 @@
 										<?php } ?>
 									</td>
                                     <td>
-                                      <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>subjectadd/updatesubject/<?php echo $rows->subject_id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                      <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>subjectadd/updatesubject/<?php echo $rows->subject_id; ?>" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
                                         </td>
                                   </tr>
                                   <?php $i++;  }  ?>

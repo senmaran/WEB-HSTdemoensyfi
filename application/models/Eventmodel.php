@@ -29,8 +29,10 @@ Class Eventmodel extends CI_Model
         }
        function create_event($event_date,$event_name,$event_details,$event_status){
          $acd_year=$this->get_cur_year();
-          $year_id= $acd_year['cur_year'];
-          $query="INSERT INTO edu_events (year_id,event_name,event_date,event_details,status,created_at) VALUES ('$year_id','$event_name','$event_date','$event_details','$event_status',NOW())";
+         $year_id= $acd_year['cur_year'];
+		 $sevent_date = date("Y-m-d", strtotime($event_date));
+		  
+          $query="INSERT INTO edu_events (year_id,event_name,event_date,event_details,status,created_at) VALUES ('$year_id','$event_name','$sevent_date','$event_details','$event_status',NOW())";
           $res=$this->db->query($query);
 		  if($res){
             $data= array("status" => "success");
@@ -58,7 +60,9 @@ Class Eventmodel extends CI_Model
           return $result->result();
         }
         function save_event($event_id,$event_date,$event_name,$event_details,$event_status){
-           $query="UPDATE edu_events SET event_name='$event_name',event_date='$event_date',event_details='$event_details',status='$event_status' WHERE event_id='$event_id'";
+			$sevent_date = date("Y-m-d", strtotime($event_date));
+           $query="UPDATE edu_events SET event_name='$event_name',event_date='$sevent_date',event_details='$event_details',status='$event_status' WHERE event_id='$event_id'";
+		   
            $result=$this->db->query($query);
           if($result){
             $data= array("status" => "success");
@@ -141,7 +145,8 @@ Class Eventmodel extends CI_Model
 		  }
 		  
 		  function save_to_do_list($to_do_date,$to_do_list,$to_do_notes,$to_user,$user_type,$status){
-				  $query="INSERT INTO edu_reminder(user_id,to_do_date,to_do_title,to_do_description,status,created_by,created_at,updated_by,updated_at) VALUES ('$to_user','$to_do_date','$to_do_list','$to_do_notes','$status','$user_type',NOW(),'$user_type',NOW())";
+			  $sto_do_date = date("Y-m-d", strtotime($to_do_date));
+				  $query="INSERT INTO edu_reminder(user_id,to_do_date,to_do_title,to_do_description,status,created_by,created_at,updated_by,updated_at) VALUES ('$to_user','$sto_do_date','$to_do_list','$to_do_notes','$status','$user_type',NOW(),'$user_type',NOW())";
 				  $resultset=$this->db->query($query);
 				  if($resultset){
 					$data= array("status" => "success");

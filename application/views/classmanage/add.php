@@ -1,74 +1,73 @@
 <div class="main-panel">
 <div class="content">
        <div class="container-fluid">
-         <div class="col-md-12">
-
-
-
-
-                        <div class="card">
+         
+				<div class="col-md-12">
+                   <div class="card">
 						<div class="header">
                            <h4 class="title">Class Management</h4>
 						   <h5>Allocating Section for Class</h5>
                        </div>
 
                             <div class="content">
-                              <br>
                                 <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>classmanage/assign" enctype="multipart/form-data" id="myformclassmange">
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">Class</label>
-                                        <div class="col-md-6">
+                                        <label class="col-md-2 control-label">Class <span class="mandatory_field">*</span></label>
+                                        <div class="col-md-4">
                                           <select name="class_name" class="selectpicker" data-title="Select Class" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                   <?php foreach ($class as $clas) {  ?>
                                               <option value="<?php  echo $clas->class_id; ?>"><?php  echo $clas->class_name; ?></option>
                                               <?php } ?>
-
                                           </select>
                                         </div>
+										<div class="col-md-6"></div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">Section</label>
-                                        <div class="col-md-6">
+                                        <label class="col-md-2 control-label">Section <span class="mandatory_field">*</span></label>
+                                        <div class="col-md-4">
                                           <select name="section_name" class="selectpicker" data-title="Select Section " data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                   <?php foreach ($sec as $section) {  ?>
                                               <option value="<?php  echo $section->sec_id; ?>"><?php  echo $section->sec_name; ?></option>
                                               <?php } ?>
-
                                           </select>
                                         </div>
+										<div class="col-md-6"></div>
                                     </div>
 
 									<div class="form-group">
-									<label class="col-sm-2 control-label">Status</label>
-                                          <div class="col-sm-6">
+									<label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
+                                          <div class="col-sm-4">
 										   <select name="status"  class="selectpicker form-control">
 												  <option value="Active">Active</option>
 												  <option value="Deactive">Inactive</option>
 											</select>
                                           </div>
+										  <div class="col-md-6"></div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label"></label>
+										<div class="col-sm-4"><input type="submit" id="save" class="btn btn-info btn-fill center" value="ALLOCATE">
 										</div>
+										<div class="col-md-6"></div>
+									</div>
 
-
-                                    <div class="form-group">
-                                        <!-- <label class="col-md-3"></label> -->
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-fill btn-info">ALLOCATE</button>
-                                        </div>
-                                    </div>
                                 </form>
                             </div>
                         </div> <!-- end card -->
 
+
+<?php
+   if($this->session->flashdata('msg')): ?>
+	 <div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+		×</button> <?php echo $this->session->flashdata('msg'); ?>
+	</div>
+<?php endif; ?>
                     </div>
 
-					<?php
-						   if($this->session->flashdata('msg')): ?>
-							 <div class="alert alert-success">
-								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-								×</button> <?php echo $this->session->flashdata('msg'); ?>
-							</div>
-					<?php endif; ?>
+
 
 
 
@@ -76,8 +75,9 @@
        <div class="container-fluid">
            <div class="row">
                <div class="col-md-12">
+			   
                    <div class="card">
-				   <div class="header">
+						<div class="header">
                            <h4 class="title">Classes</h4>
                        </div>
                        <div class="content">
@@ -88,7 +88,8 @@
                             <th data-field="id" class="text-left">S.No</th>
                             <th data-field="name" class="text-left" data-sortable="true">Class</th>
                             <th data-field="Section" class="text-left" data-sortable="true">Section</th>
-							               <th data-field="status" class="text-left" data-sortable="true">status</th>
+							<th data-field="status" class="text-left" data-sortable="true">status</th>
+							<th data-field="status" class="text-left" data-sortable="true">Add/View Subjects</th>
                             <th data-field="actions" class="td-actions text-left" data-events="operateEvents">Actions</th>
                           </thead>
                           <tbody>
@@ -104,14 +105,12 @@
                     									<?php  }else{?>
                     									<button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                     									<?php } ?>
-                    								</td>
+                    			</td>
+								<td>
+                                     <a rel="tooltip" href="<?php echo base_url(); ?>classmanage/view_subjects/<?php echo $rowsclass->class_sec_id; ?>"  title="Add/View Subjects" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" style="font-size:20px;margin-left:25px;"><i class="fa fa-th">  </i></a>
+                                </td>
                                 <td>
-                                  <a rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon table-action edit" href="<?php echo base_url(); ?>classmanage/editcs/<?php  echo $rowsclass->class_sec_id; ?>">
-                                     <i class="fa fa-edit"></i></a>
-
-                                     <a rel="tooltip" href="<?php echo base_url(); ?>classmanage/view_subjects/<?php echo $rowsclass->class_sec_id; ?>"  title="Add/View Subjects" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit">
-                                     <i class="fa fa-th">  </i></a>
-
+                                  <a rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon table-action edit" href="<?php echo base_url(); ?>classmanage/editcs/<?php  echo $rowsclass->class_sec_id; ?>"><i class="fa fa-edit"  style="font-size:20px;"></i></a>
                                 </td>
 
                               </tr>
@@ -120,28 +119,19 @@
 
                           </tbody>
                       </table>
-                    </div><!-- end content-->
-                </div><!--  end card  -->
-            </div> <!-- end col-md-12 -->
-        </div> <!-- end row -->
-      </div><!--  end card  -->
-  </div> <!-- end col-md-12 -->
-</div> <!-- end row -->
-
-
-
-
-
-
+                    </div>
+                </div>
+            </div>
+			
+        </div>
+      </div>
+  </div>
+</div>
 
 
 
        </div>
-
-
    </div>
-
-
 </div>
 
 <script type="text/javascript">

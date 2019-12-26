@@ -1,43 +1,56 @@
 <div class="main-panel">
 <div class="content">
-       <div class="container-fluid">
-           <div class="row">
-               <div class="col-md-8">
-                   <div class="card">
-                       <div class="header">
-                           <h4 class="title">Create Section</h4>
 
-                       </div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="header">
+							<h4 class="title">Create Section</h4>
+							<p class="pull-right btn btn-wd" style="margin-top:-30px;">
+								<a href="
+									<?php echo base_url(); ?>classadd/addclass">Add / View Classes
+								</a>
+							</p>
+						</div>
+						<div class="content">
+							 <form action="<?php echo base_url(); ?>sectionadd/createsection" method="post" enctype="multipart/form-data" id="myformsection">
+								<div class="row">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>Class <span class="mandatory_field">*</span></label>
+											<input type="text" class="form-control"  placeholder="" name="sectionname" id="sectionname" value="" maxlength="15">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group">
+												<label>Status <span class="mandatory_field">*</span></label>
+												<select name="status"  class="selectpicker form-control">
+													<option value="Active">Active</option>
+													<option value="Deactive">Inactive</option>
+												</select>
+											</div>
+										</div>
+                    <div class="col-md-4">
 
-                       <div class="content">
-                           <form action="<?php echo base_url(); ?>sectionadd/createsection" method="post" enctype="multipart/form-data" id="myformsection">
-                               <div class="row">
-                                   <div class="col-md-5">
-                                       <div class="form-group">
-                                           <label>Section</label>
-                                           <input type="text" class="form-control"  placeholder="" name="sectionname" id="sectionname" value="">
+                    	<div class="form-group">
+                          	<label class="col-sm-2 control-label">&nbsp;</label><br>
+							<input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
+                        
+                      </div>
+                    </div>
+									</div>
 
-                                       </div>
-                                   </div>
-								   
-								   <div class="col-md-5">
-                                       <div class="form-group">
-									  <label class="col-sm-2 control-label">Status</label>
-										   <select name="status"  class="selectpicker form-control">
-												  <option value="Active">Active</option>
-												  <option value="Deactive">Inactive</option>
-											</select>
-                                       </div>
-                                   </div>
-                               </div>
-                           <button type="submit" class="btn btn-info btn-fill pull-left">CREATE</button>
-                               <div class="clearfix"></div>
-                           </form>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </div>
+									<div class="clearfix"></div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+      
+
        <?php if($this->session->flashdata('msg')): ?>
          <div class="alert alert-success">
    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -87,7 +100,7 @@
 
                                     <td>
 
-                                      <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>sectionadd/updatesection/<?php echo $rows->sec_id; ?>" class="btn btn-simple btn-warning btn-icon edit" ><i class="fa fa-edit"></i></a>
+                                      <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>sectionadd/updatesection/<?php echo $rows->sec_id; ?>" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
                                       </td>
                                   </tr>
                                   <?php $i++;  }  ?>
@@ -106,7 +119,7 @@
 
    </div>
 
-
+</div>
 </div>
 
 <script type="text/javascript">

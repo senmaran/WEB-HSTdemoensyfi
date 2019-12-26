@@ -18,12 +18,12 @@
                             <div class="content">
 
                               <h4 class="title">List Of Coordinators  <button style="float: right;" onclick="history.go(-1);" class="btn btn-wd btn-default">Go Back</button></h4> <br>
-
+<hr>
 
                                 <div class="fresh-datatables">
 
 
-                          <table id="bootstrap-table" class="table">
+                          <table id="example" class="table">
                               <thead>
 
                                   <th data-field="id">ID</th>
@@ -86,5 +86,39 @@
 $('#eventmenu').addClass('collapse in');
 $('#event').addClass('active');
 $('#event2').addClass('active');
-  $('#bootstrap-table').DataTable();
+
+$('#example').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "30%" },
+					{ "width": "20%" },
+					{ "width": "25%" },
+					{ "width": "10%" },
+					{ "width": "8%" }
+				  ]
+         });
 </script>

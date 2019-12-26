@@ -48,10 +48,10 @@
 										</div>
 										<div class="Words">
 									Absent & Leave -
-									<?php if(empty($ableavedays)){
+									<?php if(empty($res)){
 
 									} else{
-										echo count($ableavedays);
+										echo count($res);
 									}?>
 										</div>
 										<div class="noote" style="    display: inline-flex;   ">

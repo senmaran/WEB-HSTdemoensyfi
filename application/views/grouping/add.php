@@ -13,43 +13,49 @@
 
                                  <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-4 control-label">Title</label>
+                                          <label class="col-sm-2 control-label">Title <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
-                                              <input type="text" name="group_title" class="form-control" value="">
-
+                                              <input type="text" name="group_title" class="form-control" value="" maxlength="30">
                                           </div>
-                                            </div>
+										  <div class="col-sm-6"></div>
+                                      </div>
+									  </fieldset>
+									  
+									  <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-4 control-label">Admin</label>
+                                          <label class="col-sm-2 control-label">Admin <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
                                             <select name="group_lead"  data-title="Select" class="selectpicker form-control">
                                               <?php foreach($list_of_teacher as $rows){ ?>
                                                  <option value="<?php echo $rows->user_id; ?>"><?php echo $rows->name; ?></option>
-                                          <?php    } ?>
-
-
+											  <?php  } ?>
                                            </select>
                                           </div>
-
+										  <div class="col-sm-6"></div>
                                       </div>
+									  </fieldset>
+									  
+									  <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-4 control-label">Status</label>
+                                          <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
                                             <select name="status" data-title="Status" class="selectpicker form-control">
                                                <option value="Active">Active</option>
                                                <option value="Deactive">Inactive</option>
                                            </select>
                                           </div>
-
+										<div class="col-sm-6"></div>
                                       </div>
                                   </fieldset>
+								  <fieldset>
                                         <div class="form-group">
-											                               <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
-                                            <div class="text-center">
-                                                   <button type="submit" id="save" class="btn btn-info btn-fill center">CREATE</button>
+											<label class="col-sm-2 control-label"></label>
+											<div class="col-sm-4">
+													<input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
+		                                           
                                             </div>
-
-                                            </div>
+										<div class="col-sm-6"></div>
+                                       </div>
                                     </fieldset>
 
                              </form>
@@ -64,7 +70,8 @@
                      <div class="toolbar">
                          <div class="header">List of Groups</div>
                      </div>
-
+					<div class="content">
+                     <div class="fresh-datatables">
                      <table id="bootstrap-table" class="table">
                          <thead>
 
@@ -89,33 +96,22 @@
                                     <?php } ?>
                                   </td>
                                <td>
-                                 <a rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon table-action edit" href="<?php echo base_url(); ?>grouping/edit_group/<?php  echo $rowsclass->id; ?>">
-                                    <i class="fa fa-edit"></i></a>
+									<a rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon table-action edit" href="<?php echo base_url(); ?>grouping/edit_group/<?php  echo $rowsclass->id; ?>" style="font-size:20px;"><i class="fa fa-edit"></i></a>
 
-                                    <a rel="tooltip" href="<?php echo base_url(); ?>grouping/view_members/<?php echo  $rowsclass->id; ?>"  title="View Members" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit">
-                                    <i class="fa fa-th">  </i></a>
-
+                                    <a rel="tooltip" href="<?php echo base_url(); ?>grouping/view_members/<?php echo  $rowsclass->id; ?>" title="Add/View Members" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-th">  </i></a>
                                </td>
-
                              </tr>
-
                              <?php $i++;  }  ?>
-
                          </tbody>
                      </table>
-
-                       </div><!--  end card  -->
+				</div>
+				</div>
+              </div><!--  end card  -->
              </div> <!-- end col-md-12 -->
            </div>
 
-
-
-
-
        </div>
    </div>
-
-
 </div>
 
 <script type="text/javascript">

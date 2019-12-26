@@ -34,7 +34,7 @@ Class Leavemodel extends CI_Model
 
         }
 
-                 $query="INSERT INTO edu_leavemaster (leave_year,leave_type,status,created_at,updated_at) VALUES ('$years','$leave_type','$leave_status',NOW(),NOW())";
+                 $query="INSERT INTO edu_leavemaster (leave_year,leave_type,leave_classes,status,created_at,updated_at) VALUES ('$years','$leave_type','$class_name','$leave_status',NOW(),NOW())";
 
                 $resultset1 = $this->db->query($query);
 
@@ -106,10 +106,12 @@ Class Leavemodel extends CI_Model
               }
 
               //Update Special Leave
-              function udate_special_leave($leave_type,$leave_id,$leave_mas_id,$leave_date,$class_name,$leave_name,$leave_status){
+              function udate_special_leave($leave_type,$leave_id,$leave_mas_id,$leave_date,$class_name,$leave_name,$leave_status)
+			  {
+				  $sleave_date = date("Y-m-d", strtotime($leave_date));
                  $query="UPDATE edu_leavemaster SET leave_classes='$class_name', status='$leave_status',updated_at=NOW() WHERE leave_id='$leave_id'";
                  $res=$this->db->query($query);
-                $query1="UPDATE edu_leaves SET leaves_name='$leave_name',leave_date='$leave_date',status='$leave_status',updated_at=NOW() WHERE leave_mas_id='$leave_mas_id'";
+                $query1="UPDATE edu_leaves SET leaves_name='$leave_name',leave_date='$sleave_date',status='$leave_status',updated_at=NOW() WHERE leave_mas_id='$leave_mas_id'";
                 $res1=$this->db->query($query1);
                 if($res1){
                   $data= array("status" => "success");

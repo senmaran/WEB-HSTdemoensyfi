@@ -83,9 +83,9 @@
 									
 									<fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Paid By</label>
+                                            <label class="col-sm-2 control-label">Paid By <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
-											 <input type="text" name="paid_by" required value="<?php  echo $rows->paid_by;?>" class="form-control" />
+											 <input type="text" name="paid_by" required value="<?php  echo $rows->paid_by;?>" class="form-control" maxlength="30"/>
 												                       
                                             </div>
                                         </div>
@@ -108,7 +108,8 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">&nbsp;</label>
                                             <div class="col-sm-10">
-                                               <button type="submit" id="save1" class="btn btn-info btn-fill center">SAVE</button>
+												<input type="submit" id="save1" class="btn btn-info btn-fill center"  value="SAVE">
+                                               
                                             </div>
 
                                         </div>

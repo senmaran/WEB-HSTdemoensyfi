@@ -5,21 +5,21 @@
          <div class="card">
             <div class="content">
 
-                <h4 class="title">Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> </h4>
-                  <p class="pull-right"> <button onclick="history.go(-1);" class="btn btn-wd btn-default">BACK</button></p>
-
+                <h4 class="title">Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> <p class="pull-right"> <button onclick="history.go(-1);" class="btn btn-wd btn-default">BACK</button></p></h4>
+                  
+<hr>
 
 
                <div class="fresh-datatables">
-                  <table id="bootstrap-table" class="table">
+                  <table id="example" class="table">
                      <thead>
-                        <th data-field="id" class="text-center">S.No</th>
-                        <th data-field="date" class="text-center" data-sortable="true">Date</th>
-                        <th data-field="year" class="text-center" data-sortable="true">Total Students </th>
-                        <th data-field="no" class="text-center" data-sortable="true">Present Students</th>
-                        <th data-field="name" class="text-center" data-sortable="true">Absent Students</th>
-                        <th data-field="taken" class="text-center" data-sortable="true">Attendance By</th>
-                        <th data-field="Section" class="text-center" data-sortable="true">Actions</th>
+                        <th data-field="id">S.No</th>
+                        <th data-field="date">Date</th>
+                        <th data-field="year">Total Students </th>
+                        <th data-field="no">Present Students</th>
+                        <th data-field="name">Absent Students</th>
+                        <th data-field="taken">Attendance By</th>
+                        <th data-field="Section">Actions</th>
                      </thead>
                      <tbody>
                         <?php
@@ -35,8 +35,8 @@
                            <td><?php echo $rows->no_of_absent; ?></td>
                            <td><?php echo $rows->name; ?></td>
                            <td>
-                              <a href="<?php echo base_url(); ?>adminattendance/view_all/<?php echo $rows->at_id; ?>/<?php echo $rows->class_id; ?>" rel="tooltip" title="Attendance Details" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
-                              <a href="<?php echo base_url(); ?>adminattendance/edit_class_attendance/<?php echo $rows->at_id; ?>/<?php echo $rows->class_id; ?>" rel="tooltip" title="Edit Attendance" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                              <a href="<?php echo base_url(); ?>adminattendance/view_all/<?php echo $rows->at_id; ?>/<?php echo $rows->class_id; ?>" rel="tooltip" title="Attendance Details" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
+                              <a href="<?php echo base_url(); ?>adminattendance/edit_class_attendance/<?php echo $rows->at_id; ?>/<?php echo $rows->class_id; ?>" rel="tooltip" title="Edit Attendance" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                            </td>
                         </tr>
                         <?php $i++;  }  ?>
@@ -55,5 +55,40 @@
 $('#attend').addClass('collapse in');
 $('#attendance').addClass('active');
 $('#attend1').addClass('active');
-$('#bootstrap-table').DataTable();
+
+$('#example').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "15%" },
+					{ "width": "15%" },
+					{ "width": "15%" },
+					{ "width": "15%" },
+					{ "width": "25%" },
+					{ "width": "8%" }
+				  ]
+         }); 
 </script>

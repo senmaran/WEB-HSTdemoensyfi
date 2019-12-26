@@ -10,8 +10,7 @@
                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                          ×</button> <?php echo $this->session->flashdata('msg'); ?>
                  </div>
-
-           <?php endif; ?>
+				<?php endif; ?>
                            <h4 class="title">Your Profile</h4>
                        </div>
                        <?php
@@ -23,17 +22,17 @@
                        <div class="content">
                            <form action="<?php echo base_url(); ?>adminlogin/profileupdate" method="post" id="profileedit" enctype="multipart/form-data">
                                <div class="row">
-                                   <div class="col-md-5">
+                                   <div class="col-md-6">
                                        <div class="form-group">
                                            <label>Username</label>
-                          <input type="text" class="form-control" readonly placeholder="" name="name" value="<?php echo $rows->user_name; ?>">
-                          <input type="hidden" class="form-control" readonly placeholder="" name="user_id" value="<?php echo $rows->user_id; ?>">
-                          <input type="hidden" class="form-control" readonly placeholder="" name="user_pic_old" value="<?php echo $rows->user_pic; ?>">
-                          <input type="hidden" class="form-control" readonly placeholder="" name="user_password_old" value="<?php echo $rows->user_password; ?>">
+											  <input type="text" class="form-control" readonly placeholder="" name="name" value="<?php echo $rows->user_name; ?>">
+											  <input type="hidden" class="form-control" readonly placeholder="" name="user_id" value="<?php echo $rows->user_id; ?>">
+											  <input type="hidden" class="form-control" readonly placeholder="" name="user_pic_old" value="<?php echo $rows->user_pic; ?>">
+											  <input type="hidden" class="form-control" readonly placeholder="" name="user_password_old" value="<?php echo $rows->user_password; ?>">
                                        </div>
                                    </div>
 
-                                   <div class="col-md-7">
+                                   <div class="col-md-6">
                                        <div class="form-group">
                                            <label for="exampleInputEmail1"> Name</label>
                                            <input type="text" class="form-control" name="sname" placeholder="" value="<?php echo $rows->name; ?>">
@@ -51,18 +50,22 @@
                                    <div class="col-md-6">
                                    </div>
                                </div>
-
-
-
-
-
-
-                               <button type="submit" class="btn btn-info btn-fill pull-right">SAVE</button>
-                               <div class="clearfix"></div>
+							   
+							   <div class="row">
+                                   <div class="col-md-6">
+                                       <div class="form-group">
+                                        <button type="submit" class="btn btn-info btn-fill">SAVE</button>
+                                       </div>
+                                   </div>
+                                   <div class="col-md-6">
+                                   </div>
+                               </div>
                            </form>
                        </div>
                    </div>
                </div>
+			   
+			   
                <div class="col-md-4">
                    <div class="card card-user">
                        <div class="image">

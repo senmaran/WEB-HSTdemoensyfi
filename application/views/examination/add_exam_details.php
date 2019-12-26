@@ -69,19 +69,19 @@
                                  <div class="col-sm-2">
                                     <div id="ajaxres1"></div>
                                  </div>
-                                 <div class="col-sm-1">
+                                 <div class="col-sm-2">
                                     <div id="ajaxres3"></div>
                                  </div>
                                  <div class="col-sm-1">
                                     <div id="ajaxres2"></div>
                                  </div>
-                                 <div class="col-sm-2">
+                                 <div class="col-sm-1">
                                     <div id="subtlt"></div>
                                  </div>
                                  <div class="col-sm-1">
                                     <div id="is_inter_exter"></div>
                                  </div>
-                                 <div class="col-sm-2">
+                                 <div class="col-sm-3">
                                     <div id="inter"></div>
                                  </div>
                               </div>
@@ -96,18 +96,21 @@
                                     <option value="Deactive">Inactive</option>
                                  </select>
                               </div>
-
+                              <div class="col-sm-6"></div>
                            </div>
                         </fieldset>
-
-                        <fieldset>
-                           <div class="form-group">
-                             <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
-                             <div class="text-center">
+						
+						<fieldset>
+						<div class="form-group">
+                              <label class="col-sm-2 control-label"></label>
+                              <div class="col-sm-4">
                                 <input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
-                             </div>
+                              </div>
+                              <div class="col-sm-6"></div>
                            </div>
-                         </fieldset>
+                        </fieldset>
+						
+                        
                      </form>
                   </div>
                </div>
@@ -386,7 +389,7 @@
 
    exam_date += '<input type="text"  required name="exam_dates[]"  class="form-control datepicker"   placeholder="Enter The Exam Date"/></br>';
 
-   stlt +='<input type="text"  required name="sub_total[]"  id="sub_total'+i+'" class="form-control"   placeholder="Subject Total"/></br>';
+   stlt +='<input type="text"  required name="sub_total[]"  id="sub_total'+i+'" class="form-control"   placeholder="Total"/></br>';
 
    internal +='<div id="'+ i +'"></div>';
 
@@ -439,22 +442,22 @@
 
    $('#examvalidate').validate({ // initialize the plugin
    rules: {
-   exam_year: {required: true},
-   class_name: {required: true},
-   subject_name: {required: true},
-   exam_date: {required: true},
-   time: {required: true},
-   teacher_id: {required: true},
-   'inter_exter_mark[]':{required: true}
+	   exam_year: {required: true},
+	   class_name: {required: true},
+	   subject_name: {required: true},
+	   exam_date: {required: true},
+	   time: {required: true},
+	   teacher_id: {required: true},
+	   'inter_exter_mark[]':{required: true}
    },
    messages: {
-   exam_year: "Please Select Exam Year",
-   class_name: "Please Select Class and Section Name",
-   subject_name: "Please Select Subject Name",
-   exam_date: "Please Enter Exam Date",
-   time: "Please Select Time",
-   teacher_id: "Please Select Teacher Name",
-   'inter_exter_mark[]':"Select Internal Or External"
+	   exam_year: "Please Select Exam Year",
+	   class_name: "Please Select Class and Section Name",
+	   subject_name: "Please Select Subject Name",
+	   exam_date: "Please Enter Exam Date",
+	   time: "Please Select Time",
+	   teacher_id: "Please Select Teacher Name",
+	   'inter_exter_mark[]':"Select Internal Or External"
    }
    });
    });
@@ -464,10 +467,10 @@
    $table.bootstrapTable({
    toolbar: ".toolbar",
    clickToSelect: true,
-   showRefresh: true,
+   showRefresh: false,
    search: true,
-   showToggle: true,
-   showColumns: true,
+   showToggle: false,
+   showColumns: false,
    pagination: true,
    searchAlign: 'left',
    pageSize: 10,
@@ -481,11 +484,11 @@
    return pageNumber + " rows visible";
    },
    icons: {
-   refresh: 'fa fa-refresh',
-   toggle: 'fa fa-th-list',
-   columns: 'fa fa-columns',
-   detailOpen: 'fa fa-plus-circle',
-   detailClose: 'fa fa-minus-circle'
+	   refresh: 'fa fa-refresh',
+	   toggle: 'fa fa-th-list',
+	   columns: 'fa fa-columns',
+	   detailOpen: 'fa fa-plus-circle',
+	   detailClose: 'fa fa-minus-circle'
    }
    });
 
@@ -503,19 +506,20 @@
    $('#exam').addClass('active');
    $('#exam2').addClass('active');
    //$("#datepicker").attr('data-uk-datepicker','{format:"DD.MM.YYYY"}');
-   $('.datepicker').datetimepicker({
-   format: 'DD-MM-YYYY',
-   icons: {
-   time: "fa fa-clock-o",
-   date: "fa fa-calendar",
-   up: "fa fa-chevron-up",
-   down: "fa fa-chevron-down",
-   previous: 'fa fa-chevron-left',
-   next: 'fa fa-chevron-right',
-   today: 'fa fa-screenshot',
-   clear: 'fa fa-trash',
-   close: 'fa fa-remove'
-   }
+   
+	$('.datepicker').datetimepicker({
+		   format: 'DD-MM-YYYY',
+		   icons: {
+		   time: "fa fa-clock-o",
+		   date: "fa fa-calendar",
+		   up: "fa fa-chevron-up",
+		   down: "fa fa-chevron-down",
+		   previous: 'fa fa-chevron-left',
+		   next: 'fa fa-chevron-right',
+		   today: 'fa fa-screenshot',
+		   clear: 'fa fa-trash',
+		   close: 'fa fa-remove'
+		}
    });
    });
 

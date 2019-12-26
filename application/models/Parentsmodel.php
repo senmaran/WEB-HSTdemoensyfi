@@ -334,19 +334,26 @@ Class Parentsmodel extends CI_Model
 
 	   function add_new_parents($admission_id,$oldadmission_id,$name,$occupation,$income,$haddress,$pemail,$semail,$pmobile,$smobile,$home_phone,$office_address,$office_phone,$relationship,$status,$priority,$userFileName,$user_id)
 	   {
-		    $school_id=$this->session->userdata('school_id');
-          $select="SELECT relationship FROM edu_parents  WHERE FIND_IN_SET('$admission_id',admission_id) AND relationship='$relationship'";
+		$school_id=$this->session->userdata('school_id');
+		
+         $select = "SELECT relationship FROM edu_parents WHERE FIND_IN_SET('$admission_id',admission_id) AND relationship ='$relationship'";
          $res_selec=$this->db->query($select);
+
          if($res_selec->num_rows()==0){
            $digits = 6;
            $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 
-           $pgid="SELECT admission_id,parnt_guardn_id FROM edu_admission WHERE admission_id IN('$oldadmission_id')";
+           echo $pgid="SELECT admission_id,parnt_guardn_id FROM edu_admission WHERE admission_id IN('$oldadmission_id')";
            $resultset=$this->db->query($pgid);
            $row=$resultset->result();
-           foreach($row as $rows){}
-           $apgid=$rows->parnt_guardn_id;
-
+           foreach($row as $rows){
+				$spgid=$rows->parnt_guardn_id;
+		   }
+		   if ($spgid!=''){
+			   $apgid= $spgid;
+		   } else {		
+				$apgid= 0;
+		   }
 
            $sql="INSERT INTO edu_parents(admission_id,name,occupation,income,home_address,email,sec_email,mobile, sec_mobile,home_phone,office_address,office_phone,relationship,user_pic,	status,primary_flag,created_by,created_at)
            VALUES ('$oldadmission_id','$name','$occupation','$income','$haddress','$pemail','$semail','$pmobile','$smobile','$home_phone','$office_address','$office_phone','$relationship','$userFileName','$status','$priority','$user_id',NOW())";
@@ -355,41 +362,41 @@ Class Parentsmodel extends CI_Model
            $newuser_name=$newinsert_id+600000;
 
            // if($priority=="Yes"){
-                if(!empty($pemail)){
-             $to = $pemail;
-             $subject = '"Welcome Message"';
-             $htmlContent = '
-               <html>
-               <head>  <title></title>
-               </head>
-               <body style="background-color:beige;">
-               <table cellspacing="0" style=" width: 300px; height: 200px;">
-                   <tr>
-                     <th>Email:</th><td>'.$pemail.'</td>
-                   </tr>
-                   <tr>
-                     <th>Username :</th><td>'.$newuser_name.'</td>
-                   </tr>
-                   <tr>
-                     <th>Password:</th><td>'.$OTP.'</td>
-                   </tr>
-                   <tr>
-                     <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
-                   </tr>
-                 </table>
-               </body>
-               </html>';
-             $headers = "MIME-Version: 1.0" . "\r\n";
-             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-             $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
-             mail($to,$subject,$htmlContent,$headers);
+           if(!empty($pemail)){
+				 $to = $pemail;
+				 $subject = '"Welcome Message"';
+				 $htmlContent = '
+				   <html>
+				   <head>  <title></title>
+				   </head>
+				   <body style="background-color:beige;">
+				   <table cellspacing="0" style=" width: 300px; height: 200px;">
+					   <tr>
+						 <th>Email:</th><td>'.$pemail.'</td>
+					   </tr>
+					   <tr>
+						 <th>Username :</th><td>'.$newuser_name.'</td>
+					   </tr>
+					   <tr>
+						 <th>Password:</th><td>'.$OTP.'</td>
+					   </tr>
+					   <tr>
+						 <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
+					   </tr>
+					 </table>
+				   </body>
+				   </html>';
+				 $headers = "MIME-Version: 1.0" . "\r\n";
+				 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+				 $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+				 mail($to,$subject,$htmlContent,$headers);		 
             }
              if(!empty($pmobile))
              {
-              $userdetails="Name : " .$name. ", Schoolid : " .$school_id.",Username : " .$newuser_name.", Password : ".$OTP.", ";
-              $notes =utf8_encode($userdetails."To known more about your child click here  http://bit.ly/2wLwdRQ");
-               $phone=$pmobile;
-               $this->smsmodel->sendSMS($phone,$notes);
+					$userdetails="Name : " .$name. ", Schoolid : " .$school_id.",Username : " .$newuser_name.", Password : ".$OTP.", ";
+					$notes =utf8_encode($userdetails."To known more about your child click here  http://bit.ly/2wLwdRQ");
+					$phone=$pmobile;
+					$this->smsmodel->sendSMS($phone,$notes);
              }
 
 
@@ -397,25 +404,26 @@ Class Parentsmodel extends CI_Model
                 $nuresultset=$this->db->query($nuser);
             // }
 
-            $fmgid=array($apgid,$newinsert_id);
-            $insertid=implode(',',$fmgid);
-
+			$fmgid=array($apgid,$newinsert_id);
+			$insertid=implode(',',$fmgid);
+			
           $parnt_guardnid="UPDATE edu_admission SET parnt_guardn_id='$insertid',parents_status='1' WHERE admission_id IN ($oldadmission_id)";
           $gsresultset=$this->db->query($parnt_guardnid);
 
-           $parnt_guardnid1="UPDATE edu_parents SET admission_id='$oldadmission_id' WHERE id IN ($apgid)";
+		  
+          $parnt_guardnid1="UPDATE edu_parents SET admission_id='$oldadmission_id' WHERE id IN ($newinsert_id)";
           $gsresultset1=$this->db->query($parnt_guardnid1);
 
           if($gsresultset){
              $data= array("status" => "success");
-             return $data;
+				return $data;
             }else{
              $data= array("status" => "FTA");
-             return $data;
+				return $data;
              }
          }else{
            $data= array("status" => "already");
-           return $data;
+			return $data;
          }
 
 
@@ -1064,7 +1072,6 @@ Class Parentsmodel extends CI_Model
 
         function remove_parents_from_students($id,$user_id,$stu_id){
          $select_ad="SELECT * FROM edu_parents  WHERE FIND_IN_SET('$stu_id',admission_id)";
-
           $resultset_ad=$this->db->query($select_ad);
           if($resultset_ad->num_rows()==0){
             $string='';

@@ -1,6 +1,7 @@
 <div class="main-panel">
-
 <div class="content">
+
+
        <div class="container-fluid">
            <div class="row">
                <div class="col-md-12">
@@ -10,44 +11,38 @@
                        </div>
                        <div class="content">
                            <form method="post" action="<?php echo base_url(); ?>groups/create_groups" class="form-horizontal" enctype="multipart/form-data" id="groupsformsection" name="groupsformsection">
-                                 <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">House Name</label>
-                                          <div class="col-sm-4">
-										                         <input type="text" name="groups_name" class="form-control"  value="">
+                                          <label class="col-sm-2 control-label">House Name <span class="mandatory_field">*</span></label>
+                                          <div class="col-sm-3">
+												<input type="text" name="groups_name" class="form-control"  value="" maxlength="30">
                                           </div>
-                                          <label class="col-sm-2 control-label">Status</label>
-                                          <div class="col-sm-4">
-									   <select name="status"  class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-									   
+                                          <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
+                                          <div class="col-sm-3">
+										   <select name="status"  class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 											  <option value="Active">Active</option>
 											  <option value="Deactive">Inactive</option>
-										</select>
+											</select>
                                           </div>
+										<div class="col-sm-2">
+											<input type="submit" id="save" class="btn btn-info btn-fill center"  value="CREATE">
+										</div>
+								
                                       </div>
-                                  </fieldset>
-								                   <fieldset>
-                                        <div class="form-group">
-										                      
-                                            <div class="text-center">
-											                         <input type="submit" id="save" class="btn btn-info btn-fill center"  value="CREATE">
-                                            </div>
-                                            </div>
-                                   </fieldset>
 
                              </form>
                        </div>
                    </div>
                </div>
            </div>
-       </div>
-       <?php if($this->session->flashdata('msg')): ?>
-         <div class="alert alert-success">
+
+<?php if($this->session->flashdata('msg')): ?>
+<div class="alert alert-success">
    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
        ×</button> <?php echo $this->session->flashdata('msg'); ?>
 </div>
-
 <?php endif; ?>
+</div>
+
        <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -79,7 +74,7 @@
 										  <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
 										  <?php } ?></td>
                                     <td class="text-right">
-                                      <a rel="tooltip" title="Edit" href="<?php echo base_url(); ?>groups/edit_group/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                      <a rel="tooltip" title="Edit" href="<?php echo base_url(); ?>groups/edit_group/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
                                     </td>
                                   </tr>
 							                  <?php $i++;   } ?>
@@ -92,6 +87,8 @@
                 </div> <!-- end row -->
             </div>
         </div>
+		
+		
    </div>
 </div>
 

@@ -34,16 +34,19 @@
                                       </div>
                                   </fieldset>
 
-                                  <fieldset id="">
+                               <fieldset id="">
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">Year</label>
+                                          <label class="col-sm-2 control-label">Year <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
                                             <select name="years" id="years" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                                                <option value="2017">2017</option>
-                                                <option value="2018">2018</option>
-                                              <option value="2019">2019</option>
-                                              <option value="2020">2020</option>
-
+                                                 <?php
+														$firstYear = (int)date('Y');
+														$lastYear = $firstYear + 4;
+														for($i=$firstYear;$i<=$lastYear;$i++)
+														{
+															echo '<option value='.$i.'>'.$i.'</option>';
+														}
+												?>
                                             </select>
                                               <script language="JavaScript">document.leaveform.years.value="<?php echo $rows->leave_year; ?>";</script>
                                           </div>
@@ -52,7 +55,7 @@
 
 								   <fieldset id="">
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">Classes</label>
+                                          <label class="col-sm-2 control-label">Classes <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
                                           <select multiple  name="class_name[]" id="multiple_class" class="selectpicker" data-menu-style="dropdown-blue">
 
@@ -89,7 +92,7 @@
 
                                   <fieldset id="">
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">Day</label>
+                                          <label class="col-sm-2 control-label">Day <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
                                             <select name="days" id="days" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="Sunday">Sunday</option>
@@ -106,7 +109,7 @@
                                   </fieldset>
                                   <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">Week</label>
+                                          <label class="col-sm-2 control-label">Week <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
                                             <select name="weeks" id="weeks" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="1">1</option>
@@ -124,7 +127,7 @@
 
                                     <fieldset id="">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Status</label>
+                                            <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                               <select name="leave_status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="Active">Active</option>
@@ -144,7 +147,8 @@
                                             <label class="col-sm-2 control-label">&nbsp;</label>
                                             <div class="col-sm-10">
                                                <!-- <input type="button" id="more" value="Add more" /> -->
-                                                   <button type="submit" class="btn btn-info btn-fill center">SAVE</button>
+											   <input type="submit" id="leave_submit" name="leave_submit" class="btn btn-info btn-fill center" value="Save" >
+                                                
                                             </div>
 
                                         </div>

@@ -17,10 +17,10 @@
 
                                 <div class="fresh-datatables">
                                   <h4 class="title">Student Fees Status</h4> <br>
-                          <table id="bootstrap-table" class="table">
+                          <table id="example" class="table">
                               <thead>
-                                 <th data-field="id" >S.No</th>
-								  <th data-field="notes"  data-sortable="true">Student</th>
+                                <th data-field="id" >S.No</th>
+								<th data-field="Student"  data-sortable="true">Student</th>
                                 <th data-field="year"  data-sortable="true">Year</th>
                                 <th data-field="term"  data-sortable="true">Term</th>
                                 <th data-field="class"  data-sortable="true">Class</th>
@@ -54,7 +54,7 @@
                   									  <?php } ?></td>
 
                                     <td>
-                                        <a href="<?php echo base_url(); ?>feesstructure/edit_term_fees_status/<?php echo $rows->id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                        <a href="<?php echo base_url(); ?>feesstructure/edit_term_fees_status/<?php echo $rows->id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
                                     </td>
                                   </tr>
                                   <?php $i++;  }  ?>
@@ -77,10 +77,47 @@
 
 <script type="text/javascript">
 
- $('#bootstrap-table').DataTable();
-		   $('#feesmenu').addClass('collapse in');
+	   $('#feesmenu').addClass('collapse in');
         $('#payment').addClass('active');
         $('#fees1').addClass('active');
          //jQuery('#teachermenu').addClass('collapse in');
+		 
+		 $('#example').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "20%" },
+					{ "width": "7%" },
+					{ "width": "9%" },
+					{ "width": "9%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "8%" }
+				  ]
+         }); 
 
 </script>

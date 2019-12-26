@@ -8,22 +8,18 @@
                            <h4 class="title">Edit Examination</h4>
 
                        </div>
-<?php foreach ($res as $rows)
-					 {
+						<?php foreach ($res as $rows)
+							{
 						  $rows->exam_year;
-
-                     }?>
+							}?>
                        <div class="content">
                            <form method="post" action="<?php echo base_url(); ?>examination/update" class="form-horizontal" enctype="multipart/form-data" id="myformsection" name="myformsection">
-
                                 <fieldset>
-								<input type="hidden" name="exam_id" class="form-control" id="yexam" placeholder="Enter Exam Year" required value="<?php echo $rows->exam_id; ?>">
+										<input type="hidden" name="exam_id" class="form-control" id="yexam" placeholder="Enter Exam Year" required value="<?php echo $rows->exam_id; ?>">
                                         <div class="form-group">
-
-                                            <label class="col-sm-2 control-label">Academic year</label>
+                                            <label class="col-sm-2 control-label">Academic year <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
-
-							 <select name="exam_year"  required class="selectpicker" data-title="Select From & To Year " data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+											<select name="exam_year"  required class="selectpicker" data-title="Select From & To Year " data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 
                                         <?php
                                           $tea_name=$rows->exam_year;
@@ -56,67 +52,62 @@
 										  }
 														?>
                                   </select>
-
-
-
-                                            </div>
-				                                   </div>
+                                        </div>
+				                 </div>
                                     </fieldset>
 	                                   <fieldset>
                                     <div class="form-group">
-                                    <label class="col-sm-2 control-label">Exam Name</label>
+                                    <label class="col-sm-2 control-label">Exam Name <span class="mandatory_field">*</span></label>
                                     <div class="col-sm-4">
-                                          <input type="text" name="exam_name" class="form-control" placeholder="Enter Exam Name" required value="<?php echo $rows->exam_name; ?>">
+                                          <input type="text" name="exam_name" class="form-control" placeholder="Enter Exam Name"  value="<?php echo $rows->exam_name; ?>" maxlength="30">
                                       </div>
                                     </div>
                                         </fieldset>
-          					 <fieldset>
-                              <div class="form-group">
-                                 <label class="col-sm-2 control-label">Exam Type</label>
-                                   <div class="col-sm-4">
-                                   <select  name="exam_flag" id="exam_flag" class="selectpicker"  class="form-control">
-                                      <option value="1">Internal/External</option>
-                                      <option value="0">Total</option>
-                                    </select>
-                          <script language="JavaScript">document.myformsection.exam_flag.value="<?php echo $rows->exam_flag; ?>";</script>
-                                  </div>
-  </div>
-</fieldset>
+										<fieldset>
+										<div class="form-group">
+										 <label class="col-sm-2 control-label">Exam Type <span class="mandatory_field">*</span></label>
+										   <div class="col-sm-4">
+										   <select  name="exam_flag" id="exam_flag" class="selectpicker"  class="form-control">
+											  <option value="1">Internal/External</option>
+											  <option value="0">Total</option>
+											</select>
+										<script language="JavaScript">document.myformsection.exam_flag.value="<?php echo $rows->exam_flag; ?>";</script>
+										  </div>
+										</div>
+										</fieldset>
 
-<fieldset>
-   <div class="form-group">
-      <label class="col-sm-2 control-label">Grade  Option</label>
-      <div class="col-sm-4">
-         <select  name="grade_flag" id="grade_flag" class="selectpicker"  class="form-control">
-            <option value="1">Yes</option>
-            <option value="0">No</option>
-         </select>
-           <script language="JavaScript">document.myformsection.grade_flag.value="<?php echo $rows->grade_flag; ?>";</script>
-      </div>
-   </div>
-</fieldset>
-                                            	 <fieldset>
-                                                   <div class="form-group">
-                               <label class="col-sm-2 control-label">Status</label>
-                                          <div class="col-sm-4">
-                                   <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" >
-                                        <option value="Active">Active</option>
-                                         <option value="Deactive">Inactive</option>
-                                   </select>
-                          <script language="JavaScript">document.myformsection.status.value="<?php echo $rows->status; ?>";</script>
-                                            </div></div>
-									</fieldset>
+										<fieldset>
+										   <div class="form-group">
+											  <label class="col-sm-2 control-label">Grade Option <span class="mandatory_field">*</span></label>
+											  <div class="col-sm-4">
+												 <select  name="grade_flag" id="grade_flag" class="selectpicker"  class="form-control">
+													<option value="1">Yes</option>
+													<option value="0">No</option>
+												 </select>
+												   <script language="JavaScript">document.myformsection.grade_flag.value="<?php echo $rows->grade_flag; ?>";</script>
+											  </div>
+										   </div>
+										</fieldset>
+										<fieldset>
+											<div class="form-group">
+											<label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
+											<div class="col-sm-4">
+											<select name="status" class="selectpicker form-control" data-style="btn-default btn-block" >
+												<option value="Active">Active</option>
+												<option value="Deactive">Inactive</option>
+											</select>
+										<script language="JavaScript">document.myformsection.status.value="<?php echo $rows->status; ?>";</script>
+										</div>
+										</div>
+										</fieldset>
 									<fieldset>
                                         <div class="form-group">
-											<!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
-
-                                            <div class="text-center">
-                                                <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
-                                            </div>
-
+										  <label class="col-sm-2 control-label"></label>
+                                          <div class="col-sm-4">
+												<input type="submit" id="save" class="btn btn-info btn-fill center" value="SAVE">
+											</div>
                                             </div>
                                     </fieldset>
-
                              </form>
                        </div>
                    </div>
@@ -124,13 +115,7 @@
            </div>
        </div>
 
-
-
-
-
    </div>
-
-
 </div>
 <script type="text/javascript">
    $(document).ready(function () {

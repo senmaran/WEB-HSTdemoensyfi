@@ -1,6 +1,6 @@
 <div class="main-panel">
-
-<div class="content">
+	<div class="content">
+	
        <div class="container-fluid">
            <div class="row">
                <div class="col-md-12">
@@ -8,45 +8,45 @@
                        <div class="header">
                            <h4 class="title">Create Co-curricular Activity</h4>
                        </div>
-                       <div class="content">
+						<div class="content">
                            <form method="post" action="<?php echo base_url(); ?>extracurricular/create_extracurricular" class="form-horizontal" enctype="multipart/form-data" id="activitiesformsection" name="activitiesformsection">
-                                 <fieldset>
-                                      <div class="form-group">
-                                          <label class="col-sm-2 control-label">Activity</label>
-                                          <div class="col-sm-4">
-										                         <input type="text" name="ext_name" class="form-control"  value="">
-                                          </div>
-                                          <label class="col-sm-2 control-label">Status</label>
-                                          <div class="col-sm-4">
-                      										   <select name="status"  class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                        											  <option value="Active">Active</option>
-                        											  <option value="Deactive">Inactive</option>
-                      											</select>
-                                          </div>
-                                      </div>
-                                  </fieldset>
-								                   <fieldset>
-                                        <div class="form-group">
-										                      	<!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
-                                            <div class="text-center">
-											                         <input type="submit" id="save" class="btn btn-info btn-fill center"  value="CREATE">
-                                            </div>
-                                            </div>
-                                   </fieldset>
+						
+							<div class="form-group">
+								
+								<label class="col-sm-2 control-label">Activity <span class="mandatory_field">*</span></label>
+								<div class="col-sm-3">
+								 <input type="text" name="ext_name" class="form-control" value="" maxlength="30">
+								</div>
+								
+								<label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
+								<div class="col-sm-3">
+								<select name="status"  class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+									  <option value="Active">Active</option>
+									  <option value="Deactive">Inactive</option>
+								</select>
+								</div>
+								
+								<div class="col-sm-2">
+										<input type="submit" id="save" class="btn btn-info btn-fill center"  value="CREATE">
+								</div>
+							</div>
+							 </form>		
+						</div>
+					</div>
 
-                             </form>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </div>
-       <?php if($this->session->flashdata('msg')): ?>
-         <div class="alert alert-success">
-   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-       ×</button> <?php echo $this->session->flashdata('msg'); ?>
+				 </div>
+		   </div>
+	   </div>
+				   
+
+	   
+<?php if($this->session->flashdata('msg')): ?>
+<div class="alert alert-success">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+×</button> <?php echo $this->session->flashdata('msg'); ?>
 </div>
-
 <?php endif; ?>
+
        <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -78,7 +78,7 @@
 										  <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
 										  <?php } ?></td>
                                     <td class="text-right">
-                                      <a rel="tooltip" title="Edit" href="<?php echo base_url(); ?>extracurricular/edit_activities/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                      <a rel="tooltip" title="Edit" href="<?php echo base_url(); ?>extracurricular/edit_activities/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
                                     </td>
                                   </tr>
 							                  <?php $i++;   } ?>
@@ -91,9 +91,9 @@
                 </div> <!-- end row -->
             </div>
         </div>
+		
    </div>
 </div>
-
 
 <script type="text/javascript">
 $(document).ready(function () {

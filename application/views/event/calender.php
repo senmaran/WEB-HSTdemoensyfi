@@ -38,27 +38,26 @@
                             <div class="content">
                                 <form method="post" action="#" id="to_do_form">
                                     <div class="form-group">
-                                        <label>Date</label>
+                                        <label>Date <span class="mandatory_field">*</span></label>
                                         <input type="text" name="to_do_date"  class="form-control datepicker" placeholder="Date">
                                     </div>
                                     <div class="form-group">
-                                        <label>Title</label>
-                                        <input type="text" name="to_do_list" placeholder="Title" class="form-control">
+                                        <label>Title <span class="mandatory_field">*</span></label>
+                                        <input type="text" name="to_do_list" placeholder="Title" class="form-control" maxlength="30">
                                     </div>
 								<div class="form-group">
-                                        <label>Description</label>
-                                        <textarea MaxLength="350" placeholder="Description - MaxCharacters 350" id="comments" name="to_do_notes" name="comments" class="form-control"></textarea>
+                                        <label>Description <span class="mandatory_field">*</span></label>
+                                        <textarea MaxLength="150" placeholder="Description - MaxCharacters 150" id="comments" name="to_do_notes" name="comments" class="form-control"></textarea>
                                     </div>
 
 									 <div class="form-group">
-                                        <label>Status</label>
+                                        <label>Status <span class="mandatory_field">*</span></label>
                                        <select name="status"  class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 											  <option value="Active">Active</option>
 											  <option value="Deactive">Inactive</option>
 										</select>
                                     </div>
-
-                                    <button type="submit" class="btn btn-fill btn-info">CREATE</button>
+									<input type="submit" id="save" class="btn btn-info btn-fill center"  value="CREATE">
                                 </form>
                             </div>
                         </div>

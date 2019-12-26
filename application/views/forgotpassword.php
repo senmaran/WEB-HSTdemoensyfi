@@ -86,18 +86,16 @@ body{
 
                                 <div class="content">
 								<h4>Forgot Password?</h4>
-								<p>No problems. Please enter your username and
-we'll reset the password for you.</p>
-										<div class="form-group">
-                                        <label>Username</label>
-                                        <input type="text" placeholder="Enter username" name="username" class="form-control">
-                                    </div>
-
-                                  </div>
+								<p>No problems. Please enter your username and we'll reset the password for you.</p>
+								<div class="form-group">
+								<label>Username</label>
+									<input type="text" placeholder="Enter username" name="username" class="form-control" maxlength="12">
+								</div>
+                                 </div>
 
                                 <div class="footer text-center">
                                     <button type="submit" class="btn btn-fill btn-warning btn-wd">SUBMIT</button><br>
-								                            <a class  href="<?php echo base_url(); ?>">Back to Login</a>
+									<a class  href="<?php echo base_url(); ?>">Back to Login</a>
                                 </div>
 
 
@@ -202,25 +200,24 @@ we'll reset the password for you.</p>
 				            type:'POST',
 				           data: $('#forgotform').serialize(),
 				           success: function(response) {
-										 //alert(response);
-										 if(response=="Password Reset and send to your Mail Please check it"){
-											 swal({
-												   title: "Success",
-												    text: response,
-												     type: "success"
-												   },
-												   function(){
-												     window.location.href = '<?php echo base_url(); ?>';
-												 });
+							alert(response);
+								 if(response=="Password_Reset"){
+									 swal({
+										   title: "Success",
+											text: "Password reset and send to you mail!",
+											 type: "success"
+										   },
+										   function(){
+											 window.location.href = '<?php echo base_url(); ?>';
+										 });
 
 
-										 }else if(response=="Username not found in records!"){
-											 sweetAlert("Oops!", response, "error");
-										 }
-										 else{
-											  sweetAlert("Oops!", "Something went wrong! Please try again later.", "error");
-										 }
-
+								 }else if(response=="Error"){
+									 sweetAlert("Oops!", "Username not found!", "error");
+								 }
+								 else{
+									  sweetAlert("Oops!", "Username not found!", "error");
+								 }
 				           }
 				       });
 

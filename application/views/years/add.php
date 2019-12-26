@@ -14,12 +14,12 @@
 
                                  <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">FROM MONTH</label>
+                                          <label class="col-sm-2 control-label">From Month <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
                                               <input type="text" name="from_month" class="form-control" value="">
 
                                           </div>
-                                          <label class="col-sm-2 control-label">END MONTH</label>
+                                          <label class="col-sm-2 control-label">End Month <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
                                               <input type="text" name="end_month" class="form-control"  />
                                           </div>
@@ -113,19 +113,11 @@ $(document).ready(function () {
 jQuery('#yearsmenu').addClass('collapse in');
  $('#myformsection').validate({ // initialize the plugin
      rules: {
-
-
          yexam:{required:true },
-
-
      },
      messages: {
-
-
            yexam: "Please Enter Section Name"
-
-
-         }
+        }
  });
 });
 

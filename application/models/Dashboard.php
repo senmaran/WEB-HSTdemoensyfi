@@ -104,7 +104,7 @@ Class Dashboard extends CI_Model
       $result=$this->db->query($query);
        
 	   if($result->num_rows()==0){
-         echo "Username Not found";
+         echo "Error";
        }else{
           foreach($result->result() as $row){}
            $type_name= $row->user_type;
@@ -125,6 +125,7 @@ Class Dashboard extends CI_Model
                foreach($result->result() as $row){}
                $to_mail= $row->email;
                $to = $to_mail;
+			    if(!empty($to_mail)){
                $subject = 'ENSYFi Password Reset';
                $htmlContent = "<html>
                  <head><title></title>
@@ -150,11 +151,11 @@ Class Dashboard extends CI_Model
              // Additional headers
              $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
              $sent= mail($to,$subject,$htmlContent,$headers);
-			 
+			 }
              if($sent){
-                 echo "Password Reset and send to your Mail Please check it";
+                 echo "Password_Reset";
              }else{
-               echo "Somthing Went Wrong";
+               echo "Error";
              }
             break;
 			
@@ -202,9 +203,9 @@ Class Dashboard extends CI_Model
 		  }
 
             if($sent){
-                echo "Password Reset and send to your Mail Please check it";
+                echo "Password_Reset";
             }else{
-              echo "Somthing Went Wrong";
+              echo "Error";
             }
 
             break;
@@ -254,14 +255,14 @@ Class Dashboard extends CI_Model
 			}
 
           if($sent){
-              echo "Password Reset and send to your Mail Please check it";
+              echo "Password_Reset";
           }else{
-            echo "Somthing Went Wrong";
+            echo "Error";
           }
             break;
          
 		 default:
-            echo "No result found";
+            echo "Error";
             break;
         }
       }

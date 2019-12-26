@@ -311,8 +311,18 @@ Class Timetablemodel extends CI_Model
     // Get Teacher To Class
     function get_teacher_class($class_sec_id)
     {
-        $query     = "SELECT eths.teacher_id,et.name  FROM edu_teacher_handling_subject AS eths LEFT JOIN edu_teachers AS et ON et.teacher_id=eths.teacher_id
-                WHERE class_master_id='$class_sec_id' GROUP BY eths.teacher_id";
+        $query = "SELECT
+					eths.teacher_id,
+					et.name
+				FROM
+					edu_teacher_handling_subject AS eths
+				LEFT JOIN edu_teachers AS et
+				ON
+					et.teacher_id = eths.teacher_id
+				WHERE
+					eths.class_master_id = '$class_sec_id' AND eths.status = 'Active' AND et.status = 'Active'
+				GROUP BY
+					eths.teacher_id";
         $resultset = $this->db->query($query);
         if ($resultset->num_rows() == 0) {
             $data = array(

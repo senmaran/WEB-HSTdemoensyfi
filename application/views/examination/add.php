@@ -13,8 +13,8 @@
                      <form method="post" action="<?php echo base_url(); ?>examination/create" class="form-horizontal" enctype="multipart/form-data" id="myformsection">
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Academic year</label>
-                              <div class="col-sm-6">
+                              <label class="col-sm-2 control-label">Academic year <span class="mandatory_field">*</span></label>
+                              <div class="col-sm-4">
                                  <select name="exam_year" required class="selectpicker" data-title="Select From & To Year" data-menu-style="dropdown-blue">
                                     <?php
                                        foreach ($years as $rows1)
@@ -30,55 +30,63 @@
                                  </select>
                                  <!--<input type="text" name="exam_year" class="form-control datepicker" id="yexam" placeholder="Enter Exam Year" required value="">-->
                               </div>
+							  <div class="col-sm-6"></div>
                            </div>
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Exam Name</label>
-                              <div class="col-sm-6">
-                                 <input type="text" name="exam_name" class="form-control" placeholder="Enter Exam Name" required value="">
+                              <label class="col-sm-2 control-label">Exam Name <span class="mandatory_field">*</span></label>
+                              <div class="col-sm-4">
+                                 <input type="text" name="exam_name" class="form-control" placeholder="Enter Exam Name" required value="" maxlength="30">
                               </div>
+							   <div class="col-sm-6"></div>
                            </div>
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Exam Type</label>
-                              <div class="col-sm-6">
+                              <label class="col-sm-2 control-label">Exam Type <span class="mandatory_field">*</span></label>
+                              <div class="col-sm-4">
                                  <select  name="exam_flag" id="exam_flag" class="selectpicker"  class="form-control">
                                     <option value="1">Internal/External</option>
                                     <option value="0">Total</option>
                                  </select>
                               </div>
+							  <div class="col-sm-6"></div>
                            </div>
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Grade  Option</label>
-                              <div class="col-sm-6">
+                              <label class="col-sm-2 control-label">Grade Option <span class="mandatory_field">*</span></label>
+                              <div class="col-sm-4">
                                  <select  name="grade_flag" id="grade_flag" class="selectpicker"  class="form-control">
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
                                  </select>
                               </div>
+							  <div class="col-sm-6"></div>
                            </div>
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Status</label>
-                              <div class="col-sm-6">
+                              <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
+                              <div class="col-sm-4">
                                  <select name="status"  class="selectpicker form-control">
                                     <option value="Active">Active</option>
                                     <option value="Deactive">Inactive</option>
                                  </select>
                               </div>
+							  <div class="col-sm-6"></div>
                            </div>
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
-                              <div class="text-center">
-                                 <button type="submit" id="save" class="btn btn-info btn-fill center">CREATE</button>
+						   <label class="col-sm-2 control-label"></label>
+                              <div class="col-sm-4">
+								<input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
+                              
                               </div>
+							  <div class="col-sm-6"></div>
+
                            </div>
                         </fieldset>
                      </form>
@@ -135,13 +143,10 @@
                                        <button class="btn btn-success btn-fill btn-wd">Active</button>
                                        <?php }else{?>
                                        <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
-                                       <?php }
-                                          //echo $rows->status;?>
+                                       <?php } ?>
                                     </td>
                                     <td>
-                                       <!-- <a href="<?php echo base_url(); ?>examination/add_exam_subject/<?php echo $rows->exam_id; ?>" rel="tooltip" title="Added Exam Details" class="btn btn-simple btn-info btn-icon table-action view" >
-                                          <i class="fa fa-id-card-o" aria-hidden="true"></i></a> -->
-                                       <a href="<?php echo base_url();  ?>examination/edit_exam/<?php echo $rows->exam_id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                       <a href="<?php echo base_url();  ?>examination/edit_exam/<?php echo $rows->exam_id; ?>" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
                                     </td>
                                  </tr>
                                  <?php $i++;  }  ?>

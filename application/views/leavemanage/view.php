@@ -15,7 +15,7 @@
         </div>
         <div class="content">
           <h4 class="title">Regular Holiday</h4><br>
-          <table id="bootstrap-table" class="table">
+          <table id="example" class="table">
               <thead>
                     <th data-field="id">S.No</th>
                     <th data-field="year">Year</th>
@@ -44,12 +44,9 @@
                     <td>
                       <!-- <a rel="tooltip" title="View" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)"><i class="fa fa-image"></i>
                         </a> -->
-                      <a href="<?php echo base_url(); ?>leavemanage/edit/<?php echo $rows->leave_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-                      <a href="<?php echo base_url(); ?>leavemanage/viewdates/<?php echo $rows->leave_id; ?>" rel="tooltip" title="View Dates" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
-
-
-
-                      <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove"  data-original-title="Remove" onclick="deleteLeaves(<?php  echo $rows->leave_id; ?>)"><i class="fa fa-remove"></i></a>
+                      <a href="<?php echo base_url(); ?>leavemanage/edit/<?php echo $rows->leave_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"style="font-size:20px;"><i class="fa fa-edit"></i></a>
+					  <a href="<?php echo base_url(); ?>leavemanage/viewdates/<?php echo $rows->leave_id; ?>" rel="tooltip" title="View Dates" class="btn btn-simple btn-warning btn-icon edit" style="font-size:18px;"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
+					  <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon edit"  data-original-title="Remove" onclick="deleteLeaves(<?php  echo $rows->leave_id; ?>)" style="color:#cc0000;font-size:20px;"><i class="fa fa-window-close-o" aria-hidden="true"></i></a>
 
                         </td>
                   </tr>
@@ -64,10 +61,9 @@
       <div class="card">
         <div class="content">
           <h4 class="title">Special Holiday</h4> <br>
-          <table id="bootstrap-table1" class="table">
+          <table id="example1" class="table">
               <thead>
                     <th data-field="id">S.No</th>
-
                     <th data-field="no">Date</th>
                     <th data-field="name">Title</th>
                     <th data-field="status">Status</th>
@@ -93,8 +89,10 @@
                       <?php  } ?></td>
                     <td>
 
-  <a href="<?php echo base_url(); ?>leavemanage/specialedit/<?php echo $rows->id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-  <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" onclick="functionSpecial(<?php echo $rows->leave_id; ?>)" data-original-title="Remove"><i class="fa fa-remove"></i></a>
+  <a href="<?php echo base_url(); ?>leavemanage/specialedit/<?php echo $rows->id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;" ><i class="fa fa-edit"></i></a>
+  
+   <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon edit"  data-original-title="Remove" onclick="functionSpecial(<?php  echo $rows->leave_id; ?>)" style="color:#cc0000;font-size:20px;"><i class="fa fa-window-close-o" aria-hidden="true"></i></a>
+
 </td>
                   </tr>
                   <?php $i++;  }  ?>
@@ -111,7 +109,7 @@
 function deleteLeaves(id){
   swal({
               title: "Are you sure?",
-              text: "You wnt to delete this date",
+              text: "You want to delete this date",
               type: "warning",
               showCancelButton: true,
               confirmButtonColor: '#DD6B55',
@@ -129,7 +127,7 @@ function deleteLeaves(id){
                          success: function(data){
                            //alert(data)
                          if(data=='success'){
-                           swal({title: "Done", text: "Deleted Successfully!", type: "success"},
+                           swal({title: "Success", text: "Deleted Successfully!", type: "success"},
                               function(){
                                   location.reload();
                               }
@@ -168,7 +166,7 @@ function functionSpecial(id){
                          success: function(data){
                            //alert(data)
                          if(data=='success'){
-                           swal({title: "Done", text: "Deleted Successfully!", type: "success"},
+                           swal({title: "Success", text: "Deleted Successfully!", type: "success"},
                               function(){
                                   location.reload();
                               }
@@ -188,9 +186,78 @@ function functionSpecial(id){
 
 
 
- $('#bootstrap-table').DataTable();
-  $('#bootstrap-table1').DataTable();
+ 
+  
 $('#eventmenu').addClass('collapse in');
 $('#event').addClass('active');
 $('#leave1').addClass('active');
+
+$('#example').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "20%" },
+					{ "width": "20%" },
+					{ "width": "20%" },
+					{ "width": "15%" },
+					{ "width": "18%" }
+				  ]
+         });
+		 
+		 $('#example1').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "20%" },
+					{ "width": "40%" },
+					{ "width": "20%" },
+					{ "width": "13%" }
+				  ]
+         });
 </script>

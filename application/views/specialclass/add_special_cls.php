@@ -1,17 +1,28 @@
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-clockpicker.min.css">
+<script src="<?php echo base_url(); ?>assets/js/jquery-clockpicker.min.js"></script>
+<style>
+.popover.clockpicker-popover.top.clockpicker-align-left {
+    top: 130px !important;
+}
+ .clockpicker-popover {
+ z-index: 100000 !important;
+ }
+</style>
 <div class="main-panel">
    <div class="content">
       <div class="container-fluid">
          <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
                <div class="card">
                   <div class="header">
                      <h4 class="title">Create Special Class</h4>
                   </div>
                   <div class="content">
                      <form method="post" action="<?php echo base_url(); ?>specialclass/add_special_cls" class="form-horizontal" enctype="multipart/form-data" id="specialclasssection" name="specialclasssection">
-                        <fieldset>
+                       
+					   <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Class</label>
+                              <label class="col-sm-2 control-label">Class <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <select  name="class_name" id="multiple-class" onchange="checksubject(this.value)" class="selectpicker" data-title="Select Class" data-menu-style="dropdown-blue">
                                           <?php foreach ($getall_class as $rows) {  ?>
@@ -19,7 +30,7 @@
                                           <?php      } ?>
                                  </select>
                               </div>
-                              <label class="col-sm-2 control-label">Teacher</label>
+                              <label class="col-sm-2 control-label">Teacher <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                 <select  name="teacher" class="selectpicker form-control"  id="multiple-teacher" data-title="Select Teacher" data-menu-style="dropdown-blue" >
                                           <?php foreach ($teacher as $rows) { ?>
@@ -29,39 +40,42 @@
                               </div>
                            </div>
                         </fieldset>
-                        <fieldset>
+                        
+						<fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Subject</label>
+                              <label class="col-sm-2 control-label">Subject <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
 							   <select  name="subject_name"  class="form-control" id="ajaxres">
 							   </select>
 								<div id="msg1"></div>
                               </div>
-                              <label class="col-sm-2 control-label">Topic</label>
+                              <label class="col-sm-2 control-label">Topic <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
-                                 <input type="text" name="sub_topic" required class="form-control"  />
+                                 <input type="text" name="sub_topic" required class="form-control" maxlength="30"  />
                               </div>
                            </div>
                         </fieldset>
+						 
 						 <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Date</label>
+                              <label class="col-sm-2 control-label">Date <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <input type="text" name="spe_date" required class="form-control datepicker" value="">
                               </div>
-                              <label class="col-sm-2 control-label">Start Time</label>
-                              <div class="col-sm-4">
-                                 <input type="text" name="stime" required class="form-control timepicker"  />
+                              <label class="col-sm-2 control-label">Start Time <span class="mandatory_field">*</span></label>
+                              <div class="col-sm-4 clockpicker" >
+                                 <input type="text" name="stime" id="stime" required class="form-control"/>
                               </div>
                            </div>
                         </fieldset>
-						 <fieldset>
+						
+						<fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">End Time</label>
-                              <div class="col-sm-4">
-                                 <input type="text" name="etime" required class="form-control timepicker" >
+                              <label class="col-sm-2 control-label">End Time <span class="mandatory_field">*</span></label>
+                              <div class="col-sm-4 clockpicker">
+                                 <input type="text" name="etime" id="etime" required class="form-control" >
                               </div>
-                              <label class="col-sm-2 control-label">Status</label>
+                              <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                 <select name="status"  class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 								  <option value="Active">Active</option>
@@ -70,11 +84,15 @@
                               </div>
                            </div>
                         </fieldset>
-                        <div class="form-group">
+						
+                       <fieldset>
+					   <div class="form-group">
                            <label class="col-sm-2 control-label">&nbsp;</label>
                            <div class="col-sm-4">
-                              <button type="submit" id="save" class="btn btn-info btn-fill center">CREATE </button>
+						   <input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
+                              
                            </div>
+						    <div class="col-sm-6"></div>
                         </div>
                         </fieldset>
                      </form>
@@ -96,7 +114,7 @@
                   <div class="card">
                      <div class="content">
                         <div class="fresh-datatables">
-                           <table id="bootstrap-table" class="table">
+                           <table id="example" class="table">
                               <thead>
                                  <th>S.No</th>
                                  <th>Class</th>
@@ -128,7 +146,7 @@
                     									  <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                     									  <?php } ?></td>
                                     <td>
-                                       <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>specialclass/edit_specls/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit">
+                                       <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>specialclass/edit_specls/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" title="Edit" style="font-size:20px;">
 									   <i class="fa fa-edit"></i></a>
                                     </td>
                                  </tr>
@@ -161,8 +179,7 @@
 			spe_date:{required:true },
 			stime:{required:true },
 			etime:{required:true },
-			status:{required:true },
-			
+			status:{required:true }
         },
         messages: {
               class_name: "Please choose an option!",
@@ -171,51 +188,35 @@
 			   spe_date: "Please choose an option!",
 			   stime: "Please choose an option!",
 			   etime: "Please choose an option!",
-			   status: "Please choose an option!",
-			   
-			  
+			   status: "Please choose an option!"
             }
     });
-	demo.initFormExtendedDatetimepickers();
    });
    
-   var $table = $('#bootstrap-table');
-         $().ready(function(){
-             $table.bootstrapTable({
-                 toolbar: ".toolbar",
-                 clickToSelect: true,
-                 showRefresh: true,
-                 search: true,
-                 showToggle: true,
-                 showColumns: true,
-                 pagination: true,
-                 searchAlign: 'left',
-                 pageSize: 8,
-                 clickToSelect: false,
-                 pageList: [8,10,25,50,100],
-   
-                 formatShowingRows: function(pageFrom, pageTo, totalRows){
-                     //do nothing here, we don't want to show the text "showing x of y from..."
-                 },
-                 formatRecordsPerPage: function(pageNumber){
-                     return pageNumber + " rows visible";
-                 },
-                 icons: {
-                     refresh: 'fa fa-refresh',
-                     toggle: 'fa fa-th-list',
-                     columns: 'fa fa-columns',
-                     detailOpen: 'fa fa-plus-circle',
-                     detailClose: 'fa fa-minus-circle'
-                 }
-             });
-   
-             //activate the tooltips after the data table is initialized
-             $('[rel="tooltip"]').tooltip();
-   
-             $(window).resize(function () {
-                 $table.bootstrapTable('resetView');
-             });
-
+    $('#example').DataTable({
+      dom: 'lBfrtip',
+      buttons: [
+           {
+               extend: 'excelHtml5',
+               exportOptions: {
+               columns: ':visible'
+               }
+           },
+           {
+               extend: 'pdfHtml5',
+               exportOptions: {
+               columns: ':visible'
+               }
+           },
+  
+       ],
+       "pagingType": "full_numbers",
+       "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+       responsive: true,
+       language: {
+       search: "_INPUT_",
+       searchPlaceholder: "Search records",
+       }
          });
 		 
  function checksubject(cid) {
@@ -252,24 +253,9 @@ $.ajax({
 	}
 });
 }
+
+		$('#stime').clockpicker({ placement: 'top', align: 'left', donetext: 'Done',twelvehour: true});
+        $('#etime').clockpicker({ placement: 'top', align: 'left', donetext: 'Done',twelvehour: true});
 </script>
-<script type="text/javascript">
-   $().ready(function(){
-   
-     $('.datepicker').datetimepicker({
-       format: 'DD-MM-YYYY',
-       icons: {
-           time: "fa fa-clock-o",
-           date: "fa fa-calendar",
-           up: "fa fa-chevron-up",
-           down: "fa fa-chevron-down",
-           previous: 'fa fa-chevron-left',
-           next: 'fa fa-chevron-right',
-           today: 'fa fa-screenshot',
-           clear: 'fa fa-trash',
-           close: 'fa fa-remove'
-       }
-    });
-   });
-</script>
+
 

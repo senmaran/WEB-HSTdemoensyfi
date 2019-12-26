@@ -15,7 +15,7 @@
 		<fieldset>
 		   <div class="form-group">
 		   
-						<label class="col-sm-2 control-label">Class</label>
+						<label class="col-sm-2 control-label">Class <span class="mandatory_field">*</span></label>
 			  <div class="col-sm-4">
 				 <select class="selectpicker form-control"  name="sub_cls" >
 				 <?php
@@ -35,7 +35,7 @@
 						<input type="hidden" name="lid" value="<?php echo $id;?>">
 								
 			  
-			  <label class="col-sm-2 control-label">Date</label>
+			  <label class="col-sm-2 control-label">Date <span class="mandatory_field">*</span></label>
 				<div class="col-sm-4">
 					<input type="text" name="leave_date" class="form-control datepicker" placeholder="Registration Date"  value="<?php $date=date_create($res->sub_date);
 					  echo date_format($date,"d-m-Y");  ?>" />                             
@@ -45,7 +45,7 @@
 
 		<fieldset>
 		   <div class="form-group">
-			  <label class="col-sm-2 control-label">Teacher</label>
+			  <label class="col-sm-2 control-label">Teacher <span class="mandatory_field">*</span></label>
 			  <div class="col-sm-4">
 			   
 				<select class="selectpicker form-control" data-title="Select Substitution Teacher" name="sub_teacher">
@@ -72,7 +72,7 @@
 								
 							 </select>
 			  </div>
-							 <label class="col-sm-2 control-label">Period</label>
+							 <label class="col-sm-2 control-label">Period <span class="mandatory_field">*</span></label>
 			  <div class="col-sm-4">
 				 <select name="period_id" class="selectpicker form-control" >
 											<option value="1">1</option>
@@ -90,7 +90,7 @@
 					 </fieldset>
 					<fieldset>
 		   <div class="form-group">
-					   <label class="col-sm-2 control-label">Status</label>
+					   <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
 		   <div class="col-sm-4">
 		   <select name="status"  class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 			  <option value="Active">Active</option>
@@ -100,7 +100,8 @@
 					  </div>
 			  <label class="col-sm-2 control-label">&nbsp;</label>
 			  <div class="col-sm-4">
-				 <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
+			   <input type="submit" id="save" class="btn btn-info btn-fill center" value="SAVE">
+				 
 			  </div>
 		   </div>
 		</fieldset>

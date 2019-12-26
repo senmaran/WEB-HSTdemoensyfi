@@ -149,6 +149,8 @@ class Parents extends CI_Controller {
 				 $datas['aid']=$admission_id;
 				 $datas['eid']=$eid;
 				 $datas['alldetails']=$this->parentsmodel->get_all_details($admission_id);
+				//print_r($datas['alldetails']);
+				 //exit;
 				 $datas['relation']=$this->parentsmodel->get_relation_ship($admission_id);
 				 $this->load->view('header');
 				 $this->load->view('parents/add_new_parents',$datas);
@@ -167,7 +169,7 @@ class Parents extends CI_Controller {
 			 if($user_type==1)
 			 {
 			        $admission_id=$this->input->post('admission_id');
-					$oldadmission_id=$this->input->post('insertadmission_no');
+					$oldadmission_id=$this->input->post('admission_id');
                    //echo $oldadmission_id;exit;
 					$priority=$this->input->post('priority');
 					$name=$this->input->post('name');

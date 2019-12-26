@@ -1,8 +1,3 @@
-<style>
-   td{
-   text-align: center;
-   }
-</style>
 <div class="main-panel">
    <div class="content">
       <div class="container-fluid">
@@ -11,16 +6,18 @@
                <div class="card">
                   <div class="content">
                      <div class="header">
-                      Message   History
-                        <a href="<?php echo base_url(); ?>grouping/send" class="btn btn pull-right">Send Message</a>
+					 
+					 <h4 class="title" style="padding-bottom:10px;">Message History
+                           <a href="<?php echo base_url(); ?>grouping/send" class="btn btn pull-right">Send Message</a>
+                             <hr>
                      </div>
-                  </div>
-                  <table id="bootstrap-table" class="table">
+                  
+                  <table id="example" class="table">
                      <thead>
                         <th data-field="id" class="text-center">S.No</th>
                         <th data-field="name" class="text-center" data-sortable="true">Group Name</th>
                         <th data-field="Section" class="text-center" data-sortable="true">Type</th>
-                        <th data-field="actions" class="td-actions text-left" data-events="operateEvents">Notes</th>
+                        <!--<th data-field="actions" class="td-actions text-left" data-events="operateEvents">Notes</th>-->
                         <th data-field="sent" class="td-actions text-left" data-events="operateEvents">Sent By</th>
                      </thead>
                      <tbody>
@@ -29,13 +26,13 @@
                            <td><?php echo $i;  ?></td>
                            <td><?php echo $rowsclass->group_title;  ?><br><small><?php echo $new_date = date('d-m-Y H:i:s', strtotime($rowsclass->created_at));  ?></small></td>
                            <td><?php echo $rowsclass->notification_type;  ?></td>
-                           <td><?php echo $rowsclass->notes;  ?>
-                             <td><?php echo $rowsclass->name;  ?>
-                           </td>
+                           <!--<td><?php echo $rowsclass->notes;  ?></td>-->
+                           <td><?php echo $rowsclass->name;  ?></td>
                         </tr>
                         <?php $i++;  }  ?>
                      </tbody>
                   </table>
+				  </div>
                </div>
                <!--  end card  -->
             </div>
@@ -45,52 +42,42 @@
    </div>
 </div>
 <script type="text/javascript">
-jQuery('#groupingmenu').addClass('collapse in');
-$('#grouping').addClass('active');
-$('#group2').addClass('active');
+	jQuery('#groupingmenu').addClass('collapse in');
+	$('#grouping').addClass('active');
+	$('#group2').addClass('active');
 
-   var $table = $('#bootstrap-table');
-         $().ready(function(){
-             $table.bootstrapTable({
-                 toolbar: ".toolbar",
-                 clickToSelect: true,
-                 showRefresh: true,
-                 search: true,
-                 showToggle: true,
-                 showColumns: true,
-                 pagination: true,
-                 searchAlign: 'left',
-                 pageSize: 10,
-                 clickToSelect: false,
-                 pageList: [8,10,25,50,100],
-
-                 formatShowingRows: function(pageFrom, pageTo, totalRows){
-                     //do nothing here, we don't want to show the text "showing x of y from..."
-                 },
-                 formatRecordsPerPage: function(pageNumber){
-                     return pageNumber + " rows visible";
-                 },
-                 icons: {
-                     refresh: 'fa fa-refresh',
-                     toggle: 'fa fa-th-list',
-                     columns: 'fa fa-columns',
-                     detailOpen: 'fa fa-plus-circle',
-                     detailClose: 'fa fa-minus-circle'
-                 }
-             });
-
-             //activate the tooltips after the data table is initialized
-             $('[rel="tooltip"]').tooltip();
-
-             $(window).resize(function () {
-                 $table.bootstrapTable('resetView');
-             });
-
-
+       
+	 $(document).on("click", ".open-AddBookDialog", function () {
+		  var eventId = $(this).data('id');
+		  $(".modal-body #group_id").val( eventId );
+	 });
+	 
+	 $('#example').DataTable({
+      dom: 'lBfrtip',
+      buttons: [
+           {
+               extend: 'excelHtml5',
+               exportOptions: {
+               columns: ':visible'
+               }
+           },
+           {
+               extend: 'pdfHtml5',
+               exportOptions: {
+               columns: ':visible'
+               }
+           },
+  
+       ],
+       "pagingType": "full_numbers",
+       "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+       responsive: true,
+       language: {
+       search: "_INPUT_",
+       searchPlaceholder: "Search records",
+       }
          });
-         $(document).on("click", ".open-AddBookDialog", function () {
-              var eventId = $(this).data('id');
-              $(".modal-body #group_id").val( eventId );
-         });
+
+
 
 </script>

@@ -22,7 +22,7 @@
 
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-4 control-label">Academic Year</label>
+					<label class="col-sm-4 control-label">Academic Year <span class="mandatory_field">*</span></label>
 					<div class="col-sm-4">
 					  <?php  $status=$years['status']; if($status=="success"){
 					   foreach($years['all_years'] as $rows){}?>
@@ -38,7 +38,7 @@
 
 			<fieldset>
 				<div class="form-group">
-				  <label class="col-sm-4 control-label">Term</label>
+				  <label class="col-sm-4 control-label">Term <span class="mandatory_field">*</span></label>
 				  <div class="col-sm-4">
 				 <select name="terms" id="terms"  class="selectpicker form-control" data-title="Select term" >
 							<?php foreach ($terms as $row) {  ?>
@@ -53,11 +53,11 @@
 
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-4 control-label">Class</label>
+					<label class="col-sm-4 control-label">Class <span class="mandatory_field">*</span></label>
 					<div class="col-sm-4">
 					   <select name="class_name" class="selectpicker" data-title="Select class" data-style="btn-default btn-block" onchange="getsecnamefun(this.value)" data-menu-style="dropdown-blue">
 						  <?php foreach ($enr_cls as $clas) {  ?>
-					  <option value="<?php  echo $clas->class_id; ?>"><?php  echo $clas->class_name; ?></option>
+									<option value="<?php  echo $clas->class_id; ?>"><?php  echo $clas->class_name; ?></option>
 					  <?php } ?>
 				  </select>
 					</div>
@@ -80,7 +80,7 @@
 			</fieldset>
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-4 control-label">Quota</label>
+					<label class="col-sm-4 control-label">Quota <span class="mandatory_field">*</span></label>
 					<div class="col-sm-4">
 												<select name="quota_name"  class="selectpicker form-control" data-title="Select quota" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 							<?php foreach ($quota as $rows) {  ?>
@@ -93,7 +93,7 @@
 			</fieldset>
 							  <fieldset>
 				<div class="form-group">
-					<label class="col-sm-4 control-label">Issue Date</label>
+					<label class="col-sm-4 control-label">Issue Date <span class="mandatory_field">*</span></label>
 					<div class="col-sm-4">
 						<input type="text" name="due_date_from"  class="form-control datepicker" placeholder="Select issue date"/>
 					</div>
@@ -101,7 +101,7 @@
 			</fieldset>
 							 <fieldset>
 				<div class="form-group">
-					<label class="col-sm-4 control-label">Due Date</label>
+					<label class="col-sm-4 control-label">Due Date <span class="mandatory_field">*</span></label>
 					<div class="col-sm-4">
 						<input type="text" name="due_date_to"  class="form-control datepicker" placeholder="Select due date"/>
 
@@ -112,7 +112,7 @@
 
 								<fieldset>
 				<div class="form-group">
-					<label class="col-sm-4 control-label">Notes</label>
+					<label class="col-sm-4 control-label">Notes <span class="mandatory_field">*</span></label>
 					<div class="col-sm-4">
 					  <textarea name="notes" MaxLength="250" placeholder="MaxCharacters 250" class="form-control" rows="4" cols="80"></textarea>
 
@@ -122,7 +122,7 @@
 
 							<fieldset>
 				<div class="form-group">
-					<label class="col-sm-4 control-label">Status</label>
+					<label class="col-sm-4 control-label">Status <span class="mandatory_field">*</span></label>
 					<div class="col-sm-4">
 					  <select name="status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 
@@ -136,9 +136,9 @@
 
 			<fieldset>
 				<div class="form-group">
-					<!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
-					<div class="text-center">
-				<button type="submit" id="save1" class="btn btn-info btn-fill center">CREATE </button>
+					<label class="col-sm-4 control-label"></label>
+					<div class="col-sm-4">
+					  <input type="submit" id="save1" class="btn btn-info btn-fill center"  value="CREATE">
 					</div>
 
 				</div>
@@ -234,11 +234,11 @@ var amount='';
 		var clsid = test[i].class_sec_id;
 		var sec_name = test[i].sec_name;
 		secction += '<input name="subject_name" readonly type="text" required class="form-control"  value="' + sec_name + '"><input name="class_id[]" required type="hidden" class="form-control"  value="' + clsid + '"></br>';
-		amount += '<input type="text" name="fees_amount[]"  class="form-control" placeholder="Enter fees"/></br>';
+		amount += '<input type="text" name="fees_amount[]"  class="form-control" placeholder="Enter fees" maxlength="10"/></br>';
 		}
 		$("#sec").html(secction);
 		$("#amt").html(amount);
-		$("#lab").html('Sections and Fees');
+		$("#lab").html('Sections and Fees <span class="mandatory_field">*</span>');
 		$("#sec").show();
 		$("#amt").show();
 		$("#lab").show();

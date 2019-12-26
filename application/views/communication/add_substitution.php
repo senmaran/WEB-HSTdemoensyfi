@@ -11,7 +11,7 @@
                      <form method="post" action="<?php echo base_url(); ?>communication/create_substition" class="form-horizontal" enctype="multipart/form-data" id="myformsection" name="myformsection">
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Class</label>
+                              <label class="col-sm-2 control-label">Class <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <select class="selectpicker form-control" data-title="Select Class" name="sub_cls" >
                                     <?php
@@ -30,7 +30,7 @@
 							  <input type="hidden" name="tname" value="<?php echo $teaname;?>">
 							    <input type="hidden" name="num" value="<?php echo $cell;?>">
                               <input type="hidden" name="leave_id" value="<?php echo $leave_id;?>">
-                              <label class="col-sm-2 control-label">Date</label>
+                              <label class="col-sm-2 control-label">Date <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <input type="text" name="leave_date"  value="<?php $dateTime = new DateTime($from_leave_date);$fdate=date_format($dateTime,'d-m-Y' );echo $fdate;  ?>" class="form-control datepicker">
                               </div>
@@ -38,7 +38,7 @@
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Teacher</label>
+                              <label class="col-sm-2 control-label">Teacher <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <select class="selectpicker form-control" data-title="Select Teacher" name="sub_teacher" id="subteacher" onChange="get_teacher_name()">
                                     <?php foreach($teachers as $tec){ ?>
@@ -46,7 +46,7 @@
                                     <?php }?>
                                  </select>
                               </div>
-                              <label class="col-sm-2 control-label">Period</label>
+                              <label class="col-sm-2 control-label">Period <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <select name="period_id" class="selectpicker form-control" data-title="Select Period">
                                     <option value="1">1</option>
@@ -63,7 +63,7 @@
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Status</label>
+                              <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <select name="status"  class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                     <option value="Active">Active</option>
@@ -72,7 +72,8 @@
                               </div>
                               <label class="col-sm-2 control-label">&nbsp;</label>
                               <div class="col-sm-4">
-                                 <button type="submit" id="save" class="btn btn-info  center">SUBSTITUTE</button>
+							  <input type="submit" id="save" class="btn btn-info btn-fill center" value="SUBSTITUTE" style="width:180px;">
+
                               </div>
                            </div>
                         </fieldset>
@@ -94,17 +95,18 @@
                <div class="col-md-12">
                   <div class="card">
 				   <div class="header">
-                     <legend>Substitute Teacher</legend>
+                     <legend>List Substitutes</legend>
                   </div>
                      <div class="content">
                         <div class="fresh-datatables">
-                           <table id="bootstrap-table" class="table">
+                           <table id="example" class="table">
                               <thead>
                                  <th>S.no</th>
                                  <th>Teacher</th>
                                  <th>Date</th>
                                  <th>Class</th>
                                  <th>Period</th>
+								 <th>Status</th>
                                  <th>Actions</th>
                               </thead>
                               <tbody>
@@ -119,11 +121,18 @@
                                     <td><?php   $date=date_create($rows->sub_date);
                                        echo date_format($date,"d-m-Y"); ?></td>
                                     <?php
-                                      $cn=$rows->class_name;$sn=$rows->sec_name;?>
+                                      $cn=$rows->class_name;$sn=$rows->sec_name; $stu=$rows->status;?>
                                     <td><?php  echo $cn; ?> <?php  echo $sn; ?></td>
                                     <td><?php  echo $rows->period_id; ?></td>
+									<td><?php
+                                       if($stu=='Active'){?>
+                                       <button class="btn btn-success btn-fill btn-wd">Active</button>
+                                       <?php  }else{?>
+                                       <button class="btn btn-danger btn-fill btn-wd">Inactive</button><?php }
+                                          ?>
+                                    </td>
                                     <td>
-                                       <a href="<?php echo base_url();?>communication/sub_edit?v=<?php echo $rows->id; ?>&v1=<?php echo $teacher_id; ?>&v3=<?php echo $leave_id; ?>" title="Edit Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit" aria-hidden="true"></i>
+                                       <a href="<?php echo base_url();?>communication/sub_edit?v=<?php echo $rows->id; ?>&v1=<?php echo $teacher_id; ?>&v3=<?php echo $leave_id; ?>" title="Edit Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit" aria-hidden="true"></i>
                                     </td>
                                  </tr>
                                  <?php $i++;  }  ?>
@@ -147,86 +156,77 @@
      $('#teachermenu').addClass('collapse in');
      $('#teacher').addClass('active');
      $('#teacher3').addClass('active');
-    $('#myformsection').validate({ // initialize the plugin
-       rules: {
-         sub_cls:{required:true },
-   		   leave_date:{required:true },
-   		   sub_teacher:{required:true },
-    		 period_id:{required:true },
-    		 status:{required:true },
-        },
-        messages: {
-              sub_cls:"Please choose an option!",
-              leave_date:"This field cannot be empty!",
-              sub_teacher:"Please choose an option!",
-			  period_id:"Please choose an option!",
-			  status:"Please choose an option!",
-            }
-    });
+	 
+		$('#myformsection').validate({ // initialize the plugin
+		   rules: {
+			 sub_cls:{required:true },
+			   leave_date:{required:true },
+			   sub_teacher:{required:true },
+				 period_id:{required:true },
+				 status:{required:true },
+			},
+			messages: {
+				  sub_cls:"Please choose an option!",
+				  leave_date:"This field cannot be empty!",
+				  sub_teacher:"Please choose an option!",
+				  period_id:"Please choose an option!",
+				  status:"Please choose an option!",
+				}
+		});
+	   $('.datepicker').datetimepicker({
+			  format: 'DD-MM-YYYY',
+			  icons: {
+				  time: "fa fa-clock-o",
+				  date: "fa fa-calendar",
+				  up: "fa fa-chevron-up",
+				  down: "fa fa-chevron-down",
+				  previous: 'fa fa-chevron-left',
+				  next: 'fa fa-chevron-right',
+				  today: 'fa fa-screenshot',
+				  clear: 'fa fa-trash',
+				  close: 'fa fa-remove'
+			  }
 
-   $('.datepicker').datetimepicker({
-          format: 'DD-MM-YYYY',
-          icons: {
-              time: "fa fa-clock-o",
-              date: "fa fa-calendar",
-              up: "fa fa-chevron-up",
-              down: "fa fa-chevron-down",
-              previous: 'fa fa-chevron-left',
-              next: 'fa fa-chevron-right',
-              today: 'fa fa-screenshot',
-              clear: 'fa fa-trash',
-              close: 'fa fa-remove'
-          }
-
+	   });
+ 
    });
-   });
 
-   /* function get_teacher_name()
-   {
-	   var tname=document.getElementById('subteacher').value ;
-	   alert(tname);
-	   var a=document.getElementById('choose').value ;
-   } */
 
-     var $table = $('#bootstrap-table');
-         $().ready(function(){
-             $table.bootstrapTable({
-                 toolbar: ".toolbar",
-                 clickToSelect: true,
-                 showRefresh: true,
-                 search: true,
-                 showToggle: true,
-                 showColumns: true,
-                 pagination: true,
-                 searchAlign: 'left',
-                 pageSize: 8,
-                 clickToSelect: false,
-                 pageList: [8,10,25,50,100],
-
-                 formatShowingRows: function(pageFrom, pageTo, totalRows){
-                     //do nothing here, we don't want to show the text "showing x of y from..."
+  $('#example').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
                  },
-                 formatRecordsPerPage: function(pageNumber){
-                     return pageNumber + " rows visible";
-                 },
-                 icons: {
-                     refresh: 'fa fa-refresh',
-                     toggle: 'fa fa-th-list',
-                     columns: 'fa fa-columns',
-                     detailOpen: 'fa fa-plus-circle',
-                     detailClose: 'fa fa-minus-circle'
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
                  }
-             });
-
-             //activate the tooltips after the data table is initialized
-             $('[rel="tooltip"]').tooltip();
-
-             $(window).resize(function () {
-                 $table.bootstrapTable('resetView');
-             });
-
-
-         });
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search Staffs",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "35%%" },
+					{ "width": "15%%" },
+					{ "width": "15%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "8%" }
+				  ]
+         }); 
 
 
 

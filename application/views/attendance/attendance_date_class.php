@@ -1,43 +1,42 @@
-<style>
-   .txt{
-   font-weight: 200;
-   }
-</style>
 <div class="main-panel">
    <div class="content">
       <div class="container-fluid">
+	  <div class="row">
          <div class="col-md-12">
             <div class="card">
-               <div class="">
-                  <legend>
-                    <h4 style="padding-top:20px;">Take Attendance</h4>
-                    </legend>
+						<div class="header">
+							<h4 class="title">Take Attendance</h4>
+						</div>
+                
                   <div class="content">
                      <form action="<?php echo base_url(); ?>adminattendance/attendance_on_class" method="post" class="form-horizontal" id="select_month">
-                       <fieldset>
+                       
+					   <fieldset>
                           <div class="form-group">
-                             <label class="col-sm-2 control-label">Date</label>
+                             <label class="col-sm-2 control-label">Date <span class="mandatory_field">*</span></label>
                              <div class="col-sm-4">
                                <input type="text" class="form-control datepicker " name="attendance_date" id="attendance_date">
                              </div>
-                             <label class="col-sm-2 control-label">Session</label>
-                             <div class="col-sm-4">
-                               <select class="form-control" name="session_id">
-
-                                 <option value="0">AM</option>
-                                 <option value="1">PM</option>
-
-                               </select>
-
-                             </div>
+                             <div class="col-sm-6"></div>
                           </div>
                        </fieldset>
-                       <fieldset>
-
+					   
+					   <fieldset>
+                          <div class="form-group">
+                             <label class="col-sm-2 control-label">Session <span class="mandatory_field">*</span></label>
+                             <div class="col-sm-4">
+                               <select class="form-control" name="session_id">
+                                 <option value="0">AM</option>
+                                 <option value="1">PM</option>
+                               </select>
+                             </div>
+							  <div class="col-sm-6"></div>
+                          </div>
                        </fieldset>
+
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Class</label>
+                              <label class="col-sm-2 control-label">Class <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                 <select class="form-control" name="class_id">
                                   <?php foreach($res as $rows){ ?>
@@ -45,26 +44,28 @@
                                 <?php } ?>
                                 </select>
                               </div>
+							  <div class="col-sm-6"></div>
                            </div>
                         </fieldset>
                         <fieldset>
                            <div class="form-group">
                               <label class="col-sm-2 control-label">&nbsp;</label>
-                              <div class="col-sm-10">
-                                 <button type="submit" class="btn btn-info btn-fill center">NEXT</button>
+                              <div class="col-sm-4">
+                                 <button type="submit" class="btn btn-info btn-fill center" style="cursor:pointer;">NEXT</button>
                               </div>
+							  <div class="col-sm-6"></div>
                            </div>
                         </fieldset>
                      </form>
                   </div>
-               </div>
+
             </div>
          </div>
       </div>
    </div>
+   </div>
 </div>
-</div>
-</div>
+
 <script type="text/javascript">
 
    $('#select_month').validate({ // initialize the plugin
@@ -74,7 +75,7 @@
 
        },
        messages: {
-             attendance_date: "Select Date",
+             attendance_date: "This field cannot be empty!",
              month_id: "Select Month"
 
            }

@@ -14,7 +14,7 @@
 
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Year</label>
+                              <label class="col-sm-2 control-label">Year <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <select name="year_id"  required class="selectpicker" data-title="Select From & To Year " data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                     <?php foreach($result as $rows)
@@ -30,43 +30,43 @@
                                     <?php } ?>
                                  </select>
                               </div>
-                              <label class="col-sm-2 control-label">Term</label>
+                              <label class="col-sm-2 control-label">Term <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
-                                 <input type="text" name="terms" required class="form-control" value="">
+                                 <input type="text" name="terms" required class="form-control" value="" maxlength="20">
                               </div>
                            </div>
                         </fieldset>
-                        <fieldset>
+                        
+						<fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">From</label>
+                              <label class="col-sm-2 control-label">From <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <input type="text" name="from_month" required class="form-control datepicker" value="">
                               </div>
-                              <label class="col-sm-2 control-label">To</label>
+                              <label class="col-sm-2 control-label">To <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <input type="text" name="end_month" required class="form-control datepicker"  />
                               </div>
                            </div>
                         </fieldset>
+						
                         <div class="form-group">
-                           <label class="col-sm-2 control-label">Status</label>
+                           <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
                            <div class="col-sm-4">
                               <select name="status"  class="selectpicker form-control">
                                  <option value="Active">Active</option>
                                  <option value="Deactive">Inactive</option>
                               </select>
                            </div>
-
-
+                        </div>
+						
+						 <div class="form-group">
+                           <label class="col-sm-2 control-label"></label>
+                           <div class="col-sm-4">
+						   <input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
+                           </div>
                         </div>
 
-
-                            <div class="form-group">
-                              <div class="text-center">
-                                 <button type="submit" id="save" class="btn btn-info btn-fill center">CREATE </button>
-                              </div>
-                            </div>
-                        </fieldset>
                      </form>
                   </div>
                </div>
@@ -154,9 +154,7 @@
                                        <?php } ?>
                                     </td>
                                     <td>
-                                       <!-- <a href="<?php // echo base_url(); ?>examination/add_exam_subject/<?php //echo $rows->exam_id; ?>" rel="tooltip" title="Added Exam Details" class="btn btn-simple btn-info btn-icon table-action view" >
-                                          <i class="fa fa-id-card-o" aria-hidden="true"></i></a> -->
-                                       <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>years/edit_terms/<?php echo $rows->term_id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                       <a rel="tooltip" title="Edit" href="<?php echo base_url();  ?>years/edit_terms/<?php echo $rows->term_id; ?>" class="btn btn-simple btn-warning btn-icon edit"  style="font-size:20px;"><i class="fa fa-edit"></i></a>
                                     </td>
                                  </tr>
                                  <?php $i++;  }  ?>

@@ -46,13 +46,13 @@
                         <label class="col-sm-4 control-label">Admission Number</label>
                         <div class="col-sm-4">
                            <input type="text" class="form-control" readonly value="<?php echo $rows->admisn_no; ?>" name="admisn_no" id="admission_no">
-                           <input type="text" class="form-control" value="<?php echo $rows->admission_id; ?>" name="admission_id" id="admission_id">
+                           <input type="hidden" class="form-control" value="<?php echo $rows->admission_id; ?>" name="admission_id" id="admission_id">
                         </div>
                      </div>
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Registration Date</label>
+                        <label class="col-sm-4 control-label">Registration Date <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <input type="text" value="" name="admit_date" class="form-control datepicker" placeholder="Registration Date"/>
                         </div>
@@ -68,7 +68,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Class</label>
+                        <label class="col-sm-4 control-label">Class <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select name="class_section" class="selectpicker form-control" data-title="Select Class" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <?php foreach ($getall_class as $rows) {  ?>
@@ -80,7 +80,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Quota</label>
+                        <label class="col-sm-4 control-label">Quota  <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select name="quota_id" class="selectpicker form-control" data-title="Select Quota" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <?php foreach ($quota as $row1) {  ?>
@@ -116,7 +116,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Status</label>
+                        <label class="col-sm-4 control-label">Status  <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select name="status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="Active">Active</option>
@@ -129,7 +129,8 @@
                      <div class="form-group">
                         <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
                         <div class="text-center">
-                           <button type="submit" class="btn btn-info btn-fill center">ALLOCATE</button>
+							<input type="submit" id="save" class="btn btn-info btn-fill center" value="ALLOCATE">
+                          
                         </div>
                      </div>
                   </fieldset>
@@ -146,18 +147,18 @@
     $('#admissionform').validate({ // initialize the plugin
         rules: {
              year_id:{required:true},
-       year_name:{required:true},
+			year_name:{required:true},
             admit_year:{required:true, number: true },
             admisn_no:{required:true },
             admit_date:{required:true },
             name:{required:true },
             admit_date:{required:true },
-            class:{required:true },
+            class_section:{required:true },
             section:{required:true },
-        quota_id:{required:true },
-       groups_id:{required:true },
-       //"activity_id[]":{required:true },
-        status:{required:true }
+			quota_id:{required:true },
+			groups_id:{required:true },
+			//"activity_id[]":{required:true },
+			status:{required:true }
 
         },
         messages: {
@@ -168,7 +169,7 @@
               admit_date: "This field cannot be empty!",
               name: "This field cannot be empty!",
                admit_date: "This field cannot be empty!",
-              class: "Please choose an option!",
+              class_section: "Please choose an option!",
               section: "Please choose an option!",
 			quota_id: "Please choose an option!",
                groups_id: "Please choose an option!",

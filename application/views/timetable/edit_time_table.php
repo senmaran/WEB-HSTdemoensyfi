@@ -1,19 +1,7 @@
-<style>
-    td {
-        text-align: center;
-    }
-    .box{
-      background-color: red !important;
-    }
-    select{width:270px;padding: 10px;
-    border: 1px solid #E3E3E3;
-  }
-</style>
 <div class="main-panel">
-    <div class="content">
-        <div class="col-md-12">
-            <div class="card">
-                <?php if($this->session->flashdata('msg')): ?>
+        <div class="content">
+            <div class="col-md-12">
+			<?php if($this->session->flashdata('msg')): ?>
                     <div class="alert alert-success">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                             ×</button>
@@ -21,9 +9,6 @@
                     </div>
                     <?php endif; ?>
             </div>
-        </div>
-        <div class="content">
-            <div class="col-md-12">
                 <div class="card">
                     <div class="header">
                         <legend>Edit Timetable for <?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name; echo " (";  echo  $this->uri->segment(5); echo ") "; ?> <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Back</button>  </legend>
@@ -58,7 +43,7 @@
                                       <div class="form-group" id="subject_id_tab" style="display:<?php echo $rows->is_break==1 ? 'none':'block' ?>">
                                          <label class="col-sm-2 control-label">Subject </label>
                                          <div class="col-sm-4 clockpicker">
-                                          <select id="subject_id" name="subject_id" class="subject_id ">
+                                          <select id="subject_id" name="subject_id" class="subject_id selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                              <option value="">Subject</option>
                                             <?php foreach($res_subject['res'] as $row_subject){ ?>
                                               <option value="<?php echo $row_subject->subject_id; ?>"><?php echo $row_subject->subject_name; ?></option>
@@ -72,7 +57,7 @@
                                       <div class="form-group" id="teacher_id_tab" style="display:<?php echo $rows->is_break==1 ? 'none':'block' ?>">
                                          <label class="col-sm-2 control-label">Teacher</label>
                                          <div class="col-sm-4 clockpicker">
-                                             <select id="teacher_id" name="teacher_id" class="subject_id ">
+                                             <select id="teacher_id" name="teacher_id" class="subject_id selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                <option value="">Teacher</option>
                                                <?php foreach($res_teacher['res'] as $row_teacher){ ?>
                                                  <option value="<?php echo $row_teacher->teacher_id; ?>"><?php echo $row_teacher->name; ?></option>
@@ -96,8 +81,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+
       </div>
 
         <script type="text/javascript">

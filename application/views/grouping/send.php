@@ -6,13 +6,16 @@
            <div class="row">
              <div class="col-md-12">
                  <div class="card">
-                     <div class="">
+
                            <div class="header">
                              Send Message
                               <a href="<?php echo base_url(); ?>grouping/message_history" class="btn btn pull-right">Message History</a>
+							  <hr>
                            </div>
-                     </div>
 
+					 
+					<div class="content">
+                     <div class="fresh-datatables">
                      <table id="bootstrap-table" class="table">
                          <thead>
 
@@ -37,20 +40,16 @@
                                     <?php } ?>
                                   </td>
                                <td>
-
-
-                                    <a href="#myModal" data-toggle="modal" data-target="#myModal"  data-id="<?php echo $rowsclass->id; ?>" rel="tooltip" title="Send Message"  class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit">
-                                  <i class="fa fa-paper-plane"> </i></a>
-
+                                    <a href="#myModal" data-toggle="modal" data-target="#myModal"  data-id="<?php echo $rowsclass->id; ?>" rel="tooltip" title="Send Message"  class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" style="font-size:18px;"><i class="fa fa-paper-plane"> </i></a>
                                </td>
-
                              </tr>
-
                              <?php $i++;  }  ?>
-
                          </tbody>
                      </table>
-
+					</div>
+					</div>
+					
+					
                      <div id="myModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                            <!-- Modal content-->
@@ -63,7 +62,7 @@
                                  <form action="" method="post" class="form-horizontal" id="send_msg">
                                     <fieldset>
                                        <div class="form-group">
-                                          <label class="col-sm-4 control-label">Message type</label>
+                                          <label class="col-sm-4 control-label">Message type <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-6">
 
                                             <select multiple name="circular_type[]" id="circular_type" data-title="Select message type" class="selectpicker form-control">
@@ -77,7 +76,7 @@
 
                                         <input type="hidden" name="group_id" id="group_id" class="form-control" value="">
                                        <div class="form-group">
-                                          <label class="col-sm-4 control-label">Notes </label>
+                                          <label class="col-sm-4 control-label">Notes <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-6">
 
                                             <textarea name="notes" MaxLength="160" placeholder="Maximum 160 characters" id="notes" class="form-control"  rows="4" cols="80"></textarea>
@@ -88,7 +87,8 @@
                                        <div class="form-group">
                                           <label class="col-sm-4 control-label">&nbsp;</label>
                                           <div class="col-sm-6">
-                                             <button type="submit" id="save" class="btn btn-info btn-fill center">SEND </button>
+											<input type="submit" id="save" class="btn btn-info btn-fill center" value="SEND">
+                                  
                                           </div>
                                        </div>
                                     </fieldset>
@@ -188,45 +188,7 @@ $.ajax({
 
 
 
-var $table = $('#bootstrap-table');
-      $().ready(function(){
-          $table.bootstrapTable({
-              toolbar: ".toolbar",
-              clickToSelect: true,
-              showRefresh: true,
-              search: true,
-              showToggle: true,
-              showColumns: true,
-              pagination: true,
-              searchAlign: 'left',
-              pageSize: 10,
-              clickToSelect: false,
-              pageList: [8,10,25,50,100],
-
-              formatShowingRows: function(pageFrom, pageTo, totalRows){
-                  //do nothing here, we don't want to show the text "showing x of y from..."
-              },
-              formatRecordsPerPage: function(pageNumber){
-                  return pageNumber + " rows visible";
-              },
-              icons: {
-                  refresh: 'fa fa-refresh',
-                  toggle: 'fa fa-th-list',
-                  columns: 'fa fa-columns',
-                  detailOpen: 'fa fa-plus-circle',
-                  detailClose: 'fa fa-minus-circle'
-              }
-          });
-
-          //activate the tooltips after the data table is initialized
-          $('[rel="tooltip"]').tooltip();
-
-          $(window).resize(function () {
-              $table.bootstrapTable('resetView');
-          });
-
-
-      });
+		$('#bootstrap-table').DataTable();
       $(document).on("click", ".open-AddBookDialog", function () {
            var eventId = $(this).data('id');
            $(".modal-body #group_id").val( eventId );

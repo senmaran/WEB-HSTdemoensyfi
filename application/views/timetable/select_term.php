@@ -29,7 +29,7 @@
                <div class="col-md-12">
                  <div class="col-md-10">
                  <?php foreach ($resterms as $rows) {  ?>
-                 <a href="<?php echo base_url(); ?>timetable/selectclass/<?php echo base64_encode($rows->term_id*9876); ?>" class="btn btn-primary" style="width:150px;"><?php echo $rows->term_name; ?></a>
+                 <a href="<?php echo base_url(); ?>timetable/selectclass/<?php echo base64_encode($rows->term_id*9876); ?>" class="btn btn-primary" style="width:150px;cursor:pointer;"><?php echo $rows->term_name; ?></a>
              <?php      } ?>
                </div>
                </div>

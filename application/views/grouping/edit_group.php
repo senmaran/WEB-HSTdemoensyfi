@@ -5,9 +5,9 @@
                 <div class="col-md-10">
                     <div class="card">
                         <div class="header">
-                            <h4 class="title">Edit Group</h4>
-                            <a href="<?php echo base_url(); ?>grouping/home" class="btn btn-wd btn-default pull-right" style="margin-top:-20px;">BACK</a></legend>
-
+                            <h4 class="title">Edit Group
+                            <a href="<?php echo base_url(); ?>grouping/home" class="btn btn-wd btn-default pull-right">BACK</a></h4>
+							<hr>
                         </div>
 
                         <div class="content">
@@ -16,15 +16,18 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Title</label>
+                                            <label class="col-sm-2 control-label">Title <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
-                                                <input type="text" name="group_title" class="form-control" value="<?php echo $rows->group_title; ?>">
+                                                <input type="text" name="group_title" class="form-control" value="<?php echo $rows->group_title; ?>" maxlength="30">
                                                 <input type="hidden" name="id" class="form-control" value="<?php echo $rows->id; ?>">
 
                                             </div>
                                         </div>
+										</fieldset>
+										
+										<fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Admin</label>
+                                            <label class="col-sm-2 control-label">Admin <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                                 <select name="group_lead_id" id="group_lead_id" class="selectpicker form-control">
                                                     <?php foreach($list_of_teacher as $rows1){ ?>
@@ -34,33 +37,38 @@
                                                         <?php    } ?>
 
                                                 </select>
-
                                                 <script language="JavaScript">
                                                     document.grouping_form.group_lead_id.value = "<?php echo $rows->group_lead_id; ?>";
                                                 </script>
                                             </div>
-
+											<div class="col-sm-6"></div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Status</label>
-                                            <div class="col-sm-4">
-                                                <select name="status" class="selectpicker form-control">
-                                                    <option value="Active">Active</option>
-                                                    <option value="Deactive">Inactive</option>
-                                                </select>
-                                                <script language="JavaScript">
-                                                    document.grouping_form.status.value = "<?php echo $rows->status; ?>";
-                                                </script>
-                                            </div>
-
-                                        </div>
-                                    </fieldset>
+										</fieldset>
+										  
+										<fieldset>
+											<div class="form-group">
+												<label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
+												<div class="col-sm-4">
+													<select name="status" class="selectpicker form-control">
+														<option value="Active">Active</option>
+														<option value="Deactive">Inactive</option>
+													</select>
+													<script language="JavaScript">
+														document.grouping_form.status.value = "<?php echo $rows->status; ?>";
+													</script>
+												</div>
+												<div class="col-sm-6"></div>
+											</div>
+										</fieldset>
+										
+									  <fieldset>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">&nbsp;</label>
                                         <div class="col-sm-4">
-                                            <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
+											<input type="submit" id="save" class="btn btn-info btn-fill center" value="SAVE">
+                                         
                                         </div>
-
+										<div class="col-sm-6"></div>
                                     </div>
                                     </fieldset>
 

@@ -1,11 +1,4 @@
-<style>
-   .formdesign
-   {
-   padding-bottom: 48px;
-   padding-top: 10px;
-   border-radius: 12px;
-   }
-</style>
+
 <div class="main-panel">
    <div class="content">
       <?php if($this->session->flashdata('msg')): ?>
@@ -67,7 +60,9 @@
                                          if(!is_numeric(($in[$i])) || !is_numeric(($e[$i])) )
                                          {
                                            echo'<span style=color:red;> '; echo"Fail"; echo'</span>';
-                                        }
+                                        } else {
+											// echo'<span style=color:green;> '; echo"Pass"; echo'</span>';
+										}
                                       }
                                     }
                                  }
@@ -103,6 +98,7 @@
    jQuery('#rank').addClass('collapse in');
    $('#rank').addClass('active');
    $('#rank').addClass('active');
+   
    $('#example').DataTable({
       dom: 'lBfrtip',
       buttons: [
@@ -118,7 +114,7 @@
                columns: ':visible'
                }
            },
-           'colvis'
+  
        ],
        "pagingType": "full_numbers",
        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],

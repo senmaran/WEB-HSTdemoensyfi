@@ -5,9 +5,8 @@
 
                         <div class="card">
                             <div class="header">
-							<h4 class="title">Edit Event  <button style="float: right;" onclick="history.go(-1);" class="btn btn-wd btn-default">Go Back</button></h4>
+									<h4 class="title">Edit Event  <button style="float: right;" onclick="history.go(-1);" class="btn btn-wd btn-default">BACK</button></h4>
                               <hr>
-
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
                               <div class="alert alert-success">
@@ -21,48 +20,44 @@
                                 <form method="post" action="<?php echo base_url(); ?>event/save" class="form-horizontal" enctype="multipart/form-data" id="eventform" name="eventform">
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Date</label>
-                                            <div class="col-sm-4">
-                                                <input type="text" name="event_date" class="form-control datepicker" placeholder="Event Date" value="<?php echo $rows->event_date; ?>"/>
-
+										<label class="col-sm-2 control-label">Date <span class="mandatory_field">*</span></label>
+										<div class="col-sm-4">
+                                               <input type="text" name="event_date" class="form-control datepicker" placeholder="Event Date" value="<?php $date=date_create($rows->event_date); echo date_format($date,"d-m-Y");  ?>"/>
                                             </div>
-
+										<div class="col-sm-6"></div>
                                         </div>
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Title</label>
+                                            <label class="col-sm-2 control-label">Title <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
-                                                <input type="text" name="event_name" class="form-control" value="<?php echo $rows->event_name; ?>">
+                                                <input type="text" name="event_name" class="form-control" value="<?php echo $rows->event_name; ?>" maxlength="50">
                                                   <input type="hidden" name="event_id" class="form-control" value="<?php echo $rows->event_id; ?>">
-
                                             </div>
-
+											<div class="col-sm-6"></div>
                                         </div>
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Description</label>
+                                            <label class="col-sm-2 control-label">Description <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                                 <textarea type="text" MaxLength="350" placeholder="Maximum 350 characters" name="event_details" class="form-control"><?php echo $rows->event_details; ?></textarea>
-
                                             </div>
-
+											<div class="col-sm-6"></div>
                                         </div>
                                     </fieldset>
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Status</label>
+                                            <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                               <select name="event_status" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="Active">Active</option>
                                                 <option value="Deactive">Inactive</option>
-
                                               </select>
                                               <script language="JavaScript">document.eventform.event_status.value="<?php echo $rows->status; ?>";</script>
                                             </div>
-
+											<div class="col-sm-6"></div>
                                         </div>
                                     </fieldset>
 
@@ -70,11 +65,11 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
-                                            <div class="text-center">
-                                                   <button type="submit" class="btn btn-info btn-fill center">SAVE</button>
+										<label class="col-sm-2 control-label"></label>
+                                            <div class="col-sm-4">
+												<input type="submit" id="save" class="btn btn-info btn-fill center"  value="SAVE">
                                             </div>
-
+											<div class="col-sm-6"></div>
                                         </div>
                                     </fieldset>
                                 </form>

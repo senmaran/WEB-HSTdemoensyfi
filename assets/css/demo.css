@@ -559,9 +559,10 @@ float: left;
   background-color: #212f35;
 }
 .alert{
-  width: 50%;
+  width: 90%;
   text-align: center;
-  margin-left: 20%;
+  margin-left: 5%;
+  margin-left: 5%;
 }
 .mandatory_field{
   color: #ef1919;
@@ -575,3 +576,8 @@ float: left;
 .btn-fill{
   width:100px;
 }
+.icon-font-size{
+   font-weight: 600;
+  font-size: 20px;
+}
+

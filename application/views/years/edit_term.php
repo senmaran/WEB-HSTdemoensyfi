@@ -6,17 +6,15 @@
                    <div class="card">
                        <div class="header">
                            <h4 class="title">Edit Academic Term</h4>
-
                        </div>
-<?php foreach($res as $row)
-{
-}	?>
+						<?php foreach($res as $row){}	?>
                        <div class="content">
                             <form method="post" action="<?php echo base_url(); ?>years/update_term" class="form-horizontal" enctype="multipart/form-data" id="myformsection" name="myformsection">
 						      			<input type="hidden" name="terms_id" required class="form-control" value="<?php echo $row->term_id?>">
-						           <fieldset>
+						           
+								   <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">Year</label>
+                                          <label class="col-sm-2 control-label">Year <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
                                             <select name="year_id"  required class="selectpicker" data-title="Select From & To Year " data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 
@@ -52,56 +50,44 @@
                                   </select>
 											<?php foreach($res as $row){}	?>
                                           </div>
-                                          <label class="col-sm-2 control-label">Term</label>
+                                          <label class="col-sm-2 control-label">Term <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
-                           <input type="text" name="terms" required class="form-control" value="<?php echo $row->term_name; ?>">
-
-
+												<input type="text" name="terms" required class="form-control" value="<?php echo $row->term_name; ?>" maxlength="20">
                                           </div>
-
                                       </div>
                                   </fieldset>
 
-                                 <fieldset>
-                                      <div class="form-group">
-                                          <label class="col-sm-2 control-label">From</label>
-                                          <div class="col-sm-4">
-                                              <input type="text" name="from_month" required class="form-control datepicker" value="<?php $date=date_create($row->from_date);
-echo date_format($date,"d-m-Y");  ?>">
-
-                                          </div>
-                                          <label class="col-sm-2 control-label">To</label>
-                                          <div class="col-sm-4">
-                                              <input type="text" value="<?php $date=date_create($row->to_date);
-echo date_format($date,"d-m-Y");  ?>" name="end_month" required class="form-control datepicker"  />
-                                          </div>
-
-                                      </div>
-                                  </fieldset>
-                                        <div class="form-group">
-
-								<label class="col-sm-2 control-label">Status</label>
+								<fieldset>
+								  <div class="form-group">
+									  <label class="col-sm-2 control-label">From <span class="mandatory_field">*</span></label>
+									  <div class="col-sm-4">
+										  <input type="text" name="from_month" required class="form-control datepicker" value="<?php $date=date_create($row->from_date); echo date_format($date,"d-m-Y");  ?>">
+									  </div>
+									  
+									  <label class="col-sm-2 control-label">To <span class="mandatory_field">*</span></label>
+									  <div class="col-sm-4">
+										  <input type="text" value="<?php $date=date_create($row->to_date); echo date_format($date,"d-m-Y");  ?>" name="end_month" required class="form-control datepicker"  />
+									  </div>
+								  </div>
+								</fieldset>
+                                
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
 								<div class="col-sm-4">
 								   <select name="status" class="selectpicker form-control">
 									  <option value="Active">Active</option>
 									  <option value="Deactive">Inactive</option>
-									</select>
-								<script language="JavaScript">document.myformsection.status.value="<?php echo $row->status; ?>";</script>
+									</select><script language="JavaScript">document.myformsection.status.value="<?php echo $row->status; ?>";</script>
                                  </div>
-											<label class="col-sm-2 control-label">&nbsp;</label>
-
-                                            
-
-                                            </div>
-																						    <div class="form-group">
-																									<div class="text-center">
-																												 <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
-																									</div>
-																								</div>
-
-                                    </fieldset>
-
-                             </form>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label"></label>
+								<div class="col-sm-4">
+								  <input type="submit" id="save" class="btn btn-info btn-fill center" value="SAVE">
+                                 </div>
+							</div>
+                         </form>
                        </div>
                    </div>
                </div>

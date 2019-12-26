@@ -16,9 +16,9 @@
                             <div class="content">
 
                                 <div class="fresh-datatables">
-                                  <h4 class="title">Fees Masters</h4>
-
-                          <table id="bootstrap-table" class="table">
+                                  <h4 class="title" >Fees Masters</h4>
+									<hr>
+                          <table id="example" class="table">
                               <thead>
                                  <th data-field="id" class="text-left">S.No</th>
                                 <th data-field="year" class="text-left" data-sortable="true">Year</th>
@@ -28,11 +28,8 @@
 								<th data-field="fees" class="text-left" data-sortable="true">Fees</th>
                                 <th data-field="date_from" class="text-left" data-sortable="true">Issue Date</th>
                                 <th data-field="date_to" class="text-left" data-sortable="true">Due Date</th>
-                                 <!-- <th data-field="notes" class="text-left" data-sortable="true">Notes</th> -->
                                 <th data-field="status" class="text-left" data-sortable="true">Status</th>
 								<th data-field="Section" class="text-left" data-sortable="true">Actions</th>
-
-
                               </thead>
                               <tbody>
                                 <?php
@@ -45,24 +42,23 @@
                                     <td class="text-left"><?php echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  ?></td>
                                     <td class="text-left"><?php echo $rows->term_name; ?></td>
                                     <td class="text-left"><?php echo $rows->class_name; ?> - <?php echo $rows->	sec_name; ?></td>
-                    									<td class="text-left"><?php echo $rows->quota_name;?></td>
-                    									<td class="text-left"><?php echo $rows->fees_amount;?></td>
-                    									<td class="text-left"><?php $date=date_create($rows->due_date_from);
-                                                           echo date_format($date,"d-m-Y");?></td>
-                    									<td class="text-left"><?php $date=date_create($rows->due_date_to);
-                                                           echo date_format($date,"d-m-Y");?></td>
-                    									<!-- <td class="text-left">php //echo $rows->notes;</td>-->								 
-                    									 <td> 
-                    									 <?php 
-                    									  if($stu=='Active'){?>
-                    									   <button class="btn btn-success btn-fill btn-wd">Active</button>
-                    									 <?php  }else{?>
-                    									  <button class="btn btn-danger btn-fill btn-wd">De-Active</button>
-                    									  <?php } ?>
-                    									  </td>
-
+									<td class="text-left"><?php echo $rows->quota_name;?></td>
+									<td class="text-left"><?php echo $rows->fees_amount;?></td>
+									<td class="text-left"><?php $date=date_create($rows->due_date_from);
+									   echo date_format($date,"d-m-Y");?></td>
+									<td class="text-left"><?php $date=date_create($rows->due_date_to);
+									   echo date_format($date,"d-m-Y");?></td>
+									<!-- <td class="text-left">php //echo $rows->notes;</td>-->								 
+									 <td> 
+									 <?php 
+									  if($stu=='Active'){?>
+									   <button class="btn btn-success btn-fill btn-wd">Active</button>
+									 <?php  }else{?>
+									  <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
+									  <?php } ?>
+									  </td>
                                     <td class="text-left">
-                                        <a href="<?php echo base_url(); ?>feesstructure/edit_fees_master_status/<?php echo $rows->id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                        <a href="<?php echo base_url(); ?>feesstructure/edit_fees_master_status/<?php echo $rows->id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
                                     </td>
                                   </tr>
                                   <?php $i++;  }  ?>
@@ -84,48 +80,48 @@
 </div>
 
 <script type="text/javascript">
- var $table = $('#bootstrap-table');
- 
-       $().ready(function(){
+	$().ready(function(){
 		  $('#feesmenu').addClass('collapse in');
         $('#payment').addClass('active');
         $('#fees').addClass('active'); 
-         //jQuery('#teachermenu').addClass('collapse in');
-           $table.bootstrapTable({
-               toolbar: ".toolbar",
-               clickToSelect: true,
-               showRefresh: true,
-               search: true,
-               showToggle: true,
-               showColumns: true,
-               pagination: true,
-               searchAlign: 'left',
-               pageSize: 10,
-               clickToSelect: false,
-               pageList: [10,15,25,50,100],
-
-               formatShowingRows: function(pageFrom, pageTo, totalRows){
-                   //do nothing here, we don't want to show the text "showing x of y from..."
-               },
-               formatRecordsPerPage: function(pageNumber){
-                   return pageNumber + " rows visible";
-               },
-               icons: {
-                   refresh: 'fa fa-refresh',
-                   toggle: 'fa fa-th-list',
-                   columns: 'fa fa-columns',
-                   detailOpen: 'fa fa-plus-circle',
-                   detailClose: 'fa fa-minus-circle'
-               }
-           });
-
-           //activate the tooltips after the data table is initialized
-           $('[rel="tooltip"]').tooltip();
-
-           $(window).resize(function () {
-               $table.bootstrapTable('resetView');
-           });
-
-
-       });
+         
+     });
+	 $('#example').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "15%" },
+					{ "width": "8%" },
+					{ "width": "7%" },
+					{ "width": "6%" },
+					{ "width": "9%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "8%" }
+				  ]
+         }); 
 </script>

@@ -45,29 +45,20 @@
                     <div class="card">
 					
 					 <div class="header">
-                            <h4 class="title">Promotions</h4>					
-                        <a rel="" href="#myModal" data-id="12" title="Promotion" class="open-AddBookDialog btn btn  edit" data-toggle="modal" data-target="#myModal" style="margin:20px;">
-                     PROMOTE</a>
-					 </div>
+						<h4 class="title">Promotions</h4>					
+								<a rel="" href="#myModal" data-id="12" title="Promotion" class="open-AddBookDialog btn btn  edit" data-toggle="modal" data-target="#myModal" style="margin:20px;">PROMOTE</a>
+						</div>
+						
                         <div class="header">
-                           Academic Years
+						<h4 class="title">Academic Years</h4>		
+                           <?php foreach($res_year as $years_r)  {?>
+                                    <a rel="" href="<?php echo base_url(); ?>promotion/view_list_for_year/<?php echo $years_r->year_id; ?>" data-id="12" title="Promotion" class="btn btn  edit" style="margin:20px;"> <?php echo date('Y', strtotime($years_r->from_month));  echo "-"; echo date('Y', strtotime( $years_r->to_month));  ?></a>
+                            <?php } ?>
                         </div>
-                        <div class="row">
+						<hr>
 
-                            <?php foreach($res_year as $years_r)  {?>
-                                <div class="col-md-2">
-                                    <a rel="" href="<?php echo base_url(); ?>promotion/view_list_for_year/<?php echo $years_r->year_id; ?>" data-id="12" title="Promotion" class="btn btn  edit" style="margin:20px;">
-                                        <?php echo date('Y', strtotime($years_r->from_month));  echo "-"; echo date('Y', strtotime( $years_r->to_month));  ?>
-                                    </a>
-                                </div>
-                                <?php } ?>
-
-                        </div>
-
-                        <div class="header">
-                            Promotion Details
-                        </div>
-
+                        <div class="header"> Promotion Details</div>
+						
                         <div class="content">
                         <div class="fresh-datatables">
                             <table id="bootstrap-table" class="table">
@@ -86,35 +77,16 @@
                                     <?php
                                    $i=1;
                                    foreach ($res_pro as $rows) {
-
                                    ?>
                                         <tr>
-                                            <td class="btn-simple btn-icon">
-                                                <?php echo $i; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $rows->student_name;?>
-                                            </td>
-                                            <td>
-                                                <?php echo date('Y', strtotime($rows->last_year));  echo "-"; echo date('Y', strtotime( $rows->to_year));  ?>
-                                            </td>
-                                            <td>
-                                                <?php echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $rows->last_class; ?>-
-                                                    <?php echo $rows->last_sec; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $rows->result_status;?>
-                                            </td>
-                                            <td>
-                                                <?php echo $rows->class_name; ?>-
-                                                    <?php echo $rows->sec_name; ?>
-                                            </td>
-                                            <td>
-                                                <a href="<?php echo base_url(); ?>promotion/edit_promotion/<?php echo $rows->id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-pencil-square-o"></i></a>
-                                            </td>
+                                            <td class="btn-simple btn-icon"><?php echo $i; ?></td>
+                                            <td><?php echo $rows->student_name;?></td>
+                                            <td><?php echo date('Y', strtotime($rows->last_year));  echo "-"; echo date('Y', strtotime( $rows->to_year));  ?></td>
+                                            <td><?php echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  ?></td>
+                                            <td><?php echo $rows->last_class; ?>-<?php echo $rows->last_sec; ?></td>
+                                            <td><?php echo $rows->result_status;?></td>
+                                            <td><?php echo $rows->class_name; ?>-<?php echo $rows->sec_name; ?></td>
+                                            <td><a href="<?php echo base_url(); ?>promotion/edit_promotion/<?php echo $rows->id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-pencil-square-o"></i></a></td>
                                         </tr>
                                         <?php $i++;  }  ?>
                                 </tbody>

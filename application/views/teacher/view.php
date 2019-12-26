@@ -22,16 +22,18 @@
                   <div class="card">
                      <div class="content" id="content1">
                         <div class="fresh-datatables">
-                           <!-- <h4 class="title" style="padding-bottom: 20px;">List of Teacher</h4> -->
-                           <legend>Staff Details <a href="<?php echo base_url(); ?>teacher/view_subject_handling" class="btn btn-default" style="margin-top:-10px;float:right;"> Handling Subjects</a></legend>
+                           <h4 class="title">Staff Details
+                           <a href="<?php echo base_url(); ?>teacher/view_subject_handling" class="btn btn-default" style="margin-top:-10px;float:right;"> Handling Subjects</a>
+						  </h4>
+						  <hr>
                            <table id="example" class="table table-striped table-no-bordered table-hover" cellspacing="0" >
                               <thead>
                                  <th data-field="id" class="text-left" data-sortable="true">S.No</th>
-																 <th data-field="Role" class="text-left" data-sortable="true">Role</th>
+								<th data-field="Role" class="text-left" data-sortable="true">Role</th>
                                  <th data-field="name" class="text-left" data-sortable="true">Name</th>
                                  <th data-field="email" class="text-left" data-sortable="true">Email ID</th>
                                  <th data-field="mobile" class="text-left" data-sortable="true">Mobile</th>
-                                 <th data-field="class" class="text-left" data-sortable="true">Class Teacher For</th>
+                                 <th data-field="class" class="text-left" data-sortable="true">Class Teacher</th>
                                  <th data-field="status" class="text-left" data-sortable="true">Status</th>
                                  <th data-field="Section" class="text-left" data-sortable="true">Actions</th>
                               </thead>
@@ -58,14 +60,12 @@
                                           ?>
                                     </td>
                                     <td class="text-left">
-                                       <a href="<?php echo base_url(); ?>teacher/get_teacher_id/<?php echo $rows->teacher_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-																			 <?php if($rows->role_type_id=='5'){
-
-																			 }else{ ?>
-																				 <a rel="tooltip" href="#myModal" data-id="<?php echo $rows->teacher_id; ?>" title="Add Subject" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" style="color:#eb34ff;" data-toggle="modal" data-target="#myModal"   >
-																				 <i class="fa fa-user-plus">  </i></a>
-																		<?php	 } ?>
-
+                                       <a href="<?php echo base_url(); ?>teacher/get_teacher_id/<?php echo $rows->teacher_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
+										 <?php if($rows->role_type_id=='5'){
+										 }else{ ?>
+											 <a rel="tooltip" href="#myModal" data-id="<?php echo $rows->teacher_id; ?>" title="Add Subject" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-target="#myModal" style="font-size:20px;color:#eb34ff;">
+											 <i class="fa fa-user-plus"></i></a>
+									<?php	 } ?>
                                     </td>
                                  </tr>
                                  <?php  $i++;  } } ?>
@@ -83,7 +83,7 @@
                                        <form action="" method="post" class="form-horizontal" id="subject_handling_form">
                                           <fieldset>
                                              <div class="form-group">
-                                                <label class="col-sm-4 control-label">Subject</label>
+                                                <label class="col-sm-4 control-label">Subject <span class="mandatory_field">*</span></label>
                                                 <div class="col-sm-6">
                                                    <select  name="subject_id" id="subject_id"  data-title="Select Subject" class="selectpicker" data-style=" btn-block" data-menu-style="dropdown-blue" onchange="getListClass()">
                                                       <?php foreach ($resubject as $rows) {  ?>
@@ -94,14 +94,14 @@
                                                 </div>
                                              </div>
                                              <div class="form-group">
-                                                <label class="col-sm-4 control-label">Class</label>
+                                                <label class="col-sm-4 control-label">Class <span class="mandatory_field">*</span></label>
                                                 <div class="col-sm-6">
                                                    <select   name="class_master_id" id="class_master_id" class="form-control">
                                                    </select>
                                                 </div>
                                              </div>
                                              <div class="form-group">
-                                                <label class="col-sm-4 control-label">Status</label>
+                                                <label class="col-sm-4 control-label">Status <span class="mandatory_field">*</span></label>
                                                 <div class="col-sm-6">
                                                    <select   name="status" id="status" class="form-control">
                                                       <option value="Active">Active</option>
@@ -112,7 +112,8 @@
                                              <div class="form-group">
                                                 <label class="col-sm-4 control-label">&nbsp;</label>
                                                 <div class="col-sm-6">
-                                                   <button type="submit" id="save" class="btn btn-info btn-fill center">ADD </button>
+													<input type="submit" id="save" class="btn btn-info btn-fill center" value="ADD">
+                                               
                                                 </div>
                                              </div>
                                           </fieldset>
@@ -233,31 +234,41 @@
       $('#teacher2').addClass('active');
 
 	$('#example').DataTable({
-		  fixedHeader: true,
-		dom: 'lBfrtip',
-		buttons: [
-              {
-                  extend: 'excelHtml5',
-                  exportOptions: {
-                      columns: ':visible'
-                  }
-              },
-              {
-                  extend: 'pdfHtml5',
-                  exportOptions: {
-                      columns: ':visible'
-                  }
-              },
-              'colvis'
-          ],
-		"pagingType": "full_numbers",
-		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-		responsive: true,
-		language: {
-		search: "_INPUT_",
-		searchPlaceholder: "Search records",
-		}
-	});
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search Staffs",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "10%%" },
+					{ "width": "25%%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "8%" }
+				  ]
+         }); 
 
 
 </script>

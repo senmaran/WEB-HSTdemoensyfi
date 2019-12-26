@@ -61,7 +61,7 @@
                                  <input type="text" name="tleave_date" readonly value="<?php $date1=date_create($row->to_leave_date);
                                     echo date_format($date1,"d-m-Y"); ?>" class="form-control">
                               </div>
-                              <label class="col-sm-2 control-label">Status</label>
+                              <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <select class="form-control" name="status" id="choose" >
                                     <option value="Pending">Pending</option>

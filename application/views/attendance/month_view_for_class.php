@@ -15,38 +15,36 @@
             <div class="">
                <div class="card">
                   <div class="content">
-
-                     <h4 class="title"> <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> Attendance In <?php echo $smonth;?> </h4>
-                        <p>  <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">BACK</button>  </p>
+				  
+                     <h4 class="title"> 
+					 <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">BACK</button>
+					 <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> Attendance In <?php echo $smonth;?> </h4>
+                        
+						<hr>
                      <div class="fresh-datatables">
-                        <table id="bootstrap-table" class="table">
+						<p>Total Working Days <?php if($res_total['status']=="success"){echo $wrk= $res_total['result']; }else{echo "No data"; } ?></p>
+                        <table id="example" class="table">
                            <thead>
-                              <th data-field="id" class="text-center"  data-sortable="true">S.No</th>
-                              <th data-field="date" class="text-center" data-sortable="true">Name</th>
-                              <th data-field="month" class="text-center" data-sortable="true">Month</th>
-                              <th data-field="year" class="text-center" data-sortable="true">Leaves</th>
-                              <th data-field="pp" class="text-center" data-sortable="true">Days Present </th>
-                              <th data-field="check" class="text-center" data-sortable="true">Actions</th>
+                              <th data-field="id">S.No</th>
+                              <th data-field="date">Name</th>
+                              <th data-field="month">Month</th>
+                              <th data-field="year">Leaves</th>
+                              <th data-field="pp">Days Present </th>
+                              <th data-field="check">Actions</th>
                            </thead>
-                           <p>Total Working Days
-                           <?php if($res_total['status']=="success"){echo $wrk= $res_total['result']; }else{echo "No data"; } ?>
-                           </p>
+
                            <tbody>
                               <?php
-
-
                                  $i=1;
                                  foreach ($res as $rows) {
-
-                                 ?>
+                              ?>
                               <tr>
-                                 <td class="text-center"><?php echo $i;  ?></td>
-                                 <td class="text-center  txt" ><?php echo $rows->name; ?></td>
-                                  <td class="text-center  txt" ><?php  echo date("F", strtotime('00-'.$month.'-01')); ?></td>
-                                 <td class="text-center"><?php echo $ab=$rows->leaves; ?></td>
-                                 <td class="text-center"><?php echo $pp=$wrk-$ab; ?></td>
-
-                                  <td class="text-center">
+                                 <td><?php echo $i;  ?></td>
+                                 <td><?php echo $rows->name; ?></td>
+                                  <td><?php  echo date("F", strtotime('00-'.$month.'-01')); ?></td>
+                                 <td><?php echo $ab=$rows->leaves; ?></td>
+                                 <td><?php echo $pp=$wrk-$ab; ?></td>
+                                  <td>
                                     <input type="hidden" name="month_id" id="month_id" value="<?php echo $month;  ?>">
                                     <input type="hidden" name="year_id" id="year_id" value="<?php echo $year;  ?>">
 
@@ -133,8 +131,42 @@ function list_dates(student_id){
 });
 }
 
- $('#bootstrap-table').DataTable();
          $('#attend').addClass('collapse in');
          $('#attendance').addClass('active');
          $('#attend2').addClass('active');
+		 
+		  $('#example').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "50%" },
+					{ "width": "15%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "8%" }
+				  ]
+         }); 
 </script>

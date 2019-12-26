@@ -30,7 +30,7 @@
                  <div class="col-md-12">
                <?php foreach ($getall_class as $rows) {  ?>
                  <a href="<?php echo base_url(); ?>timetable/select_day/<?php echo base64_encode($rows->class_sec_id*9876); ?>/<?php  echo $term_id=$this->uri->segment(3);   ?>"
-                   class="btn btn-primary" style="width:150px;margin-bottom:10px;margin-left:15px;"><?php echo $rows->class_name; ?>&nbsp; - &nbsp;<?php echo $rows->sec_name; ?></a>
+                   class="btn btn-primary" style="width:150px;margin-bottom:10px;margin-left:15px;cursor:pointer;"><?php echo $rows->class_name; ?>&nbsp; - &nbsp;<?php echo $rows->sec_name; ?></a>
              <?php      } ?>
                </div>
                </div>

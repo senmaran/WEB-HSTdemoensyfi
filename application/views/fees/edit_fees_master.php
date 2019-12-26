@@ -21,7 +21,7 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Academic Year</label>
+                                            <label class="col-sm-4 control-label">Academic Year <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                               <input type="hidden" name="id"  value="<?php  echo $rows->id; ?>">
                                                 <input type="hidden" name="year_id"  value="<?php  echo $rows->year_id; ?>">
@@ -33,7 +33,7 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                          <label class="col-sm-4 control-label">Term</label>
+                                          <label class="col-sm-4 control-label">Term <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
 										                         <select name="terms"   class="selectpicker form-control"  >
                                                     <?php foreach ($terms as $row) {  ?>
@@ -48,7 +48,7 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Class</label>
+                                            <label class="col-sm-4 control-label">Class <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                                <select name="class_name" disabled class="selectpicker" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                               <option value="<?php  echo $rows->class_master_id; ?>"><?php  echo $rows->class_name; ?> - <?php  echo $rows->sec_name; ?></option>
@@ -60,7 +60,7 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Fees</label>
+                                            <label class="col-sm-4 control-label">Fees <span class="mandatory_field">*</span></label>
                       						      	  <div class="col-sm-4">
                       				                <input type="text" name="fees_amount"  value="<?php echo $rows->fees_amount;?>" class="form-control" placeholder="Enter Fees Amount"/>
                       											  </div>
@@ -68,7 +68,7 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Quota</label>
+                                            <label class="col-sm-4 control-label">Quota <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
 												                    <select name="quota_name"  class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <?php foreach ($quota as $row1) {  ?>
@@ -82,7 +82,7 @@
                                     </fieldset>
 									                  <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Issue Date</label>
+                                            <label class="col-sm-4 control-label">Issue Date <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="due_date_from" value="<?php $date=date_create($rows->due_date_from);
                                                         echo date_format($date,"d-m-Y");?>"  class="form-control datepicker" placeholder="Issue date"/>
@@ -91,7 +91,7 @@
                                     </fieldset>
 									                 <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Due Date</label>
+                                            <label class="col-sm-4 control-label">Due Date <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="due_date_to" value="<?php $date=date_create($rows->due_date_to);
                                                  echo date_format($date,"d-m-Y");?>" class="form-control datepicker" placeholder="Due date"/>
@@ -102,7 +102,7 @@
 
 									               <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Notes</label>
+                                            <label class="col-sm-4 control-label">Notes <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                               <textarea name="notes" MaxLength="250" placeholder="MaxCharacters 250" class="form-control" rows="4" cols="80"><?php echo $rows->notes; ?></textarea>
                                             </div>
@@ -111,7 +111,7 @@
 
 						                            <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Status</label>
+                                            <label class="col-sm-4 control-label">Status <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                               <select name="status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                   <option value="Active">Active</option>
@@ -126,7 +126,8 @@
                                         <div class="form-group">
                                             <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
                                             <div class="text-center">
-                                              <button type="submit" id="save1" class="btn btn-info btn-fill center">SAVE </button>
+												<input type="submit" id="save1" class="btn btn-info btn-fill center"  value="SAVE">
+                                              
                                             </div>
                                         </div>
                                     </fieldset>

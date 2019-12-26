@@ -1,8 +1,3 @@
-<style>
-   .txt{
-   font-weight: 200;
-   }
-</style>
 <div class="main-panel">
    <div class="content">
       <div class="container-fluid">
@@ -12,24 +7,24 @@
                   <div class="content">
 
                      <h4 class="title"><?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> Attendance Details</h4>
-                        <p class="pull-right"> <button onclick="history.go(-1);" class="btn btn-wd btn-default">BACK</button></p>
+                     <p class="pull-right"> <button onclick="history.go(-1);" class="btn btn-wd btn-default">BACK</button></p>
+						
                      <div class="fresh-datatables">
-                        <table id="bootstrap-table" class="table">
+                        <table id="example" class="table">
                            <thead>
-                              <th data-field="id" class="text-center"  data-sortable="true">S.No</th>
-                              <th data-field="date" class="text-center" data-sortable="true">Name</th>
-                              <th data-field="year" class="text-center" data-sortable="true">Status </th>
+                              <th data-field="id">S.No</th>
+                              <th data-field="date">Name</th>
+                              <th data-field="year">Status </th>
                            </thead>
                            <tbody>
                               <?php
                                  $i=1;
-                                 foreach ($result as $rows) {
-
+									foreach ($result as $rows) {
                                  ?>
                               <tr>
-                                 <td class="text-center"><?php echo $i;  ?></td>
-                                 <td class="text-center  txt" ><?php echo $rows->name; ?></td>
-                                 <td class="text-center"><?php $stat=$rows->a_status;
+                                 <td><?php echo $i;  ?></td>
+                                 <td><?php echo $rows->name; ?></td>
+                                 <td><?php $stat=$rows->a_status;
                                     if($stat=="OD"){ ?>
                                     <button class="btn btn-info btn-fill btn-wd">OD</button>
                                     <?php }else if($stat=="A"){ ?>
@@ -62,8 +57,40 @@
 </div>
 </div>
 <script type="text/javascript">
-   $('#bootstrap-table').DataTable();
+
          $('#attend').addClass('collapse in');
          $('#attendance').addClass('active');
          $('#attend1').addClass('active');
+		 
+		 $('#example').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "80%" },
+					{ "width": "13%" }
+				  ]
+         }); 
 </script>

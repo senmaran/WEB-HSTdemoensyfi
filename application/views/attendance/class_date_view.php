@@ -35,11 +35,11 @@
                               <tr>
                                  <td class="text-center"><?php echo $i;  ?></td>
                                  <td class="text-center" ><?php echo $rows->class_name; ?></td>
-								 <?php if ($class_id=="") { ?><td colspan="4" class="text-right" style="color:#cc0000;">Attendance not taken</td> <?php } else { ?>
+								 <?php if ($class_id=="") { ?><td></td><td></td><td></td><td class="text-center" style="color:red;">Attendance not taken</td> <?php } else { ?>
                                  <td class="text-center"><?php echo $rows->class_total; ?></td>
                                  <td class="text-center"><?php echo $rows->no_of_present; ?></td>
 								<td class="text-center"><?php echo $rows->no_of_absent; ?></td>
-								<td class="text-center"></td>
+								<td class="text-center" style="color:green;">Attendance taken</td>
 								 <?php } ?>
                               </tr>
                               <?php $i++;  }  

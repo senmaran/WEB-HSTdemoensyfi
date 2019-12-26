@@ -291,7 +291,7 @@ Class Adminattendancemodel extends CI_Model
 	   {
 			$acd_year=$this->get_cur_year();
 			$year_id= $acd_year['cur_year'];
-			
+			$search_date = date("Y-m-d", strtotime($select_date));
 			
 			
 			 $att_query = "SELECT
@@ -311,7 +311,7 @@ Class Adminattendancemodel extends CI_Model
 							ecs.sec_id = ec.section
 						LEFT OUTER JOIN edu_attendence AS ea
 						ON
-							ea.class_id = ec.class_sec_id AND ec.class_sec_id IN($class_ids) AND DATE_FORMAT(ea.created_at, '%Y-%m-%d') = '$select_date' AND ea.ac_year = '$year_id' AND ea.status='Active'
+							ea.class_id = ec.class_sec_id AND ec.class_sec_id IN($class_ids) AND DATE_FORMAT(ea.created_at, '%Y-%m-%d') = '$search_date' AND ea.ac_year = '$year_id' AND ea.status='Active'
 						WHERE
 							ec.class_sec_id IN($class_ids)";
 			

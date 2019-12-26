@@ -79,7 +79,7 @@ Class Login extends CI_Model
          $checkpassword="SELECT user_id FROM edu_users WHERE user_password='$oldpassword' AND user_id='$user_id'";
          $res=$this->db->query($checkpassword);
          if($res->num_rows()==1){
-           $query="UPDATE edu_users SET user_password='$newpassword',	updated_date=NOW() WHERE user_id='$user_id'";
+           $query="UPDATE edu_users SET user_password='$newpassword',updated_date=NOW() WHERE user_id='$user_id'";
            $ex=$this->db->query($query);
             $data= array("status" => "success");
            return $data;

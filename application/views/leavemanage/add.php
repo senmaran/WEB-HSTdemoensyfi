@@ -12,11 +12,12 @@
             </div>
             <?php endif; ?>
             <div class="content">
+
                <form method="post" class="form-horizontal" enctype="multipart/form-data" id="leaveform">
                   <p style="margin-left:200px;" id="errormsg"></p>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Leave Type</label>
+                        <label class="col-sm-4 control-label">Leave Type <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select name="leave_type" id="leave_type" class="selectpicker form-control" data-title="Leave type" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="Regular Holiday">Regular Holiday</option>
@@ -25,23 +26,26 @@
                         </div>
                      </div>
                   </fieldset>
-                  <fieldset id="leave_years">
+                 <fieldset id="leave_years">
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Year</label>
+                        <label class="col-sm-4 control-label">Year <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select name="years" id="leave_years1" class="selectpicker form-control" data-title="Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                              <option value="2017">2017</option>
-                              <option value="2018">2018</option>
-                              <option value="2019">2019</option>
-                              <option value="2020">2020</option>
+						   <?php
+							$firstYear = (int)date('Y');
+							$lastYear = $firstYear + 4;
+							for($i=$firstYear;$i<=$lastYear;$i++)
+							{
+								echo '<option value='.$i.'>'.$i.'</option>';
+							}
+							?>
                            </select>
-                           <p id="erroryears"></p>
                         </div>
                      </div>
                   </fieldset>
                   <fieldset id="leave_class">
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Class</label>
+                        <label class="col-sm-4 control-label">Class <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select multiple name="class_name[]" data-title="Classes" id="leave_class" class="selectpicker" >
                               <?php foreach ($getall_class as $rows) {  ?>
@@ -54,7 +58,7 @@
                   </fieldset>
                   <fieldset id="days">
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Day</label>
+                        <label class="col-sm-4 control-label">Day <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select name="days" id="leave_days" class="selectpicker form-control" data-title="Day" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="Sunday">Sunday</option>
@@ -71,7 +75,7 @@
                   </fieldset>
                   <fieldset id="weeks">
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Week</label>
+                        <label class="col-sm-4 control-label">Week <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select name="weeks" id="leave_weeks" class="selectpicker form-control" data-title="Week" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="1">1</option>
@@ -86,7 +90,7 @@
                   </fieldset>
                   <fieldset  id="leaves_date">
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Date</label>
+                        <label class="col-sm-4 control-label">Date <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <input type="text" name="leave_date" id="leave_date" class="form-control datepicker" placeholder="Date"/>
                            <p id="errordates"></p>
@@ -95,9 +99,9 @@
                   </fieldset>
                   <fieldset id="leaves_name">
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Title</label>
+                        <label class="col-sm-4 control-label">Title <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
-                           <input type="text" name="leave_name" id="leave_name" class="form-control" placeholder="Title">
+                           <input type="text" name="leave_name" id="leave_name" class="form-control" placeholder="Title" maxlength="30">
                            <p id="errorname"></p>
                         </div>
                      </div>
@@ -114,7 +118,7 @@
                      </fieldset> -->
                   <fieldset id="leave_status">
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Status</label>
+                        <label class="col-sm-4 control-label">Status <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select name="leave_status" id="leave_status1" class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="Active">Active</option>

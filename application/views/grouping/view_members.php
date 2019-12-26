@@ -91,7 +91,7 @@
                                     <td class="text-center"><?php echo $rows->name;?></td>
                                     <td><?php echo $rows->class_name; ?>-<?php echo $rows->sec_name; ?></td>
                                     <td>
-                                       <a   onclick="delete_member(<?php echo $rows->id; ?>)" rel="tooltip" title="Remove" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-times"></i></a>
+                                       <a onclick="delete_member(<?php echo $rows->id; ?>)" rel="tooltip" title="Remove" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-times"></i></a>
                                     </td>
                                  </tr>
                                  <?php $i++;  }  ?>
@@ -127,7 +127,7 @@
                                     <td class="text-center"><?php echo $rows_staff->name;?></td>
                                     <td><?php echo $rows_staff->role_name; ?></td>
                                     <td>
-                                       <a   onclick="delete_member(<?php echo $rows_staff->id; ?>)" rel="tooltip" title="Remove" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-times"></i></a>
+                                       <a onclick="delete_member(<?php echo $rows_staff->id; ?>)" rel="tooltip" title="Remove" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-times"></i></a>
                                     </td>
                                  </tr>
                                  <?php $i++;  }  ?>

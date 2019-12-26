@@ -97,7 +97,7 @@ Class Enrollmentmodel extends CI_Model
             $data= array("status" => "success");
             return $data;
           }else{
-            $data= array("status" => "Registration Already Exist");
+            $data= array("status" => "already");
             return $data;
           }
 

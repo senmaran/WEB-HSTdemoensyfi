@@ -3,43 +3,60 @@
 <div class="content">
 <div class="container-fluid">
 <div class="row">
-<div class="col-md-10">
+<div class="col-md-12">
 <div class="card">
    <div class="header">
 	   <h4 class="title">Create Leave</h4>
    </div>
    <div class="content">
 	   <form method="post" action="<?php echo base_url(); ?>userleavemaster/create_leave" class="form-horizontal" enctype="multipart/form-data" id="leaveformsection" name="leaveformsection">
-			 <fieldset>
+	   
+	    <fieldset>
 				  <div class="form-group">
-					  <label class="col-sm-2 control-label">Title</label>
-					  <div class="col-sm-4">
-						<input type="text" name="leave_name" class="form-control"  value="">
-					  </div>
-					  <label class="col-sm-2 control-label">Category</label>
+					  <label class="col-sm-2 control-label">Category <span class="mandatory_field">*</span></label>
 					  <div class="col-sm-4">
 					   <select name="leave_type"  class="selectpicker form-control" data-title="Leave Type" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 							  <option value="1">Leave</option>
 							  <option value="0">Permission</option>
 						</select>
 					  </div>
+					   <div class="col-sm-6"></div>
 				  </div>
 			  </fieldset>
+			  
+			 <fieldset>
+				  <div class="form-group">
+					  <label class="col-sm-2 control-label">Title <span class="mandatory_field">*</span></label>
+					  <div class="col-sm-4">
+						<input type="text" name="leave_name" class="form-control"  value="" maxlength="30">
+					  </div>
+					  <div class="col-sm-6"></div>
+				  </div>
+			  </fieldset>
+			  
+			  
+			  
 				<fieldset>
 					<div class="form-group">
-					 <label class="col-sm-2 control-label">Status</label>
+					 <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
 					  <div class="col-sm-4">
 					   <select name="status"  class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 							  <option value="Active">Active</option>
 							  <option value="Deactive">Inactive</option>
 						</select>
 					  </div>
-
+					   <div class="col-sm-6"></div>
+					</div>
+			   </fieldset>
+			   
+			   <fieldset>
+					<div class="form-group">
 					<label class="col-sm-2 control-label">&nbsp;</label>
 						<div class="col-sm-4">
-		                 <input type="submit" id="save" class="btn btn-info btn-fill center"  value="CREATE">
+							<input type="submit" id="save" class="btn btn-info btn-fill center"  value="CREATE">
 						</div>
-						</div>
+						 <div class="col-sm-6"></div>
+					</div>
 			   </fieldset>
 
 		 </form>
@@ -60,13 +77,16 @@
 <div class="row">
 <div class="col-md-12">
 	<div class="card">
+	 <div class="header">
+	   <h4 class="title">List Leaves</h4>
+   </div>
 		<div class="content">
 			<div class="fresh-datatables">
-	  <table id="bootstrap-table" class="table">
+	  <table id="example" class="table">
 		  <thead>
 			<th>S.no</th>
-			<th>Title</th>
 			<th>Category </th>
+			<th>Title</th>
 			<th>Status</th>
 			<th class="disabled-sorting text-right">Actions</th>
 		  </thead>
@@ -77,9 +97,8 @@
 			?>
 			  <tr>
 				<td><?php  echo $i; ?></td>
-				<td><?php  echo $rows->leave_title; ?></td>
 				<td><?php if($per==0){ echo "Permission"; }else { echo "Leave"; }?></td>
-
+				<td><?php  echo $rows->leave_title; ?></td>
 				 <td><?php
 					  if($stu=='Active'){?>
 						<button class="btn btn-success btn-fill btn-wd">Active</button>
@@ -87,7 +106,7 @@
 					  <button class="btn btn-danger btn-fill btn-wd">InActive</button>
 					  <?php } ?></td>
 				<td class="text-right">
-				  <a href="<?php echo base_url(); ?>userleavemaster/edit_leave/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+				  <a href="<?php echo base_url(); ?>userleavemaster/edit_leave/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" rel="tooltip" title="Edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
 				</td>
 			  </tr>
 						  <?php $i++;   } ?>
@@ -106,62 +125,51 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-
-/* $('#mastersmenu').addClass('collapse in');
-$('#master').addClass('active');
-$('#masters10').addClass('active'); */
-
 $('#leaveformsection').validate({ // initialize the plugin
-rules: {
-leave_name:{required:true },
-leave_type:{required:true },
-status:{required:true }
-},
-messages: {
-leave_name:"This field cannot be empty!",
-leave_type:"Please choose an option!",
-status:"Please choose an option!"
-}
-});
-});
-
-var $table = $('#bootstrap-table');
-$().ready(function(){
-$table.bootstrapTable({
-toolbar: ".toolbar",
-clickToSelect: true,
-showRefresh: true,
-search: true,
-showToggle: true,
-showColumns: true,
-pagination: true,
-searchAlign: 'left',
-pageSize: 8,
-clickToSelect: false,
-pageList: [8,10,25,50,100],
-
-formatShowingRows: function(pageFrom, pageTo, totalRows){
-//do nothing here, we don't want to show the text "showing x of y from..."
-},
-formatRecordsPerPage: function(pageNumber){
-return pageNumber + " rows visible";
-},
-icons: {
-refresh: 'fa fa-refresh',
-toggle: 'fa fa-th-list',
-columns: 'fa fa-columns',
-detailOpen: 'fa fa-plus-circle',
-detailClose: 'fa fa-minus-circle'
-}
+	rules: {
+		leave_name:{required:true },
+		leave_type:{required:true },
+		status:{required:true }
+	},
+	messages: {
+		leave_name:"This field cannot be empty!",
+		leave_type:"Please choose an option!",
+		status:"Please choose an option!"
+	}
+	});
 });
 
-//activate the tooltips after the data table is initialized
-$('[rel="tooltip"]').tooltip();
-
-$(window).resize(function () {
-$table.bootstrapTable('resetView');
-});
-
-
-});
+ $('#example').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search Leaves",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "30%%" },
+					{ "width": "35%%" },
+					{ "width": "25%" },
+					{ "width": "8%" }
+				  ]
+         }); 
 </script>

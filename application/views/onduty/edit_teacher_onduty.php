@@ -48,7 +48,7 @@
                               <div class="col-sm-4">
                                  <textarea rows="4" cols="80" readonly name="notes" class="form-control"><?php echo $res->notes; ?></textarea>
                               </div>
-                              <label class="col-sm-2 control-label">Status</label>
+                              <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <select class="form-control" name="status" id="choose" >
 												<option value="Pending">Pending</option>
@@ -63,7 +63,8 @@
                         <div class="form-group">
                            <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                            <div class="text-center">
-                              <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
+							<input type="submit" id="save" class="btn btn-info btn-fill center" value="SAVE">
+                          
                            </div>
                         </div>
                         </fieldset>

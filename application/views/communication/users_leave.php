@@ -12,13 +12,13 @@
 
                <div class="card">
                   <div class="header">
-                     <legend>Staff Leaves
-					  <a href="<?php echo base_url(); ?>userleavemaster/home" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Leave Master</a>
-					  </legend>
+                     <h4 class="title" >Staff Leaves <a href="<?php echo base_url(); ?>userleavemaster/home" class="btn btn-wd btn-default pull-right" >Leave Master</a></h4>
                   </div>
-				  <form method="post" action="<?php echo base_url(); ?>communication/view_user_leaves" class="form-horizontal" enctype="multipart/form-data" id="search_year" name="search_year">
+				  <hr>
+                  <div class="content">				  
+						<form method="post" action="<?php echo base_url(); ?>communication/view_user_leaves" class="form-horizontal" enctype="multipart/form-data" id="search_year" name="search_year">
                         <fieldset>
-                           <div class="form-group">
+                           <div class="form-group" style="padding-bottom: 20px;">
                               <div class="col-sm-4">
                                  <select name="ace_year" id="ace_year"  required class="selectpicker" >
 								  							 <option value="">Select Year</option>
@@ -36,14 +36,14 @@
                               </div>
 
                               <div class="col-sm-4">
-                                  <button type="submit" id="search" class="btn btn-info btn-fill center">Search </button>
+								<input type="submit" id="search" class="btn btn-info btn-fill center" value="Search">
                               </div>
                            </div>
                         </fieldset>
                      </form>
-                  <div class="content">
-                           <div class="fresh-datatables">
-                        <table id="bootstrap-table" class="table">
+					 
+                       <div class="fresh-datatables">
+                        <table id="example" class="table">
                            <thead>
                               <th>S.no</th>
                               <th>Staff</th>
@@ -85,7 +85,7 @@
 								                  <a href="<?php echo base_url(); ?>communication/add_substitution/<?php echo $rows->leave_id; ?>" rel="tooltip" title="Substitute Teacher" class="btn btn-simple btn-info btn-icon table-action view" style="cursor: pointer;">
 								                  <i class="fa fa-user-plus" aria-hidden="true"></i></a>
 								                 <?php //}else{ echo "";} ?>
-                                 <a href="<?php echo base_url();?>communication/user_leave_approval/<?php echo $rows->leave_id; ?>" title="Leave Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit">
+                                 <a href="<?php echo base_url();?>communication/user_leave_approval/<?php echo $rows->leave_id; ?>" title="Leave Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit"  style="font-size:20px;">
                                   <i class="fa fa-edit" aria-hidden="true"></i>
                                  </td>
                               </tr>
@@ -146,5 +146,41 @@
        }
     });
    });
-   $('#bootstrap-table').DataTable();
+   
+   
+  $('#example').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search Staffs",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "20%%" },
+					{ "width": "25%%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "8%" }
+				  ]
+         }); 
 </script>

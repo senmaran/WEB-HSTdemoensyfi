@@ -77,6 +77,7 @@
 
 							<?php if($pic!='') { ?>
 								<div class="header text-center"><img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>
+
 							<?php } else { ?>
 									<!--<div class="header text-center"><img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"></div>-->
 									<div class="header text-center"><img src="http://<?php echo $server_url; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"></div>
@@ -84,12 +85,12 @@
 									<div class="content">
 										<div class="form-group">
 											<label>Username</label>
-											<input type="text" placeholder="Enter username" name="email" class="form-control">
+											<input type="text" placeholder="Enter username" name="email" class="form-control" maxlength="12">
 										</div>
 										<br>
 										<div class="form-group">
 											<label>Password</label>
-											<input type="password" placeholder="Enter password" name="password" class="form-control">
+											<input type="password" placeholder="Enter password" name="password" class="form-control" maxlength="12">
 										</div>
 										<div class="form-group">
 											<label style="float:right;"><a href="<?php echo base_url(); ?>home/forgotpassword">Forgot password?</a></label>

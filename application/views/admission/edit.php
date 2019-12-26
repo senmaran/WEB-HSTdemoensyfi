@@ -25,7 +25,7 @@
                         </div>
                         <label class="col-sm-2 control-label">Admission Number</label>
                         <div class="col-sm-4">
-                           <input type="text" class="form-control" name="admission_no" id="admission_no" value="<?php echo $rows->admisn_no; ?>" >
+                           <input type="text" class="form-control" name="admission_no" id="admission_no" value="<?php echo $rows->admisn_no; ?>" maxlength="10">
                            <input type="hidden" class="form-control" name="admission_id" id="admission_no" value="<?php echo $rows->admission_id; ?>" readonly>
                         </div>
                      </div>
@@ -43,7 +43,7 @@
                         </div>
 						<label class="col-sm-2 control-label">EMIS Number</label>
                         <div class="col-sm-4">
-                           <input type="text" name="emsi_num" value="<?php echo $rows->emsi_num; ?>" class="form-control" />
+                           <input type="text" name="emsi_num" value="<?php echo $rows->emsi_num; ?>" class="form-control" maxlength="15" />
                         </div>
                        
                      </div>
@@ -53,7 +53,7 @@
 					<div class="form-group">
                         <label class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-4">
-                           <input type="text" name="name" class="form-control"  value="<?php echo $rows->name; ?>" >
+                           <input type="text" name="name" class="form-control"  value="<?php echo $rows->name; ?>" maxlength="30">
                         </div>
                         <label class="col-sm-2 control-label">Gender</label>
                         <div class="col-sm-4">
@@ -70,11 +70,11 @@
                      <div class="form-group">
 					  <label class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-4">
-                           <input type="text" name="email" class="form-control " placeholder="Email Address" value="<?php echo $rows->email; ?>"/>
+                           <input type="text" name="email" class="form-control " placeholder="Email Address" value="<?php echo $rows->email; ?>" maxlength="30"/>
                         </div>
 						<label class="col-sm-2 control-label">Mobile</label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Mobile Number" name="mobile" class="form-control" value="<?php echo $rows->mobile; ?>">
+                           <input type="text" placeholder="Mobile Number" name="mobile" class="form-control" value="<?php echo $rows->mobile; ?>" maxlength="10">
                         </div>
 					</div>
 					</fieldset>
@@ -93,7 +93,7 @@
                         </div>
                         <label class="col-sm-2 control-label">Age</label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Age" name="age" class="form-control" value="<?php echo $rows->age; ?>">
+                           <input type="text" placeholder="Age" name="sage" class="form-control" value="<?php echo $rows->age; ?>">
                         </div>
                      </div>
                   </fieldset>
@@ -110,19 +110,20 @@
                         </div>
                         <label class="col-sm-2 control-label">Religion</label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Religion" name="religion" class="form-control" value="<?php echo $rows->religion; ?>">
+                           <input type="text" placeholder="Religion" name="religion" class="form-control" value="<?php echo $rows->religion; ?>" maxlength="30">
                         </div>
                      </div>
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Community Class</label>
-                        <div class="col-sm-4">
-                           <input type="text" placeholder="Community Class" name="community_class" class="form-control" value="<?php echo $rows->community_class; ?>">
-                        </div>
+                        
                         <label class="col-sm-2 control-label">Community</label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Community" name="community" class="form-control" value="<?php echo $rows->community; ?>">
+                           <input type="text" placeholder="Community" name="community" class="form-control" value="<?php echo $rows->community; ?>" maxlength="30">
+                        </div>
+						<label class="col-sm-2 control-label">Community Class</label>
+                        <div class="col-sm-4">
+                           <input type="text" placeholder="Community Class" name="community_class" class="form-control" value="<?php echo $rows->community_class; ?>" maxlength="10">
                         </div>
                      </div>
                   </fieldset>
@@ -130,7 +131,6 @@
                      <div class="form-group">
                         <label class="col-sm-2 control-label">Mother Tongue</label>
                         <div class="col-sm-4">
-                           <!-- <input type="text" placeholder="Mother Tongue" name="mother_tongue" class="form-control" value="<?php echo $rows->mother_tongue; ?>"> -->
                            <select name="mother_tongue" id="mother_tongue" class="selectpicker form-control">
                               <option value="Tamil">Tamil</option>
                               <option value="English">English</option>
@@ -142,9 +142,10 @@
                            </select>
                            <script>$('#mother_tongue').val('<?php echo $rows->mother_tongue; ?>');</script>
                         </div>
-                         <label class="col-sm-2 control-label">Language Proposed</label>
+                         <label class="col-sm-2 control-label">Second Language</label>
                         <div class="col-sm-4">
                            <select name="lang" class="selectpicker" data-style="btn-default btn-block" >
+						   <option value="">Select</option>
                              <?php foreach($lang as $res){ ?>
                               <option value="<?php echo $res->subject_id;?>"><?php echo $res->subject_name;?></option>
                               <?php } ?>
@@ -156,31 +157,11 @@
               
                   <fieldset>
                      <div class="form-group">
-                          <label class="col-sm-2 control-label">Previous School</label>
-                            <div class="col-sm-4">
-                               <input type="text" name="sch_name" value="<?php echo $rows->last_sch_name; ?>" class="form-control">
-                            </div>
-                           <label class="col-sm-2 control-label">Qualified promotion</label>
-                            <div class="col-sm-4">
-                              <select name="qual" class="selectpicker" >
-                                 <option value="1">Yes</option>
-                                 <option value="0">No</option>
-                              </select>
-                              <script language="JavaScript">document.formadmission.qual.value="<?php echo $rows->qualified_promotion; ?>";</script>
-                            </div>
-                     </div>
-                  </fieldset>
-
-                  
-
-
-                  <fieldset>
-                     <div class="form-group">
-                        
-
-                        <label class="col-sm-2 control-label">Blood Group</label>
+					 
+					    <label class="col-sm-2 control-label">Blood Group</label>
                         <div class="col-sm-4">
                            <select name="blood_group" class="selectpicker" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+						   <option value="">Select</option>
                             <?php foreach($blood as $res){ ?>
                               <option value="<?php echo $res->id;?>"><?php echo $res->blood_group_name;?></option>
                               <?php } ?>
@@ -188,33 +169,40 @@
                             <script language="JavaScript">document.formadmission.blood_group.value="<?php echo $rows->blood_group; ?>";</script>
                         </div>
 						
-						
-                           <?php 
-							   $t = $rows->transfer_certificate;
-							   $s = $rows->record_sheet;
-							   $tccopy = $rows->tccopy;
-                           ?>
-						   
-						   <label class="col-sm-2 control-label">Certificates</label>
-                             <div class="col-sm-4" style="padding-top:10px;">
-							 <input type="hidden" name="user_tc_old" class="form-control" value="<?php echo $rows->tccopy; ?>">
-							 <?php if ($t=='1') {?>
-                                <input type="checkbox" name="trn_cert" value="1" id="trn_cert" checked>
-								<?php if ($tccopy !='') { ?><a href="<?php echo base_url(); ?>assets/students/tccopy/<?php echo $tccopy; ?>" target="_blank">Transfer Certificate</a> <?php } else { ?> Transfer Certificate <?php } ?>
-							 <?php } else { ?>
-								 <input type="checkbox" name="trn_cert" value="1" id="trn_cert">Transfer Certificate
-							 <?php } ?>
-								&nbsp;&nbsp;
-							 <?php if ($s=='1') {?>
-								<input type="checkbox" name="rec_sheet" value="1"  checked>Record Sheet
-								<?php } else { ?>
-								<input type="checkbox" name="rec_sheet" value="1">Record Sheet
-								<?php } ?>
-								
-                             </div>
-						   
-					
+                          <label class="col-sm-2 control-label">Previous School</label>
+                            <div class="col-sm-4">
+                               <input type="text" name="sch_name" value="<?php echo $rows->last_sch_name; ?>" class="form-control" maxlength="30">
+                            </div>
+											
+                     </div>
                   </fieldset>
+               
+
+                  <fieldset>
+                     <div class="form-group">
+                        
+						<label class="col-sm-2 control-label">Qualified Grade</label>
+                            <div class="col-sm-4">
+								<select name="class_name" class="selectpicker" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+								<option value="">Select</option>
+                                 <?php foreach ($class as $clas) {  ?>
+                                 <option value="<?php  echo $clas->class_id; ?>"><?php  echo $clas->class_name; ?></option>
+                                 <?php } ?>
+                              </select><script language="JavaScript">document.formadmission.class_name.value="<?php echo $rows->last_studied; ?>";</script>
+                            </div>	
+
+						<label class="col-sm-2 control-label">Qualified promotion</label>
+                            <div class="col-sm-4">
+                              <select name="qual" class="selectpicker" >
+								<option value="">Select</option>
+                                 <option value="1">Yes</option>
+                                 <option value="0">No</option>
+                              </select>
+                              <script language="JavaScript">document.formadmission.qual.value="<?php echo $rows->qualified_promotion; ?>";</script>
+                            </div>
+						
+					</fieldset>
+				  
 				  <fieldset>
                      <div class="form-group">
 					 <label class="col-sm-2 control-label">Current  Pic</label>
@@ -228,14 +216,33 @@
                           <?php }?>
                        </div>
 					   
-					  <div id="answer" style="font-size:normal;">
-						<label class="col-sm-2 control-label">TC Copy</label>
-                        <div class="col-sm-4">
-                           <input type="file" name="tc_copy" class="form-control">
-                        </div>
-					 </div>
-                     </div>
+					   	<label class="col-sm-2 control-label">Certificates</label>
+						 <?php 
+							   $t = $rows->transfer_certificate;
+							   $s = $rows->record_sheet;
+							   $tccopy = $rows->tccopy;
+                           ?>
+                           <div class="col-sm-4" style="padding-top:10px;">
+							 <input type="hidden" name="user_tc_old" class="form-control" value="<?php echo $rows->tccopy; ?>">
+							 <?php if ($t=='1') {?>
+                                <input type="checkbox" name="trn_cert" value="1" id="trn_cert" checked>
+								<?php if ($tccopy !='') { ?><a href="<?php echo base_url(); ?>assets/students/tccopy/<?php echo $tccopy; ?>" target="_blank">Transfer Certificate</a> <?php } else { ?> Transfer Certificate <?php } ?>
+							 <?php } else { ?>
+								 <input type="checkbox" name="trn_cert" value="1" id="trn_cert">Transfer Certificate
+							 <?php } ?>
+								&nbsp;&nbsp;
+							 <?php if ($s=='1') {?>
+								<input type="checkbox" name="rec_sheet" value="1"  checked>Record Sheet
+								<?php } else { ?>
+								<input type="checkbox" name="rec_sheet" value="1">Record Sheet
+								<?php } ?>
 
+								<div id="answer" style="font-size:normal;padding-top:15px;">
+									<input type="file" name="tc_copy" class="form-control">
+								</div>
+									
+                           </div>
+                     </div>
                   </fieldset>
                   
 				  <fieldset>
@@ -366,7 +373,7 @@ $('#tc_copy').on('change', function() {
                    },
             sex:{required:true },
             dob:{required:true },
-            age:{required:true,number:true,maxlength:2 },
+            sage:{required:true, number:true, maxlength:2},
             nationality:{required:true },
             religion:{required:true },
             community_class:{required:true },
@@ -377,57 +384,58 @@ $('#tc_copy').on('change', function() {
               type: "post"
             }},
 			student_pic:{accept: "jpg,jpeg,png", filesize: 1048576 },
-          tc_copy:{required:false,accept: "jpg,jpeg,png", filesize: 1048576 }
+			tc_copy:{required:false,accept: "jpg,jpeg,png", filesize: 1048576 }
 
         },
         messages: {
-          admission_no:{
-            required:"Enter the Admission Number max length 9 Digits",
-            remote:"Admission Number Already Exist"
-          },
-              admission_year: "Enter Admission Year",
-              admission_date: "Select Admission Date",
-              name: "Enter Name",
-              email:{
-                required:"Enter Email Address",
-                remote:"Email Already Exist"
-              },
-              emsi_num:{
-                required:"Enter EMSI Number",
-                remote:" EMSI Number Already Exist"
-              },
-              sex: "Select Gender",
-              dob: "Select Date of Birth",
-              age: "Enter AGE",
-              nationality: "Nationality",
-              religion: "Enter the Religion",
-              community:"Enter the Community",
-              community_class:"Enter the Community Class",
-               blood_group:"Select Blood Group",
-               mobile:{
-                 required:"Enter mobile number",
-                 remote:"Mobile number Already Exist"
-               },
-			  student_pic:{
-				  //required:"Select banner",
-				  accept:"Please upload .jpg or .png .",
-				  fileSize:"File must be JPG or PNG, less than 1MB"
-				},
-				tc_copy:{
-				  //required:"Select banner",
-				  accept:"Please upload .jpg or .png .",
-				  fileSize:"File must be JPG or PNG, less than 1MB"
-				}
-              //student_pic:"Enter the Student Picture"
-            }
+			admission_no:{
+				required:"This field cannot be empty!",
+				remote:"Admission number already exist!"
+			},
+			//  minlength:"Enter the Number 6 to 9 Digits",
+			admission_year: "This field cannot be empty!",
+			admission_date: "This field cannot be empty!",
+			name: "This field cannot be empty!",
+			email:{
+				 required:"This field cannot be empty!",
+				 remote:"Email ID already exist!"
+			},
+			sex: "Please choose an option!",
+			dob: "Please choose an option!",
+			emsi_num:{
+				required:"This field cannot be empty!",
+				remote:" EMSI number already exist!"
+			},
+			age: "This field cannot be empty!",
+			nationality: "This field cannot be empty!",
+			religion: "This field cannot be empty!",
+			community:"This field cannot be empty!",
+			community_class:"This field cannot be empty!",
+			blood_group:"Please choose an option!",
+			mobile:{
+				required:"This field cannot be empty!",
+				remote:"Mobile number already exist!"
+			},
+			student_pic:{
+			  accept:"Please upload .jpg or .png .",
+			  fileSize:"File must be JPG or PNG, less than 1MB"
+			},
+			tc_copy:{
+			  accept:"Please upload .jpg or .png .",
+			  fileSize:"File must be JPG or PNG, less than 1MB"
+			}
+
+			//student_pic:"Enter the Student Picture"
+			}
     });
    });
 
 
-$().ready(function(){
+ $().ready(function(){
 
      $('.datepicker').datetimepicker({
        format: 'DD-MM-YYYY',
+	   maxDate: new Date(),
        icons: {
            time: "fa fa-clock-o",
            date: "fa fa-calendar",
@@ -443,7 +451,7 @@ $().ready(function(){
 
    $('.datepicker1').datetimepicker({
        format: 'YYYY',
-   maxDate: new Date(),
+		maxDate: new Date(),
        icons: {
            time: "fa fa-clock-o",
            date: "fa fa-calendar",
@@ -456,6 +464,7 @@ $().ready(function(){
            close: 'fa fa-remove'
        }
     });
+
    });
    
    function popitup(url) {

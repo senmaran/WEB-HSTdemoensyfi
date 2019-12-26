@@ -20,7 +20,7 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Academic Year</label>
+                                            <label class="col-sm-4 control-label">Academic Year <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
          <?php
 		    $yid=$rows->admit_year;
@@ -43,7 +43,7 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                          <label class="col-sm-4 control-label">Admission Number</label>
+                                          <label class="col-sm-4 control-label">Admission Number <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
                                               <input type="text" class="form-control" name="admisn_no" id="admission_no" value="<?php echo $rows->admisn_no; ?>" readonly="">
                                               <input type="hidden" class="form-control" name="enroll_id" id="admission_no" value="<?php echo $rows->enroll_id; ?>" readonly="">
@@ -58,7 +58,7 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Registration Date</label>
+                                            <label class="col-sm-4 control-label">Registration Date <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="admit_date" class="form-control datepicker" placeholder="Registration Date"  value="<?php $date=date_create($rows->admit_date);
 echo date_format($date,"d-m-Y");  ?>" />
@@ -69,7 +69,7 @@ echo date_format($date,"d-m-Y");  ?>" />
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Student Name</label>
+                                            <label class="col-sm-4 control-label">Student Name <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="name" readonly class="form-control"  value="<?php echo $rows->name; ?>">
 
@@ -82,7 +82,7 @@ echo date_format($date,"d-m-Y");  ?>" />
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Class</label>
+                                            <label class="col-sm-4 control-label">Class <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
 
 											 <select  name="class_name" id="class_name" class="selectpicker"  data-menu-style="dropdown-blue">
@@ -101,7 +101,7 @@ echo date_format($date,"d-m-Y");  ?>" />
 
 									<fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Quota</label>
+                                            <label class="col-sm-4 control-label">Quota <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
 
 											 <select name="quota_id" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
@@ -118,7 +118,7 @@ echo date_format($date,"d-m-Y");  ?>" />
 
 									<fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">House</label>
+                                            <label class="col-sm-4 control-label">House <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
 
 											 <select name="groups_id" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
@@ -192,7 +192,8 @@ echo date_format($date,"d-m-Y");  ?>" />
                                         <div class="form-group">
                                             <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
                                             <div class="text-center">
-                                                   <button type="submit" class="btn btn-info btn-fill center">SAVE</button>
+												<input type="submit" id="save1" class="btn btn-info btn-fill center" value="SAVE">
+                                                  
                                             </div>
 
                                         </div>

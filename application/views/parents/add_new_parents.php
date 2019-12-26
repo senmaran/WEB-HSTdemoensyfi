@@ -11,6 +11,7 @@
                 <div class="header">
                     <h4 class="title">Parent Profile</h4>
                 </div>
+				<hr>
                 <?php if($this->session->flashdata('msg')): ?>
                     <div class="alert alert-success">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -21,23 +22,27 @@
                         <div class="content">
 
                                 <form method="post" action="<?php echo base_url(); ?>parents/create_new_parents" class="form-horizontal" enctype="multipart/form-data" id="parentform">
-
                                     <input type="hidden" name="admission_id" id="stuid" class="form-control" value="<?php echo $aid;?>">
-                                    <?php if($eid==0){
-					                                 foreach($alldetails as $all) {}  $asid=$all->admission_id;?>
-                                        <input type="hidden" name="insertadmission_no" class="form-control" value="<?php echo $asid;?>">
-                                        <?php }else{?>
-                                            <input type="hidden" name="insertadmission_no" class="form-control" value="<?php echo $eid;?>,<?php echo $aid;?>">
-                                            <?php }?>
+                                    <?php if($eid==0)
+									{
+										if (count($alldetails) > 0) {
+											foreach($alldetails as $all) {
+												$asid=$all->admission_id;
+											}
+									?>
+										<input type="hidden" name="insertadmission_no" class="form-control" value="<?php echo $asid;?>">
+										<?php } else { ?>
+										<input type="hidden" name="insertadmission_no" class="form-control" value="<?php echo $eid;?>,<?php echo $aid;?>">
+										<?php }?>
+                                   <?php }else{?>
+										<input type="hidden" name="insertadmission_no" class="form-control" value="<?php echo $eid;?>,<?php echo $aid;?>">
+                                   <?php }?>
                                                 <fieldset>
                                                     <div class="form-group">
-
-                                                        <label class="col-sm-2 control-label">Relationship</label>
+                                                        <label class="col-sm-2 control-label">Relationship <span class="mandatory_field">*</span></label>
                                                         <!-- <?php print_r($relation); ?> -->
                                                         <div class="col-sm-4">
-                                        <?php foreach($relation as $rows_relation){
-
-                                       } ?>
+                                        <?php foreach($relation as $rows_relation){ } ?>
 
                                        <span id="msg"></span>
                               <select name="relationship" id="relationship" class="selectpicker form-control" onchange="checkrelationfun(this)"/>
@@ -54,34 +59,35 @@
                                                 </fieldset>
                                                 <fieldset>
                                                     <div class="form-group">
-                                                      <label class="col-sm-2 control-label">Name</label>
+                                                      <label class="col-sm-2 control-label">Name <span class="mandatory_field">*</span></label>
                                                       <div class="col-sm-4">
-                                                          <input type="text" name="name" placeholder="Enter Name" class="form-control" value="">
+                                                          <input type="text" name="name" placeholder="Enter Name" class="form-control" value="" maxlength="30">
                                                       </div>
                                                       <label class="col-sm-2 control-label">Login Access</label>
                                                       <div class="col-sm-4">
-                                                          <select name="priority" class="selectpicker form-control">
-                                                              <option value="Yes">Need</option>
-                                                              <option value="No">No Need</option>
-                                                          </select>
+														<select name="priority" id="priority" class="selectpicker form-control">
+                                                                    <option value="Yes">Enabled</option>
+                                                                    <option value="No">Disabled</option>
+                                                         </select>
+
                                                       </div>
                                                     </div>
                                                 </fieldset>
                                                 <fieldset>
                                                     <div class="form-group">
-                                                      <label class="col-sm-2 control-label">Email ID</label>
+                                                      <label class="col-sm-2 control-label">Email ID <span class="mandatory_field">*</span></label>
                                                       <div class="col-sm-4">
-                                                          <input type="text" name="pemail" id="pemail" class="form-control" placeholder="Email ID"  />
+                                                          <input type="text" name="pemail" id="pemail" class="form-control" placeholder="Email ID"  maxlength="30" />
                                                       </div>
                                                       <label class="col-sm-2 control-label">Alternate Email ID</label>
                                                       <div class="col-sm-4">
-                                                          <input type="text" name="semail" class="form-control " id="email" placeholder="Secondary Email ID" />
+                                                          <input type="text" name="semail" class="form-control " id="email" placeholder="Secondary Email ID" maxlength="30" />
                                                       </div>
                                                     </div>
                                                 </fieldset>
                                                 <fieldset>
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label">Mobile Number</label>
+                                                        <label class="col-sm-2 control-label">Mobile Number <span class="mandatory_field">*</span></label>
                                                         <div class="col-sm-4">
                                                             <input type="text" placeholder="Mobile Number" name="pmobile" maxlength="10" class="form-control">
                                                         </div>
@@ -95,11 +101,11 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">Occupation</label>
                                                         <div class="col-sm-4">
-                                                            <input type="text" name="occupation" placeholder="Occupation" class="form-control" value="">
+                                                            <input type="text" name="occupation" placeholder="Occupation" class="form-control" value="" maxlength="30">
                                                         </div>
                                                         <label class="col-sm-2 control-label">Income</label>
                                                         <div class="col-sm-4">
-                                                            <input type="text" placeholder="Income" name="income" class="form-control">
+                                                            <input type="text" placeholder="Income" name="income" class="form-control" maxlength="10">
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -107,11 +113,11 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">Residential Address</label>
                                                         <div class="col-sm-4">
-                                                            <textarea name="haddress" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"></textarea>
+                                                            <textarea name="haddress" maxlength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"></textarea>
                                                         </div>
                                                         <label class="col-sm-2 control-label">Office Address</label>
                                                         <div class="col-sm-4">
-                                                            <textarea name="office_address" MaxLength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"></textarea>
+                                                            <textarea name="office_address" maxlength="150" placeholder="MaxCharacters 150" class="form-control" rows="4" cols="80"></textarea>
                                                         </div>
 
                                                     </div>
@@ -120,11 +126,11 @@
                                                     <div class="form-group">
                                                       <label class="col-sm-2 control-label">Telephone</label>
                                                       <div class="col-sm-4">
-                                                          <input type="text" placeholder="Telephone" name="home_phone" class="form-control">
+                                                          <input type="text" placeholder="Telephone" name="home_phone" class="form-control" maxlength="10">
                                                       </div>
                                                         <label class="col-sm-2 control-label">Office Phone</label>
                                                         <div class="col-sm-4">
-                                                            <input type="text" placeholder="Office Phone" name="office_phone" class="form-control">
+                                                            <input type="text" placeholder="Office Phone" name="office_phone" class="form-control" maxlength="10">
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -156,7 +162,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">&nbsp;</label>
                                                         <div class="col-sm-4">
-                                                            <button type="submit" id="save" class="btn btn-info btn-fill center">SUBMIT</button>
+                                                            <input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
                                                         </div>
                                                     </div>
                                                 </fieldset>

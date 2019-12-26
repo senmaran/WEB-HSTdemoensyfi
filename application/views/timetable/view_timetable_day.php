@@ -7,22 +7,7 @@
     }
 </style>
 <div class="main-panel">
-    <div class="content">
-        <div class="col-md-12">
-
-            <div class="card">
-
-                <?php if($this->session->flashdata('msg')): ?>
-                    <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            ×</button>
-                        <?php echo $this->session->flashdata('msg'); ?>
-                    </div>
-
-                    <?php endif; ?>
-
-            </div>
-        </div>
+ 
         <div class="content">
             <div class="col-md-12">
                 <div class="card">
@@ -62,7 +47,7 @@
                                                   } else{
                                                     echo $rows_time->subject_name; echo "<br>";}?></td>
                                                 <td><?php echo $rows_time->name; ?>  </td>
-                                                <td><a rel="tooltip" title="Edit" class="" href="<?php echo base_url(); ?>timetable/edit_time_table/<?php  echo base64_encode($rows_time->table_id*9876);  ?>/<?php echo $this->uri->segment(3); ?>/<?php echo $rows_time->list_day; ?>"><i class="fa fa-edit"></i></a></td>
+                                                <td><a rel="tooltip" title="Edit" class="" href="<?php echo base_url(); ?>timetable/edit_time_table/<?php  echo base64_encode($rows_time->table_id*9876);  ?>/<?php echo $this->uri->segment(3); ?>/<?php echo $rows_time->list_day; ?>" style="font-size:20px;"><i class="fa fa-edit"></i></a></td>
                                             </tr>
                                             <?php $i++;  }  ?>
 
@@ -80,7 +65,7 @@
         function delte_time_table(class_id,term_id,day_id){
           swal({
                   title: "Are you sure?",
-                  text: "You Want to delete the this timetable",
+                  text: "You want to delete this timetable",
                   type: "warning",
                   showCancelButton: true,
                   confirmButtonColor: '#DD6B55',
@@ -142,7 +127,6 @@
                         columns: ':visible'
                         }
                     },
-                    'colvis'
                 ],
                 "pagingType": "full_numbers",
                 "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],

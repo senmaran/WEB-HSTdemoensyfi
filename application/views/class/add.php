@@ -8,9 +8,7 @@
 							<h4 class="title">Create Class</h4>
 							<p class="pull-right btn btn-wd" style="margin-top:-30px;">
 								<a href="
-
 									<?php echo base_url(); ?>sectionadd/addsection">Add / View Sections
-
 								</a>
 							</p>
 						</div>
@@ -19,13 +17,13 @@
 								<div class="row">
 									<div class="col-md-4">
 										<div class="form-group">
-											<label class="col-sm-2 control-label">Class</label>
-											<input type="text" class="form-control"  placeholder="" id="classname" name="classname" value="">
+											<label>Class <span class="mandatory_field">*</span></label>
+											<input type="text" class="form-control"  placeholder="" id="classname" name="classname" value="" maxlength="15">
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-group">
-												<label class="col-sm-2 control-label">Status</label>
+												<label >Status <span class="mandatory_field">*</span></label>
 												<select name="status"  class="selectpicker form-control">
 													<option value="Active">Active</option>
 													<option value="Deactive">Inactive</option>
@@ -36,7 +34,7 @@
 
                     	<div class="form-group">
                           	<label class="col-sm-2 control-label">&nbsp;</label><br>
-                        <button type="submit" class="btn btn-info btn-fill">CREATE </button>
+							<input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
                       </div>
                     </div>
 									</div>
@@ -87,21 +85,16 @@
 													</td>
 													<td>
 														<?php
-										if($sta=='Active'){?>
+														if($sta=='Active'){?>
 														<button class="btn btn-success btn-fill btn-wd">Active</button>
 														<?php  }else{?>
 														<button class="btn btn-danger btn-fill btn-wd">Inactive</button>
 														<?php } ?>
 													</td>
 													<td>
-														<a rel="tooltip" title="Edit"  href="<?php echo base_url();  ?>classadd/updateclass/<?php echo $rows->class_id; ?>" class="btn btn-simple btn-warning btn-icon edit">
+														<a rel="tooltip" title="Edit"  href="<?php echo base_url();  ?>classadd/updateclass/<?php echo $rows->class_id; ?>" class="btn btn-simple btn-warning btn-icon edit"  style="font-size:20px;">
 															<i class="fa fa-edit"></i>
 														</a>
-														<!-- <a href="
-
-														<?php echo base_url();  ?>classadd/delete_class/
-
-														<?php echo $rows->class_id; ?>" class="btn btn-simple btn-danger btn-icon "><i class="fa fa-times"></i></a> -->
 													</td>
 												</tr>
 												<?php $i++;  }  ?>

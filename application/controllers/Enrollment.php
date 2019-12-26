@@ -94,48 +94,42 @@ class Enrollment extends CI_Controller {
 		public function create(){
 			 $datas=$this->session->userdata();
 			 $user_id=$this->session->userdata('user_id');
-			 //$datas['result'] = $this->classmodel->getclass();
 			 $user_type=$this->session->userdata('user_type');
 		     if($user_type==1){
-			 $admit_year=$this->input->post('year_id');
-			 $admit_date=$this->input->post('admit_date');
-	         $dateTime = new DateTime($admit_date);
-			 $formatted_date=date_format($dateTime,'Y-m-d' );
+				 $admit_year=$this->input->post('year_id');
+				 $admit_date=$this->input->post('admit_date');
+				 $dateTime = new DateTime($admit_date);
+				 $formatted_date=date_format($dateTime,'Y-m-d' );
 
-			 $admisn_no=$this->input->post('admisn_no');
-			 $admisnid=$this->input->post('admission_id');
-			 //echo $admisn_no; echo'<br>'; echo $admisnid; exit;
-			 $name=$this->input->post('name');
-			 $class=$this->input->post('class_section');
+				 $admisn_no=$this->input->post('admisn_no');
+				 $admisnid=$this->input->post('admission_id');
+				 $name=$this->input->post('name');
+				 $class=$this->input->post('class_section');
+				 $quota_id=$this->input->post('quota_id');
+				 $groups_id=$this->input->post('groups_id');
+				 $act_id=$this->input->post('activity_id');
+				 if(empty($act_id)){
+					$activity_id='0';
+				 }else{
+				 $activity_id=implode(',',$act_id);
+				 }
+				$status=$this->input->post('status');
+				$datas=$this->enrollmentmodel->ad_enrollment($admisnid,$admit_year,$formatted_date,$admisn_no,$name,$class,$quota_id,$groups_id,$activity_id,$status);
 
-			 //echo $admisnid;
-			 $quota_id=$this->input->post('quota_id');
-			 $groups_id=$this->input->post('groups_id');
-			 $act_id=$this->input->post('activity_id');
-			 if(empty($act_id)){
-				$activity_id='0';
-			 }else{
-			 $activity_id=implode(',',$act_id);
-			 }
-
-			 $status=$this->input->post('status');
-			// $class_name = implode(',',$class);
-			// $section=$this->input->post('section');
-			 $datas=$this->enrollmentmodel->ad_enrollment($admisnid,$admit_year,$formatted_date,$admisn_no,$name,$class,$quota_id,$groups_id,$activity_id,$status);
-			 if($datas['status']=="success"){
-				 $this->session->set_flashdata('msg', 'Class allocated for studen>');
-				 redirect('enrollment/view');
-			 }else if($datas['status']=="Admission Already Exist"){
-				 $this->session->set_flashdata('msg', 'Oops! Something went wrong. Please try again few minutes later.');
-				 redirect('enrollment/home');
-			 }else{
-				 $this->session->set_flashdata('msg', 'Oops! Something went wrong. Please try again few minutes later.');
-				 redirect('enrollment/home');
-			 }
-			 }
-			 else{
-					redirect('/');
-			 }
+				 if($datas['status']=="success"){
+					 $this->session->set_flashdata('msg', 'Class allocated for student');
+					 redirect('enrollment/view');
+				 }else if($datas['status']=="already"){
+					 $this->session->set_flashdata('msg', 'Admission Already Exist');
+					 redirect('enrollment/home');
+				 }else{
+					 $this->session->set_flashdata('msg', 'Something went wrong. Please try again few minutes later.');
+					 redirect('enrollment/home');
+				 }
+				 }
+				 else{
+						redirect('/');
+				 }
 		}
 
 

@@ -15,7 +15,7 @@
                <form method="post" action="<?php echo base_url(); ?>teacher/create" class="form-horizontal" enctype="multipart/form-data" id="admissionform">
                  <fieldset>
                     <div class="form-group">
-                       <label class="col-sm-2 control-label">Role</label>
+                       <label class="col-sm-2 control-label">Role <span class="mandatory_field">*</span></label>
                        <div class="col-sm-4">
                           <select name="role_type_id" id="role_type_id" class="selectpicker form-control" data-title="Select Role" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                             <?php foreach($res_user_role as $res_user_role_name){ ?>
@@ -27,36 +27,36 @@
                  </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Name</label>
+                        <label class="col-sm-2 control-label">Name <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
-                           <input type="text" name="name" class="form-control" value="">
+                           <input type="text" name="name" class="form-control" value="" maxlength="30">
                         </div>
-                        <label class="col-sm-2 control-label">Email ID</label>
+                        <label class="col-sm-2 control-label">Email ID <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
-                           <input type="text" name="email" class="form-control"  placeholder="Email ID" onkeyup="checkemailfun(this.value)" />
+                           <input type="text" name="email" class="form-control"  placeholder="Email ID" onkeyup="checkemailfun(this.value)" maxlength="30" />
                            <p id="msg" style="color:red;"> </p>
                         </div>
                      </div>
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Alternate Email ID</label>
+                        <label class="col-sm-2 control-label">Alternate Email</label>
                         <div class="col-sm-4">
-                           <input type="text" name="sec_email" placeholder="Alternate Email ID" class="form-control" value="">
+                           <input type="text" name="sec_email" placeholder="Alternate Email ID" class="form-control" value="" maxlength="30">
                         </div>
-                        <label class="col-sm-2 control-label">Mobile</label>
+                        <label class="col-sm-2 control-label">Mobile<span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Mobile Number" name="mobile" class="form-control">
+                           <input type="text" placeholder="Mobile Number" name="mobile" class="form-control" maxlength="10">
                         </div>
                      </div>
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Alternate Mobile Number</label>
+                        <label class="col-sm-2 control-label">Alternate Mobile</label>
                         <div class="col-sm-4">
-                           <input type="text" name="sec_phone" class="form-control" placeholder="Alternate Mobile Number" />
+                           <input type="text" name="sec_phone" class="form-control" placeholder="Alternate Mobile Number" maxlength="10" />
                         </div>
-                        <label class="col-sm-2 control-label">Gender</label>
+                        <label class="col-sm-2 control-label">Gender <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select name="sex" class="selectpicker form-control" data-title="Select Gender" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <option value="Male">Male</option>
@@ -67,13 +67,13 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Date of birth</label>
+                        <label class="col-sm-2 control-label">Date of birth <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <input type="text" name="dob" id="dob" class="form-control datepicker" placeholder="Date of Birth "/>
                         </div>
-                        <label class="col-sm-2 control-label">Nationality</label>
+                        <label class="col-sm-2 control-label">Nationality <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Nationality" name="nationality" class="form-control">
+                           <input type="text" placeholder="Nationality" name="nationality" class="form-control" maxlength="30">
                         </div>
                      </div>
                   </fieldset>
@@ -81,29 +81,30 @@
                      <div class="form-group">
                         <label class="col-sm-2 control-label">Age</label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Age" name="age" id="age" class="form-control">
+                           <input type="text" placeholder="Age" name="age" id="age" class="form-control" maxlength="5">
                         </div>
-                        <label class="col-sm-2 control-label">Religion</label>
+                        <label class="col-sm-2 control-label">Religion <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Religion" name="religion" class="form-control">
+                           <input type="text" placeholder="Religion" name="religion" class="form-control" maxlength="30">
                         </div>
                      </div>
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Communal Category</label>
+					   <label class="col-sm-2 control-label">Community <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Community Class" name="community_class" class="form-control">
+                           <input type="text" placeholder="Community" name="community" class="form-control" maxlength="30">
                         </div>
-                        <label class="col-sm-2 control-label">Community</label>
+                        <label class="col-sm-2 control-label">Communal Class <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Community" name="community" class="form-control">
+                           <input type="text" placeholder="Community Class" name="community_class" class="form-control" maxlength="30">
                         </div>
+
                      </div>
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Address</label>
+                        <label class="col-sm-2 control-label">Address <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <textarea name="address" MaxLength="150" class="form-control" rows="4" cols="80" placeholder="Max Characters 150"></textarea>
                         </div>
@@ -119,9 +120,9 @@
                   </fieldset>
 				   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Qualification</label>
+                        <label class="col-sm-2 control-label">Qualification <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Qualification" name="qualification" class="form-control">
+                           <input type="text" placeholder="Qualification" name="qualification" class="form-control" maxlength="30">
                         </div>
                         <!-- <label class="col-sm-2 control-label">SUBJECT</label>
                         <div class="col-sm-4">
@@ -186,23 +187,24 @@
                        </div>
                        <label class="col-sm-2 control-label">&nbsp;</label>
                        <div class="col-sm-4">
-                          <img  id="output" class="img-responsive" style="width:100px;    margin-top: -25px;">
+                          <img  id="output" class="img-responsive" style="width:100px; margin-top: -25px;">
                        </div>
 
                      </div>
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-
-                        <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
-                        <div class="text-center">
-                           <button type="submit" id="save" class="btn btn-info btn-fill center">CREATE </button>
-                        </div>
+						<label class="col-sm-2 control-label"></label>
+                       <div class="col-sm-4">
+                          <input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
+                       </div>
+                       <label class="col-sm-2 control-label">&nbsp;</label>
+                       <div class="col-sm-4">
+                          <img  id="output" class="img-responsive" style="width:100px; margin-top: -25px;">
+                       </div>
                      </div>
                   </fieldset>
-                  <fieldset>
-                     <div class="form-group"></div>
-                  </fieldset>
+
                </form>
             </div>
          </div>

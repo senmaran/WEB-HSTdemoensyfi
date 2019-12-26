@@ -68,9 +68,9 @@
 
                                     <fieldset  id="leaves_date">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Date</label>
+                                            <label class="col-sm-2 control-label">Date <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
-                                                <input type="text" name="leave_date" class="form-control datepicker" placeholder="Leave Date" value="<?php echo $rows->leave_date; ?>"/>
+                                                <input type="text" name="leave_date" class="form-control datepicker" placeholder="Leave Date" value="<?php $date=date_create($rows->leave_date); echo date_format($date,"d-m-Y");  ?>"/>
 
                                             </div>
 
@@ -78,9 +78,9 @@
                                     </fieldset>
                                     <fieldset id="leaves_name">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Title</label>
+                                            <label class="col-sm-2 control-label">Title <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
-                                                <input type="text" name="leave_name" class="form-control" value="<?php echo $rows->leaves_name; ?>">
+                                                <input type="text" name="leave_name" class="form-control" value="<?php echo $rows->leaves_name; ?>" maxlength="30">
 
                                             </div>
 
@@ -90,7 +90,7 @@
 
                                     <fieldset id="leave_status1">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Status</label>
+                                            <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                               <select name="leave_status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="Active">Active</option>
@@ -110,7 +110,8 @@
                                             <label class="col-sm-2 control-label">&nbsp;</label>
                                             <div class="col-sm-10">
                                                <!-- <input type="button" id="more" value="Add more" /> -->
-                                                   <button type="submit" class="btn btn-info btn-fill center">SAVE</button>
+											   <input type="submit" id="save" class="btn btn-info btn-fill center"  value="SAVE">
+                                               
                                             </div>
 
                                         </div>

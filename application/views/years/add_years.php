@@ -1,5 +1,3 @@
-
-
 <div class="main-panel">
 	<div class="content">
 		<div class="container-fluid">
@@ -12,36 +10,47 @@
 						<div class="content">
 							<form method="post" action="
 								<?php echo base_url(); ?>years/create" class="form-horizontal" enctype="multipart/form-data" id="myformsection">
-								<fieldset>
-									<div class="form-group">
-										<label class="col-sm-1 control-label">From </label>
-										<div class="col-sm-3">
-											<input type="text" name="from_month" id="from_year" class="form-control datepicker" required value="">
-											</div>
-											<label class="col-sm-1 control-label">To </label>
-											<div class="col-sm-3">
-												<input type="text" name="end_month" id="to_year" required class="form-control datepicker"  />
-											</div>
-
-                      <label class="col-sm-1 control-label">Status</label>
-                      <div class="col-sm-3">
-                        <select name="status"  class="selectpicker form-control">
-                          <option value="Active">Active</option>
-                          <option value="Deactive">Inactive</option>
-                        </select>
-                      </div>
-
-
-										</div>
-									</fieldset>
-									<fieldset>
-										<div class="form-group">
-											<div class="text-center">
-												<input type="submit" id="save" class="btn btn-info btn-fill center" value="SAVE">
-												</div>
-											</div>
-										</fieldset>
-									</form>
+								
+							<fieldset>
+								 <div class="form-group">
+									<label class="col-sm-2 control-label">From <span class="mandatory_field">*</span></label>
+									<div class="col-sm-4">
+									  <input type="text" name="from_month" id="from_year" class="form-control datepicker" required value="">
+									</div>
+									<div class="col-sm-6"></div>
+								 </div>
+							  </fieldset>
+							<fieldset>
+								 <div class="form-group">
+									<label class="col-sm-2 control-label">To <span class="mandatory_field">*</span></label>
+									<div class="col-sm-4">
+									  <input type="text" name="end_month" id="to_year" required class="form-control datepicker"  />
+									</div>
+									<div class="col-sm-6"></div>
+								 </div>
+							  </fieldset>
+							  <fieldset>
+								 <div class="form-group">
+									<label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
+									<div class="col-sm-4">
+									    <select name="status"  class="selectpicker form-control">
+										  <option value="Active">Active</option>
+										  <option value="Deactive">Inactive</option>
+										</select>
+									</div>
+									<div class="col-sm-6"></div>
+								 </div>
+							  </fieldset>
+							   <fieldset>
+								 <div class="form-group">
+									<label class="col-sm-2 control-label"></label>
+									<div class="col-sm-4">
+									   <input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
+									</div>
+									<div class="col-sm-6"></div>
+								 </div>
+							  </fieldset>
+								</form>
 								</div>
 							</div>
 						</div>
@@ -99,8 +108,8 @@
 														<?php } ?>
 													</td>
 													<td>
-														<a rel="tooltip" title="Edit" href="<?php echo base_url(); ?>years/edit_years/<?php echo $rows->year_id; ?>" class="btn btn-simple btn-warning btn-icon edit">
-															<i class="fa fa-edit"></i>
+														<a rel="tooltip" title="Edit" href="<?php echo base_url(); ?>years/edit_years/<?php echo $rows->year_id; ?>" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;">
+														<i class="fa fa-edit"></i>
 														</a>
 													</td>
 												</tr>
@@ -118,15 +127,12 @@
 					<!-- end row -->
 				</div>
 			</div>
-		</div>
-		<script type="text/javascript">
-
- /* $(document).ready(function () {
- // create DatePicker from input HTML element
-            $("#test").kendoDatePicker();
-            //DISABLE inputs
-            $("#datepicker").attr("readonly",true);  */
-
+</div>
+<?php 
+$min_date = date('Y-m-d', strtotime('-100 year')); 
+$max_date = date('Y-m-d', strtotime('+5 year')); 
+?>
+<script type="text/javascript">
  $('#myformsection').validate({ // initialize the plugin
      rules: {
          from_year:{required:true },
@@ -140,13 +146,16 @@
 
   $('#bootstrap-table').DataTable();
 </script>
-		<script type="text/javascript">
+<script type="text/javascript">
       $().ready(function(){
         $('#mastersmenu').addClass('collapse in');
         $('#master').addClass('active');
         $('#masters1').addClass('active');
+		
         $('.datepicker').datetimepicker({
           format: 'DD-MM-YYYY',
+		  minDate: new Date('<?php echo $min_date; ?>'),
+		  maxDate: new Date('<?php echo $max_date; ?>'),
           icons: {
               time: "fa fa-clock-o",
               date: "fa fa-calendar",
@@ -160,4 +169,4 @@
           }
        });
       });
-  </script>
+ </script>

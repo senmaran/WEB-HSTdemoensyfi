@@ -12,28 +12,34 @@
                            <form method="post" action="<?php echo base_url(); ?>quota/create_quota" class="form-horizontal" enctype="multipart/form-data" id="feesformsection" name="feesformsection">
                                  <fieldset>
                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label">Quota</label>
+                                          <label class="col-sm-2 control-label">Quota <span class="mandatory_field">*</span></label>
                                           <div class="col-sm-4">
-										                         <input type="text" name="quota_name" class="form-control"  value="">
+										    <input type="text" name="quota_name" class="form-control"  value="" maxlength="30">
                                           </div>
-                                          <label class="col-sm-2 control-label">Status</label>
-                                          <div class="col-sm-4">
-                      										   <select name="status"  class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                        											  <option value="Active">Active</option>
-                        											  <option value="Deactive">Inactive</option>
-                      											</select>
-                                          </div>
+										<div class="col-sm-6"></div>
                                       </div>
                                   </fieldset>
-								                   <fieldset>
-                                        <div class="form-group">
-										                      	<!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
-                                            <div class="text-center">
-											                         <input type="submit" id="save" class="btn btn-info btn-fill center"  value="CREATE">
-                                            </div>
-                                            </div>
-                                   </fieldset>
-
+								  <fieldset>
+                                      <div class="form-group">
+                                          <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
+                                          <div class="col-sm-4">
+											   <select name="status"  class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+													  <option value="Active">Active</option>
+													  <option value="Deactive">Inactive</option>
+												</select>
+                                          </div>
+										  <div class="col-sm-6"></div>
+                                      </div>
+                                  </fieldset>
+								   <fieldset>
+                                      <div class="form-group">
+                                          <label class="col-sm-2 control-label"></label>
+                                          <div class="col-sm-4">
+											  <input type="submit" id="save" class="btn btn-info btn-fill center"  value="CREATE">
+                                          </div>
+										  <div class="col-sm-6"></div>
+                                      </div>
+                                  </fieldset>
                              </form>
                        </div>
                    </div>
@@ -55,7 +61,7 @@
                             <div class="content">
                               <h4 class="title">List of Quota </h4><br>
                                 <div class="fresh-datatables">
-                          <table id="bootstrap-table" class="table">
+                          <table id="example" class="table">
                               <thead>
                                 <th>S.no</th>
                                 <th>Quota</th>
@@ -80,7 +86,7 @@
 
 
                                     <td class="text-right">
-                                      <a href="<?php echo base_url(); ?>quota/edit_quota/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" rel="tooltip" title="Edit" ><i class="fa fa-edit"></i></a>
+                                      <a href="<?php echo base_url(); ?>quota/edit_quota/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" rel="tooltip" title="Edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
                                     </td>
                                   </tr>
 							                  <?php $i++;   } ?>
@@ -116,6 +122,37 @@ $(document).ready(function () {
    });
 });
 
- $('#bootstrap-table').DataTable();
+$('#example').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "70%" },
+					{ "width": "15%%" },
+					{ "width": "8%" }
+				  ]
+         }); 
 
 </script>

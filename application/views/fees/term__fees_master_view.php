@@ -16,7 +16,7 @@
                             <div class="content">
 
                                 <div class="fresh-datatables">
-                                  <h4 class="title">Fees Status</h4>
+                                  <h4 class="title" style="padding-bottom:20px;">Fees Status</h4>
                                   <table id="example" class="table table-fixed">
                               <thead>
                                  <th data-field="id" >S.No</th>
@@ -27,7 +27,6 @@
 								<th data-field="fees"  data-sortable="true">Fees</th>
                                 <th data-field="date_from"  data-sortable="true">Issue Date</th>
                                 <th data-field="date_to"  data-sortable="true">Due Date</th>
-                                <!-- <th data-field="notes"  data-sortable="true">Notes</th> -->
                                 <th data-field="status"  data-sortable="true">Status</th>
 								<th data-field="Section"  data-sortable="true">Actions</th>
                               </thead>
@@ -54,11 +53,11 @@
                   									  if($stu=='Active'){?>
                   									   <button class="btn btn-success btn-fill btn-wd">Active</button>
                   									 <?php  }else{?>
-                  									  <button class="btn btn-danger btn-fill btn-wd">De-Active</button>
+                  									  <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                   									  <?php } ?></td>
 
                                     <td >
-                                        <a href="<?php echo base_url(); ?>feesstructure/view_term_fees/<?php echo $rows->id; ?>" rel="tooltip" title="Student Fees Status" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
+                                        <a href="<?php echo base_url(); ?>feesstructure/view_term_fees/<?php echo $rows->id; ?>" rel="tooltip" title="Student Fees Status" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
                                     </td>
                                   </tr>
                                   <?php $i++;  }  ?>
@@ -86,34 +85,43 @@ $('#fees1').addClass('active');
 
 
 $('#example').DataTable({
-   dom: 'lBfrtip',
-   buttons: [
-        {
-            extend: 'excelHtml5',
-            exportOptions: {
-            columns: ':visible'
-            }
-        },
-        {
-            extend: 'pdfHtml5',
-            exportOptions: {
-            columns: ':visible'
-            }
-        },
-        'colvis'
-    ],
-    "pagingType": "full_numbers",
-    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-    responsive: true,
-    language: {
-    search: "_INPUT_",
-    searchPlaceholder: "Search records",
-  },
-  "fixedHeader" : {
-                  header : true,
-                  footer : true
-              }
-});
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "15%" },
+					{ "width": "8%" },
+					{ "width": "7%" },
+					{ "width": "6%" },
+					{ "width": "9%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "10%" },
+					{ "width": "8%" }
+				  ]
+         }); 
 
 
 

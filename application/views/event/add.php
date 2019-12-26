@@ -5,7 +5,6 @@
                         <div class="card">
                             <div class="header">
                                 <legend>Create Event</legend>
-
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
                               <div class="alert alert-success">
@@ -18,45 +17,41 @@
                                 <form method="post" action="<?php echo base_url(); ?>event/add" class="form-horizontal" enctype="multipart/form-data" id="eventform">
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Date</label>
+                                            <label class="col-sm-2 control-label">Date <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="event_date" class="form-control datepicker" placeholder="Event Date"/>
-
                                             </div>
-
+										<div class="col-sm-6"></div>
                                         </div>
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Title</label>
+                                            <label class="col-sm-2 control-label">Title <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
-                                                <input type="text" name="event_name" id="event_name" class="form-control" placeholder="Event Title">
-
+                                                <input type="text" name="event_name" id="event_name" class="form-control" placeholder="Event Title" maxlength="50">
                                             </div>
-
+										<div class="col-sm-6"></div>
                                         </div>
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Description</label>
+                                            <label class="col-sm-2 control-label">Description <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                                 <textarea type="text" MaxLength="350" placeholder="Maximum 350 characters" name="event_details" class="form-control"></textarea>
-
                                             </div>
-
+											<div class="col-sm-6"></div>
                                         </div>
                                     </fieldset>
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Status</label>
+                                            <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
                                             <div class="col-sm-4">
                                               <select name="event_status" class="selectpicker form-control" data-title="Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <option value="Active">Active</option>
                                                 <option value="Deactive">Inactive</option>
-
                                               </select>
-
+											<div class="col-sm-6"></div>
                                             </div>
 
                                         </div>
@@ -66,11 +61,13 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
-                                            <div class="text-center">
-                                                   <button type="submit" class="btn btn-info btn-fill center">CREATE </button>
+										
+										<label class="col-sm-2 control-label"></label>
+                                            <div class="col-sm-4">
+											 <input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
+                                              
                                             </div>
-
+                                           <div class="col-sm-6"></div>
                                         </div>
                                     </fieldset>
                                 </form>
@@ -81,26 +78,19 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
-
-
                                     <div class="content">
-
                                       <h4 class="title">List Events</h4> <br>
-
-
                                         <div class="fresh-datatables">
-
-
-                                  <table id="bootstrap-table" class="table">
+                                  <table id="example" class="table">
                                       <thead>
 
                                           <th data-field="id">ID</th>
-                                            <th data-field="year"  data-sortable="true">Event</th>
-                                              <th data-field="no"  data-sortable="true">Date</th>
+                                            <th data-field="year" >Event</th>
+                                              <th data-field="no">Date</th>
                                         <!-- <th data-field="name" class="text-center" data-sortable="true">Event -Details</th> -->
 
-                                        <th data-field="status"  data-sortable="true">Status</th>
-                                        <th data-field="Section" data-sortable="true">Actions</th>
+                                        <th data-field="status">Status</th>
+                                        <th data-field="Section">Actions</th>
 
 
                                       </thead>
@@ -113,27 +103,20 @@
                                             <td><?php echo $i; ?></td>
                                             <td><?php echo $rows->event_name; ?></td>
                                             <td><?php echo $new_date = date('d-m-Y', strtotime($rows->event_date));  ?></td>
-
                                             <!-- <td><?php echo $rows->event_details; ?></td> -->
-
-
                                               <td><?php if($rows->status=='Active'){  ?>
                                               <button class="btn btn-success btn-fill btn-wd">Active</button>
-                                                                                          <?php  } else{  ?>
+                                              <?php  } else{  ?>
                                               <button class="btn btn-danger btn-fill btn-wd">Inactive</button>
                                         <?php    } ?></td>
                                             <td>
+												<a rel="tooltip" href="#myModal" data-id="<?php echo $rows->event_id; ?>" title="Assign Coordinator" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" style="color:#eb34ff;font-size:20px;" data-toggle="modal" data-target="#addmodel"><i class="fa fa-user-plus">  </i></a>
+												
+												<a href="<?php echo base_url(); ?>event/view_sub_event/<?php echo $rows->event_id; ?>" rel="tooltip" title="View Coordinators" class="btn btn-simple btn-warning btn-icon edit" style="color:#be34ff;font-size:20px;"><i class="fa fa-eye"></i></a>
 
-    <a rel="tooltip" href="#myModal" data-id="<?php echo $rows->event_id; ?>" title="Assign Coordinator" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" style="color:#eb34ff;" data-toggle="modal" data-target="#addmodel"   >
-	<i class="fa fa-user-plus">  </i></a>
-
-<a href="<?php echo base_url(); ?>event/view_sub_event/<?php echo $rows->event_id; ?>" rel="tooltip" title="View Coordinators" class="btn btn-xs btn-fill">View</a>
-
-                                               <!-- <a rel="tooltip" title="Add " class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">
-											    <i class="fa fa-address-card-o" aria-hidden="true"></i>
-                                                </a> -->
-                                              <a href="<?php echo base_url(); ?>event/edit/<?php echo $rows->event_id; ?>" rel="tooltip" title="Edit Event" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-                                                </td>
+												
+												<a href="<?php echo base_url(); ?>event/edit/<?php echo $rows->event_id; ?>" rel="tooltip" title="Edit Event" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
+                                             </td>
                                           </tr>
                                           <?php $i++;  }  ?>
                                       </tbody>
@@ -169,13 +152,13 @@
                             <div class="content">
                                 <form method="post" action="" class="form-horizontal" enctype="multipart/form-data" id="coordinatorform">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Sub Event</label>
+                                        <label class="col-md-3 control-label">Sub Event <span class="mandatory_field">*</span></label>
                                         <div class="col-md-9">
-                                            <input type="text" id="sub_event_name" name="sub_event_name" value="" placeholder="Sub Event" class="form-control">
+                                            <input type="text" id="sub_event_name" name="sub_event_name" value="" placeholder="Sub Event" class="form-control" maxlength="50">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Coordinator</label>
+                                        <label class="col-md-3 control-label">Coordinator <span class="mandatory_field">*</span></label>
                                         <div class="col-md-9">
 
 										<select   id="co_name"  data-title="Select Teacher" class="selectpicker" data-style=" btn-block"  data-menu-style="dropdown-blue">
@@ -193,7 +176,7 @@
                                         </div>
                                     </div>
 									<div class="form-group">
- <label class="col-md-3 control-label">Status</label>
+ <label class="col-md-3 control-label">Status <span class="mandatory_field">*</span></label>
                                         <div class="col-md-9">
 										 <select id="status" class="selectpicker form-control" data-title="Select Status"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 
@@ -208,7 +191,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3"></label>
                                         <div class="col-md-9">
-								<button type="button" class="btn btn-fill btn-info submitBtn" onclick="submitContactForm()">SUBMIT</button>
+											<button type="button" class="btn btn-fill btn-info submitBtn" onclick="submitContactForm()" style="cursor:pointer">SUBMIT</button>
                                            <!-- <button type="submit" class="btn btn-fill btn-info">Save</button> -->
                                         </div>
                                     </div>
@@ -294,7 +277,39 @@ $(document).on("click", ".open-AddBookDialog", function () {
      $(".modal-body #event_id").val( eventId );
 });
 
- $('#bootstrap-table').DataTable();
+$('#example').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+                 {
+                     extend: 'excelHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 },
+                 {
+                     extend: 'pdfHtml5',
+                     exportOptions: {
+                     columns: ':visible'
+                     }
+                 }
+             ],
+             "pagingType": "full_numbers",
+			 "ordering": false,
+             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+             responsive: true,
+             language: {
+				 search: "_INPUT_",
+				 searchPlaceholder: "Search",
+             },
+			 "bAutoWidth": false,
+			"columns": [
+					{ "width": "7%" },
+					{ "width": "50%" },
+					{ "width": "10%" },
+					{ "width": "15%" },
+					{ "width": "18%" }
+				  ]
+         }); 
 </script>
 
 <script type="text/javascript">

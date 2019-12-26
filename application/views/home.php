@@ -126,7 +126,7 @@
 									<input type='radio' name="user_type" value="students" checked style="margin-left:40px;"/><span style="padding-left:10px; padding-right:10px; ">Students</span>
 									<input type='radio' name="user_type" value="teachers" /><span style="padding-left:10px;">Teachers</span>
 
-                                    <div class="col-sm-4" style="float:right;margin-right:110px;padding-top:10px;">
+                                    <div class="col-sm-4" style="float:right;margin-right:110px;">
                                        <select name="cls_sex" class="form-control" id="class_sec" style="padding:05px;height:30px;">
                                           <option value="">Select Class</option>
 										  <?php foreach($class as $rows){?>
@@ -159,20 +159,14 @@
                            <table class="table table-striped">
                               <thead>
                                  <tr style="background-color:#e57b05;">
-                                    <th style="color: white;font-size: 15px;">DATE & TIME</th>
-									 <th></th>
+                                    <th style="color: white;font-size: 15px;" class="text-center">DATE & TIME</th>
                                  </tr>
                               </thead>
                               <tbody>
                                  <tr>
-                                    <td class="text-center"><p style="font-size:18px;padding-top:08px;color: #84858d;"><?php  echo date("d M Y"); echo '<br>';?> <span style="font-size:15px;"><?php echo date("l");?></span></p></td>
-
-									 <td>
-									 <span class="textborder"></span>
-									 <div id="txt" style="font-size:20px;font-weight:bold;color:#84858d;padding-left:13px;
-    padding-top:13px;"></div></td>
+                                    <td class="text-center">
+									<p style=""><?php  echo date("d M Y"); ?> - <?php echo date("l");?></p> <p id="txt"></p></td>
                                  </tr>
-
                               </tbody>
                            </table>
                      </div>
@@ -336,6 +330,7 @@
          </div>
       </div>
    </div>
+</div>
 </div>
 <script type="text/javascript">
 window.onload

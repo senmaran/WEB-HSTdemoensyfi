@@ -56,7 +56,7 @@
 
                                       <!-- <a rel="tooltip" title="View" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)"><i class="fa fa-image"></i>
                                         </a> -->
-                                      <a href="<?php echo base_url(); ?>userrolemanage/get_userid/<?php echo $rows->user_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                      <a href="<?php echo base_url(); ?>userrolemanage/get_userid/<?php echo $rows->user_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i></a>
                                         </td>
                                   </tr>
                                   <?php $i++;  }  ?>
@@ -98,8 +98,7 @@ $(document).ready(function() {
                   exportOptions: {
                        columns: ':visible'
                   }
-              },
-              'colvis'
+              }
           ],
 		    "pagingType": "full_numbers",
 		    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],

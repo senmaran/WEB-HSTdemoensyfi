@@ -31,25 +31,25 @@
                      <form method="post" action="<?php echo base_url(); ?>examinationresult/marks_details" class="form-horizontal" enctype="multipart/form-data" id="markform">
                         <table id="resulttable" class="table table-hover table-striped">
                <thead>
-                <th>S. No</th>
-                <th>Subject</th>
-                <th>Internal Marks</th>
-                <th>External Marks</th>
-                <th>Total Marks</th>
+                <th style="font-size:14px;font-weight:bold;">S. No</th>
+                <th style="font-size:14px;font-weight:bold;">Subject</th>
+                <th style="font-size:14px;font-weight:bold;">Internal Marks</th>
+                <th style="font-size:14px;font-weight:bold;">External Marks</th>
+                <th style="font-size:14px;font-weight:bold;">Total Marks</th>
                </thead>
                <tbody>
                <?php
                   $i=1;
                   if(!empty($result))
                   {
-
+					  $gt = 0;
                      foreach ($result as $rows)
                      {
-                      $tm=$rows->total_marks;
-                      $im=$rows->internal_mark;
-                      $ig=$rows->internal_grade;
-                      $em=$rows->external_mark;
-                      $eg=$rows->external_grade;
+						  $tm=$rows->total_marks;
+						  $im=$rows->internal_mark;
+						  $ig=$rows->internal_grade;
+						  $em=$rows->external_mark;
+						  $eg=$rows->external_grade;
                     ?>
                      <tr>
                       <td><?php echo $i; ?></td>
@@ -70,7 +70,18 @@
                      </td>
                       <?php } ?>
                      </tr>
-                      <?php $i++;  } }else{ echo "<p style=text-align:center;color:red;>No exam added for any class </p>"; }
+					 <?php 
+						 $gt = ($gt+$tm);
+						 $i++; 
+						} 
+						if ($gt != 0) {
+						?>
+						<td></td><td></td><td></td><td style="font-size:16px;font-weight:bold;">Total</td><td style="font-size:16px;font-weight:bold;"><?php echo $gt; ?></td>
+					  <?php
+						}
+					  }else{ 
+							echo "<p style=text-align:center;color:red;>No exam added for any class </p>"; 
+						}
                      ?>
                          <!--td></td><td></td><td></td>
                         <?php //if(!empty($result)){ ?>

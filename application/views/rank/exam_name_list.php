@@ -15,10 +15,11 @@
                   </div>
                   <div class="content">
                   <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>rank/get_all_rank" enctype="multipart/form-data" id="rankform" name="rankform">
+				  
                            <div class="form-group">
-                              <label class="col-sm-2 control-label"> YEAR</label>
+                              <label class="col-sm-2 control-label">Year <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
-                                 <select name="year_id"  required class="selectpicker" data-title="Select academic year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                 <select name="year_id"  required class="selectpicker" data-title="Select Academic Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                     <?php foreach($result as $rows)
                                        {
                                          $fyear=$rows->from_month;
@@ -30,9 +31,10 @@
                                     <?php } ?>
                                  </select>
                               </div>
-                               <label class="col-sm-2 control-label">Exams</label>
+							  
+                               <label class="col-sm-2 control-label">Exams <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
-                                 <select name="exam_id[]"  class="selectpicker" multiple="multiple" data-title="Select exams" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                 <select name="exam_id[]"  class="selectpicker" multiple="multiple" data-title="Select Exams" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                     <?php  foreach($exam_view as $rows)
                                        {
                                         $exam_id=$rows->exam_id;
@@ -44,7 +46,7 @@
                            </div>
 
                         <div class="form-group">
-                           <label class="col-lg-2 control-label">Class</label>
+                           <label class="col-lg-2 control-label">Class <span class="mandatory_field">*</span></label>
                            <div class="col-md-4">
                               <select name="class_id" id="class_id" class="selectpicker" data-title="Select Class " data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                  <?php foreach($cls_view as $rows)
@@ -58,7 +60,7 @@
                               </select>
                            </div>
 
-                            <label class="col-lg-2 control-label">Subjects</label>
+                            <label class="col-lg-2 control-label">Subjects <span class="mandatory_field">*</span></label>
                            <div class="col-sm-4">
                               <select  id="sub_id" name="sub_name_id[]" class="selectpicker" multiple data-title="Select Subjects" >
                               </select>
@@ -67,23 +69,22 @@
                         </div>
 
                         <div class="form-group">
-                           <label class="col-lg-2 control-label">Set Pass Mark </label>
+                           <label class="col-lg-2 control-label">Set Pass Mark <span class="mandatory_field">*</span></label>
                            <div class="col-sm-4">
-                           <input type="text" class="form-control" name="pass_mark"  placeholder="Enter marks - Ex: 35">
+                           <input type="text" class="form-control" name="pass_mark"  placeholder="Enter marks - Ex: 35" maxlength='3'>
                            </div>
-
+							<div class="col-sm-6"></div>
                         </div>
                         <div class="form-group">
-
-                           <!-- <label class="col-lg-2 control-label"></label> -->
-                           <div class="text-center">
-                              <button type="submit" class="btn btn-fill btn-info">Search</button>
+							<label class="col-lg-2 control-label"></label>
+                           <div class="col-sm-4">
+                            <input type="submit" id="save" class="btn btn-info btn-fill center" value="Search">
                            </div>
+							<div class="col-sm-6"></div>
+							
+                          
                         </div>
                      </form>
-                     <div class="col-md-4">
-                        <!--a href="<?php echo base_url();?>rank/class_name_list/<?php echo $exam_id; ?>" class="btn btn-wd"><?php echo $exname; ?></a-->
-                     </div>
                      <?php  }  ?>
                   </div>
                </div>

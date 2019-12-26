@@ -23,15 +23,15 @@
                                <div class="row">
                                    <div class="col-md-4">
                                        <div class="form-group">
-                                           <label>Class </label>
-                                           <input type="text" class="form-control"  placeholder="" id="classname" name="classname" value="<?php  echo $rows->class_name; ?>">
+                                           <label>Class  <span class="mandatory_field">*</span></label>
+                                           <input type="text" class="form-control"  placeholder="" id="classname" name="classname" value="<?php  echo $rows->class_name; ?>" maxlength="15">
                                             <input type="hidden" class="form-control"  placeholder="" name="class_id" value="<?php  echo $rows->class_id; ?>">
 
                                        </div>
                                    </div>
 								    <div class="col-md-4">
                                        <div class="form-group">
-                                           <label>Status</label>
+                                           <label>Status  <span class="mandatory_field">*</span></label>
                                           <select name="status" class="selectpicker form-control">
 												  <option value="Active">Active</option>
 												  <option value="Deactive">Inactive</option>
@@ -43,7 +43,8 @@
 
                                    	<div class="form-group">
                                          	<label class="col-sm-2 control-label">&nbsp;</label><br>
-                                         <button type="submit" class="btn btn-info btn-fill pull-left">SAVE</button>
+											<input type="submit" id="save" class="btn btn-info btn-fill center" value="SAVE">
+                                      
                                      </div>
                                    </div>
                                </div>

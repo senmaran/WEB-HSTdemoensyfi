@@ -73,11 +73,10 @@
    <div class="col-md-12">
       <div class="card">
          <div class="header">
-            <legend><h4 class="title">Create Timetable for  <?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name;  ?></h4>  </legend>
-              <center><input type="button" class="btn btn-wd btn-default" value="Refresh" onClick="window.location.reload()"></center>
-              <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-40px;">Back</button>
-
-
+				<h4 class="title" style="margin-bottom:20px;">Create Timetable for  <?php foreach($get_name_class as $rows){} echo $rows->class_name.'-'.$rows->sec_name;  ?></h4>
+				<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">Back</button>
+				<input type="button" class="btn btn-wd btn-default" value="Refresh" onClick="window.location.reload()">
+				<hr>
          </div>
          <div class="content">
             <div class="row">
@@ -86,7 +85,7 @@
                <?php foreach ($get_all_days as $rows) {  ?>
                  <a href="#myModal" data-toggle="modal" data-target="#myModal" data-day-id="<?php echo $rows->d_id; ?>"
                    class="btn btn-primary"
-                    style="width:150px;margin-bottom:10px;margin-left:15px;border: 1px solid;" onclick="get_id(<?php echo $rows->d_id; ?>)"><?php echo $rows->list_day; ?></a>
+                    style="width:140px;margin-bottom:10px;margin-left:15px;border: 1px solid;" onclick="get_id(<?php echo $rows->d_id; ?>)"><?php echo $rows->list_day; ?></a>
              <?php      } ?>
                </div>
                </div>
@@ -584,8 +583,11 @@ $(document).ready(function() {
 
         });
 
-        $('#from_time').clockpicker({ placement: 'top', align: 'left', donetext: 'Done'});
-        $('#to_time').clockpicker({ placement: 'top', align: 'left', donetext: 'Done'});
+
+
+        $('#from_time').clockpicker({ placement: 'top', align: 'left', donetext: 'Done',twelvehour: true});
+        $('#to_time').clockpicker({ placement: 'top', align: 'left', donetext: 'Done',twelvehour: true});
+		
         $('#break_id').on('change', function() {
             // From the other examples
 

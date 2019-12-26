@@ -3619,7 +3619,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x {
-  background-color: #999;
+  background-color: #transparent;
 }
 
 .ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail {
@@ -3651,7 +3651,7 @@ be a descendant of the grid when it is being dragged.
 .ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
   position: absolute;
   /* please don't change 'position' */
-  background-color: #aaa;
+  background-color: transparent;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -5000,7 +5000,7 @@ background-color: #9266d9;
 
 .btn-simple {
   border: 0;
-  font-size: 16px;
+  font-size: 14px;
   padding: 8px 16px;
 }
 .btn-simple.btn-icon {
@@ -7569,7 +7569,7 @@ star {
   font-size: 16px;
 }
 .card .form-group > label {
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 5px;
   text-transform: capitalize;
 }

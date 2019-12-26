@@ -16,13 +16,13 @@
                <form method="post" action="<?php echo base_url(); ?>enrollment/create" class="form-horizontal" enctype="multipart/form-data" id="admissionform">
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Academic Year</label>
+                        <label class="col-sm-4 control-label">Academic Year <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <?php  $status=$years['status']; if($status=="success"){
                               foreach($years['all_years'] as $rows){}
                               ?>
                            <input type="hidden" name="year_id"  value="<?php  echo $rows->year_id; ?>">
-                           <input type="text" name="year_name"  class="form-control" value="<?php echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  ?>" readonly="">
+                           <input type="text" name="year_name"  class="form-control" value="<?php echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  ?>" readonly="" >
                            <?php   }else{  ?>
                            <input type="text" name="year_name"  class="form-control" value="" readonly="">
                            <?php     } ?>
@@ -31,7 +31,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Admission No</label>
+                        <label class="col-sm-4 control-label">Admission No <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select name="admission_id" id="admission_no" onchange="checknamefun(this.value)" class="selectpicker form-control" data-title="Select Admission No" >
                               <?php foreach ($admisno as $row) {  ?>
@@ -43,7 +43,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Student Name</label>
+                        <label class="col-sm-4 control-label">Student Name <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <p id="msg" name="name">  </p>
                            <input type="text" name="name" id="name" readonly  class="form-control">
@@ -52,7 +52,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Registration Date</label>
+                        <label class="col-sm-4 control-label">Registration Date <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <input type="text" name="admit_date" class="form-control datepicker" placeholder="Registration Date"/>
                         </div>
@@ -60,7 +60,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Class</label>
+                        <label class="col-sm-4 control-label">Class <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select name="class_section" class="selectpicker form-control" data-title="Select Class" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <?php foreach ($getall_class as $rows) {  ?>
@@ -72,7 +72,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">Quota</label>
+                        <label class="col-sm-4 control-label">Quota <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select name="quota_id" class="selectpicker form-control" data-title="Select Quota" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <?php foreach ($quota as $row1) {  ?>
@@ -84,7 +84,7 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-                        <label class="col-sm-4 control-label">House</label>
+                        <label class="col-sm-4 control-label">House <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
                            <select name="groups_id" class="selectpicker form-control" data-title="Select House" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                               <?php foreach ($groups as $row2) {  ?>
@@ -121,7 +121,8 @@
                      <div class="form-group">
                         <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
                         <div class="text-center">
-                           <button type="submit" id="save1" class="btn btn-info btn-fill center">ALLOCATE</button>
+							<input type="submit" id="save1" class="btn btn-info btn-fill center" value="ALLOCATE">
+                           
                         </div>
                      </div>
                   </fieldset>

@@ -3,9 +3,9 @@
   <div class="card">
     <div class="toolbar">
       <div class="header">
-          <legend>Edit Handling Subject
-            <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></legend>
-
+          <legend style="padding-bottom:20px;padding-top:10px;">Edit Handling Subject
+				<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">Go Back</button>
+			</legend>
       </div>
     </div>
       <div class="row">
@@ -14,15 +14,15 @@
   <form action="<?php echo base_url(); ?>teacher/save_subject_handling" method="post" class="form-horizontal" id="subject_handling_form" name="subject_handling_form">
      <fieldset>
        <div class="form-group">
-          <label class="col-sm-2 control-label">Teacher</label>
-          <div class="col-sm-6">
+          <label class="col-sm-2 control-label">Teacher <span class="mandatory_field">*</span></label>
+          <div class="col-sm-4">
             <input type="hidden" name="id" id="id" class="form-control" value="<?php echo $rows1->id; ?>" readonly="">
              <input type="text" name="teacher_name" id="teacher_name" class="form-control" value="<?php echo $rows1->name; ?>" readonly="">
           </div>
        </div>
         <div class="form-group">
-           <label class="col-sm-2 control-label">Subject</label>
-           <div class="col-sm-6">
+           <label class="col-sm-2 control-label">Subject <span class="mandatory_field">*</span></label>
+           <div class="col-sm-4">
              <select  name="subject_id" id="subject_id"   class="selectpicker" data-style=" btn-block" data-menu-style="dropdown-blue" onchange="getListClass()">
                 <?php foreach ($resubject as $rows) {  ?>
                 <option value="<?php echo $rows->subject_id; ?>"><?php echo $rows->subject_name; ?></option>
@@ -33,8 +33,8 @@
            </div>
         </div>
         <div class="form-group">
-           <label class="col-sm-2 control-label">Class</label>
-           <div class="col-sm-6">
+           <label class="col-sm-2 control-label">Class  <span class="mandatory_field">*</span></label>
+           <div class="col-sm-4">
              <select   name="class_master_id" id="class_master_id" class="form-control">
                <?php foreach($getall_class as $rows){ ?>
                  <option value="<?php echo $rows->class_sec_id; ?>"><?php echo $rows->class_name; ?>&nbsp; - &nbsp;<?php echo $rows->sec_name; ?></option>
@@ -46,8 +46,8 @@
         </div>
 </div>
         <div class="form-group">
-           <label class="col-sm-2 control-label">Status</label>
-           <div class="col-sm-6">
+           <label class="col-sm-2 control-label">Status  <span class="mandatory_field">*</span></label>
+           <div class="col-sm-4">
               <select   name="status" id="status" class="form-control" >
                  <option value="Active">Active</option>
                  <option value="Deactive">Inactive</option>
@@ -59,7 +59,7 @@
         <div class="form-group">
            <label class="col-sm-2 control-label">&nbsp;</label>
            <div class="col-sm-6">
-              <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
+			<input type="submit" id="save" class="btn btn-info btn-fill center" value="SAVE">
            </div>
         </div>
      </fieldset>
@@ -90,8 +90,8 @@ $('#subject_handling_form').validate({ // initialize the plugin
                     type: "success",
                     showCancelButton: true,
                     confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Yes, I am sure!',
-                    cancelButtonText: "No, cancel it!",
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: "No",
                     closeOnConfirm: false,
                     closeOnCancel: false
                 },
@@ -107,8 +107,8 @@ $('#subject_handling_form').validate({ // initialize the plugin
               //  swal("Success!", "Thanks for Your Note!", "success");
                 $('#subject_handling_form')[0].reset();
                 swal({
-         title: "Wow!",
-         text: "Updated !",
+         title: "Success!",
+         text: "Updated!",
          type: "success"
      }, function() {
          window.location = "<?php echo base_url(); ?>teacher/view_subject_handling";
