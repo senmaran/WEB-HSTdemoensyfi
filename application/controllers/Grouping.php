@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Grouping extends CI_Controller {
 
-
 	function __construct() {
 		 parent::__construct();
 			$this->load->model('groupingmodel');
@@ -13,12 +12,12 @@ class Grouping extends CI_Controller {
 			$this->load->model('mailmodel');
 			$this->load->model('notificationmodel');
 			$this->load->model('class_manage');
-		  $this->load->helper('url');
-		  $this->load->library('session');
-			$this->load->library('encrypt');
+			$this->load->helper('url');
+			$this->load->library('session');
+			$this->load->library('encryption');
 
 
- }
+	}
 
 	/**
 	 * Index Page for this controller.

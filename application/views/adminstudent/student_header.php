@@ -208,7 +208,7 @@
                </li>
                <li id="circular">
                   <a href="<?php echo base_url(); ?>student/view_all_circular">
-                     <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/fees.png"/>
+						<img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/circular.png"/>
                      <p>Circulars</p>
                   </a>
                </li>

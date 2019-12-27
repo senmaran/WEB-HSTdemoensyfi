@@ -205,7 +205,7 @@
 
                <li id="grouping">
                   <a href="<?php echo base_url(); ?>teacherprofile/grouping">
-                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/classhandling.png"/>
+                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/grp.png"/>
                      <p>Group Messages 	</p>
                   </a>
 
