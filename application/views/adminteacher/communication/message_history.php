@@ -12,7 +12,7 @@
                   <div class="content">
                      <div class="header">
                         Message History
-                        <a href="<?php echo base_url(); ?>teacherprofile/grouping" class="btn btn pull-right">Send Message</a>
+                        <a href="<?php echo base_url(); ?>teacherprofile/grouping" class="btn btn pull-right">BACK</a>
                      </div>
                   </div>
                   <table id="bootstrap-table" class="table">
@@ -51,10 +51,10 @@
              $table.bootstrapTable({
                  toolbar: ".toolbar",
                  clickToSelect: true,
-                 showRefresh: true,
+                 showRefresh: false,
                  search: true,
-                 showToggle: true,
-                 showColumns: true,
+                 showToggle: false,
+                 showColumns: false,
                  pagination: true,
                  searchAlign: 'left',
                  pageSize: 10,

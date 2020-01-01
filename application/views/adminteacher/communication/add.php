@@ -1,6 +1,17 @@
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-clockpicker.min.css">
+<script src="<?php echo base_url(); ?>assets/js/jquery-clockpicker.min.js"></script>
+<style>
+.popover.clockpicker-popover.top.clockpicker-align-left {
+    top: 130px !important;
+}
+ .clockpicker-popover {
+ z-index: 100000 !important;
+ }
+</style>
 <div class="main-panel">
   <div class="content">
     <div class="container-fluid">
+	
       <div class="row">
         <div class="col-md-12">
           <div class="card">
@@ -9,7 +20,8 @@
             </div>
             <div class="content">
               <form method="post" action="" class="form-horizontal" enctype="multipart/form-data" id="myformsection">
-                <fieldset>
+               
+			   <fieldset>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Type of Leave</label>
                     <div class="col-sm-4">
@@ -21,41 +33,54 @@
                         <?php } ?>
                       </select>
                     </div>
-                    <div id="res"></div>
+					
+					<div id="permissiontime" style="display: none;" class="form-group col-sm-6">
+						  <label class="col-sm-3 control-label">Time</label>
+						   <div class="col-sm-3 clockpicker" >
+								<input type="text" name="stime" id="stime" required class="form-control"/>
+							</div>
+							<div class="col-sm-3 clockpicker" >
+								<input type="text" name="etime" id="etime" required class="form-control"/>
+							</div>
+					</div>
+					</div>
+        
+                </fieldset>
+				
+				<fieldset>
+                  <div class="form-group">
                     <label class="col-sm-2 control-label">From Date</label>
                     <div class="col-sm-4">
                       <input type="text" name="leave_date" class="form-control datepicker" placeholder="Enter Date" >
                     </div>
+					<div class="col-sm-6"></div>
+
                   </div>
                 </fieldset>
-                <div id="permissiontime" style="display: none">
-                  <fieldset>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">Time</label>
-                      <div class="col-sm-2">
-                        <input type="text" class="form-control timepicker" name="frm_time" placeholder="From Time"/>
-                      </div>
-                      <div class="col-sm-2">
-                        <input type="text" name="to_time" class="form-control timepicker" placeholder="To Time"/>
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
-                <br/>
+				
+                
+
                 <fieldset>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">To Date</label>
                     <div class="col-sm-4">
                       <input type="text" name="to_leave_date" class="form-control datepicker" placeholder="Enter Date" >
                     </div>
-                    <label class="col-sm-2 control-label">Leave Description</label>
-                    <div class="col-sm-4">
-                      <textarea name="leave_description" MaxLength="300" placeholder="MaxCharacters 300" class="form-control"  rows="4" cols="80"></textarea>
-                    </div>
+                    <div class="col-sm-6"></div>
 
                   </div>
                 </fieldset>
 
+
+                <fieldset>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Leave Description</label>
+                    <div class="col-sm-4">
+                      <textarea name="leave_description" MaxLength="300" placeholder="MaxCharacters 300" class="form-control"  rows="4" cols="80"></textarea>
+                    </div>
+					<div class="col-sm-6"></div>
+                  </div>
+                </fieldset>
 
                 <fieldset>
                   <div class="form-group">
@@ -72,11 +97,13 @@
           </div>
         </div>
       </div>
+	  
       <?php if($this->session->flashdata('msg')): ?>
       <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> ×</button>
         <?php echo $this->session->flashdata('msg'); ?> </div>
       <?php endif; ?>
+	  
       <div class="row">
         <div class="col-md-12">
           <div class="card">
@@ -95,23 +122,22 @@
                     </thead>
                   <tbody>
                     <?php
-                                 $i=1;
-                                 foreach($result as $rows)
-								 { $status=$rows->status;
-								  $type=$rows->type_leave;
-                                  ?>
+                     $i=1;
+						 foreach($result as $rows)
+						 { 
+							$status=$rows->status;
+							$type=$rows->type_leave;
+							$tleave_date = $rows->to_leave_date;
+                    ?>
                     <tr>
                       <td><?php   echo $i; ?></td>
                       <td><?php echo $rows->leave_title; /* if($type==0)
 									 {echo "Permission";}else{echo"Leave";} */?></td>
-                      <td><?php $date=date_create($rows->from_leave_date);
-                                     echo date_format($date,"d-m-Y");
-									  if($type==0)
-									 {?>
-                        <?php echo $rows->frm_time; ?> <?php echo $rows->to_time; ?>
-                        <?php }?></td>
-                      <td><?php $date=date_create($rows->to_leave_date);
-									 echo date_format($date,"d-m-Y");?></td>
+                      <td><?php $date=date_create($rows->from_leave_date); echo date_format($date,"d-m-Y");
+						if($type==0){
+                        echo $rows->frm_time;  echo $rows->to_time; 
+                       }?></td>
+                      <td><?php if ($tleave_date!="") { $date= date_create($rows->to_leave_date); echo date_format($date,"d-m-Y"); }?></td>
                       <td><?php echo $rows->leave_description; ?></td>
                       <td><?php if($status=='Pending'){ ?>
                         <button class="btn btn-warning btn-fill btn-wd" style="background-color:#E8BE1F;">Pending</button>
@@ -139,21 +165,16 @@
 <script type="text/javascript">
   function changefunction()
   {
-   //var example = "1,2";
-   //var numbers = example.split(',',true);
-
 	   var a=document.getElementById('choose').value ;
 	   var numbers = a.split('-',true);
-	   //alert(a);alert(numbers);
 	   if (numbers==0) {
 			$("#permissiontime").show();
 		} else {
 	   $("#permissiontime").hide();
-
 		}
   }
 
-   $(document).ready(function () {
+$(document).ready(function () {
 
     $('#myformsection').validate({ // initialize the plugin
        rules: {
@@ -162,97 +183,60 @@
    		 leave_description:{required:true },
         },
         messages: {
-              leave_type:"Select Type Of Leave",
-              leave_date:"Select Leave Date",
-              leave_description:"Enter The Leave Description",
+              leave_type:"Please choose an option!",
+              leave_date:"This field cannot be empty!",
+              leave_description:"This field cannot be empty!",
             },
 
-		  submitHandler: function(form) {
-	        //alert("hi");
+		submitHandler: function(form) {
 	        swal({
 	                      title: "Are you sure?",
 	                      text: "You Want Confirm this form",
 	                      type: "success",
 	                      showCancelButton: true,
 	                      confirmButtonColor: '#DD6B55',
-	                      confirmButtonText: 'Yes, I am sure!',
-	                      cancelButtonText: "No, cancel it!",
+	                      confirmButtonText: 'Yes',
+	                      cancelButtonText: "No",
 	                      closeOnConfirm: false,
 	                      closeOnCancel: false
 	                  },
 	                  function(isConfirm) {
 	                      if (isConfirm) {
-	       $.ajax({
-	           url: "<?php echo base_url(); ?>teachercommunication/create",
-	            type:'POST',
-	           data: $('#myformsection').serialize(),
-	           success: function(response) {
-				   //alert(response);
-	               if(response=="success"){
-	                //  swal("Success!", "Thanks for Your Note!", "success");
-	                  $('#myformsection')[0].reset();
-	                  swal({
-	           title: "Wow!",
-	           text: "Message!",
-	           type: "success"
-	       }, function() {
-	           window.location = "<?php echo base_url(); ?>teachercommunication/home";
-	       });
-	               }else if(response=="exist"){
-					   sweetAlert("Oops...", "Leave Date Already Exist", "error");
-				   }else{
-	                 sweetAlert("Oops...", "Something went wrong!", "error");
-	               }
-	           }
-	       });
-	     }else{
-	         swal("Cancelled", "Process Cancel :)", "error");
-	     }
-	   });
-	}
+				   $.ajax({
+					   url: "<?php echo base_url(); ?>teachercommunication/create",
+						type:'POST',
+					   data: $('#myformsection').serialize(),
+					   success: function(response) {
+						   alert(response);
+						   if(response=="success"){
+							//  swal("Success!", "Thanks for Your Note!", "success");
+							  $('#myformsection')[0].reset();
+							  swal({
+					   title: "Success!",
+					   text: "Leave Application Submited!",
+					   type: "success"
+				   }, function() {
+					   window.location = "<?php echo base_url(); ?>teachercommunication/home";
+				   });
+						   }else if(response=="exist"){
+							   sweetAlert("Oops...", "Leave Date Already Exist", "error");
+						   }else{
+							 sweetAlert("Oops...", "Something went wrong!", "error");
+						   }
+					   }
+				   });
+				 }else{
+					 swal("Cancelled", "Process Cancel :)", "error");
+				 }
+			   });
+		}
+	});
+
+});
 
 
-
-
-
-
-
-    });
-	demo.initFormExtendedDatetimepickers();
-   });
-
-
- $('#bootstrap-table').DataTable();
-
-
-/* $(function () {
-        $("#choose").change(function () {
-            if ($(this).val()==0) {
-                $("#permissiontime").show();
-            } else {
-           $("#permissiontime").hide();
-
-            }
-        });
-    }); */
-
-
-   $().ready(function(){
-
-     $('.datepicker').datetimepicker({
-       format: 'DD-MM-YYYY',
-	    minDate: new Date(),
-       icons: {
-           time: "fa fa-clock-o",
-           date: "fa fa-calendar",
-           up: "fa fa-chevron-up",
-           down: "fa fa-chevron-down",
-           previous: 'fa fa-chevron-left',
-           next: 'fa fa-chevron-right',
-           today: 'fa fa-screenshot',
-           clear: 'fa fa-trash',
-           close: 'fa fa-remove'
-       }
-    });
-   });
+	$('#bootstrap-table').DataTable();
+   
+	$('#stime').clockpicker({ placement: 'top', align: 'left', donetext: 'Done',twelvehour: true});
+	$('#etime').clockpicker({ placement: 'top', align: 'left', donetext: 'Done',twelvehour: true});
 </script>

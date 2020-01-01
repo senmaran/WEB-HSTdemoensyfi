@@ -24,6 +24,7 @@
                            $date1=date_create($row->from_leave_date);
                            $leave=$row->type_leave;
                            $cell=$row->phone;
+						   $tleave_date = $row->to_leave_date;
                            } ?>
                         <fieldset>
                            <div class="form-group">
@@ -58,8 +59,7 @@
                            <div class="form-group">
                               <label class="col-sm-2 control-label">To Date</label>
                               <div class="col-sm-4">
-                                 <input type="text" name="tleave_date" readonly value="<?php $date1=date_create($row->to_leave_date);
-                                    echo date_format($date1,"d-m-Y"); ?>" class="form-control">
+                                 <input type="text" name="tleave_date" readonly value="<?php if ($tleave_date!="") { $date= date_create($row->to_leave_date); echo date_format($date,"d-m-Y"); }?>" class="form-control">
                               </div>
                               <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">

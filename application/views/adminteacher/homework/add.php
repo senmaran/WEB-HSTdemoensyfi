@@ -81,9 +81,9 @@
                               <th>Subject</th>
                               <th>Home Work / Class Test</th>
                               <th>Title</th>
-                              <th>DATE</th>
+                              <th>Due Date</th>
                               <th>Status</th>
-                              <th class="disabled-sorting text-right">Actions</th>
+                              <th >Actions</th>
                            </thead>
                            <tbody>
                               <?php
@@ -124,13 +124,13 @@
                                     <?php }
                                        //echo $status; ?>
                                  </td>
-                                 <td class="text-right">
+                                 <td >
+								 <a href="<?php echo base_url();?>homework/edit_test/<?php echo $rows->hw_id; ?>" title="Edit" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i>&nbsp;&nbsp;
                                     <?php if($sta==0 && $type=="HT")
                                        {?>
-                                    <a href="<?php echo base_url();?>homework/add_mark/<?php echo $rows->hw_id; ?>" rel="tooltip" title="Enter Marks" class="btn btn-simple btn-info btn-icon table-action view" >
-                                    <i class="fa fa-list-ol" aria-hidden="true"></i></a>
-                                    <?php }elseif($sta==1){?>  <a href="<?php echo base_url();?>homework/edit_mark/<?php echo $rows->hw_id; ?>" title="Edit Marks" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;"><i class="fa fa-id-card-o" aria-hidden="true"></i>	<?php }?>
-                                    <a href="<?php echo base_url();?>homework/edit_test/<?php echo $rows->hw_id; ?>" title="Edit" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i>
+                                    <a href="<?php echo base_url();?>homework/add_mark/<?php echo $rows->hw_id; ?>" rel="tooltip" title="Enter Marks" class="btn btn-simple btn-info btn-icon table-action view" style="cursor:pointer;"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
+                                    <?php }elseif($sta==1){?>  <a href="<?php echo base_url();?>homework/edit_mark/<?php echo $rows->hw_id; ?>" title="Edit Marks" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;cursor:pointer;"><i class="fa fa-id-card-o" aria-hidden="true"></i>	<?php }?>
+                                    
                                  </td>
                               </tr>
                               <?php $i++;  }  ?>
@@ -150,16 +150,15 @@
             <div class="modal-dialog">
                <!-- Modal content-->
                <div class="modal-content">
-                  <div class="modal-header" style="padding:10px;">
-                     <button type="button" class="close" style="margin:25px;" data-dismiss="modal">&times;</button>
-                     <h4 class="title">Assign Homework / Test</h4>
-                  </div>
+							<div class="modal-header">
+							   <button type="button" class="close" data-dismiss="modal">×</button>
+							   <h4 class="modal-title">Assign Homework / Test</h4>
+							</div>
                   <div class="modal-body">
                      <p id="msg" style="text-align:center;"></p>
                      <div class="row">
                         <div class="col-md-12">
-                           <div class="card">
-                              <div class="content">
+
                                  <form method="post" action="<?php echo base_url(); ?>homework/create" class="form-horizontal" enctype="multipart/form-data" id="classsection">
                                     <fieldset>
                                        <div class="form-group">
@@ -235,14 +234,14 @@
                                     <fieldset>
                                        <div class="form-group">
                                           <label class="col-sm-3 control-label">&nbsp;</label>
-                                          <div class="col-sm-10">
-                                             <button type="submit" class="btn btn-info btn-fill center">Save </button>
+                                          <div class="col-sm-6">
+										   <input type="submit" id="save" class="btn btn-info btn-fill center"  value="SAVE">
+                                           
                                           </div>
                                        </div>
                                     </fieldset>
                                  </form>
-                              </div>
-                           </div>
+
                            <!--  end card  -->
                         </div>
                         <!-- end col-md-12 -->

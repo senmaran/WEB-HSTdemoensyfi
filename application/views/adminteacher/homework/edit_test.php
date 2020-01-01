@@ -3,8 +3,9 @@
    <div class="col-md-12">
       <div class="card">
          <div class="header">
-            <legend>Edit Homework / Test<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></legend>
+		 <h4 class="title">Edit Homework / Test <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">BACK</button></h4>
          </div>
+		 <hr>
          <?php if($this->session->flashdata('msg')): ?>
          <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -17,10 +18,7 @@
                <fieldset>
                   <div class="form-group">
                      <label class="col-sm-2 control-label">Class</label>
-                     <div class="col-sm-4">
-                        <!-- <select multiple disabled  name="class_name[]" id="multiple-class" class="selectpicker" data-style="btn-block" onchange="select_class('classname')" data-menu-style="dropdown-blue">
-                        </select>-->
-						 <input type="text"  readonly name="class_name"  class="form-control"  value="<?php echo $rows->class_name; echo"-"; echo $rows->sec_name; ?>">
+                     <div class="col-sm-4"><input type="text"  readonly name="class_name"  class="form-control"  value="<?php echo $rows->class_name; echo"-"; echo $rows->sec_name; ?>">
                      </div>
                      <label class="col-sm-2 control-label">Subject</label>
                      <div class="col-sm-4">
@@ -28,6 +26,7 @@
                      </div>
                   </div>
                </fieldset>
+			   
                <fieldset>
                   <div class="form-group">
                      <label class="col-sm-2 control-label">Type</label>
@@ -45,6 +44,7 @@
                      </div>
                   </div>
                </fieldset>
+			   
                <fieldset>
                   <div class="form-group">
                      <label class="col-sm-2 control-label">Date</label>
@@ -58,7 +58,9 @@
                         <input type="text" name="sub_date" value="<?php $date=date_create($rows->due_date);
                            echo date_format($date,"d-m-Y");?>" class="form-control datepicker" >
                      </div>
-                     <?php }else {echo "";} ?>
+                     <?php }else {?>
+					 <div class="col-sm-6"></div>
+					 <?php } ?>
                   </div>
                </fieldset>
                <fieldset>
@@ -80,7 +82,8 @@
                <div class="form-group">
                <label class="col-sm-2 control-label">&nbsp;</label>
                <div class="col-sm-10">
-               <button type="submit" class="btn btn-info btn-fill center">SAVE</button>
+			    <input type="submit" id="save" class="btn btn-info btn-fill center"  value="SAVE">
+               
                </div>
                </div>
                </fieldset>

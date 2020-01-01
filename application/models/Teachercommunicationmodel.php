@@ -45,7 +45,7 @@ Class Teachercommunicationmodel extends CI_Model
 			 $data= array("status"=>"success");
 			 return $data;
 		 }else{
-			  $data= array("status" => "Leave Date Already Exist");
+			  $data= array("status" => "Exist");
               return $data;
 		  }
 	 }

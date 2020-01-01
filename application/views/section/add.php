@@ -142,7 +142,7 @@ $(document).ready(function () {
 });
 
   $('#bootstrap-table').DataTable( {
-    "ordering": false
+    //"ordering": false
   } );
 
 </script>

@@ -122,7 +122,7 @@ $(document).ready(function () {
   $('#masters3').addClass('active');
 
   $('#bootstrap-table').DataTable( {
-    "ordering": false
+    
   } );
 
  $('#myformclass').validate({ // initialize the plugin

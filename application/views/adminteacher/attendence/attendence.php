@@ -1,12 +1,10 @@
-<style>
-    td{text-align:center;}
-</style>
+
 <div class="main-panel">
 <div class="content">
        <div class="container-fluid">
          <div class="col-md-12">
 
-<div class="col-md-6">
+<div class="col-md-8">
   <?php  if($status=="success"){ ?>
                    <div class="card">
                        <div class="header">
@@ -24,9 +22,9 @@
                            <table class="table table-striped">
                                <thead>
                                    <tr>
-                                       <th class="text-center">S. No</th>
-                                       <th class="text-center">Name</th>
-                                       <th class="text-center">Status</th>
+                                       <th>S. No</th>
+                                       <th>Name</th>
+                                       <th>Status</th>
                                    </tr>
                                </thead>
                                <tbody>
@@ -34,9 +32,9 @@
                                  foreach($res as $rows){
                                     ?>
                                    <tr>
-                                       <td class="text-center"><?php echo $i;  ?></td>
+                                       <td><?php echo $i;  ?></td>
                                        <input type="hidden" name="student_count" value="<?php echo count($res); ?>">
-         <td class="text-center"><?php echo $rows->name;  ?>
+         <td><?php echo $rows->name;  ?>
          <input type="hidden" name="student_id[]" value="<?php echo $rows->enroll_id; ?>">
          <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
           <input type="hidden" name="user_id" value="<?php echo $user_id=$this->session->userdata('user_id'); ?>">
@@ -61,7 +59,7 @@ echo $dateTime->format("A");
 ?>">On Duty</option>
                                        </select>
                                        </td>
-                                        <!-- <td class="text-center">
+                                        <!-- <td>
                                            <div class="switch"
                                                 data-on-label=""
                                                 data-off-label="">

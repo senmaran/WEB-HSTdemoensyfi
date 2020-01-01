@@ -7,26 +7,16 @@
     <div class="content">
         <div class="container-fluid">
             <div class="col-md-12">
-
-                <div class="col-md-12">
-
                     <div class="card">
-
                         <div class="content">
-
-                                <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:0px;">BACK</button>
-
-                            <h4 class="title">Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?></h4>
+                            <h4 class="title">Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:0px;">BACK</button></h4>
                             <hr>
                             <div class="fresh-datatables">
-
                                 <table id="bootstrap-table" class="table">
                                     <thead>
-
                                         <th data-field="id" class="text-center" data-sortable="true">S. No</th>
                                         <th data-field="date" class="text-center" data-sortable="true">Name</th>
                                         <th data-field="year" class="text-center" data-sortable="true">Status </th>
-
                                     </thead>
                                     <tbody>
                                         <?php
@@ -71,7 +61,6 @@
 
                     </table>
 
-                </div>
             </div>
         </div>
 
@@ -82,6 +71,7 @@
 
 <script type="text/javascript">
    $('#bootstrap-table').DataTable();
+   
     $('#attendmenu').addClass('collapse in');
     $('#atten').addClass('active');
     $('#atten2').addClass('active');

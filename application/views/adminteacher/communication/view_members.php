@@ -60,9 +60,9 @@
               <div class="header">
                  <legend style="border-bottom:none;padding-bottom:10px;"><?php foreach ($res_group_name as $rows) {
                     } ?> <?php echo $rows->group_title; ?> - Members
-                    <a rel="" href="#myModal" data-id="<?php echo $id; ?>" title="Add Memebers" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#myModal" style="width:150px;">
+                    <a rel="" href="#myModal" data-id="<?php echo $id; ?>" title="Add Memebers" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#myModal" style="width:150px;cursor:pointer;">
                     Add Students</a>
-                    <a rel="" href="#staffmodal" data-id="<?php echo $id; ?>" title="Add Memebers" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#staffmodal"  style="width:150px;">
+                    <a rel="" href="#staffmodal" data-id="<?php echo $id; ?>" title="Add Memebers" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#staffmodal"  style="width:150px;cursor:pointer;">
                     Add Staff</a>
                     <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button>
                  </legend>
@@ -282,7 +282,7 @@ $('#group1').addClass('active');
      var del_id=delete_id;
                 swal({
                             title: "Are you sure?",
-                            text: "You Want confirm  this form",
+                            text: "You Want delete this member",
                             type: "success",
                             showCancelButton: true,
                             confirmButtonColor: '#DD6B55',

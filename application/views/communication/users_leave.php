@@ -59,20 +59,18 @@
                                  foreach($result as $rows)
 							     { $status=$rows->status;
 								  $type=$rows->type_leave;
+								  $tleave_date = $rows->to_leave_date;
                                   ?>
                               <tr>
                                  <td><?php echo $i; ?></td>
                                  <td><?php echo $rows->name ; ?></td>
                                  <td><?php  echo $rows->leave_title ; //if($type==0){ echo "Permission"; }else{ echo "Leave"; } ?></td>
-                                 <td><?php $date=date_create($rows->from_leave_date);
-                                     echo date_format($date,"d-m-Y");?>
-                									 <?php if($type==0)
-                									 {?>
-                									 <?php echo $rows->frm_time; ?> <?php echo $rows->to_time; ?>
-                									 <?php }?>
-                									 </td>
-													 <td><?php $date=date_create($rows->to_leave_date);
-                                     echo date_format($date,"d-m-Y");?> </td>
+                                 <td><?php $date=date_create($rows->from_leave_date); echo date_format($date,"d-m-Y");?>
+									 <?php if($type==0) {
+										echo $rows->frm_time; echo "&nbsp;";  echo $rows->to_time; 
+									  }?>
+									 </td>
+								 <td><?php if ($tleave_date!="") { $date= date_create($rows->to_leave_date); echo date_format($date,"d-m-Y"); }?></td>
                                  <td><?php if($status=='Pending'){ ?>
                 								 <button class="btn btn-warning btn-fill btn-wd" style="background-color:#E8BE1F;">Pending </button>
                 								 <?php }else if($status=='Rejected'){?>
@@ -176,8 +174,8 @@
 			"columns": [
 					{ "width": "7%" },
 					{ "width": "20%%" },
-					{ "width": "25%%" },
-					{ "width": "10%" },
+					{ "width": "20%%" },
+					{ "width": "15%" },
 					{ "width": "10%" },
 					{ "width": "10%" },
 					{ "width": "8%" }

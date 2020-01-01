@@ -1,15 +1,11 @@
-<!-- <footer class="footer">
-          <div class="container-fluid">
-
-              <p class="copyright pull-right">
-                  &copy; 2017 <a href="">Happy Sanz Tech</a> </p>
-          </div>
-      </footer> -->
+<!--<footer class="footer">
+	<div class="container-fluid">
+	</div>
+</footer>-->
 </div>
 
-
-
 </body>
+
 <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
 <script src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
 
@@ -51,10 +47,9 @@
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
 <script type="text/javascript">
-      $().ready(function(){
-
+       $().ready(function(){
         $('.datepicker').datetimepicker({
-          format: 'YYYY-MM-DD',
+          format: 'DD-MM-YYYY',
           icons: {
               time: "fa fa-clock-o",
               date: "fa fa-calendar",
@@ -67,7 +62,7 @@
               close: 'fa fa-remove'
           }
        });
-      });
+      }); 
       $("input").on("keypress", function(e) {
           if (e.which === 32 && !this.value.length)
               e.preventDefault();

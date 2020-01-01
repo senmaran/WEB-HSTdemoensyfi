@@ -104,7 +104,7 @@ $('#profileedit').validate({ // initialize the plugin
         sname:{required:true,noSpace: true },
     },
     messages: {
-        sname: "Name cannot be empty!"
+        sname: "This field cannot be empty!"
     }
 });
 </script>

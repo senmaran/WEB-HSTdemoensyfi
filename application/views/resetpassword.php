@@ -57,7 +57,7 @@
                                <div class="row">
                                    <div class="col-md-6">
                                        <div class="form-group">
-                                           <label>Current Password</label>
+                                           <label>Current Password <span class="mandatory_field">*</span></label>
                                            <input type="password" class="form-control" name="oldpassword" id="oldpassword" placeholder="Current Password" value="" maxlength='10'><span toggle="#oldpassword" class="fa fa-fw fa-eye-slash field-icon oldpassword"></span>
                                        </div>
                                    </div>
@@ -67,7 +67,7 @@
                                <div class="row">
                                    <div class="col-md-6">
                                        <div class="form-group">
-                                           <label>New Password</label>
+                                           <label>New Password <span class="mandatory_field">*</span></label>
                                            <input type="password" class="form-control"  name="newpassword" id="newpassword" placeholder="New Password" value="" maxlength='6'><span toggle="#newpassword" class="fa fa-fw fa-eye-slash field-icon newpassword"></span>
                                        </div>
                                    </div>
@@ -76,7 +76,7 @@
 							   <div class="row">
                                    <div class="col-md-6">
                                        <div class="form-group">
-                                           <label>Confirm New Password</label>
+                                           <label>Confirm New Password <span class="mandatory_field">*</span></label>
                                            <input type="password" class="form-control" name="retypepassword" name="retypepassword" placeholder="Confirm New Password" value="" maxlength='6'><span toggle="#retypepassword" class="fa fa-fw fa-eye-slash field-icon retypepassword"></span>
                                        </div>
                                    </div>
@@ -87,7 +87,8 @@
                                <div class="row">
                                  <div class="col-md-6">
                                        <div class="form-group">
-                                    <button type="submit" class="btn btn-info btn-fill">SAVE</button>
+									   <input type="submit" id="save" class="btn btn-info btn-fill center" value="SAVE">
+                                    
                                  </div>
                                </div>
 							   <div class="col-md-6"></div>

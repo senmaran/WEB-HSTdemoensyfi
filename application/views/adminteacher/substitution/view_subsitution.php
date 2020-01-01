@@ -14,7 +14,7 @@
                               <thead>
                                  <th>S.no</th>
                                  <th>Class</th>
-                                 <th>Teacher</th>
+                                 <th>Substituted by</th>
                                  <th>Period</th>
                                  <th>Substitution Date</th>
                                  <th>Status</th>

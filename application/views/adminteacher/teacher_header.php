@@ -1,37 +1,56 @@
 <!doctype html>
 <html lang="en">
    <head>
-      <!-- <meta charset="utf-8" /> -->
-      <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+      <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-      <title>ENSYFI</title>
+      <title><?php  echo $this->session->userdata('name'); ?></title>
       <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
       <meta name="viewport" content="width=device-width" />
-      <!-- Bootstrap core CSS     -->
+     
+	  <!-- Bootstrap core CSS     -->
       <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-      <!--  Light Bootstrap Dashboard core CSS    -->
+      
+	  <!--  Light Bootstrap Dashboard core CSS    -->
       <link href="<?php echo base_url(); ?>assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
-      <!--  CSS for Demo Purpose, don't include it in your project     -->
+      
+	  <!--  CSS for Demo Purpose, don't include it in your project     -->
       <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
-      <!--     Fonts and icons     -->
+      
+	  <!--     Fonts and icons     -->
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
       <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="<?php echo base_url(); ?>assets/stroke/css/pe-icon-7-stroke.css">
-	    <!--   Core JS Files and PerfectScrollbar library inside jquery.ui   -->
+ 
+	  <!--   Core JS Files and PerfectScrollbar library inside jquery.ui   -->
       <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
-      <!--  Forms Validations Plugin -->
-      <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
-      <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
-      <!-- PDF -->
+
+
+	  <!-- PDF / Excel  -->
+	  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css">
+	  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/buttons.dataTables.min.css">
+
+
+	  <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+      <script src="<?php echo base_url(); ?>assets/js/pdfmake.min.js" type="text/javascript"></script>
+	  <script src="<?php echo base_url(); ?>assets/js/vfs_fonts.js" type="text/javascript"></script>
+      <script src="<?php echo base_url(); ?>assets/js/jszip.min.js" type="text/javascript"></script>
+	  <script src="<?php echo base_url(); ?>assets/js/buttons.colVis.min.js" type="text/javascript"></script>
+	  <script src="<?php echo base_url(); ?>assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
+      <script src="<?php echo base_url(); ?>assets/js/buttons.flash.min.js" type="text/javascript"></script>
+      <script src="<?php echo base_url(); ?>assets/js/buttons.html5.min.js" type="text/javascript"></script>
+      <script src="<?php echo base_url(); ?>assets/js/buttons.print.min.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/jspdf.min.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/jspdf.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/FileSaver.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/jspdf.plugin.table.js" type="text/javascript"></script>
+      <script src="<?php echo base_url(); ?>assets/js/jquery.table2excel.js" type="text/javascript"></script>
 
-	  <!-- Excel -->
-	  <script src="<?php echo base_url(); ?>assets/js/jquery.table2excel.js" type="text/javascript"></script>
+      <!--  Forms Validations Plugin -->
+      <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
+      <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 
 
       <style>
@@ -66,6 +85,15 @@
            float: left;
            margin-right: 10px;
          }
+		 table.dataTable thead .sorting{
+           background: none;
+         }
+         table.dataTable thead .sorting_desc{
+          background: none;
+         }
+         table.dataTable thead .sorting_asc{
+         background: none;
+         }
       </style>
    </head>
    <body>
@@ -81,25 +109,24 @@
                </button>
 
                <a class="navbar-brand title_ensyfi" href="#" style="color:white; margin-left:10px; margin-top:25px; font-size:25px;">
-			   <?php $sql="SELECT name,user_id,user_type FROM edu_users WHERE user_id='1' AND user_type='1'";
-                              $res=$this->db->query($sql);
-                              $rows=$res->result();
-                              foreach ($rows as $rows3){} $uname=$rows3->name;
-							  echo $uname; ?></a>
+			   <?php 
+					$sql="SELECT name,user_id,user_type FROM edu_users WHERE user_id='1' AND user_type='1'";
+					$res=$this->db->query($sql);
+					$rows=$res->result();
+					foreach ($rows as $rows3){} $uname=$rows3->name;
+					echo $uname; 
+				?>
+				</a>
             </div>
             <div class="collapse navbar-collapse"  style="float:right;padding-top: 18px;">
                <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown" style="padding:08px 10px;">
-                     <a href="#" class="dropdown-toggle abox" data-toggle="dropdown" style="padding:03px 15px;font-size: 12px; color: white;border-color: white;text-transform: uppercase;">
-                     Quick Links</a>
+                     <a href="#" class="dropdown-toggle abox" data-toggle="dropdown" style="padding:03px 15px;font-size: 12px; color: white;border-color: white;text-transform: uppercase;">Quick Links</a>
                      <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url(); ?>teacheronduty/home">On Duty Form</a></li>
-						 <li><a href="<?php echo base_url(); ?>teachercommunication/home">Apply Leaves </a></li>
-                        <li><a href="<?php echo base_url(); ?>teacheronduty/special_class_details">Special Class </a></li>
-                        <li><a href="<?php echo base_url(); ?>teacheronduty/view_substitution">Substitution </a></li>
-
-                          <!--  <li><a href="<?php echo base_url(); ?>extracurricular/home">Extra curricular  </a></li>
-                           <li><a href="<?php echo base_url(); ?>specialclass/home">Special Class</a></li> -->
+						<li><a href="<?php echo base_url(); ?>teacheronduty/home">On Duty Form</a></li>
+						<li><a href="<?php echo base_url(); ?>teachercommunication/home">Apply Leaves </a></li>
+						<li><a href="<?php echo base_url(); ?>teacheronduty/special_class_details">Special Class </a></li>
+						<li><a href="<?php echo base_url(); ?>teacheronduty/view_substitution">Substitution </a></li>
                      </ul>
                   </li>
                   <li class="dropdown dropdown-with-icons">
@@ -124,28 +151,11 @@
                         <b class="caret" style="margin-left:55px;color:white;"></b>
                      </a>
                      <ul class="dropdown-menu dropdown-with-icons">
-                        <li>
-                           <a href="<?php echo base_url(); ?>teacherprofile/profilepic">
-                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
-                           </a>
-                        </li>
-                        <li>
-                           <a href="<?php echo base_url(); ?>teacherprofile/profile">
-                        <i class="fa fa-cog" aria-hidden="true"></i>  Change Password
-                           </a>
-                        </li>
-						<li>
-                           <a href="<?php echo base_url(); ?>teacherprofile/notification_status">
-                        <i class="fa fa-cog" aria-hidden="true"></i>  Notification Settings
-                           </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                           <a href="<?php echo base_url(); ?>adminlogin/logout" class="text-danger">
-                           <i class="fa fa-sign-out" aria-hidden="true"></i>
-                           Log out
-                           </a>
-                        </li>
+                        <li> <a href="<?php echo base_url(); ?>teacherprofile/profilepic"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>teacherprofile/profile"><i class="fa fa-cog" aria-hidden="true"></i> Change Password</a></li>
+						<li><a href="<?php echo base_url(); ?>teacherprofile/notification_status"><i class="fa fa-bell" aria-hidden="true"></i> Notification Settings</a></li>
+						<li class="divider"></li>
+                        <li><a href="<?php echo base_url(); ?>adminlogin/logout" class="text-danger"><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</a></li>
                      </ul>
                   </li>
                </ul>
@@ -153,9 +163,6 @@
          </div>
       </nav>
       <div class="sidebar sidemenu">
-         <!-- <div class="logo sidemenubcolor"  style="padding:0px 70px;height:115px">
-            <img class="img-responsive" src="<?php echo base_url(); ?>assets/ensyfi.png" style="height:115px;"  />
-         </div> -->
          <div class="sidebar-wrapper">
             <div class="user" style="margin-top:10px;padding-bottom:22px;">
                <div class="imgclass photo" style="margin-left:20px;">
@@ -200,9 +207,7 @@
                       <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/classhandling.png"/>
                      <p>My Subjects 	</p>
                   </a>
-
                </li>
-
                <li id="grouping">
                   <a href="<?php echo base_url(); ?>teacherprofile/grouping">
                       <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/grp.png"/>
@@ -272,9 +277,6 @@
                      <p>Circulars</p>
                   </a>
 			   </li>
-			   
-
-			   
                <li id="timetable">
                   <a data-toggle="collapse" href="#timetablemenu">
                    <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/timetable.png"/>

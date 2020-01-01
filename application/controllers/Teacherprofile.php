@@ -18,49 +18,47 @@ class Teacherprofile extends CI_Controller {
 
  }
 
-			 public function post_img()
-			 {
-				 $datas=$this->session->userdata();
-				 $user_id=$this->session->userdata('user_id');
-				 $user_type=$this->session->userdata('user_type');
-				 if($user_type==2)
-				 {
-						$data=$_POST["image"];
-						$image_array_1 = explode(";", $data);
-						$image_array_2 = explode(",", $image_array_1[1]);
-						$data = base64_decode($image_array_2[1]);
-						$imageName = time() . '.png';
-						file_put_contents('assets/teachers/profile/'.$imageName, $data);
-						$datas=$this->teacherprofilemodel->update_parents($user_id,$imageName);
-						if($datas['status']=="success"){
-							echo "success";
-						}else{
-							echo "failed";
-						}
-
-					}else{
-							redirect('/');
-
-					}
-
-			 }
-
-			 public function remove_img(){
-				 $datas=$this->session->userdata();
-				$user_id=$this->session->userdata('user_id');
-				$user_type=$this->session->userdata('user_type');
-				if($user_type==2)
-				{
-					$datas=$this->teacherprofilemodel->remove_img($user_id);
-					if($datas['status']=="success"){
-						echo "success";
-					}else{
-						echo "failed";
-					}
+		public function post_img()
+		{
+		 $datas=$this->session->userdata();
+		 $user_id=$this->session->userdata('user_id');
+		 $user_type=$this->session->userdata('user_type');
+		 if($user_type==2)
+		 {
+				$data=$_POST["image"];
+				$image_array_1 = explode(";", $data);
+				$image_array_2 = explode(",", $image_array_1[1]);
+				$data = base64_decode($image_array_2[1]);
+				$imageName = time() . '.png';
+				file_put_contents('assets/teachers/profile/'.$imageName, $data);
+				$datas=$this->teacherprofilemodel->update_parents($user_id,$imageName);
+				if($datas['status']=="success"){
+					echo "success";
 				}else{
-					redirect('/');
+					echo "failed";
 				}
-			 }
+			}else{
+					redirect('/');
+			}
+
+		}
+
+		public function remove_img(){
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+			if($user_type==2)
+			{
+				$datas=$this->teacherprofilemodel->remove_img($user_id);
+				if($datas['status']=="success"){
+					echo "success";
+				}else{
+					echo "failed";
+				}
+			}else{
+			redirect('/');
+			}
+		}
 
 
 
@@ -70,7 +68,6 @@ class Teacherprofile extends CI_Controller {
 		 $user_id=$this->session->userdata('user_id');
 		 $user_type=$this->session->userdata('user_type');
 		 $datas['result'] = $this->teacherprofilemodel->getuser($user_id);
-           //print_r($datas['result']);exit;
 		 $datas['resubject'] = $this->subjectmodel->getsubject();
 		 $datas['getall_class']=$this->class_manage->getall_class();
 		 $datas['groups']=$this->teacherprofilemodel->get_all_groups_details();
@@ -277,27 +274,23 @@ class Teacherprofile extends CI_Controller {
 		$user_type=$this->session->userdata('user_type');
 	 	if($user_type==2)
 		{
-		 		$user_id=$this->input->post('user_id');
-				//echo $user_id;exit;
+			$user_id=$this->input->post('user_id');
 
-						$name=$this->input->post('name');
-						$oldpassword=md5($this->input->post('oldpassword'));
-						$newpassword=md5($this->input->post('newpassword'));
+			$name=$this->input->post('name');
+			$oldpassword=md5($this->input->post('oldpassword'));
+			$newpassword=md5($this->input->post('newpassword'));
+			//$user_password_old=$this->input->post('user_password_old');
 
-						 $user_password_old=$this->input->post('user_password_old');
+			$res=$this->teacherprofilemodel->updateprofile($user_id,$oldpassword,$newpassword);
 
-						$res=$this->teacherprofilemodel->updateprofile($user_id,$oldpassword,$newpassword);
-
-						if($res['status']=="success"){
-						 $this->session->set_flashdata('msg', 'Password changed');
-						  redirect('teacherprofile/profile');
-
-					      }else{
-					 	        $this->session->set_flashdata('msg', 'Failed to update');
-								 redirect('teacherprofile/profile');
-					          }
-
-	 }
+			if($res['status']=="success"){
+				$this->session->set_flashdata('msg', 'Password has been reset');
+				redirect('teacherprofile/profile');
+			}else{
+				$this->session->set_flashdata('msg', 'Current password is invalid!');
+				 redirect('teacherprofile/profile');
+			  }
+		}
 	 else{
 			redirect('/');
 	 }

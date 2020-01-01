@@ -1,15 +1,15 @@
 <div class="main-panel">
 <div class="content">
        <div class="container-fluid">
-         <div class="col-md-12">
-
-         </div>
 
          <div class="card">
 
 
              <div class="content">
-               <legend>Attendance for  <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> <button onclick="history.go(-1);" class="btn btn-wd btn-default" style="margin-left:62%;">BACK</button>  </legend>
+			   <h4 class="title">Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:0px;">BACK</button></h4>
+                            <hr>
+							
+              
 
                  <div class="fresh-datatables">
 
@@ -47,7 +47,7 @@
 
                      <td>
 
-                       <a href="<?php echo base_url(); ?>teacherattendence/view_all/<?php echo $rows->at_id; ?>/<?php echo $rows->class_id; ?>" rel="tooltip" title="View Students" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
+                       <a href="<?php echo base_url(); ?>teacherattendence/view_all/<?php echo $rows->at_id; ?>/<?php echo $rows->class_id; ?>" rel="tooltip" title="View Students" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
 
                          </td>
                    </tr>
@@ -65,11 +65,7 @@
        </div>
    </div>
 </div>
-<style>
-td{
-  text-align: center;
-}
-</style>
+
 
 <script type="text/javascript">
 $('#attendmenu').addClass('collapse in');

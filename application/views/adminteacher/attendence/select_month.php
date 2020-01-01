@@ -12,9 +12,10 @@
 
 
                   <div class="content">
-				                    <legend>Monthwise Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?>
-					<button onclick="history.go(-1);" class="btn btn-wd btn-default" style="margin-left:60%;">BACK</button>
-                  </legend>
+				  <h4 class="title">Monthwise Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:0px;">BACK</button></h4>
+                            <hr>
+							
+				                   
                      <form action="<?php echo base_url(); ?>teacherattendence/attendance_month_view" method="post" class="form-horizontal" id="select_month">
                        <fieldset>
                           <div class="form-group">
@@ -46,7 +47,8 @@
                            <div class="form-group">
                               <label class="col-sm-2 control-label">&nbsp;</label>
                               <div class="col-sm-10">
-                                 <button type="submit" class="btn btn-info btn-fill center">VIEW</button>
+							  <input type="submit" id="save" class="btn btn-info btn-fill center"  value="VIEW">
+                              
                               </div>
                            </div>
                         </fieldset>

@@ -7,26 +7,30 @@
       <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
       <meta name="viewport" content="width=device-width" />
-      <!-- Bootstrap core CSS     -->
+      
+	  <!-- Bootstrap core CSS     -->
       <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-      <!--  Light Bootstrap Dashboard core CSS    -->
+      
+	  <!--  Light Bootstrap Dashboard core CSS    -->
       <link href="<?php echo base_url(); ?>assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
-      <!--  CSS for Demo Purpose, don't include it in your project     -->
+      
+	  <!--  CSS for Demo Purpose, don't include it in your project     -->
       <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
-      <!--     Fonts and icons     -->
+      
+	  <!--     Fonts and icons     -->
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
       <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="<?php echo base_url(); ?>assets/stroke/css/pe-icon-7-stroke.css">
-      <!--   Core JS Files and PerfectScrollbar library inside jquery.ui   -->
+ 
+	  <!--   Core JS Files and PerfectScrollbar library inside jquery.ui   -->
       <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 
 
 	  <!-- PDF / Excel  -->
-
-	    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css">
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/buttons.dataTables.min.css">
+	  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css">
+	  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/buttons.dataTables.min.css">
 
 
 	  <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -34,22 +38,15 @@
 	  <script src="<?php echo base_url(); ?>assets/js/vfs_fonts.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/jszip.min.js" type="text/javascript"></script>
 	  <script src="<?php echo base_url(); ?>assets/js/buttons.colVis.min.js" type="text/javascript"></script>
-
 	  <script src="<?php echo base_url(); ?>assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/buttons.flash.min.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/buttons.html5.min.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/buttons.print.min.js" type="text/javascript"></script>
-
-
-
       <script src="<?php echo base_url(); ?>assets/js/jspdf.min.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/jspdf.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/FileSaver.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/jspdf.plugin.table.js" type="text/javascript"></script>
-
       <script src="<?php echo base_url(); ?>assets/js/jquery.table2excel.js" type="text/javascript"></script>
-
-
 
       <!--  Forms Validations Plugin -->
       <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
@@ -116,8 +113,7 @@
             <div class="collapse navbar-collapse" style="float:right;margin-top:17px;">
                <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown" style="padding:08px 10px;">
-          <a href="#" class="dropdown-toggle abox" data-toggle="dropdown" style="padding:03px 15px;font-size:12px;color: white;border-color:white;text-transform: uppercase;">
-                     Quick Links</a>
+					<a href="#" class="dropdown-toggle abox" data-toggle="dropdown" style="padding:03px 15px;font-size:12px;color: white;border-color:white;text-transform: uppercase;">Quick Links</a>
                      <ul class="dropdown-menu">
                         <li><a href="<?php echo base_url(); ?>specialclass/home">Special Class</a></li>
                         <li><a href="<?php echo base_url(); ?>event/home">Create Reminder</a></li>
@@ -134,39 +130,23 @@
                               $objRs=$this->db->query($query);
                               $row=$objRs->result();
                               foreach ($row as $rows1)
-                              {
-                               $pic=$rows1->user_pic;
-                               if($pic!='')
-                               {?>
-                           <img src="<?php echo base_url(); ?>assets/admin/profile/<?php echo $pic; ?>" class="img-circle img-responsive imgstyle"/>
-                           <?php }else{
-                              ?> <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle img-responsive imgstyle" />
-                           <?php }} ?>
+							  {
+								$pic=$rows1->user_pic;
+									if($pic!='') {	?>
+									<img src="<?php echo base_url(); ?>assets/admin/profile/<?php echo $pic; ?>" class="img-circle img-responsive imgstyle"/>
+									<?php }else{ ?> 
+									<img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle img-responsive imgstyle" />
+									<?php }
+							  } ?>
                         </div>
                         <b class="caret" style="margin-left:55px;color:white;top:-20px;"></b>
                      </a>
                      <ul class="dropdown-menu dropdown-with-icons">
-                        <li>
-                           <a href="<?php echo base_url(); ?>adminlogin/profilepic">
-                           <i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile
-                           </a>
-                        </li>
-                        <li>
-                           <a href="<?php echo base_url(); ?>adminlogin/profile">
-                        <i class="fa fa-cog" aria-hidden="true"></i> Change Password
-                           </a>
-                        </li>
-						<li>
-                           <a href="<?php echo base_url(); ?>adminlogin/notification_status">
-                        <i class="fa fa-cog" aria-hidden="true"></i> Notification Settings
-                           </a>
-                        </li>
+                        <li><a href="<?php echo base_url(); ?>adminlogin/profilepic"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>adminlogin/profile"><i class="fa fa-cog" aria-hidden="true"></i> Change Password</a></li>
+						<li><a href="<?php echo base_url(); ?>adminlogin/notification_status"><i class="fa fa-bell" aria-hidden="true"></i> Notification Settings</a></li>
                         <li class="divider"></li>
-                        <li>
-                           <a href="<?php echo base_url(); ?>adminlogin/logout" class="text-danger">
-                        <i class="fa fa-sign-out" aria-hidden="true"></i>
-                           Log Out
-                           </a>
+                        <li><a href="<?php echo base_url(); ?>adminlogin/logout" class="text-danger"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a>
                         </li>
                      </ul>
                   </li>
@@ -242,19 +222,6 @@
                      </ul>
                   </div>
                </li>
-               <!-- <li id="activities">
-                  <a data-toggle="collapse" href="#curricular">
-                     <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/extracurricular.png"/>
-                     <p>Extra-Co curricular</p>
-                     <b class="caret"></b>
-                  </a>
-                  <div class="collapse" id="curricular">
-                     <ul class="nav">
-                        <li id="curricular1"><a href="<?php echo base_url(); ?>extracurricular/home">Extra-Co curricular  </a></li>
-                        <li id="curricular2"><a href="<?php echo base_url(); ?>groups/home">House Groups</a></li>
-                     </ul>
-                  </div>
-               </li> -->
                <li id="enroll">
                   <a data-toggle="collapse" href="#enrollmentmenu">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/register.png"/>

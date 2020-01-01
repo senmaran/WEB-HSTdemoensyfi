@@ -1,5 +1,3 @@
-
-
 <div class="main-panel">
    <div class="content">
       <div class="container-fluid">
@@ -14,41 +12,53 @@
 
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Reason Out</label>
+                              <label class="col-sm-2 control-label">Reason Out <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
-							   <input type="text" name="reason" class="form-control">
+							   <input type="text" name="reason" class="form-control" maxlength="30">
                               </div>
-                              <label class="col-sm-2 control-label">From Date</label>
+                              <div class="col-sm-6"></div>
+                           </div>
+                        </fieldset>
+						
+						<fieldset>
+                           <div class="form-group">
+                              <label class="col-sm-2 control-label">From Date <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <input type="text" name="fdate" required class="form-control datepicker" value="">
                               </div>
+							   <div class="col-sm-6"></div>
                            </div>
                         </fieldset>
+						
 						 <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">To Date</label>
+                              <label class="col-sm-2 control-label">To Date <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <input type="text" name="tdate" required class="form-control datepicker" value="">
                               </div>
-							  <label class="col-sm-2 control-label">Notes</label>
+							   <div class="col-sm-6"></div>
+                           </div>
+                        </fieldset>
+						
+						 <fieldset>
+                           <div class="form-group">
+							  <label class="col-sm-2 control-label">Notes <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <textarea rows="4" MaxLength="250" placeholder="MaxCharacters 250" cols="80" name="notes" class="form-control"></textarea>
                               </div>
-
+							   <div class="col-sm-6"></div>
                            </div>
                         </fieldset>
-						 <fieldset>
+						
+						<fieldset>
                            <div class="form-group">
-
-
+							  <label class="col-sm-2 control-label"></label>
+                              <div class="col-sm-4">
+							  <input type="submit" id="save" class="btn btn-info btn-fill center"  value="SUBMIT">
+                                
+                              </div>
+							   <div class="col-sm-6"></div>
                            </div>
-                        </fieldset>
-                        <div class="form-group">
-                           <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
-                           <div class="text-center">
-                              <button type="submit" id="save" class="btn btn-info btn-fill ">Save </button>
-                           </div>
-                        </div>
                         </fieldset>
                      </form>
                   </div>
@@ -100,7 +110,7 @@
 								  </td>
 
                                     <td><?php if($stu=='Approved' || $stu=='Rejected'){echo"-";}else{ ?>
-                                       <a href="<?php echo base_url();  ?>teacheronduty/edit_onduty/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit">
+                                       <a href="<?php echo base_url();  ?>teacheronduty/edit_onduty/<?php echo $rows->id; ?>" class="btn btn-simple btn-warning btn-icon edit" style="font-size:18px;" rel="tooltip" title="Edit">
 									<i class="fa fa-edit"></i></a><?php }?>
                                     </td>
                                  </tr>
@@ -134,17 +144,17 @@
 			status:{required:true }
         },
         messages: {
-               reason: "Enter Reason Out",
-			   notes: "Enter Notes",
-			   fdate: "Select From Date",
-			   tdate: "Select To Date",
-			   status: "Select Status",
+               reason: "This field cannot be empty!",
+			   notes: "This field cannot be empty!",
+			   fdate: "This field cannot be empty!",
+			   tdate: "This field cannot be empty!",
+			   status: "This field cannot be empty!",
             }
     });
 	//demo.initFormExtendedDatetimepickers();
    });
 
-    $('#bootstrap-table').DataTable();
+  $('#bootstrap-table').DataTable();
 </script>
 <script type="text/javascript">
    $().ready(function(){

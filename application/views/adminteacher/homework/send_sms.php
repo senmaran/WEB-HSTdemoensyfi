@@ -1,8 +1,3 @@
-<style>
-.datewidth{
-  width:30%;
-}
-</style>
 <div class="main-panel">
   <div class="content">
     <div class="container-fluid">
@@ -16,14 +11,15 @@
           <div class="col-md-12">
             <div class="card">
               <div class="content">
-                <h4 class="title">Homework / Test Notifications <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></h4>
+                <h4 class="title">Homework / Test Notification <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">BACK</button></h4>
+				<hr>
                 <div class="fresh-datatables">
                   <table id="bootstrap-table" class="table">
                     <thead>
-                      <th>S.no</th>
-                      <th>Date</th>
-                      <!--<th>Home Work / Class Test</th>-->
-                      <th>Actions</th>
+                      <th style="width:10%;">S.no</th>
+                      <th style="width:30%;">Date</th>
+					  <th style="width:30%;">Title</th>
+                      <th style="width:30%;">Actions</th>
                     </thead>
                     <tbody>
                       <?php
@@ -44,18 +40,19 @@
                             <?php $ctdate=date_create($tdate );
                                echo date_format($ctdate,"d-m-Y");?>
                           </td>
+						   <td><?php  echo $rows->title; ?></td>
                           <td>
 						  
-						  <a rel="tooltip" title="View Details" style="padding-right:15px;" href="<?php echo base_url(); ?>homework/view_send_all_homework/<?php echo $tdate; ?>/<?php echo $cid; ?>" ><i class="fa fa-list" aria-hidden="true"></i></a>
+						  <a rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" title="View Details" style="padding-right:15px;font-size:18px;" href="<?php echo base_url(); ?>homework/view_send_all_homework/<?php echo $tdate; ?>/<?php echo $cid; ?>"><i class="fa fa-list" aria-hidden="true"></i></a>
 						  
-                            <a rel="tooltip" title="Send Message" href="" data-toggle="modal" data-target="#addmodel" data-id="<?php echo $tdate; ?>"  class="open-AddBookDialog"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
-                            <span style="padding-left:20px;"></span>
+                            <a rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" title="Send Message" style="padding-right:15px;font-size:18px;" href="" data-toggle="modal" data-target="#addmodel" data-id="<?php echo $tdate; ?>"  class="open-AddBookDialog"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+                            
 							
                             <?php if($send_status=="1")
                             { ?>
                               <i style="color:green; font-weight:bold;padding-right:10px;" class="fa fa-check" aria-hidden="true"></i> ( <?php $date=date_create($rows->updated_at);
                               echo date_format($date,"d-m-Y");  ?> )
-                              <!-- <a  style="padding-left: 7px;" href="<?php echo base_url(); ?>homework/view_send_all_homework/<?php echo $tdate; ?>/<?php echo $cid; ?>" ><i class="fa fa-file" aria-hidden="true"></i></a>-->
+                             
                               <?php }else{ echo ""; } ?>
                             </td>
                           </tr>
@@ -77,16 +74,13 @@
               <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
-                  <div class="modal-header" style="padding:10px;">
-                    <button type="button" class="close" style="margin:25px;" data-dismiss="modal">&times;</button>
-                    <h4 class="title">Message Homework / Test Details</h4>
+                  <div class="modal-header">
+                    
+                    <h4 style="margin:0px;">Message Homework / Test Details <button type="button" class="close"  data-dismiss="modal">&times;</button></h4>
                   </div>
                   <div class="modal-body">
                     <p id="msg" style="text-align:center;"></p>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="card">
-                          <div class="content"><!-- <?php //echo base_url(); ?>homework/send_sms_all_homework -->
+                   
                             <form method="post" action="" class="form-horizontal" id="homeworkform">
                               <input type="hidden" id="event_id" name="tdate" >
                               <input type="hidden" name="clsid" id="csid" value="<?php echo $cid; ?>">
@@ -107,16 +101,13 @@
                                 <div class="form-group">
                                   <label class="col-sm-4 control-label">&nbsp;</label>
                                   <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-info btn-fill center">SEND </button>
+									<input type="submit" id="save" class="btn btn-info btn-fill center"  value="SEND">
+                                   
                                   </div>
                                 </div>
                               </fieldset>
                             </form>
-                          </div>
-                        </div>
-                        <!--  end card  -->
-                      </div>
-                      <!-- end col-md-12 -->
+                        
                     </div>
                     <!-- end row -->
                   </div>
@@ -188,42 +179,7 @@
         });
       });
 
-      var $table = $('#bootstrap-table');
-      $().ready(function(){
-        $table.bootstrapTable({
-          toolbar: ".toolbar",
-          clickToSelect: true,
-          showRefresh: true,
-          search: true,
-          showToggle: true,
-          showColumns: true,
-          pagination: true,
-          searchAlign: 'left',
-          pageSize:10,
-          clickToSelect: false,
-          pageList: [10,25,50,100],
-
-          formatShowingRows: function(pageFrom, pageTo, totalRows){
-            //do nothing here, we don't want to show the text "showing x of y from..."
-          },
-          formatRecordsPerPage: function(pageNumber){
-            return pageNumber + " rows visible";
-          },
-          icons: {
-            refresh: 'fa fa-refresh',
-            toggle: 'fa fa-th-list',
-            columns: 'fa fa-columns',
-            detailOpen: 'fa fa-plus-circle',
-            detailClose: 'fa fa-minus-circle'
-          }
-        });
-        //activate the tooltips after the data table is initialized
-        $('[rel="tooltip"]').tooltip();
-
-        $(window).resize(function () {
-          $table.bootstrapTable('resetView');
-        });
-      });
+     $('#bootstrap-table').DataTable();
       </script>
       <script type="text/javascript">
       $().ready(function(){

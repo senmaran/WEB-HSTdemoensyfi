@@ -11,10 +11,10 @@
          <div class="row">
             
                <div class="card">
-                  <div class="header">
-                     <legend>Homework / Test Details<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></legend>
-                  </div>
+
                   <div class="content">
+				  <h4 class="title">Homework / Test Details<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">BACK</button></h4>
+				  <hr>
                            <div class="fresh-datatables">
                         <table id="bootstrap-table" class="table">
                            <thead>
@@ -24,7 +24,7 @@
 							 <th>Title</th>
 							 <th>Subject</th>
 							 <th>Due/Test Date</th>
-							 <th>Description</th>
+							
                            </thead>
                            <tbody>
 					 <?php
@@ -40,7 +40,7 @@
 						<td><?php  echo $rows->subject_name; ?></td>
 						<td> Test Date :<?php if($type=='HW'){  $dateTime=new DateTime($rows->test_date); $fdate=date_format($dateTime,'d-m-Y' ); echo $fdate; ?><br> Due Date : <?php  $ddate=new DateTime($rows->due_date); $duedate=date_format($ddate,'d-m-Y' ); echo $duedate; }else { $dateTime=new DateTime($rows->test_date); $fdate=date_format($dateTime,'d-m-Y' ); echo $fdate;  } ?>
 						</td>
-						<td><?php echo $rows->hw_details;?></td>
+						
 						
 					
 
@@ -66,45 +66,7 @@
 	demo.initFormExtendedDatetimepickers();
    });
 
-     var $table = $('#bootstrap-table');
-         $().ready(function(){
-             $table.bootstrapTable({
-                 toolbar: ".toolbar",
-                 clickToSelect: true,
-                 showRefresh: true,
-                 search: true,
-                 showToggle: true,
-                 showColumns: true,
-                 pagination: true,
-                 searchAlign: 'left',
-                 pageSize: 8,
-                 clickToSelect: false,
-                 pageList: [8,10,25,50,100],
-
-                 formatShowingRows: function(pageFrom, pageTo, totalRows){
-                     //do nothing here, we don't want to show the text "showing x of y from..."
-                 },
-                 formatRecordsPerPage: function(pageNumber){
-                     return pageNumber + " rows visible";
-                 },
-                 icons: {
-                     refresh: 'fa fa-refresh',
-                     toggle: 'fa fa-th-list',
-                     columns: 'fa fa-columns',
-                     detailOpen: 'fa fa-plus-circle',
-                     detailClose: 'fa fa-minus-circle'
-                 }
-             });
-
-             //activate the tooltips after the data table is initialized
-             $('[rel="tooltip"]').tooltip();
-
-             $(window).resize(function () {
-                 $table.bootstrapTable('resetView');
-             });
-
-
-         }); 
+     $('#bootstrap-table').DataTable();
 
 
 

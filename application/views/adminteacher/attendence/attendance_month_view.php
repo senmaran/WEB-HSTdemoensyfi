@@ -1,8 +1,3 @@
-<style>
-   .txt{
-   font-weight: 200;
-   }
-</style>
 <div class="main-panel">
    <div class="content">
       <div class="container-fluid">
@@ -16,7 +11,7 @@
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th data-field="id" class="text-center"  data-sortable="true">S.No</th>
-                              <th data-field="date" class="text-center" data-sortable="true">Name</th>
+                              <th data-field="date" data-sortable="true">Name</th>
                               <th data-field="month" class="text-center" data-sortable="true">Month</th>
                               <th data-field="year" class="text-center" data-sortable="true">Days Not Present </th>
                               <th data-field="pp" class="text-center" data-sortable="true">Days Present </th>
@@ -33,7 +28,7 @@
                                  ?>
                               <tr>
                                  <td class="text-center"><?php echo $i;  ?></td>
-                                 <td class="text-center  txt" ><?php echo $rows->name; ?></td>
+                                 <td  ><?php echo $rows->name; ?></td>
                                   <td class="text-center  txt" ><?php  echo date("F", strtotime('00-'.$month.'-01')); ?></td>
                                  <td class="text-center"><?php echo $ab=$rows->leaves; ?></td>
                                   <td class="text-center"><?php echo $pp=$wrk-$ab; ?></td>

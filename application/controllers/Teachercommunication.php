@@ -63,8 +63,8 @@ class Teachercommunication extends CI_Controller
 			//echo $leave_master_id;exit;
 			
 			 $leave_date=$this->input->post('leave_date');
-			 $frm_time=$this->input->post('frm_time');
-			 $to_time=$this->input->post('to_time');
+			 $frm_time=$this->input->post('stime');
+			 $to_time=$this->input->post('etime');
 			 $leave_description=$this->input->post('leave_description');
 			 
 			 $dateTime = new DateTime($leave_date);
@@ -72,20 +72,24 @@ class Teachercommunication extends CI_Controller
 			 
 			 $tldate=$this->input->post('to_leave_date');
 			 
-			 $dateTime1 = new DateTime($tldate);
-             $to_ldate=date_format($dateTime1,'Y-m-d' );
-              //echo $tldate;exit;   
+			 if ($tldate!=""){
+				 $dateTime1 = new DateTime($tldate);
+				 $to_ldate=date_format($dateTime1,'Y-m-d' );
+			 }else {
+				$to_ldate = "";
+			 }
+			 
+             //echo $to_ldate;exit; 
 			 $datas=$this->teachercommunicationmodel->create_leave($user_type,$user_id,$leave_master_id,$leave_type,$formatted_date,$to_ldate,$frm_time,$to_time,$leave_description);
-			//print_r($datas);exit;
+			
 			  if($datas['status']=="success")
 			  {
                  echo "success";				
-			  }else if($datas['status']=="Leave Date Already Exist"){
+			  }else if($datas['status']=="Exist"){
 				  echo "exist";
 			  }else{
 				 echo "Falid To Added";
 			  }
-			
 		}
 		
 		public function edit($leave_id)

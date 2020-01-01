@@ -22,10 +22,8 @@
                            <td><?php echo $rowsclass->group_title;  ?></td>
                            <td><?php echo $rowsclass->name;  ?></td>
                            <td>
-                             <a href="#myModal" data-toggle="modal" data-target="#myModal"  data-id="<?php echo $rowsclass->id; ?>" rel="tooltip" title="Send Message"  class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit">
-                              <i class="fa fa-paper-plane"> </i></a>
-                              <a href="<?php echo base_url(); ?>teacherprofile/view_members/<?php echo   $rowsclass->id; ?>" rel="tooltip" title="View Members" >
-                                 <i class="fa fa-th">  </i></a>
+                             <a href="#myModal" data-toggle="modal" data-target="#myModal"  data-id="<?php echo $rowsclass->id; ?>" rel="tooltip" title="Send Message"  class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-paper-plane"> </i></a>&nbsp;&nbsp;
+							 <a href="<?php echo base_url(); ?>teacherprofile/view_members/<?php echo   $rowsclass->id; ?>" rel="tooltip" title="Add/View Group members" style="font-size:20px;" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit"> <i class="fa fa-users">  </i></a>
                            </td>
                         </tr>
                         <?php $i++;  }  ?>
@@ -77,7 +75,8 @@
                   <div class="form-group">
                      <label class="col-sm-4 control-label">&nbsp;</label>
                      <div class="col-sm-6">
-                        <button type="submit" id="save" class="btn btn-info btn-fill center">SEND </button>
+						<input type="submit" id="save" class="btn btn-info btn-fill center"  value="SEND">
+                       
                      </div>
                   </div>
                </fieldset>
@@ -129,7 +128,7 @@
                  //  swal("Success!", "Thanks for Your Note!", "success");
                    $('#send_msg')[0].reset();
                    swal({
-            title: "Wow!",
+            title: "Success!",
             text: response,
             type: "success"
         }, function() {

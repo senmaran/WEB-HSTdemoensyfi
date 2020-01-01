@@ -2,7 +2,7 @@
 <div class="content">
        <div class="container-fluid">
            <div class="row">
-               <div class="col-md-10">
+               <div class="col-md-12">
                    <div class="card">
                        <div class="header">
                            <h4 class="title">Update On Duty Form</h4>
@@ -13,37 +13,54 @@
                        
                         <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Reason Out</label>
+                              <label class="col-sm-2 control-label">Reason Out <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
-							   <input type="text" name="reason" value="<?php echo $res->od_for; ?>" class="form-control">
+							   <input type="text" name="reason" value="<?php echo $res->od_for; ?>" class="form-control" maxlength="30">
 							    <input type="hidden" name="id" value="<?php echo $res->id; ?>" class="form-control">
                               </div>
-                              <label class="col-sm-2 control-label">From Date</label>
+                            <div class="col-sm-6"></div>
+                           </div>
+                        </fieldset>
+						
+						<fieldset>
+                           <div class="form-group">
+                              <label class="col-sm-2 control-label">From Date <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <input type="text" name="fdate"  class="form-control datepicker" value="<?php $dateTime=new DateTime($res->from_date); $fdate=date_format($dateTime,'d-m-Y' ); echo $fdate; ?>">
                               </div>
+							  <div class="col-sm-6"></div>
                            </div>
                         </fieldset>
+										
 						 <fieldset>
                            <div class="form-group">
-                              <label class="col-sm-2 control-label">To Date</label>
+                              <label class="col-sm-2 control-label">To Date <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <input type="text" name="tdate" class="form-control datepicker" value="<?php $dateTime=new DateTime($res->to_date); $tdate=date_format($dateTime,'d-m-Y' ); echo $tdate; ?>">
                               </div>
-                             <label class="col-sm-2 control-label">Notes</label>
+                              <div class="col-sm-6"></div>
+                           </div>
+                        </fieldset>
+						
+						<fieldset>
+                           <div class="form-group">
+                             <label class="col-sm-2 control-label">Notes <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <textarea rows="4" cols="80" MaxLength="250" placeholder="MaxCharacters 250" name="notes" class="form-control"><?php echo $res->notes; ?></textarea>
                               </div>
+							   <div class="col-sm-6"></div>
                            </div>
                         </fieldset>
 						
                         <div class="form-group">
                            <label class="col-sm-2 control-label">&nbsp;</label>
                            <div class="col-sm-4">
-                              <button type="submit" id="save" class="btn btn-info btn-fill center">Update </button>
+						    <input type="submit" id="save" class="btn btn-info btn-fill center"  value="SAVE">
+                            
                            </div>
+						   <div class="col-sm-6"></div>
                         </div>
-                        </fieldset>
+                  
                      </form>
                        </div>
                    </div>
@@ -71,11 +88,11 @@
 			
         },
         messages: {
-              reason: "Enter Reason Out",
-			   notes: "Enter Notes",
-			   fdate: "Select From Date",
-			   tdate: "Select To Date",
-			   status: "Select Status",
+              reason: "This field cannot be empty!",
+			   notes: "This field cannot be empty!",
+			   fdate: "This field cannot be empty!",
+			   tdate: "This field cannot be empty!",
+			   status: "This field cannot be empty!",
 			   
 			  
             }

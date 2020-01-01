@@ -21,8 +21,8 @@
                         	$cls=$res->class_name;
                         	$sec=$res->sec_name;
                         	}?>
-                    <h4 class="title">Enter Marks For <?php echo $cls; ?> - <?php echo $sec; ?>
-                     <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></h4>
+                    <h4 class="title">Enter Marks For<?php echo $cls; ?> - <?php echo $sec; ?>
+                     <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" >BACK</button></h4>
                       <p class="category"><b>Subject </b> - <?php echo $sub; ?></p>
                   </div>
                      

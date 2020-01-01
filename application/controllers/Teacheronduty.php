@@ -109,7 +109,7 @@ class Teacheronduty extends CI_Controller
 		
 		if($datas['status']=="success")
 		{
-			$this->session->set_flashdata('msg','Updated Successfully');
+			$this->session->set_flashdata('msg','Changes made are saved');
 			redirect('teacheronduty/home');
 		}else if($datas['status']=="Date"){
 			$this->session->set_flashdata('msg','From Date Should be Less Than To Date');
