@@ -598,6 +598,7 @@ class Parents extends CI_Controller {
 				$cell=$this->input->post('cell');
 				$admission_id=$this->input->post('admission_no');
 				$datas['ad_id']=$admission_id;
+				
 				$datas['stuname']=$this->parentsmodel->get_stu_name($admission_id);
 				$datas['editres']=$this->parentsmodel->search_parent($cell);
 		 		//echo'<pre>'; print_r($datas['editres']);exit;

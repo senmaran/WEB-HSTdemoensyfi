@@ -54,7 +54,8 @@
 							   <div class="row">
                                    <div class="col-md-6">
                                        <div class="form-group">
-                                        <button type="submit" class="btn btn-info btn-fill">SAVE</button>
+                                        <input type="submit" id="save" class="btn btn-info btn-fill center" value="SAVE">
+                                        
                                        </div>
                                    </div>
                                    <div class="col-md-6">

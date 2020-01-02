@@ -913,10 +913,10 @@ Class Parentsmodel extends CI_Model
 
     function update_exiting_parents_assign($admission_id,$id,$parnt_guardn_id){
 
-       $update="UPDATE edu_parents SET admission_id='$parnt_guardn_id' WHERE id='$id'";
+      $update="UPDATE edu_parents SET admission_id='$parnt_guardn_id' WHERE id='$id'";
       $res=$this->db->query($update);
-       $update_admin="UPDATE edu_admission SET parnt_guardn_id='$parnt_guardn_id',parents_status='1' WHERE admission_id='$admission_id'";
-
+       $update_admin="UPDATE edu_admission SET parnt_guardn_id='$id',parents_status='1' WHERE admission_id='$admission_id'";
+       
       $res_admission=$this->db->query($update_admin);
       if($res_admission){
         $data= array("status"=>"success");
