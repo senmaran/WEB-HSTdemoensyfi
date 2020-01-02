@@ -12,10 +12,10 @@
                        <?php if(!empty($clsstudlist)){ foreach($clsstudlist as $rows){}?>
 					     <input type="hidden" name="cls_tea_id" value="<?php echo $rows->class_id; ?>" class="form-control">
 					   <?php }else{ ?>  <input type="hidden" name="cls_tea_id" value="<?php echo $clsid; ?>" class="form-control"> <?php  }?>
-                        <fieldset>
+                        
+						<fieldset>
                            <div class="form-group">
-
-						   <label class="col-sm-2 control-label">Student</label>
+						   <label class="col-sm-2 control-label">Student <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
 							     <select name="stu_userid" class="selectpicker form-control" data-title="Select Students " data-style="btn-default btn-block" data-menu-style="dropdown-blue">
 								 <?php  if(!empty($clsstudlist)){ foreach($clsstudlist as $rows){?>
@@ -23,43 +23,46 @@
 								 <?php } }else{ } ?>
 								  </select>
                               </div>
-
-                              <label class="col-sm-2 control-label">Reason</label>
+                              <label class="col-sm-2 control-label">Reason <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
-							   <input type="text" name="reason" class="form-control">
+							   <input type="text" name="reason" class="form-control" maxlength="30">
                               </div>
-
                            </div>
                         </fieldset>
+						
 						 <fieldset>
                            <div class="form-group">
-						   <label class="col-sm-2 control-label">From</label>
+						   <label class="col-sm-2 control-label">From <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <input type="text" name="fdate" required class="form-control datepicker" value="">
                               </div>
-
-                              <label class="col-sm-2 control-label">To</label>
+                              <label class="col-sm-2 control-label">To <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <input type="text" name="tdate" required class="form-control datepicker" value="">
                               </div>
                            </div>
                         </fieldset>
+						
 						 <fieldset>
                            <div class="form-group">
-						     <label class="col-sm-2 control-label">Notes</label>
+						     <label class="col-sm-2 control-label">Notes <span class="mandatory_field">*</span></label>
                               <div class="col-sm-4">
                                  <textarea rows="4" cols="80" MaxLength="250" placeholder="Maximum 250 characters" name="notes" class="form-control"></textarea>
                               </div>
-
+							<div class="col-sm-6"></div>
                            </div>
                         </fieldset>
-                        <div class="form-group">
-                           <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
-                           <div class="text-center">
-                              <button type="submit" id="save" class="btn btn-info btn-fill center">APPLY </button>
+						
+						 <fieldset>
+                           <div class="form-group">
+						     <label class="col-sm-2 control-label"></label>
+                              <div class="col-sm-4">
+                                 <input type="submit" id="save" class="btn btn-info btn-fill center" value="APPLY">
+                              </div>
+							<div class="col-sm-6"></div>
                            </div>
-                        </div>
                         </fieldset>
+						
                      </form>
                   </div>
                </div>

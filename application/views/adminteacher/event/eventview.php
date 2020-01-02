@@ -1,12 +1,8 @@
-
-<style>
-
-</style>
 <div class="main-panel">
 <div class="content">
 
   <div class="">
-    <h4 class="title">Coordinating Events</h4><span></span> <br><br>
+    <h4 class="title">Coordinating Events</h4>
   <div class="row">
     <?php
     foreach($res as $rows_event){

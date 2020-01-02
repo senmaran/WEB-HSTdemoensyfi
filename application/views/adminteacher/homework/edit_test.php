@@ -29,7 +29,7 @@
 			   
                <fieldset>
                   <div class="form-group">
-                     <label class="col-sm-2 control-label">Type</label>
+                     <label class="col-sm-2 control-label">Type <span class="mandatory_field">*</span></label>
                      <div class="col-sm-4">
                         <select name="hw_type" class="selectpicker form-control" data-style="btn-default btn-block" >
                            <option value="HT">Class Test</option>
@@ -37,9 +37,9 @@
                         </select>
                         <script language="JavaScript">document.testform.hw_type.value="<?php echo $rows->hw_type; ?>";</script>
                      </div>
-                     <label class="col-sm-2 control-label">Work</label>
+                     <label class="col-sm-2 control-label">Work <span class="mandatory_field">*</span></label>
                      <div class="col-sm-4">
-                        <input type="text"  name="title"  class="form-control"  value="<?php echo $rows->title; ?>">
+                        <input type="text"  name="title"  class="form-control"  value="<?php echo $rows->title; ?>" maxlength="30">
                         <input type="hidden"  name="id"  class="form-control"  value="<?php echo $rows->hw_id; ?>">
                      </div>
                   </div>
@@ -47,13 +47,13 @@
 			   
                <fieldset>
                   <div class="form-group">
-                     <label class="col-sm-2 control-label">Date</label>
+                     <label class="col-sm-2 control-label">Date <span class="mandatory_field">*</span></label>
                      <div class="col-sm-4">
                         <input type="text"  name="test_date" class="form-control datepicker"  value="<?php $date=date_create($rows->test_date);
                            echo date_format($date,"d-m-Y");?>">
                      </div>
                      <?php if($rows->hw_type=="HW"){ ?>
-                     <label class="col-sm-2 control-label">Due Date</label>
+                     <label class="col-sm-2 control-label">Due Date <span class="mandatory_field">*</span></label>
                      <div class="col-sm-4">
                         <input type="text" name="sub_date" value="<?php $date=date_create($rows->due_date);
                            echo date_format($date,"d-m-Y");?>" class="form-control datepicker" >
@@ -65,11 +65,11 @@
                </fieldset>
                <fieldset>
                   <div class="form-group">
-                     <label class="col-sm-2 control-label">Details</label>
+                     <label class="col-sm-2 control-label">Details <span class="mandatory_field">*</span></label>
                      <div class="col-sm-4">
                         <textarea name="test_details"  MaxLength="250" placeholder="MaxCharacters 250" class="form-control" rows="3" cols="03"><?php echo $rows->hw_details; ?></textarea>
                      </div>
-                     <label class="col-sm-2 control-label">Status</label>
+                     <label class="col-sm-2 control-label">Status <span class="mandatory_field">*</span></label>
                      <div class="col-sm-4">
                         <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" >
                            <option value="Active">Active</option>
@@ -103,17 +103,15 @@
    
        $('#testform').validate({ // initialize the plugin
            rules: {
-   
-               title:{required:true },
-			  test_date:{required:true },
-               hw_type:{required:true }
+				title:{required:true },
+				test_date:{required:true },
+				hw_type:{required:true }
            },
            messages: {
-   
-                 title: "This field cannot be empty!",
-                 test_date: "This field cannot be empty!",
-                 hw_type: "Select Test Type"
-               }
+				title: "This field cannot be empty!",
+				test_date: "This field cannot be empty!",
+				hw_type: "Select Test Type"
+           }
        });
       });
       

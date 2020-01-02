@@ -12,18 +12,15 @@
 							<div class="content">
 								<div class="header">
 										<legend>Calendar </legend>
-
 								</div>
 								<div class="container-fluid">
 									<div class="row">
 									<div class="col-md-8">
 										<center>
 											<div class="card card-calendar">
-													<div class="content">
-
-															<div id="fullCalendar"></div>
-
-													</div>
+												<div class="content">
+														<div id="fullCalendar"></div>
+												</div>
 											</div>
 										</center>
 									</div>
@@ -31,31 +28,31 @@
 
 									<div class="col-md-4">
 
-										<div class="card">
+						<div class="card">
                             <div class="header">Create Reminder</div>
                             <div class="content">
                                 <form method="post" action="#" id="to_do_form">
                                     <div class="form-group">
-                                        <label>Date</label>
+                                        <label>Date <span class="mandatory_field">*</span></label>
                                         <input type="text" name="to_do_date" placeholder="Select date" class="form-control datepicker">
                                     </div>
                                     <div class="form-group">
-                                        <label>Title</label>
+                                        <label>Title <span class="mandatory_field">*</span></label>
                                         <input type="text" name="to_do_list" placeholder="Title" class="form-control">
                                     </div>
-																		<div class="form-group">
-                                        <label>Description</label>
+									<div class="form-group">
+                                        <label>Description <span class="mandatory_field">*</span></label>
                                         <textarea MaxLength="150" placeholder="Maximum 150 characters" id="comments" name="to_do_notes" name="comments" class="form-control"></textarea>
                                     </div>
                                   <div class="form-group">
-                                        <label>Status</label>
+                                        <label>Status <span class="mandatory_field">*</span></label>
                                        <select name="status"  class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-																				  <option value="Active">Active</option>
-																				  <option value="Deactive">Inactive</option>
-																			</select>
+										  <option value="Active">Active</option>
+										  <option value="Deactive">Inactive</option>
+									</select>
                                     </div>
-
-                                    <button type="submit" class="btn btn-fill btn-info">CREATE</button>
+									<input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
+                                 
                                 </form>
                             </div>
                         </div>
@@ -67,7 +64,7 @@
 		  		  </div>
     		</div>
 				</div>
-				<script>
+<script>
 
 	$(document).ready(function() {
 		$('#calendermenu').addClass('collapse in');

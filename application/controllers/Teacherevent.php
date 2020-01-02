@@ -51,7 +51,11 @@ class Teacherevent extends CI_Controller {
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
 		 if($user_type==2){
-			 	$to_do_date=$this->input->post('to_do_date');
+			 	
+				$from_date=$this->input->post('to_do_date');
+				 $dateTime = new DateTime($from_date);
+				 $to_do_date=date_format($dateTime,'Y-m-d' );
+			
  				$to_do_list=$this->input->post('to_do_list');
  				$to_do_notes=$this->input->post('to_do_notes');
 				$status=$this->input->post('status');

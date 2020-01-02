@@ -23,7 +23,7 @@
                
 			   <fieldset>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">Type of Leave</label>
+                    <label class="col-sm-2 control-label">Type of Leave <span class="mandatory_field">*</span></label>
                     <div class="col-sm-4">
                       <select class="selectpicker form-control" data-title="Select Type Of Leave" name="leave_type" id="choose" onChange="changefunction()">
                         <?php foreach($leave as $row){?>
@@ -35,7 +35,7 @@
                     </div>
 					
 					<div id="permissiontime" style="display: none;" class="form-group col-sm-6">
-						  <label class="col-sm-3 control-label">Time</label>
+						  <label class="col-sm-3 control-label">Time <span class="mandatory_field">*</span></label>
 						   <div class="col-sm-3 clockpicker" >
 								<input type="text" name="stime" id="stime" required class="form-control"/>
 							</div>
@@ -49,7 +49,7 @@
 				
 				<fieldset>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">From Date</label>
+                    <label class="col-sm-2 control-label">From Date <span class="mandatory_field">*</span></label>
                     <div class="col-sm-4">
                       <input type="text" name="leave_date" class="form-control datepicker" placeholder="Enter Date" >
                     </div>
@@ -62,7 +62,7 @@
 
                 <fieldset>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">To Date</label>
+                    <label class="col-sm-2 control-label">To Date <span class="mandatory_field">*</span></label>
                     <div class="col-sm-4">
                       <input type="text" name="to_leave_date" class="form-control datepicker" placeholder="Enter Date" >
                     </div>
@@ -74,7 +74,7 @@
 
                 <fieldset>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">Leave Description</label>
+                    <label class="col-sm-2 control-label">Leave Description <span class="mandatory_field">*</span></label>
                     <div class="col-sm-4">
                       <textarea name="leave_description" MaxLength="300" placeholder="MaxCharacters 300" class="form-control"  rows="4" cols="80"></textarea>
                     </div>
@@ -84,10 +84,11 @@
 
                 <fieldset>
                   <div class="form-group">
-                    <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
-                    <div class="text-center">
+                    <label class="col-sm-2 control-label">&nbsp;</label>
+                    <div class="col-sm-4">
                       <button type="submit" id="save" class="btn btn-info btn-fill center">Save</button>
                     </div>
+					<div class="col-sm-6"></div>
                   </div>
                 </fieldset>
 

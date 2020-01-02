@@ -86,7 +86,8 @@ Class Teachereventmodel extends CI_Model
 
 
         function save_to_do_list($to_do_date,$to_do_list,$to_do_notes,$to_user,$user_type,$status){
-          $query="INSERT INTO edu_reminder(user_id,to_do_date,to_do_title,to_do_description,status,created_by,created_at,updated_by,updated_at) VALUES ('$to_user','$to_do_date','$to_do_list','$to_do_notes','$status','$user_type',NOW(),'$user_type',NOW())";
+           $query="INSERT INTO edu_reminder(user_id,to_do_date,to_do_title,to_do_description,status,created_by,created_at,updated_by,updated_at) VALUES ('$to_user','$to_do_date','$to_do_list','$to_do_notes','$status','$user_type',NOW(),'$user_type',NOW())";
+
           $resultset=$this->db->query($query);
           if($resultset){
             $data= array("status" => "success");
