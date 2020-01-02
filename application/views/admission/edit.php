@@ -269,7 +269,8 @@
                        <div class="col-sm-4">
                        </div>
                        <div class="col-sm-4">
-                           <button type="submit" id="save" class="btn btn-info btn-fill center">Save</button>
+                        <input type="submit" id="save" class="btn btn-info btn-fill center" value="SAVE">
+                          
                         </div>
                      </div>
                        

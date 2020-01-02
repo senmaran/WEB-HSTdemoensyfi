@@ -92,7 +92,8 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">&nbsp;</label>
                                                         <div class="col-sm-4">
-                                                            <button type="submit" id="save" class="btn btn-info btn-fill center">ASSIGN</button>
+                                                             <input type="submit" id="save" class="btn btn-info btn-fill center" value="ASSIGN">
+                                                            
                                                         </div>
                                                     </div>
                                                 </fieldset>
