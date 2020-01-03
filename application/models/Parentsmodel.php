@@ -343,7 +343,7 @@ Class Parentsmodel extends CI_Model
            $digits = 6;
            $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 
-           $pgid="SELECT admission_id,parnt_guardn_id FROM edu_admission WHERE admission_id IN('$oldadmission_id')";
+           echo $pgid="SELECT admission_id,parnt_guardn_id FROM edu_admission WHERE admission_id IN('$oldadmission_id')";
            $resultset=$this->db->query($pgid);
            $row=$resultset->result();
            foreach($row as $rows){
@@ -1063,16 +1063,17 @@ Class Parentsmodel extends CI_Model
 
 
 
-		   function get_relation($relation,$stuid)
-	       {
-			   $pgid="SELECT relationship FROM edu_parents WHERE relationship='$relation' AND FIND_IN_SET('$stuid',admission_id)";
-			   $resultset=$this->db->query($pgid);
-			   return count($resultset->result());
-	      }
+		function get_relation($relation,$stuid)
+		{
+		   $pgid="SELECT relationship FROM edu_parents WHERE relationship='$relation' AND FIND_IN_SET('$stuid',admission_id)";
+		   $resultset=$this->db->query($pgid);
+		   return count($resultset->result());
+		}
 
-        function remove_parents_from_students($id,$user_id,$stu_id){
-         $select_ad="SELECT * FROM edu_parents  WHERE FIND_IN_SET('$stu_id',admission_id)";
-          $resultset_ad=$this->db->query($select_ad);
+	function remove_parents_from_students($id,$user_id,$stu_id){
+			
+		$select_ad="SELECT * FROM edu_parents  WHERE FIND_IN_SET('$stu_id',admission_id)";
+		$resultset_ad=$this->db->query($select_ad);
           if($resultset_ad->num_rows()==0){
             $string='';
           }else{
@@ -1086,24 +1087,26 @@ Class Parentsmodel extends CI_Model
 
           $update="UPDATE edu_parents SET admission_id='$string',updated_at=NOW(),updated_by='$user_id' WHERE id='$id'";
           $resultset=$this->db->query($update);
+		  
           $select="SELECT count(*) as count FROM edu_parents  WHERE FIND_IN_SET('$stu_id',admission_id)";
           $resultset=$this->db->query($select);
           foreach($resultset->result() as $rows_result){}
           $res_count=$rows_result->count;
-
           if($res_count==0){
             $update_status="UPDATE edu_admission SET parents_status='0' WHERE admission_id='$stu_id'";
             $result_status=$this->db->query($update_status);
           }
+		  
           $update_user="UPDATE edu_users SET status='Deactive',updated_date=NOW() WHERE user_type='4' AND user_master_id='$id'";
           $result_user=$this->db->query($update_user);
+		  
           if($result_user){
               echo "success";
           }else{
               echo "failed";
           }
 
-        }
+	}
 
 
 
