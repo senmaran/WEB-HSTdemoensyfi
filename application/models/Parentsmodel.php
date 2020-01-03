@@ -343,7 +343,7 @@ Class Parentsmodel extends CI_Model
            $digits = 6;
            $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 
-           echo $pgid="SELECT admission_id,parnt_guardn_id FROM edu_admission WHERE admission_id IN('$oldadmission_id')";
+           $pgid="SELECT admission_id,parnt_guardn_id FROM edu_admission WHERE admission_id IN('$oldadmission_id')";
            $resultset=$this->db->query($pgid);
            $row=$resultset->result();
            foreach($row as $rows){
