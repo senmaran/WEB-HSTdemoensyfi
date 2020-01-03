@@ -390,7 +390,7 @@ class Apiteachermodel extends CI_Model {
 	{
 			$year_id = $this->getYear();
 
-			$hw_query = "SELECT A.hw_id,A.hw_type,A.title, A.test_date, A.due_date, A.hw_details, A.mark_status, B.subject_name FROM `edu_homework` A, `edu_subject` B WHERE A.subject_id = B.subject_id AND A.class_id ='$class_id' AND A.year_id='$year_id' AND  A.hw_type = '$hw_type' AND  A.teacher_id = '$teacher_id' AND A.status = 'Active'";
+			$hw_query = "SELECT A.hw_id,A.hw_type,A.title, A.test_date, A.due_date, A.hw_details, A.mark_status, B.subject_name FROM edu_homework A, edu_subject B WHERE A.subject_id = B.subject_id AND A.class_id ='$class_id' AND A.year_id='$year_id' AND  A.hw_type = '$hw_type' AND  A.teacher_id = '$teacher_id' AND A.status = 'Active'";
 			$hw_res = $this->db->query($hw_query);
 			$hw_result= $hw_res->result();
 			$hw_count = $hw_res->num_rows();
@@ -410,7 +410,7 @@ class Apiteachermodel extends CI_Model {
 			$year_id = $this->getYear();
 
 			$hw_query = "SELECT A.hw_id, A.hw_type, A.title, A.test_date, A.due_date,A.teacher_id ,A.class_id, A.hw_details, A.mark_status, A.subject_id,B.subject_name, D.class_name, E.sec_name FROM
-                            `edu_homework` A, `edu_subject` B, `edu_classmaster` C, `edu_class` D, `edu_sections` E WHERE
+                            edu_homework A, edu_subject B, edu_classmaster C, edu_class D, edu_sections E WHERE
                             A.subject_id = B.subject_id AND A.year_id ='$year_id' AND
                             A.subject_id IN (SELECT DISTINCT subject_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id') AND A.class_id IN (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id') AND
                             A.class_id = C. class_sec_id AND C.class = D.class_id AND
@@ -533,8 +533,8 @@ class Apiteachermodel extends CI_Model {
 						}
 
 						$examdetail_query = "SELECT A.exam_id,A.exam_name,C.subject_name,B.exam_date, B.times,B.classmaster_id, E.class_name, F.sec_name FROM
-							`edu_examination` A, `edu_exam_details` B, `edu_subject` C, `edu_classmaster` D, `edu_class` E, `edu_sections` F WHERE
-							A.`exam_id` = B. exam_id AND B.subject_id = C.subject_id AND
+							edu_examination A, edu_exam_details B, edu_subject C, edu_classmaster D, edu_class E, edu_sections F WHERE
+							A.exam_id = B. exam_id AND B.subject_id = C.subject_id AND
 							B.classmaster_id=D.class_sec_id AND D.class = E.class_id AND
 							D.section = F.sec_id AND B.classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')";
 							$examdetail_res = $this->db->query($examdetail_query);
@@ -558,7 +558,7 @@ class Apiteachermodel extends CI_Model {
 	{
 			 $year_id = $this->getYear();
 
-			$exam_query = "SELECT A.exam_id,A.exam_name,C.subject_name,B.exam_date, B.times FROM `edu_examination` A, `edu_exam_details` B, `edu_subject` C WHERE A.`exam_id` = B. exam_id AND B.subject_id = C.subject_id AND B.classmaster_id ='$class_id' AND B.exam_id='$exam_id'";
+			$exam_query = "SELECT A.exam_id,A.exam_name,C.subject_name,B.exam_date, B.times FROM edu_examination A, edu_exam_details B, edu_subject C WHERE A.exam_id = B. exam_id AND B.subject_id = C.subject_id AND B.classmaster_id ='$class_id' AND B.exam_id='$exam_id'";
 			$exam_res = $this->db->query($exam_query);
 			$exam_result= $exam_res->result();
 			$exam_result_count = $exam_res->num_rows();
@@ -654,7 +654,7 @@ class Apiteachermodel extends CI_Model {
 	{
 			$year_id = $this->getYear();
 
-			$comm_query = "SELECT commu_title,commu_details,commu_date FROM `edu_communication` WHERE find_in_set('$teacher_id', `teacher_id`)";
+			$comm_query = "SELECT commu_title,commu_details,commu_date FROM edu_communication WHERE find_in_set('$teacher_id', teacher_id)";
 			$comm_res = $this->db->query($comm_query);
 			$comm_result= $comm_res->result();
 			$comm_count = $comm_res->num_rows();
@@ -786,7 +786,7 @@ class Apiteachermodel extends CI_Model {
 	{
 			$year_id = $this->getYear();
 
-		    $leave_query = "INSERT INTO `edu_user_leave` (`year_id`, `user_type`, `user_id`, `leave_master_id`, `type_leave`, `from_leave_date`, `to_leave_date`, `frm_time`, `to_time`, `leave_description`, `status`,`created_at`) VALUES ('$year_id', '$user_type', '$user_id', '$leave_master_id', '$leave_type', '$date_from', '$date_to', '$fromTime', '$toTime', '$description', 'Pending',NOW())";
+		    $leave_query = "INSERT INTO edu_user_leave (year_id, user_type, user_id, leave_master_id, type_leave, from_leave_date, to_leave_date, frm_time, to_time, leave_description, status,created_at) VALUES ('$year_id', '$user_type', '$user_id', '$leave_master_id', '$leave_type', '$date_from', '$date_to', '$fromTime', '$toTime', '$description', 'Pending',NOW())";
 			$leave_res = $this->db->query($leave_query);
 
 			if($leave_res) {
@@ -804,7 +804,7 @@ class Apiteachermodel extends CI_Model {
 	{
 			$year_id = $this->getYear();
 
-		    $hw_query = "INSERT INTO `edu_homework`(`year_id`, `class_id`, `teacher_id`, `hw_type`, `subject_id`, `title`, `test_date`, `due_date`, `hw_details`, `status`, `created_by`, `created_at`) VALUES ('$year_id','$class_id','$teacher_id','$homeWork_type','$subject_id','$title','$test_date','$due_date','$homework_details','Active','$created_by','$created_at')";
+		    $hw_query = "INSERT INTO edu_homework(year_id, class_id, teacher_id, hw_type, subject_id, title, test_date, due_date, hw_details, status, created_by, created_at) VALUES ('$year_id','$class_id','$teacher_id','$homeWork_type','$subject_id','$title','$test_date','$due_date','$homework_details','Active','$created_by','$created_at')";
 			$hw_res = $this->db->query($hw_query);
 			$last_hwid = $this->db->insert_id();
 
@@ -927,7 +927,7 @@ class Apiteachermodel extends CI_Model {
 					$total_grade = '';
                 }
 				*/
-				   $marks_query = "INSERT INTO `edu_exam_marks`(`exam_id`, `teacher_id`, `subject_id`, `stu_id`, `classmaster_id`, `total_marks`, `total_grade`, `created_by`, `created_at`) VALUES ('$exam_id','$teacher_id','$subject_id','$stu_id','$classmaster_id','$marks','$total_grade','$created_by',NOW())";
+				   $marks_query = "INSERT INTO edu_exam_marks(exam_id, teacher_id, subject_id, stu_id, classmaster_id, total_marks, total_grade, created_by, created_at) VALUES ('$exam_id','$teacher_id','$subject_id','$stu_id','$classmaster_id','$marks','$total_grade','$created_by',NOW())";
 
 			}
 			else 	{
@@ -1070,7 +1070,7 @@ class Apiteachermodel extends CI_Model {
 					$total_grade = '';
                 }
                 */
-		      $marks_query = "INSERT INTO `edu_exam_marks`(`exam_id`, `teacher_id`, `subject_id`, `stu_id`, `classmaster_id`, `internal_mark`, `internal_grade`, `external_mark`, `external_grade`, `total_marks`, `total_grade`, `created_by`, `created_at`) VALUES ('$exam_id','$teacher_id','$subject_id','$stu_id','$classmaster_id','$internal_mark','$internal_grade','$external_mark','$external_grade','$total_marks','$total_grade','$created_by',NOW())";
+		      $marks_query = "INSERT INTO edu_exam_marks(exam_id, teacher_id, subject_id, stu_id, classmaster_id, internal_mark, internal_grade, external_mark, external_grade, total_marks, total_grade, created_by, created_at) VALUES ('$exam_id','$teacher_id','$subject_id','$stu_id','$classmaster_id','$internal_mark','$internal_grade','$external_mark','$external_grade','$total_marks','$total_grade','$created_by',NOW())";
 		}
 
 			$marks_res = $this->db->query($marks_query);
@@ -1091,7 +1091,7 @@ class Apiteachermodel extends CI_Model {
 	{
 			$year_id = $this->getYear();
 
-		    $reminder_query = "	INSERT INTO `edu_reminder`(`user_id`, `to_do_date`, `to_do_title`, `to_do_description`, `status`, `created_by`, `created_at`)
+		    $reminder_query = "	INSERT INTO edu_reminder(user_id, to_do_date, to_do_title, to_do_description, status, created_by, created_at)
 			VALUES ('$user_id','$date','$title','$description','Active','$user_id',NOW())";
 			$reminder_res = $this->db->query($reminder_query);
 			$last_reminderid = $this->db->insert_id();
@@ -1147,7 +1147,7 @@ class Apiteachermodel extends CI_Model {
 	{
 			$year_id = $this->getYear();
 
-		    $review_query = "	INSERT INTO `edu_timetable_review`(`time_date`,`year_id` , `class_id`, `subject_id`, `period_id`, `user_type`, `user_id`, `comments`, `status`, `created_at`)
+		    $review_query = "	INSERT INTO edu_timetable_review(time_date,year_id , class_id, subject_id, period_id, user_type, user_id, comments, status, created_at)
 			VALUES ('$time_date','$year_id','$class_id','$subject_id','$period_id','$user_type','$user_id','$comments','Active','$created_at')";
 			$review_res = $this->db->query($review_query);
 			$last_reviewid = $this->db->insert_id();
@@ -1180,7 +1180,7 @@ class Apiteachermodel extends CI_Model {
     			$response = array("status" => "AlreadyAdded", "msg" => "Already Added", "attendance_id"=>$at_id);
     		} else {
 
-				$attend_query = "INSERT INTO `edu_attendence`(`ac_year`, `class_id`, `class_total`, `no_of_present`, `no_of_absent`, `attendence_period`, `created_by`,`created_at`,`status`) VALUES ('$ac_year','$class_id','$class_total','$no_of_present','$no_of_absent','$attendence_period','$created_by','$created_at','$status')";
+				$attend_query = "INSERT INTO edu_attendence(ac_year, class_id, class_total, no_of_present, no_of_absent, attendence_period, created_by,created_at,status) VALUES ('$ac_year','$class_id','$class_total','$no_of_present','$no_of_absent','$attendence_period','$created_by','$created_at','$status')";
 				$attend_res = $this->db->query($attend_query);
 				$last_attendid = $this->db->insert_id();
 
@@ -1209,7 +1209,7 @@ class Apiteachermodel extends CI_Model {
     			$response = array("status" => "AlreadyAdded", "msg" => "Alredy Added", "attendance_history_id"=>$absent_id);
     		} else {
 
-				$attend_his_query = "INSERT INTO `edu_attendance_history`(`attend_id`, `class_id`, `student_id`, `abs_date`, `a_status`, `attend_period`, `a_val`,`a_taken_by`,`created_at`,`status`) VALUES ('$attend_id','$class_id','$student_id','$abs_date','$a_status','$attend_period','$a_val','$a_taken_by','$created_at','$status')";
+				$attend_his_query = "INSERT INTO edu_attendance_history(attend_id, class_id, student_id, abs_date, a_status, attend_period, a_val,a_taken_by,created_at,status) VALUES ('$attend_id','$class_id','$student_id','$abs_date','$a_status','$attend_period','$a_val','$a_taken_by','$created_at','$status')";
 				$attend_his_res = $this->db->query($attend_his_query);
 				$last_historyid = $this->db->insert_id();
 
@@ -1920,6 +1920,69 @@ class Apiteachermodel extends CI_Model {
           return $response;
       }
 
+
+
+
+
+
+
+      function exam_for_teacher($teacher_id){
+         $year_id = $this->getYear();
+        $exam_query = "SELECT ex.exam_id,ex.exam_name,0 AS is_internal_external,ed.classmaster_id, ss.sec_name,c.class_name,COALESCE(DATE_FORMAT(MIN(ed.exam_date), '%d/%b/%y'),'') AS Fromdate,
+         COALESCE(DATE_FORMAT(MAX(ed.exam_date), '%d/%b/%y'),'') AS Todate,
+         CASE WHEN ems.status='Publish' OR ems.status='Approved' THEN 1 ELSE 0 END AS MarkStatus
+         FROM edu_examination ex
+         RIGHT JOIN edu_exam_details ed on ex.exam_id = ed.exam_id and ed.classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')
+         LEFT JOIN edu_exam_marks_status ems ON ems.exam_id = ex.exam_id and ems.classmaster_id = ed.classmaster_id
+         INNER JOIN edu_classmaster AS cm ON ed.classmaster_id = cm.class_sec_id
+         INNER JOIN edu_class AS c ON cm.class=c.class_id
+         INNER JOIN edu_sections AS ss ON cm.section=ss.sec_id
+         WHERE ex.exam_year ='$year_id' and ex.status = 'Active' and ed.classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')
+         GROUP by ed.classmaster_id, ed.exam_id
+
+         UNION ALL
+
+         SELECT ex.exam_id,ex.exam_name,0 AS is_internal_external,ed.classmaster_id, ss.sec_name,c.class_name, COALESCE(DATE_FORMAT(MIN(ed.exam_date), '%d/%b/%y'),'') AS Fromdate,
+         COALESCE(DATE_FORMAT(MAX(ed.exam_date), '%d/%b/%y'),'') AS Todate,
+         CASE WHEN ems.status='Publish' OR ems.status='Approved' THEN 1 ELSE 0 END AS MarkStatus
+         FROM edu_examination ex
+         LEFT JOIN edu_exam_details ed on ed.exam_id = ex.exam_id and ed.classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')
+         LEFT JOIN edu_exam_marks_status ems ON ems.exam_id = ex.exam_id and ems.classmaster_id = ed.classmaster_id
+         INNER JOIN edu_classmaster AS cm ON ed.classmaster_id = cm.class_sec_id
+         INNER JOIN edu_class AS c ON cm.class=c.class_id
+         INNER JOIN edu_sections AS ss ON cm.section=ss.sec_id
+         WHERE ex.exam_year ='$year_id' and ex.status = 'Active' and ex.exam_id NOT IN (SELECT DISTINCT exam_id FROM edu_exam_details where classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')) GROUP by ed.classmaster_id,ed.exam_id";
+
+         $exam_res = $this->db->query($exam_query);
+
+          if($exam_res->num_rows()==0){
+            $response = array("status" => "error", "msg" => "Exams not found");
+         }else{
+            $response = array("status" => "success", "msg" => "Exams found","data"=>$exam_result= $exam_res->result());
+         }
+
+
+         return $response;
+      }
+
+
+
+
+      function exam_details_for_teacher($teacher_id){
+        $examdetail_query = "SELECT A.exam_id,A.exam_name,C.subject_name,B.subject_id,B.exam_date, B.times,B.is_internal_external,B.subject_total,B.internal_mark,B.external_mark,B.classmaster_id, E.class_name, F.sec_name FROM
+          edu_examination A, edu_exam_details B, edu_subject C, edu_classmaster D, edu_class E, edu_sections F WHERE
+          A.exam_id = B. exam_id AND B.subject_id = C.subject_id AND
+          B.classmaster_id=D.class_sec_id AND D.class = E.class_id AND
+          D.section = F.sec_id AND B.classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')";
+          $examdetail_res = $this->db->query($examdetail_query);
+
+         if($examdetail_res->num_rows()==0){
+           $response = array("status" => "error", "msg" => "Exams not found");
+        }else{
+           $response = array("status" => "success", "msg" => "Exams found","data"=>$examdetail_result= $examdetail_res->result());
+        }
+        return $response;
+      }
 
 
 
