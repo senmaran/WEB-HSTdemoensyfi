@@ -1924,6 +1924,51 @@ class Apiteachermodel extends CI_Model {
 
 
 
+
+
+      function exam_for_teacher($teacher_id){
+         $year_id = $this->getYear();
+        $exam_query = "SELECT ex.exam_id,ex.exam_name,0 AS is_internal_external,ed.classmaster_id, ss.sec_name,c.class_name,COALESCE(DATE_FORMAT(MIN(ed.exam_date), '%d/%b/%y'),'') AS Fromdate,
+         COALESCE(DATE_FORMAT(MAX(ed.exam_date), '%d/%b/%y'),'') AS Todate,
+         CASE WHEN ems.status='Publish' OR ems.status='Approved' THEN 1 ELSE 0 END AS MarkStatus
+         FROM edu_examination ex
+         RIGHT JOIN edu_exam_details ed on ex.exam_id = ed.exam_id and ed.classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')
+         LEFT JOIN edu_exam_marks_status ems ON ems.exam_id = ex.exam_id and ems.classmaster_id = ed.classmaster_id
+         INNER JOIN edu_classmaster AS cm ON ed.classmaster_id = cm.class_sec_id
+         INNER JOIN edu_class AS c ON cm.class=c.class_id
+         INNER JOIN edu_sections AS ss ON cm.section=ss.sec_id
+         WHERE ex.exam_year ='$year_id' and ex.status = 'Active' and ed.classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')
+         GROUP by ed.classmaster_id, ed.exam_id
+
+         UNION ALL
+
+         SELECT ex.exam_id,ex.exam_name,0 AS is_internal_external,ed.classmaster_id, ss.sec_name,c.class_name, COALESCE(DATE_FORMAT(MIN(ed.exam_date), '%d/%b/%y'),'') AS Fromdate,
+         COALESCE(DATE_FORMAT(MAX(ed.exam_date), '%d/%b/%y'),'') AS Todate,
+         CASE WHEN ems.status='Publish' OR ems.status='Approved' THEN 1 ELSE 0 END AS MarkStatus
+         FROM edu_examination ex
+         LEFT JOIN edu_exam_details ed on ed.exam_id = ex.exam_id and ed.classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')
+         LEFT JOIN edu_exam_marks_status ems ON ems.exam_id = ex.exam_id and ems.classmaster_id = ed.classmaster_id
+         INNER JOIN edu_classmaster AS cm ON ed.classmaster_id = cm.class_sec_id
+         INNER JOIN edu_class AS c ON cm.class=c.class_id
+         INNER JOIN edu_sections AS ss ON cm.section=ss.sec_id
+         WHERE ex.exam_year ='$year_id' and ex.status = 'Active' and ex.exam_id NOT IN (SELECT DISTINCT exam_id FROM edu_exam_details where classmaster_id in (SELECT DISTINCT class_master_id from edu_teacher_handling_subject WHERE teacher_id ='$teacher_id')) GROUP by ed.classmaster_id,ed.exam_id";
+
+         $exam_res = $this->db->query($exam_query);
+
+          if($exam_res->num_rows()==0){
+            $response = array("status" => "error", "msg" => "Exams not found");
+         }else{
+            $response = array("status" => "success", "msg" => "Exams found","data"=>$exam_result= $exam_res->result());
+         }
+
+
+         return $response;
+      }
+
+
+
+
+
 }
 
 ?>
