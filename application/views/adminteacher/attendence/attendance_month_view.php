@@ -7,7 +7,10 @@
                   <div class="content">
                  <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:10px;">BACK</button>
                      <h4 class="title">Monthwise Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?></h4>
+					 <br>
+					  <hr>
                      <div class="fresh-datatables">
+					
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th data-field="id" class="text-center"  data-sortable="true">S.No</th>

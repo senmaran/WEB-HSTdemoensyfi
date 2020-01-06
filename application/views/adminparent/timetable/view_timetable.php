@@ -19,20 +19,13 @@
 </style>
 <div class="main-panel">
    <div class="content">
-      <div class="col-md-12">
-         <?php if($this->session->flashdata('msg')): ?>
-         <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-            ×</button> <?php echo $this->session->flashdata('msg'); ?>
-         </div>
-         <?php endif; ?>
-      </div>
+
 
       <div class="card">
         <div class="header">
-           <legend>View Timetable</legend>
+           <h4 class="title">View Timetable</h4>
         </div>
-
+		<hr>
       <div class="content">
          <div class="row">
             <div class="col-md-12">

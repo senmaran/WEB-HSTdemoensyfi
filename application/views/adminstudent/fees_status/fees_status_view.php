@@ -17,7 +17,8 @@
                                 <div class="fresh-datatables">
                                   <h4 class="title">Fees Status   </h4>
 								  Academic Year: <?php  if(empty($fees)){ echo "";}else{ foreach ($fees as $rows){ } echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  }?> 
-                                <div class="dtypo-line" style="padding:30px;">
+								  <hr>
+                                <div class="dtypo-line" style="padding:0px;">
                                     <div class="row">
                                        <?php
 									   if(empty($fees)){ echo "Status not found";}else{

@@ -26,8 +26,7 @@ Class Mailmodel extends CI_Model
     }
 
   function sendMailwithattachement($to,$subject,$email_message,$att)
-    {
-
+  {
       $htmlContent = '
 			  <html>
 			  <head><title></title>
@@ -45,7 +44,7 @@ Class Mailmodel extends CI_Model
     }
 
     function sendMail($to,$subject,$email_message)
-      {
+    {
         $htmlContent = '
         <html>
         <head><title></title>
@@ -59,26 +58,26 @@ Class Mailmodel extends CI_Model
         // Additional headers
         $headers .= 'From: ensyfi<info@ensyfi.com>' . "\r\n";
         $sent= mail($to,$subject,$htmlContent,$headers);
-      }
+     }
 
 
-  function send_mail_for_teacher_substitution($tname,$sub_teacher,$sub_tname,$leave_date,$cls_id,$period_id)
-  {
+	function send_mail_for_teacher_substitution($tname,$sub_teacher,$sub_tname,$leave_date,$cls_id,$period_id)
+	{
 
-	$sql="SELECT teacher_id,name,email FROM edu_teachers WHERE teacher_id='$sub_teacher'";
-	$resultset=$this->db->query($sql);
-	$res=$resultset->result();
-	foreach($res as $cell){}
-	$email_id=$cell->email;
+		$sql="SELECT teacher_id,name,email FROM edu_teachers WHERE teacher_id='$sub_teacher'";
+		$resultset=$this->db->query($sql);
+		$res=$resultset->result();
+		foreach($res as $cell){}
+		$email_id=$cell->email;
 
-	$sql1="SELECT cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name FROM edu_classmaster AS cm,edu_class AS c,edu_sections AS s WHERE cm.class_sec_id='$cls_id' AND cm.class=c.class_id AND cm.section=s.sec_id ";
-	$resultset1=$this->db->query($sql1);
-	$res1=$resultset1->result();
-	foreach($res1 as $cls){}
-	$cname=$cls->class_name;
-	$sename=$cls->sec_name;
+		$sql1="SELECT cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name FROM edu_classmaster AS cm,edu_class AS c,edu_sections AS s WHERE cm.class_sec_id='$cls_id' AND cm.class=c.class_id AND cm.section=s.sec_id ";
+		$resultset1=$this->db->query($sql1);
+		$res1=$resultset1->result();
+		foreach($res1 as $cls){}
+		$cname=$cls->class_name;
+		$sename=$cls->sec_name;
 
-	$textmessage='This is to inform you that as '.$tname.' is on leave,'.$sub_tname.' will be the substitute teacher to fill in for '.$cname.'-'.$sename.',period ('.$period_id.') on '.$leave_date.' ';
+		$textmessage='This is to inform you that as '.$tname.' is on leave,'.$sub_tname.' will be the substitute teacher to fill in for '.$cname.'-'.$sename.',period ('.$period_id.') on '.$leave_date.' ';
 
 		 $to=$email_id;
 		 $subject="SUBSTITUTION";
@@ -91,35 +90,36 @@ Class Mailmodel extends CI_Model
 			<p style="margin-left:50px;">'.$cnotes.'</p>
 			 </body>
 			 </html>';
-	 $headers = "MIME-Version: 1.0" . "\r\n";
-	 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-	 // Additional headers
-	 $headers .= 'From: Ensyfi<info@ensyfi.com>' . "\r\n";
-	 $sent= mail($to,$subject,$htmlContent,$headers);
+		 $headers = "MIME-Version: 1.0" . "\r\n";
+		 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+		 // Additional headers
+		 $headers .= 'From: Ensyfi<info@ensyfi.com>' . "\r\n";
+		 $sent= mail($to,$subject,$htmlContent,$headers);
 
-  }
+	}
+
 
   function send_circular_via_mail($title_id,$notes,$cdate,$tusers_id,$stusers_id,$pusers_id,$bmusers_id,$users_id)
   {
-		$ssql = "SELECT * FROM edu_circular_master WHERE id ='$title_id'";
-		$res = $this->db->query($ssql);
-		$result =$res->result();
+	$year_id=$this->getYear();
+	  
+	$ssql = "SELECT * FROM edu_circular_master WHERE id ='$title_id'";
+	$res = $this->db->query($ssql);
+	$result =$res->result();
 
-    if($res->num_rows()==0){
+	if($res->num_rows()==0){
 		echo "";
-    }else{
-		foreach($result as $rows){ }
+	}else{
+		foreach($result as $rows){ 
 			$title = $rows->circular_title;
 			$notes = $rows->circular_description;
 			$att = $rows->circular_doc;
 			$user_type = $users_id;
+	}
 
-
-
-	  //-----------Admin------------------------
+	//-----------Admin------------------------
 	  if(!empty($user_type))
 	   {
-        // echo $user_type; echo $title; echo $notes;exit;
 		 switch($user_type)
 		 {
 			case '2':
@@ -138,7 +138,6 @@ Class Mailmodel extends CI_Model
             }
 
           }
-             //exit;
             break;
             case '5':
                 $tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone,t.email FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$user_type' AND u.user_master_id=t.teacher_id AND u.status='Active'";
@@ -157,8 +156,21 @@ Class Mailmodel extends CI_Model
                 }
              break;
 			 case '3':
-
-					$ssql="SELECT u.user_id,u.user_type,u.user_master_id,u.name,a.admission_id,a.name,a.mobile,a.email FROM edu_users AS u,edu_admission AS a  WHERE u.user_type='$user_type' AND u.user_master_id=a.admission_id AND u.name=a.name AND u.status='Active'";
+					$ssql="SELECT
+							u.user_id,
+							u.user_type,
+							u.user_master_id,
+							u.name,
+							a.admission_id,
+							a.name,
+							a.mobile,
+							a.email
+						FROM
+							edu_users AS u,
+							edu_admission AS a,
+							edu_enrollment AS e
+						WHERE
+							u.user_type = '$user_type' AND e.admit_year = '$year_id' AND e.admission_id = a.admission_id AND u.user_master_id = a.admission_id AND u.status = 'Active' AND e.status = 'Active' ORDER BY `a`.`email` DESC";
 					$res2=$this->db->query($ssql);
 					$result2=$res2->result();
 					foreach($result2 as $rows1)
@@ -175,7 +187,6 @@ Class Mailmodel extends CI_Model
 					  }
             break;
 			case '4':
-
 					$psql="SELECT u.user_id,u.user_type,u.user_master_id,u.name,p.id,p.mobile,p.email FROM edu_users AS u,edu_parents AS p WHERE u.user_type='$users_id' AND u.user_master_id=p.id AND u.status='Active'";
 					$pres2=$this->db->query($psql);
 					$presult2=$pres2->result();
@@ -255,9 +266,6 @@ Class Mailmodel extends CI_Model
 			}
         }
 
-
-
-
 			  //-----------------------------Students----------------------
 
 			  if(!empty($stusers_id))
@@ -266,9 +274,25 @@ Class Mailmodel extends CI_Model
 			      //echo $scountid; exit;
 				 for ($i=0;$i<$scountid;$i++)
 				 {
-				  $clsid=$stusers_id[$i];
+				 $clsid=$stusers_id[$i];
 
-				 $sql1="SELECT e.enroll_id,e.admission_id,e.admisn_no,e.name,e.class_id,a.admission_id,a.admisn_no,a.name,a.mobile,a.email FROM edu_enrollment AS e,edu_admission AS a WHERE e.class_id='$clsid' AND e.admission_id=a.admission_id";
+				 $sql1="SELECT
+						e.enroll_id,
+						e.admission_id,
+						e.admisn_no,
+						e.name,
+						e.class_id,
+						a.admission_id,
+						a.admisn_no,
+						a.name,
+						a.mobile,
+						a.email
+					FROM
+						edu_enrollment AS e,
+						edu_admission AS a
+					WHERE
+						e.class_id = '$clsid' AND e.admit_year = '$year_id' AND e.admission_id = a.admission_id  
+					ORDER BY `a`.`email`  DESC";
 					$scell=$this->db->query($sql1);
 					$res1=$scell->result();
 					foreach($res1 as $row1)
@@ -292,33 +316,33 @@ Class Mailmodel extends CI_Model
 			 if(!empty($pusers_id))
 		     {
 			   $pcountid=count($pusers_id);
-			  //echo $pcountid;exit;
+
 			  for ($i=0;$i<$pcountid;$i++)
 			  {
 				 $classid=$pusers_id[$i];
 
-				 $pgid="SELECT e.enroll_id,e.admission_id,e.admisn_no,e.name,e.class_id FROM edu_enrollment AS e WHERE e.class_id='$classid'";
-					 $pcell=$this->db->query($pgid);
-				     $res2=$pcell->result();
-				     foreach($res2 as $row2)
-				     {
-					  $stuid=$row2->admission_id;
-					  $class="SELECT p.id,p.admission_id,p.email,p.primary_flag FROM edu_parents AS p WHERE FIND_IN_SET('$stuid',admission_id) AND p.primary_flag='Yes'";
-					  $pcell1=$this->db->query($class);
-					  $res3=$pcell1->result();
-					  foreach($res3 as $row3)
-					   {
-							$to=$row3->email;
-						   $subject=$title;
-						   $email_message=$notes.' '.$cdate;
-						   if(empty($att)){
-							 $this->sendMail($to,$subject,$email_message);
-						   }else{
-							 $this->sendMailwithattachement($to,$subject,$email_message,$att);
-						   }
-				      }
-          }
-        }
+				$pgid="SELECT e.enroll_id,e.admission_id,e.admisn_no,e.name,e.class_id FROM edu_enrollment AS e WHERE e.class_id='$classid' AND e.admit_year='$year_id'";
+				$pcell=$this->db->query($pgid);
+				$res2=$pcell->result();
+				foreach($res2 as $row2)
+				{
+					$stuid=$row2->admission_id;
+					$class="SELECT p.id,p.admission_id,p.email,p.primary_flag FROM edu_parents AS p WHERE FIND_IN_SET('$stuid',admission_id) AND p.primary_flag='Yes'";
+					$pcell1=$this->db->query($class);
+					$res3=$pcell1->result();
+					foreach($res3 as $row3)
+					{
+					   $to=$row3->email;
+					   $subject=$title;
+					   $email_message=$notes.' '.$cdate;
+					   if(empty($att)){
+						 $this->sendMail($to,$subject,$email_message);
+					   }else{
+						 $this->sendMailwithattachement($to,$subject,$email_message,$att);
+					   }
+					}
+				}
+			}
       }
     }
 

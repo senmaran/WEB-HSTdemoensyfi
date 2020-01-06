@@ -14,7 +14,8 @@
                      <div class="content">
                         <div class="fresh-datatables">
                            <h4 class="title">Circulars</h4>
-                                <div class="dtypo-line" style="padding:30px;">
+						   <hr>
+                                <div class="dtypo-line" style="padding:0px;">
                                     <div class="row">
                                        <?php
 									   if(empty($circular)){ echo "No Circular Found";}else{

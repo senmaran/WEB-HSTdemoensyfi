@@ -120,6 +120,8 @@ Class Notificationmodel extends CI_Model
        
 	function send_circular_via_notification($title_id,$notes,$tusers_id,$stusers_id,$pusers_id,$bmusers_id,$users_id)
 	{
+			$year_id=$this->getYear();
+		
 			$ssql = "SELECT * FROM edu_circular_master WHERE id ='$title_id'";
 			$res = $this->db->query($ssql);
 			$result =$res->result();
@@ -162,10 +164,9 @@ Class Notificationmodel extends CI_Model
 				 for($i=0;$i<$countid;$i++)
 				 {
 					$userid = $tusers_id[$i];
-
+					$mobile_type = '0';
 					$sql = "SELECT * FROM edu_notification WHERE user_id='$userid'";
 					$tgsm=$this->db->query($sql);
-
 					$res=$tgsm->result();
 					foreach($res as $row)
 					{ 
@@ -214,7 +215,7 @@ Class Notificationmodel extends CI_Model
 				 for($i=0;$i<$countid;$i++)
 				 {
 					$userid = $bmusers_id[$i];
-
+					$mobile_type = '0';
 					$sql = "SELECT * FROM edu_notification WHERE user_id='$userid'";
 					$tgsm=$this->db->query($sql);
 				    $res=$tgsm->result();
@@ -258,15 +259,24 @@ Class Notificationmodel extends CI_Model
 
 //----------------------------------------------Students----------------------------------------
 
-			if($stusers_id!='')
-		     {
-			      $scountid=count($stusers_id);
-				  
-				  for($i=0;$i<$scountid;$i++)
-				 {
-					$userid = $stusers_id[$i];
+		if($stusers_id!='')
+		 {
+			$scountid=count($stusers_id);
+			  
+			for($i=0;$i<$scountid;$i++)
+			 {
+				$clsid = $stusers_id[$i];
+				//$userid = $stusers_id[$i];
 
-					$sql = "SELECT * FROM edu_notification WHERE user_id='$userid'";
+				$stud="SELECT e.enroll_id,e.admission_id,e.admit_year,e.admisn_no,e.name,e.class_id,a.admission_id,a.admisn_no,a.parnt_guardn_id,u.user_id,u.user_type,u.user_master_id,u.name,u.student_id,u.status FROM edu_enrollment AS e,edu_admission AS a,edu_users AS u WHERE e.class_id='$clsid' AND e.admit_year = '$year_id' AND e.admission_id=a.admission_id AND u.user_type=3 AND a.admission_id=u.user_master_id AND a.admission_id=u.student_id AND u.status='Active'";
+				$stu_id=$this->db->query($stud);
+				$res1=$stu_id->result();
+			    foreach($res1 as $row1)
+				{
+					$sid=$row1->user_id;
+					$mobile_type = '0';
+					
+					$sql = "SELECT * FROM edu_notification WHERE user_id='$sid'";
 					$tgsm=$this->db->query($sql);
 				    $res=$tgsm->result();
 					foreach($res as $row)
@@ -302,59 +312,90 @@ Class Notificationmodel extends CI_Model
 						fclose($fp);
 						
 					}
+					
 				 }
+
+			}
 				
-             }
+        }
 
 //---------------------------------Parents-------------------------------------------
 
-			 if($pusers_id!='')
-		     {
-			      $pcountid=count($pusers_id);
+	if($pusers_id!='')
+		{
+			    $pcountid=count($pusers_id);
 				  
 				  for($i=0;$i<$pcountid;$i++)
 				 {
-					$userid = $pusers_id[$i];
-
-					$sql = "SELECT * FROM edu_notification WHERE user_id='$userid'";
-					$tgsm=$this->db->query($sql);
-				    $res=$tgsm->result();
-					foreach($res as $row)
-					{ 
-						 $gcm_key = $row->gcm_key;
-						 $mobile_type = $row->mobile_type;
-					} 
-
-					if ($mobile_type =='1'){
-				
-						//getting the push from push object
-						$mPushNotification = $push->getPush();
-
-						//creating firebase class object
-						$firebase = new Firebase();
-						$firebase->send(array($gcm_key),$mPushNotification);		
-						
-					} 
-					if ($mobile_type =='2')
-					{
-						$ctx = stream_context_create();
-						stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
-						stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
-
-						// Open a connection to the APNS server
-						$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
-
-						if (!$fp)
-							exit("Failed to connect: $err $errstr" . PHP_EOL);
+					$classid = $pusers_id[$i];
 					
-						$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
-						$result = fwrite($fp, $msg, strlen($msg));
-						fclose($fp);
+					$pgid="SELECT e.enroll_id,e.admission_id,e.admisn_no,e.name,e.class_id FROM edu_enrollment AS e WHERE e.class_id='$classid' AND e.admit_year='$year_id'";
+					$pcell=$this->db->query($pgid);
+					$res2=$pcell->result();
+					foreach($res2 as $row2)
+					{
+						$stuid=$row2->admission_id;
+						$class="SELECT
+								u.user_id,
+								p.id,
+								p.admission_id,
+								p.email,
+								p.primary_flag
+							FROM
+								edu_parents AS p,
+								 edu_users AS u
+							WHERE
+								FIND_IN_SET('$stuid', admission_id) AND P.id=u.parent_id AND p.primary_flag = 'Yes'";
+						$pcell1=$this->db->query($class);
+						$res3=$pcell1->result();
+						foreach($res3 as $row3)
+						{
+							$userid=$row3->user_id;
+							$mobile_type = '0';
+							
+							$sql = "SELECT * FROM edu_notification WHERE user_id='$userid'";
+							$tgsm=$this->db->query($sql);
+							$res=$tgsm->result();
+							foreach($res as $row)
+							{ 
+								 $gcm_key = $row->gcm_key;
+								 $mobile_type = $row->mobile_type;
+							} 
+
+							if ($mobile_type =='1'){
 						
+								//getting the push from push object
+								$mPushNotification = $push->getPush();
+
+								//creating firebase class object
+								$firebase = new Firebase();
+								$firebase->send(array($gcm_key),$mPushNotification);		
+								
+							} 
+							if ($mobile_type =='2')
+							{
+								$ctx = stream_context_create();
+								stream_context_set_option($ctx, 'ssl', 'local_cert', $loction);
+								stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
+
+								// Open a connection to the APNS server
+								$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+
+								if (!$fp)
+									exit("Failed to connect: $err $errstr" . PHP_EOL);
+							
+								$msg = chr(0) . pack("n", 32) . pack("H*", str_replace(" ", "", $gcm_key)) . pack("n", strlen($payload)) . $payload;
+								$result = fwrite($fp, $msg, strlen($msg));
+								fclose($fp);
+								
+							}
+							
+						}
 					}
+					
 				 }
 				  
-             }
+         }
 
 
 //------------------------------All Select-----------------------
@@ -371,7 +412,7 @@ Class Notificationmodel extends CI_Model
 					foreach($tresult1 as $trows)
 					{
 						$userid=$trows->user_id;
-
+						$mobile_type = '0';
 					    $sql="SELECT * FROM edu_notification WHERE user_id='$userid'";
 						$tgsm=$this->db->query($sql);
 						$tres1=$tgsm->result();
@@ -426,7 +467,7 @@ Class Notificationmodel extends CI_Model
 				  foreach($tresult1 as $trows)
 				  {
 					$userid=$trows->user_id;
-
+					$mobile_type = '0';
 					$sql="SELECT * FROM edu_notification WHERE user_id='$userid'";
 					$tgsm=$this->db->query($sql);
 					$tres1=$tgsm->result();
@@ -475,13 +516,25 @@ Class Notificationmodel extends CI_Model
 	//---------------------------Students----------------------
 				if($users_id==3)
 				{
-					$ssql="SELECT u.user_id,u.user_type,u.user_master_id,u.name,a.admission_id,a.name FROM edu_users AS u,edu_admission AS a  WHERE u.user_type='$users_id' AND u.user_master_id=a.admission_id AND u.name=a.name AND u.status='Active'";
+					$ssql="SELECT
+							u.user_id,
+							u.user_type,
+							u.user_master_id,
+							u.name,
+							a.admission_id,
+							a.name
+						FROM
+							edu_users AS u,
+							edu_admission AS a,
+							edu_enrollment e
+						WHERE
+							u.user_type = '$users_id' AND e.admit_year = '$year_id' AND e.admission_id = a.admission_id AND u.user_master_id = a.admission_id AND u.name = a.name AND u.status = 'Active' AND e.status = 'Active'";
 					$sres2=$this->db->query($ssql);
 					$sresult2=$sres2->result();
 					foreach($sresult2 as $srows1)
 					{
 					   $suserid=$srows1->user_id;
-
+						$mobile_type = '0';
 					    $sql="SELECT * FROM edu_notification WHERE user_id='$suserid'";
 						$sgsm=$this->db->query($sql);
 						$sres1=$sgsm->result();
@@ -534,7 +587,7 @@ Class Notificationmodel extends CI_Model
 					foreach($presult2 as $prows1)
 					{
 					     $puserid=$prows1->user_id;
-
+						$mobile_type = '0';
 					    $sql="SELECT * FROM edu_notification WHERE user_id='$puserid'";
 						$pgsm=$this->db->query($sql);
 						$pres1=$pgsm->result();

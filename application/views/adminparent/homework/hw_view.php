@@ -1,11 +1,4 @@
-<style>
-.fixed-table-body{
-	    height:auto;
-}
-.datewidth{
-    width:100px;
-}
-</style><div class="main-panel">
+<div class="main-panel">
    <div class="content">
       <div class="container-fluid">
          <div class="row">
@@ -13,12 +6,12 @@
                <div class="card">
 
 						 <div class="header">
-                                <h4 class="title">Homeworks and Class Tests<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button></h4>
+                                <h4 class="title">Homeworks and Class Tests<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" >BACK</button></h4>
                             </div>
-
+					<hr>
                     <div class="content">
-                     <div class="content table-responsive table-full-width">
-                        <table class="table table-bigboy" id="bootstrap-table" >
+                     <div class="fresh-datatables">
+                       <table id="bootstrap-table" class="table">
                            <thead>
                               <th>S.no</th>
                               <th>Teacher</th>
@@ -26,7 +19,6 @@
                               <th>Work</th>
                               <th>Title</th>
                               <th>Date</th>
-                              <th>Description</th>
                               <th>Status </th>
                            </thead>
                            <tbody>
@@ -73,13 +65,13 @@
                                     echo date_format($date,"d-m-Y");}else{ $duedate=date_create($rows->due_date);
                                     echo date_format($duedate,"d-m-Y"); }
 									 ?></td>
-                                 <td><?php echo $rows->hw_details; ?></td>
+                                 
                                  <td>
                                     <?php if($sta==0 && $type=="HT")
                                        { ?>
-                                    <a href="" rel="tooltip" title="Doesn't Add Mark Details" class="btn btn-simple btn-info btn-icon table-action view" >
+                                    <a href="" rel="tooltip" title="Doesn't Add Mark Details" class="btn btn-simple btn-info btn-icon table-action view" style="font-size:18px;">
                                     <i class="fa fa-id-card-o" aria-hidden="true"></i></a>
-                                    <?php }elseif($sta==1){?> <a href="<?php echo base_url();?>adminparent/view_mark?var1=<?php echo $rows->hw_id; ?>&var2=<?php echo $stu_id;?>" title="View marks" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;"><i class="fa fa-id-card-o" aria-hidden="true"></i></a>	<?php }?>
+                                    <?php }elseif($sta==1){?> <a href="<?php echo base_url();?>adminparent/view_mark?var1=<?php echo $rows->hw_id; ?>&var2=<?php echo $stu_id;?>" title="View marks" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;font-size:18px;"><i class="fa fa-id-card-o" aria-hidden="true"></i></a>	<?php }?>
 
                                  </td>
                               </tr>
@@ -100,45 +92,10 @@
    $('#homework').addClass('collapse in');
    $('#homework').addClass('active');
    $('#homework').addClass('active');
-    $('#classsection').validate({ // initialize the plugin
-        rules: {
-            test_type:{required:true },
-			title:{required:true },
-			subject_name:{required:true },
-			tet_date:{required:true },
-			details:{required:true },
-			class_id:{required:true }
-        },
-        messages: {
-              test_type: "Please Select Type Of Test",
-			  title: "Please Enter Title Name",
-			  subject_name: "Please Select Subject Name",
-			  tet_date: "Please Select Date",
-			  details: "Please Enter Details",
-			  class_id: "Please Enter Class Name"
-
-            }
-    });
+   
    });
 
-   $('#bootstrap-table').DataTable();
-</script>
-<script type="text/javascript">
-   $().ready(function(){
 
-     $('.datepicker').datetimepicker({
-       format: 'DD-MM-YYYY',
-       icons: {
-           time: "fa fa-clock-o",
-           date: "fa fa-calendar",
-           up: "fa fa-chevron-up",
-           down: "fa fa-chevron-down",
-           previous: 'fa fa-chevron-left',
-           next: 'fa fa-chevron-right',
-           today: 'fa fa-screenshot',
-           clear: 'fa fa-trash',
-           close: 'fa fa-remove'
-       }
-    });
-   });
+  $('#bootstrap-table').DataTable({	});
+
 </script>

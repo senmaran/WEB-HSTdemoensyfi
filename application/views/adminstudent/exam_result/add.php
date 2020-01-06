@@ -1,17 +1,12 @@
 <div class="main-panel">
    <div class="content">
       <div class="container-fluid">
-	   <?php if($this->session->flashdata('msg')): ?>
-         <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-            ×</button> <?php echo $this->session->flashdata('msg'); ?>
-         </div>
-         <?php endif; ?>
-         <div class="row">
+	    <div class="row">
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
                      <h4 class="title">Exam Results</h4>
+					 <hr>
                   </div>
                   <div class="content">
                      <div class="row">
@@ -35,13 +30,6 @@
                </div>
             </div>
          </div>
-         <!-- row -->
-
-
-
-         <!-- end row -->
-
-
       </div>
    </div>
 </div>

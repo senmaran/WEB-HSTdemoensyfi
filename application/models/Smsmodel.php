@@ -89,6 +89,7 @@ Class Smsmodel extends CI_Model
 		$this->sendSMS($number,$notes);
 	}
 
+
 	function send_sms_for_teacher_substitution($tname,$sub_teacher,$sub_tname,$leave_date,$cls_id,$period_id)
 	{
 			$sql="SELECT teacher_id,name,phone FROM edu_teachers WHERE teacher_id='$sub_teacher'";
@@ -116,20 +117,21 @@ Class Smsmodel extends CI_Model
 
 
 
-function send_circular_via_sms($title_id,$notes,$tusers_id,$stusers_id,$pusers_id,$bmusers_id,$users_id)
-	  {
+	function send_circular_via_sms($title_id,$notes,$tusers_id,$stusers_id,$pusers_id,$bmusers_id,$users_id)
+	{
 		$year_id=$this->getYear();
+		
 		$ssql = "SELECT * FROM edu_circular_master WHERE id ='$title_id'";
 		$res = $this->db->query($ssql);
-
 		$result =$res->result();
 		foreach($result as $rows)
-		{ }
-		$title = $rows->circular_title;
-		$desc = $rows->circular_description;
-		$circular_doc = $rows->circular_doc;
+		{ 
+			$title = $rows->circular_title;
+			$desc = $rows->circular_description;
+			$circular_doc = $rows->circular_doc;
+		}
 
-//-----------------------------Teacher----------------------
+	//-----------------------------Teacher----------------------
 	 if($tusers_id!='')
 			 {
 			     $countid=count($tusers_id);
@@ -149,7 +151,7 @@ function send_circular_via_sms($title_id,$notes,$tusers_id,$stusers_id,$pusers_i
 				}
 
        }
-//-----------------------------Borad Members----------------------
+	//-----------------------------Borad Members----------------------
       if($bmusers_id!='')
       {
            $countid=count($bmusers_id);
@@ -174,7 +176,7 @@ function send_circular_via_sms($title_id,$notes,$tusers_id,$stusers_id,$pusers_i
 		 for ($i=0;$i<$scountid;$i++)
 		 {
 			$clsid=$stusers_id[$i];
-			$sql1="SELECT e.enroll_id,e.admission_id,e.admisn_no,e.name,e.class_id,a.admission_id,a.admisn_no,a.name,a.mobile FROM edu_enrollment AS e,edu_admission AS a WHERE e.class_id='$clsid' AND e.admit_year='$year_id' AND e.admission_id=a.admission_id ";
+			$sql1="SELECT e.enroll_id,e.admission_id,e.admisn_no,e.name,e.class_id,a.admission_id,a.admisn_no,a.name,a.mobile FROM edu_enrollment AS e,edu_admission AS a WHERE e.class_id='$clsid' AND e.admit_year='$year_id' AND e.admission_id=a.admission_id";
 			$scell=$this->db->query($sql1);
 			$res1=$scell->result();
 			foreach($res1 as $row1)
@@ -183,9 +185,7 @@ function send_circular_via_sms($title_id,$notes,$tusers_id,$stusers_id,$pusers_i
 				$phone = $row1->mobile;
 				$this->sendSMS($phone,$notes);
 			}
-
 		}
-
 	 }
 
 	 //-----------------------------Parents----------------------
@@ -215,54 +215,66 @@ function send_circular_via_sms($title_id,$notes,$tusers_id,$stusers_id,$pusers_i
 		 }
 	  }
 
-//------------------------------ALL-----------------------
-			if($users_id!='')
+	//------------------------------ALL-----------------------
+	if($users_id!='')
+	{
+			//------------------------Teacher----------------------
+			if($users_id==2)
 			{
-				//------------------------Teacher----------------------
-				if($users_id==2)
+				$tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$users_id' AND u.user_master_id=t.teacher_id AND u.status='Active'";
+				$res=$this->db->query($tsql);
+				$result1=$res->result();
+				foreach($result1 as $rows)
 				{
-					$tsql="SELECT u.user_id,u.user_type,u.user_master_id,t.teacher_id,t.name,t.phone FROM edu_users AS u,edu_teachers AS t  WHERE u.user_type='$users_id' AND u.user_master_id=t.teacher_id AND u.status='Active'";
-					$res=$this->db->query($tsql);
-					$result1=$res->result();
-					foreach($result1 as $rows)
-					{
-						$notes =urlencode($notes);
-						$phone = $rows->phone;
-						$this->sendSMS($phone,$notes);
-					}
-				}
-
-				//---------------------------Students----------------------
-				if($users_id==3)
-				{
-					$ssql="SELECT u.user_id,u.user_type,u.user_master_id,u.name,a.admission_id,a.name,a.mobile FROM edu_users AS u,edu_admission AS a  WHERE u.user_type='$users_id' AND u.user_master_id=a.admission_id AND u.name=a.name AND u.status='Active'";
-					$res2=$this->db->query($ssql);
-					$result2=$res2->result();
-					foreach($result2 as $rows1)
-					{
-						$notes =urlencode($notes);
-						$phone = $rows1->mobile;
-						$this->sendSMS($phone,$notes);
-				   }
-				}
-
-					//---------------------------Parents--------------------------------------------
-				if($users_id==4)
-				{
-					$psql="SELECT u.user_id,u.user_type,u.user_master_id,u.name,p.id,p.mobile FROM edu_users AS u,edu_parents AS p WHERE u.user_type='$users_id' AND u.user_master_id=p.id AND u.status='Active'";
-					$pres2=$this->db->query($psql);
-					$presult2=$pres2->result();
-					foreach($presult2 as $prows1)
-					{
-						$notes =urlencode($notes);
-						$phone = $rows1->mobile;
-						$this->sendSMS($phone,$notes);
-				    }
+					$notes =urlencode($notes);
+					$phone = $rows->phone;
+					$this->sendSMS($phone,$notes);
 				}
 			}
 
+			//---------------------------Students----------------------
+			if($users_id==3)
+			{
+				$ssql="SELECT
+							u.user_id,
+							u.user_type,
+							u.user_master_id,
+							u.name,
+							a.admission_id,
+							a.name,
+							a.mobile
+						FROM
+							edu_users AS u,
+							edu_admission AS a,
+							 edu_enrollment AS e
+						WHERE
+							u.user_type = '$users_id' AND e.admit_year = '$year_id' AND e.admission_id = a.admission_id AND u.user_master_id = a.admission_id AND u.status = 'Active' AND e.status = 'Active'";
+				$res2=$this->db->query($ssql);
+				$result2=$res2->result();
+				foreach($result2 as $rows1)
+				{
+					$notes =urlencode($notes);
+					$phone = $rows1->mobile;
+					$this->sendSMS($phone,$notes);
+			   }
+			}
 
+			//---------------------------Parents--------------------------------------------
+			if($users_id==4)
+			{
+				$psql="SELECT u.user_id,u.user_type,u.user_master_id,u.name,p.id,p.mobile FROM edu_users AS u,edu_parents AS p WHERE u.user_type='$users_id' AND u.user_master_id=p.id AND u.status='Active'";
+				$pres2=$this->db->query($psql);
+				$presult2=$pres2->result();
+				foreach($presult2 as $prows1)
+				{
+					$notes =urlencode($notes);
+					$phone = $rows1->mobile;
+					$this->sendSMS($phone,$notes);
+				}
+			}
 		}
+
+	}
 
 //DOB Wisher for users_dob_wishes
 

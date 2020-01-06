@@ -1,12 +1,3 @@
-<style>
-.datewidth{
-    width:100px;
-}
-td{
-  width: 400px;
-}
-    </style>
-</style>
 <div class="main-panel">
    <div class="content">
       <div class="container-fluid">
@@ -14,7 +5,7 @@ td{
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Homeworks and Class Tests</h4>
+                    <h4 class="title">Homeworks and Class Tests<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">BACK</button></h4>
                   </div><hr>
                     <div class="content">
                      <div class="fresh-datatables">
@@ -26,7 +17,7 @@ td{
                               <th>Work</th>
                               <th>Title</th>
                               <th>Date</th>
-                              <th>Description</th>
+                              
                               <th>Action</th>
                            </thead>
                            <tbody>
@@ -71,13 +62,13 @@ td{
 								echo date_format($duedate,"d-m-Y"); }
 									 ?>
 									 </td>
-                                 <td><?php echo $rows->hw_details; ?></td>
+                                 <!--<td><?php echo $rows->hw_details; ?></td>-->
                                  <td>
                                     <?php if($sta==0 && $type=="HT")
                                        {?>
-                                    <a href="" rel="tooltip" title="Mark details not added!" class="btn btn-simple btn-info btn-icon table-action view" >
+                                    <a href="" rel="tooltip" title="Mark details not added!" class="btn btn-simple btn-info btn-icon table-action view" style="font-size:18px;">
                                     <i class="fa fa-id-card-o" aria-hidden="true"></i></a>
-                                    <?php }elseif($sta==1){?> <a href="<?php echo base_url();?>student/view_mark/<?php echo $rows->hw_id; ?>" title="View Marks" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;"><i class="fa fa-id-card-o" aria-hidden="true"></i></a>	<?php }?>
+                                    <?php }elseif($sta==1){?> <a href="<?php echo base_url();?>student/view_mark/<?php echo $rows->hw_id; ?>" title="View Marks" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="font-size:18px;"><i class="fa fa-id-card-o" aria-hidden="true"></i></a>	<?php }?>
                                  </td>
                               </tr>
                               <?php $i++;  }  ?>

@@ -6,6 +6,7 @@
 
                         <div class="card">
                             <div class="header">Select Class</div>
+							<hr>
                             <div class="content">
                                 <div class="row">
                               <?php

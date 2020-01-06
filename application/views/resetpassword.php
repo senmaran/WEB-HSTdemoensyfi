@@ -77,7 +77,7 @@
                                    <div class="col-md-6">
                                        <div class="form-group">
                                            <label>Confirm New Password <span class="mandatory_field">*</span></label>
-                                           <input type="password" class="form-control" name="retypepassword" name="retypepassword" placeholder="Confirm New Password" value="" maxlength='6'><span toggle="#retypepassword" class="fa fa-fw fa-eye-slash field-icon retypepassword"></span>
+                                           <input type="password" class="form-control" name="retypepassword" id="retypepassword" placeholder="Confirm New Password" value="" maxlength='6'><span toggle="#retypepassword" class="fa fa-fw fa-eye-slash field-icon retypepassword"></span>
                                        </div>
                                    </div>
 								   <div class="col-md-6"></div>

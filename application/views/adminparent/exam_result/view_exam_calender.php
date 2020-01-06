@@ -11,6 +11,7 @@
 								 {}?>
 				  <h4 class="title"><?php echo $rows->exam_name; }?></h4>
                   </div>
+				  <hr>
                     <div class="content">
                      <div class="fresh-datatables">
                         <table id="bootstrap-table" class="table">

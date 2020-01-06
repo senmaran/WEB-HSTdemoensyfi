@@ -157,11 +157,11 @@ class Parentprofile extends CI_Controller {
 
 						//print_r($res);exit;
 						if($res['status']=="success"){
-						 $this->session->set_flashdata('msg', 'Password changed');
+						 $this->session->set_flashdata('msg', 'Password Updated Successfully');
 						  redirect('parentprofile/pwd_edit');
 
 						  }else{
-								$this->session->set_flashdata('msg', 'Failed to update');
+								$this->session->set_flashdata('msg', 'Current password is invalid!');
 								 redirect('parentprofile/pwd_edit');
 							  }
 

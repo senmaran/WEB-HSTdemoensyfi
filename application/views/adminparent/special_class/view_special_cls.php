@@ -8,7 +8,8 @@
                <div class="col-md-12">
                   <div class="card">
                      <div class="content">
-                       <h4 class="title">View Special Classes</h4><br>
+                       <h4 class="title">View Special Classes</h4>
+					   <hr>
                         <div class="fresh-datatables">
                            <table id="bootstrap-table" class="table">
                               <thead>

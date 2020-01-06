@@ -137,7 +137,7 @@ class Studentprofile extends CI_Controller {
 							  $this->session->set_flashdata('msg', 'Password changed');
 							  redirect('studentprofile/pwd_reset');
 						  }else{
-								$this->session->set_flashdata('msg', 'Failed to update');
+								$this->session->set_flashdata('msg', 'Current password is invalid!');
 								redirect('studentprofile/pwd_reset');
 							  }
 			 }else{

@@ -1,13 +1,6 @@
 <div class="main-panel">
 <div class="content">
 
-       <?php if($this->session->flashdata('msg')): ?>
-         <div class="alert alert-success">
-       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-           ×</button> <?php echo $this->session->flashdata('msg'); ?>
-         </div>
-       <?php endif; ?>
-
        <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -16,6 +9,7 @@
                             <div class="content">
                                 <div class="fresh-datatables">
                                   <h4 class="title">Circulars</h4>
+								  <hr>
                                 <div class="dtypo-line" style="padding:30px;">
                                     <div class="row">
                                        <?php

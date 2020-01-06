@@ -1,8 +1,4 @@
-<style>
-   td{
-   text-align: center;
-   }
-</style>
+
 <div class="main-panel">
    <div class="content">
       <div class="container-fluid">
@@ -10,16 +6,14 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="content">
-                     <div class="header">
-                        Message History
-                        <a href="<?php echo base_url(); ?>teacherprofile/grouping" class="btn btn pull-right">BACK</a>
-                     </div>
-                  </div>
+                     <div class="header"> Message History<a href="<?php echo base_url(); ?>teacherprofile/grouping" class="btn btn pull-right">BACK</a></div>
+					 <hr>
+                  
                   <table id="bootstrap-table" class="table">
                      <thead>
-                        <th data-field="id" class="text-center">S.No</th>
-                        <th data-field="name" class="text-center" data-sortable="true">Group Name</th>
-                        <th data-field="Section" class="text-center" data-sortable="true">Type</th>
+                        <th data-field="id">S.No</th>
+                        <th data-field="name" data-sortable="true">Group Name</th>
+                        <th data-field="Section" data-sortable="true">Type</th>
                         <th data-field="actions" class="td-actions text-left" data-events="operateEvents">Notes</th>
                      </thead>
                      <tbody>
@@ -35,6 +29,7 @@
                         <?php $i++;  }  ?>
                      </tbody>
                   </table>
+				  </div>
                </div>
                <!--  end card  -->
             </div>
@@ -46,48 +41,6 @@
 <script type="text/javascript">
    $('#grouping').addClass('active');
 
-   var $table = $('#bootstrap-table');
-         $().ready(function(){
-             $table.bootstrapTable({
-                 toolbar: ".toolbar",
-                 clickToSelect: true,
-                 showRefresh: false,
-                 search: true,
-                 showToggle: false,
-                 showColumns: false,
-                 pagination: true,
-                 searchAlign: 'left',
-                 pageSize: 10,
-                 clickToSelect: false,
-                 pageList: [8,10,25,50,100],
-
-                 formatShowingRows: function(pageFrom, pageTo, totalRows){
-                     //do nothing here, we don't want to show the text "showing x of y from..."
-                 },
-                 formatRecordsPerPage: function(pageNumber){
-                     return pageNumber + " rows visible";
-                 },
-                 icons: {
-                     refresh: 'fa fa-refresh',
-                     toggle: 'fa fa-th-list',
-                     columns: 'fa fa-columns',
-                     detailOpen: 'fa fa-plus-circle',
-                     detailClose: 'fa fa-minus-circle'
-                 }
-             });
-
-             //activate the tooltips after the data table is initialized
-             $('[rel="tooltip"]').tooltip();
-
-             $(window).resize(function () {
-                 $table.bootstrapTable('resetView');
-             });
-
-
-         });
-         $(document).on("click", ".open-AddBookDialog", function () {
-              var eventId = $(this).data('id');
-              $(".modal-body #group_id").val( eventId );
-         });
+    $('#bootstrap-table').DataTable({	});
 
 </script>

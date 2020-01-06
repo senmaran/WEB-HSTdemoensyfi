@@ -18,12 +18,11 @@
                            <div class="fresh-datatables">
                         <table id="bootstrap-table" class="table">
                            <thead>
-                              <th>S.no</th>
-							 
-                                 <th>Reason</th>
-                                 <th>From</th>
-                                 <th>To</th>
-                                 <th>Status</th>
+							<th>S.no</th>
+							<th>Reason</th>
+							<th>From</th>
+							<th>To</th>
+							<th>Status</th>
                            </thead>
                            <tbody>
 					 <?php
@@ -63,80 +62,7 @@
      $('#ondutydetails').addClass('collapse in');
      $('#ondutydetails').addClass('active');
      $('#onduty2').addClass('active');
-    $('#myformsection').validate({ // initialize the plugin
-       rules: {
-         leave_type:{required:true },
-   		 leave_date:{required:true },
-   		 leave_description:{required:true },
-        },
-        messages: {
-              leave_type:"Select Type Of Leave",
-              leave_date:"Select Leave Date",
-              leave_description:"Enter The Leave Description",
-            }
-    });
-	demo.initFormExtendedDatetimepickers();
-   });
-
-     var $table = $('#bootstrap-table');
-         $().ready(function(){
-             $table.bootstrapTable({
-                 toolbar: ".toolbar",
-                 clickToSelect: true,
-                 showRefresh: true,
-                 search: true,
-                 showToggle: true,
-                 showColumns: true,
-                 pagination: true,
-                 searchAlign: 'left',
-                 pageSize: 8,
-                 clickToSelect: false,
-                 pageList: [8,10,25,50,100],
-
-                 formatShowingRows: function(pageFrom, pageTo, totalRows){
-                     //do nothing here, we don't want to show the text "showing x of y from..."
-                 },
-                 formatRecordsPerPage: function(pageNumber){
-                     return pageNumber + " rows visible";
-                 },
-                 icons: {
-                     refresh: 'fa fa-refresh',
-                     toggle: 'fa fa-th-list',
-                     columns: 'fa fa-columns',
-                     detailOpen: 'fa fa-plus-circle',
-                     detailClose: 'fa fa-minus-circle'
-                 }
-             });
-
-             //activate the tooltips after the data table is initialized
-             $('[rel="tooltip"]').tooltip();
-
-             $(window).resize(function () {
-                 $table.bootstrapTable('resetView');
-             });
-
-
-         }); 
-
-
-
-
-   $().ready(function(){
-
-     $('.datepicker').datetimepicker({
-       format: 'DD-MM-YYYY',
-	    minDate: new Date(),
-       icons: {
-           time: "fa fa-clock-o",
-           date: "fa fa-calendar",
-           up: "fa fa-chevron-up",
-           down: "fa fa-chevron-down",
-           previous: 'fa fa-chevron-left',
-           next: 'fa fa-chevron-right',
-           today: 'fa fa-screenshot',
-           clear: 'fa fa-trash',
-           close: 'fa fa-remove'
-       }
-    });
+   
+     $('#bootstrap-table').DataTable();
    });
 </script>

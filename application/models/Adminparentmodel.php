@@ -28,7 +28,7 @@ Class Adminparentmodel extends CI_Model
 
     function get_stude_attendance($enroll_id)
     {
-        $query      = "SELECT abs_date AS start,a_status AS description,CASE WHEN attend_period = 0  THEN 'FULLDAY' ELSE 'FULLDAY' END AS title
+        $query = "SELECT abs_date AS start,a_status AS description,CASE WHEN attend_period = 0  THEN 'FULLDAY' ELSE 'FULLDAY' END AS title
       FROM edu_attendance_history WHERE student_id='$enroll_id' AND  a_status IN ('A', 'L')";
         $resultset1 = $this->db->query($query);
         return $resultset1->result();
@@ -198,11 +198,13 @@ Class Adminparentmodel extends CI_Model
     }
 
     // GET TOTAL WORKING DAYS for parent
-    function get_total_working_days_parent($user_id, $user_type)
+    function get_total_working_days_parent($enroll_id, $user_type)
     {
 		  $year_id    = $this->getYear();
-          $get_class_name = "SELECT eu.user_id,ep.admission_id ,ee.class_id FROM edu_users AS eu LEFT JOIN edu_parents AS ep ON eu.user_master_id=ep.id
-left join edu_enrollment as ee on ee.admission_id=ep.admission_id WHERE eu.user_id='$user_id' AND ee.admit_year='$year_id'";
+		  
+		  $get_class_name = "SELECT * from edu_enrollment WHERE enroll_id = '$enroll_id' and admit_year = '$year_id'";
+		  
+         // echo $get_class_name = "SELECT eu.user_id,ep.admission_id ,ee.class_id FROM edu_users AS eu LEFT JOIN edu_parents AS ep ON eu.user_master_id=ep.id left join edu_enrollment as ee on ee.admission_id=ep.admission_id WHERE eu.user_id='$user_id' AND ee.admit_year='$year_id'";
         $resultset      = $this->db->query($get_class_name);
         $row            = $resultset->result();
         foreach ($row as $rows) {
@@ -217,9 +219,9 @@ left join edu_enrollment as ee on ee.admission_id=ep.admission_id WHERE eu.user_
 
 
 // GET TOTAL WORKING DAYS for parent
-    function get_absent_leave_days_parent($user_id, $user_type)
+    function get_absent_leave_days_parent($enroll_id, $user_type)
     {
-		$year_id    = $this->getYear();
+		/* $year_id    = $this->getYear();
         $get_class_name = "SELECT eu.user_id,ep.admission_id ,ee.enroll_id,ee.class_id FROM edu_users AS eu LEFT JOIN edu_parents AS ep ON eu.user_master_id=ep.id
 left join edu_enrollment as ee on ee.admission_id=ep.admission_id WHERE eu.user_id='$user_id' AND ee.admit_year='$year_id'";
 
@@ -229,8 +231,8 @@ left join edu_enrollment as ee on ee.admission_id=ep.admission_id WHERE eu.user_
         }
 			$class_id   = $rows->class_id;
 			$student_id   = $rows->enroll_id;
-			$year_id    = $this->getYear();
-         $query      = "SELECT *  FROM `edu_attendance_history` WHERE student_id = '$student_id'  ";
+			$year_id    = $this->getYear(); */
+         $query      = "SELECT *  FROM `edu_attendance_history` WHERE student_id = '$enroll_id'  ";
 	     $resultset1 = $this->db->query($query);
         return $resultset1->result();
     }

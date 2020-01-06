@@ -155,7 +155,7 @@ class Admission extends CI_Controller {
 			 
 		     if($user_type==1){
 				 $this->load->view('header');
-					$this->load->view('admission/view',$datas);
+				$this->load->view('admission/view',$datas);
 				 $this->load->view('footer');
 			 }
 			 else{

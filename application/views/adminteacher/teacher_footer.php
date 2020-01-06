@@ -8,44 +8,33 @@
 
 <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
 <script src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
-
-  <!--  Date Time Picker Plugin is included in this js file -->
-  <script src="<?php echo base_url(); ?>assets/js/bootstrap-datetimepicker.js"></script>
-
-  <!--  Select Picker Plugin -->
-  <script src="<?php echo base_url(); ?>assets/js/bootstrap-selectpicker.js"></script>
-
+<!--  Date Time Picker Plugin is included in this js file -->
+<script src="<?php echo base_url(); ?>assets/js/bootstrap-datetimepicker.js"></script>
+<!--  Select Picker Plugin -->
+<script src="<?php echo base_url(); ?>assets/js/bootstrap-selectpicker.js"></script>
 <!--  Checkbox, Radio, Switch and Tags Input Plugins -->
 <script src="<?php echo base_url(); ?>assets/js/bootstrap-checkbox-radio-switch-tags.js"></script>
-
 <!--  Charts Plugin -->
 <script src="<?php echo base_url(); ?>assets/js/chartist.min.js"></script>
-
-  <!--  Notifications Plugin    -->
-  <script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.js"></script>
-
-  <!-- Sweet Alert 2 plugin -->
+<!--  Notifications Plugin    -->
+<script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.js"></script>
+<!-- Sweet Alert 2 plugin -->
 <script src="<?php echo base_url(); ?>assets/js/sweetalert2.js"></script>
-
-  <!-- Vector Map plugin -->
+<!-- Vector Map plugin -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-jvectormap.js"></script>
-
 <!-- Wizard Plugin    -->
-  <script src="<?php echo base_url(); ?>assets/js/jquery.bootstrap.wizard.min.js"></script>
-
-  <!--  Bootstrap Table Plugin    -->
-  <script src="<?php echo base_url(); ?>assets/js/bootstrap-table.js"></script>
-  <!--  Full Calendar Plugin    -->
-  <script src="<?php echo base_url(); ?>assets/js/fullcalendar.min.js"></script>
-
-  <!-- Light Bootstrap Dashboard Core javascript and methods -->
+<script src="<?php echo base_url(); ?>assets/js/jquery.bootstrap.wizard.min.js"></script>
+<!--  Bootstrap Table Plugin    -->
+<script src="<?php echo base_url(); ?>assets/js/bootstrap-table.js"></script>
+<!--  Full Calendar Plugin    -->
+<script src="<?php echo base_url(); ?>assets/js/fullcalendar.min.js"></script>
+<!-- Light Bootstrap Dashboard Core javascript and methods -->
 <script src="<?php echo base_url(); ?>assets/js/light-bootstrap-dashboard.js"></script>
-
 <!--   Sharrre Library    -->
-  <script src="<?php echo base_url(); ?>assets/js/jquery.sharrre.js"></script>
-
+<script src="<?php echo base_url(); ?>assets/js/jquery.sharrre.js"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
+
 <script type="text/javascript">
        $().ready(function(){
         $('.datepicker').datetimepicker({
@@ -63,10 +52,11 @@
           }
        });
       }); 
+	  
       $("input").on("keypress", function(e) {
           if (e.which === 32 && !this.value.length)
               e.preventDefault();
       });
-  </script>
+</script>
 
 </html>

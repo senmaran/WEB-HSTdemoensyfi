@@ -44,8 +44,8 @@
                                    </div>
                                    <div class="col-md-6">
                                        <div class="form-group">
-                                           <label for="exampleInputEmail1">User Name</label>
-                                           <input type="email" class="form-control" disabled placeholder="Email" value="<?php echo $rows->user_name; ?>">
+                                           <label>User Name</label>
+                                           <input type="email" class="form-control" disabled placeholder="User Name" value="<?php echo $rows->user_name; ?>">
                                        </div>
                                    </div>
                                </div>
@@ -54,7 +54,7 @@
                                    <div class="col-md-6">
                                        <div class="form-group">
                                            <label>Current Password <span class="mandatory_field">*</span></label>
-                                           <input type="password" class="form-control" name="oldpassword" placeholder="Enter current password" value="" maxlength='6'><span toggle="#oldpassword" class="fa fa-fw fa-eye-slash field-icon oldpassword"></span>
+                                           <input type="password" class="form-control" name="oldpassword" id="oldpassword" placeholder="Enter current password" value="" maxlength='6'><span toggle="#oldpassword" class="fa fa-fw fa-eye-slash field-icon oldpassword"></span>
                                        </div>
                                    </div>
                                    <div class="col-md-6"></div>
@@ -72,7 +72,7 @@
                                    <div class="col-md-6">
                                        <div class="form-group">
                                            <label>Confirm New Password <span class="mandatory_field">*</span></label>
-                                           <input type="password" class="form-control" name="retypepassword" name="retypepassword" placeholder="Confirm New Password" value="" maxlength='6'><span toggle="#retypepassword" class="fa fa-fw fa-eye-slash field-icon retypepassword"></span>
+                                           <input type="password" class="form-control" name="retypepassword" id="retypepassword" placeholder="Confirm New Password" value="" maxlength='6'><span toggle="#retypepassword" class="fa fa-fw fa-eye-slash field-icon retypepassword"></span>
                                        </div>
                                    </div>
 								   <div class="col-md-6"></div>

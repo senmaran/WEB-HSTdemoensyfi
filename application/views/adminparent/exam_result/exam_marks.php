@@ -24,9 +24,10 @@
                            $row=$sql1->result();
                            $sub_id=$row[0]->subject_name;
                         }?>
-                     <h4 class="title">Mark List  <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button> </h4>
+                     <h4 class="title">Mark List  <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">BACK</button> </h4>
                      <p class="category">( Second Language = <?php if(empty($result)){}else{ echo'<b>'; echo'<span style="color:green;">'; echo $sub_id; echo'</span>'; echo'</b>';}?> ) </p>
                   </div>
+				  <hr>
                   <div class="content table-responsive table-full-width">
                      <form method="post" action="<?php echo base_url(); ?>examinationresult/marks_details" class="form-horizontal" enctype="multipart/form-data" id="markform">
                         <table id="resulttable" class="table table-hover table-striped">

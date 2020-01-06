@@ -12,7 +12,6 @@
 .grade{
 	color: #1e20ba;
 }
-
 </style>
 <div class="row">
 	<div class="col-md-12">
