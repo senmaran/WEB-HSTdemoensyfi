@@ -3,8 +3,13 @@
       <div class="col-md-12">
          <div class="card">
             <div class="header">
-               <legend>Create Leave  <span><a href="<?php echo base_url(); ?>leavemanage/view" class="pull-right btn btn-wd" style="margin-top:-10px;">View Leaves</a></span></legend>
+			
+			<h4 class="title"> Create Leave
+			<a href="<?php echo base_url(); ?>leavemanage/view" class="btn btn-default" style="float:right;"> View Leaves</a>
+			</h4>
+               
             </div>
+			<hr>
             <?php if($this->session->flashdata('msg')): ?>
             <div class="alert alert-success">
                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">

@@ -11,11 +11,13 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="card">
+				   <div class="header">
+						<h4 class="title" style="padding-bottom: 30px;">Handling Subjects<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" >BACK</button></h4>
+					</div>
+					<hr>
                      <div class="content" id="content1">
                         <div class="fresh-datatables">
-                           <h4 class="title" style="padding-bottom: 30px;">Handling Subjects
-								<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" >BACK</button>
-                          </h4>
+                         
                           <table id="example" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                               <thead>
                                  <th>S.No</th>

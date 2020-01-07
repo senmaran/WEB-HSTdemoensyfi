@@ -2,12 +2,17 @@
    <div class="content">
       <div class="container-fluid">
          <div class="col-md-12">
-            <div class="">
-               <div class="card">
-                  <div class="content">
 
-                     <h4 class="title"><?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> Attendance Details</h4>
-                     <p class="pull-right"> <button onclick="history.go(-1);" class="btn btn-wd btn-default">BACK</button></p>
+               <div class="card">
+					<div class="content">
+
+					<div class="header">
+				         <h4 class="title"><?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> Attendance Details
+                           <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" >BACK</button>
+						  </h4>
+						  <hr>
+					</div>
+					
 						
                      <div class="fresh-datatables">
                         <table id="example" class="table">
@@ -42,20 +47,16 @@
                               <?php $i++;  }  ?>
                            </tbody>
                         </table>
-                     </div>
+
                   </div>
                   <!-- end content-->
                </div>
-               <!--  end card  -->
-               </tbody>
-               </table>
-            </div>
+</div>
          </div>
       </div>
    </div>
 </div>
-</div>
-</div>
+
 <script type="text/javascript">
 
          $('#attend').addClass('collapse in');

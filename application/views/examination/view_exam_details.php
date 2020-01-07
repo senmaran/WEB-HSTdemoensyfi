@@ -1,17 +1,4 @@
-<style>
-   .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{height: 20px;width: 22px;padding: 5px 5px 5px 5px;}
-   .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{border: none !important;}
-   .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{border-radius: initial !important;}
-   .formdesign
-   {
-   padding-bottom: 48px;
-   padding-top: 10px;
-   background-color: rgba(209, 209, 211, 0.11);
-   border-radius: 12px;
-   }
-</style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+
 <div class="main-panel">
      
       <div class="content">
@@ -33,6 +20,7 @@
                       echo '<b>'; echo $rows->class_name;
                       echo $rows->sec_name; echo' ('; echo $rows->exam_name; echo') '; echo '</b>'; }?></h4>
                   </div>
+				  <hr>
                      <div class="content">
                   <div class="fresh-datatables">
                     
@@ -123,68 +111,30 @@
 </div>
 
 <script type="text/javascript">
-   function myFunction(){
-   $( "#datepicker" ).datepicker();
-   }
+
+   $('#bootstrap-table').DataTable();
+   
+   $().ready(function() {
+	   $('#exammenu').addClass('collapse in');
+	   $('#exam').addClass('active');
+	   $('#exam2').addClass('active');
+   
   
-   var $table = $('#bootstrap-table');
-   $().ready(function() {
-   $table.bootstrapTable({
-   toolbar: ".toolbar",
-   clickToSelect: true,
-   showRefresh: true,
-   search: true,
-   showToggle: true,
-   showColumns: true,
-   pagination: true,
-   searchAlign: 'left',
-   pageSize: 10,
-   clickToSelect: false,
-   pageList: [10, 25, 50, 100, 150],
-   
-   formatShowingRows: function(pageFrom, pageTo, totalRows) {
-   //do nothing here, we don't want to show the text "showing x of y from..."
-   },
-   formatRecordsPerPage: function(pageNumber) {
-   return pageNumber + " rows visible";
-   },
-   icons: {
-   refresh: 'fa fa-refresh',
-   toggle: 'fa fa-th-list',
-   columns: 'fa fa-columns',
-   detailOpen: 'fa fa-plus-circle',
-   detailClose: 'fa fa-minus-circle'
-   }
-   });
-   
-   //activate the tooltips after the data table is initialized
-   $('[rel="tooltip"]').tooltip();
-   
-   $(window).resize(function() {
-   $table.bootstrapTable('resetView');
-   });
-   
-   });
-   
-   $().ready(function() {
-   $('#exammenu').addClass('collapse in');
-   $('#exam').addClass('active');
-   $('#exam2').addClass('active');
-   //$("#datepicker").attr('data-uk-datepicker','{format:"DD.MM.YYYY"}');
    $('.datepicker').datetimepicker({
-   format: 'DD-MM-YYYY',
-   icons: {
-   time: "fa fa-clock-o",
-   date: "fa fa-calendar",
-   up: "fa fa-chevron-up",
-   down: "fa fa-chevron-down",
-   previous: 'fa fa-chevron-left',
-   next: 'fa fa-chevron-right',
-   today: 'fa fa-screenshot',
-   clear: 'fa fa-trash',
-   close: 'fa fa-remove'
-   }
+	   format: 'DD-MM-YYYY',
+	   icons: {
+	   time: "fa fa-clock-o",
+	   date: "fa fa-calendar",
+	   up: "fa fa-chevron-up",
+	   down: "fa fa-chevron-down",
+	   previous: 'fa fa-chevron-left',
+	   next: 'fa fa-chevron-right',
+	   today: 'fa fa-screenshot',
+	   clear: 'fa fa-trash',
+	   close: 'fa fa-remove'
+	}
    });
+   
    });
    
 </script>

@@ -65,7 +65,8 @@
                                     <div class="form-group">                                     
 										<label class="col-sm-2 control-label"></label>
 										<div class="col-sm-4">
-											<button type="submit" id="save" class="btn btn-info btn-fill center">CREATE</button>
+										
+											 <input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
 										</div>
 										<div class="col-sm-6"></div>
                                     </div>

@@ -10,9 +10,9 @@
     <div class="col-md-12">
       <div class="card">
         <div class="header">
-            <legend>View  Leaves<span><a href="<?php echo base_url(); ?>leavemanage/home" class="pull-right btn btn-wd" style="margin-top:-10px;">Create Leaves</a></span></legend>
-
-        </div>
+            <h4 class="title">View  Leaves<span><a href="<?php echo base_url(); ?>leavemanage/home" class="pull-right btn btn-wd">Create Leaves</a></span></h4>
+       </div>
+	   <hr>
         <div class="content">
           <h4 class="title">Regular Holiday</h4><br>
           <table id="example" class="table">

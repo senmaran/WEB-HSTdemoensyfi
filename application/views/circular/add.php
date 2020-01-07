@@ -44,16 +44,16 @@
                                        <a href="#agency" class="btn btn-info btn-fill" id="all" data-toggle="tab">ALL</a>
                                     </li>
                                     <li>
-                                       <a href="#company" class="btn btn-info btn-fill"  id="teacher"   data-toggle="tab">Teachers</a>
+                                       <a href="#company" class="btn btn-info btn-fill"  id="teacher"   data-toggle="tab" style="cursor:pointer;">Teachers</a>
                                     </li>
                                     <li>
-                                       <a href="#style"  class="btn btn-info btn-fill" id="classes"  data-toggle="tab">Students</a>
+                                       <a href="#style"  class="btn btn-info btn-fill" id="classes"  data-toggle="tab" style="cursor:pointer;">Students</a>
                                     </li>
                                     <li>
-                                       <a href="#settings" class="btn btn-info btn-fill" id="parents" data-toggle="tab">Parents</a>
+                                       <a href="#settings" class="btn btn-info btn-fill" id="parents" data-toggle="tab" style="cursor:pointer;">Parents</a>
                                     </li>
                                     <li>
-                                       <a href="#board" class="btn btn-info btn-fill" id="parents" data-toggle="tab" style="width:150px;">Board Memebers</a>
+                                       <a href="#board" class="btn btn-info btn-fill" id="parents" data-toggle="tab" style="width:150px;cursor:pointer;">Board Memebers</a>
                                     </li>
                                  </ul>
                               </div>
@@ -178,7 +178,7 @@
                        <div class="form-group">
                         <label class="col-sm-2 control-label">&nbsp;</label>
                         <div class="col-sm-6">
-                           <button type="submit" id="save" class="btn btn-info btn-fill center" >SEND</button>
+                           <button type="submit" id="save" class="btn btn-info btn-fill center" style="cursor:pointer;">SEND</button>
                         </div>
                         </div>
                           </fieldset>

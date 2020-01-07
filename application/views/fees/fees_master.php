@@ -5,9 +5,10 @@
 
 <div class="card">
 	<div class="header">
-		<legend>Fees Master
-		 <a href="<?php echo base_url(); ?>feesstructure/view_fees_master" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Fees Masters</a>
-		 </legend>
+		<h4 class="title">Fees Master
+			<a href="<?php echo base_url(); ?>feesstructure/view_fees_master" class="btn btn-wd btn-default pull-right">Fees Masters</a>
+			<hr>
+		 </h4>
 	</div>
 	<?php if($this->session->flashdata('msg')): ?>
 	  <div class="alert alert-success">

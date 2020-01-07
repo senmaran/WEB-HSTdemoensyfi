@@ -14,7 +14,7 @@
                   <div class="header">
                       Academic Year
                       <?php  foreach($res_year as $rows_year){ }  $year_id = $rows_year->year_id;  echo date('Y', strtotime($rows_year->from_month));  echo "-"; echo date('Y', strtotime( $rows_year->to_month)); ?>
-                      <a href="<?php echo base_url(); ?>promotion/home" class="btn btn  btn pull-right" style="margin-top:-10px;">Back to Promotion</a>
+                      <a href="<?php echo base_url(); ?>promotion/home" class="btn btn  btn pull-right">Back to Promotion</a>
 
                   </div>
 				  
@@ -35,7 +35,7 @@
                               </div>
                               
                               <div class="col-sm-4">
-                                  <button type="submit" id="search" class="btn btn-info btn-fill center">Search </button>
+                                  <button type="submit" id="search" class="btn btn-info btn-fill center" style="cursor:pointer;">Search </button>
                               </div>
                            </div>
                         </fieldset>

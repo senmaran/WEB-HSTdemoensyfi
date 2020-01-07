@@ -6,7 +6,7 @@
                <div class="card">
                   <div class="header">
                      <h4 class="title">Select Examination</h4>
-
+					<hr>
                   </div>
                   <div class="content">
                      <div class="row">

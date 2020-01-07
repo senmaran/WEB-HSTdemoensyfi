@@ -3,8 +3,10 @@
       <div class="col-md-12">
          <div class="card">
             <div class="header">
-               <legend>Create Staff</legend>
+			   <h4 class="title">Create Staff </h4>
+
             </div>
+			<hr>
             <?php if($this->session->flashdata('msg')): ?>
             <div class="alert alert-success">
                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">

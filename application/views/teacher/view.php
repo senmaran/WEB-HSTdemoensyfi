@@ -20,12 +20,15 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="card">
-                     <div class="content" id="content1">
-                        <div class="fresh-datatables">
-                           <h4 class="title">Staff Details
-                           <a href="<?php echo base_url(); ?>teacher/view_subject_handling" class="btn btn-default" style="margin-top:-10px;float:right;"> Handling Subjects</a>
+				  <div class="header">
+				         <h4 class="title">Staff Details
+                           <a href="<?php echo base_url(); ?>teacher/view_subject_handling" class="btn btn-default" style="float:right;"> Handling Subjects</a>
 						  </h4>
 						  <hr>
+					</div>
+                     <div class="content" id="content1">
+                        <div class="fresh-datatables">
+
                            <table id="example" class="table table-striped table-no-bordered table-hover" cellspacing="0" >
                               <thead>
                                  <th data-field="id" class="text-left" data-sortable="true">S.No</th>

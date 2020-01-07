@@ -208,7 +208,7 @@ $(document).ready(function () {
 						type:'POST',
 					   data: $('#myformsection').serialize(),
 					   success: function(response) {
-						   alert(response);
+						   
 						   if(response=="success"){
 							//  swal("Success!", "Thanks for Your Note!", "success");
 							  $('#myformsection')[0].reset();

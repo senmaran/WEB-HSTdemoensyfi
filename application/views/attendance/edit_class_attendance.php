@@ -6,10 +6,10 @@
                <div class="card">
                   <div class="content">
 						<div class="header">  
-						<h4 class="title"> Edit Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?></h4>
-							<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:10px;">BACK</button>  
+						<h4 class="title"> Edit Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?>
+							<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" >BACK</button>  </h4>
 						</div>
-                     
+                     <hr>
                      <div class="fresh-datatables">
                        <form action="" method="post" enctype="multipart/form-data" name="attendanceform" id="update_attendance">
                          <input type="hidden" name="attend_id" value="<?php echo $attend_id; ?>">

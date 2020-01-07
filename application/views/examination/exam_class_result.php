@@ -23,11 +23,12 @@
                         Exam Results ( <?php if (count($cls_exam)>0) { foreach($cls_exam as $rows){} echo $name_exam=$rows->exam_name; }?> )
                         <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="float:right; ">BACK</button>
                         <button style="float:right;margin-right: 10px;" class="btn btn-info btn-fill center download">EXPORT</button>
+						<hr>
                         <!-- <button style="float:right;margin-right: 10px;" class="btn btn-info btn-fill center" onclick="generatefromtable()">Export PDF</button>-->
                      </h4>
                      <p class="category"></p>
                   </div>
-                  <div class="content table-responsive table-full-width">
+                  <div class="content table-responsive">
                      <!--php //echo base_url(); ?>examinationresult/marks_details-->
                      <form method="post" action="<?php echo base_url(); ?>examination/marks_status_update" class="form-horizontal" enctype="multipart/form-data" id="markform">
                         <?php
@@ -185,9 +186,9 @@
                                  }
                                  if(!empty($smark)){ echo "";}else{ ?>
                               <tr>
-                                 <td></td>
-                                 <td>
-                                    <button type="submit" class="btn btn-info btn-fill center">APPROVE</button>
+                     
+                                 <td colspan="15">
+                                    <button type="submit" class="btn btn-info btn-fill center" style="cursor:pointer;float:right;">APPROVE</button>
                                  </td>
                               </tr>
                               <?php }

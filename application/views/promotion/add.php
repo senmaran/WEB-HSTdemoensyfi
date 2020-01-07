@@ -206,7 +206,7 @@
                         <div class="form-group">
                             <!-- <label class="col-sm-4 control-label">&nbsp;</label> -->
                             <div class="text-center">
-                                <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
+                                <button type="submit" id="save" class="btn btn-info btn-fill center" style="cursor:pointer;">SAVE</button>
                             </div>
                         </div>
                     </fieldset>

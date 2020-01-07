@@ -94,7 +94,7 @@ Class Groupingmodel extends CI_Model
           {
              $year_id=$this->getYear();
              $query="SELECT egm.group_lead_id,egm.group_title,et.name,eu.user_master_id,egm.id,egm.status FROM edu_grouping_master AS egm
-             LEFT JOIN edu_users AS eu ON eu.user_id=egm.group_lead_id AND eu.user_type='2' LEFT JOIN edu_teachers AS et ON et.teacher_id=eu.user_master_id";
+             LEFT JOIN edu_users AS eu ON eu.user_id=egm.group_lead_id AND eu.user_type='2' LEFT JOIN edu_teachers AS et ON et.teacher_id=eu.user_master_id WHERE egm.year_id='$year_id'";
              $res=$this->db->query($query);
              return $res->result();
 
@@ -216,8 +216,9 @@ LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id WHERE  ee.clas
           }
 
           function get_message_history(){
+			   $year_id=$this->getYear();
             $query="SELECT egh.group_title_id,egm.group_title,egh.notes,egh.notification_type,egh.created_by,eu.name,egh.created_at FROM edu_grouping_history AS egh
-            LEFT JOIN edu_grouping_master AS egm  ON egh.group_title_id=egm.id LEFT JOIN edu_users as eu ON eu.user_id=egh.created_by order by egh.id desc;";
+            LEFT JOIN edu_grouping_master AS egm  ON egh.group_title_id=egm.id LEFT JOIN edu_users as eu ON eu.user_id=egh.created_by WHERE egm.year_id = '$year_id' order by egh.id desc;";
             $resultset=$this->db->query($query);
             return  $res=$resultset->result();
           }

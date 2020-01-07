@@ -43,8 +43,8 @@ class Circular extends CI_Controller
 			$year_id=$this->input->post('year_id');
 			$ctile=$this->db->escape_str($this->input->post('ctitle'));
 			$cdescription=$this->db->escape_str($this->input->post('cdescription'));
-	    $status=$this->input->post('status');
-      $user_file = $_FILES["circular_doc"]["name"];
+			$status=$this->input->post('status');
+			$user_file = $_FILES["circular_doc"]["name"];
         if(empty($user_file)){
            $circular_doc=' ';
          }else{

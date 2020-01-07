@@ -4,11 +4,11 @@
 
          <div class="card">
             <div class="content">
-
-                <h4 class="title">Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> <p class="pull-right"> <button onclick="history.go(-1);" class="btn btn-wd btn-default">BACK</button></p></h4>
-                  
-<hr>
-
+				<div class="header">
+                <h4 class="title">Attendance for <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?>
+					<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" >BACK</button></h4>
+					<hr>
+				</div>
 
                <div class="fresh-datatables">
                   <table id="example" class="table">

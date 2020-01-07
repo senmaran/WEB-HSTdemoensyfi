@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.3/css/fixedHeader.dataTables.min.css">
-<script src="https://cdn.datatables.net/fixedheader/3.1.3/js/dataTables.fixedHeader.min.js"></script>
+
 <div class="main-panel">
    <div class="content">
       <div class="container-fluid">
@@ -8,6 +7,7 @@
                <div class="card">
                   <div class="header">
                      <h4 class="title">Select Class</h4>
+					 <hr>
                   </div>
                   <div class="content">
                      <div class="row">

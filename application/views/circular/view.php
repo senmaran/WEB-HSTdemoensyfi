@@ -25,16 +25,16 @@
 						     <div class="content">
                                 <ul role="tablist" class="nav nav-tabs" style="border-bottom: none;padding-left:165px;">
                                     <li class="active">
-                                        <a href="#Teachers" class="btn btn-info btn-fill"  id="teacher"   data-toggle="tab">Teachers</a>
+                                        <a href="#Teachers" class="btn btn-info btn-fill"  id="teacher" data-toggle="tab" style="cursor:pointer;">Teachers</a>
                                     </li>
                                     <li>
-                                        <a href="#Students"  class="btn btn-info btn-fill" id="classes"  data-toggle="tab">Students</a>
+                                        <a href="#Students"  class="btn btn-info btn-fill" id="classes" data-toggle="tab" style="cursor:pointer;">Students</a>
                                     </li>
                                     <li>
-                                        <a href="#Parents" class="btn btn-info btn-fill" id="parents" data-toggle="tab">Parents</a>
+                                        <a href="#Parents" class="btn btn-info btn-fill" id="parents" data-toggle="tab" style="cursor:pointer;">Parents</a>
                                     </li>
 									 <li>
-                                        <a href="#bmember" class="btn btn-info btn-fill" id="parents" data-toggle="tab" style="width:150px;">Board Members</a>
+                                        <a href="#bmember" class="btn btn-info btn-fill" id="parents" data-toggle="tab" style="width:150px;cursor:pointer;">Board Members</a>
                                     </li>
                                 </ul>
                             </div>
@@ -247,9 +247,9 @@ $('#communcicationmenu').addClass('collapse in');
      $('#communication').addClass('active');
      $('#communication2').addClass('active');
 
- $('#bootstrap-table1').DataTable();
-  $('#bootstrap-table2').DataTable();
-	 $('#bootstrap-table3').DataTable();
+	$('#bootstrap-table1').DataTable();
+	$('#bootstrap-table2').DataTable();
+	$('#bootstrap-table3').DataTable();
 
 
 

@@ -4,11 +4,15 @@
 
          <div class="card">
             <div class="content">
+					<div class="header">  
+						<h4 class="title"> Monthwise Class Attendance</h4>
+						</div>
+                     <hr>
                <div class="row">
                   <div class="col-md-12">
-                     <div class="">
-                        <div class="">
-                             <h4 class="title">Monthwise Class Attendance</h4><br>
+
+
+                          
                            <div class="fresh-datatables">
                               <table id="example" class="table">
                                  <thead>
@@ -31,8 +35,8 @@
                                     <?php $i++; } ?>
                                  </tbody>
                               </table>
-                           </div>
-                        </div>
+
+
                      </div>
                   </div>
                </div>

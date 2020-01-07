@@ -26,13 +26,13 @@
                       <p class="category"><b>Subject </b> - <?php echo $sub; ?></p>
                   </div>
                      
-                  <div class="content table-responsive table-full-width">
-                     <table class="table table-hover table-striped">
+                  <div class="content">
+                     <table class="table">
                         <thead>
-                           <th>S.No</th>
-                           <th>Name</th>
-                           <th>Marks</th>
-                           <th>Comments</th>
+                           <th style="font-size:15px;font-weight:bold;width:10%">S.No</th>
+                           <th style="font-size:15px;font-weight:bold;width:40%">Name</th>
+                           <th style="font-size:15px;font-weight:bold;width:25%">Marks</th>
+                           <th style="font-size:15px;font-weight:bold;width:25%">Comments</th>
                         </thead>
                         <form method="post" action="<?php echo base_url(); ?>homework/marks" class="form-horizontal" enctype="multipart/form-data" id="markform">
                            <tbody>
@@ -59,12 +59,9 @@
                               <tr>
                                  <td></td>
                                  <td></td>
-                                 <td>
-                                    <button type="submit" id="save" class="btn btn-info btn-fill center">SUBMIT </button>
-                                 </td>
                                  <td></td>
-                                 <td></td>
-									</tr><?php }?>
+                                 <td><button type="submit" id="save" class="btn btn-info btn-fill" style="cursor:pointer;float:right;">SAVE</button></td>
+                              </tr><?php }?>
                            </tbody>
                         </form>
                      </table>

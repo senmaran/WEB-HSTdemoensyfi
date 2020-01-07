@@ -4,9 +4,12 @@
 <div class="col-md-12">
 
                         <div class="card">
-                            <div class="header">
-                                <legend>Edit Fees Master</legend>
-                            </div>
+						<div class="header">
+                           <h4 class="title">Edit Fees Master
+			<a href="<?php echo base_url(); ?>feesstructure/view_fees_master" class="btn btn-wd btn-default pull-right">BACK</a>
+			<hr>
+		 </h4>
+		 </div>
                             <?php if($this->session->flashdata('msg')): ?>
                               <div class="alert alert-success">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">

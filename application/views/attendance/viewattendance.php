@@ -8,18 +8,16 @@
 <div class="main-panel">
    <div class="content">
       <div class="card">
-
+					<div class="header">
+				         <h4 class="title">Daywise Class Attendance
+                           <a href="<?php echo base_url(); ?>adminattendance/take_attendance_for_class" class="btn btn-default" style="float:right;"> Take Attendance</a>
+						  </h4>
+						  <hr>
+					</div>
          <div class="content">
-            <div class="content">
-            
+                       
                <div class="row">
                   <div class="col-md-12">
-                     <div class="">
-                        <div class="">
-                          <h4 class="title">Daywise Class Attendance</h4>
-                          <p class="pull-right">
-                            <a href="<?php echo base_url(); ?>adminattendance/take_attendance_for_class" class="btn btn-default">Take Attendance</a>
-                          </p>
                            <div class="fresh-datatables">
                               <table id="bootstrap-table" class="table">
                                  <thead>
@@ -42,9 +40,6 @@
                                     <?php $i++; } ?>
                                  </tbody>
                               </table>
-                           </div>
-                        </div>
-                     </div>
                   </div>
                </div>
             </div>

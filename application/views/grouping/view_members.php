@@ -60,9 +60,9 @@
               <div class="header">
                  <legend style="border-bottom:none;padding-bottom:10px;"><?php foreach ($res_group_name as $rows) {
                     } ?> <?php echo $rows->group_title; ?> - Group Members
-                    <a rel="" href="#myModal" data-id="<?php echo $id; ?>" title="Add Memebers" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#myModal" style="width:150px;">
+                    <a rel="" href="#myModal" data-id="<?php echo $id; ?>" title="Add Memebers" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#myModal" style="width:150px;cursor:pointer;margin-left:20px;">
                     Add Parents</a>
-                    <a rel="" href="#staffmodal" data-id="<?php echo $id; ?>" title="Add Memebers" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#staffmodal" style="width:150px;">
+                    <a rel="" href="#staffmodal" data-id="<?php echo $id; ?>" title="Add Memebers" class="open-AddBookDialog btn btn-simple  btn-fill btn-info  edit"  data-toggle="modal" data-target="#staffmodal" style="width:150px;;cursor:pointer;">
                     Add Staff</a>
                     <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">BACK</button>
                  </legend>
@@ -194,7 +194,7 @@
                                  <div class="form-group">
                                     <label class="col-sm-4 control-label">&nbsp;</label>
                                     <div class="col-sm-6">
-                                       <button type="submit" id="save" class="btn btn-info btn-fill center">ADD </button>
+                                       <button type="submit" id="save" class="btn btn-info btn-fill center" style="cursor:pointer;">ADD </button>
                                     </div>
                                  </div>
                               </fieldset>
@@ -257,7 +257,7 @@
                                  <div class="form-group">
                                     <label class="col-sm-4 control-label">&nbsp;</label>
                                     <div class="col-sm-6">
-                                       <button type="submit" id="save" class="btn btn-info btn-fill center">ADD </button>
+                                       <button type="submit" id="save" class="btn btn-info btn-fill center" style="cursor:pointer;">ADD </button>
                                     </div>
                                  </div>
                               </fieldset>

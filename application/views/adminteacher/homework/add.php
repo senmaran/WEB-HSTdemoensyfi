@@ -128,8 +128,8 @@
 								 <a href="<?php echo base_url();?>homework/edit_test/<?php echo $rows->hw_id; ?>" title="Edit" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="font-size:20px;"><i class="fa fa-edit"></i>&nbsp;&nbsp;
                                     <?php if($sta==0 && $type=="HT")
                                        {?>
-                                    <a href="<?php echo base_url();?>homework/add_mark/<?php echo $rows->hw_id; ?>" rel="tooltip" title="Enter Marks" class="btn btn-simple btn-info btn-icon table-action view" style="cursor:pointer;"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
-                                    <?php }elseif($sta==1){?>  <a href="<?php echo base_url();?>homework/edit_mark/<?php echo $rows->hw_id; ?>" title="Edit Marks" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;cursor:pointer;"><i class="fa fa-id-card-o" aria-hidden="true"></i>	<?php }?>
+                                    <a href="<?php echo base_url();?>homework/add_mark/<?php echo $rows->hw_id; ?>" rel="tooltip" title="Enter Marks" class="btn btn-simple btn-info btn-icon table-action view" style="cursor:pointer;font-size:16px;"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
+                                    <?php }elseif($sta==1){?>  <a href="<?php echo base_url();?>homework/edit_mark/<?php echo $rows->hw_id; ?>" title="Edit Marks" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;cursor:pointer;font-size:18px;"><i class="fa fa-id-card-o" aria-hidden="true"></i>	<?php }?>
                                     
                                  </td>
                               </tr>

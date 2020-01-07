@@ -13,11 +13,17 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
+						<div class="header">
+                           <h4 class="title">Student Fees Status
+							<a href="<?php echo base_url(); ?>feesstructure/view_fees_master" class="btn btn-wd btn-default pull-right">BACK</a>
+							<hr>
+						 </h4>
+						 </div>
                             <div class="content">
 
                                 <div class="fresh-datatables">
-                                  <h4 class="title">Student Fees Status</h4> <br>
-                          <table id="example" class="table">
+                                 
+								<table id="example" class="table">
                               <thead>
                                 <th data-field="id" >S.No</th>
 								<th data-field="Student"  data-sortable="true">Student</th>

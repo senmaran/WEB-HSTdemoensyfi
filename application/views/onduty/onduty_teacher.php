@@ -11,9 +11,11 @@
          <div class="row">
 
                <div class="card">
-                  <div class="header">
-                     <legend>Teachers' On Duty Details</legend>
-                  </div>
+						<div class="header">
+                           <h4 class="title">Teachers On Duty</h4>
+                       </div>
+                       <hr>
+                
                   <div class="content">
                            <div class="fresh-datatables">
                         <table id="bootstrap-table" class="table">
