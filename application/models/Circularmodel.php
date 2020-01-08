@@ -340,10 +340,7 @@ Class Circularmodel extends CI_Model
 					c.circular_type,
 					c.circular_date
 				ORDER BY
-					c.id
-				DESC";
-	
-;
+					c.id DESC";
          $res=$this->db->query($query);
          $result1=$res->result();
 		 return $result1;

@@ -22,7 +22,7 @@
                         
 						<hr>
                      <div class="fresh-datatables">
-						<p>Total Working Days <?php if($res_total['status']=="success"){echo $wrk= $res_total['result']; }else{echo "No data"; } ?></p>
+						<p>Total Working Days <?php if($res_total['status']=="success"){echo $wrk= $res_total['result']; }else{echo "No data"; $wrk = '0'; } ?></p>
                         <table id="example" class="table">
                            <thead>
                               <th data-field="id">S.No</th>
