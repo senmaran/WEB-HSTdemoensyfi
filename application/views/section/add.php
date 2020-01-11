@@ -18,7 +18,7 @@
 								<div class="row">
 									<div class="col-md-4">
 										<div class="form-group">
-											<label>Class <span class="mandatory_field">*</span></label>
+											<label>Section <span class="mandatory_field">*</span></label>
 											<input type="text" class="form-control"  placeholder="" name="sectionname" id="sectionname" value="" maxlength="15">
 											</div>
 										</div>
@@ -36,7 +36,7 @@
                     	<div class="form-group">
                           	<label class="col-sm-2 control-label">&nbsp;</label><br>
 							<input type="submit" id="save" class="btn btn-info btn-fill center" value="CREATE">
-                        
+
                       </div>
                     </div>
 									</div>
@@ -48,8 +48,8 @@
 					</div>
 				</div>
 			</div>
-			
-      
+
+
 
        <?php if($this->session->flashdata('msg')): ?>
          <div class="alert alert-success">
@@ -90,7 +90,7 @@
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $rows->sec_name; ?></td>
 									<td>
-										<?php 
+										<?php
 										if($sta=='Active'){?>
 										<button class="btn btn-success btn-fill btn-wd">Active</button>
 										<?php  }else{?>
