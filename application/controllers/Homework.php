@@ -271,8 +271,8 @@ class Homework extends CI_Controller
 		   
 		 if($acount==3)
 		 {
-		   //$datas=$this->smsmodel->send_sms_homework($user_id,$user_type,$createdate,$clssid);
-		   //$datas=$this->mailmodel->send_mail_homework($user_id,$user_type,$createdate,$clssid);
+		   $datas=$this->smsmodel->send_sms_homework($user_id,$user_type,$createdate,$clssid);
+		   $datas=$this->mailmodel->send_mail_homework($user_id,$user_type,$createdate,$clssid);
 		   //$datas=$this->notificationmodel->send_notify_homework($user_id,$user_type,$createdate,$clssid);
 		 }
 		 
