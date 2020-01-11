@@ -10,6 +10,8 @@
 			 $sname=$rows1->name;
 		  }
 ?>
+
+
     <!doctype html>
     <html lang="en">
 
