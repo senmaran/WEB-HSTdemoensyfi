@@ -266,14 +266,14 @@ class Homework extends CI_Controller
 		   $clssid=$this->input->post('clsid');
 		   $sendtype=$this->input->post('sendoption');
 		   $acount=count($sendtype); 
-		   
+	
 		   $datas['send_status']=$this->homeworkmodel->send_homework_status($user_id,$createdate,$clssid);
 		   
 		 if($acount==3)
 		 {
-		   $datas=$this->smsmodel->send_sms_homework($user_id,$user_type,$createdate,$clssid);
-		   $datas=$this->mailmodel->send_mail_homework($user_id,$user_type,$createdate,$clssid);
-		   $datas=$this->notificationmodel->send_notify_homework($user_id,$user_type,$createdate,$clssid);
+		   //$datas=$this->smsmodel->send_sms_homework($user_id,$user_type,$createdate,$clssid);
+		   //$datas=$this->mailmodel->send_mail_homework($user_id,$user_type,$createdate,$clssid);
+		   //$datas=$this->notificationmodel->send_notify_homework($user_id,$user_type,$createdate,$clssid);
 		 }
 		 
 		 if($acount==2)
@@ -283,18 +283,18 @@ class Homework extends CI_Controller
 		 
 		   if($ct1=='SMS' && $ct2=='Mail')
 		  {
-			$datas=$this->smsmodel->send_sms_homework($user_id,$user_type,$createdate,$clssid);
-		    $datas=$this->mailmodel->send_mail_homework($user_id,$user_type,$createdate,$clssid);
+			//$datas=$this->smsmodel->send_sms_homework($user_id,$user_type,$createdate,$clssid);
+		    //$datas=$this->mailmodel->send_mail_homework($user_id,$user_type,$createdate,$clssid);
 		  }
 		  if($ct1=='SMS' && $ct2=='Notification')
 		  {
-			$datas=$this->smsmodel->send_sms_homework($user_id,$user_type,$createdate,$clssid);
-		    $datas=$this->notificationmodel->send_notify_homework($user_id,$user_type,$createdate,$clssid);
+			//$datas=$this->smsmodel->send_sms_homework($user_id,$user_type,$createdate,$clssid);
+		    //$datas=$this->notificationmodel->send_notify_homework($user_id,$user_type,$createdate,$clssid);
 		  }
 		  if($ct1=='Mail' && $ct2=='Notification')
 		  {
-			 $datas=$this->mailmodel->send_mail_homework($user_id,$user_type,$createdate,$clssid); 
-			 $datas=$this->notificationmodel->send_notify_homework($user_id,$user_type,$createdate,$clssid);   
+			 //$datas=$this->mailmodel->send_mail_homework($user_id,$user_type,$createdate,$clssid); 
+			 //$datas=$this->notificationmodel->send_notify_homework($user_id,$user_type,$createdate,$clssid);   
 		  } 
 	  }
 	  
