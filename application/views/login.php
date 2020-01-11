@@ -77,12 +77,9 @@
 							<?php endif; ?>
 
 							<?php if($pic!='') { ?>
-<<<<<<< HEAD
 								<div class="header text-center"><img src="<?php echo base_url(); ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>
-=======
-								<div class="header text-center"><img src="http://<?php echo $server_url; ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>
->>>>>>> 14094afeec96b48af8cc652f43df80e7c87dc894
 
+								<!--<div class="header text-center"><img src="http://<?php echo $server_url; ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>-->
 							<?php } else { ?>
 									<!--<div class="header text-center"><img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"></div>-->
 									<div class="header text-center"><img src="<?php echo base_url(); ?>/assets/main_logo.png" class="img-circle" style="width:150px;height:150px;"></div>
