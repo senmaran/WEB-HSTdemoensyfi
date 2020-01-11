@@ -69,7 +69,8 @@
               <!-- end col-md-12 -->
             </div>
             <!-- end row -->
-
+			
+			
             <div class="modal fade" id="addmodel" role="dialog" >
               <div class="modal-dialog">
                 <!-- Modal content-->
