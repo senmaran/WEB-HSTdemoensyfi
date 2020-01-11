@@ -81,10 +81,9 @@
                   </div>
                   <div class="modal-body">
                     <p id="msg" style="text-align:center;"></p>
-                   
-                            <form method="post" action="" class="form-horizontal" id="homeworkform">
-                              <input type="text" id="tdate" name="tdate" >
-                              <input type="text" name="clsid" id="csid" value="<?php echo $cid; ?>">
+                           <form method="post" action="" class="form-horizontal" id="homeworkform">
+                              <input type="hidden" id="tdate" name="tdate" >
+                              <input type="hidden" name="clsid" id="csid" value="<?php echo $cid; ?>">
                               <fieldset>
                                 <div class="form-group">
                                   <label class="col-sm-4 control-label">Message Type</label>
