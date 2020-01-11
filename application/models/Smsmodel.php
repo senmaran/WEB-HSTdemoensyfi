@@ -379,7 +379,7 @@ Class Smsmodel extends CI_Model
 				$cell[]=$res->mobile;
 			  }
 
-				echo $sms="SELECT h.title,h.hw_details,h.hw_type,h.test_date,s.subject_name,IFNULL(c.class_name, '') AS class_name,IFNULL(se.sec_name, '') AS sec_name FROM edu_homework AS h
+				$sms="SELECT h.title,h.hw_details,h.hw_type,h.test_date,s.subject_name,IFNULL(c.class_name, '') AS class_name,IFNULL(se.sec_name, '') AS sec_name FROM edu_homework AS h
 				LEFT JOIN edu_subject AS s ON s.subject_id=h.subject_id
 				LEFT JOIN edu_classmaster AS cm ON h.class_id=cm.class_sec_id
 				LEFT JOIN edu_class AS c ON cm.class=c.class_id

@@ -819,9 +819,10 @@ Class Notificationmodel extends CI_Model
 			$psql="SELECT user_id,gcm_key,mobile_type FROM edu_notification WHERE user_id='$paid'";
 			$pagsm=$this->db->query($psql);
 			$pares=$pagsm->result();
-			
+			$mobile_type ='0';
            foreach($pares as $parow)
 		   {
+				
 				$gcm_key=$parow->gcm_key;
 				$mobile_type=$parow->mobile_type;
 

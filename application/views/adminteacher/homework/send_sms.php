@@ -82,8 +82,8 @@
                     <p id="msg" style="text-align:center;"></p>
                    
                             <form method="post" action="" class="form-horizontal" id="homeworkform">
-                              <input type="hidden" id="event_id" name="tdate" >
-                              <input type="hidden" name="clsid" id="csid" value="<?php echo $cid; ?>">
+                              <input type="text" id="tdate" name="tdate" >
+                              <input type="text" name="clsid" id="csid" value="<?php echo $cid; ?>">
                               <fieldset>
                                 <div class="form-group">
                                   <label class="col-sm-4 control-label">Message Type</label>
@@ -153,10 +153,9 @@
                   type:'POST',
                   data: $('#homeworkform').serialize(),
                   success: function(response) {
-                   // alert(response);
+
                     if(response=="success")
                     {
-                      //  swal("Success!", "Thanks for Your Note!", "success");
                       $('#homeworkform')[0].reset();
                       swal({
                         title: "Success!",
@@ -179,11 +178,11 @@
         });
       });
 
-     $('#bootstrap-table').DataTable();
-      </script>
-      <script type="text/javascript">
-      $().ready(function(){
 
+     $('#bootstrap-table').DataTable();
+     
+	 
+      $().ready(function(){
         $('.datepicker').datetimepicker({
           format: 'DD-MM-YYYY',
           icons: {
@@ -200,8 +199,10 @@
         });
       });
 
-      $(document).on("click", ".open-AddBookDialog", function () {
-        var eventId = $(this).data('id');
-        $(".modal-body #event_id").val( eventId );
-      });
+   
+	  
+	  $('#addmodel').on('show.bs.modal', function(e) {
+		var dataID = $(e.relatedTarget).data('id');
+		$(e.currentTarget).find('input[name="tdate"]').val(dataID);
+});
       </script>
