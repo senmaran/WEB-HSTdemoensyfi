@@ -7,7 +7,7 @@
       <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
       <meta name="viewport" content="width=device-width" />
-     
+     <link rel="icon" href="<?php echo base_url(); ?>assets/fav_icon.png" type="image/gif" sizes="32x32">
 	  <!-- Bootstrap core CSS     -->
       <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
       
@@ -251,12 +251,29 @@
                      </ul>
                   </div>
                </li>
+			   
+			   <li id="stuonduty">
+                  <a data-toggle="collapse" href="#ondutymenu">
+                     <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/on duty.png"/>
+                     <p>On Duty</p>
+                     <b class="caret"></b>
+                  </a>
+                  <div class="collapse" id="ondutymenu">
+                     <ul class="nav">
+                        <li id="onduty1"><a href="<?php echo base_url(); ?>teacheronduty/view_class"> Students</a></li>
+						<li id="onduty2"><a href="<?php echo base_url(); ?>teacheronduty/home"> Teachers</a></li>
+                     </ul>
+                  </div>
+               </li>
+			   <!--
 			   <li id="stuonduty">
                   <a href="<?php echo base_url(); ?>teacheronduty/view_class">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/on duty.png"/>
                      <p>Student On Duty</p>
                   </a>
 			   </li>
+			   -->
+			   
                <li id="calendar">
                   <a data-toggle="collapse" href="#calendermenu">
                      <img class="menuimg" src="<?php echo base_url(); ?>assets/img/icons/calender.png"/>

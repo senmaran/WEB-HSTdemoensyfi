@@ -306,7 +306,9 @@ $('#tc_copy').on('change', function() {
       return this.optional(element) || (element.files[0].size <= param)
   }, 'File size must be less than 1 MB');
 
-
+	$.validator.addMethod("alphabetsnspace", function(value, element) {
+       return this.optional(element) || /^[a-zA-Z\. ]*$/.test(value);
+    });
 
    $('#admissionform').validate({ // initialize the plugin
         rules: {
@@ -319,7 +321,7 @@ $('#tc_copy').on('change', function() {
 			sage:{required:true, number:true, maxlength:2},
             admission_year:{required:true },
             admission_date:{required:true },
-            name:{required:true },
+            name:{required:true,alphabetsnspace: true }, 
             email:{required:false,email:true,
             remote: {
                        url: "<?php echo base_url(); ?>admission/check_email_id",
@@ -336,10 +338,11 @@ $('#tc_copy').on('change', function() {
             },
            
             nationality:{required:true },
-            religion:{required:true },
-            community_class:{required:true },
-            community:{required:true },
+            religion:{required:true,alphabetsnspace: true },
+            community_class:{required:true,alphabetsnspace: true },
+            community:{required:true,alphabetsnspace: true },
 			mother_tongue:{required:true },
+			sch_name:{required:false,alphabetsnspace: true },
             blood_group:{required:true },
             mobile:{required:false,maxlength:10,minlength:10,number:true,
 			remote:{
@@ -358,7 +361,10 @@ $('#tc_copy').on('change', function() {
 			//  minlength:"Enter the Number 6 to 9 Digits",
 			admission_year: "This field cannot be empty!",
 			admission_date: "This field cannot be empty!",
-			name: "This field cannot be empty!",
+			name: {
+			  required: "This field cannot be empty!",
+			  alphabetsnspace: "Please enter only alphabet"
+			},
 			email:{
 				 required:"This field cannot be empty!",
 				 remote:"Email ID already exist!"
@@ -371,9 +377,22 @@ $('#tc_copy').on('change', function() {
 			},
 			age: "This field cannot be empty!",
 			nationality: "This field cannot be empty!",
-			religion: "This field cannot be empty!",
-			community:"This field cannot be empty!",
-			community_class:"This field cannot be empty!",
+			religion: {
+			  required: "This field cannot be empty!",
+			  alphabetsnspace: "Please enter only alphabet"
+			},
+			community: {
+			  required: "This field cannot be empty!",
+			  alphabetsnspace: "Please enter only alphabet"
+			},
+			community_class: {
+			  required: "This field cannot be empty!",
+			  alphabetsnspace: "Please enter only alphabet"
+			},
+			sch_name: {
+			  alphabetsnspace: "Please enter only alphabet"
+			},
+			
 			mother_tongue:"This field cannot be empty!",
 			blood_group:"Please choose an option!",
 			mobile:{

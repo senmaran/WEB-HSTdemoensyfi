@@ -10,9 +10,9 @@ class Adminattendance extends CI_Controller {
 			$this->load->model('adminattendancemodel');
 			$this->load->model('teacherattendencemodel');
 			$this->load->model('class_manage');
-		  $this->load->helper('url');
+			$this->load->helper('url');
 			$this->load->library('encryption');
-		  $this->load->library('session');
+			$this->load->library('session');
  }
 
 	/**
@@ -214,10 +214,12 @@ class Adminattendance extends CI_Controller {
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
 			 if($user_type==1){
-				 $datas['res']=$this->adminattendancemodel->get_all_class();
-				 $this->load->view('header');
- 				$this->load->view('attendance/attendance_date_class',$datas);
- 				$this->load->view('footer');
+					$datas['ace_months']=$this->adminattendancemodel->get_aca_year_month();
+					$datas['res']=$this->adminattendancemodel->get_all_class();
+				
+					$this->load->view('header');
+					$this->load->view('attendance/attendance_date_class',$datas);
+					$this->load->view('footer');
 			 }else{
 				 	redirect('/');
 			 }

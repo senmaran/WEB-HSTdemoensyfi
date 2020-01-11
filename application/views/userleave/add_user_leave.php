@@ -125,6 +125,11 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
+	
+	$('#teachermenu').addClass('collapse in');
+	$('#teacher').addClass('active');
+	$('#teacher4').addClass('active');
+	   
 $('#leaveformsection').validate({ // initialize the plugin
 	rules: {
 		leave_name:{required:true },

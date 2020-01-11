@@ -10,97 +10,15 @@ Class Parentsmodel extends CI_Model
 
   }
 
-//CREATE ADMISSION
+   //---------------------New----------------------------------
 
-        /* function ad_parents($admission_id,$father_name,$mother_name,$guardn_name,$occupation,$income,$address,$email,$email1,$home_phone,$office_phone,$mobile,$mobile1,$userFileName,$userFileName1,$userFileName2,$status)
-		{
-		$digits = 6;
-		$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
-		//echo $OTP;exit;
-          $check_email="SELECT * FROM edu_parents WHERE email='$email'";
-          $result=$this->db->query($check_email);
-          if($result->num_rows()==0)
-		  {
-            $query="INSERT INTO edu_parents(admission_id,father_name,mother_name,guardn_name,occupation,income,address,email,email1,home_phone,office_phone,mobile,mobile1,father_pic,mother_pic,guardn_pic,status,created_at,update_at) VALUES ('$admission_id','$father_name','$mother_name','$guardn_name','$occupation','$income','$address','$email','$email1','$home_phone','$office_phone','$mobile','$mobile1','$userFileName','$userFileName1','$userFileName2','$status',NOW(),NOW())";
-            $resultset=$this->db->query($query);
-			      $insert_id = $this->db->insert_id();
-
-			if(empty($father_name))
-			  {
-				$father_name=$guardn_name;
-			  }
-			   $sql="SELECT count(*) AS parents FROM edu_parents" ;
-			   //$resultsql=$this->db->query($sql);
-			   $resultsql=$this->db->query($sql);
-               $result1= $resultsql->result();
-               $cont=$result1[0]->parents;
-			   $user_id=$cont+600000;
-			   //echo $cont+8000;
-			   //exit;
-
-         $to = $email;
-         $subject = '"Welcome Message"';
-         $htmlContent = '
-
-           <html>
-           <head>  <title></title>
-           </head>
-           <body style="background-color:beige;">
-
-             <table cellspacing="0" style=" width: 300px; height: 200px;">
-
-                   <tr>
-                       <th>Email:</th><td>'.$email.'</td>
-                   </tr>
-                   <tr>
-                       <th>Username :</th><td>'.$user_id.'</td>
-                   </tr>
-                   <tr>
-                       <th>Password:</th><td>'.$OTP.'</td>
-                   </tr>
-                   <tr>
-                       <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
-                   </tr>
-               </table>
-           </body>
-           </html>';
-
-       // Set content-type header for sending HTML email
-       $headers = "MIME-Version: 1.0" . "\r\n";
-       $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-       // Additional headers
-       $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
-       mail($to,$subject,$htmlContent,$headers);
-
-		 // User Details;
-			 $query1="INSERT INTO edu_users(name,user_name,user_password,user_type,user_master_id,parent_id,created_date,updated_date,status) VALUES('$father_name','$user_id',md5($OTP),'4','$insert_id','$insert_id',NOW(),NOW(),'$status')";
-
-			$resultset=$this->db->query($query1);
-
-			$query2="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insert_id' WHERE admission_id='$admission_id'";
-			$resultset=$this->db->query($query2);
-
-            $data= array("status" => "success");
-            return $data;
-          }else{
-            $data= array("status" => "Email Already Exist");
-            return $data;
-          }
-       } */
-
-
-	   //---------------------New----------------------------------
-
-	   function add_parents($admission_id,$fname,$foccupation,$fincome,$fhaddress,$fpemail,$fsemail,$fpmobile,$fsmobile,$fhome_phone,$foffice_address,$foffice_phone,$frelationship,$fstatus,$flogin,$userFileName,$mname,$moccupation,$mincome,$mhaddress,$mpemail,$msemail,$mpmobile,$msmobile,$mhome_phone,$moffice_address,$moffice_phone,$mrelationship,$mstatus,$mlogin,$userFileName1,$gname,$goccupation,$gincome,$ghaddress,$gpemail,$gsemail,$gpmobile,$gsmobile,$ghome_phone,$goffice_address,$goffice_phone,$grelationship,$gstatus,$glogin,$userFileName2,$user_id)
-	   {
+	function add_parents($admission_id,$fname,$foccupation,$fincome,$fhaddress,$fpemail,$fsemail,$fpmobile,$fsmobile,$fhome_phone,$foffice_address,$foffice_phone,$frelationship,$fstatus,$flogin,$userFileName,$mname,$moccupation,$mincome,$mhaddress,$mpemail,$msemail,$mpmobile,$msmobile,$mhome_phone,$moffice_address,$moffice_phone,$mrelationship,$mstatus,$mlogin,$userFileName1,$gname,$goccupation,$gincome,$ghaddress,$gpemail,$gsemail,$gpmobile,$gsmobile,$ghome_phone,$goffice_address,$goffice_phone,$grelationship,$gstatus,$glogin,$userFileName2,$user_id)
+	{
 		   $school_id=$this->session->userdata('school_id');
-		  //echo $flogin; echo $mlogin; echo $glogin; exit;
-		  /*$check_mobile="SELECT email,mobile FROM edu_parents WHERE mobile='$fpmobile'";
-          $result=$this->db->query($check_mobile);
-          if($result->num_rows()==0)
-		  {  */
+
 		   $digits = 6;
 		   $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+		  
 		  //Father Details
 		   if(!empty($fname))
 		   {
@@ -113,42 +31,41 @@ Class Parentsmodel extends CI_Model
 			  {
 				 if(!empty($fpemail))
 				 {
-				 $to = $fpemail;
-				 $subject = '"Welcome Message"';
-				 $htmlContent = '
-				   <html>
-				   <head>  <title></title>
-				   </head>
-				   <body style="background-color:beige;">
-
+					$to = $fpemail;
+					$subject = '"Welcome Message"';
+					$htmlContent = '
+					<html>
+					<head>  <title></title>
+					</head>
+					<body style="background-color:beige;">
 					 <table cellspacing="0" style=" width: 300px; height: 200px;">
-
 						   <tr>
-							   <th>Email:</th><td>'.$fpemail.'</td>
+							   <td>Email:</th><td>'.$fpemail.'</td>
 						   </tr>
 						   <tr>
-							   <th>Username :</th><td>'.$fuser_name.'</td>
+							   <td>Username :</th><td>'.$fuser_name.'</td>
 						   </tr>
 						   <tr>
-							   <th>Password:</th><td>'.$OTP.'</td>
+							   <td>Password:</th><td>'.$OTP.'</td>
 						   </tr>
 						   <tr>
-							   <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
+							   <td><a href="'.base_url() .'">Click here  to Login</a></td>
 						   </tr>
 					   </table>
-				   </body>
-				   </html>';
-			   $headers = "MIME-Version: 1.0" . "\r\n";
-			   $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-			   $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
-			   mail($to,$subject,$htmlContent,$headers);
+					</body>
+					</html>';
+					$headers = "MIME-Version: 1.0" . "\r\n";
+					$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+					$headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+					mail($to,$subject,$htmlContent,$headers);
 				 }
+				 
 				 if(!empty($fpmobile))
 				 {
 					$userdetails="Name : " .$fname. ", Schoolid : " .$school_id.", Username : " .$fuser_name.", Password : ".$OTP.", ";
 					$notes =utf8_encode($userdetails."To known more about your child click here  http://bit.ly/2wLwdRQ");
-          $phone=$fpmobile;
-          $this->smsmodel->sendSMS($phone,$notes);
+					$phone=$fpmobile;
+					$this->smsmodel->sendSMS($phone,$notes);
 				 }
 
 				  $fuser="INSERT INTO edu_users(name,user_name,user_password,user_type,user_master_id,parent_id,created_date,updated_date,status) VALUES('$fname','$fuser_name',md5($OTP),'4','$finsert_id','$finsert_id',NOW(),NOW(),'$fstatus')";
@@ -168,43 +85,41 @@ Class Parentsmodel extends CI_Model
 			   {
 				  if(!empty($mpemail))
 				  {  //echo $mpemail;
-				 $to = $mpemail;
-				 $subject = '"Welcome Message"';
-				 $htmlContent = '
-				   <html>
-				   <head>  <title></title>
-				   </head>
-				   <body style="background-color:beige;">
-
+					$to = $mpemail;
+					$subject = '"Welcome Message"';
+					$htmlContent = '
+					<html>
+					<head>  <title></title>
+					</head>
+					<body style="background-color:beige;">
 					 <table cellspacing="0" style=" width: 300px; height: 200px;">
-
 						   <tr>
-							   <th>Email:</th><td>'.$mpemail.'</td>
+							   <td>Email:</th><td>'.$mpemail.'</td>
 						   </tr>
 						   <tr>
-							   <th>Username :</th><td>'.$muser_name.'</td>
+							   <td>Username :</th><td>'.$muser_name.'</td>
 						   </tr>
 						   <tr>
-							   <th>Password:</th><td>'.$OTP.'</td>
+							   <td>Password:</th><td>'.$OTP.'</td>
 						   </tr>
 						   <tr>
-							   <th></th><td><a href="'.base_url().'">Click here  to Login</a></td>
+							  <td><a href="'.base_url().'">Click here  to Login</a></td>
 						   </tr>
 					   </table>
-				   </body>
-				   </html>';
-			   $headers = "MIME-Version: 1.0" . "\r\n";
-			   $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-			   $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
-			   mail($to,$subject,$htmlContent,$headers);
+					</body>
+					</html>';
+					$headers = "MIME-Version: 1.0" . "\r\n";
+					$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+					$headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+					mail($to,$subject,$htmlContent,$headers);
 				  }
+				
 				if(!empty($mpmobile))
 				 {
-           $userdetails="Name : " .$mname. ", Schoolid : " .$school_id.", Username : " .$muser_name.", Password : ".$OTP.", ";
-           $notes =utf8_encode($userdetails."To known more about your child click here  http://bit.ly/2wLwdRQ");
-            $phone=$mpmobile;
-            $this->smsmodel->sendSMS($phone,$notes);
-
+					$userdetails="Name : " .$mname. ", Schoolid : " .$school_id.", Username : " .$muser_name.", Password : ".$OTP.", ";
+					$notes =utf8_encode($userdetails."To known more about your child click here  http://bit.ly/2wLwdRQ");
+					$phone=$mpmobile;
+					$this->smsmodel->sendSMS($phone,$notes);
 				 }
 			  $muser="INSERT INTO edu_users(name,user_name,user_password,user_type,user_master_id,parent_id,created_date,updated_date,status) VALUES('$mname','$muser_name',md5($OTP),'4','$minsert_id','$minsert_id',NOW(),NOW(),'$mstatus')";
 			  $muresultset=$this->db->query($muser);
@@ -222,13 +137,13 @@ Class Parentsmodel extends CI_Model
 			  {
 				  if(!empty($gpemail))
 				  {
-				    $to = $gpemail;
-				    $subject = '"Welcome Message"';
-				    $htmlContent = '
-				   <html>
-				   <head>  <title></title>
-				   </head>
-				   <body style="background-color:beige;">
+					$to = $gpemail;
+					$subject = '"Welcome Message"';
+					$htmlContent = '
+					<html>
+					<head>  <title></title>
+					</head>
+					<body style="background-color:beige;">
 					 <table cellspacing="0" style=" width: 300px; height: 200px;">
 						   <tr>
 							   <th>Email:</th><td>'.$gpemail.'</td>
@@ -243,19 +158,19 @@ Class Parentsmodel extends CI_Model
 							   <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
 						   </tr>
 					   </table>
-				   </body>
-				   </html>';
-			   $headers = "MIME-Version: 1.0" . "\r\n";
-			   $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-			   $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
-			   mail($to,$subject,$htmlContent,$headers);
+					</body>
+					</html>';
+					$headers = "MIME-Version: 1.0" . "\r\n";
+					$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+					$headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+					mail($to,$subject,$htmlContent,$headers);
                   }
                  if(!empty($gpmobile))
 				 {
 					$userdetails="Name : " .$gname . ", Schoolid : " .$school_id.", Username : " .$guser_name .", Password : ".$OTP.", ";
-          $notes =utf8_encode($userdetails."To known more about your child click here  http://bit.ly/2wLwdRQ");
-           $phone=$gpmobile;
-           $this->smsmodel->sendSMS($phone,$notes);
+					$notes =utf8_encode($userdetails."To known more about your child click here  http://bit.ly/2wLwdRQ");
+					$phone=$gpmobile;
+					$this->smsmodel->sendSMS($phone,$notes);
 				 }
 
 				  $guser="INSERT INTO edu_users(name,user_name,user_password,user_type,user_master_id,parent_id,created_date,updated_date,status) VALUES('$gname','$guser_name',md5($OTP),'4','$ginsert_id','$ginsert_id',NOW(),NOW(),'$gstatus')";
@@ -263,87 +178,82 @@ Class Parentsmodel extends CI_Model
 			  }
 		   }
 
+
+
+
 		   if(!empty($finsert_id) && !empty($minsert_id) && !empty($ginsert_id) )
 		   {
-			  $fmgid=array($finsert_id,$minsert_id,$ginsert_id);
-			  $insertid=implode(',',$fmgid);
-
-		 $parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
-		  $gsresultset=$this->db->query($parnt_guardnid);
+				$fmgid=array($finsert_id,$minsert_id,$ginsert_id);
+				$insertid=implode(',',$fmgid);
+				$parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
+				$gsresultset=$this->db->query($parnt_guardnid);
 		   }
 
 		 if(!empty($finsert_id) && !empty($minsert_id))
 		   {
-			  $fmgid=array($finsert_id,$minsert_id);
-			  $insertid=implode(',',$fmgid);
-
-		   $parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
-		   $gsresultset=$this->db->query($parnt_guardnid);
+				$fmgid=array($finsert_id,$minsert_id);
+				$insertid=implode(',',$fmgid);
+				$parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
+				$gsresultset=$this->db->query($parnt_guardnid);
 		   }else if(!empty($finsert_id)){
-			  $fmgid=array($finsert_id);
-			  $insertid=implode(',',$fmgid);
-
-		 $parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
-		  $gsresultset=$this->db->query($parnt_guardnid);
+				$fmgid=array($finsert_id);
+				$insertid=implode(',',$fmgid);
+				$parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
+				$gsresultset=$this->db->query($parnt_guardnid);
 		   }else{
 			    if(!empty($minsert_id))
 		        {
-			  $fmgid=array($minsert_id);
-			  $insertid=implode(',',$fmgid);
-
-		 $parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
-		  $gsresultset=$this->db->query($parnt_guardnid);
-		      }
-
+					$fmgid=array($minsert_id);
+					$insertid=implode(',',$fmgid);
+					$parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
+					$gsresultset=$this->db->query($parnt_guardnid);
+				}
 		   }
+
 
 		   if(!empty($finsert_id) && !empty($ginsert_id))
 		   {
-			  $fmgid=array($finsert_id,$ginsert_id);
-			  $insertid=implode(',',$fmgid);
-
-		 $parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
-		  $gsresultset=$this->db->query($parnt_guardnid);
+				$fmgid=array($finsert_id,$ginsert_id);
+				$insertid=implode(',',$fmgid);
+				$parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
+				$gsresultset=$this->db->query($parnt_guardnid);
 		   }
 		   if(!empty($ginsert_id)&& !empty($minsert_id))
 		   {
-			  $fmgid=array($ginsert_id,$minsert_id);
-			  $insertid=implode(',',$fmgid);
-
-		 $parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
-		  $gsresultset=$this->db->query($parnt_guardnid);
+				$fmgid=array($ginsert_id,$minsert_id);
+				$insertid=implode(',',$fmgid);
+				$parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
+				$gsresultset=$this->db->query($parnt_guardnid);
 		   }
+
+
 
 		   if(!empty($ginsert_id))
 		   {
-			  $fmgid=array($ginsert_id);
-			  $insertid=implode(',',$fmgid);
-
-		 $parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
-		  $gsresultset=$this->db->query($parnt_guardnid);
+				$fmgid=array($ginsert_id);
+				$insertid=implode(',',$fmgid);
+				$parnt_guardnid="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$insertid' WHERE admission_id='$admission_id'";
+				$gsresultset=$this->db->query($parnt_guardnid);
 		   }
 
 		  $data= array("status"=>"success");
           return $data;
-		  /* }else{
-			  $data= array("status"=>"MNAE");
-			   return $data;
-		  } */
+		 
 	   }
 
 
 	   function add_new_parents($admission_id,$oldadmission_id,$name,$occupation,$income,$haddress,$pemail,$semail,$pmobile,$smobile,$home_phone,$office_address,$office_phone,$relationship,$status,$priority,$userFileName,$user_id)
 	   {
-		$school_id=$this->session->userdata('school_id');
-		
-         $select = "SELECT relationship FROM edu_parents WHERE FIND_IN_SET('$admission_id',admission_id) AND relationship ='$relationship'";
-         $res_selec=$this->db->query($select);
+			$school_id=$this->session->userdata('school_id');
+
+			$select = "SELECT relationship FROM edu_parents WHERE FIND_IN_SET('$admission_id',admission_id) AND relationship ='$relationship'";
+			$res_selec=$this->db->query($select);
 
          if($res_selec->num_rows()==0){
            $digits = 6;
            $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 
-           echo $pgid="SELECT admission_id,parnt_guardn_id FROM edu_admission WHERE admission_id IN('$oldadmission_id')";
+           $pgid="SELECT admission_id,parnt_guardn_id FROM edu_admission WHERE admission_id IN('$oldadmission_id')";
            $resultset=$this->db->query($pgid);
            $row=$resultset->result();
            foreach($row as $rows){
@@ -362,26 +272,25 @@ Class Parentsmodel extends CI_Model
            $newuser_name=$newinsert_id+600000;
 
            // if($priority=="Yes"){
-           if(!empty($pemail)){
+			if(!empty($pemail)){
 				 $to = $pemail;
 				 $subject = '"Welcome Message"';
-				 $htmlContent = '
-				   <html>
-				   <head>  <title></title>
+				 $htmlContent = '<html>
+				   <head> <title></title>
 				   </head>
 				   <body style="background-color:beige;">
 				   <table cellspacing="0" style=" width: 300px; height: 200px;">
 					   <tr>
-						 <th>Email:</th><td>'.$pemail.'</td>
+						 <td>Email:</th><td>'.$pemail.'</td>
 					   </tr>
 					   <tr>
-						 <th>Username :</th><td>'.$newuser_name.'</td>
+						 <td>Username :</th><td>'.$newuser_name.'</td>
 					   </tr>
 					   <tr>
-						 <th>Password:</th><td>'.$OTP.'</td>
+						 <td>Password:</th><td>'.$OTP.'</td>
 					   </tr>
 					   <tr>
-						 <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
+						 <td><a href="'.base_url() .'">Click here  to Login</a></td>
 					   </tr>
 					 </table>
 				   </body>
@@ -390,7 +299,7 @@ Class Parentsmodel extends CI_Model
 				 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 				 $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
 				 mail($to,$subject,$htmlContent,$headers);		 
-            }
+			}
              if(!empty($pmobile))
              {
 					$userdetails="Name : " .$name. ", Schoolid : " .$school_id.",Username : " .$newuser_name.", Password : ".$OTP.", ";
@@ -406,13 +315,13 @@ Class Parentsmodel extends CI_Model
 
 			$fmgid=array($apgid,$newinsert_id);
 			$insertid=implode(',',$fmgid);
-			
-          $parnt_guardnid="UPDATE edu_admission SET parnt_guardn_id='$insertid',parents_status='1' WHERE admission_id IN ($oldadmission_id)";
-          $gsresultset=$this->db->query($parnt_guardnid);
 
-		  
-          $parnt_guardnid1="UPDATE edu_parents SET admission_id='$oldadmission_id' WHERE id IN ($newinsert_id)";
-          $gsresultset1=$this->db->query($parnt_guardnid1);
+			$parnt_guardnid="UPDATE edu_admission SET parnt_guardn_id='$insertid',parents_status='1' WHERE admission_id IN ($oldadmission_id)";
+			$gsresultset=$this->db->query($parnt_guardnid);
+
+
+			$parnt_guardnid1="UPDATE edu_parents SET admission_id='$oldadmission_id' WHERE id IN ($newinsert_id)";
+			$gsresultset1=$this->db->query($parnt_guardnid1);
 
           if($gsresultset){
              $data= array("status" => "success");
@@ -426,11 +335,10 @@ Class Parentsmodel extends CI_Model
 			return $data;
          }
 
+	}
 
-	   }
-
-	   function update_parents_details($stu_name,$admission_id,$morestu,$newstu,$oldstu,$flogin,$fid,$fname,$foccupation,$fincome,$fhaddress,$fpemail,$fsemail,$fpmobile,$fsmobile,$fhome_phone,$foffice_address,$foffice_phone,$frelationship,$fstatus,$userFileName,$mlogin,$mid,$mname,$moccupation,$mincome,$mhaddress,$mpemail,$msemail,$mpmobile,$msmobile,$mhome_phone,$moffice_address,$moffice_phone,$mrelationship,$mstatus,$userFileName1,$glogin,$gid,$gname,$goccupation,$gincome,$ghaddress,$gpemail,$gsemail,$gpmobile,$gsmobile,$ghome_phone,$goffice_address,$goffice_phone,$grelationship,$gstatus,$userFileName2,$user_id)
-	   {
+	function update_parents_details($stu_name,$admission_id,$morestu,$newstu,$oldstu,$flogin,$fid,$fname,$foccupation,$fincome,$fhaddress,$fpemail,$fsemail,$fpmobile,$fsmobile,$fhome_phone,$foffice_address,$foffice_phone,$frelationship,$fstatus,$userFileName,$mlogin,$mid,$mname,$moccupation,$mincome,$mhaddress,$mpemail,$msemail,$mpmobile,$msmobile,$mhome_phone,$moffice_address,$moffice_phone,$mrelationship,$mstatus,$userFileName1,$glogin,$gid,$gname,$goccupation,$gincome,$ghaddress,$gpemail,$gsemail,$gpmobile,$gsmobile,$ghome_phone,$goffice_address,$goffice_phone,$grelationship,$gstatus,$userFileName2,$user_id)
+	{
 	    $school_id=$this->session->userdata('school_id');
 	   // echo $stu_name; echo $morestu; exit;
 	       $digits = 6;

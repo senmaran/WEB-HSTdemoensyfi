@@ -81,7 +81,7 @@
                                                       </div>
                                                       <label class="col-sm-2 control-label">Alternate Email ID</label>
                                                       <div class="col-sm-4">
-                                                          <input type="text" name="semail" class="form-control " id="email" placeholder="Secondary Email ID" maxlength="30" />
+                                                          <input type="text" name="semail"  id="semail" placeholder="Secondary Email ID" class="form-control" maxlength="30" />
                                                       </div>
                                                     </div>
                                                 </fieldset>
@@ -89,11 +89,11 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">Mobile Number <span class="mandatory_field">*</span></label>
                                                         <div class="col-sm-4">
-                                                            <input type="text" placeholder="Mobile Number" name="pmobile" maxlength="10" class="form-control">
+                                                            <input type="text" name="pmobile" id="pmobile" placeholder="Mobile Number" class="form-control" maxlength="10" >
                                                         </div>
                                                         <label class="col-sm-2 control-label"> Alternate Mobile Number</label>
                                                         <div class="col-sm-4">
-                                                            <input type="text" placeholder="Mobile Number" pattern="[1-9]{1}[0-9]{9}" maxlength="10" name="smobile" class="form-control">
+                                                            <input type="text" name="smobile" id="smobile" placeholder="Alternate Mobile Number" class="form-control" maxlength="10" >
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -126,11 +126,11 @@
                                                     <div class="form-group">
                                                       <label class="col-sm-2 control-label">Telephone</label>
                                                       <div class="col-sm-4">
-                                                          <input type="text" placeholder="Telephone" name="home_phone" class="form-control" maxlength="10">
+                                                          <input type="text" placeholder="Telephone" name="home_phone" class="form-control" maxlength="14">
                                                       </div>
                                                         <label class="col-sm-2 control-label">Office Phone</label>
                                                         <div class="col-sm-4">
-                                                            <input type="text" placeholder="Office Phone" name="office_phone" class="form-control" maxlength="10">
+                                                            <input type="text" placeholder="Office Phone" name="office_phone" class="form-control" maxlength="14">
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -177,79 +177,53 @@
         var output = document.getElementById('output');
         output.src = URL.createObjectURL(event.target.files[0]);
     };
-    $(document).ready(function() {
-
-        $('#parentform').validate({ // initialize the plugin
-            rules: {
-                admission_no: {
-                    required: true,
-                    number: true
-                },
-                name: {
-                    required: true
-                },
-                occupation: {
-                    required: false
-                },
-                income: {
-                    required: false
-                },
-                haddress: {
-                    required: false
-                },
-                //office_address:{required:true},
-                pemail:{required:true,email:true,
-                  remote: {
-                           url: "<?php echo base_url(); ?>parents/check_pemail_id/",
-                           type: "post"
-                        }
-                      },
-                //home_phone:{required:true },
-                //office_phone:{required:true },
-                pmobile: {
-                    required: true,maxlength:10,minlength:10,number:true,
-                    remote: {
-                             url: "<?php echo base_url(); ?>parents/check_pmobile_number/",
-                             type: "post"
-                          }
-                },
-                relationship:{
-                  required: true
-                },
-                status: {
-                    required: true
-                },
-                priority: {
-                    required: true
-                },
-            },
-            messages: {
-                admission_no: "This field cannot be empty!",
-                name: "This field cannot be empty!",
-                occupation: "This field cannot be empty!",
-                income: "This field cannot be empty!",
-                haddress: "This field cannot be empty!",
-                //office_address: "Enter Office Address",
-                pemail: {
-                  required:"This field cannot be empty!",
-                  remote:"Email id Already exist"
-                },
-                //home_phone: "Enter the Home Phone",
-                //office_phone:"Enter the Office Phone",
-                relationship:{
-                  required: "Please choose an option!"
-
-                },
-                community_class: "Enter the Community Class",
-                pmobile: {
-                  required:"This field cannot be empty!",
-                  remote:"Mobile Number Already exist"
-                },
-                status: "Select Status",
-                priority: "Select Priority"
-            }
-        });
+	
+	$.validator.addMethod("alphabetsnspace", function(value, element) {
+       return this.optional(element) || /^[a-zA-Z\. ]*$/.test(value);
     });
+	
+	$('#parentform').validate({
+	rules: {
+		admission_no:{required:true},
+		relationship: {required: true},
+		name:{required:true,alphabetsnspace: true }, 
+		pmobile:{required:true,maxlength:10,minlength:10,number:true,
+		remote: {
+			url: "<?php echo base_url(); ?>parents/check_pmobile_number/",
+			type: "post"
+			}
+		},
+		smobile:{required:false,maxlength:10,minlength:10,number:true,notEqualTo: "#pmobile"},
+		pemail:{required:true,email:true,
+		remote: {
+			url: "<?php echo base_url(); ?>parents/check_pemail_id/",
+			type: "post"
+			}
+		},
+		semail:{required:false, email:true,notEqualTo: "#pemail"},
+		occupation:{required:false,alphabetsnspace: true }, 
+		income:{required:false,maxlength:10,number:true},
+		home_phone:{required:false,maxlength:14,minlength:6,number:true},
+		office_phone:{required:false,maxlength:14,minlength:6,number:true},
+		},
+	messages: {
+			relationship:{required: "Please choose an option!"},
+			name: {
+				  required: "This field cannot be empty!",
+				  alphabetsnspace: "Please enter only alphabet"
+				},
+			pmobile:{required:"This field cannot be empty!",remote:"Mobile number already exist"},
+			smobile:{notEqualTo : "Please check your mobile"},
+			pemail:{required:"This field cannot be empty!",remote:"Email already exist"},
+			semail:{notEqualTo : "Please check your email"},
+			occupation: {
+				  alphabetsnspace: "Please enter only alphabet"
+			}
+		}
+	});  
+	
+	
+	
 </script>
 <script type="text/javascript">
     function checkrelationfun() {

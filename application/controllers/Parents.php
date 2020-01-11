@@ -39,7 +39,6 @@ class Parents extends CI_Controller {
 				    $admission_id=$this->input->post('admission_no');
 					$priority=$this->input->post('priority');
 
-					//echo $admission_id; echo $priority;
 
 					//Father Details
 					$fname=$this->input->post('fname');
@@ -63,10 +62,13 @@ class Parents extends CI_Controller {
 				    $uploaddir = 'assets/parents/';
 				    $profilepic = $uploaddir.$userFileName;
 				    move_uploaded_file($_FILES['father_pic']['tmp_name'], $profilepic);
-				  if(!empty($fname)){ $userFileName =$father_pic; }else{
-					$userFileName="";
+					if(!empty($fname)){ 
+						$userFileName =$father_pic; 
+					}else{ 
+						$userFileName="";	
 					}
-				   //echo $flogin; exit;
+
+
 				//Mother Details
 				    $mname=$this->input->post('mname');
 					$moccupation=$this->input->post('moccupation');
@@ -89,11 +91,12 @@ class Parents extends CI_Controller {
 					$profilepic1 = $uploaddir1.$userFileName1;
 					move_uploaded_file($_FILES['mother_pic']['tmp_name'], $profilepic1);
 
-					if(!empty($mother_pic))
-					{ $userFileName1 =$mother_pic;
+					if(!empty($mother_pic)){ 
+						$userFileName1 =$mother_pic;
 					}else{
-					$userFileName1=""; }
-					//echo $mname; echo $mpemail; echo $mpmobile;
+						$userFileName1=""; 
+					}
+					
 
 
 				// Guardian Details
@@ -117,9 +120,13 @@ class Parents extends CI_Controller {
 					$uploaddir2 = 'assets/parents/';
 					$profilepic2 = $uploaddir2.$userFileName2;
 					move_uploaded_file($_FILES['guardian_pic']['tmp_name'], $profilepic2);
-					if(!empty($gname)){ $userFileName2 =$guardn_pic; }else{$userFileName2="";}
+					if(!empty($gname)){ 
+							$userFileName2 =$guardn_pic; 
+						}else{
+							$userFileName2="";
+					}
 
-	$datas=$this->parentsmodel->add_parents($admission_id,$fname,$foccupation,$fincome,$fhaddress,$fpemail,$fsemail,$fpmobile,$fsmobile,$fhome_phone,$foffice_address,$foffice_phone,$frelationship,$fstatus,$flogin,$userFileName,$mname,$moccupation,$mincome,$mhaddress,$mpemail,$msemail,$mpmobile,$msmobile,$mhome_phone,$moffice_address,$moffice_phone,$mrelationship,$mstatus,$mlogin,$userFileName1,$gname,$goccupation,$gincome,$ghaddress,$gpemail,$gsemail,$gpmobile,$gsmobile,$ghome_phone,$goffice_address,$goffice_phone,$grelationship,$gstatus,$glogin,$userFileName2,$user_id);
+			$datas=$this->parentsmodel->add_parents($admission_id,$fname,$foccupation,$fincome,$fhaddress,$fpemail,$fsemail,$fpmobile,$fsmobile,$fhome_phone,$foffice_address,$foffice_phone,$frelationship,$fstatus,$flogin,$userFileName,$mname,$moccupation,$mincome,$mhaddress,$mpemail,$msemail,$mpmobile,$msmobile,$mhome_phone,$moffice_address,$moffice_phone,$mrelationship,$mstatus,$mlogin,$userFileName1,$gname,$goccupation,$gincome,$ghaddress,$gpemail,$gsemail,$gpmobile,$gsmobile,$ghome_phone,$goffice_address,$goffice_phone,$grelationship,$gstatus,$glogin,$userFileName2,$user_id);
 
 			//print_r($datas['status']);exit;
 				if($datas['status']=="success")

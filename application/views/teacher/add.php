@@ -83,7 +83,7 @@
                      <div class="form-group">
                         <label class="col-sm-2 control-label">Age</label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Age" name="age" id="age" class="form-control" maxlength="5">
+                           <input type="text" placeholder="Age" name="age" id="age" class="form-control" maxlength="3">
                         </div>
                         <label class="col-sm-2 control-label">Religion <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
@@ -223,94 +223,88 @@
    function getListClass(){
 
    var subject_id=$('#subject_id').val();
-   //alert(subject_id);
    $.ajax({
-   url:'<?php echo base_url(); ?>classmanage/getListClass',
-   method:"POST",
-   data:{subject_id:subject_id},
-   dataType: "JSON",
-   cache: false,
-   success:function(data)
-   {
-   var stat=data.status;
-   $("#multiple").empty();
-   if(stat=="success"){
-   var res=data.res;
-   //alert(res.length);
-   var len=res.length;
+		url:'<?php echo base_url(); ?>classmanage/getListClass',
+		method:"POST",
+		data:{subject_id:subject_id},
+		dataType: "JSON",
+		cache: false,
+		success:function(data)
+		{
+		   var stat=data.status;
+		   $("#multiple").empty();
+		   if(stat=="success"){
+		   var res=data.res;
+		   //alert(res.length);
+		   var len=res.length;
 
-   for (i = 0; i < len; i++) {
-   $('<option>').val(res[i].class_sec_id).text(res[i].class_name + res[i].sec_name).appendTo('#multiple');
-   }
+		   for (i = 0; i < len; i++) {
+		   $('<option>').val(res[i].class_sec_id).text(res[i].class_name + res[i].sec_name).appendTo('#multiple');
+		   }
 
-   }else{
-   $("#multiple").empty();
-   }
-   }
-   });
-
+		   }else{
+		   $("#multiple").empty();
+		   }
+		}
+	});
    }
 
    var loadFile = function(event) {
-   var output = document.getElementById('output');
-   output.src = URL.createObjectURL(event.target.files[0]);
+	   var output = document.getElementById('output');
+	   output.src = URL.createObjectURL(event.target.files[0]);
    };
 
    $(document).ready(function () {
 
-
    $('#admissionform').validate({ // initialize the plugin
    rules: {
      role_type_id:{required:true },
- 	   name:{required:true }, address:{required:true },
+ 	 name:{required:true }, 
+	 address:{required:true },
    	 email:{required:true,email:true,
-                    remote: {
-                               url: "<?php echo base_url(); ?>teacher/checker",
-                               type: "post"
-                            }
-                          },
+		remote: {
+			   url: "<?php echo base_url(); ?>teacher/checker",
+			   type: "post"
+			}
+		  },
    	sex:{required:true },
    	dob:{required:true },
-   	// age:{required:true,number:true,maxlength:2 },
+   	age:{required:false,number:true },
    	nationality:{required:true },
    	religion:{required:true },
    	community_class:{required:true },
    	community:{required:true },
-   	mobile:{required:true,  remote: {
-                 url: "<?php echo base_url(); ?>teacher/mobile_checker",
-                 type: "post"
-              }
-             },
+   	mobile:{required:true,  
+		remote: {
+			 url: "<?php echo base_url(); ?>teacher/mobile_checker",
+			 type: "post"
+		  }
+		 },
    	qualification:{required:true },
-   	status:{required:true }
    },
    messages: {
-    role_type_id:"Please choose an option!",
-   	address: "This field cannot be empty!",
-   	admission_date: "Select Admission Date",
-   	name: "This field cannot be empty!",
-   	email:{
-          required: "This field cannot be empty!",
-          email: "Please enter a valid email address.",
-          remote: "Email already in use!"
-    },
-
-   	sex: "Please choose an option!",
-   	dob: "This field cannot be empty!",
-   	age: "This field cannot be empty!",
-   	nationality: "This field cannot be empty!",
-   	//subject:"Choose The Subject",
-   	religion: "This field cannot be empty!",
-   	community:"This field cannot be empty!",
-   	community_class:"This field cannot be empty!",
-   	mother_tongue:"This field cannot be empty!",
-   	qualification:"This field cannot be empty!",
-   	mobile:{
-      required: "This field cannot be empty!",
-      mobile: "Please enter a valid mobile Number.",
-      remote: "Mobile Number already in use!"
-    },
-   	status:"Select Status Name"
+		role_type_id:"Please choose an option!",
+		name: "This field cannot be empty!",
+		address: "This field cannot be empty!",
+		admission_date: "Select Admission Date",
+		email:{
+			  required: "This field cannot be empty!",
+			  email: "Please enter a valid email address.",
+			  remote: "Email already in use!"
+		},
+		sex: "Please choose an option!",
+		dob: "This field cannot be empty!",
+		nationality: "This field cannot be empty!",
+		religion: "This field cannot be empty!",
+		community:"This field cannot be empty!",
+		community_class:"This field cannot be empty!",
+		mother_tongue:"This field cannot be empty!",
+		qualification:"This field cannot be empty!",
+		mobile:{
+		  required: "This field cannot be empty!",
+		  mobile: "Please enter a valid mobile Number.",
+		  remote: "Mobile Number already in use!"
+		}
    }
    });
    });
@@ -326,23 +320,23 @@
 
 
    $().ready(function(){
-   $('#teachermenu').addClass('collapse in');
-
-   $('#teacher').addClass('active');
-   $('#teacher1').addClass('active');
-   $('.datepicker').datetimepicker({
-   format: 'DD-MM-YYYY',
-   icons: {
-   time: "fa fa-clock-o",
-   date: "fa fa-calendar",
-   up: "fa fa-chevron-up",
-   down: "fa fa-chevron-down",
-   previous: 'fa fa-chevron-left',
-   next: 'fa fa-chevron-right',
-   today: 'fa fa-screenshot',
-   clear: 'fa fa-trash',
-   close: 'fa fa-remove'
-   }
-   });
+	   $('#teachermenu').addClass('collapse in');
+	   $('#teacher').addClass('active');
+	   $('#teacher1').addClass('active');
+	   
+	   $('.datepicker').datetimepicker({
+		   format: 'DD-MM-YYYY',
+		   icons: {
+		   time: "fa fa-clock-o",
+		   date: "fa fa-calendar",
+		   up: "fa fa-chevron-up",
+		   down: "fa fa-chevron-down",
+		   previous: 'fa fa-chevron-left',
+		   next: 'fa fa-chevron-right',
+		   today: 'fa fa-screenshot',
+		   clear: 'fa fa-trash',
+		   close: 'fa fa-remove'
+	   }
+	});
    });
 </script>

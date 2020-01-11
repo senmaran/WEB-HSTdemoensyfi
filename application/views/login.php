@@ -16,10 +16,10 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
         <title>
             <?php echo $sname; ?>
         </title>
+		<link rel="icon" href="<?php echo base_url(); ?>assets/fav_icon.png" type="image/gif" sizes="32x32">
         <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
         <!--  Light Bootstrap Dashboard core CSS    -->
         <link href="<?php echo base_url(); ?>assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
@@ -72,15 +72,14 @@
 								  ×</button>
 							  <?php echo $this->session->flashdata('msg'); ?>
 							</div>
-
 							<?php endif; ?>
 
 							<?php if($pic!='') { ?>
-								<div class="header text-center"><img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>
+								<div class="header text-center"><img src="<?php echo base_url(); ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>
 
 							<?php } else { ?>
 									<!--<div class="header text-center"><img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"></div>-->
-									<div class="header text-center"><img src="http://<?php echo $server_url; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"></div>
+									<div class="header text-center"><img src="<?php echo base_url(); ?>/assets/main_logo.png" class="img-circle" style="width:150px;height:150px;"></div>
 							<?php } ?>
 									<div class="content">
 										<div class="form-group">

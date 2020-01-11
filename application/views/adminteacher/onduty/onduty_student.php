@@ -62,9 +62,9 @@
 </div>
 <script type="text/javascript">
    $(document).ready(function () {
-     $('#stuonduty').addClass('collapse in');
-     $('#stuonduty').addClass('active');
-     $('#stuonduty').addClass('active');
+    $('#ondutymenu').addClass('collapse in');
+   $('#stuonduty').addClass('active');
+   $('#onduty1').addClass('active'); 
 	demo.initFormExtendedDatetimepickers();
    });
 

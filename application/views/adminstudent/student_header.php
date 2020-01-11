@@ -7,7 +7,7 @@
       <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
       <meta name="viewport" content="width=device-width" />
-     
+     <link rel="icon" href="<?php echo base_url(); ?>assets/fav_icon.png" type="image/gif" sizes="32x32">
 	  <!-- Bootstrap core CSS     -->
       <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
       

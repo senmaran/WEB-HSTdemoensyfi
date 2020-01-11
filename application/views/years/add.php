@@ -111,6 +111,7 @@
 
 $(document).ready(function () {
 jQuery('#yearsmenu').addClass('collapse in');
+
  $('#myformsection').validate({ // initialize the plugin
      rules: {
          yexam:{required:true },

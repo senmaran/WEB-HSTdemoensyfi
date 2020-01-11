@@ -12,7 +12,7 @@
 
                <div class="card">
                   <div class="header">
-                     <h4 class="title" >Staff Leaves <a href="<?php echo base_url(); ?>userleavemaster/home" class="btn btn-wd btn-default pull-right" >Leave Master</a></h4>
+                     <h4 class="title" >Staff Leaves </h4>
                   </div>
 				  <hr>
                   <div class="content">				  

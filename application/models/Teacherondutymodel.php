@@ -167,7 +167,8 @@ Class Teacherondutymodel extends CI_Model
 	
 	function student_list($cls_tea_id,$user_id,$user_type)
 	{
-		 $stulist="SELECT e.admission_id,e.class_id,e.name,u.user_id,u.name,u.user_type,u.user_master_id FROM edu_enrollment AS e,edu_users AS u WHERE e.class_id='$cls_tea_id' AND u.user_type='3' AND e.admission_id=u.user_master_id ";
+		 $year_id=$this->getYear();
+		 $stulist="SELECT e.admission_id,e.class_id,e.name,u.user_id,u.name,u.user_type,u.user_master_id FROM edu_enrollment AS e,edu_users AS u WHERE e.class_id='$cls_tea_id' AND u.user_type='3' AND e.admit_year = '$year_id' AND e.admission_id=u.user_master_id ";
 		 $stulist1=$this->db->query($stulist);
          $stulist2=$stulist1->result();
          return $stulist2;

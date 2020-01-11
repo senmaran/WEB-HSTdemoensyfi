@@ -1,5 +1,4 @@
-
-		<style>
+<style>
    .box{
    padding: 12px 0px 66px 0px;
    border: 2px solid #9a8585;
@@ -99,16 +98,16 @@
 </style>
 <div class="main-panel">
 <div class="content">
-				<div class="card">
-                        <div class="header" style="padding:10px 10px 10px 10px">
-                            <h4 class="title">Admin Dashboard</h4>
-                        </div>
-				</div>
+	<div class="card">
+		<div class="header" style="padding:10px 10px 10px 10px">
+			<h4 class="title">Admin Dashboard</h4>
+		</div>
+	</div>
 				
    <div class="card">
-						<div class="header" style="padding:10px 10px 10px 10px">
-                            <h4 class="title">Search</h4>
-                        </div>
+	<div class="header" style="padding:10px 10px 10px 10px">
+		<h4 class="title">Search</h4>
+	</div>
 						
       <div class="container-fluid">
          <!--<p style="font-size:25px;padding-left:16px;padding-top: 15px;">Admin Dashboard</p>-->
@@ -173,53 +172,47 @@
                   </div>
                <!---                      -->
 			     <div class="col-md-12" style="padding-left:0px; padding-top:15px;padding-bottom:15px;">
-				 <div class="col-md-3">
-                     <div class="card" style="box-shadow:none;">
-					 <div class="imgdesign">
-					 <div class="img">
-					  <ul style="padding-left:70px;">
-					  <li style="padding-top:13px;list-style-type:none;">
-					 <a href="<?php echo base_url(); ?>circular/view_circular" class="design">Circular</a>
-					 </li>
-					 </ul>
+					<div class="col-md-3">
+						 <div class="card" style="box-shadow:none;">
+						 <div class="imgdesign">
+						 <div class="img">
+							<ul style="padding-left:70px;">
+								<li style="padding-top:13px;list-style-type:none;"><a href="<?php echo base_url(); ?>circular/view_circular" class="design">Circular</a></li>
+							</ul>
+						 </div>
+						 </div>
+						</div>
 					 </div>
-					 </div>
-					</div>
-					 </div>
+					 
 					 <div class="col-md-3">
-                     <div class="card" style="box-shadow:none;">
-					  <div class="imgdesign">
-					 <div class="img1">
-					 <ul style="padding-left:70px;">
-					  <li style="padding-top:13px;list-style-type:none;">
-					   <a href="<?php echo base_url(); ?>event/create" class="design">Events</a>
-					 </li>
-					 </ul>
+						 <div class="card" style="box-shadow:none;">
+						 <div class="imgdesign">
+						 <div class="img1">
+						 <ul style="padding-left:70px;">
+							<li style="padding-top:13px;list-style-type:none;"><a href="<?php echo base_url(); ?>event/create" class="design">Events</a></li>
+						 </ul>
+						 </div>
+						 </div>
+						 </div>
 					 </div>
-					 </div>
-					 </div>
-					 </div>
+					 
 					 <div class="col-md-3" >
-                     <div class="card" style="box-shadow:none;">
-					  <div class="imgdesign">
-					 <div class="imgs">
-					  <ul style="padding-left:70px;">
-					  <li style="padding-top:13px;list-style-type:none;">
-					 <a href="<?php echo base_url(); ?>communication/view_user_leaves" class="design">Teachers<span style="padding-left:7px;">Leave</span></a>
-					 </li>
-					 </ul>
+						 <div class="card" style="box-shadow:none;">
+						 <div class="imgdesign">
+						 <div class="imgs">
+						  <ul style="padding-left:70px;">
+							<li style="padding-top:13px;list-style-type:none;"><a href="<?php echo base_url(); ?>communication/view_user_leaves" class="design">Staff<span style="padding-left:7px;">Leave</span></a></li>
+						 </ul>
+						 </div>
+						 </div>
+						 </div>
 					 </div>
-					 </div>
-					 </div>
-					 </div>
-					 <div class="col-md-3" >
-			    <div class="card" style="box-shadow:none;">
-				 <div class="imgdesign">
+					 
+				<div class="col-md-3" >
+					<div class="card" style="box-shadow:none;">
+					 <div class="imgdesign">
 					 <div class="img4">
-						<ul style="padding-left:70px;">
-						<li style="padding-top:13px;list-style-type:none;">
-					 <a href="<?php echo base_url(); ?>adminattendance/monthclass" class="design">Month<span style="padding-left:7px;">Attendance</span></a>
-					 </li>
+						<ul style="padding-left:70px;"><li style="padding-top:13px;list-style-type:none;"><a href="<?php echo base_url(); ?>adminattendance/monthclass" class="design">Month<span style="padding-left:7px;">Attendance</span></a></li>
 					 </ul>
 					 </div>
 					 </div>
@@ -302,23 +295,22 @@
                            <div class="table-full-width">
                               <table class="table">
 							   <thead class="setcolor">
-                                    <th colspan="2" style="padding-bottom: 8px;"><span class="rem">Task & Events <a href="<?php echo base_url(); ?>event/create" >
+                                    <th colspan="2" style="padding-bottom: 8px;"><span class="rem">Notifications <a href="" >
 									<img class="img-responsive plusicon" src="<?php echo base_url(); ?>assets/img/icons/plus.png"/></a></span></th>
 								</thead>
                                  <tbody>
-                                    <?php  if(empty($das_events)){
-                                       } else {
-                                       	 $i=1;
-                                       	foreach ($das_events as $rows) { ?>
                                     <tr>
-                                       <td>
-                                          <label class="checkbox">
-                                          <?php echo $i; ?>
-                                          </label>
-                                       </td>
-                                       <td><?php echo $new_date = date('d-m-Y', strtotime($rows->event_date));  ?> &nbsp; <?php echo $rows->event_name; ?></td>
+                                       <td><a href="<?php echo base_url(); ?>communication/view_user_leaves">Staff Leave Request </a></td>
+                                       <td><?php echo $count_notification['sleave_count']; ?></td>
                                     </tr>
-                                    <?php  $i++; } 	}?>
+									 <tr>
+                                       <td><a href="<?php echo base_url(); ?>onduty/teachers">Staff OD Request </a></td>
+                                       <td><?php echo $count_notification['sod_count']; ?></td>
+                                    </tr>
+									 <tr>
+                                       <td><a href="<?php echo base_url(); ?>onduty/students">Student OD Request </a></td>
+                                       <td><?php echo $count_notification['studod_count']; ?></td>
+                                    </tr>
                                  </tbody>
                               </table>
                            </div>

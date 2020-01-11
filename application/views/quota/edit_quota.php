@@ -52,8 +52,8 @@
 <script type="text/javascript">
 $(document).ready(function () {
 
-       $('#feesmenu').addClass('collapse in');
-        $('#payment').addClass('active');
+        $('#mastersmenu').addClass('collapse in');
+        $('#master').addClass('active');
         $('#fees2').addClass('active');
 
    $('#feesformsection').validate({ // initialize the plugin

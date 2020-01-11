@@ -66,9 +66,9 @@
                                                           <div class="col-sm-4">
                                                               <input type="text" name="fpemail" id="fpemail" class="form-control" placeholder="Email ID"  maxlength="30" />
                                                           </div>
-                                                          <label class="col-sm-2 control-label">Alternate Email ID</label>
+                                                          <label class="col-sm-2 control-label">Alternate Email</label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" name="fsemail" class="form-control " id="email" placeholder="Alternate Email ID"  maxlength="30" />
+                                                              <input type="text" name="fsemail" id="fsemail" class="form-control " id="email" placeholder="Alternate Email ID"  maxlength="30" />
                                                           </div>
                                                         </div>
                                                     </fieldset>
@@ -80,9 +80,9 @@
                                                           <div class="col-sm-4">
                                                               <input type="text" placeholder="Mobile Number" name="fpmobile" id="fpmobile" class="form-control"  maxlength="10">
                                                           </div>
-                                                          <label class="col-sm-2 control-label">Alternate Mobile Number</label>
+                                                          <label class="col-sm-2 control-label">Alternate Mobile</label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" placeholder="Alternate Mobile Number" name="fsmobile" class="form-control"  maxlength="10">
+                                                              <input type="text" placeholder="Alternate Mobile Number" name="fsmobile" id="fsmobile"class="form-control"  maxlength="10">
                                                           </div>
 
                                                         </div>
@@ -119,12 +119,12 @@
                                                         <div class="form-group">
                                                            <label class="col-sm-2 control-label">Telephone</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" placeholder="Telephone" name="fhome_phone" id="fhome_phone" class="form-control" maxlength="10">
+                                                                <input type="text" placeholder="Telephone" name="fhome_phone" id="fhome_phone" class="form-control" maxlength="14">
                                                             </div>
 
-                                                            <label class="col-sm-2 control-label">Office Phone Number</label>
+                                                            <label class="col-sm-2 control-label">Office Phone</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" placeholder="Office Phone" name="foffice_phone" class="form-control"  maxlength="10">
+                                                                <input type="text" placeholder="Office Phone" name="foffice_phone" class="form-control"  maxlength="14">
                                                                   <input type="hidden" placeholder="Office Phone" name="frelationship" class="form-control" value="Father">
                                                             </div>
 
@@ -181,9 +181,9 @@
                                                           <div class="col-sm-4">
                                                               <input type="text" name="mpemail" id="mpemail" class="form-control" placeholder="Email ID"  maxlength="30"/>
                                                           </div>
-                                                          <label class="col-sm-2 control-label">Alternate Email ID</label>
+                                                          <label class="col-sm-2 control-label">Alternate Email</label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" name="msemail" class="form-control " id="email" placeholder="Alternate Email ID" maxlength="30" />
+                                                              <input type="text" name="msemail" id="msemail" class="form-control "placeholder="Alternate Email ID" maxlength="30" />
                                                           </div>
                                                         </div>
                                                     </fieldset>
@@ -194,9 +194,9 @@
                                                               <input type="text" placeholder="Mobile Number" name="mpmobile" id="mpmobile" class="form-control"  maxlength="10">
                                                           </div>
 
-                                                          <label class="col-sm-2 control-label">Alternate Mobile Number</label>
+                                                          <label class="col-sm-2 control-label">Alternate Mobile</label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" placeholder="Alternate Mobile Number" name="msmobile" class="form-control" maxlength="10">
+                                                              <input type="text" placeholder="Alternate Mobile Number" name="msmobile" id="msmobile" class="form-control" maxlength="10">
                                                           </div>
                                                         </div>
                                                     </fieldset>
@@ -234,11 +234,11 @@
                                                           
 															<label class="col-sm-2 control-label">Telephone</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" placeholder="Telephone" name="mhome_phone" id="mhome_phone" class="form-control" maxlength="10">
+                                                                <input type="text" placeholder="Telephone" name="mhome_phone" id="mhome_phone" class="form-control" maxlength="14">
                                                             </div>
                                                             <label class="col-sm-2 control-label">Office Phone</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" placeholder="Office Phone" name="moffice_phone" class="form-control" maxlength="10">
+                                                                <input type="text" placeholder="Office Phone" name="moffice_phone" class="form-control" maxlength="14">
                                                               <input type="hidden" placeholder="Office Phone" name="mrelationship" class="form-control" value="Mother">
                                                             </div>
 
@@ -296,9 +296,9 @@
                                                           <div class="col-sm-4">
                                                               <input type="text" name="gpemail" id="gpemail" class="form-control" placeholder="Email ID"  maxlength="30" />
                                                           </div>
-                                                          <label class="col-sm-2 control-label">Alternate Email ID</label>
+                                                          <label class="col-sm-2 control-label">Alternate Email</label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" name="gsemail" class="form-control " id="email" placeholder="Alternate Email ID" maxlength="30" />
+                                                              <input type="text" name="gsemail" class="form-control " id="gsemail" placeholder="Alternate Email ID" maxlength="30" />
                                                           </div>
 
                                                         </div>
@@ -309,9 +309,9 @@
                                                           <div class="col-sm-4">
                                                               <input type="text" placeholder="Mobile Number" name="gpmobile" id="gpmobile" class="form-control" maxlength="10">
                                                           </div>
-                                                          <label class="col-sm-2 control-label">Alternate Mobile Number</label>
+                                                          <label class="col-sm-2 control-label">Alternate Mobile</label>
                                                           <div class="col-sm-4">
-                                                              <input type="text" placeholder="Alternate Mobile Number" name="gsmobile" class="form-control" maxlength="10">
+                                                              <input type="text" placeholder="Alternate Mobile Number" name="gsmobile" id="gsmobile" class="form-control" maxlength="10">
                                                           </div>
 
 
@@ -348,13 +348,13 @@
                                                         <div class="form-group">
 														<label class="col-sm-2 control-label">Telephone</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" placeholder="Telephone" name="ghome_phone" id="ghome_phone" class="form-control" maxlength="10">
+                                                                <input type="text" placeholder="Telephone" name="ghome_phone" id="ghome_phone" class="form-control" maxlength="14">
                                                             </div>
                                                             
 
                                                             <label class="col-sm-2 control-label">Office Phone</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" placeholder="Office Phone" name="goffice_phone" class="form-control" maxlength="10">
+                                                                <input type="text" placeholder="Office Phone" name="goffice_phone" class="form-control" maxlength="14">
                                                                   <input type="hidden" placeholder="Office Phone" name="grelationship" class="form-control" value="Guardian">
                                                             </div>
 
@@ -420,7 +420,8 @@
                                                             <p id="msg1"> </p>
                                                         </div>
                                                         <div class="col-sm-4">
-                                                            <button type="submit" id="save" class="btn btn-info btn-fill center">SEARCH </button>
+															<input type="submit" id="save" class="btn btn-info btn-fill center" value="SEARCH">
+                                                        
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -442,7 +443,7 @@
 </div>
 <script type="text/javascript">
     function validates() { //alert("hi");
-        var fname = document.getElementById("fname").value;
+     /*    var fname = document.getElementById("fname").value;
         var mname = document.getElementById("mname").value;
         var gname = document.getElementById("gname").value;
 
@@ -472,7 +473,7 @@
 
         var flogin = document.getElementById("flogin").value;
         var mlogin = document.getElementById("mlogin").value;
-        var glogin = document.getElementById("glogin").value;
+        var glogin = document.getElementById("glogin").value; */
 
         // if (fname == "" && mname == "" && gname == "") {
         //     $("#erid").html("Please Enter anyone Name");
@@ -541,72 +542,109 @@
         });
     });
 
+	$.validator.addMethod("alphabetsnspace", function(value, element) {
+       return this.optional(element) || /^[a-zA-Z\. ]*$/.test(value);
+    });
+	
 $('#parentform').validate({
         rules: {
-            fname:{required:true},
-            mname:{required:true},
-            gname:{required:true},
-			fsmobile:{required:false,maxlength:10,minlength:10,number:true},
+            
+			fname:{required:true,alphabetsnspace: true }, 
+			mname:{required:true,alphabetsnspace: true }, 
+			gname:{required:true,alphabetsnspace: true }, 
+			//fsmobile:{required:false,maxlength:10,minlength:10,number:true},
 			fincome:{required:false,maxlength:10,number:true},
-			fhome_phone:{required:false,maxlength:10,minlength:10,number:true},
-			foffice_phone:{required:false,maxlength:10,minlength:10,number:true},
-			msmobile:{required:false,maxlength:10,minlength:10,number:true},
+			fhome_phone:{required:false,maxlength:14,minlength:6,number:true},
+			foffice_phone:{required:false,maxlength:14,minlength:6,number:true},
+			foccupation:{required:false,alphabetsnspace: true }, 
+			//msmobile:{required:false,maxlength:10,minlength:10,number:true},
 			mincome:{required:false,maxlength:10,number:true},
-			mhome_phone:{required:false,maxlength:10,minlength:10,number:true},
-			moffice_phone:{required:false,maxlength:10,minlength:10,number:true},
-			gsmobile:{required:false,maxlength:10,minlength:10,number:true},
+			mhome_phone:{required:false,maxlength:14,minlength:6,number:true},
+			moffice_phone:{required:false,maxlength:14,minlength:6,number:true},
+			moccupation:{required:false,alphabetsnspace: true }, 
+			//gsmobile:{required:false,maxlength:10,minlength:10,number:true},
 			gincome:{required:false,maxlength:10,number:true},
-			ghome_phone:{required:false,maxlength:10,minlength:10,number:true},
-			goffice_phone:{required:false,maxlength:10,minlength:10,number:true},
+			ghome_phone:{required:false,maxlength:14,minlength:6,number:true},
+			goffice_phone:{required:false,maxlength:14,minlength:6,number:true},
+			goccupation:{required:false,alphabetsnspace: true }, 
 			fpmobile:{required:true,maxlength:10,minlength:10,number:true,
 				remote: {
 				 url: "<?php echo base_url(); ?>parents/check_fpmobile_number/",
 				 type: "post"
 				}
 			},
-			mpmobile:{required:true,maxlength:10,minlength:10,
+			fsmobile:{required:false,maxlength:10,minlength:10,number:true,notEqualTo: "#fpmobile"},
+			mpmobile:{required:true,maxlength:10,minlength:10,number:true,
 				remote: {
 				 url: "<?php echo base_url(); ?>parents/check_mpmobile_number/",
 				 type: "post"
 				}
 			},
-			gpmobile:{required:true,maxlength:10,minlength:10,
+			msmobile:{required:false,maxlength:10,minlength:10,number:true,notEqualTo: "#mpmobile"},
+			gpmobile:{required:true,maxlength:10,minlength:10,number:true,
 				remote: {
 				 url: "<?php echo base_url(); ?>parents/check_gpmobile_number/",
 				 type: "post"
 				}
 			},
+			gsmobile:{required:false,maxlength:10,minlength:10,number:true, notEqualTo: "#gpmobile"},
 			fpemail:{required:true,email:true,
 				remote: {
 				 url: "<?php echo base_url(); ?>parents/check_fpemail_id/",
 				 type: "post"
 				}
 			},
+			fsemail:{required:false, email:true,notEqualTo: "#fpemail"},
 			mpemail:{required:true,email:true,
 				remote: {
 				 url: "<?php echo base_url(); ?>parents/check_mpemail_id/",
 				 type: "post"
 			  }
 			},
+			msemail:{required:false, email:true,notEqualTo: "#mpemail"},
 			gpemail:{required:true,email:true,
 				remote: {
 					 url: "<?php echo base_url(); ?>parents/check_gpemail_id/",
 					 type: "post"
 				  }
-				}
+				},
+			gsemail:{required:false, email:true,notEqualTo: "#gpemail"}
         },
         messages: {
-          fname:{required:"This field cannot be empty!"},
-          mname:{required:"This field cannot be empty!"},
-          gname:{required:"This field cannot be empty!"},
-          fpmobile:{required:"This field cannot be empty!",remote:"Mobile Number Already Exist"},
-          mpmobile:{required:"This field cannot be empty!",remote:"Mobile Number Already Exist"},
-          gpmobile:{required:"This field cannot be empty!",remote:"Mobile Number Already Exist"},
-          fpemail:{required:"This field cannot be empty!",remote:"Email Already Exist"},
-          mpemail:{required:"This field cannot be empty!",remote:"Email Already Exist"},
-          gpemail:{required:"This field cannot be empty!",remote:"Email Already Exist"}
-
-            }
+          fname: {
+			  required: "This field cannot be empty!",
+			  alphabetsnspace: "Please enter only alphabet"
+			},
+		  mname: {
+			  required: "This field cannot be empty!",
+			  alphabetsnspace: "Please enter only alphabet"
+			},
+		  gname: {
+			  required: "This field cannot be empty!",
+			  alphabetsnspace: "Please enter only alphabet"
+			},
+          fpmobile:{required:"This field cannot be empty!",remote:"Mobile number already exist"},
+		  fsmobile:{notEqualTo : "Please check your mobile"},
+          mpmobile:{required:"This field cannot be empty!",remote:"Mobile number already exist"},
+		  msmobile:{notEqualTo : "Please check your mobile"},
+          gpmobile:{required:"This field cannot be empty!",remote:"Mobile number already exist"},
+		  gsmobile:{notEqualTo : "Please check your mobile"},
+          fpemail:{required:"This field cannot be empty!",remote:"Email already exist"},
+		  fsemail:{notEqualTo : "Please check your email"},
+          mpemail:{required:"This field cannot be empty!",remote:"Email already exist"},
+		  msemail:{notEqualTo : "Please check your email"},
+          gpemail:{required:"This field cannot be empty!",remote:"Email already exist"},
+		  gsemail:{notEqualTo : "Please check your email"},
+		  foccupation: {
+			  alphabetsnspace: "Please enter only alphabet"
+			},
+		  moccupation: {
+			  alphabetsnspace: "Please enter only alphabet"
+			},
+		  goccupation: {
+			  alphabetsnspace: "Please enter only alphabet"
+			},
+         }
     });
 	
     $('#old_parentform').validate({

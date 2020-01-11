@@ -200,7 +200,7 @@ Class Admissionmodel extends CI_Model
 		}
 		 function get_all_admission_years()
 		{
-		   $sql="SELECT admisn_year FROM edu_admission GROUP BY admisn_year ";
+		   $sql="SELECT admisn_year FROM edu_admission GROUP BY admisn_year ORDER BY admisn_year DESC";
 		   $res=$this->db->query($sql);
 		   return $res->result();
 

@@ -8,6 +8,21 @@ Class Ondutymodel extends CI_Model
         parent::__construct();
      }
   
+   function getYear()
+  {
+      $sqlYear     = "SELECT * FROM edu_academic_year WHERE CURDATE() >= from_month AND CURDATE() <= to_month AND status = 'Active'";
+      $year_result = $this->db->query($sqlYear);
+      $ress_year   = $year_result->result();
+
+      if ($year_result->num_rows() == 1) {
+          foreach ($year_result->result() as $rows) {
+              $year_id = $rows->year_id;
+          }
+          return $year_id;
+      }
+  }
+
+
     function get_teacher_onduty_details()
      {
 		  $get_year="SELECT * FROM edu_academic_year WHERE NOW()>=from_month AND NOW()<=to_month";
@@ -49,11 +64,12 @@ Class Ondutymodel extends CI_Model
 
 	function get_student_onduty_details()
 	{
-		  $get_year="SELECT * FROM edu_academic_year WHERE NOW()>=from_month AND NOW()<=to_month";
+		$current_year = $this->getYear();
+		 /*  $get_year="SELECT * FROM edu_academic_year WHERE NOW()>=from_month AND NOW()<=to_month";
 		  $result1=$this->db->query($get_year);
 		  $all_year= $result1->result();
 		  foreach($all_year as $cyear){}
-		  $current_year=$cyear->year_id;
+		  $current_year=$cyear->year_id; */
 		  
 		  //echo $current_year;exit;
 		  

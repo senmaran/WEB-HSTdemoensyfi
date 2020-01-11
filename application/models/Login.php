@@ -89,15 +89,46 @@ Class Login extends CI_Model
          }
        }
 
-       function profileupdate($userFileName,$user_id,$name){
-         $query="UPDATE edu_users SET user_pic='$userFileName',name='$name' WHERE user_id='$user_id'";
+       function profileupdate($user_id,$name){
+         $query="UPDATE edu_users SET name='$name' WHERE user_id='$user_id'";
           $ex=$this->db->query($query);
          $data= array("status" => "success");
          return $data;
        }
 
 
+		function update_pic($user_id,$imageName)
+       {
+            $query6="UPDATE edu_users SET user_pic='$imageName',updated_date=NOW() WHERE user_id='$user_id' ";
+             $res=$this->db->query($query6);
+               if($res){
+               $data= array("status" => "success");
+               return $data;
+             }else{
+               $data= array("status" => "Failed to Update");
+               return $data;
+             }
 
+        }
+
+
+      function remove_img($user_id){
+        $select="SELECT * from edu_users where user_id='$user_id'";
+        $get_all=$this->db->query($select);
+        $result=$get_all->result();
+        foreach($result as $rows){}
+        $filename='./assets/admin/profile/'.$rows->user_pic;
+        unlink($filename);
+        $get_all_gallery_img="UPDATE edu_users SET user_pic='',updated_date=NOW() WHERE user_id='$user_id' ";
+        $get_all=$this->db->query($get_all_gallery_img);
+        if ($get_all) {
+          $data= array("status" => "success");
+          return $data;
+        } else {
+          $data= array("status" => "Failed to Update");
+          return $data;
+        }
+      }
 
 }
 ?>

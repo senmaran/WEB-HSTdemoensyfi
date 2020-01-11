@@ -26,6 +26,13 @@ Class Adminattendancemodel extends CI_Model
 
 	}
 
+	function get_aca_year_month(){
+		$query="SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month";
+		$resultset=$this->db->query($query);
+		$res=$resultset->result();
+	  	return $res;
+	}
+
       //GET ALL CLASS
        function get_all_class(){
 			$acd_year=$this->get_cur_year();

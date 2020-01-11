@@ -7,7 +7,7 @@
       <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
       <meta name="viewport" content="width=device-width" />
-      
+      <link rel="icon" href="<?php echo base_url(); ?>assets/fav_icon.png" type="image/gif" sizes="32x32">
 	  <!-- Bootstrap core CSS     -->
       <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
       
@@ -204,6 +204,7 @@
                         <li id="masters5"><a href="<?php echo base_url(); ?>classmanage/home">Class Management </a></li>
                         <li id="curricular1"><a href="<?php echo base_url(); ?>extracurricular/home">Co-curricular Activities</a></li>
                         <li id="curricular2"><a href="<?php echo base_url(); ?>groups/home">Houses</a></li>
+						<li id="fees2"><a href="<?php echo base_url(); ?>quota/home">Quota</a></li>
                      </ul>
                   </div>
                </li>
@@ -245,6 +246,7 @@
                      <ul class="nav">
                         <li id="teacher1"><a href="<?php echo base_url(); ?>teacher/home">Create Staff</a></li>
                         <li id="teacher2"><a href="<?php echo base_url(); ?>teacher/view">Staff Search</a></li>
+						 <li id="teacher4"><a href="<?php echo base_url(); ?>userleavemaster/home">Leave Master</a></li>
                         <li id="teacher3"><a href="<?php echo base_url(); ?>communication/view_user_leaves">Staff Leaves</a></li>
                      </ul>
                   </div>
@@ -257,7 +259,6 @@
                   </a>
                   <div class="collapse" id="feesmenu">
                      <ul class="nav">
-                         <li id="fees2"><a href="<?php echo base_url(); ?>quota/home">Quota</a></li>
                         <li id="fees"><a href="<?php echo base_url(); ?>feesstructure/fees_master">Fees Master</a></li>
                         <li id="fees1"><a href="<?php echo base_url(); ?>feesstructure/view_term_fees_master">Fee Status</a></li>
 

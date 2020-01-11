@@ -132,9 +132,10 @@
 </div>
 <script type="text/javascript">
    $(document).ready(function () {
-   /* $('#mastersmenu').addClass('collapse in');
-   $('#master').addClass('active');
-   $('#masters2').addClass('active'); */
+    $('#ondutymenu').addClass('collapse in');
+   $('#stuonduty').addClass('active');
+   $('#onduty2').addClass('active'); 
+   
     $('#ondutysection').validate({ // initialize the plugin
         rules: {
             reason:{required:true },

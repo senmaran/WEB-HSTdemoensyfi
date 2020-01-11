@@ -570,6 +570,30 @@ INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON
          $data= array("status" => "success");
          return $data;
    }
+   
+      function count_notification(){
+		  $year_id = $this->getYear();
+			$staff_leave_count = "SELECT * FROM edu_user_leave WHERE user_type = '2' AND year_id = '$year_id' AND status = 'Pending'";
+			$staff_leave_res = $this->db->query($staff_leave_count);
+			$sleave_count = $staff_leave_res->num_rows();
+									
+			$staff_od = "SELECT * FROM edu_on_duty WHERE user_type = '2' AND year_id = '$year_id' AND status = 'Pending'";
+			$staff_od_res = $this->db->query($staff_od);
+			$sod_count = $staff_od_res->num_rows(); 
+			
+			$stut_od = "SELECT * FROM edu_on_duty WHERE user_type = '3' AND year_id = '$year_id' AND status = 'Pending'";
+			$stut_od_res = $this->db->query($stut_od);
+			$studod_count = $stut_od_res->num_rows(); 
+			
+			$result  = array(
+					"sleave_count" => $sleave_count,
+					"sod_count" => $sod_count,
+					"studod_count" => $studod_count
+				);
+					
+			return $result;
+   }
+   
 
 }
 ?>

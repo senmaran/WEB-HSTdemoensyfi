@@ -63,7 +63,8 @@
                                                   </div>
                                                 </div>
                                             </fieldset>
-                                            <fieldset>                                                <div class="form-group">
+                                            <fieldset>                                                
+											<div class="form-group">
                                                     <label class="col-sm-2 control-label">Father Name <span class="mandatory_field">*</span></label>
                                                     <div class="col-sm-4">
                                                         <input type="text" name="fname" id="fname" placeholder="Enter Name" class="form-control" value="<?php echo $prow->name; ?>" maxlength="30">
@@ -123,7 +124,7 @@
                                                     </div>
                                                     <label class="col-sm-2 control-label">Telephone</label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" placeholder="Home Phone" value="<?php echo $prow->home_phone; ?>" name="fhome_phone" id="fhome_phone" class="form-control" maxlength="10">
+                                                        <input type="text" placeholder="Home Phone" value="<?php echo $prow->home_phone; ?>" name="fhome_phone" id="fhome_phone" class="form-control" maxlength="14">
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -136,7 +137,7 @@
                                                     </div>
                                                     <label class="col-sm-2 control-label">Office Phone Number</label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" placeholder="Office Phone" value="<?php echo $prow->office_phone; ?>" name="foffice_phone" id="foffice_phone" class="form-control" maxlength="10">
+                                                        <input type="text" placeholder="Office Phone" value="<?php echo $prow->office_phone; ?>" name="foffice_phone" id="foffice_phone" class="form-control" maxlength="14">
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -178,36 +179,48 @@
                                                     </div>
                                                 </div>
                                             </fieldset>
-                                            <script>
-                                            $('#father_form').validate({
-                                                rules: {
-                                                    fid:{required:false},
-                                                    fname:{required:true},
-                                                    fpmobile:{required:true,maxlength:10,minlength:10,number:true,
-													fsmobile:{required:false,maxlength:10,minlength:10,number:true},
-													fincome:{required:false,maxlength:10,number:true},
-													fhome_phone:{required:false,maxlength:10,minlength:10,number:true},
-													foffice_phone:{required:false,maxlength:10,minlength:10,number:true},
-                                                      remote: {
-                                                             url: "<?php echo base_url(); ?>parents/check_fpmobile_number_exist/<?php echo $fid; ?>",
-                                                             type: "post"
-                                                          }
-                                                        },
-
-                                                    fpemail:{required:true,email:true,
-                                                    remote: {
-                                                             url: "<?php echo base_url(); ?>parents/check_fpemail_id_exist/<?php echo $fid; ?>",
-                                                             type: "post"
-                                                          }
-                                                        }
-                                                },
-                                                messages: {
-                                                  fname:{required:"Enter the father name"},
-                                                  fpmobile:{required:"Enter the mobile number",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
-                                                  fpemail:{required:"Enter Email Address",remote:"Email Already Exist"},
-                                                    }
-                                            });
-                                            </script>
+<script>
+	$.validator.addMethod("alphabetsnspace", function(value, element) {
+       return this.optional(element) || /^[a-zA-Z\. ]*$/.test(value);
+    });
+	
+	$('#father_form').validate({
+		rules: {
+			fname:{required:true,alphabetsnspace: true }, 
+			fpmobile:{required:true,maxlength:10,minlength:10,number:true,
+				remote: {
+				 url: "<?php echo base_url(); ?>parents/check_fpmobile_number_exist/<?php echo $fid; ?>",
+				 type: "post"
+				}
+			},
+			fsmobile:{required:false,maxlength:10,minlength:10,number:true,notEqualTo: "#fpmobile"},
+			fpemail:{required:true,email:true,
+				remote: {
+				  url: "<?php echo base_url(); ?>parents/check_fpemail_id_exist/<?php echo $fid; ?>",
+				 type: "post"
+				}
+			},
+			fsemail:{required:false, email:true,notEqualTo: "#fpemail"},
+			fincome:{required:false,maxlength:10,number:true},
+			fhome_phone:{required:false,maxlength:14,minlength:6,number:true},
+			foffice_phone:{required:false,maxlength:14,minlength:6,number:true},
+			foccupation:{required:false,alphabetsnspace: true }
+			},
+		messages: {
+			 fname: {
+				  required: "This field cannot be empty!",
+				  alphabetsnspace: "Please enter only alphabet"
+				},
+			fpmobile:{required:"This field cannot be empty!",remote:"Mobile number already exist"},
+			fsmobile:{notEqualTo : "Please check your mobile"},
+			fpemail:{required:"This field cannot be empty!",remote:"Email already exist"},
+			fsemail:{notEqualTo : "Please check your email"},
+			foccupation: {
+				  alphabetsnspace: "Please enter only alphabet"
+			}
+		}
+	});
+</script>
                                           <?php } } ?>
                                             </form>
                                     </div>
@@ -300,7 +313,7 @@
                                                     </div>
                                                     <label class="col-sm-2 control-label">Telephone</label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" placeholder="Home Phone" maxlength="10" value="<?php echo $prow->home_phone; ?>" name="mhome_phone" id="mhome_phone" class="form-control">
+                                                        <input type="text" placeholder="Home Phone" maxlength="14" value="<?php echo $prow->home_phone; ?>" name="mhome_phone" id="mhome_phone" class="form-control">
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -313,7 +326,7 @@
                                                     </div>
                                                     <label class="col-sm-2 control-label"> Office Phone Number</label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" placeholder="Office Phone" value="<?php echo $prow->office_phone; ?>" name="moffice_phone" id="moffice_phone" class="form-control" maxlength="10">
+                                                        <input type="text" placeholder="Office Phone" value="<?php echo $prow->office_phone; ?>" name="moffice_phone" id="moffice_phone" class="form-control" maxlength="14">
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -357,36 +370,49 @@
                                                     </div>
                                                 </div>
                                             </fieldset>
-                                            <script>
-                                            $('#mother_form').validate({
-                                                rules: {
-                                                    mid:{required:false},
-                                                    mname:{required:true},
-                                                    mpmobile:{required:true,maxlength:10,minlength:10,number:true,
-													msmobile:{required:false,maxlength:10,minlength:10,number:true},
-													mincome:{required:false,maxlength:10,number:true},
-													mhome_phone:{required:false,maxlength:10,minlength:10,number:true},
-													moffice_phone:{required:false,maxlength:10,minlength:10,number:true},
-                                                      remote: {
-                                                             url: "<?php echo base_url(); ?>parents/check_mpmobile_number_exist/<?php echo $mid; ?>",
-                                                             type: "post"
-                                                          }
-                                                        },
-
-                                                    mpemail:{required:true,email:true,
-                                                    remote: {
-                                                             url: "<?php echo base_url(); ?>parents/check_fpemail_id_exist/",
-                                                             type: "post"
-                                                          }
-                                                        }
-                                                },
-                                                messages: {
-                                                  mname:{required:"Enter the father name"},
-                                                  mpmobile:{required:"Enter the mobile number",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
-                                                  mpemail:{required:"Enter Email Address",remote:"Email Already Exist"},
-                                                    }
-                                            });
-                                            </script>
+<script>
+	$.validator.addMethod("alphabetsnspace", function(value, element) {
+       return this.optional(element) || /^[a-zA-Z\. ]*$/.test(value);
+    });
+	
+	$('#mother_form').validate({
+	rules: {
+		mid:{required:false},
+		mname:{required:true,alphabetsnspace: true }, 
+		mpmobile:{required:true,maxlength:10,minlength:10,number:true,
+		remote: {
+			url: "<?php echo base_url(); ?>parents/check_mpmobile_number_exist/<?php echo $mid; ?>",
+			type: "post"
+			}
+		},
+		msmobile:{required:false,maxlength:10,minlength:10,number:true,notEqualTo: "#mpmobile"},
+		mpemail:{required:true,email:true,
+		remote: {
+			url: "<?php echo base_url(); ?>parents/check_mpemail_id_exist/<?php echo $mid; ?>",
+			type: "post"
+			}
+		},
+		msemail:{required:false, email:true,notEqualTo: "#mpemail"},
+		moccupation:{required:false,alphabetsnspace: true }, 
+		mincome:{required:false,maxlength:10,number:true},
+		mhome_phone:{required:false,maxlength:14,minlength:6,number:true},
+		moffice_phone:{required:false,maxlength:14,minlength:6,number:true},
+		},
+	messages: {
+			 mname: {
+				  required: "This field cannot be empty!",
+				  alphabetsnspace: "Please enter only alphabet"
+				},
+			mpmobile:{required:"This field cannot be empty!",remote:"Mobile number already exist"},
+			msmobile:{notEqualTo : "Please check your mobile"},
+			mpemail:{required:"This field cannot be empty!",remote:"Email already exist"},
+			msemail:{notEqualTo : "Please check your email"},
+			moccupation: {
+				  alphabetsnspace: "Please enter only alphabet"
+			}
+		}
+	});                                        
+</script>
                                           <?php }else{
 
                                           }  } ?>
@@ -481,7 +507,7 @@
                                                     </div>
                                                     <label class="col-sm-2 control-label">Telephone</label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" placeholder="Home Phone" value="<?php echo $prow->home_phone; ?>" name="ghome_phone" id="ghome_phone" class="form-control" maxlength="10">
+                                                        <input type="text" placeholder="Home Phone" value="<?php echo $prow->home_phone; ?>" name="ghome_phone" id="ghome_phone" class="form-control" maxlength="14">
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -494,7 +520,7 @@
                                                     </div>
                                                     <label class="col-sm-2 control-label">Office Phone Number</label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" placeholder="Office Phone" value="<?php echo $prow->office_phone; ?>" name="goffice_phone" id="goffice_phone" class="form-control" maxlength="10">
+                                                        <input type="text" placeholder="Office Phone" value="<?php echo $prow->office_phone; ?>" name="goffice_phone" id="goffice_phone" class="form-control" maxlength="14">
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -537,36 +563,50 @@
                                                     </div>
                                                 </div>
                                             </fieldset>
-                                            <script>
-                                            $('#guardian_form').validate({
-                                                rules: {
-                                                    gid:{required:false},
-                                                    gname:{required:true},
-													gsmobile:{required:false,maxlength:10,minlength:10,number:true},
-													gincome:{required:false,maxlength:10,number:true},
-													ghome_phone:{required:false,maxlength:10,minlength:10,number:true},
-													goffice_phone:{required:false,maxlength:10,minlength:10,number:true},
-                                                    gpmobile:{required:true,maxlength:10,minlength:10,number:true,
-                                                      remote: {
-                                                             url: "<?php echo base_url(); ?>parents/check_gpmobile_number_exist/<?php echo $gid; ?>",
-                                                             type: "post"
-                                                          }
-                                                        },
+<script>
+	$.validator.addMethod("alphabetsnspace", function(value, element) {
+       return this.optional(element) || /^[a-zA-Z\. ]*$/.test(value);
+    });
+	
+	$('#guardian_form').validate({
+	rules: {
+		gid:{required:false},
+		gname:{required:true,alphabetsnspace: true }, 
+		gpmobile:{required:true,maxlength:10,minlength:10,number:true,
+		remote: {
+			url: "<?php echo base_url(); ?>parents/check_gpmobile_number_exist/<?php echo $gid; ?>",
+			type: "post"
+			}
+		},
+		gsmobile:{required:false,maxlength:10,minlength:10,number:true,notEqualTo: "#gpmobile"},
+		gpemail:{required:true,email:true,
+		remote: {
+			url: "<?php echo base_url(); ?>parents/check_gpemail_id_exist/<?php echo $gid; ?>",
+			type: "post"
+			}
+		},
+		gsemail:{required:false, email:true,notEqualTo: "#gpemail"},
+		goccupation:{required:false,alphabetsnspace: true }, 
+		gincome:{required:false,maxlength:10,number:true},
+		ghome_phone:{required:false,maxlength:14,minlength:6,number:true},
+		goffice_phone:{required:false,maxlength:14,minlength:6,number:true},
+		},
+	messages: {
+			gname: {
+				  required: "This field cannot be empty!",
+				  alphabetsnspace: "Please enter only alphabet"
+				},
+			gpmobile:{required:"This field cannot be empty!",remote:"Mobile number already exist"},
+			gsmobile:{notEqualTo : "Please check your mobile"},
+			gpemail:{required:"This field cannot be empty!",remote:"Email already exist"},
+			gsemail:{notEqualTo : "Please check your email"},
+			goccupation: {
+				  alphabetsnspace: "Please enter only alphabet"
+			}
+		}
+	});                                        
+</script>
 
-                                                    gpemail:{required:true,email:true,
-                                                    remote: {
-                                                             url: "<?php echo base_url(); ?>parents/check_gpemail_id_exist/<?php echo $gid; ?>",
-                                                             type: "post"
-                                                          }
-                                                        }
-                                                },
-                                                messages: {
-                                                  gname:{required:"Enter the father name"},
-                                                  gpmobile:{required:"Enter the mobile number",maxlength:"Max 10 Digits",minlength:"Min 10 Digits",number:"Only numbers",remote:"Mobile Number Already Exist"},
-                                                  gpemail:{required:"Enter Email Address",remote:"Email Already Exist"},
-                                                    }
-                                            });
-                                            </script>
                                             <?php }	}?>
               </form>
                                     </div>

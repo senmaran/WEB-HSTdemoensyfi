@@ -54,7 +54,7 @@
                                    <div class="col-md-6">
                                        <div class="form-group">
                                            <label>Current Password <span class="mandatory_field">*</span></label>
-                                           <input type="password" class="form-control" name="oldpassword" id="oldpassword" placeholder="Enter current password" value="" maxlength='6'><span toggle="#oldpassword" class="fa fa-fw fa-eye-slash field-icon oldpassword"></span>
+                                           <input type="password" class="form-control" name="oldpassword" id="oldpassword" placeholder="Enter current password" value="" maxlength='12'><span toggle="#oldpassword" class="fa fa-fw fa-eye-slash field-icon oldpassword"></span>
                                        </div>
                                    </div>
                                    <div class="col-md-6"></div>
@@ -63,7 +63,7 @@
                                    <div class="col-md-6">
                                        <div class="form-group">
                                            <label>New Password <span class="mandatory_field">*</span></label>
-                                           <input type="password" class="form-control"  name="newpassword" id="newpassword" placeholder="Enter new password" value="" maxlength='6'><span toggle="#newpassword" class="fa fa-fw fa-eye-slash field-icon newpassword"></span>
+                                           <input type="password" class="form-control"  name="newpassword" id="newpassword" placeholder="Enter new password" value="" maxlength='12'><span toggle="#newpassword" class="fa fa-fw fa-eye-slash field-icon newpassword"></span>
                                        </div>
                                    </div>
 									<div class="col-md-6"></div>
@@ -72,7 +72,7 @@
                                    <div class="col-md-6">
                                        <div class="form-group">
                                            <label>Confirm New Password <span class="mandatory_field">*</span></label>
-                                           <input type="password" class="form-control" name="retypepassword" id="retypepassword" placeholder="Confirm New Password" value="" maxlength='6'><span toggle="#retypepassword" class="fa fa-fw fa-eye-slash field-icon retypepassword"></span>
+                                           <input type="password" class="form-control" name="retypepassword" id="retypepassword" placeholder="Confirm New Password" value="" maxlength='21'><span toggle="#retypepassword" class="fa fa-fw fa-eye-slash field-icon retypepassword"></span>
                                        </div>
                                    </div>
 								   <div class="col-md-6"></div>
@@ -138,12 +138,12 @@ $(document).ready(function () {
  $('#myformpass').validate({ // initialize the plugin
      rules: {
          oldpassword:{required:true },
-         newpassword:{required:true  },
-         retypepassword:{required:true, equalTo: "#newpassword", },
+         newpassword:{required:true,maxlength:12,minlength:6  },
+         retypepassword:{required:true,maxlength:12,minlength:6, equalTo: "#newpassword", },
      },
      messages: {
            oldpassword: "This field cannot be empty!",
-           newpassword: "This field cannot be empty!",
+           newpassword: "Password is Min. 6 and Max. 12 Characters",
            retypepassword: "Password doesn't match new password!",
          }
  });

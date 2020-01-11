@@ -60,9 +60,9 @@
                      <div class="author">
                         <a href="#">
                             <?php if(empty($rows->user_pic)){ ?>
-                            <img class="avatar border-gray" src="http://localhost/ensyfi/assets/noimg.png">
+								<img class="avatar border-gray" src="<?php echo base_url(); ?>assets/noimg.png">
                            <?php  }else{ ?>
-                        <img class="avatar border-gray" id="output23" src="<?php echo base_url(); ?>assets/teachers/profile/<?php echo $rows->user_pic; ?>" alt="..."/>
+								<img class="avatar border-gray" id="output23" src="<?php echo base_url(); ?>assets/teachers/profile/<?php echo $rows->user_pic; ?>" alt="..."/>
                          <?php } ?>
                         </a>
                         <h4 class="title" style="line-height:20px;"><?php echo $rows->name; ?></h4>

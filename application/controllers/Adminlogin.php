@@ -75,7 +75,7 @@ class Adminlogin extends CI_Controller {
 
 								$datas['dash_reminder']=$this->dashboard->dash_reminder($user_id);
 								$datas['class']=$this->dashboard->get_all_class_sec();
-
+								$datas['count_notification']=$this->dashboard->count_notification();
 								$this->load->view('header',$datas);
 								$this->load->view('home',$datas);
 								$this->load->view('footer');
@@ -194,6 +194,10 @@ class Adminlogin extends CI_Controller {
 			 $datas['class']=$this->dashboard->get_all_class_sec();
 			 //echo'<pre>'; print_r($datas['class']);exit;
 
+			$datas['count_notification']=$this->dashboard->count_notification();
+
+
+
 			$this->load->view('header',$datas);
 			$this->load->view('home',$datas);
 			$this->load->view('footer');
@@ -282,20 +286,21 @@ class Adminlogin extends CI_Controller {
 			$datas=$this->session->userdata();
 			$user_name=$this->session->userdata('user_name');
 			$user_type=$this->session->userdata('user_type');
+			
 		 	if($user_type==1 || $user_type==2 || $user_type==3 ||$user_type==4 ){
 				$user_id=$this->input->post('user_id');
 				$name=$this->input->post('sname');
 
-			  $user_pic_old=$this->input->post('user_pic_old');
+			  /* $user_pic_old=$this->input->post('user_pic_old');
 			  $profile = $_FILES["profile"]["name"];
 				$userFileName = time().'-'.$profile;
 				$uploaddir = 'assets/admin/profile/';
 				$profilepic = $uploaddir.$userFileName;
-		   	move_uploaded_file($_FILES['profile']['tmp_name'], $profilepic);
+				move_uploaded_file($_FILES['profile']['tmp_name'], $profilepic);
 				if(empty($profile)){
 				  	$userFileName=$user_pic_old;
-				}
-				$res=$this->login->profileupdate($userFileName,$user_id,$name);
+				} */
+				$res=$this->login->profileupdate($user_id,$name);
 				if($res['status']=="success"){
 				 $this->session->set_flashdata('msg', 'Changes made are saved');
 				 redirect('adminlogin/profilepic');
@@ -377,6 +382,46 @@ class Adminlogin extends CI_Controller {
 		}
 	}
 	
-	
+	public function post_img()
+		{
+		 $datas=$this->session->userdata();
+		 $user_id=$this->session->userdata('user_id');
+		 $user_type=$this->session->userdata('user_type');
+		 if($user_type==1)
+		 {
+				$data=$_POST["image"];
+				$image_array_1 = explode(";", $data);
+				$image_array_2 = explode(",", $image_array_1[1]);
+				$data = base64_decode($image_array_2[1]);
+				$imageName = time() . '.png';
+				file_put_contents('assets/admin/profile/'.$imageName, $data);
+				$datas=$this->login->update_pic($user_id,$imageName);
+				if($datas['status']=="success"){
+					echo "success";
+				}else{
+					echo "failed";
+				}
+			}else{
+					redirect('/');
+			}
+
+		}
+
+		public function remove_img(){
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+			if($user_type==1)
+			{
+				$datas=$this->login->remove_img($user_id);
+				if($datas['status']=="success"){
+					echo "success";
+				}else{
+					echo "failed";
+				}
+			}else{
+			redirect('/');
+			}
+		}
 
 }

@@ -7,7 +7,6 @@
 						<div class="header">
 							<h4 class="title">Take Attendance</h4>
 						</div>
-                
                   <div class="content">
                      <form action="<?php echo base_url(); ?>adminattendance/attendance_on_class" method="post" class="form-horizontal" id="select_month">
                        
@@ -66,22 +65,54 @@
    </div>
 </div>
 
+<?php 
+if(!empty($ace_months)){
+	foreach($ace_months as $rows) { 
+		 $from_month = $rows->from_month;
+		 $to_month = date('Y-m-d');
+	}
+} else {
+		$from_month = date('Y-m-d'); 
+		$to_month = date('Y-m-d');
+}
+?>
 <script type="text/javascript">
-
+	$('#attend').addClass('collapse in');
+	$('#attendance').addClass('active');
+	$('#attend1').addClass('active');
+		  
    $('#select_month').validate({ // initialize the plugin
        rules: {
            attendance_date:{required:true },
            month_id:{required:true }
-
        },
        messages: {
              attendance_date: "This field cannot be empty!",
              month_id: "Select Month"
-
            }
    });
-
-          $('#attend').addClass('collapse in');
-          $('#attendance').addClass('active');
-          $('#attend1').addClass('active');
 </script>
+<script type="text/javascript">
+      $().ready(function(){
+        $('#mastersmenu').addClass('collapse in');
+        $('#master').addClass('active');
+        $('#masters1').addClass('active');
+		
+        $('.datepicker').datetimepicker({
+          format: 'DD-MM-YYYY',
+		  minDate: new Date('<?php echo $from_month; ?>'),
+		  maxDate: new Date('<?php echo $to_month; ?>'),
+          icons: {
+              time: "fa fa-clock-o",
+              date: "fa fa-calendar",
+              up: "fa fa-chevron-up",
+              down: "fa fa-chevron-down",
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-screenshot',
+              clear: 'fa fa-trash',
+              close: 'fa fa-remove'
+          }
+       });
+      });
+ </script>
