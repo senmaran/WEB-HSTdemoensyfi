@@ -13,8 +13,8 @@
     <!doctype html>
     <html lang="en">
 
-    <head>
-        <meta charset="utf-8" />
+    <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
         <title>
@@ -56,13 +56,13 @@
                     <div class="container">
 						<div class="row">
 						<div class="col-md-2"></div>
-						
+
 						<div class="col-md-4 ">
 						  <div class="border-box ">
 							<div class="big_logo"><img src="<?php echo base_url();  ?>assets/ensyfi_logo.png" class="ensyfi_logo_big"></div>
 						  </div>
 						</div>
-						
+
 						<div class="col-md-4">
 							<form method="post" action="<?php echo base_url(); ?>adminlogin/home" id="myform">
 							<div class="card">
@@ -76,7 +76,7 @@
 							<?php endif; ?>
 
 							<?php if($pic!='') { ?>
-								<div class="header text-center"><img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>
+								<div class="header text-center"><img src="http://<?php echo $server_url; ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>
 
 							<?php } else { ?>
 									<!--<div class="header text-center"><img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"></div>-->
@@ -102,7 +102,7 @@
 							</div>
 							</form>
                           </div>
-                          
+
 						  <div class="col-md-2"></div>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
             </div>
         </div>
     </body>
-    
+
     <!--   Core JS Files and PerfectScrollbar library inside jquery.ui   -->
     <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js" type="text/javascript"></script>
