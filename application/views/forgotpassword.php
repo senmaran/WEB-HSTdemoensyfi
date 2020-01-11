@@ -73,16 +73,14 @@ body{
             <?php endif; ?>
 
                 <div class="card ">
-          							<?php
-          									  if($pic!='')
-          									  {
-          								?>
-                        <div class="header text-center">
-					                <img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>
-            						 <?php }else{
-            							   ?><div class="header text-center">
-            							  <img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"> </div>
-            						 <?php } ?>
+							<?php if($pic!='') { ?>
+								<div class="header text-center"><img src="<?php echo base_url(); ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>
+
+								<!--<div class="header text-center"><img src="http://<?php echo $server_url; ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>-->
+							<?php } else { ?>
+									<!--<div class="header text-center"><img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"></div>-->
+									<div class="header text-center"><img src="<?php echo base_url(); ?>/assets/main_logo.png" class="img-circle" style="width:150px;height:150px;"></div>
+							<?php } ?>
 
                                 <div class="content">
 								<h4>Forgot Password?</h4>
@@ -200,7 +198,7 @@ body{
 				            type:'POST',
 				           data: $('#forgotform').serialize(),
 				           success: function(response) {
-							alert(response);
+							//alert(response);
 								 if(response=="Password_Reset"){
 									 swal({
 										   title: "Success",
