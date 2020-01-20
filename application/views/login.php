@@ -1,6 +1,6 @@
 <?php
           $server_url = $_SERVER['HTTP_HOST'];
-           $query="SELECT user_pic,school_id,name FROM edu_users WHERE user_type=1";
+          $query="SELECT user_pic,school_id,name FROM edu_users WHERE user_type=1";
 		  $objRs=$this->db->query($query);
 		  $row=$objRs->result();
 		  foreach ($row as $rows1)
@@ -10,8 +10,6 @@
 			 $sname=$rows1->name;
 		  }
 ?>
-
-
     <!doctype html>
     <html lang="en">
 
@@ -162,8 +160,6 @@
     <!-- <script src="<?php echo base_url(); ?>assets/js/demo.js"></script> -->
 
     <script type="text/javascript">
-
-
      $(document).ready(function() {
 		$('#myform').validate({ // initialize the plugin
 			rules: {
@@ -183,5 +179,4 @@
 		});
      });
     </script>
-
     </html>

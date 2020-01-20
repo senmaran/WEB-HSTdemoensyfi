@@ -190,7 +190,7 @@ class Feesstructure extends CI_Controller
 		if($user_type==1)
 			 {
 				 $this->load->view('header');
-				 $this->load->view('fees/term__fees_master_view',$datas);
+				 $this->load->view('fees/term_fees_master_view',$datas);
 				 $this->load->view('footer');
 			 }
 			 else{

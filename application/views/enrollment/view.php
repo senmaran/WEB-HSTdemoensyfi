@@ -20,7 +20,6 @@
       <?php endif; ?>
       <div class="content">
 
-
          <div class="container-fluid">
             <div class="row">
                <div class="col-md-12">
@@ -48,7 +47,7 @@
                               </div>
 
                               <div class="col-sm-4">
-                                  <button type="submit" id="search" class="btn btn-info btn-fill center">Search </button>
+                                  <button type="submit" id="search" class="btn btn-info btn-fill center" style="cursor:pointer;">Search </button>
                               </div>
                            </div>
                         </fieldset>

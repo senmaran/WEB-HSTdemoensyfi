@@ -130,7 +130,6 @@ Class Studentmodel extends CI_Model
 
 		function get_all_exam_views($user_id)
 		{
-
 			 $year_id=$this->getYear();
 			 $sql1="SELECT * FROM edu_examination WHERE exam_year='$year_id' AND status='Active'";
 			 $resultset=$this->db->query($sql1);

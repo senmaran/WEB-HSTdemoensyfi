@@ -114,8 +114,6 @@ body{
     </div>
 
 </div>
-
-
 </body>
 
 <style>
@@ -209,8 +207,6 @@ body{
 										   function(){
 											 window.location.href = '<?php echo base_url(); ?>';
 										 });
-
-
 								 }else if(response=="Error"){
 									 sweetAlert("Oops!", "Username not found!", "error");
 								 }
