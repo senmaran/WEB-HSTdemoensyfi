@@ -1702,6 +1702,7 @@ class Apiteachermodel extends CI_Model {
           "special_class_date" => $rows->special_class_date,
           "start_time" => $rows->start_time,
           "end_time" => $rows->end_time,
+          "status" => $rows->status,
         );
       }
       $response = array("status" => "success", "msg" => "Special Found","special_details"=>$special_class);
