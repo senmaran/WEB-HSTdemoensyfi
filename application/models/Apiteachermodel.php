@@ -1695,7 +1695,7 @@ class Apiteachermodel extends CI_Model {
     }else{
       foreach($res->result() as $rows){
         $special_class[]=array(
-          "class_sec_name" => $rows->class_name.$rows->sec_name,
+          "class_sec_name" => $rows->class_name-$rows->sec_name,
           "class_sec_id" => $rows->class_master_id,
           "subject_name" => $rows->subject_name,
           "subject_topic" => $rows->subject_topic,
