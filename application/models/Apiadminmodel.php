@@ -2295,8 +2295,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
 		 {
 			$clsid = $s_id[$i];
 
-			$sql1="SELECT u.user_id,u.user_type,u.user_master_id,u.student_id,e.enroll_id,e.admission_id,e.admisn_no,e.name,e.class_id,a.admission_id,a.admisn_no,a.name,a.mobile FROM edu_enrollment AS e,edu_admission AS a,edu_users AS u  WHERE e.class_id='$clsid' AND e.admission_id=a.admission_id  AND u.user_type=3 AND a.admission_id=u.user_master_id AND
-            a.admission_id=u.student_id";
+			$sql1="SELECT u.user_id,u.user_type,u.user_master_id,u.student_id,e.enroll_id,e.admission_id,e.admisn_no,e.name,e.class_id,a.admission_id,a.admisn_no,a.name,a.mobile FROM edu_enrollment AS e,edu_admission AS a,edu_users AS u  WHERE e.class_id='$clsid' AND e.admission_id=a.admission_id  AND u.user_type=3 AND a.admission_id=u.user_master_id AND a.admission_id=u.student_id";
 					$scell=$this->db->query($sql1);
 					$res1=$scell->result();
 					foreach($res1 as $row1)
@@ -2494,6 +2493,41 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
               return $data;
             }
           }
+
+
+
+
+      function get_special_list($user_id){
+        $year_id = $this->getYear();
+        $select="SELECT IFNULL(c.class_name, '') AS class_name,IFNULL(s.sec_name, '') AS sec_name,esu.subject_name,sc.* FROM edu_special_class AS sc
+        LEFT JOIN edu_classmaster AS cm ON sc.class_master_id=cm.class_sec_id
+        LEFT JOIN edu_class AS c ON cm.class=c.class_id
+        LEFT JOIN edu_sections AS s ON  cm.section=s.sec_id
+        LEFT JOIN edu_subject AS esu ON sc.subject_id=esu.subject_id
+        LEFT JOIN edu_teachers as et on et.teacher_id=sc.teacher_id
+        LEFT JOIN edu_users as eu on eu.user_master_id=et.teacher_id where sc.year_id='$year_id'";
+        $res=$this->db->query($select);
+        if($res->num_rows()==0){
+          $response = array("status" => "error", "msg" => "No Special class Found");
+
+        }else{
+          foreach($res->result() as $rows){
+            $special_class[]=array(
+              "class_sec_name" => $rows->class_name.$rows->sec_name,
+              "class_sec_id" => $rows->class_master_id,
+              "subject_name" => $rows->subject_name,
+              "subject_topic" => $rows->subject_topic,
+              "special_class_date" => $rows->special_class_date,
+              "start_time" => $rows->start_time,
+              "end_time" => $rows->end_time,
+              "status" => $rows->status,
+            );
+          }
+          $response = array("status" => "success", "msg" => "Special Found","special_details"=>$special_class);
+
+        }
+        return $response;
+      }
 
 }
 
