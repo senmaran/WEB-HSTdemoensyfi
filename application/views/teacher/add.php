@@ -93,13 +93,21 @@
                   </fieldset>
                   <fieldset>
                      <div class="form-group">
-					   <label class="col-sm-2 control-label">Community <span class="mandatory_field">*</span></label>
+					   <label class="col-sm-2 control-label">Caste <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Community" name="community" class="form-control" maxlength="30">
+                           <input type="text" placeholder="Caste" name="community" class="form-control" maxlength="30">
                         </div>
-                        <label class="col-sm-2 control-label">Communal Class <span class="mandatory_field">*</span></label>
+                        <label class="col-sm-2 control-label">Community <span class="mandatory_field">*</span></label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Community Class" name="community_class" class="form-control" maxlength="30">
+							<select name="community_class" class="selectpicker form-control" id="community_class">
+								<option value="">Select</option>
+								<option value="SC">SC</option>
+								<option value="ST">ST</option>
+								<option value="BC">BC</option>
+								<option value="MBC">MBC</option>
+								<option value="OC">OC</option>
+							</select>
+                           <!--<input type="text" placeholder="Community Class" name="community_class" class="form-control" maxlength="30">-->
                         </div>
 
                      </div>

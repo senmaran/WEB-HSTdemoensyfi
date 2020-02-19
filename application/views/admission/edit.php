@@ -117,13 +117,21 @@
                   <fieldset>
                      <div class="form-group">
                         
-                        <label class="col-sm-2 control-label">Community</label>
+                        <label class="col-sm-2 control-label">Caste</label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Community" name="community" class="form-control" value="<?php echo $rows->community; ?>" maxlength="30">
+                           <input type="text" placeholder="Caste" name="community" class="form-control" value="<?php echo $rows->community; ?>" maxlength="30">
                         </div>
-						<label class="col-sm-2 control-label">Community Class</label>
+						<label class="col-sm-2 control-label">Community</label>
                         <div class="col-sm-4">
-                           <input type="text" placeholder="Community Class" name="community_class" class="form-control" value="<?php echo $rows->community_class; ?>" maxlength="10">
+							<select name="community_class" class="form-control" id="community_class">
+									<option value="">Select</option>
+									<option value="SC">SC</option>
+									<option value="ST">ST</option>
+									<option value="BC">BC</option>
+									<option value="MBC">MBC</option>
+									<option value="OC">OC</option>
+							</select><script> $('#community_class').val('<?php echo $rows->community_class; ?>');</script>
+                           <!--<input type="text" placeholder="Community Class" name="community_class" class="form-control" value="<?php echo $rows->community_class; ?>" maxlength="10">-->
                         </div>
                      </div>
                   </fieldset>

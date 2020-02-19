@@ -29,7 +29,7 @@ class Communication extends CI_Controller
 		
 		$datas['ace_years'] = $this->yearsmodel->getall_years();
         $datas['result'] =$this->communicationmodel->user_leaves($search_year);
-        //echo'<pre>';print_r($datas['result']);exit;
+        //echo'<pre>';print_r($datas['result']);
         if ($user_type == 1) {
             $this->load->view('header');
             $this->load->view('communication/users_leave',$datas);
@@ -79,11 +79,13 @@ class Communication extends CI_Controller
 		 
 		if($datas['status'] == "success")
 		{
-           $this->session->set_flashdata('msg','Changes made are saved');
-            redirect('communication/view_user_leaves');
+			echo "success";
+            $this->session->set_flashdata('msg','Changes made are saved');
+            //redirect('communication/view_user_leaves');
         }else{
+			echo "error";
             $this->session->set_flashdata('msg','Falid To Update');
-           redirect('communication/view_user_leaves');
+            //redirect('communication/view_user_leaves');
         }
     }
     

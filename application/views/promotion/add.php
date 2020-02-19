@@ -309,6 +309,7 @@ $('#promo1').addClass('active');
 
     }(jQuery));
 
+
     $('#promotion_forms').validate({ // initialize the plugin
         rules: {
             year_id: {
@@ -345,35 +346,36 @@ $('#promo1').addClass('active');
         },
 
         submitHandler: function(form) {
-         //alert("hi");
          swal({
-                       title: "Are you sure?",
-                       text: "You Want Confirm this form",
-                       type: "success",
-                       showCancelButton: true,
-                       confirmButtonColor: '#DD6B55',
-                       confirmButtonText: 'Yes',
-                       cancelButtonText: "No",
-                       closeOnConfirm: false,
-                       closeOnCancel: false
-                   },
-                   function(isConfirm) {
-                       if (isConfirm) {
-        $.ajax({
+		   title: "Are you sure?",
+		   text: "You Want Confirm this form",
+		   type: "success",
+		   showCancelButton: true,
+		   confirmButtonColor: '#DD6B55',
+		   confirmButtonText: 'Yes',
+		   cancelButtonText: "No",
+		   closeOnConfirm: false,
+		   closeOnCancel: false
+	   },
+	   function(isConfirm) {
+		   if (isConfirm) {
+			$.ajax({
             url: "<?php echo base_url(); ?>promotion/create_promotion",
              type:'POST',
             data: $('#promotion_forms').serialize(),
             success: function(response) {
-                if(response=="success"){
-                 //  swal("Success!", "Thanks for Your Note!", "success");
+				var array = response.split('-'),
+				res_text = array[0], res_value = array[1];
+				
+                if(res_text=="Success"){
                    $('#promotion_forms')[0].reset();
-                   swal({
-            title: "Wow!",
-            text: "Student(s) Promoted",
-            type: "success"
-        }, function() {
-             location.reload();
-        });
+						swal({
+							title: "Wow!",
+							text: "Student(s) "+res_value,
+							type: "success"
+						}, function() {
+							 location.reload();
+						});
                 }else{
                   sweetAlert("Oops...", "Something went wrong!", "error");
                 }

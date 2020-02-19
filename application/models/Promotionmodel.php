@@ -63,41 +63,45 @@ Class Promotionmodel extends CI_Model
 
     //  Create Promotion
     function create_promotion($current_year_id,$next_year_id,$class_master_id_for_last,$promotion_class_master_id,$student_id,$result_status,$user_id){
-      $student_id_cnt=count($student_id);
-      for($i=0;$i<$student_id_cnt;$i++){
-        $student_id_list=$student_id[$i];
-        $check ="SELECT * FROM edu_promotion_history WHERE current_academic_year_id='$current_year_id' AND student_reg_id_for_last_academic_year='$student_id_list' AND promotion_academic_year_id='$next_year_id'";
-        $result_check=$this->db->query($check);
+      
+	  $student_id_cnt = count($student_id);
+      
+	  for($i=0;$i<$student_id_cnt;$i++){
+			$student_id_list=$student_id[$i];
+			$check ="SELECT * FROM edu_promotion_history WHERE current_academic_year_id='$current_year_id' AND student_reg_id_for_last_academic_year='$student_id_list' AND promotion_academic_year_id='$next_year_id'";
+			$result_check=$this->db->query($check);
+			
          if($result_check->num_rows()==0){
-        $check ="SELECT admission_id,admisn_no,name,house_id,extra_curicullar_id,quota_id FROM edu_enrollment WHERE enroll_id='$student_id_list'";
-        $result=$this->db->query($check);
-        foreach($result->result() as $rows){
-           $name=$rows->name;
-           $admission_id=$rows->admission_id;
-           $admisn_no=$rows->admisn_no;
-           $house_id=$rows->house_id;
-           $extra_curicullar_id=$rows->extra_curicullar_id;
-           $quota_id=$rows->quota_id;
+			$check ="SELECT admission_id,admisn_no,name,house_id,extra_curicullar_id,quota_id FROM edu_enrollment WHERE enroll_id='$student_id_list'";
+			$result=$this->db->query($check);
+			
+				foreach($result->result() as $rows){
+				   $name=$rows->name;
+				   $admission_id=$rows->admission_id;
+				   $admisn_no=$rows->admisn_no;
+				   $house_id=$rows->house_id;
+				   $extra_curicullar_id=$rows->extra_curicullar_id;
+				   $quota_id=$rows->quota_id;
 
-           $pro_query="INSERT INTO  edu_promotion_history (current_academic_year_id,promotion_academic_year_id,student_admission_id,student_reg_id_for_last_academic_year,student_name,class_master_id_for_last_academic_year,result_status,promotion_class_master_id,promoted_by,promoted_at) VALUES('$current_year_id','$next_year_id','$admission_id','$student_id_list','$name','$class_master_id_for_last','$result_status','$promotion_class_master_id','$user_id',NOW())";
-           $res=$this->db->query($pro_query);
+				   $pro_query="INSERT INTO  edu_promotion_history (current_academic_year_id,promotion_academic_year_id,student_admission_id,student_reg_id_for_last_academic_year,student_name,class_master_id_for_last_academic_year,result_status,promotion_class_master_id,promoted_by,promoted_at) VALUES('$current_year_id','$next_year_id','$admission_id','$student_id_list','$name','$class_master_id_for_last','$result_status','$promotion_class_master_id','$user_id',NOW())";
+				   $res=$this->db->query($pro_query);
 
-           $reg_query="INSERT INTO edu_enrollment (admission_id,admit_year,admit_date,admisn_no,name,class_id,house_id,extra_curicullar_id,quota_id,created_at,created_by,status) VALUES('$admission_id','$next_year_id',NOW(),'$admisn_no','$name','$promotion_class_master_id','$house_id','$extra_curicullar_id','$quota_id',NOW(),'$user_id','Active')";
-            $req_q=$this->db->query($reg_query);
-
-        }
-      }else{
-        $data= array("status" => "Already");
-        return $data;
-      }
+				   $reg_query="INSERT INTO edu_enrollment (admission_id,admit_year,admit_date,admisn_no,name,class_id,house_id,extra_curicullar_id,quota_id,created_at,created_by,status) VALUES('$admission_id','$next_year_id',NOW(),'$admisn_no','$name','$promotion_class_master_id','$house_id','$extra_curicullar_id','$quota_id',NOW(),'$user_id','Active')";
+				   $req_q=$this->db->query($reg_query);
+				}
+		  }else{
+			$data= array("status" => "already");
+			return $data;
+		  }
      }
-     if($req_q){
-       $data= array("status" => "success");
-       return $data;
-     }else{
-       $data= array("status" => "failure");
-       return $data;
-     }
+	 
+		 if($req_q){
+			   $data= array("status" => "success","result_status" => $result_status);
+			   return $data;
+		 }else{
+			   $data= array("status" => "failure");
+			   return $data;
+		 }
 
     }
 
@@ -173,28 +177,28 @@ Class Promotionmodel extends CI_Model
 					edu_class AS c,
 					edu_admission AS a
 				WHERE
-					e.class_id = cm.class_sec_id AND cm.class = c.class_id AND cm.section = s.sec_id AND e.admission_id = a.admission_id AND e.name = a.name AND e.admisn_no = a.admisn_no AND e.admit_year = '$year_id'
+					e.class_id = cm.class_sec_id AND cm.class = c.class_id AND cm.section = s.sec_id AND e.admission_id = a.admission_id AND e.admit_year = '$year_id'
 				GROUP BY
 					class_sec_id
 				ORDER BY
 					enroll_id
 				DESC";
-		$resultset=$this->db->query($query);
-		return  $res=$resultset->result();
+				$resultset=$this->db->query($query);
+				return  $res=$resultset->result();
     }
 	
     function view_list_for_year($year_id,$class_id){
 		
 		if ($class_id == "") {
 			
-		$query="SELECT e.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name,a.admission_id,a.admisn_no,a.sex,a.name
-		FROM edu_enrollment AS e,edu_classmaster AS cm, edu_sections AS s,edu_class AS c,edu_admission AS a WHERE e.class_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=s.sec_id AND e.admission_id=a.admission_id
-		AND e.name=a.name AND e.admisn_no=a.admisn_no AND e.admit_year='$year_id' ORDER BY enroll_id DESC";
+			$query="SELECT e.*,'N' as classid_status,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name,a.admission_id,a.admisn_no,a.sex,a.name
+			FROM edu_enrollment AS e,edu_classmaster AS cm, edu_sections AS s,edu_class AS c,edu_admission AS a WHERE e.class_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=s.sec_id AND e.admission_id=a.admission_id AND e.admit_year='$year_id' ORDER BY enroll_id DESC";
 		
 		} else {
 			
-		$query="SELECT
+		  $query="SELECT
 				e.*,
+				'Y' as classid_status,
 				cm.class_sec_id,
 				cm.class,
 				cm.section,
@@ -213,7 +217,7 @@ Class Promotionmodel extends CI_Model
 				edu_class AS c,
 				edu_admission AS a
 			WHERE
-				e.class_id = cm.class_sec_id AND cm.class = c.class_id AND cm.section = s.sec_id AND e.admission_id = a.admission_id AND e.name = a.name AND e.admisn_no = a.admisn_no AND e.admit_year = '$year_id' AND cm.class_sec_id = '$class_id'
+				e.class_id = cm.class_sec_id AND cm.class = c.class_id AND cm.section = s.sec_id AND e.admission_id = a.admission_id AND e.admit_year = '$year_id' AND cm.class_sec_id = '$class_id'
 			ORDER BY
 				enroll_id
 			DESC";

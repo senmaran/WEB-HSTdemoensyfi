@@ -22,7 +22,7 @@
                   <div class="card">
 				  <div class="header">
 				         <h4 class="title">Staff Details
-                           <a href="<?php echo base_url(); ?>teacher/view_subject_handling" class="btn btn-default" style="float:right;"> Handling Subjects</a>
+                           <a href="<?php echo base_url(); ?>teacher/view_subject_handling" class="btn btn-default" style="float:right;background-color:#3c088e;color:#FFFFFF;">Handling Subjects</a>
 						  </h4>
 						  <hr>
 					</div>

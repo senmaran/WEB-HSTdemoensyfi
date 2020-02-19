@@ -122,7 +122,9 @@ function add_exam_details($exam_year,$class_name,$subject_name,$exdate,$time,$te
 		$class_id=$class_name;
 		$subject_id=$subject_name[$i];
 
-		$exam_dates=$exdate[$i];
+		$timestamp = strtotime($exdate[$i]);
+		$exam_dates = date("Y-m-d", $timestamp);
+		//$exam_dates=$exdate[$i];
 		$times=$time[$i];
 		$tea_id=$teacher_id[$i];
 

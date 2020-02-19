@@ -127,17 +127,34 @@ Class Enrollmentmodel extends CI_Model
 
 		}
 
+       function get_all_class($search_year){
+			 if ($search_year !='') {
+			   $year_id = $search_year;
+		   } else {
+				$year_id=$this->getYear();
+		   }
+			
+			$query="SELECT ee.class_id,COUNT(CASE WHEN ee.class_id = ee.class_id THEN ee.class_id END) AS total_count,c.class_name,ss.sec_name FROM edu_enrollment AS ee INNER JOIN edu_classmaster AS cm ON ee.class_id=cm.class_sec_id INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS ss ON cm.section=ss.sec_id WHERE ee.admit_year='$year_id' GROUP BY ee.class_id";
+			$resultset=$this->db->query($query);
+			return $resultset->result();
+       }
+
+
+
        //GET ALL Admission Form get_enrollmentid
 
-      function get_all_enrollment($search_year)
+      function get_all_enrollment($search_year,$class_sec_id)
 	   {
 		   if ($search_year !='') {
 			   $year_id = $search_year;
 		   } else {
 				$year_id=$this->getYear();
 		   }
-			$query="SELECT e.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name,a.admission_id,a.admisn_no,a.sex,a.name,(Select b.blood_group_name FROM edu_blood_group as b WHERE  b.id IN(a.blood_group)) AS blood_group_name FROM edu_enrollment as e,edu_classmaster as cm, edu_sections as s,edu_class as c,edu_admission AS a WHERE
-          e.class_id=cm.class_sec_id and cm.class=c.class_id and cm.section=s.sec_id AND e.admission_id=a.admission_id  AND  e.admit_year='$year_id' ORDER BY enroll_id DESC";
+		   if ($class_sec_id==''){
+				$query="SELECT e.*,'N' as static_value,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name,a.admission_id,a.admisn_no,a.sex,a.name,(Select b.blood_group_name FROM edu_blood_group as b WHERE  b.id IN(a.blood_group)) AS blood_group_name FROM edu_enrollment as e,edu_classmaster as cm, edu_sections as s,edu_class as c,edu_admission AS a WHERE e.class_id=cm.class_sec_id and cm.class=c.class_id and cm.section=s.sec_id AND e.admission_id=a.admission_id  AND  e.admit_year='$year_id' ORDER BY enroll_id DESC";
+		   } else {
+			    $query="SELECT e.*,'Y' as static_value,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name,a.admission_id,a.admisn_no,a.sex,a.name,(Select b.blood_group_name FROM edu_blood_group as b WHERE  b.id IN(a.blood_group)) AS blood_group_name FROM edu_enrollment as e,edu_classmaster as cm, edu_sections as s,edu_class as c,edu_admission AS a WHERE e.class_id = '$class_sec_id' AND e.class_id=cm.class_sec_id and cm.class=c.class_id and cm.section=s.sec_id AND e.admission_id=a.admission_id  AND  e.admit_year='$year_id' ORDER BY enroll_id DESC";
+		   }
          $res=$this->db->query($query);
 		 return $res->result();
 

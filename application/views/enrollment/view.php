@@ -7,9 +7,19 @@
     border-radius: 12px;
 }
 </style>
-<?php  foreach ($result as $rows) {
+<?php  
+foreach ($result as $rows) {
 		$search_year = $rows->admit_year;
- }  ?>
+		$class_id = $rows->class_sec_id;
+		$status = $rows->static_value;
+ } 
+ if ($status == 'Y'){
+		 $class_sec_id = $class_id;
+ }else{
+		 $class_sec_id = "";
+ }
+ 
+ ?>
 <div class="main-panel">
    <div class="content">
       <?php if($this->session->flashdata('msg')): ?>
@@ -32,7 +42,7 @@
                            <div class="form-group">
                               <div class="col-sm-4">
                                  <select name="ace_year" id="ace_year"  required class="selectpicker" >
-								  							 <option value="">Select Year</option>
+								  <option value="">Select Year</option>
                                     <?php foreach($ace_years as $rows)
                                        {
                                        $fyear=$rows->from_month;
@@ -43,9 +53,16 @@
                                     ?>
                                     <option value="<?php  echo $rows->year_id; ?>"><?php  echo  date('Y',$month); ?> (To) <?php  echo  date('Y',$month1); ?></option>
                                     <?php } ?>
-                                 </select> <script language="JavaScript">document.search_year.ace_year.value="<?php echo $search_year; ?>";</script>
+                                 </select><script language="JavaScript">document.search_year.ace_year.value="<?php echo $search_year; ?>";</script>
                               </div>
-
+							<div class="col-sm-2">
+                                  <select name="class_sec_id" id="class_sec_id" class="selectpicker" >
+									<option value="">Select Class</option>
+                                    <?php foreach($classes as $rows) { ?>
+                                    <option value="<?php  echo $rows->class_id; ?>"><?php echo $rows->class_name; ?> <?php echo $rows->sec_name ; ?></option>
+                                    <?php } ?>
+                                 </select><script language="JavaScript">document.search_year.class_sec_id.value="<?php echo $class_sec_id; ?>";</script>
+                              </div>
                               <div class="col-sm-4">
                                   <button type="submit" id="search" class="btn btn-info btn-fill center" style="cursor:pointer;">Search </button>
                               </div>

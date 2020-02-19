@@ -1,9 +1,14 @@
  <?php
  if (count($res_list)>0) {
 	foreach ($res_list as $rows) {}
-	$search_class = $rows->class_sec_id;
+		$classid_status = $rows->classid_status;
+	if ($classid_status == 'Y'){
+		$search_class = $rows->class_sec_id;
+	}else{
+		$search_class = "";
+	}
  } else {
-	 $search_class = "";
+		$search_class = "";
  }
 ?>
 <div class="main-panel">
@@ -31,7 +36,7 @@
                                     <?php foreach($res_classes as $rows) { ?>
                                     <option value="<?php  echo $rows->class_sec_id; ?>"><?php  echo  $rows->class_name; ?> <?php  echo  $rows->sec_name; ?></option>
                                     <?php } ?>
-                                 </select>
+                                 </select><script language="JavaScript">document.search_class.classes.value="<?php echo $search_class; ?>";</script>
                               </div>
                               
                               <div class="col-sm-4">
@@ -40,7 +45,7 @@
                            </div>
                         </fieldset>
 
-                     </form><script language="JavaScript">document.search_class.classes.value="<?php echo $search_class; ?>";</script>
+                     </form>
                     <div class="fresh-datatables">
 
                         <table id="bootstrap-table" class="table">

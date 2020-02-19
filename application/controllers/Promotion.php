@@ -50,13 +50,25 @@ class Promotion extends CI_Controller {
 				$student_id=$this->input->post('student_reg_id_for_last_academic_year');
 				$result_status=$this->input->post('result_status');
 				$data=$this->promotionmodel->create_promotion($current_year_id,$next_year_id,$class_master_id_for_last,$promotion_class_master_id,$student_id,$result_status,$user_id);
-				if($data['status']=="success"){
-					echo "success";
-				}else if($data['status']=="Already"){
-					echo "Some Students  Already Exist";
-				}else{
+				
+				$query_status = $data['status'];
+				$query_text = $data['result_status'];
+				
+				if ($query_status == 'success'){
+					echo "Success-".$result_status;
+				} else if ($query_status == 'already'){
+					echo "Already Exist";
+				} else {
 					echo "Something Went Wrong";
 				}
+				
+/* 				if($data['status']=="success"){
+					echo "success+".$result_status;
+				}else if($data['status']=="Already"){
+					echo "Already Exist";
+				}else{
+					echo "Something Went Wrong";
+				} */
 			}else{
 					redirect('/');
 			}

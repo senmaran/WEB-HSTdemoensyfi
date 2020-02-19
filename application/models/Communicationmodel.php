@@ -56,13 +56,11 @@ Class Communicationmodel extends CI_Model
 		   } else {
 				$year_id=$this->getYear();
 		   }
-        
-       $query     = "SELECT u.user_id,u.user_type,u.user_master_id,ul.*,lm.leave_title,lm.leave_type,lm.id,t.teacher_id,t.name FROM edu_user_leave AS ul,edu_teachers AS t,edu_user_leave_master AS lm,edu_users AS u WHERE u.user_type=ul.user_type AND u.user_id=ul.user_id AND ul.year_id='$year_id' AND t.teacher_id=u.user_master_id AND ul.leave_master_id=lm.id  ORDER BY ul.leave_id DESC";
-	   //exit;
-        $resultset = $this->db->query($query);
-        $result    = $resultset->result();
-        return $result;
-        
+		   
+			$query = "SELECT u.user_id,u.user_type,u.user_master_id,ul.*,lm.leave_title,lm.leave_type,lm.id,t.teacher_id,t.name FROM edu_user_leave AS ul,edu_teachers AS t,edu_user_leave_master AS lm,edu_users AS u WHERE u.user_type=ul.user_type AND u.user_id=ul.user_id AND ul.year_id='$year_id' AND t.teacher_id=u.user_master_id AND ul.leave_master_id=lm.id  ORDER BY ul.leave_id DESC";
+			$resultset = $this->db->query($query);
+			$result    = $resultset->result();
+			return $result;
     }
     
     

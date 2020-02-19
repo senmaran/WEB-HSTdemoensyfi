@@ -14,11 +14,8 @@
                      <legend>Staff Leave Details</legend>
                   </div>
                   <div class="content">
-                     <form method="post" action="<?php echo base_url(); ?>communication/update_status" class="form-horizontal" enctype="multipart/form-data" id="myformsection" name="myformsection">
-                       <input type="hidden" name="leave_id" value="<?php echo $leaveid; ?>">
-
+                     <form method="post" class="form-horizontal" enctype="multipart/form-data" id="myformsection" name="myformsection">
 					   <?php
-                           //print_r($res);
                            foreach($res as $row){
                            $id=$row->leave_id;
                            $date1=date_create($row->from_leave_date);
@@ -80,7 +77,7 @@
                               </div>
                               <label class="col-sm-2 control-label">&nbsp;</label>
                               <div class="col-sm-4">
-                                 <button type="submit" id="save" class="btn btn-info btn-fill center">SAVE</button>
+                                 <button type="submit" id="save" class="btn btn-info btn-fill center" style="cursor:pointer">SAVE</button>
                               </div>
                            </div>
                         </fieldset>
@@ -97,93 +94,58 @@
     $('#teachermenu').addClass('collapse in');
     $('#teacher').addClass('active');
     $('#teacher3').addClass('active');
-    $('#myformsection').validate({ // initialize the plugin
-       rules: {
-         leave_type:{required:true },
-   		 leave_date:{required:true },
-   		 leave_description:{required:true },
-   frm_time:{required:true },
-   to_time:{required:true },
+	
+	
+		$('#myformsection').validate({ // initialize the plugin
+    rules: {
+		status:{required:true }
+     },
+   messages: {
+		status:"Select Status"
+          },
 
-        },
-        messages: {
-              leave_type:"Please choose an option!",
-              leave_date:"This field cannot be empty!",
-              leave_description:"Enter The Leave Description",
-			  frm_time:"Please choose an option!",
-			  to_time:"Please choose an option!",
-            }
-    });
-   demo.initFormExtendedDatetimepickers();
+   submitHandler: function(form) {
+   swal({
+           title: "Are you sure?",
+           text: "You Want Confirm this form",
+           type: "success",
+           showCancelButton: true,
+           confirmButtonColor: '#DD6B55',
+           confirmButtonText: 'Yes',
+           cancelButtonText: "No",
+           closeOnConfirm: false,
+           closeOnCancel: false
+     },
+     function(isConfirm) {
+        if (isConfirm) {
+			$.ajax({
+				 url: "<?php echo base_url(); ?>communication/update_status",
+				 type:'POST',
+				 data: $('#myformsection').serialize(),
+				 success: function(response) {
+					 //alert (response);
+				if(response=="success")
+				{
+					swal({
+						 title: "Done!",
+						 text: "Status Updated!",
+						 type: "success"
+					  },
+					function(){
+					 window.location = "<?php echo base_url(); ?>communication/view_user_leaves";
+					});
+				}else{
+					sweetAlert("Oops...", "Something went wrong!", "error");
+				}
+         }
+     });
+   }else{
+       swal("Cancelled", "Process Cancel :)", "error");
+   }
    });
+   }
+  });
+	
+  });
 
-     var $table = $('#bootstrap-table');
-         $().ready(function(){
-             $table.bootstrapTable({
-                 toolbar: ".toolbar",
-                 clickToSelect: true,
-                 showRefresh: true,
-                 search: true,
-                 showToggle: true,
-                 showColumns: true,
-                 pagination: true,
-                 searchAlign: 'left',
-                 pageSize: 8,
-                 clickToSelect: false,
-                 pageList: [8,10,25,50,100],
-
-                 formatShowingRows: function(pageFrom, pageTo, totalRows){
-                     //do nothing here, we don't want to show the text "showing x of y from..."
-                 },
-                 formatRecordsPerPage: function(pageNumber){
-                     return pageNumber + " rows visible";
-                 },
-                 icons: {
-                     refresh: 'fa fa-refresh',
-                     toggle: 'fa fa-th-list',
-                     columns: 'fa fa-columns',
-                     detailOpen: 'fa fa-plus-circle',
-                     detailClose: 'fa fa-minus-circle'
-                 }
-             });
-
-             //activate the tooltips after the data table is initialized
-             $('[rel="tooltip"]').tooltip();
-
-             $(window).resize(function () {
-                 $table.bootstrapTable('resetView');
-             });
-
-
-         });
-
-
-   $(function () {
-        $("#choose").change(function () {
-            if ($(this).val() == "Permisssion") {
-                $("#permissiontime").show();
-
-            } else {       }
-        });
-    });
-
-
-   $().ready(function(){
-
-     $('.datepicker').datetimepicker({
-       format: 'DD-MM-YYYY',
-     minDate: new Date(),
-       icons: {
-           time: "fa fa-clock-o",
-           date: "fa fa-calendar",
-           up: "fa fa-chevron-up",
-           down: "fa fa-chevron-down",
-           previous: 'fa fa-chevron-left',
-           next: 'fa fa-chevron-right',
-           today: 'fa fa-screenshot',
-           clear: 'fa fa-trash',
-           close: 'fa fa-remove'
-       }
-    });
-   });
 </script>

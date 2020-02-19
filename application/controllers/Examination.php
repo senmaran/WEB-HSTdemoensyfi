@@ -193,6 +193,7 @@ public function add_exam_details()
 		$inter_exter_mark=$this->input->post('inter_exter_mark');
 
 	$datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject_name,$exdate,$time,$teacher_id,$status,$sub_total,$inter_mark,$exter_mark,$inter_exter_mark,$user_id);
+	
 	if($datas['status']=="success"){
 		$this->session->set_flashdata('msg','Exam details created!');
 		redirect('examination/add_exam_detail');

@@ -4,10 +4,10 @@
    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{border-radius: initial !important;}
    .formdesign
    {
-   padding-bottom: 48px;
-   padding-top: 10px;
-   background-color: rgba(209, 209, 211, 0.11);
-   border-radius: 12px;
+	   padding-bottom: 48px;
+	   padding-top: 10px;
+	   background-color: rgba(209, 209, 211, 0.11);
+	   border-radius: 12px;
    }
 </style>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css">
@@ -408,7 +408,7 @@
    '</form>';
 
    $("#ajaxres").html(name);
-   $("#ajaxres1").html(exam_date).find('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+   $("#ajaxres1").html(exam_date).find('.datepicker').datepicker({ dateFormat: 'dd-mm-yy',minDate: new Date() });
    $("#ajaxres2").html(exam_secction);
    $("#ajaxres3").html(teacher);
    $("#subtlt").html(stlt);
@@ -434,10 +434,6 @@
 
 </script>
 <script type="text/javascript">
-   function myFunction(){
-   $( "#datepicker" ).datepicker();
-   }
-
    $(document).ready(function() {
 
    $('#examvalidate').validate({ // initialize the plugin
@@ -496,7 +492,7 @@
    $('[rel="tooltip"]').tooltip();
 
    $(window).resize(function() {
-   $table.bootstrapTable('resetView');
+	$table.bootstrapTable('resetView');
    });
 
    });
@@ -505,7 +501,6 @@
    $('#exammenu').addClass('collapse in');
    $('#exam').addClass('active');
    $('#exam2').addClass('active');
-   //$("#datepicker").attr('data-uk-datepicker','{format:"DD.MM.YYYY"}');
    
 	$('.datepicker').datetimepicker({
 		   format: 'DD-MM-YYYY',

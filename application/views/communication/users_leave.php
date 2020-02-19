@@ -1,3 +1,9 @@
+<?php  
+foreach ($result as $rows) {
+		$search_year = $rows->year_id;
+ } 
+?>
+
 <div class="main-panel">
    <div class="content">
       <div class="container-fluid">
@@ -12,7 +18,7 @@
 
                <div class="card">
                   <div class="header">
-                     <h4 class="title" >Staff Leaves </h4>
+                     <h4 class="title" >Staff Leaves</h4>
                   </div>
 				  <hr>
                   <div class="content">				  
@@ -21,7 +27,7 @@
                            <div class="form-group" style="padding-bottom: 20px;">
                               <div class="col-sm-4">
                                  <select name="ace_year" id="ace_year"  required class="selectpicker" >
-								  							 <option value="">Select Year</option>
+								<option value="">Select Year</option>
                                     <?php foreach($ace_years as $rows)
                                        {
                                        $fyear=$rows->from_month;
@@ -63,7 +69,7 @@
                                   ?>
                               <tr>
                                  <td><?php echo $i; ?></td>
-                                 <td><?php echo $rows->name ; ?></td>
+                                 <td><?php echo $rows->name ; ?> <?php echo $rows->year_id ; ?></td>
                                  <td><?php  echo $rows->leave_title ; //if($type==0){ echo "Permission"; }else{ echo "Leave"; } ?></td>
                                  <td><?php $date=date_create($rows->from_leave_date); echo date_format($date,"d-m-Y");?>
 									 <?php if($type==0) {

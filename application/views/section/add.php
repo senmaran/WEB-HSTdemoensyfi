@@ -7,10 +7,8 @@
 					<div class="card">
 						<div class="header">
 							<h4 class="title">Create Section</h4>
-							<p class="pull-right btn btn-wd" style="margin-top:-30px;">
-								<a href="
-									<?php echo base_url(); ?>classadd/addclass">Add / View Classes
-								</a>
+							<p class="pull-right btn btn-wd" style="margin-top:-30px;background-color:#3c088e;">
+								<a href="<?php echo base_url(); ?>classadd/addclass" style="color:#FFFFFF;">Add / View Classes</a>
 							</p>
 						</div>
 						<div class="content">
