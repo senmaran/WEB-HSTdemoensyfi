@@ -1114,7 +1114,7 @@ class Apiteachermodel extends CI_Model {
 			 $exam_query = "SELECT
 							ex.exam_name,
 							s.subject_name,
-							CONCAT(ed.exam_date,' - ', ed.times) AS exam_datetime,
+              DATE_FORMAT(CONCAT(ed.exam_date,' - ', ed.times), '%d-%m-%Y') AS exam_datetime,
 							CONCAT(c.class_name,' ', se.sec_name) AS class_section
 						FROM
 							edu_exam_details AS ed,
@@ -1125,7 +1125,7 @@ class Apiteachermodel extends CI_Model {
 							edu_class AS c,
 							edu_sections AS se
 						WHERE
-							ed.teacher_id = '$teacher_id' AND ex.exam_id = ed.exam_id AND t.teacher_id = ed.teacher_id AND ed.subject_id = s.subject_id AND cm.class_sec_id = ed.classmaster_id AND cm.class = c.class_id AND cm.section = se.sec_id AND ed.status = 'Active' AND ed.exam_date > CURDATE()
+							ed.teacher_id = '$teacher_id' AND ex.exam_id = ed.exam_id AND t.teacher_id = ed.teacher_id AND ed.subject_id = s.subject_id AND cm.class_sec_id = ed.classmaster_id AND cm.class = c.class_id AND cm.section = se.sec_id AND ed.status = 'Active' AND ed.exam_date >= CURDATE()
 						ORDER BY
 							ed.exam_date";
 			$exam_res = $this->db->query($exam_query);
@@ -1702,6 +1702,7 @@ class Apiteachermodel extends CI_Model {
           "special_class_date" => $rows->special_class_date,
           "start_time" => $rows->start_time,
           "end_time" => $rows->end_time,
+          "status" => $rows->status,
         );
       }
       $response = array("status" => "success", "msg" => "Special Found","special_details"=>$special_class);
