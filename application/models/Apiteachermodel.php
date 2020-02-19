@@ -1114,7 +1114,7 @@ class Apiteachermodel extends CI_Model {
 			 $exam_query = "SELECT
 							ex.exam_name,
 							s.subject_name,
-							CONCAT(ed.exam_date,' - ', ed.times) AS exam_datetime,
+              DATE_FORMAT(CONCAT(ed.exam_date,' - ', ed.times), '%d-%m-%Y') AS exam_datetime,
 							CONCAT(c.class_name,' ', se.sec_name) AS class_section
 						FROM
 							edu_exam_details AS ed,
