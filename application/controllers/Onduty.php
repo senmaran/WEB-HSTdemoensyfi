@@ -67,11 +67,13 @@ class Onduty extends CI_Controller
 		$datas=$this->ondutymodel->update_teacher_onduty($status,$user_id,$id);
 		if($datas['status']=="success")
 		{
+			echo "success";
 			$this->session->set_flashdata('msg','Changes made are saved');
-			redirect('onduty/teachers');
+			//redirect('onduty/teachers');
 		}else{
+			echo "error";
 			$this->session->set_flashdata('msg','Faild To Update');
-			redirect('onduty/teachers');
+			//redirect('onduty/teachers');
 		}
 	} 
 	
@@ -126,11 +128,13 @@ class Onduty extends CI_Controller
 		$datas=$this->ondutymodel->update_student_onduty($status,$user_id,$id);
 		if($datas['status']=="success")
 		{
+			echo "success";
 			$this->session->set_flashdata('msg','Changes made are saved');
-			redirect('onduty/students');
+			//redirect('onduty/students');
 		}else{
+			echo "error";
 			$this->session->set_flashdata('msg','Faild To Update');
-			redirect('onduty/students');
+			//redirect('onduty/students');
 		}
 	} 
 	

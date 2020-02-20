@@ -21,8 +21,8 @@
                   <div class="header">
                      <h4 class="title">
                         Exam Results ( <?php if (count($cls_exam)>0) { foreach($cls_exam as $rows){} echo $name_exam=$rows->exam_name; }?> )
-                        <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="float:right; ">BACK</button>
-                        <button style="float:right;margin-right: 10px;" class="btn btn-info btn-fill center download">EXPORT</button>
+                        <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="float:right;">BACK</button>
+                        <button style="float:right;margin-right:10px;cursor:pointer;" class="btn btn-info btn-fill center download">EXPORT</button>
 						<hr>
                         <!-- <button style="float:right;margin-right: 10px;" class="btn btn-info btn-fill center" onclick="generatefromtable()">Export PDF</button>-->
                      </h4>

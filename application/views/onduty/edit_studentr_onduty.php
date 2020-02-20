@@ -10,7 +10,7 @@
                        <hr>
 						<?php foreach($edit as $res){}	?>
                        <div class="content">
-                                 <form method="post" action="<?php echo base_url(); ?>onduty/update_stuonduty" class="form-horizontal" enctype="multipart/form-data" id="ondutysection" name="ondutysection">
+                                 <form method="post" class="form-horizontal" enctype="multipart/form-data" id="ondutysection" name="ondutysection">
 
                         <fieldset>
                            <div class="form-group">
@@ -22,7 +22,7 @@
                               <label class="col-sm-2 control-label">Reason</label>
                               <div class="col-sm-4">
 							   <input type="text" name="reason" readonly value="<?php echo $res->od_for; ?>" class="form-control">
-							    <input type="hidden" name="id" value="<?php echo $res->id; ?>" class="form-control">
+							   
                               </div>
 
 
@@ -63,7 +63,8 @@
                         <div class="form-group">
                            <!-- <label class="col-sm-2 control-label">&nbsp;</label> -->
                            <div class="text-center">
-								<input type="submit" id="save" class="btn btn-info btn-fill center" value="SAVE">
+								<input type="hidden" name="id" value="<?php echo $res->id; ?>" class="form-control">
+								<input type="submit" id="save" class="btn btn-info btn-fill center" style="cursor:pointer;" value="SAVE">
                               
                            </div>
                         </div>
@@ -78,14 +79,65 @@
 </div>
 
 </div>
-
+action="<?php echo base_url(); ?>onduty/update_stuonduty" 
 <script type="text/javascript">
       $().ready(function(){
         $('#ondutydetails').addClass('collapse in');
         $('#ondutydetails').addClass('active');
         $('#onduty2').addClass('active');
 
-		 $('#ondutysection').validate({ // initialize the plugin
+
+$('#ondutysection').validate({ // initialize the plugin
+		rules: {
+			status:{required:true }
+		 },
+		messages: {
+			status:"Select Status"
+			  },
+
+   submitHandler: function(form) {
+   swal({
+           title: "Are you sure?",
+           text: "You Want Confirm this form",
+           type: "success",
+           showCancelButton: true,
+           confirmButtonColor: '#DD6B55',
+           confirmButtonText: 'Yes',
+           cancelButtonText: "No",
+           closeOnConfirm: false,
+           closeOnCancel: false
+     },
+     function(isConfirm) {
+        if (isConfirm) {
+			$.ajax({
+				 url: "<?php echo base_url(); ?>onduty/update_stuonduty",
+				 type:'POST',
+				 data: $('#ondutysection').serialize(),
+				 success: function(response) {
+					 //alert (response);
+				if(response=="success")
+				{
+					swal({
+						 title: "Done!",
+						 text: "Status Updated!",
+						 type: "success"
+					  },
+					function(){
+					 window.location = "<?php echo base_url(); ?>onduty/students";
+					});
+				}else{
+					sweetAlert("Oops...", "Something went wrong!", "error");
+				}
+         }
+     });
+   }else{
+       swal("Cancelled", "Process Cancel :)", "error");
+   }
+   });
+   }
+  });
+  
+		/*  $('#ondutysection').validate({ // initialize the plugin
         rules: {
            reason:{required:true },
 			notes:{required:true },
@@ -116,6 +168,6 @@
               clear: 'fa fa-trash',
               close: 'fa fa-remove'
           }
-       });
+       }); */
       });
   </script>

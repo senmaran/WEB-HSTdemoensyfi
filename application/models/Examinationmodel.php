@@ -245,7 +245,7 @@ function clsname_examname($exam_id,$cls_masid)
 function marks_status_details($clsmasid,$exam_id)
 {
 	//echo $clsmasid;
-$query="SELECT * FROM edu_exam_marks_status WHERE status='Publish' AND exam_id='$exam_id' AND classmaster_id='$clsmasid'";
+	$query="SELECT * FROM edu_exam_marks_status WHERE status='Publish' AND exam_id='$exam_id' AND classmaster_id='$clsmasid'";
 	$resultset=$this->db->query($query);
 	$row=$resultset->result();
 	return $row;
