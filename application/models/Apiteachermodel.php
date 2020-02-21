@@ -1209,7 +1209,7 @@ class Apiteachermodel extends CI_Model {
     			$response = array("status" => "AlreadyAdded", "msg" => "Alredy Added", "attendance_history_id"=>$absent_id);
     		} else {
 
-				$attend_his_query = "INSERT INTO edu_attendance_history(attend_id, class_id, student_id, abs_date, a_status, attend_period, a_val,a_taken_by,created_at,status) VALUES ('$attend_id','$class_id','$student_id','$abs_date','$a_status','$attend_period','$a_val','$a_taken_by','$created_at','$status')";
+			 	$attend_his_query = "INSERT INTO edu_attendance_history(attend_id, class_id, student_id, abs_date, a_status, attend_period, a_val,a_taken_by,created_at,status) VALUES ('$attend_id','$class_id','$student_id','$abs_date','$a_status','$attend_period','$a_val','$a_taken_by','$created_at','$status')";
 				$attend_his_res = $this->db->query($attend_his_query);
 				$last_historyid = $this->db->insert_id();
 
@@ -1218,8 +1218,9 @@ class Apiteachermodel extends CI_Model {
 				} else {
 					$response = array("status" => "error");
 				}
-				return $response;
+
 			}
+      	return $response;
 	}
 //#################### Sync Attendance End ####################//
 
