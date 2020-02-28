@@ -2505,7 +2505,7 @@ LEFT JOIN edu_terms AS et ON  efm.term_id=et.term_id WHERE efm.class_master_id='
         LEFT JOIN edu_sections AS s ON  cm.section=s.sec_id
         LEFT JOIN edu_subject AS esu ON sc.subject_id=esu.subject_id
         LEFT JOIN edu_teachers as et on et.teacher_id=sc.teacher_id
-        LEFT JOIN edu_users as eu on eu.user_master_id=et.teacher_id where sc.year_id='$year_id'";
+        LEFT JOIN edu_users as eu on eu.user_master_id=et.teacher_id where sc.year_id='$year_id' GROUP BY sc.id";
         $res=$this->db->query($select);
         if($res->num_rows()==0){
           $response = array("status" => "error", "msg" => "No Special class Found");
