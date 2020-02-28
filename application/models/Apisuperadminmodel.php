@@ -8,7 +8,19 @@ Class Apisuperadminmodel extends CI_Model
 
     }
 
+    //-------------------- Version check -------------------//
 
+
+  function version_check($version_code){
+    if($version_code==1){
+      $response = array("status" => "success");
+    }else{
+      $response = array("status" => "error");
+    }
+    	return $response;
+  }
+
+  //-------------------- Version check -------------------//
     function get_all_staff_details($role_type_id)
     {
         $query = "SELECT teacher_id,role_type_id,name,status,created_at FROM edu_teachers WHERE role_type_id='$role_type_id'";
