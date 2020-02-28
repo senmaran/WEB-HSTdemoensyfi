@@ -175,6 +175,21 @@ if($version_code==1){
 
 //-------------------- Version check -------------------//
 
+
+//#################### Last login Update ####################//
+
+    function last_login_update($user_id){
+      $update="UPDATE edu_users SET last_login_date=NOW() WHERE user_id='$user_id'";
+      $result = $this->db->query($update);
+      if($result){
+         $response = array("status" => "success", "msg" => "Updated!.");
+      }else{
+        $response = array("status" => "error", "msg" => "Something went wrong!.");
+      }
+      return $response;
+    }
+//#################### Last login Update ####################//
+
 //#################### Current Year ####################//
 
 	public function getYear()
