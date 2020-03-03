@@ -363,6 +363,46 @@ if($version_code==1){
 	}
 //#################### Communication End ####################//
 
+
+
+//#################### Special Class list ####################//
+
+      function get_special_list($class_master_id){
+        $year_id = $this->getYear();
+        $select="SELECT IFNULL(c.class_name, '') AS class_name,IFNULL(s.sec_name, '') AS sec_name,esu.subject_name,sc.* FROM edu_special_class AS sc
+        LEFT JOIN edu_classmaster AS cm ON sc.class_master_id=cm.class_sec_id
+        LEFT JOIN edu_class AS c ON cm.class=c.class_id
+        LEFT JOIN edu_sections AS s ON  cm.section=s.sec_id
+        LEFT JOIN edu_subject AS esu ON sc.subject_id=esu.subject_id
+        LEFT JOIN edu_teachers as et on et.teacher_id=sc.teacher_id
+        LEFT JOIN edu_users as eu on eu.user_master_id=et.teacher_id where sc.year_id='$year_id' and sc.class_master_id='$class_master_id' GROUP BY sc.id";
+        $res=$this->db->query($select);
+        if($res->num_rows()==0){
+          $response = array("status" => "error", "msg" => "No Special class Found");
+
+        }else{
+          foreach($res->result() as $rows){
+            $special_class[]=array(
+              "class_sec_name" => $rows->class_name.'-'.$rows->sec_name,
+              "class_sec_id" => $rows->class_master_id,
+              "subject_name" => $rows->subject_name,
+              "subject_topic" => $rows->subject_topic,
+              "special_class_date" => $rows->special_class_date,
+              "start_time" => $rows->start_time,
+              "end_time" => $rows->end_time,
+              "status" => $rows->status,
+            );
+          }
+          $response = array("status" => "success", "msg" => "Special Found","special_details"=>$special_class);
+
+        }
+        return $response;
+      }
+
+
+//#################### Special Class list ####################//
+
+
 }
 
 ?>

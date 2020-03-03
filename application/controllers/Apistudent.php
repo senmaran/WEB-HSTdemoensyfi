@@ -438,5 +438,34 @@ class Apistudent extends CI_Controller {
 
 //-----------------------------------------------//
 
+//-----------------------------------------------//
+// Get all Special class
+public function get_all_special_class_list()
+{
+	$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+	if(!$this->checkMethod())
+	{
+		return FALSE;
+	}
+
+	if($_POST == FALSE)
+	{
+		$res = array();
+		$res["opn"] = "SOMETHING WENT WRONG ";
+		$res["scode"] = 204;
+		$res["message"] = "Input error";
+
+		echo json_encode($res);
+		return;
+	}
+
+	$class_master_id=$this->input->post('class_master_id');
+	$data['result']=$this->apistudentmodel->get_all_special_class_list($class_master_id);
+	$response = $data['result'];
+	echo json_encode($response);
+}
+//-----------------------------------------------//
+
 
 }
