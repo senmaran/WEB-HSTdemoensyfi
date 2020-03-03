@@ -367,7 +367,7 @@ if($version_code==1){
 
 //#################### Special Class list ####################//
 
-      function get_special_list($class_master_id){
+      function get_all_special_class_list($class_master_id){
         $year_id = $this->getYear();
         $select="SELECT IFNULL(c.class_name, '') AS class_name,IFNULL(s.sec_name, '') AS sec_name,esu.subject_name,sc.* FROM edu_special_class AS sc
         LEFT JOIN edu_classmaster AS cm ON sc.class_master_id=cm.class_sec_id
