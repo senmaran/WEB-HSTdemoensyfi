@@ -9,6 +9,28 @@ Class Login extends CI_Model
 
   }
 
+		function valid_code($inst_code)
+       {
+		   
+		   //------------Connect demo DB ---------------//
+			$this->db_second = $this->load->database('second', TRUE); 
+			 $query = "SELECT * FROM institute_master WHERE  institute_code = '$inst_code' AND status = 'Active'";
+			 $resultset = $this->db_second->query($query);
+			 if($resultset->num_rows()>0){
+				 
+				 $data = array("institute_code"  => $inst_code);
+                 $this->session->set_userdata($data);
+				 $data= array("status" => "Active","msg" => "Your Account Is Active");
+                 return $data;
+			 } else {
+				 $data= array("status" => "Deactive","msg" => "Your Account Is De-Activated");
+                 return $data;
+			 }
+			$this->db_second->close();
+			//------------Connect demo DB End---------------// 
+
+       }
+	   
        function login($email,$password)
        {
           $query = "SELECT * FROM edu_users WHERE  user_name = '$email'";

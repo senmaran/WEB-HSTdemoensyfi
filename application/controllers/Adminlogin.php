@@ -27,6 +27,31 @@ class Adminlogin extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	 
+	 public function valid_code()
+	{
+			$inst_code = $this->input->post('inst_code');
+			$result = $this->login->valid_code($inst_code);
+
+			if($result['status']=='Active'){
+					redirect('adminlogin/login');
+			} else {
+				$this->session->set_flashdata('msg', 'Invalid Institute Code!');
+				 redirect('/');
+			}
+	}
+
+	public function login()
+	{
+		$user_id=$this->session->userdata('user_id');
+		$institute_code=$this->session->userdata('institute_code');
+
+		if($user_id){
+				redirect('adminlogin/dashboard');
+		}else{
+				 $this->load->view('login');
+		}		
+	}
+	
 	public function home()
 	{
       //$schoolid=$this->input->post('school_id');

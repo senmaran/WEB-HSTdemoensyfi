@@ -64,9 +64,9 @@
 						</div>
 
 						<div class="col-md-4">
-							<form method="post" action="<?php echo base_url(); ?>adminlogin/home" id="myform">
+							<form method="post" action="<?php echo base_url(); ?>adminlogin/valid_code" id="myform">
 							<div class="card">
-							<?php if($this->session->flashdata('msg')): ?>
+								<?php if($this->session->flashdata('msg')): ?>
 							<div class="alert alert-danger">
 							  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
 								  ×</button>
@@ -76,29 +76,18 @@
 
 							<?php if($pic!='') { ?>
 								<div class="header text-center"><img src="<?php echo base_url(); ?>assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>
-
-								<!--<div class="header text-center"><img src="http://<?php echo $server_url; ?>/assets/admin/profile/<?php echo $pic; ?>" class="img-circle" style="width:150px;height: 150px;"> </div>-->
 							<?php } else { ?>
-									<!--<div class="header text-center"><img src="http://<?php echo $server_url; ?>/<?php echo $sid; ?>/assets/main_logo.png" class="img-circle" style="width:150px;height: 150px;"></div>-->
-									<div class="header text-center"><img src="<?php echo base_url(); ?>assets/main_logo.png" class="img-circle" style="width:150px;height:150px;"></div>
+								<div class="header text-center"><img src="<?php echo base_url(); ?>assets/main_logo.png" class="img-circle" style="width:150px;height:150px;"></div>
 							<?php } ?>
-									<div class="content">
-										<div class="form-group">
-											<label>Username</label>
-											<input type="text" placeholder="Enter username" name="email" class="form-control" maxlength="12">
-										</div>
-										<br>
-										<div class="form-group">
-											<label>Password</label>
-											<input type="password" placeholder="Enter password" name="password" class="form-control" maxlength="12">
-										</div>
-										<div class="form-group">
-											<label style="float:right;"><a href="<?php echo base_url(); ?>home/forgotpassword">Forgot password?</a></label>
-										</div>
-									</div>
-									<div class="footer text-center" style="padding: 15px 15px;">
-										<button type="submit" class="btn btn-fill btn-warning btn-wd">LOGIN</button>
-									</div>
+							<div class="content">
+								<div class="form-group">
+									<label>Institute Code</label>
+									<input type="text" placeholder="Enter Institute Code" name="inst_code" class="form-control" maxlength="12">
+								</div>
+							</div>
+							<div class="footer text-center" style="padding: 15px 15px;">
+								<button type="submit" class="btn btn-fill btn-warning btn-wd">LOGIN</button>
+							</div>
 							</div>
 							</form>
                           </div>
@@ -163,18 +152,12 @@
      $(document).ready(function() {
 		$('#myform').validate({ // initialize the plugin
 			rules: {
-				email: {
+				inst_code: {
 					required: true
-				},
-				password: {
-					required: true
-				},
-
+				}
 			},
 			messages: {
-				email: "Username cannot be empty!",
-				password: "Password cannot be empty!"
-
+				inst_code: "Institute cannot be empty!"
 			}
 		});
      });
