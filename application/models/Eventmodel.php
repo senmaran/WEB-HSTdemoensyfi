@@ -22,7 +22,7 @@ Class Eventmodel extends CI_Model
             //print_r($data);exit;
              return $data;
           }else{
-            $data= array("status" =>"noYearfound");
+            $data= array("status" =>"error","cur_year"=>0);
             return $data;
           }
 

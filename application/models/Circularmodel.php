@@ -81,7 +81,15 @@ Class Circularmodel extends CI_Model
 		  $result1=$this->db->query($get_year);
 		  $all_year= $result1->result();
 		  foreach($all_year as $cyear){}
-		  $current_year=$cyear->year_id;
+		 
+		 if($result1->num_rows()==1){
+            $current_year= $cyear->year_id;
+           
+          }else{
+            $current_year= 0;
+          }
+
+//		 $current_year=$cyear->year_id;
 
 	     $query2="SELECT * FROM edu_circular_master WHERE academic_year_id='$current_year' AND status='Active' ";
          $res=$this->db->query($query2);
@@ -302,7 +310,15 @@ Class Circularmodel extends CI_Model
 		  $result1=$this->db->query($get_year);
 		  $all_year= $result1->result();
 		  foreach($all_year as $cyear){}
-		  $current_year=$cyear->year_id;
+		  
+		  if($result1->num_rows()==1){
+            $current_year= $cyear->year_id;
+           
+          }else{
+            $current_year= 0;
+          }
+		  
+		  //$current_year=$cyear->year_id;
 		  
 		 $query123="SELECT c.id,c.user_type,c.user_id,c.circular_master_id,c.circular_date,c.circular_type,cm.*,u.user_id,u.name FROM edu_circular AS c,edu_users AS u,edu_circular_master AS cm WHERE c.user_type='2' AND  cm.id=c.circular_master_id AND c.user_id=u.user_id AND cm.academic_year_id = '$current_year' AND  cm.status='Active' ORDER BY c.id DESC";
 		
@@ -317,7 +333,13 @@ Class Circularmodel extends CI_Model
 		  $result1=$this->db->query($get_year);
 		  $all_year= $result1->result();
 		  foreach($all_year as $cyear){}
-		  $current_year=$cyear->year_id;
+		  if($result1->num_rows()==1){
+            $current_year= $cyear->year_id;
+           
+          }else{
+            $current_year= 0;
+          }
+		  //$current_year=$cyear->year_id;
 		 
 		  $query="SELECT
 					cm.*,
@@ -353,7 +375,14 @@ Class Circularmodel extends CI_Model
 		  $result1=$this->db->query($get_year);
 		  $all_year= $result1->result();
 		  foreach($all_year as $cyear){}
-		  $current_year=$cyear->year_id;
+		  
+		  if($result1->num_rows()==1){
+            $current_year= $cyear->year_id;
+          }else{
+            $current_year= 0;
+          }
+		  
+		  //$current_year=$cyear->year_id;
 		  
 			 $query="SELECT
 						cm.*,
@@ -395,7 +424,15 @@ Class Circularmodel extends CI_Model
 		  $result1=$this->db->query($get_year);
 		  $all_year= $result1->result();
 		  foreach($all_year as $cyear){}
-		  $current_year=$cyear->year_id;
+		  
+		  if($result1->num_rows()==1){
+            $current_year= $cyear->year_id;
+           
+          }else{
+            $current_year= 0;
+          }
+		  
+		 // $current_year=$cyear->year_id;
 		  
 		$query="SELECT c.id,c.user_type,c.user_id,c.circular_master_id,c.circular_date,c.circular_type,cm.*,u.user_id,u.name FROM edu_circular AS c,edu_users AS u,edu_circular_master AS cm WHERE c.user_type='5' AND  cm.id=c.circular_master_id AND c.user_id=u.user_id AND cm.academic_year_id = '$current_year' AND  cm.status='Active' ORDER BY c.id DESC";
 	 //exit;
@@ -426,7 +463,12 @@ Class Circularmodel extends CI_Model
 		  $result1=$this->db->query($get_year);
 		  $all_year= $result1->result();
 		  foreach($all_year as $cyear){}
-		  $current_year=$cyear->year_id;
+		  if($result1->num_rows()==1){
+            $current_year= $cyear->year_id;
+          }else{
+            $current_year= 0;
+          }
+		  //$current_year=$cyear->year_id;
 
 	    $query2="SELECT * FROM edu_circular_master WHERE academic_year_id='$current_year' ORDER BY id DESC";
          $res=$this->db->query($query2);

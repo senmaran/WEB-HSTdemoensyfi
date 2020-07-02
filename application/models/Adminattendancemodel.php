@@ -20,7 +20,7 @@ Class Adminattendancemodel extends CI_Model
 			$data= array("status" =>"success","cur_year"=>$acd_year);
 			 return $data;
 		  }else{
-			$data= array("status" =>"noYearfound");
+			$data= array("status" =>"error","cur_year"=>0);
 			return $data;
 		  }
 

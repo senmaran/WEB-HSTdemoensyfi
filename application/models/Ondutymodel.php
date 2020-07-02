@@ -18,8 +18,11 @@ Class Ondutymodel extends CI_Model
           foreach ($year_result->result() as $rows) {
               $year_id = $rows->year_id;
           }
-          return $year_id;
-      }
+         
+      } else{
+		  $year_id = 0;
+	  }
+	   return $year_id;
   }
 
 
@@ -29,7 +32,13 @@ Class Ondutymodel extends CI_Model
 		  $result1=$this->db->query($get_year);
 		  $all_year= $result1->result();
 		  foreach($all_year as $cyear){}
-		  $current_year=$cyear->year_id;
+		  if($result1->num_rows()==1){
+            $current_year= $cyear->year_id;
+           
+          }else{
+            $current_year= 0;
+          }
+	//	  $current_year=$cyear->year_id;
 		  
     	 $query="SELECT du.*,u.user_id,u.name FROM edu_on_duty AS du,edu_users AS u WHERE du.user_type=2 AND du.user_id=u.user_id AND du.year_id='$current_year' ORDER BY du.id DESC" ; 
     	 $res=$this->db->query($query);
