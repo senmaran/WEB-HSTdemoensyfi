@@ -33,6 +33,7 @@ Class Login extends CI_Model
 	   
        function login($email,$password)
        {
+		   
           $query = "SELECT * FROM edu_users WHERE  user_name = '$email'";
           $resultset=$this->db->query($query);
           if($resultset->num_rows()==1){

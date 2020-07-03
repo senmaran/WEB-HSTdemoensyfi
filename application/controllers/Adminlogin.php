@@ -55,9 +55,14 @@ class Adminlogin extends CI_Controller {
 	public function home()
 	{
       //$schoolid=$this->input->post('school_id');
+
 	  $email=$this->input->post('email');
-	  $password=md5($this->input->post('password'));
-	  $result = $this->login->login($email,$password);
+	  $password= md5($this->input->post('password'));
+	  
+	  $semail = $this->db->escape_str($email);
+	  $spassword = $this->db->escape_str($password);
+	  
+	  $result = $this->login->login($semail,$spassword);
 	  $msg = $result['msg'];
 
 			if($result['status']=='Deactive'){
