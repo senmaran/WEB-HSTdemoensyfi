@@ -14,7 +14,7 @@ Class Login extends CI_Model
 		   
 		   //------------Connect demo DB ---------------//
 			$this->db_second = $this->load->database('second', TRUE); 
-			 $query = "SELECT * FROM institute_master WHERE  institute_code = '$inst_code' AND status = 'Active'";
+			 $query = "SELECT * FROM tbl_institute WHERE  institute_code = '$inst_code' AND status = '1'";
 			 $resultset = $this->db_second->query($query);
 			 if($resultset->num_rows()>0){
 				 
